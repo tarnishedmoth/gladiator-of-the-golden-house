@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://ksdjo8qa17pc"]
+
+[ext_resource type="Script" uid="uid://cn5t7ncgbkn2q" path="res://menus/developer/dev_menu.gd" id="1_12ima"]
+[ext_resource type="PackedScene" uid="uid://bm6vflkk8xg30" path="res://play/level.tscn" id="2_aqm70"]
+[ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="3_4m0ib"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kvqlu"]
+font_size = 36
+outline_size = 8
+outline_color = Color(0.10980392, 0.078431375, 0.09019608, 1)
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 0.043137256)
+shadow_offset = Vector2(1, 24)
+
+[node name="DevMainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_12ima")
+selectable_levels = Array[PackedScene]([ExtResource("2_aqm70")])
+
+[node name="BG" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5033745, 0.5033746, 0.5033746, 1)
+
+[node name="Vignette" parent="." instance=ExtResource("3_4m0ib")]
+layout_mode = 1
+
+[node name="Contents" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -199.5
+offset_right = 199.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="Contents"]
+layout_mode = 2
+text = "WELCOME, DEVELOPER"
+label_settings = SubResource("LabelSettings_kvqlu")
+
+[node name="Spacer" type="Control" parent="Contents"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="SelectDropdown" type="OptionButton" parent="Contents"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+flat = true
+selected = 0
+allow_reselect = true
+item_count = 1
+popup/item_0/text = "Select a scene..."
+popup/item_0/id = 0
+popup/item_0/separator = true
+
+[node name="LaunchButton" type="Button" parent="Contents"]
+layout_mode = 2
+text = "LAUNCH"
+flat = true
+
+[connection signal="pressed" from="Contents/LaunchButton" to="." method="_on_launch_button_pressed"]

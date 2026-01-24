@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://busmfpxkb80ql"]
+
+[ext_resource type="Script" uid="uid://b6rscnyubc6tg" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://ksdjo8qa17pc" path="res://menus/developer/dev_menu.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dgjwny10ywnvr" path="res://menus/intro/splash.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dfsb03s1gr8a" path="res://legal_menu_screen.tscn" id="3_1bvp3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
+font_size = 9
+
+[node name="Main" type="Node"]
+script = ExtResource("1_ig7tw")
+splash_scene = ExtResource("2_h2yge")
+main_menu_scene = ExtResource("3_1bvp3")
+dev_main_menu_scene = ExtResource("2_0xm2m")
+
+[node name="Debug" type="VBoxContainer" parent="."]
+editor_description = "UI elements to aid in development. This node will be DELETED in release builds (TODO)."
+modulate = Color(1, 1, 1, 0.627451)
+z_index = 300
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 125.0
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="ProjectVersionLabel" type="Label" parent="Debug"]
+unique_name_in_owner = true
+z_index = 300
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Version"
+label_settings = SubResource("LabelSettings_h2yge")
+
+[node name="Divider" type="Control" parent="Debug"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DebugSceneLabel" type="RichTextLabel" parent="Debug"]
+unique_name_in_owner = true
+z_index = 100
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Instanced Scene Filename"
