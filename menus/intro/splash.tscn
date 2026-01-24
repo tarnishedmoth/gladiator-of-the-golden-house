@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bs8ywso6o5mlp" path="res://icon.svg" id="4_d525n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_56kac"]
-font_size = 64
+font_size = 48
 shadow_size = 20
 shadow_color = Color(0, 0, 0, 0.03137255)
 shadow_offset = Vector2(1, 20)
@@ -39,19 +39,23 @@ color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 [node name="Vignette" parent="UI" instance=ExtResource("2_d525n")]
 layout_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -0.5
-offset_right = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
 alignment = 1
 
-[node name="Studio" type="TextureRect" parent="UI/VBoxContainer"]
+[node name="Studio" type="TextureRect" parent="UI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 220)
 layout_mode = 2
@@ -60,26 +64,26 @@ texture = ExtResource("4_d525n")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Title" type="Label" parent="UI/VBoxContainer"]
+[node name="Title" type="Label" parent="UI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Gladiator of the Golden House"
 label_settings = SubResource("LabelSettings_56kac")
 horizontal_alignment = 1
 
-[node name="Version" type="Label" parent="UI/VBoxContainer"]
+[node name="Version" type="Label" parent="UI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "vX.X.X"
 label_settings = SubResource("LabelSettings_bl3qm")
 horizontal_alignment = 2
 
-[node name="Spacer" type="Control" parent="UI/VBoxContainer"]
+[node name="Spacer" type="Control" parent="UI/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.25
 
-[node name="Subtext" type="Label" parent="UI/VBoxContainer"]
+[node name="Subtext" type="Label" parent="UI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "a Dev Pods game."

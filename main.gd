@@ -25,7 +25,6 @@ var instanced_root: Node
 
 @onready var debug_scene_label: RichTextLabel = %DebugSceneLabel
 @onready var project_version_label: Label = %ProjectVersionLabel
-@onready var divider: Control = %Divider
 
 ## Called only once at program start.
 func _ready() -> void:

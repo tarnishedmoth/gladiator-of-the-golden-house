@@ -14,18 +14,25 @@ splash_scene = ExtResource("2_h2yge")
 main_menu_scene = ExtResource("3_1bvp3")
 dev_main_menu_scene = ExtResource("2_0xm2m")
 
-[node name="Debug" type="VBoxContainer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 999
+
+[node name="Debug" type="VBoxContainer" parent="CanvasLayer"]
 editor_description = "UI elements to aid in development. This node will be DELETED in release builds (TODO)."
 modulate = Color(1, 1, 1, 0.627451)
-z_index = 300
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 125.0
-grow_vertical = 2
-size_flags_vertical = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 17.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="ProjectVersionLabel" type="Label" parent="Debug"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Debug"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="ProjectVersionLabel" type="Label" parent="CanvasLayer/Debug/HBoxContainer"]
 unique_name_in_owner = true
 z_index = 300
 layout_mode = 2
@@ -34,14 +41,18 @@ size_flags_vertical = 0
 text = "Version"
 label_settings = SubResource("LabelSettings_h2yge")
 
-[node name="Divider" type="Control" parent="Debug"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="DebugSceneLabel" type="RichTextLabel" parent="Debug"]
+[node name="DebugSceneLabel" type="RichTextLabel" parent="CanvasLayer/Debug/HBoxContainer"]
 unique_name_in_owner = true
 z_index = 100
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 9
+theme_override_font_sizes/bold_italics_font_size = 9
+theme_override_font_sizes/italics_font_size = 8
+theme_override_font_sizes/mono_font_size = 8
+bbcode_enabled = true
 text = "Instanced Scene Filename"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
