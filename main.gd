@@ -5,7 +5,7 @@ class_name Main extends Node
 ## Load the splash,
 ## then load the main menu.
 
-var VERSION:String:
+static var VERSION:String:
 	get:
 		if not VERSION:
 			VERSION = ProjectSettings.get_setting("application/config/version", "")

@@ -1,10 +1,22 @@
-[gd_scene load_steps=7 format=4 uid="uid://bm6vflkk8xg30"]
+[gd_scene format=4 uid="uid://bm6vflkk8xg30"]
 
 [ext_resource type="Texture2D" uid="uid://ciglny0pa7kji" path="res://play/tile-atlases/tiles.png" id="1_3s5gp"]
 [ext_resource type="Texture2D" uid="uid://baforln2mc5me" path="res://play/tile-atlases/test.png" id="1_6hll6"]
+[ext_resource type="Script" uid="uid://c6sgu6sth1eu1" path="res://play/level.gd" id="1_bg3j4"]
 [ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="1_u4q3m"]
+[ext_resource type="Script" uid="uid://d3wjcqjs4jdor" path="res://input/player/player_director.gd" id="3_6sy0s"]
+[ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://input/ai/ai_director.gd" id="4_f2owf"]
+
+[sub_resource type="Gradient" id="Gradient_bg3j4"]
+colors = PackedColorArray(0.23082569, 0.7133575, 0.9167679, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6sy0s"]
+gradient = SubResource("Gradient_bg3j4")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u4q3m"]
+resource_name = "outline"
 texture = ExtResource("1_6hll6")
 texture_region_size = Vector2i(128, 72)
 0:0/0 = 0
@@ -134,18 +146,36 @@ uv_clipping = true
 sources/1 = SubResource("TileSetAtlasSource_3s5gp")
 sources/0 = SubResource("TileSetAtlasSource_u4q3m")
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node2D" unique_id=13868467]
 texture_filter = 3
+script = ExtResource("1_bg3j4")
 
-[node name="Vignette" parent="." instance=ExtResource("1_u4q3m")]
+[node name="Vignette" parent="." unique_id=1689915564 instance=ExtResource("1_u4q3m")]
 
-[node name="TileMapLayers" type="Node2D" parent="."]
+[node name="TileMapLayers" type="Node2D" parent="." unique_id=994423606]
 editor_description = "The 32px X offset is to center the hex grid tiles on 0,0."
 position = Vector2(32, 0)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="TileMapLayers"]
+[node name="Directors" type="Node2D" parent="TileMapLayers" unique_id=440455703]
+unique_name_in_owner = true
+position = Vector2(-32, 0)
+
+[node name="Player" type="Node2D" parent="TileMapLayers/Directors" unique_id=1321501885]
+script = ExtResource("3_6sy0s")
+metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
+
+[node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=310050252]
+
+[node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/Player/MainCharacter" unique_id=1704811731]
+texture = SubResource("GradientTexture2D_6sy0s")
+
+[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" unique_id=2134352030]
+script = ExtResource("4_f2owf")
+metadata/_custom_type_script = "uid://dwys5mwbuw85s"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]
 tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAD//wAAAAAAAAAAAAD/////AAAAAAAAAAAAAP7/AAAAAAAAAAABAP7/AAAAAAAAAAABAP//AAAAAAAAAAAAAAAAAAAAAAAAAAD//wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD+/wAAAAAAAAAAAAD+////AAAAAAAAAAD///7/AAAAAAAAAAAAAP3/AAAAAAAAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAABAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAD//wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wAAAAAAAAAAAAD9////AAAAAAAAAAD+//7/AAAAAAAAAAD///3/AAAAAAAAAAAAAPz/AAAAAAAAAAABAPz/AAAAAAAAAAACAPz/AAAAAAAAAAADAPz/AAAAAAAAAAADAP3/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAACAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_fqe43")
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="." unique_id=695801089]
 editor_description = "Main camera"

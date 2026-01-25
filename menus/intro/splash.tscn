@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgjwny10ywnvr"]
+[gd_scene format=3 uid="uid://dgjwny10ywnvr"]
 
 [ext_resource type="Script" uid="uid://cef5121i0cwd6" path="res://menus/intro/splash.gd" id="1_b04ml"]
 [ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="2_d525n"]
 [ext_resource type="Texture2D" uid="uid://bs8ywso6o5mlp" path="res://icon.svg" id="4_d525n"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_56kac"]
+blend_mode = 2
 
 [sub_resource type="LabelSettings" id="LabelSettings_56kac"]
 font_size = 48
@@ -15,10 +18,12 @@ font_size = 22
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Splash" type="Node"]
+[node name="Splash" type="Node" unique_id=1039972038]
 script = ExtResource("1_b04ml")
+metadata/_edit_vertical_guides_ = [-206.0, 960.0, 480.0]
+metadata/_edit_horizontal_guides_ = [-26.0, 540.0, 270.0]
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." unique_id=373289018]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +31,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BG" type="ColorRect" parent="UI"]
+[node name="BG" type="ColorRect" parent="UI" unique_id=107153775]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -36,10 +41,18 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 
-[node name="Vignette" parent="UI" instance=ExtResource("2_d525n")]
+[node name="Vignette" parent="UI" unique_id=163976660 instance=ExtResource("2_d525n")]
 layout_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
+[node name="Studio" type="Sprite2D" parent="UI" unique_id=409209664]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.29411766)
+material = SubResource("CanvasItemMaterial_56kac")
+position = Vector2(480, -27.096)
+scale = Vector2(11.66, 11.66)
+texture = ExtResource("4_d525n")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=1576631532]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,39 +64,35 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer" unique_id=1077686527]
 layout_mode = 2
 alignment = 1
 
-[node name="Studio" type="TextureRect" parent="UI/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 220)
+[node name="Spacer2" type="Control" parent="UI/MarginContainer/VBoxContainer" unique_id=1628986937]
 layout_mode = 2
-size_flags_vertical = 6
-texture = ExtResource("4_d525n")
-expand_mode = 3
-stretch_mode = 5
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
 
-[node name="Title" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="UI/MarginContainer/VBoxContainer" unique_id=586133042]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Gladiator of the Golden House"
 label_settings = SubResource("LabelSettings_56kac")
 horizontal_alignment = 1
 
-[node name="Version" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+[node name="Version" type="Label" parent="UI/MarginContainer/VBoxContainer" unique_id=1822538717]
 unique_name_in_owner = true
 layout_mode = 2
 text = "vX.X.X"
 label_settings = SubResource("LabelSettings_bl3qm")
 horizontal_alignment = 2
 
-[node name="Spacer" type="Control" parent="UI/MarginContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="UI/MarginContainer/VBoxContainer" unique_id=414536047]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.25
 
-[node name="Subtext" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+[node name="Subtext" type="Label" parent="UI/MarginContainer/VBoxContainer" unique_id=1485804414]
 unique_name_in_owner = true
 layout_mode = 2
 text = "a Dev Pods game."

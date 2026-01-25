@@ -2,11 +2,11 @@ class_name SplashMenu extends Node
 
 signal finished
 
-@onready var bg: ColorRect = %BG
-@onready var studio: TextureRect = %Studio
-@onready var title: Label = %Title
-@onready var version: Label = %Version
-@onready var subtext: Label = %Subtext
+@onready var bg := %BG
+@onready var studio := %Studio
+@onready var title := %Title
+@onready var version := %Version
+@onready var subtext := %Subtext
 
 
 func _ready() -> void:
