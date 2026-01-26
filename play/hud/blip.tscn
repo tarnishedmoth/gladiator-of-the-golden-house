@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dhwxpcx7ajaji"]
+
+[sub_resource type="Gradient" id="Gradient_gmsnh"]
+offsets = PackedFloat32Array(0.26349208, 0.6825397, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.13570999, 0.94080496, 0.81563884, 1, 0.045999996, 0.061333317, 0.23, 0.42745098)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rgcgw"]
+gradient = SubResource("Gradient_gmsnh")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[node name="Blip" type="TextureRect" unique_id=2046570082]
+custom_minimum_size = Vector2(12, 0)
+texture = SubResource("GradientTexture2D_rgcgw")
+expand_mode = 1

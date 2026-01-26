@@ -1,0 +1,341 @@
+{
+	"categories": [
+		{
+			"uuid": "be0a29e3-ad2a-42f9-bbff-0048401eb657",
+			"title": "Task",
+			"color": "569eff"
+		},
+		{
+			"uuid": "584dabe8-c70e-41e1-86e8-f03349ffc971",
+			"title": "Art",
+			"color": "d59984"
+		},
+		{
+			"uuid": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
+			"title": "Code",
+			"color": "1a1a1a"
+		},
+		{
+			"uuid": "f1e90cea-e437-433f-838e-593637e037cd",
+			"title": "Small tasks",
+			"color": "d7ecc3"
+		},
+		{
+			"uuid": "5b1d6f24-fe7f-44fd-a1c3-8c7c464439af",
+			"title": "Sound",
+			"color": "443097"
+		},
+		{
+			"uuid": "aeca6c93-4a3a-4e94-96d8-5ce920470e66",
+			"title": "Scene",
+			"color": "c0a113"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "fba985c0-da2b-4626-801e-fdd46ef003ea",
+			"title": "Todo",
+			"tasks": [
+				"b4d52842-6141-4490-b780-a872c5b5703a",
+				"246bbf3d-2cec-4c7a-8079-264a08fecc2a",
+				"df2afd66-460a-4e76-a45b-2151f91b2134",
+				"d298c791-5894-4081-bd8f-e6003d598d8a",
+				"a8331803-4f15-436e-8f76-0cb86e2083b0",
+				"108baa7d-04e9-4dc9-a91e-8937dcc0e5ea",
+				"ad8dfd77-d797-4411-ace8-7d17c85021ef",
+				"44dfa864-2b94-4629-829f-04e4abea61ed",
+				"8da69c61-9c20-40fd-b246-85fdb2ca37ab"
+			]
+		},
+		{
+			"uuid": "5bd8c89e-a508-4de4-93ba-6624e469e884",
+			"title": "Week 1",
+			"tasks": []
+		},
+		{
+			"uuid": "a0a063ce-e7ed-4a60-bd56-75fcf3954c7a",
+			"title": "Week 2",
+			"tasks": []
+		},
+		{
+			"uuid": "02cebec9-4ee9-44d1-b1f1-0ccf2c29c4b1",
+			"title": "Week 3",
+			"tasks": []
+		},
+		{
+			"uuid": "08ea6f58-0b55-4501-959d-c438d8b589b5",
+			"title": "Week 4",
+			"tasks": []
+		},
+		{
+			"uuid": "3049e944-33fb-431e-955d-7ac167aba1d5",
+			"title": "Week 5",
+			"tasks": []
+		},
+		{
+			"uuid": "99d98ee8-28fa-4478-b10a-5aa4ccef795f",
+			"title": "Week 6",
+			"tasks": [
+				"45b18358-3a82-4b6b-b08d-9c2f469811e7"
+			]
+		},
+		{
+			"uuid": "2085aed5-8adb-4ec1-8b3c-d45ee75157a9",
+			"title": "Week 7",
+			"tasks": [
+				"e4978fea-dcd1-41e8-963f-b9bff26025d2"
+			]
+		},
+		{
+			"uuid": "b77d639d-2b82-4500-9227-c709c6820963",
+			"title": "Week 8",
+			"tasks": [
+				"cd56b12d-c7e2-4c1e-9280-3f327a985cd0"
+			]
+		},
+		{
+			"uuid": "d429a4ac-1890-41d7-8b47-ae8551f74193",
+			"title": "Week 9",
+			"tasks": []
+		},
+		{
+			"uuid": "a290ab5c-91b6-4f0a-827d-9f3bcb97be4b",
+			"title": "Week 10",
+			"tasks": []
+		},
+		{
+			"uuid": "5da08dbc-85a0-48c3-b455-a8935bdd67a4",
+			"title": "Week 11",
+			"tasks": [
+				"120b3b3a-baa4-412c-8180-ac3a4a7b6708"
+			]
+		},
+		{
+			"uuid": "f10716e3-0ebd-422d-88cd-e42bb43357da",
+			"title": "Week 12",
+			"tasks": [
+				"e9205e35-0344-4b2b-bed8-195980a431a7"
+			]
+		},
+		{
+			"uuid": "8ef430c2-311f-4acb-8138-06fa24baae19",
+			"title": "Week 13 (Release)",
+			"tasks": [
+				"c8f1d960-7da0-4184-8602-99f70b4eed47"
+			]
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "b4d52842-6141-4490-b780-a872c5b5703a",
+			"title": "Select tiles under mouse",
+			"description": "",
+			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
+			"steps": []
+		},
+		{
+			"uuid": "246bbf3d-2cec-4c7a-8079-264a08fecc2a",
+			"title": "Move player",
+			"description": "",
+			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
+			"steps": []
+		},
+		{
+			"uuid": "df2afd66-460a-4e76-a45b-2151f91b2134",
+			"title": "Player attack",
+			"description": "",
+			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
+			"steps": []
+		},
+		{
+			"uuid": "d298c791-5894-4081-bd8f-e6003d598d8a",
+			"title": "Prevent movement to occupied tiles",
+			"description": "",
+			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
+			"steps": []
+		},
+		{
+			"uuid": "a8331803-4f15-436e-8f76-0cb86e2083b0",
+			"title": "Player guard",
+			"description": "",
+			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
+			"steps": []
+		},
+		{
+			"uuid": "108baa7d-04e9-4dc9-a91e-8937dcc0e5ea",
+			"title": "Enemies",
+			"description": "Hostile units on the board",
+			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
+			"steps": [
+				{
+					"details": "Spawn on board",
+					"done": false
+				},
+				{
+					"details": "Can plan/execute movement",
+					"done": false
+				},
+				{
+					"details": "Can plan/execute other actions",
+					"done": false
+				},
+				{
+					"details": "Designed behaviors in state machine",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "ad8dfd77-d797-4411-ace8-7d17c85021ef",
+			"title": "Random starting placement",
+			"description": "",
+			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
+			"steps": []
+		},
+		{
+			"uuid": "44dfa864-2b94-4629-829f-04e4abea61ed",
+			"title": "Actions are a unified class (movement, attack, gaurd, specials)",
+			"description": "",
+			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
+			"steps": []
+		},
+		{
+			"uuid": "8da69c61-9c20-40fd-b246-85fdb2ca37ab",
+			"title": "Limit movement per \"action\"",
+			"description": "",
+			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
+			"steps": []
+		},
+		{
+			"uuid": "120b3b3a-baa4-412c-8180-ac3a4a7b6708",
+			"title": "Start Playtest 2",
+			"description": "",
+			"category": "be0a29e3-ad2a-42f9-bbff-0048401eb657",
+			"steps": [
+				{
+					"details": "Create/modify feedback form",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "45b18358-3a82-4b6b-b08d-9c2f469811e7",
+			"title": "Create Web build process",
+			"description": "",
+			"category": "be0a29e3-ad2a-42f9-bbff-0048401eb657",
+			"steps": [
+				{
+					"details": "Create Itch page",
+					"done": false
+				},
+				{
+					"details": "Working build & upload",
+					"done": false
+				},
+				{
+					"details": "Write documentation for build process",
+					"done": false
+				},
+				{
+					"details": "(Bonus) automatic GitHub build pipeline",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "c8f1d960-7da0-4184-8602-99f70b4eed47",
+			"title": "Prepare release",
+			"description": "",
+			"category": "be0a29e3-ad2a-42f9-bbff-0048401eb657",
+			"steps": [
+				{
+					"details": "Make animated cover image",
+					"done": false
+				},
+				{
+					"details": "Update release credits",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "d04924ee-f8fb-4cb8-af9c-0e69c54e5a4c",
+			"title": "New task",
+			"description": "",
+			"category": "be0a29e3-ad2a-42f9-bbff-0048401eb657",
+			"steps": []
+		},
+		{
+			"uuid": "e4978fea-dcd1-41e8-963f-b9bff26025d2",
+			"title": "Start Playtest 1",
+			"description": "",
+			"category": "be0a29e3-ad2a-42f9-bbff-0048401eb657",
+			"steps": [
+				{
+					"details": "Create feedback form",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "cd56b12d-c7e2-4c1e-9280-3f327a985cd0",
+			"title": "Review playtest responses",
+			"description": "",
+			"category": "be0a29e3-ad2a-42f9-bbff-0048401eb657",
+			"steps": []
+		},
+		{
+			"uuid": "e9205e35-0344-4b2b-bed8-195980a431a7",
+			"title": "Review playtest responses",
+			"description": "",
+			"category": "be0a29e3-ad2a-42f9-bbff-0048401eb657",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"fba985c0-da2b-4626-801e-fdd46ef003ea"
+			],
+			[
+				"5bd8c89e-a508-4de4-93ba-6624e469e884"
+			],
+			[
+				"a0a063ce-e7ed-4a60-bd56-75fcf3954c7a"
+			],
+			[
+				"02cebec9-4ee9-44d1-b1f1-0ccf2c29c4b1"
+			],
+			[
+				"08ea6f58-0b55-4501-959d-c438d8b589b5"
+			],
+			[
+				"3049e944-33fb-431e-955d-7ac167aba1d5"
+			],
+			[
+				"99d98ee8-28fa-4478-b10a-5aa4ccef795f"
+			],
+			[
+				"2085aed5-8adb-4ec1-8b3c-d45ee75157a9"
+			],
+			[
+				"b77d639d-2b82-4500-9227-c709c6820963"
+			],
+			[
+				"d429a4ac-1890-41d7-8b47-ae8551f74193"
+			],
+			[
+				"a290ab5c-91b6-4f0a-827d-9f3bcb97be4b"
+			],
+			[
+				"5da08dbc-85a0-48c3-b455-a8935bdd67a4"
+			],
+			[
+				"f10716e3-0ebd-422d-88cd-e42bb43357da"
+			],
+			[
+				"8ef430c2-311f-4acb-8138-06fa24baae19"
+			]
+		]
+	}
+}

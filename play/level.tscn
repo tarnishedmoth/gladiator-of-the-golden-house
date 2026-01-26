@@ -6,6 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="1_u4q3m"]
 [ext_resource type="Script" uid="uid://d3wjcqjs4jdor" path="res://input/player/player_director.gd" id="3_6sy0s"]
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://input/ai/ai_director.gd" id="4_f2owf"]
+[ext_resource type="Script" uid="uid://ddbas45a3e81e" path="res://play/hud.gd" id="7_gmsnh"]
+[ext_resource type="Theme" uid="uid://0t4errmfvln0" path="res://menus/theme_level_hud.theme" id="7_sxuih"]
+[ext_resource type="Script" uid="uid://cnk6cyi6oyhbp" path="res://play/hud/button_with_blips.gd" id="9_rgcgw"]
+[ext_resource type="PackedScene" uid="uid://dhwxpcx7ajaji" path="res://play/hud/blip.tscn" id="10_gwg6o"]
+[ext_resource type="Script" uid="uid://gb7t3y8ncwep" path="res://utils/delete_on_enter.gd" id="11_0d8q5"]
 
 [sub_resource type="Gradient" id="Gradient_bg3j4"]
 colors = PackedColorArray(0.23082569, 0.7133575, 0.9167679, 1, 0, 0, 0, 1)
@@ -146,15 +151,23 @@ uv_clipping = true
 sources/1 = SubResource("TileSetAtlasSource_3s5gp")
 sources/0 = SubResource("TileSetAtlasSource_u4q3m")
 
-[node name="Level" type="Node2D" unique_id=13868467]
-texture_filter = 3
-script = ExtResource("1_bg3j4")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0d8q5"]
 
-[node name="Vignette" parent="." unique_id=1689915564 instance=ExtResource("1_u4q3m")]
+[node name="Level" type="Node2D" unique_id=13868467 node_paths=PackedStringArray("base_tile_map_layer")]
+texture_filter = 3
+position = Vector2(480, 270)
+script = ExtResource("1_bg3j4")
+base_tile_map_layer = NodePath("TileMapLayers/BaseTileMapLayer")
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=994423606]
 editor_description = "The 32px X offset is to center the hex grid tiles on 0,0."
 position = Vector2(32, 0)
+
+[node name="Vignette" parent="TileMapLayers" unique_id=1689915564 instance=ExtResource("1_u4q3m")]
+offset_left = -512.0
+offset_top = -270.0
+offset_right = 448.0
+offset_bottom = 270.0
 
 [node name="Directors" type="Node2D" parent="TileMapLayers" unique_id=440455703]
 unique_name_in_owner = true
@@ -173,9 +186,87 @@ texture = SubResource("GradientTexture2D_6sy0s")
 script = ExtResource("4_f2owf")
 metadata/_custom_type_script = "uid://dwys5mwbuw85s"
 
-[node name="TileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]
+[node name="BaseTileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]
 tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAD//wAAAAAAAAAAAAD/////AAAAAAAAAAAAAP7/AAAAAAAAAAABAP7/AAAAAAAAAAABAP//AAAAAAAAAAAAAAAAAAAAAAAAAAD//wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD+/wAAAAAAAAAAAAD+////AAAAAAAAAAD///7/AAAAAAAAAAAAAP3/AAAAAAAAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAABAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAD//wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wAAAAAAAAAAAAD9////AAAAAAAAAAD+//7/AAAAAAAAAAD///3/AAAAAAAAAAAAAPz/AAAAAAAAAAABAPz/AAAAAAAAAAACAPz/AAAAAAAAAAADAPz/AAAAAAAAAAADAP3/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAACAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_fqe43")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=695801089]
 editor_description = "Main camera"
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1415317388]
+script = ExtResource("7_gmsnh")
+
+[node name="Root" type="Control" parent="HUD" unique_id=2106034139]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_sxuih")
+
+[node name="LeftSide" type="VBoxContainer" parent="HUD/Root" unique_id=1569224161]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_right = 120.0
+grow_vertical = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="MoveButton" type="Button" parent="HUD/Root/LeftSide" unique_id=635348305]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Move"
+alignment = 2
+script = ExtResource("9_rgcgw")
+metadata/_custom_type_script = "uid://cnk6cyi6oyhbp"
+
+[node name="Blips" type="HBoxContainer" parent="HUD/Root/LeftSide/MoveButton" unique_id=1874783822]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Blip" parent="HUD/Root/LeftSide/MoveButton/Blips" unique_id=2046570082 instance=ExtResource("10_gwg6o")]
+layout_mode = 2
+script = ExtResource("11_0d8q5")
+
+[node name="Actions" type="PanelContainer" parent="HUD/Root/LeftSide" unique_id=1485869668]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Root/LeftSide/Actions" unique_id=1524081518]
+layout_mode = 2
+
+[node name="Actions" type="Button" parent="HUD/Root/LeftSide/Actions/VBoxContainer" unique_id=1198491881]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_0d8q5")
+disabled = true
+text = "Actions"
+alignment = 2
+script = ExtResource("9_rgcgw")
+metadata/_custom_type_script = "uid://cnk6cyi6oyhbp"
+
+[node name="Blips" type="HBoxContainer" parent="HUD/Root/LeftSide/Actions/VBoxContainer/Actions" unique_id=2030344501]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AttackLHButton" type="Button" parent="HUD/Root/LeftSide/Actions/VBoxContainer" unique_id=1631354247]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Left Hand"
+alignment = 2
+
+[node name="AttackRHButton" type="Button" parent="HUD/Root/LeftSide/Actions/VBoxContainer" unique_id=37920591]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Right Hand"
+alignment = 2

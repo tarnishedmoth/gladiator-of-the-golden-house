@@ -4,6 +4,24 @@ class_name Level extends Node2D
 const VERBOSE: bool = true
 func p(args):
 	print_rich("[bgcolor=red][color=white]", "Level: ", args)
+
+## Static instance, we should only have one Level in the scene tree at any time.
+static var instance: Level:
+	set(value):
+		if instance != null:
+			if is_instance_valid(instance):
+				if not instance.is_queued_for_deletion():
+					push_warning("More than one instance of Level exists.")
+		instance = value
+
+## Static instance, we should only have one Level in the scene tree at any time.
+## This method uses an assertion and should be used when you don't expect to handle
+## a null value.
+static func get_instance() -> Level:
+	assert(instance)
+	return instance
+	
+@export var base_tile_map_layer: TileMapLayer ## This is used for detecting mouse input.
 	
 var turn_count: int = 0
 
@@ -27,9 +45,14 @@ var playtime_counter_running: bool = false:
 
 func _apply_elapsed_play_time():
 	total_play_time += Time.get_ticks_msec() - _play_started_time
+	
+func _enter_tree() -> void:
+	instance = self
 
 func _ready() -> void:
 	if VERBOSE: p("Loaded, setting up game.")
+	
+	assert(base_tile_map_layer)
 	
 	## Find and connect signals
 	for child in %Directors.get_children():

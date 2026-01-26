@@ -8,6 +8,17 @@ func _on_turn_started():
 	
 var _end_turn_with_available_moves: Tween
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"select_tile"):
+		## Check if clicked on a tile
+		var tilemap_layer = Level.get_instance().base_tile_map_layer
+		var tile = tilemap_layer.local_to_map(
+			tilemap_layer.to_local(event.global_position)
+		)
+		if is_active:
+			pass
+		else:
+			pass
+	
 	if event.is_action_pressed(&"open_pause_menu"):
 			get_tree().quit() ## FIXME
 			pass
