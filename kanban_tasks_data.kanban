@@ -13,7 +13,7 @@
 		{
 			"uuid": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
 			"title": "Code",
-			"color": "1a1a1a"
+			"color": "131914"
 		},
 		{
 			"uuid": "f1e90cea-e437-433f-838e-593637e037cd",
@@ -34,38 +34,47 @@
 	"stages": [
 		{
 			"uuid": "fba985c0-da2b-4626-801e-fdd46ef003ea",
-			"title": "Todo",
-			"tasks": [
-				"b4d52842-6141-4490-b780-a872c5b5703a",
-				"246bbf3d-2cec-4c7a-8079-264a08fecc2a",
-				"df2afd66-460a-4e76-a45b-2151f91b2134",
-				"d298c791-5894-4081-bd8f-e6003d598d8a",
-				"a8331803-4f15-436e-8f76-0cb86e2083b0",
-				"108baa7d-04e9-4dc9-a91e-8937dcc0e5ea",
-				"ad8dfd77-d797-4411-ace8-7d17c85021ef",
-				"44dfa864-2b94-4629-829f-04e4abea61ed",
-				"8da69c61-9c20-40fd-b246-85fdb2ca37ab"
-			]
+			"title": "Todo (Bugs)",
+			"tasks": []
 		},
 		{
 			"uuid": "5bd8c89e-a508-4de4-93ba-6624e469e884",
 			"title": "Week 1",
-			"tasks": []
+			"tasks": [
+				"6dce6cd0-e0cc-423b-a77e-619974c06e1e",
+				"b4d52842-6141-4490-b780-a872c5b5703a",
+				"b8c81145-3278-402c-b480-12526bb11d08",
+				"8ce09326-b8b7-4433-9dd4-eb110e21658f"
+			]
 		},
 		{
 			"uuid": "a0a063ce-e7ed-4a60-bd56-75fcf3954c7a",
 			"title": "Week 2",
-			"tasks": []
+			"tasks": [
+				"5272bdbb-d725-44c3-afa8-efd05c78c9b5",
+				"246bbf3d-2cec-4c7a-8079-264a08fecc2a",
+				"df2afd66-460a-4e76-a45b-2151f91b2134",
+				"d298c791-5894-4081-bd8f-e6003d598d8a"
+			]
 		},
 		{
 			"uuid": "02cebec9-4ee9-44d1-b1f1-0ccf2c29c4b1",
 			"title": "Week 3",
-			"tasks": []
+			"tasks": [
+				"8da69c61-9c20-40fd-b246-85fdb2ca37ab",
+				"48e02552-7831-4d5d-ba98-5ecaaf981b46",
+				"e851d3d7-a069-4ae0-8595-c9ed9d2e995c"
+			]
 		},
 		{
 			"uuid": "08ea6f58-0b55-4501-959d-c438d8b589b5",
 			"title": "Week 4",
-			"tasks": []
+			"tasks": [
+				"a8331803-4f15-436e-8f76-0cb86e2083b0",
+				"108baa7d-04e9-4dc9-a91e-8937dcc0e5ea",
+				"045a0a5c-377a-454a-abdc-c22890590dbb",
+				"ad8dfd77-d797-4411-ace8-7d17c85021ef"
+			]
 		},
 		{
 			"uuid": "3049e944-33fb-431e-955d-7ac167aba1d5",
@@ -76,46 +85,48 @@
 			"uuid": "99d98ee8-28fa-4478-b10a-5aa4ccef795f",
 			"title": "Week 6",
 			"tasks": [
-				"45b18358-3a82-4b6b-b08d-9c2f469811e7"
+				"203326d3-1e7b-4ece-b330-cd769a4568f5"
 			]
 		},
 		{
 			"uuid": "2085aed5-8adb-4ec1-8b3c-d45ee75157a9",
 			"title": "Week 7",
 			"tasks": [
-				"e4978fea-dcd1-41e8-963f-b9bff26025d2"
+				"45b18358-3a82-4b6b-b08d-9c2f469811e7"
 			]
 		},
 		{
 			"uuid": "b77d639d-2b82-4500-9227-c709c6820963",
 			"title": "Week 8",
 			"tasks": [
-				"cd56b12d-c7e2-4c1e-9280-3f327a985cd0"
+				"e4978fea-dcd1-41e8-963f-b9bff26025d2"
 			]
 		},
 		{
 			"uuid": "d429a4ac-1890-41d7-8b47-ae8551f74193",
 			"title": "Week 9",
-			"tasks": []
+			"tasks": [
+				"cd56b12d-c7e2-4c1e-9280-3f327a985cd0"
+			]
 		},
 		{
 			"uuid": "a290ab5c-91b6-4f0a-827d-9f3bcb97be4b",
 			"title": "Week 10",
-			"tasks": []
-		},
-		{
-			"uuid": "5da08dbc-85a0-48c3-b455-a8935bdd67a4",
-			"title": "Week 11",
 			"tasks": [
 				"120b3b3a-baa4-412c-8180-ac3a4a7b6708"
 			]
 		},
 		{
-			"uuid": "f10716e3-0ebd-422d-88cd-e42bb43357da",
-			"title": "Week 12",
+			"uuid": "5da08dbc-85a0-48c3-b455-a8935bdd67a4",
+			"title": "Week 11",
 			"tasks": [
 				"e9205e35-0344-4b2b-bed8-195980a431a7"
 			]
+		},
+		{
+			"uuid": "f10716e3-0ebd-422d-88cd-e42bb43357da",
+			"title": "Week 12",
+			"tasks": []
 		},
 		{
 			"uuid": "8ef430c2-311f-4acb-8138-06fa24baae19",
@@ -123,6 +134,11 @@
 			"tasks": [
 				"c8f1d960-7da0-4184-8602-99f70b4eed47"
 			]
+		},
+		{
+			"uuid": "02af0649-0acd-4492-9c85-262be4e8b131",
+			"title": "In Progress",
+			"tasks": []
 		}
 	],
 	"tasks": [
@@ -131,18 +147,27 @@
 			"title": "Select tiles under mouse",
 			"description": "",
 			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
-			"steps": []
+			"steps": [
+				{
+					"details": "Get / display coordinates of tile",
+					"done": false
+				},
+				{
+					"details": "Highlight tile visually",
+					"done": false
+				}
+			]
 		},
 		{
 			"uuid": "246bbf3d-2cec-4c7a-8079-264a08fecc2a",
-			"title": "Move player",
+			"title": "Player move Action",
 			"description": "",
 			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
 			"steps": []
 		},
 		{
 			"uuid": "df2afd66-460a-4e76-a45b-2151f91b2134",
-			"title": "Player attack",
+			"title": "Player simple attack Action",
 			"description": "",
 			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
 			"steps": []
@@ -156,7 +181,7 @@
 		},
 		{
 			"uuid": "a8331803-4f15-436e-8f76-0cb86e2083b0",
-			"title": "Player guard",
+			"title": "Player can guard to boost defense",
 			"description": "",
 			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
 			"steps": []
@@ -166,35 +191,11 @@
 			"title": "Enemies",
 			"description": "Hostile units on the board",
 			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
-			"steps": [
-				{
-					"details": "Spawn on board",
-					"done": false
-				},
-				{
-					"details": "Can plan/execute movement",
-					"done": false
-				},
-				{
-					"details": "Can plan/execute other actions",
-					"done": false
-				},
-				{
-					"details": "Designed behaviors in state machine",
-					"done": false
-				}
-			]
+			"steps": []
 		},
 		{
 			"uuid": "ad8dfd77-d797-4411-ace8-7d17c85021ef",
 			"title": "Random starting placement",
-			"description": "",
-			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
-			"steps": []
-		},
-		{
-			"uuid": "44dfa864-2b94-4629-829f-04e4abea61ed",
-			"title": "Actions are a unified class (movement, attack, gaurd, specials)",
 			"description": "",
 			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
 			"steps": []
@@ -290,12 +291,137 @@
 			"description": "",
 			"category": "be0a29e3-ad2a-42f9-bbff-0048401eb657",
 			"steps": []
+		},
+		{
+			"uuid": "203326d3-1e7b-4ece-b330-cd769a4568f5",
+			"title": "Player can pan & zoom camera",
+			"description": "Could be one button zoom to mouse position, or direct control",
+			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
+			"steps": [
+				{
+					"details": "Choose control scheme",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "6dce6cd0-e0cc-423b-a77e-619974c06e1e",
+			"title": "Prepare pitch",
+			"description": "",
+			"category": "be0a29e3-ad2a-42f9-bbff-0048401eb657",
+			"steps": [
+				{
+					"details": "GDD ?",
+					"done": false
+				},
+				{
+					"details": "Make slideshow",
+					"done": false
+				},
+				{
+					"details": "Organize kanban",
+					"done": false
+				},
+				{
+					"details": "Record video",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "48e02552-7831-4d5d-ba98-5ecaaf981b46",
+			"title": "Highlight available tiles",
+			"description": "when an action is pending (e.g. you've clicked Move and now need to select a tile)",
+			"category": "be0a29e3-ad2a-42f9-bbff-0048401eb657",
+			"steps": [
+				{
+					"details": "Make a highlight effect or overlay",
+					"done": false
+				},
+				{
+					"details": "Make a method that applies the effect to an array of tiles",
+					"done": false
+				},
+				{
+					"details": "Decide what tiles are available for different actions",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "e851d3d7-a069-4ae0-8595-c9ed9d2e995c",
+			"title": "Indicate when a Tile is selectable",
+			"description": "",
+			"category": "584dabe8-c70e-41e1-86e8-f03349ffc971",
+			"steps": []
+		},
+		{
+			"uuid": "5272bdbb-d725-44c3-afa8-efd05c78c9b5",
+			"title": "Player can do Actions",
+			"description": "Movement, attacks, defense, and anything else should all work the same way. They check against and consume some limited resource per turn. They can have unique available tiles to be used on.",
+			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
+			"steps": [
+				{
+					"details": "Clicking a button does the action",
+					"done": false
+				},
+				{
+					"details": "Consumes a limited resource (blips)",
+					"done": false
+				},
+				{
+					"details": "Action returns what tiles it can be used on\n\nThis could be just an array of coorindates",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "045a0a5c-377a-454a-abdc-c22890590dbb",
+			"title": "Enemies taking actions",
+			"description": "State machine based behaviors",
+			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
+			"steps": [
+				{
+					"details": "Can plan/execute movement",
+					"done": false
+				},
+				{
+					"details": "Can plan/execute other actions",
+					"done": false
+				},
+				{
+					"details": "Designed behaviors in state machine",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "b8c81145-3278-402c-b480-12526bb11d08",
+			"title": "Characters exist on a tile",
+			"description": "",
+			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
+			"steps": []
+		},
+		{
+			"uuid": "8ce09326-b8b7-4433-9dd4-eb110e21658f",
+			"title": "Characters can be moved to different tiles",
+			"description": "",
+			"category": "78423dde-b923-4d3c-a642-8a7b7cb242e4",
+			"steps": []
+		},
+		{
+			"uuid": "e7690e8b-1ba1-451b-b3d0-7f64b8490323",
+			"title": "New task",
+			"description": "",
+			"category": "be0a29e3-ad2a-42f9-bbff-0048401eb657",
+			"steps": []
 		}
 	],
 	"layout": {
 		"columns": [
 			[
-				"fba985c0-da2b-4626-801e-fdd46ef003ea"
+				"fba985c0-da2b-4626-801e-fdd46ef003ea",
+				"02af0649-0acd-4492-9c85-262be4e8b131"
 			],
 			[
 				"5bd8c89e-a508-4de4-93ba-6624e469e884"
