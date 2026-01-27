@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://busmfpxkb80ql"]
+[gd_scene format=3 uid="uid://busmfpxkb80ql"]
 
 [ext_resource type="Script" uid="uid://b6rscnyubc6tg" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ksdjo8qa17pc" path="res://menus/developer/dev_menu.tscn" id="2_0xm2m"]
@@ -8,16 +8,16 @@
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
 font_size = 9
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=665979855]
 script = ExtResource("1_ig7tw")
 splash_scene = ExtResource("2_h2yge")
 main_menu_scene = ExtResource("3_1bvp3")
 dev_main_menu_scene = ExtResource("2_0xm2m")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=867431045]
 layer = 999
 
-[node name="Debug" type="VBoxContainer" parent="CanvasLayer"]
+[node name="Debug" type="VBoxContainer" parent="CanvasLayer" unique_id=1907599706]
 editor_description = "UI elements to aid in development. This node will be DELETED in release builds (TODO)."
 modulate = Color(1, 1, 1, 0.627451)
 anchors_preset = 10
@@ -28,11 +28,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Debug"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Debug" unique_id=181092148]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="ProjectVersionLabel" type="Label" parent="CanvasLayer/Debug/HBoxContainer"]
+[node name="ProjectVersionLabel" type="Label" parent="CanvasLayer/Debug/HBoxContainer" unique_id=1326422994]
 unique_name_in_owner = true
 z_index = 300
 layout_mode = 2
@@ -41,7 +41,7 @@ size_flags_vertical = 0
 text = "Version"
 label_settings = SubResource("LabelSettings_h2yge")
 
-[node name="DebugSceneLabel" type="RichTextLabel" parent="CanvasLayer/Debug/HBoxContainer"]
+[node name="DebugSceneLabel" type="RichTextLabel" parent="CanvasLayer/Debug/HBoxContainer" unique_id=2022737281]
 unique_name_in_owner = true
 z_index = 100
 layout_mode = 2
@@ -56,3 +56,14 @@ text = "Instanced Scene Filename"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="ReturnToMenuButton" type="Button" parent="CanvasLayer/Debug/HBoxContainer/DebugSceneLabel" unique_id=316422670]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[connection signal="pressed" from="CanvasLayer/Debug/HBoxContainer/DebugSceneLabel/ReturnToMenuButton" to="." method="_on_return_to_menu_button_pressed"]

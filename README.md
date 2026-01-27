@@ -1,2 +1,2 @@
-# gladiator-of-the-golden-house
-a godot tactics arena game
+# Gladiator of the Golden House
+Current project editor version is Godot **4.6.stable**.

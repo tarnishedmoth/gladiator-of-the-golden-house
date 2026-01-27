@@ -81,3 +81,10 @@ static func get_project_version() -> String:
 
 static func l(to_print) -> void:
 	print(LOG_PREFIX, to_print)
+
+
+func _on_return_to_menu_button_pressed() -> void:
+	if load_to_developer_menu:
+		change_scene(dev_main_menu_scene)
+	else:
+		change_scene(main_menu_scene)
