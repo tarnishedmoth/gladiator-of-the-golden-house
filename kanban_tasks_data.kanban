@@ -45,7 +45,8 @@
 				"b4d52842-6141-4490-b780-a872c5b5703a",
 				"b8c81145-3278-402c-b480-12526bb11d08",
 				"8ce09326-b8b7-4433-9dd4-eb110e21658f",
-				"1daec754-8779-4016-8a6f-6fb50fa88687"
+				"1daec754-8779-4016-8a6f-6fb50fa88687",
+				"89f97e1b-d4ff-4921-bc72-5167ed386727"
 			]
 		},
 		{
@@ -426,6 +427,13 @@
 			"title": "Placeholder enemies on board",
 			"description": "",
 			"category": "aeca6c93-4a3a-4e94-96d8-5ce920470e66",
+			"steps": []
+		},
+		{
+			"uuid": "89f97e1b-d4ff-4921-bc72-5167ed386727",
+			"title": "Fillout Kickoff form",
+			"description": "",
+			"category": "be0a29e3-ad2a-42f9-bbff-0048401eb657",
 			"steps": []
 		}
 	],

@@ -171,6 +171,7 @@ offset_bottom = 270.0
 
 [node name="Directors" type="Node2D" parent="TileMapLayers" unique_id=440455703]
 unique_name_in_owner = true
+visible = false
 position = Vector2(-32, 0)
 
 [node name="Player" type="Node2D" parent="TileMapLayers/Directors" unique_id=1321501885]
@@ -194,6 +195,7 @@ tile_set = SubResource("TileSet_fqe43")
 editor_description = "Main camera"
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1415317388]
+visible = false
 script = ExtResource("7_gmsnh")
 
 [node name="Root" type="Control" parent="HUD" unique_id=2106034139]
