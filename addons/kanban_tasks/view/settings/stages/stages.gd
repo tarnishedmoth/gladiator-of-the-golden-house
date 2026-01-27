@@ -195,7 +195,7 @@ func __remove_stage(uuid: String) -> void:
 func __settings_changed() -> void:
 	var ctx: __EditContext = __Singletons.instance_of(__EditContext, self)
 	warn_about_empty_deletion.button_pressed = ctx.settings.warn_about_empty_deletion
-	width_spin_box.value = ctx.settings.stages_width
+	width_spin_box.value = float(ctx.settings.stages_width)
 
 func __apply_settings_changes(warn: bool) -> void:
 	var ctx: __EditContext = __Singletons.instance_of(__EditContext, self)

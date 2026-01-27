@@ -44,7 +44,8 @@
 				"6dce6cd0-e0cc-423b-a77e-619974c06e1e",
 				"b4d52842-6141-4490-b780-a872c5b5703a",
 				"b8c81145-3278-402c-b480-12526bb11d08",
-				"8ce09326-b8b7-4433-9dd4-eb110e21658f"
+				"8ce09326-b8b7-4433-9dd4-eb110e21658f",
+				"1daec754-8779-4016-8a6f-6fb50fa88687"
 			]
 		},
 		{
@@ -325,6 +326,10 @@
 				{
 					"details": "Record video",
 					"done": false
+				},
+				{
+					"details": "Move kanban to Trello",
+					"done": false
 				}
 			]
 		},
@@ -414,6 +419,13 @@
 			"title": "New task",
 			"description": "",
 			"category": "be0a29e3-ad2a-42f9-bbff-0048401eb657",
+			"steps": []
+		},
+		{
+			"uuid": "1daec754-8779-4016-8a6f-6fb50fa88687",
+			"title": "Placeholder enemies on board",
+			"description": "",
+			"category": "aeca6c93-4a3a-4e94-96d8-5ce920470e66",
 			"steps": []
 		}
 	],
