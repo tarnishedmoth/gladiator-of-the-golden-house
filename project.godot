@@ -32,6 +32,7 @@ TargetFinder="*uid://bdpt4cmj32tcc"
 window/size/viewport_width=960
 window/size/viewport_height=540
 window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
