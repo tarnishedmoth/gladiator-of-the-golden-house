@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b6rscnyubc6tg" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ksdjo8qa17pc" path="res://menus/developer/dev_menu.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dgjwny10ywnvr" path="res://menus/intro/splash.tscn" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://dfsb03s1gr8a" path="res://legal_menu_screen.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dtaw53r4qlxv8" path="res://menus/main_menu.tscn" id="3_1bvp3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
 font_size = 9

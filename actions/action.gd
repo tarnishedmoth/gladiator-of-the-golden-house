@@ -1,4 +1,4 @@
-class_name Action extends State
+@abstract class_name Action extends State
 
 @export var ui_title: String ## Displayed in the Actions list
 @export var ui_description: String ## Displayed when hovering over an action

@@ -1,4 +1,4 @@
-class_name State extends Node
+@abstract class_name State extends Node
 
 signal finished(next:State, source:State)
 
@@ -20,9 +20,8 @@ func p(args) -> void:
 	print_rich("[bgcolor=khaki][color=black]State: ", args)
 
 ## On transition to this state
-func enter(from: State = null) -> void:
-	pass
-	
+@abstract func enter(from: State = null) -> void
+
 ## When leaving this state
 func exit() -> void:
 	finished.emit(
