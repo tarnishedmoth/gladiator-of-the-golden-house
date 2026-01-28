@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://d2w6eaad6ey6s"]
+
+[node name="Project Overview Board" type="Node2D" unique_id=724774706]
+
+[node name="Welcome" type="Node2D" parent="." unique_id=967331816]
+
+[node name="Label" type="Label" parent="Welcome" unique_id=231805543]
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 332.0
+offset_bottom = 161.0
+text = "Hey there! This is a developer resource, the idea is to work like a Figma board--a big canvas to document things.
+
+Please take a look around and feel free to add your own documentation to this space.
+
+This scene is designed for in-editor use, not in-game."
+autowrap_mode = 2
+
+[node name="Startup Flow" type="Node2D" parent="." unique_id=246700088]
+position = Vector2(521, 14)
+
+[node name="Label" type="RichTextLabel" parent="Startup Flow" unique_id=1901258218]
+custom_minimum_size = Vector2(400, 0)
+offset_top = 2.0
+offset_right = 229.0
+offset_bottom = 25.0
+bbcode_enabled = true
+text = "Program startup control flow:
+
+	1. [b]main.tscn[/b]:  startup & scene manager.
+
+If [b]main.gd:skip_splash == true[/b], skip to 3a or 3b.
+
+	2. menus/intro/[b]splash.tscn[/b]
+
+After finished, either 3a or 3b is spawned, conditional to [b]main.gd:load_to_developer_menu[/b]
+
+3a. menus/developer/[b]dev_menu.tscn[/b]
+3b. menus/[b]main_menu.tscn[/b]"
+fit_content = true
+
+[node name="Class Inheritance" type="Node2D" parent="." unique_id=1175972175]
+position = Vector2(108, 349)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Class Inheritance" unique_id=256088854]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Director" type="RichTextLabel" parent="Class Inheritance/VBoxContainer" unique_id=2120895864]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "Class inheritance overview:
+
+/input/ [b]Director[/b]  -  responsible for controlling game characters
+---/input/player/ [b]PlayerDirector[/b]  -  interface for the player's inputs to control their units.
+---/input/ai/ [b]AIDirector[/b]  -  responsible for computer-controlled unit behavior."
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="StateMachines" type="RichTextLabel" parent="Class Inheritance/VBoxContainer" unique_id=215424889]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "/statemachine/ [b]StateMachine[/b]  -  a node-based approach to isolated, sequential behaviors.
+/statemachine/ [b]State[/b]  -  [i](abstract)[/i] a node whose process is managed by the state machine.
+---/actions/ [b]Action[/b]  -  [i](abstract)[/i] something a character can do during their turn (attack, guard, move)"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Actions" type="RichTextLabel" parent="Class Inheritance/VBoxContainer" unique_id=209608428]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "/actions/requirements/ [b]ActionRequirement[/b]  -  [i](abstract)[/i] a conditional that must be true for the Action to be used by a character."
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
