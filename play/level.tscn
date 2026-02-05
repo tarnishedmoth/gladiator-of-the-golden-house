@@ -5,20 +5,38 @@
 [ext_resource type="Script" uid="uid://c6sgu6sth1eu1" path="res://play/level.gd" id="1_bg3j4"]
 [ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="1_u4q3m"]
 [ext_resource type="Script" uid="uid://d3wjcqjs4jdor" path="res://input/player/player_director.gd" id="3_6sy0s"]
+[ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="4_3a0x6"]
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://input/ai/ai_director.gd" id="4_f2owf"]
+[ext_resource type="Script" uid="uid://cpmor4ij3s6kx" path="res://actors/actor.gd" id="4_oo8ce"]
 [ext_resource type="Script" uid="uid://ddbas45a3e81e" path="res://play/hud.gd" id="7_gmsnh"]
+[ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="7_sffjp"]
 [ext_resource type="Theme" uid="uid://0t4errmfvln0" path="res://menus/theme_level_hud.theme" id="7_sxuih"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="8_p0uv8"]
+[ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="9_avgqe"]
+[ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="9_mung2"]
 [ext_resource type="Script" uid="uid://cnk6cyi6oyhbp" path="res://play/hud/button_with_blips.gd" id="9_rgcgw"]
 [ext_resource type="PackedScene" uid="uid://dhwxpcx7ajaji" path="res://play/hud/blip.tscn" id="10_gwg6o"]
+[ext_resource type="Texture2D" uid="uid://disinbamqthvh" path="res://actions/ui-icons/move.png" id="10_ixd4w"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="10_jqsul"]
 [ext_resource type="Script" uid="uid://gb7t3y8ncwep" path="res://utils/delete_on_enter.gd" id="11_0d8q5"]
+[ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="15_ew0x2"]
+[ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="16_yonjs"]
 
-[sub_resource type="Gradient" id="Gradient_bg3j4"]
-colors = PackedColorArray(0.23082569, 0.7133575, 0.9167679, 1, 0, 0, 0, 1)
+[sub_resource type="Animation" id="Animation_3a0x6"]
+resource_name = "new_animation"
+length = 10.0
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6sy0s"]
-gradient = SubResource("Gradient_bg3j4")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ew0x2"]
+_data = {
+&"new_animation": SubResource("Animation_3a0x6")
+}
+
+[sub_resource type="Resource" id="Resource_e2bh8"]
+script = ExtResource("10_jqsul")
+damage = 1
+ui_title = "Weak Attack"
+ui_description = "A very weak attack."
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u4q3m"]
 resource_name = "outline"
@@ -151,13 +169,19 @@ uv_clipping = true
 sources/1 = SubResource("TileSetAtlasSource_3s5gp")
 sources/0 = SubResource("TileSetAtlasSource_u4q3m")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0d8q5"]
+[sub_resource type="LabelSettings" id="LabelSettings_0d8q5"]
+font_size = 11
+font_color = Color(1, 1, 1, 0.7058824)
 
-[node name="Level" type="Node2D" unique_id=13868467 node_paths=PackedStringArray("base_tile_map_layer")]
+[node name="Level" type="Node2D" unique_id=13868467 node_paths=PackedStringArray("base_tile_map_layer", "tile_interactor")]
 texture_filter = 3
 position = Vector2(480, 270)
 script = ExtResource("1_bg3j4")
 base_tile_map_layer = NodePath("TileMapLayers/BaseTileMapLayer")
+tile_interactor = NodePath("MouseFollower/TileMapInteractor")
+
+[node name="Demonstration" type="AnimationPlayer" parent="." unique_id=1815931862]
+libraries/ = SubResource("AnimationLibrary_ew0x2")
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=994423606]
 editor_description = "The 32px X offset is to center the hex grid tiles on 0,0."
@@ -177,17 +201,40 @@ position = Vector2(-32, 0)
 script = ExtResource("3_6sy0s")
 metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
 
-[node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=310050252]
+[node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=2062837817]
+script = ExtResource("4_oo8ce")
+metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
 
 [node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/Player/MainCharacter" unique_id=1704811731]
-texture = SubResource("GradientTexture2D_6sy0s")
+self_modulate = Color(0.108270444, 0.74155116, 0.77216226, 1)
+texture = ExtResource("4_3a0x6")
 
 [node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" unique_id=2134352030]
+position = Vector2(93, -108)
 script = ExtResource("4_f2owf")
 metadata/_custom_type_script = "uid://dwys5mwbuw85s"
 
+[node name="Enemy1" type="Node2D" parent="TileMapLayers/Directors/AIDirector" unique_id=1276070918]
+script = ExtResource("7_sffjp")
+usable_actions = Array[ExtResource("8_p0uv8")]([ExtResource("9_mung2"), SubResource("Resource_e2bh8")])
+metadata/_custom_type_script = "uid://pgyek4ai3kpq"
+
+[node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy1" unique_id=1668975027]
+self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
+texture = ExtResource("4_3a0x6")
+
+[node name="Enemy2" type="Node2D" parent="TileMapLayers/Directors/AIDirector" unique_id=341779180]
+position = Vector2(97, 250)
+script = ExtResource("7_sffjp")
+usable_actions = Array[ExtResource("8_p0uv8")]([ExtResource("9_mung2"), SubResource("Resource_e2bh8")])
+metadata/_custom_type_script = "uid://pgyek4ai3kpq"
+
+[node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy2" unique_id=1864126273]
+self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
+texture = ExtResource("4_3a0x6")
+
 [node name="BaseTileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]
-tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAD//wAAAAAAAAAAAAD/////AAAAAAAAAAAAAP7/AAAAAAAAAAABAP7/AAAAAAAAAAABAP//AAAAAAAAAAAAAAAAAAAAAAAAAAD//wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD+/wAAAAAAAAAAAAD+////AAAAAAAAAAD///7/AAAAAAAAAAAAAP3/AAAAAAAAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAABAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAD//wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wAAAAAAAAAAAAD9////AAAAAAAAAAD+//7/AAAAAAAAAAD///3/AAAAAAAAAAAAAPz/AAAAAAAAAAABAPz/AAAAAAAAAAACAPz/AAAAAAAAAAADAPz/AAAAAAAAAAADAP3/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAACAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAD//wAAAAAAAAAAAAD/////AAAAAAAAAAAAAP7/AAAAAAAAAAABAP7/AAAAAAAAAAABAP//AAAAAAAAAAAAAAAAAAAAAAAAAAD//wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD+/wAAAAAAAAAAAAD+////AAAAAAAAAAD///7/AAAAAAAAAAAAAP3/AAAAAAAAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAABAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAD//wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wAAAAAAAAAAAAD9////AAAAAAAAAAD+//7/AAAAAAAAAAD///3/AAAAAAAAAAABAPz/AAAAAAAAAAACAPz/AAAAAAAAAAADAPz/AAAAAAAAAAADAP3/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAACAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAPz/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_fqe43")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=695801089]
@@ -203,6 +250,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme = ExtResource("7_sxuih")
 
 [node name="LeftSide" type="VBoxContainer" parent="HUD/Root" unique_id=1569224161]
@@ -216,15 +264,32 @@ grow_vertical = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="MoveButton" type="Button" parent="HUD/Root/LeftSide" unique_id=635348305]
+[node name="ActionsPanel" type="PanelContainer" parent="HUD/Root/LeftSide" unique_id=1485869668]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Root/LeftSide/ActionsPanel" unique_id=251626780]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="HUD/Root/LeftSide/ActionsPanel/VBoxContainer" unique_id=1269318302]
+layout_mode = 2
+text = "Actions"
+label_settings = SubResource("LabelSettings_0d8q5")
+horizontal_alignment = 2
+
+[node name="Actions" type="VBoxContainer" parent="HUD/Root/LeftSide/ActionsPanel/VBoxContainer" unique_id=1524081518]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="MoveButton" type="Button" parent="HUD/Root/LeftSide/ActionsPanel/VBoxContainer/Actions" unique_id=635348305]
+layout_mode = 2
 text = "Move"
+icon = ExtResource("10_ixd4w")
 alignment = 2
 script = ExtResource("9_rgcgw")
 metadata/_custom_type_script = "uid://cnk6cyi6oyhbp"
 
-[node name="Blips" type="HBoxContainer" parent="HUD/Root/LeftSide/MoveButton" unique_id=1874783822]
+[node name="Blips" type="HBoxContainer" parent="HUD/Root/LeftSide/ActionsPanel/VBoxContainer/Actions/MoveButton" unique_id=1874783822]
 custom_minimum_size = Vector2(0, 6)
 layout_mode = 1
 anchors_preset = 10
@@ -233,40 +298,31 @@ offset_bottom = 4.0
 grow_horizontal = 2
 alignment = 2
 
-[node name="Blip" parent="HUD/Root/LeftSide/MoveButton/Blips" unique_id=2046570082 instance=ExtResource("10_gwg6o")]
+[node name="Blip" parent="HUD/Root/LeftSide/ActionsPanel/VBoxContainer/Actions/MoveButton/Blips" unique_id=2046570082 instance=ExtResource("10_gwg6o")]
 layout_mode = 2
 script = ExtResource("11_0d8q5")
 
-[node name="Actions" type="PanelContainer" parent="HUD/Root/LeftSide" unique_id=1485869668]
+[node name="AttackButton" type="Button" parent="HUD/Root/LeftSide/ActionsPanel/VBoxContainer/Actions" unique_id=1631354247]
 layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Root/LeftSide/Actions" unique_id=1524081518]
-layout_mode = 2
-
-[node name="Actions" type="Button" parent="HUD/Root/LeftSide/Actions/VBoxContainer" unique_id=1198491881]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 13
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_0d8q5")
-disabled = true
-text = "Actions"
-alignment = 2
-script = ExtResource("9_rgcgw")
-metadata/_custom_type_script = "uid://cnk6cyi6oyhbp"
-
-[node name="Blips" type="HBoxContainer" parent="HUD/Root/LeftSide/Actions/VBoxContainer/Actions" unique_id=2030344501]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="AttackLHButton" type="Button" parent="HUD/Root/LeftSide/Actions/VBoxContainer" unique_id=1631354247]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Left Hand"
+text = "Slash"
+icon = ExtResource("9_avgqe")
 alignment = 2
 
-[node name="AttackRHButton" type="Button" parent="HUD/Root/LeftSide/Actions/VBoxContainer" unique_id=37920591]
-unique_name_in_owner = true
+[node name="AttackButton2" type="Button" parent="HUD/Root/LeftSide/ActionsPanel/VBoxContainer/Actions" unique_id=1905197509]
 layout_mode = 2
-text = "Right Hand"
+text = "Jab"
+icon = ExtResource("9_avgqe")
 alignment = 2
+
+[node name="MouseFollower" type="Node2D" parent="." unique_id=687351869]
+position = Vector2(317, 190)
+script = ExtResource("15_ew0x2")
+metadata/_custom_type_script = "uid://mm6inbfx8c45"
+
+[node name="CursorSprite2D" type="Sprite2D" parent="MouseFollower" unique_id=361718326]
+position = Vector2(10, 9)
+texture = ExtResource("9_avgqe")
+flip_h = true
+
+[node name="TileMapInteractor" type="Node2D" parent="MouseFollower" unique_id=1205975102]
+script = ExtResource("16_yonjs")

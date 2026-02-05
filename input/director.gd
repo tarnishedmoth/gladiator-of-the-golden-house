@@ -1,6 +1,6 @@
 class_name Director extends Node2D
 
-## Has control of game unit(s). This could be the player, or enemy AI.
+## Has control of game actor(s). This could be the player, or enemy AI.
 ## If this were multiplayer, this is like different players. All characters on
 ## the game board on the same team should be controlled by one director.
 ##
@@ -11,6 +11,8 @@ class_name Director extends Node2D
 signal turn_taken(Director)
 
 const VERBOSE:bool = true
+
+var actors: Array[Actor] ## Order of items in array is important.
 
 var is_active: bool = false
 
@@ -45,3 +47,10 @@ func end_turn() -> void:
 func _on_turn_started():
 	if VERBOSE: print_debug("Method not overriden--check extending class script.")
 	pass
+
+
+func clear_and_repopulate_actors_from_children() -> void:
+	actors.clear()
+	for child in get_children():
+		if child is Actor:
+			actors.push_back(child)
