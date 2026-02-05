@@ -1,4 +1,4 @@
-extends Action
+class_name ActionMove extends Action
 
 ## Minimum distance, maximum distance in tiles.
 ## e.g. if the value is (2, 2), you can only move exactly two tiles.
@@ -6,6 +6,6 @@ extends Action
 @export var distance: Vector2i = Vector2i(1, 1)
 
 ## On transition to this state
-func enter(from: State = null) -> void:
+func enter(from: ResourceState = null) -> void:
 	p("Moving!")
-	pass
+	exit()

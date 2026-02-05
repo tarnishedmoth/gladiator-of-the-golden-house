@@ -7,12 +7,17 @@
 [ext_resource type="Script" uid="uid://d3wjcqjs4jdor" path="res://input/player/player_director.gd" id="3_6sy0s"]
 [ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="4_3a0x6"]
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://input/ai/ai_director.gd" id="4_f2owf"]
+[ext_resource type="Script" uid="uid://cpmor4ij3s6kx" path="res://actors/actor.gd" id="4_oo8ce"]
 [ext_resource type="Script" uid="uid://ddbas45a3e81e" path="res://play/hud.gd" id="7_gmsnh"]
+[ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="7_sffjp"]
 [ext_resource type="Theme" uid="uid://0t4errmfvln0" path="res://menus/theme_level_hud.theme" id="7_sxuih"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="8_p0uv8"]
 [ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="9_avgqe"]
+[ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="9_mung2"]
 [ext_resource type="Script" uid="uid://cnk6cyi6oyhbp" path="res://play/hud/button_with_blips.gd" id="9_rgcgw"]
 [ext_resource type="PackedScene" uid="uid://dhwxpcx7ajaji" path="res://play/hud/blip.tscn" id="10_gwg6o"]
 [ext_resource type="Texture2D" uid="uid://disinbamqthvh" path="res://actions/ui-icons/move.png" id="10_ixd4w"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="10_jqsul"]
 [ext_resource type="Script" uid="uid://gb7t3y8ncwep" path="res://utils/delete_on_enter.gd" id="11_0d8q5"]
 [ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="15_ew0x2"]
 [ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="16_yonjs"]
@@ -25,6 +30,13 @@ length = 10.0
 _data = {
 &"new_animation": SubResource("Animation_3a0x6")
 }
+
+[sub_resource type="Resource" id="Resource_e2bh8"]
+script = ExtResource("10_jqsul")
+damage = 1
+ui_title = "Weak Attack"
+ui_description = "A very weak attack."
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u4q3m"]
 resource_name = "outline"
@@ -189,7 +201,9 @@ position = Vector2(-32, 0)
 script = ExtResource("3_6sy0s")
 metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
 
-[node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=310050252]
+[node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=2062837817]
+script = ExtResource("4_oo8ce")
+metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
 
 [node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/Player/MainCharacter" unique_id=1704811731]
 self_modulate = Color(0.108270444, 0.74155116, 0.77216226, 1)
@@ -200,14 +214,20 @@ position = Vector2(93, -108)
 script = ExtResource("4_f2owf")
 metadata/_custom_type_script = "uid://dwys5mwbuw85s"
 
-[node name="Enemy1" type="Node2D" parent="TileMapLayers/Directors/AIDirector" unique_id=749634780]
+[node name="Enemy1" type="Node2D" parent="TileMapLayers/Directors/AIDirector" unique_id=1276070918]
+script = ExtResource("7_sffjp")
+usable_actions = Array[ExtResource("8_p0uv8")]([ExtResource("9_mung2"), SubResource("Resource_e2bh8")])
+metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 
 [node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy1" unique_id=1668975027]
 self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
 texture = ExtResource("4_3a0x6")
 
-[node name="Enemy2" type="Node2D" parent="TileMapLayers/Directors/AIDirector" unique_id=551484074]
+[node name="Enemy2" type="Node2D" parent="TileMapLayers/Directors/AIDirector" unique_id=341779180]
 position = Vector2(97, 250)
+script = ExtResource("7_sffjp")
+usable_actions = Array[ExtResource("8_p0uv8")]([ExtResource("9_mung2"), SubResource("Resource_e2bh8")])
+metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 
 [node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy2" unique_id=1864126273]
 self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)

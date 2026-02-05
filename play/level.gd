@@ -52,7 +52,9 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	if VERBOSE: p("Loaded, setting up game.")
+	start_game.call_deferred()
 	
+func start_game() -> void:
 	assert(base_tile_map_layer)
 	assert(tile_interactor)
 	tile_interactor.set_tilemap(base_tile_map_layer)
@@ -63,6 +65,8 @@ func _ready() -> void:
 			directors.append(child)
 			if child is Player:
 				child.setup(base_tile_map_layer, tile_interactor)
+			elif child is AIDirector:
+				child.setup(base_tile_map_layer)
 	
 	playtime_counter_running = true
 	next_turn()

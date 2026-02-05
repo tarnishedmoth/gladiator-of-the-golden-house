@@ -1,4 +1,4 @@
-@abstract class_name Action extends State
+@abstract class_name Action extends ResourceState
 
 @export var ui_title: String ## Displayed in the Actions list
 @export var ui_description: String ## Displayed when hovering over an action
@@ -17,3 +17,7 @@ func can_player_enter(player_data) -> bool:
 		elif debug: p("Passed requirement check: %s" % requirement)
 		
 	return true
+
+func run_on(actor: Actor) -> void:
+	## Ask the actor's state machine to run this Action
+	actor.run_action(self)

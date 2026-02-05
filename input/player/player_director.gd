@@ -16,6 +16,10 @@ func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 	if not interactor.tile_changed.is_connected(_on_interactor_tile_changed):
 		interactor.tile_changed.connect(_on_interactor_tile_changed)
 	
+	clear_and_repopulate_actors_from_children()
+	for actor in actors:
+		actor.setup(self, tile_map)
+	
 	if VERBOSE: p("Setup done.")
 	
 
