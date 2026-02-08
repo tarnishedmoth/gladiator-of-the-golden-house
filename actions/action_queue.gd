@@ -15,6 +15,13 @@ var running_queue:bool = false
 func p(args) -> void:
 	print_rich("[bgcolor=olive][color=white]%s ActionQueue: " % target, args)
 	
+func setup(actor: Actor) -> void:
+	target = actor
+	if not finished.is_connected(actor._on_action_queue_finished):
+		finished.connect(actor._on_action_queue_finished)
+	else:
+		push_warning("Signal was already connected in setup method.")
+	
 func run_queue() -> void:
 	running_queue = true
 	queue_size_changed.emit(queue.size() - 1)
@@ -32,7 +39,7 @@ func run_action(new_action: Action = null, source: Action = null) -> void:
 			p("Entering: %s  from  %s" % [current_action, source])
 		new_action.finished.connect(_on_action_finished, ConnectFlags.CONNECT_ONE_SHOT)
 		new_action.process(true)
-		new_action.enter(source)
+		new_action.enter_with(target, source)
 	
 ## If chain_next is empty, the next item in the queue, if any, will be popped.
 func _on_action_finished(chain_next: ResourceState, source: ResourceState) -> void:
@@ -41,5 +48,8 @@ func _on_action_finished(chain_next: ResourceState, source: ResourceState) -> vo
 		if chain_next:
 			queue_size_changed.emit(queue.size())
 			if debug: p("Popped next action.")
+		else:
+			running_queue = false
+			if debug: p("Queue returned empty.")
 		
 	run_action(chain_next, source)

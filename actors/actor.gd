@@ -8,6 +8,7 @@ var tile_map: TileMapLayer
 var director: Director
 
 var action_queue: ActionQueue
+func get_action_queue() -> ActionQueue: return action_queue
 
 func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	self.director = director_
@@ -16,11 +17,9 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	if action_queue:
 		action_queue.free()
 	action_queue = ActionQueue.new()
-	action_queue.target = self
-	action_queue.finished.connect(_on_action_queue_finished)
-	
-	
-func get_action_queue() -> ActionQueue: return action_queue
+	action_queue.setup(self)
+
+
 func run_queued_actions() -> void: ## Emits a signal when done.
 	emit_actions_finished_signal = true
 	action_queue.run_queue()
@@ -34,6 +33,8 @@ func append_actions_to_queue(array: Array[Action]) -> void:
 	action_queue.queue.append_array(array)
 
 func run_action(action: Action) -> void: ## Immediately runs one action (and any chained actions).
+	if action_queue.running_queue:
+		push_warning("Action queue is apparently running the queue / Check for bad state?")
 	action_queue.run_action(action)
 	
 func _on_action_queue_finished() -> void:

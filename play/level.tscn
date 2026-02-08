@@ -187,6 +187,12 @@ libraries/ = SubResource("AnimationLibrary_ew0x2")
 editor_description = "The 32px X offset is to center the hex grid tiles on 0,0."
 position = Vector2(32, 0)
 
+[node name="BG" type="ColorRect" parent="TileMapLayers" unique_id=483265088]
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+
 [node name="Vignette" parent="TileMapLayers" unique_id=1689915564 instance=ExtResource("1_u4q3m")]
 offset_left = -512.0
 offset_top = -270.0
@@ -318,11 +324,6 @@ alignment = 2
 position = Vector2(317, 190)
 script = ExtResource("15_ew0x2")
 metadata/_custom_type_script = "uid://mm6inbfx8c45"
-
-[node name="CursorSprite2D" type="Sprite2D" parent="MouseFollower" unique_id=361718326]
-position = Vector2(10, 9)
-texture = ExtResource("9_avgqe")
-flip_h = true
 
 [node name="TileMapInteractor" type="Node2D" parent="MouseFollower" unique_id=1205975102]
 script = ExtResource("16_yonjs")

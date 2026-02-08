@@ -21,6 +21,15 @@ static func get_instance() -> Level:
 	assert(instance)
 	return instance
 	
+static func get_all_actors_in_play_order() -> Array[Actor]:
+	var actors: Array[Actor] = []
+	if not instance:
+		push_error("Can't get actors--no active level instance!")
+	else:
+		for dir in instance.directors:
+			actors.append_array(dir.actors)
+	return actors
+	
 @export var base_tile_map_layer: TileMapLayer ## This is used for detecting mouse input.
 @export var tile_interactor: TileInteractor ## This is used for detecting mouse input.
 	
