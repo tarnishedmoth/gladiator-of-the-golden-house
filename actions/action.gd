@@ -3,6 +3,10 @@
 @export var ui_title: String ## Displayed in the Actions list
 @export var ui_description: String ## Displayed when hovering over an action
 
+var _actor: Actor ## The target this action will run on.
+func set_actor(actor: Actor) -> void:
+	self._actor = actor
+
 ## A callable must accept `player_data` argument and return a boolean.
 ## Consider populating the requirements array in _init, or _enter_tree.
 var requirements: Array[ActionRequirement]
@@ -17,6 +21,12 @@ func can_player_enter(player_data) -> bool:
 		elif debug: p("Passed requirement check: %s" % requirement)
 		
 	return true
+	
+## Use to execute actions with an actor.
+## It will set the target actor before running [method enter].
+func enter_with(actor: Actor, from: Action) -> void:
+	set_actor(actor)
+	enter(from)
 
 func run_on(actor: Actor) -> void:
 	## Ask the actor's state machine to run this Action
