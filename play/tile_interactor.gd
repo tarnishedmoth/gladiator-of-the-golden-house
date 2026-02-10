@@ -8,6 +8,8 @@ var tilemap: TileMapLayer
 var current_coords: Vector2i ## Last polled coordinates. Updates every frame, before [signal tile_changed].
 var last_coords: Vector2i ## Previous frame's coordinates. Updates every frame, after [signal tile_changed].
 
+@onready var tile_highlight_sprite: Sprite2D = %TileHighlight
+
 func set_tilemap(tile_map: TileMapLayer) -> void:
 	tilemap = tile_map
 	
@@ -47,6 +49,9 @@ func _process(delta: float) -> void:
 				## New tile
 				current_coords = coords
 				tile_changed.emit(current_coords)
+				
+				if tile_highlight_sprite!=null:
+					tile_highlight_sprite.position = tilemap.map_to_local(current_coords)
 				
 				if VERBOSE:
 					print("%s at %s" % [tilemap.get_cell_tile_data(coords), current_coords])
