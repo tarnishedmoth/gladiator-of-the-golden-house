@@ -10,6 +10,9 @@ var director: Director
 var action_queue: ActionQueue
 func get_action_queue() -> ActionQueue: return action_queue
 
+@export var health: float
+var max_health: float
+
 func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	self.director = director_
 	self.tile_map = tilemap
@@ -18,6 +21,8 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 		action_queue.free()
 	action_queue = ActionQueue.new()
 	action_queue.setup(self)
+	
+	max_health = health
 
 
 func run_queued_actions() -> void: ## Emits a signal when done.
@@ -53,3 +58,6 @@ func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
 static func get_global_position_at(map: TileMapLayer, coords: Vector2i) -> Vector2:
 	return map.to_global(map.map_to_local(coords))
 	
+func take_damage(damage: float) -> void:
+	health -= damage
+	health = clampf(health, 0, max_health)
