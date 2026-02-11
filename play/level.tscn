@@ -84,13 +84,15 @@ offset_bottom = 270.0
 
 [node name="Directors" type="Node2D" parent="TileMapLayers" unique_id=440455703]
 unique_name_in_owner = true
-position = Vector2(-32, 0)
+metadata/_edit_lock_ = true
 
 [node name="Player" type="Node2D" parent="TileMapLayers/Directors" unique_id=1321501885]
 script = ExtResource("3_6sy0s")
 metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
+metadata/_edit_lock_ = true
 
 [node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=2062837817]
+position = Vector2(-245, -51)
 script = ExtResource("4_oo8ce")
 metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
 
@@ -99,11 +101,12 @@ self_modulate = Color(0.108270444, 0.74155116, 0.77216226, 1)
 texture = ExtResource("4_3a0x6")
 
 [node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" unique_id=2134352030]
-position = Vector2(93, -108)
 script = ExtResource("4_f2owf")
 metadata/_custom_type_script = "uid://dwys5mwbuw85s"
+metadata/_edit_lock_ = true
 
 [node name="Enemy1" type="Node2D" parent="TileMapLayers/Directors/AIDirector" unique_id=1276070918]
+position = Vector2(41, -133)
 script = ExtResource("7_sffjp")
 usable_actions = Array[ExtResource("8_p0uv8")]([ExtResource("9_mung2"), SubResource("Resource_e2bh8")])
 metadata/_custom_type_script = "uid://pgyek4ai3kpq"
@@ -113,7 +116,7 @@ self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
 texture = ExtResource("4_3a0x6")
 
 [node name="Enemy2" type="Node2D" parent="TileMapLayers/Directors/AIDirector" unique_id=341779180]
-position = Vector2(97, 250)
+position = Vector2(197, 87)
 script = ExtResource("7_sffjp")
 usable_actions = Array[ExtResource("8_p0uv8")]([ExtResource("9_mung2"), SubResource("Resource_e2bh8")])
 metadata/_custom_type_script = "uid://pgyek4ai3kpq"

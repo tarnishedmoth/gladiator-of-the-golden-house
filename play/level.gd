@@ -29,7 +29,23 @@ static func get_all_actors_in_play_order() -> Array[Actor]:
 		for dir in instance.directors:
 			actors.append_array(dir.actors)
 	return actors
+
+## Returns a description of any actors sharing the same tile, or empty string if none overlap.
+static func get_overlap_description() -> String:
+	var tile_actors: Dictionary = {} # Vector2i -> Array[Actor]
+	for actor in get_all_actors_in_play_order():
+		var coords: Vector2i = actor.current_tile_coords
+		if not tile_actors.has(coords):
+			tile_actors[coords] = []
+		tile_actors[coords].append(actor)
 	
+	var parts: PackedStringArray = []
+	for coords in tile_actors:
+		if tile_actors[coords].size() > 1:
+			var names := (tile_actors[coords] as Array).map(func(a): return a.name)
+			parts.append("%s at %s" % [names, coords])
+	return ", ".join(parts)
+
 @export var base_tile_map_layer: TileMapLayer ## This is used for detecting mouse input.
 @export var tile_interactor: TileInteractor ## This is used for detecting mouse input.
 	
@@ -77,6 +93,9 @@ func start_game() -> void:
 			elif child is AIDirector:
 				child.setup(base_tile_map_layer)
 	
+	var overlaps: String = get_overlap_description()
+	assert(overlaps.is_empty(), "Actors overlap: %s" % overlaps)
+
 	playtime_counter_running = true
 	next_turn()
 	

@@ -16,7 +16,9 @@ var max_health: float
 func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	self.director = director_
 	self.tile_map = tilemap
-	
+
+	_snap_to_nearest_tile()
+
 	if action_queue:
 		action_queue.free()
 	action_queue = ActionQueue.new()
@@ -46,6 +48,12 @@ func _on_action_queue_finished() -> void:
 	if emit_actions_finished_signal:
 		queued_actions_finished.emit(self)
 
+
+func _snap_to_nearest_tile() -> void:
+	var tile_coords: Vector2i = tile_map.local_to_map(tile_map.to_local(global_position))
+	assert(TileInteractor.cell_exists(tile_coords, tile_map))
+	current_tile_coords = tile_coords
+	global_position = get_global_position_at(tile_map, tile_coords)
 
 func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
 	if not tile_map: return
