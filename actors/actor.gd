@@ -10,6 +10,9 @@ var director: Director
 var action_queue: ActionQueue
 func get_action_queue() -> ActionQueue: return action_queue
 
+var facing: Facing.Cardinal
+@export var face_direction_pattern: DirectionPattern = preload("uid://d1amb27satk2b")
+
 var health: int
 @export var starting_health: int
 
@@ -24,7 +27,7 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	action_queue = ActionQueue.new()
 	action_queue.setup(self)
 	
-	starting_health = health
+	health = starting_health
 
 
 func run_queued_actions() -> void: ## Emits a signal when done.
@@ -62,6 +65,12 @@ func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
 	var move_tween := create_tween()
 	move_tween.set_ease(Tween.EASE_OUT)
 	move_tween.tween_property(self, ^"global_position", get_global_position_at(map, coords), 1.0)
+	
+func set_facing(cardinal_direction: Facing.Cardinal) -> void:
+	facing = cardinal_direction
+	
+func get_facing_values() -> DirectionPattern:
+	return Facing.rotate(face_direction_pattern, facing)
 
 static func get_global_position_at(map: TileMapLayer, coords: Vector2i) -> Vector2:
 	return map.to_global(map.map_to_local(coords))
