@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://baforln2mc5me" path="res://play/tile-atlases/test.png" id="1_6hll6"]
 [ext_resource type="Script" uid="uid://c6sgu6sth1eu1" path="res://play/level.gd" id="1_bg3j4"]
 [ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="1_u4q3m"]
+[ext_resource type="Texture2D" uid="uid://c3by065x614qx" path="res://play/tile-atlases/background-level-01.png" id="2_e2bh8"]
 [ext_resource type="Script" uid="uid://d3wjcqjs4jdor" path="res://input/player/player_director.gd" id="3_6sy0s"]
 [ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="4_3a0x6"]
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://input/ai/ai_director.gd" id="4_f2owf"]
@@ -70,11 +71,9 @@ libraries/ = SubResource("AnimationLibrary_ew0x2")
 editor_description = "The 32px X offset is to center the hex grid tiles on 0,0."
 position = Vector2(32, 0)
 
-[node name="BG" type="ColorRect" parent="TileMapLayers" unique_id=483265088]
-offset_left = -960.0
-offset_top = -540.0
-offset_right = 960.0
-offset_bottom = 540.0
+[node name="Background" type="Sprite2D" parent="TileMapLayers" unique_id=1621508126]
+position = Vector2(-32, 0)
+texture = ExtResource("2_e2bh8")
 
 [node name="Vignette" parent="TileMapLayers" unique_id=1689915564 instance=ExtResource("1_u4q3m")]
 offset_left = -512.0
