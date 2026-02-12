@@ -29,6 +29,11 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	
 	health = starting_health
 
+	################################################## DEBUG ONLY
+	# take random damage to test the health bar
+	take_damage(randi_range(0, starting_health*0.9))
+	################################################## DEBUG ONLY
+
 
 func run_queued_actions() -> void: ## Emits a signal when done.
 	emit_actions_finished_signal = true
@@ -74,7 +79,14 @@ func get_facing_values() -> DirectionPattern:
 
 static func get_global_position_at(map: TileMapLayer, coords: Vector2i) -> Vector2:
 	return map.to_global(map.map_to_local(coords))
+
+func update_healthbar() -> void:
+	if is_instance_valid($health/bar):
+		$health/bar.scale.x = float(health)/float(starting_health)
+	if is_instance_valid($health/txt):
+		$health/txt.text = str(health)
 	
 func take_damage(damage: int) -> void:
 	health -= damage
 	health = maxi(0, health)
+	update_healthbar()

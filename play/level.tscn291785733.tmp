@@ -95,6 +95,8 @@ metadata/_edit_lock_ = true
 [node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=2062837817]
 position = Vector2(-245, -51)
 script = ExtResource("4_oo8ce")
+face_direction_pattern = null
+starting_health = null
 metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
 
 [node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/Player/MainCharacter" unique_id=1704811731]
