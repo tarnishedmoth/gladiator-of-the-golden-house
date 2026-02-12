@@ -43,8 +43,8 @@ fit_content = true
 position = Vector2(19, 559)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Class Inheritance" unique_id=256088854]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 994.0
+offset_bottom = 215.0
 
 [node name="Director" type="RichTextLabel" parent="Class Inheritance/VBoxContainer" unique_id=2120895864]
 custom_minimum_size = Vector2(800, 0)
@@ -78,3 +78,67 @@ text = "/actions/requirements/ [b]ActionRequirement[/b]  -  [i](abstract)[/i] a 
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="Story" type="Node2D" parent="." unique_id=557749080]
+position = Vector2(1095, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Story" unique_id=853371121]
+offset_right = 470.0
+offset_bottom = 40.0
+theme_override_constants/separation = 24
+
+[node name="MainPlot" type="RichTextLabel" parent="Story/VBoxContainer" unique_id=1809125541]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]The Dead Are Angry![/b]
+The enemies are unsatisfied souls, people whose lives were cut short by the empire.
+
+[b]Quandry[/b]
+At the end of the game, the player meets the vengeful spirit of their friend who died because of the emperor's madness, the player will be given a choice:
+
+You don't [i]have to defeat the game's final enemies [/i], you can bring down the empire, but [i]everyone[/i] will burn, not just the rich and powerful."
+fit_content = true
+scroll_active = false
+
+[node name="NPCs" type="RichTextLabel" parent="Story/VBoxContainer" unique_id=119913876]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]NPCs[/b]
+The protagonist doesn't say much, so we need other characters to talk to one another to deliver [b]key details[/b] of the game.
+
+[b]Gladiator Friends[/b]
+A little [i]comic relief[/i] at the beginning:
+Rome is failing, outside the city walls, but it's been covered up and your two friends argue about it. ([i]We can hide exposition inside their quarrel.[/i])
+
+[b]The Gullible Gladiator[/b]
+One of your gladiator friends has heard the rumors that Rome is in trouble and believes them.
+([i]But this friend believes [/i]every[i] rumor ever, and this is the first time a rumor they believed actually turned out to be true.[/i])
+
+[b]The Cynical Gladiator[/b]
+Your cynical gladiator friend is tired of indulging rumors, that is why they argue.
+
+[b]Dead Friends Become Vengeance Spirits[/b]
+Your friends will die over the course of the story, due to the emperor's madness and desperate maneuvers while trying to keep Rome afloat.
+
+These are the characters who explain to the player that the undead they've been fighting: [i]have a point[/i] and offer the player the choice to let them destroy Rome and its inequalities. But the choice to let the carnage continue is complicated by:
+
+[b]Found Family[/b]
+In the second region, you leave the walls, and meet many of the [i]lovely[/i] people who make their life outside the city walls.
+
+They will be [i]so[/i] lovable, that players will be torn, some will finish the quest, fight back the undead, and let Rome continue [i]just[/i] so these wonderful characters they meet can continue living."
+fit_content = true
+scroll_active = false
+
+[node name="Theme" type="RichTextLabel" parent="Story/VBoxContainer" unique_id=542326910]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]This Horror Is The Emperor's Fault[/b]
+This is [b]Horror Genre[/b], these punishments from the underworld were brought on by terrible choices from the emperor.
+
+Think of [i]every bad boss and bad company-owner you've ever known[/i], and we can use those details in the game to make the emperor someone who deserved to have retribution from hell.
+
+We want the player to relate to hating this emperor specifically, so that the emperor is not generic.
+
+The more the player hates the emperor, the more tempting the choice is at the end, to let Rome ([i]but also all your new friends[/i]) burn."
+fit_content = true
+scroll_active = false
