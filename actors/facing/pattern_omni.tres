@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DirectionPattern" format=3 uid="uid://cbt8fdagre53s"]
+
+[ext_resource type="Script" uid="uid://ygbogsacf08w" path="res://actors/facing/facing_direction_pattern.gd" id="1_seds8"]
+
+[resource]
+script = ExtResource("1_seds8")
+twelve = 1.0
+two = 1.0
+four = 1.0
+six = 1.0
+eight = 1.0
+ten = 1.0
+metadata/_custom_type_script = "uid://ygbogsacf08w"

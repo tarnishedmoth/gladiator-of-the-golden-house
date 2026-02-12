@@ -15,3 +15,8 @@ export_credentials.cfg
 data_*/
 mono_crash.*.json
 project_time_traker.json
+
+# IDE
+.vscode/
+.claude/
+CLAUDE.md

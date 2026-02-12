@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://bm6vflkk8xg30"]
 
-[ext_resource type="Texture2D" uid="uid://ciglny0pa7kji" path="res://play/tile-atlases/tiles.png" id="1_3s5gp"]
 [ext_resource type="Texture2D" uid="uid://baforln2mc5me" path="res://play/tile-atlases/test.png" id="1_6hll6"]
 [ext_resource type="Script" uid="uid://c6sgu6sth1eu1" path="res://play/level.gd" id="1_bg3j4"]
 [ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="1_u4q3m"]
+[ext_resource type="Texture2D" uid="uid://c3by065x614qx" path="res://play/tile-atlases/background-level-01.png" id="2_e2bh8"]
 [ext_resource type="Script" uid="uid://d3wjcqjs4jdor" path="res://input/player/player_director.gd" id="3_6sy0s"]
 [ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="4_3a0x6"]
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://input/ai/ai_director.gd" id="4_f2owf"]
@@ -19,8 +19,11 @@
 [ext_resource type="Texture2D" uid="uid://disinbamqthvh" path="res://actions/ui-icons/move.png" id="10_ixd4w"]
 [ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="10_jqsul"]
 [ext_resource type="Script" uid="uid://gb7t3y8ncwep" path="res://utils/delete_on_enter.gd" id="11_0d8q5"]
+[ext_resource type="Texture2D" uid="uid://bruvlpfjaf07n" path="res://actors/healthbarBG.png" id="12_tjdga"]
+[ext_resource type="Texture2D" uid="uid://bidhnpwsgp83c" path="res://actors/healthbar.png" id="13_q6hfu"]
 [ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="15_ew0x2"]
 [ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="16_yonjs"]
+[ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="20_e2bh8"]
 
 [sub_resource type="Animation" id="Animation_3a0x6"]
 resource_name = "new_animation"
@@ -44,129 +47,12 @@ texture = ExtResource("1_6hll6")
 texture_region_size = Vector2i(128, 72)
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3s5gp"]
-texture = ExtResource("1_3s5gp")
-texture_region_size = Vector2i(128, 72)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-7:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-6:3/0 = 0
-7:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-7:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-7:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-6:6/0 = 0
-7:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-4:7/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-7:7/0 = 0
-0:8/0 = 0
-1:8/0 = 0
-2:8/0 = 0
-3:8/0 = 0
-4:8/0 = 0
-5:8/0 = 0
-6:8/0 = 0
-7:8/0 = 0
-0:9/0 = 0
-1:9/0 = 0
-2:9/0 = 0
-3:9/0 = 0
-4:9/0 = 0
-5:9/0 = 0
-6:9/0 = 0
-7:9/0 = 0
-0:10/0 = 0
-1:10/0 = 0
-2:10/0 = 0
-3:10/0 = 0
-4:10/0 = 0
-5:10/0 = 0
-6:10/0 = 0
-7:10/0 = 0
-0:11/0 = 0
-1:11/0 = 0
-2:11/0 = 0
-3:11/0 = 0
-4:11/0 = 0
-5:11/0 = 0
-6:11/0 = 0
-7:11/0 = 0
-0:12/0 = 0
-1:12/0 = 0
-2:12/0 = 0
-3:12/0 = 0
-4:12/0 = 0
-5:12/0 = 0
-6:12/0 = 0
-7:12/0 = 0
-0:13/0 = 0
-1:13/0 = 0
-2:13/0 = 0
-3:13/0 = 0
-4:13/0 = 0
-5:13/0 = 0
-6:13/0 = 0
-7:13/0 = 0
-
 [sub_resource type="TileSet" id="TileSet_fqe43"]
 tile_shape = 3
 tile_layout = 4
 tile_offset_axis = 1
 tile_size = Vector2i(128, 72)
 uv_clipping = true
-sources/1 = SubResource("TileSetAtlasSource_3s5gp")
 sources/0 = SubResource("TileSetAtlasSource_u4q3m")
 
 [sub_resource type="LabelSettings" id="LabelSettings_0d8q5"]
@@ -187,11 +73,9 @@ libraries/ = SubResource("AnimationLibrary_ew0x2")
 editor_description = "The 32px X offset is to center the hex grid tiles on 0,0."
 position = Vector2(32, 0)
 
-[node name="BG" type="ColorRect" parent="TileMapLayers" unique_id=483265088]
-offset_left = -960.0
-offset_top = -540.0
-offset_right = 960.0
-offset_bottom = 540.0
+[node name="Background" type="Sprite2D" parent="TileMapLayers" unique_id=1621508126]
+position = Vector2(-32, -66)
+texture = ExtResource("2_e2bh8")
 
 [node name="Vignette" parent="TileMapLayers" unique_id=1689915564 instance=ExtResource("1_u4q3m")]
 offset_left = -512.0
@@ -201,13 +85,15 @@ offset_bottom = 270.0
 
 [node name="Directors" type="Node2D" parent="TileMapLayers" unique_id=440455703]
 unique_name_in_owner = true
-position = Vector2(-32, 0)
+metadata/_edit_lock_ = true
 
 [node name="Player" type="Node2D" parent="TileMapLayers/Directors" unique_id=1321501885]
 script = ExtResource("3_6sy0s")
 metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
+metadata/_edit_lock_ = true
 
 [node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=2062837817]
+position = Vector2(-245, -51)
 script = ExtResource("4_oo8ce")
 metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
 
@@ -216,24 +102,63 @@ self_modulate = Color(0.108270444, 0.74155116, 0.77216226, 1)
 texture = ExtResource("4_3a0x6")
 
 [node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" unique_id=2134352030]
-position = Vector2(93, -108)
 script = ExtResource("4_f2owf")
 metadata/_custom_type_script = "uid://dwys5mwbuw85s"
+metadata/_edit_lock_ = true
 
 [node name="Enemy1" type="Node2D" parent="TileMapLayers/Directors/AIDirector" unique_id=1276070918]
+position = Vector2(41, -133)
 script = ExtResource("7_sffjp")
 usable_actions = Array[ExtResource("8_p0uv8")]([ExtResource("9_mung2"), SubResource("Resource_e2bh8")])
+starting_health = 100
 metadata/_custom_type_script = "uid://pgyek4ai3kpq"
+
+[node name="health" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy1" unique_id=1964007224]
+position = Vector2(0, -30)
+texture = ExtResource("12_tjdga")
+
+[node name="bar" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy1/health" unique_id=1804584160]
+position = Vector2(-22, -3)
+texture = ExtResource("13_q6hfu")
+centered = false
+
+[node name="txt" type="Label" parent="TileMapLayers/Directors/AIDirector/Enemy1/health" unique_id=518771325]
+offset_left = 24.0
+offset_top = -6.0
+offset_right = 46.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 8
+text = "100"
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy1" unique_id=1668975027]
 self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
 texture = ExtResource("4_3a0x6")
 
 [node name="Enemy2" type="Node2D" parent="TileMapLayers/Directors/AIDirector" unique_id=341779180]
-position = Vector2(97, 250)
+position = Vector2(197, 87)
 script = ExtResource("7_sffjp")
 usable_actions = Array[ExtResource("8_p0uv8")]([ExtResource("9_mung2"), SubResource("Resource_e2bh8")])
+starting_health = 100
 metadata/_custom_type_script = "uid://pgyek4ai3kpq"
+
+[node name="health" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy2" unique_id=740323377]
+position = Vector2(0, -30)
+texture = ExtResource("12_tjdga")
+
+[node name="bar" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy2/health" unique_id=2136350767]
+position = Vector2(-22, -3)
+texture = ExtResource("13_q6hfu")
+centered = false
+
+[node name="txt" type="Label" parent="TileMapLayers/Directors/AIDirector/Enemy2/health" unique_id=1546333203]
+offset_left = 24.0
+offset_top = -6.0
+offset_right = 46.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 8
+text = "100"
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy2" unique_id=1864126273]
 self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
@@ -242,6 +167,12 @@ texture = ExtResource("4_3a0x6")
 [node name="BaseTileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]
 tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAD//wAAAAAAAAAAAAD/////AAAAAAAAAAAAAP7/AAAAAAAAAAABAP7/AAAAAAAAAAABAP//AAAAAAAAAAAAAAAAAAAAAAAAAAD//wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD+/wAAAAAAAAAAAAD+////AAAAAAAAAAD///7/AAAAAAAAAAAAAP3/AAAAAAAAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAABAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAD//wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wAAAAAAAAAAAAD9////AAAAAAAAAAD+//7/AAAAAAAAAAD///3/AAAAAAAAAAABAPz/AAAAAAAAAAACAPz/AAAAAAAAAAADAPz/AAAAAAAAAAADAP3/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAACAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAPz/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_fqe43")
+
+[node name="TileHighlight" type="Sprite2D" parent="TileMapLayers" unique_id=646544377]
+unique_name_in_owner = true
+modulate = Color(1, 1, 0, 0.1882353)
+position = Vector2(-32, 0)
+texture = ExtResource("20_e2bh8")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=695801089]
 editor_description = "Main camera"
@@ -254,6 +185,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -3.0
+offset_right = 7.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
