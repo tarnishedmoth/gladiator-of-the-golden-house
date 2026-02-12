@@ -1,7 +1,27 @@
 @abstract class_name Action extends ResourceState
 
+enum ActionCategory{
+	COMBAT,
+	MOVEMENT,
+	SKILL,
+	CONSUMABLE,
+	SPECIAL,
+}
+
+const ACTION_CATEGORY_NAMES = {
+	ActionCategory.MOVEMENT:"Movement",
+	ActionCategory.COMBAT: "Combat",
+	ActionCategory.SKILL: "Skill",
+	ActionCategory.CONSUMABLE: "Consumable",
+	ActionCategory.SPECIAL: "Special",
+}
+
 @export var ui_title: String ## Displayed in the Actions list
 @export var ui_description: String ## Displayed when hovering over an action
+@export var action_category: ActionCategory
+var ui_category: String: 
+	get:
+		return ACTION_CATEGORY_NAMES.get(action_category,"Unknown")
 
 var _actor: Actor ## The target this action will run on.
 func set_actor(actor: Actor) -> void:

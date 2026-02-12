@@ -6,4 +6,5 @@
 script = ExtResource("1_6gdpy")
 ui_title = "Move 1"
 ui_description = "Move to an adjacent tile."
+action_category = 1
 metadata/_custom_type_script = "uid://btfwr4ctycjfk"
