@@ -13,6 +13,7 @@ script = ExtResource("1_ig7tw")
 splash_scene = ExtResource("2_h2yge")
 main_menu_scene = ExtResource("3_1bvp3")
 dev_main_menu_scene = ExtResource("2_0xm2m")
+skip_splash = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=867431045]
 layer = 999
