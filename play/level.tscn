@@ -74,7 +74,7 @@ editor_description = "The 32px X offset is to center the hex grid tiles on 0,0."
 position = Vector2(32, 0)
 
 [node name="Background" type="Sprite2D" parent="TileMapLayers" unique_id=1621508126]
-position = Vector2(-32, 0)
+position = Vector2(-32, -66)
 texture = ExtResource("2_e2bh8")
 
 [node name="Vignette" parent="TileMapLayers" unique_id=1689915564 instance=ExtResource("1_u4q3m")]
