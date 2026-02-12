@@ -30,6 +30,12 @@ static func get_all_actors_in_play_order() -> Array[Actor]:
 			actors.append_array(dir.actors)
 	return actors
 
+static func get_actor_at(coords: Vector2i) -> Actor:
+	for actor in get_all_actors_in_play_order():
+		if actor.current_tile_coords == coords:
+			return actor
+	return null
+
 ## Returns a description of any actors sharing the same tile, or empty string if none overlap.
 static func get_overlap_description() -> String:
 	var tile_actors: Dictionary = {} # Vector2i -> Array[Actor]
