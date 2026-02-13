@@ -1,7 +1,7 @@
 class_name ActionAttack extends Action
 
 @export var damage: int
-#@export var tile_pattern
+@export var pattern: Array[Vector2i] ## Relative to the actor at (0,0)
 
 ## On transition to this state
 func enter(from: ResourceState = null) -> void:
