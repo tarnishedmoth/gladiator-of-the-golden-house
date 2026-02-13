@@ -23,7 +23,7 @@ var ui_category: String:
 	get:
 		return ACTION_CATEGORY_NAMES.get(action_category,"Unknown")
 
-var _actor: Actor ## The target this action will run on.
+var _actor: Actor ## The actor that will run this action. This is not any "target" such as for dealing damage.
 func set_actor(actor: Actor) -> void:
 	self._actor = actor
 

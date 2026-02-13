@@ -1,11 +1,11 @@
 # Credits
 #### Privacy Notice:
-Names are initially entered as GitHub user-names for the public facing repository. If you are the person named you are welcome to change your name or modify any of the content pertaining to you.
+The names are intentionally entered as GitHub user-names for the public facing repository. If you are the person named you are welcome to modify any of the content pertaining to you.
 
 ## Contributors
 ##### *Ordered chronologically by first contribution.*
 
-- Michael Avrie -- Project Lead
+- tarnishedmoth -- Project Lead, Production Manager
 	- pitch prototype
 	- production schedule
 	- editor & GDScript utilities
@@ -15,22 +15,28 @@ Names are initially entered as GitHub user-names for the public facing repositor
 	- actor actions system
 	- computer turn-taking logic
 - Noah-Wizard
-	- story plot concepts
+	- early story concepts
+	- story writing
 	- concepts for gameplay mechanics
-- McFunkypants
-	- writing concepts for gameplay mechanics, 2D art direction & pipeline 
+	- draft executable icon art
+	- level design
+- McFunkypants -- Production Designer
+	- concepts for gameplay mechanics, 2D art direction & pipeline 
 	- hover tile highlight
 	- templated 2D scene backdrop
-- davids91
+	- healthbars
+- davids91 -- Production Designer
 	- concepts for gameplay mechanics
-- SuperSlickStudios
+- SuperSlickStudios -- Production Artist
 	- visual drafts for color palette
 	- visual drafts for skeleton character
 - snowfrogdev
 	- fixed line endings in code repo
 	- initial position for actors, and ensuring a max of one, on level tiles
+	- get actors by tile coordinate
 - gamakor
 	- actors' health property and take damage method
+	- action categories
 
 
 ## Third-party Libraries
@@ -39,4 +45,4 @@ Names are initially entered as GitHub user-names for the public facing repositor
 
 
 ## Special Thanks
-- Chris DeLeon for consulting, and along with Tim Ruswick for hosting Dev Pods
+- Chris DeLeon for consulting, and along with Tim Ruswick for hosting Dev Pods.
