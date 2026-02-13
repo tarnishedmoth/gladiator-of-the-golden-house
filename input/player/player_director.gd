@@ -43,10 +43,18 @@ func _unhandled_input(event: InputEvent) -> void:
 			if DESELECT_ON_REPEAT && tile == _last_selected_tile:
 				tile = null ## Deselect
 			
+			## We have our tile coordinates
 			selected_tile = tile
+			
+			## Check for actor on tile
+			var actor_on_tile: Actor = Level.get_actor_at(selected_tile)
 				
-			if VERBOSE: p("Selected tile: %s" % selected_tile)
-				
+			if VERBOSE:
+				p("Selected tile: %s" % selected_tile)
+				if actor_on_tile:
+					p("Tile coords occupied by actor %s" % actor_on_tile)
+			
+			## Behavior using this data
 			if is_active:
 				## It's our turn
 				pass
