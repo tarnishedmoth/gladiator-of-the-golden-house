@@ -1,11 +1,14 @@
 class_name ActionQueue
 
 ## A lean state machine for sequentially running [Action]s.
+
+const POST_ACTION_AWAIT_TIME: float = 0.75
+
 signal queue_size_changed(new_size: int)
 signal finished
 
 var debug: bool = true
-var target: Actor
+var actioneer: Actor
 
 var current_action: Action
 var queue: Array[Action]
@@ -13,10 +16,10 @@ var queue: Array[Action]
 var running_queue:bool = false
 
 func p(args) -> void:
-	print_rich("[bgcolor=olive][color=white]%s ActionQueue: " % target, args)
+	print_rich("[bgcolor=olive][color=white]%s ActionQueue: " % actioneer, args)
 	
 func setup(actor: Actor) -> void:
-	target = actor
+	actioneer = actor
 	if not finished.is_connected(actor._on_action_queue_finished):
 		finished.connect(actor._on_action_queue_finished)
 	else:
@@ -39,10 +42,15 @@ func run_action(new_action: Action = null, source: Action = null) -> void:
 			p("Entering: %s  from  %s" % [current_action, source])
 		new_action.finished.connect(_on_action_finished, ConnectFlags.CONNECT_ONE_SHOT)
 		new_action.process(true)
-		new_action.enter_with(target, source)
+		new_action.enter_with(actioneer, source)
+		
 	
 ## If chain_next is empty, the next item in the queue, if any, will be popped.
 func _on_action_finished(chain_next: ResourceState, source: ResourceState) -> void:
+	## Ensure we wait a moment -- this *could* go in Action scripts but
+	## for now, one place is better than many.
+	await actioneer.create_tween().tween_interval(POST_ACTION_AWAIT_TIME).finished
+	
 	if (not chain_next) and running_queue:
 		chain_next = queue.pop_front()
 		if chain_next:

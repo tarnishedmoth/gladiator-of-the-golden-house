@@ -87,8 +87,10 @@ func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
 	
 	current_tile_coords = coords
 	var move_tween := create_tween()
-	move_tween.set_ease(Tween.EASE_OUT)
-	move_tween.tween_property(self, ^"global_position", get_global_position_at(map, coords), 1.0)
+	move_tween.set_trans(Tween.TRANS_QUAD)
+	
+	var duration_of_movement: float = 0.75 ## TODO should probably depend on distance covered
+	move_tween.tween_property(self, ^"global_position", get_global_position_at(map, coords), duration_of_movement)
 	
 func set_facing(cardinal_direction: Facing.Cardinal) -> void:
 	facing = cardinal_direction
