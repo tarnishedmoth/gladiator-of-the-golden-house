@@ -35,6 +35,13 @@ static func get_actor_at(coords: Vector2i) -> Actor:
 		if actor.current_tile_coords == coords:
 			return actor
 	return null
+	
+##Returns actor from the relative pos of another actor
+static func get_actor_at_relative_pos(actor: Actor,coords: Vector2i) -> Actor:
+	var global_coords: Vector2i = actor.current_tile_coords + coords
+	var result: Actor = get_actor_at(global_coords)
+	print("get actors at relative pos: %s",result)
+	return result
 
 ## Returns a description of any actors sharing the same tile, or empty string if none overlap.
 static func get_overlap_description() -> String:
@@ -84,7 +91,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	if VERBOSE: p("Loaded, setting up game.")
 	start_game.call_deferred()
-	
+
 func start_game() -> void:
 	assert(base_tile_map_layer)
 	assert(tile_interactor)

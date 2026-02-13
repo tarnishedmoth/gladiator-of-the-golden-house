@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ActionAttack" format=3 uid="uid://cja0r0w64c03i"]
+
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="1_di7x2"]
+
+[resource]
+script = ExtResource("1_di7x2")
+damage = 10
+pattern = Array[Vector2i]([Vector2i(-1, 1)])
+ui_title = "Basic Attack"
+ui_description = "Attack one tile "
+debug = true
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"
