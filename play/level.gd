@@ -4,6 +4,8 @@ class_name Level extends Node2D
 const VERBOSE: bool = true
 func p(args):
 	print_rich("[bgcolor=red][color=white]", "Level: ", args)
+	
+const SHOW_DEBUG_TILE_COORDS_OVERLAY:bool = true
 
 ## Static instance, we should only have one Level in the scene tree at any time.
 static var instance: Level:
@@ -108,6 +110,9 @@ func start_game() -> void:
 	
 	var overlaps: String = get_overlap_description()
 	assert(overlaps.is_empty(), "Actors overlap: %s" % overlaps)
+	
+	if SHOW_DEBUG_TILE_COORDS_OVERLAY:
+		render_tile_coordinates_debug_overlay()
 
 	playtime_counter_running = true
 	next_turn()
@@ -152,3 +157,21 @@ func _on_turn_taken(director: Director) -> void:
 func show_pause_menu() -> void:
 	playtime_counter_running = false
 	pass
+
+var tile_coords_debug_overlay_elements: Array[Node]
+func render_tile_coordinates_debug_overlay() -> void:
+	if not base_tile_map_layer:
+		return
+		
+	if not tile_coords_debug_overlay_elements.is_empty():
+		for child in tile_coords_debug_overlay_elements:
+			child.queue_free()
+	
+	for coords in base_tile_map_layer.get_used_cells():
+		var new_label: Label = Label.new()
+		add_child(new_label)
+		
+		tile_coords_debug_overlay_elements.push_back(new_label)
+		
+		new_label.text = str(coords)
+		new_label.global_position = base_tile_map_layer.to_global(base_tile_map_layer.map_to_local(coords))
