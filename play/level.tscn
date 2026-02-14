@@ -25,15 +25,6 @@
 [ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="16_yonjs"]
 [ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="20_e2bh8"]
 
-[sub_resource type="Animation" id="Animation_3a0x6"]
-resource_name = "new_animation"
-length = 10.0
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ew0x2"]
-_data = {
-&"new_animation": SubResource("Animation_3a0x6")
-}
-
 [sub_resource type="Resource" id="Resource_e2bh8"]
 script = ExtResource("10_jqsul")
 damage = 1
@@ -49,7 +40,7 @@ texture_region_size = Vector2i(128, 72)
 
 [sub_resource type="TileSet" id="TileSet_fqe43"]
 tile_shape = 3
-tile_layout = 4
+tile_layout = 3
 tile_offset_axis = 1
 tile_size = Vector2i(128, 72)
 uv_clipping = true
@@ -66,22 +57,13 @@ script = ExtResource("1_bg3j4")
 base_tile_map_layer = NodePath("TileMapLayers/BaseTileMapLayer")
 tile_interactor = NodePath("MouseFollower/TileMapInteractor")
 
-[node name="Demonstration" type="AnimationPlayer" parent="." unique_id=1815931862]
-libraries/ = SubResource("AnimationLibrary_ew0x2")
-
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=994423606]
 editor_description = "The 32px X offset is to center the hex grid tiles on 0,0."
-position = Vector2(32, 0)
+metadata/_edit_lock_ = true
 
 [node name="Background" type="Sprite2D" parent="TileMapLayers" unique_id=1621508126]
-position = Vector2(-32, -66)
+position = Vector2(0, -66)
 texture = ExtResource("2_e2bh8")
-
-[node name="Vignette" parent="TileMapLayers" unique_id=1689915564 instance=ExtResource("1_u4q3m")]
-offset_left = -512.0
-offset_top = -270.0
-offset_right = 448.0
-offset_bottom = 270.0
 
 [node name="Directors" type="Node2D" parent="TileMapLayers" unique_id=440455703]
 unique_name_in_owner = true
@@ -93,7 +75,7 @@ metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
 metadata/_edit_lock_ = true
 
 [node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=2062837817]
-position = Vector2(-245, -51)
+position = Vector2(-8, 0)
 script = ExtResource("4_oo8ce")
 metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
 
@@ -107,7 +89,7 @@ metadata/_custom_type_script = "uid://dwys5mwbuw85s"
 metadata/_edit_lock_ = true
 
 [node name="Enemy1" type="Node2D" parent="TileMapLayers/Directors/AIDirector" unique_id=1276070918]
-position = Vector2(41, -133)
+position = Vector2(16, -148)
 script = ExtResource("7_sffjp")
 usable_actions = Array[ExtResource("8_p0uv8")]([ExtResource("9_mung2"), SubResource("Resource_e2bh8")])
 starting_health = 100
@@ -165,17 +147,26 @@ self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
 texture = ExtResource("4_3a0x6")
 
 [node name="BaseTileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]
-tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAD//wAAAAAAAAAAAAD/////AAAAAAAAAAAAAP7/AAAAAAAAAAABAP7/AAAAAAAAAAABAP//AAAAAAAAAAAAAAAAAAAAAAAAAAD//wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD+/wAAAAAAAAAAAAD+////AAAAAAAAAAD///7/AAAAAAAAAAAAAP3/AAAAAAAAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAABAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAD//wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wAAAAAAAAAAAAD9////AAAAAAAAAAD+//7/AAAAAAAAAAD///3/AAAAAAAAAAABAPz/AAAAAAAAAAACAPz/AAAAAAAAAAADAPz/AAAAAAAAAAADAP3/AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAACAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAPz/AAAAAAAAAAA=")
+position = Vector2(-64, -36)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAD//wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAABAP//AAAAAAAAAAACAP7/AAAAAAAAAAADAP3/AAAAAAAAAAD//wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wMAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wEAAAAAAAAAAAACAP//AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAEAAAAAAAAAAAD//wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wIAAAAAAAAAAAD/////AAAAAAAAAAD///7/AAAAAAAAAAD+////AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAACAP3/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_fqe43")
 
 [node name="TileHighlight" type="Sprite2D" parent="TileMapLayers" unique_id=646544377]
 unique_name_in_owner = true
+visible = false
 modulate = Color(1, 1, 0, 0.1882353)
-position = Vector2(-32, 0)
 texture = ExtResource("20_e2bh8")
+centered = false
+offset = Vector2(-128, -72)
 
 [node name="Camera" type="Camera2D" parent="." unique_id=695801089]
 editor_description = "Main camera"
+
+[node name="Vignette" parent="Camera" unique_id=1689915564 instance=ExtResource("1_u4q3m")]
+offset_left = -480.0
+offset_top = -270.0
+offset_right = 480.0
+offset_bottom = 270.0
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1415317388]
 script = ExtResource("7_gmsnh")
