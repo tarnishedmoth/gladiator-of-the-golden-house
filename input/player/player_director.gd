@@ -47,8 +47,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			selected_tile = tile
 			
 			## Check for actor on tile
-			var actor_on_tile: Actor = Level.get_actor_at(selected_tile)
-				
+			var actor_on_tile: Actor = Level.get_actor_at(selected_tile) if selected_tile else null
+			
 			if VERBOSE:
 				p("Selected tile: %s" % selected_tile)
 				if actor_on_tile:
