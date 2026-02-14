@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="22_fpdjk"]
 [ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="23_n60ia"]
 [ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="24_n6ilt"]
+[ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="25_5riyi"]
 
 [sub_resource type="Animation" id="Animation_3a0x6"]
 resource_name = "new_animation"
@@ -291,3 +292,5 @@ metadata/_custom_type_script = "uid://mm6inbfx8c45"
 
 [node name="TileMapInteractor" type="Node2D" parent="MouseFollower" unique_id=1205975102]
 script = ExtResource("24_n6ilt")
+
+[node name="GridTint" parent="." unique_id=1487691829 instance=ExtResource("25_5riyi")]
