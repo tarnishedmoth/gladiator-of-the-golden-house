@@ -294,3 +294,4 @@ metadata/_custom_type_script = "uid://mm6inbfx8c45"
 script = ExtResource("24_n6ilt")
 
 [node name="GridTint" parent="." unique_id=1487691829 instance=ExtResource("25_5riyi")]
+visible = false
