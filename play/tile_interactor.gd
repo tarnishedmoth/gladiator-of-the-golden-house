@@ -36,21 +36,23 @@ func get_current_tile_data() -> TileData:
 		return null
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if tilemap:
 		## Check if we're hovering over any tile
 		var coords = get_tile_coords_under_interactor()
 		if coords == null:
 			## No tile under cursor
-			pass
+			if tile_highlight_sprite: tile_highlight_sprite.hide()
+			
 		else:
-			#var data: TileData = tilemap.get_cell_tile_data(coords)
+			if not tile_highlight_sprite.visible:
+				tile_highlight_sprite.show()
 			if not last_coords == coords:
 				## New tile
 				current_coords = coords
 				tile_changed.emit(current_coords)
 				
-				if tile_highlight_sprite!=null:
+				if tile_highlight_sprite:
 					tile_highlight_sprite.position = tilemap.map_to_local(current_coords)
 				
 				if VERBOSE:
