@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://bw78572gtph87"]
 
+[ext_resource type="Script" uid="uid://caia1h4uat870" path="res://actors/targeting/target_indicator.gd" id="1_py5aw"]
 [ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="1_wl56n"]
 
 [node name="TargetIndicator" type="Node2D" unique_id=175687462]
+script = ExtResource("1_py5aw")
 
 [node name="TargetHighLight" type="Sprite2D" parent="." unique_id=497166907]
-modulate = Color(1, 0, 0, 0.6509804)
+modulate = Color(1, 0, 0, 0.44705883)
 z_index = 100
 texture = ExtResource("1_wl56n")
