@@ -22,6 +22,9 @@ var facing: Facing.Cardinal
 var health: int
 @export var starting_health: int
 
+@export_category("Attacks:")
+@export var attack_one: ActionAttack
+
 #region STATIC METHODS
 
 static func get_global_position_at(map: TileMapLayer, coords: Vector2i) -> Vector2:

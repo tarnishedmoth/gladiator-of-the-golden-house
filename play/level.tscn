@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="4_3a0x6"]
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://input/ai/ai_director.gd" id="4_f2owf"]
 [ext_resource type="Script" uid="uid://cpmor4ij3s6kx" path="res://actors/actor.gd" id="4_oo8ce"]
+[ext_resource type="Resource" uid="uid://cja0r0w64c03i" path="res://actions/prefabs/basic_attack_one_tile_front.tres" id="5_81pte"]
 [ext_resource type="Script" uid="uid://ddbas45a3e81e" path="res://play/hud.gd" id="7_gmsnh"]
 [ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="7_sffjp"]
 [ext_resource type="Theme" uid="uid://0t4errmfvln0" path="res://menus/theme_level_hud.theme" id="7_sxuih"]
@@ -78,6 +79,7 @@ metadata/_edit_lock_ = true
 [node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=2062837817]
 position = Vector2(96, -35)
 script = ExtResource("4_oo8ce")
+attack_one = ExtResource("5_81pte")
 metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
 
 [node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/Player/MainCharacter" unique_id=1704811731]

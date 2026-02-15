@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="ActionAttack" format=3 uid="uid://cja0r0w64c03i"]
 
-[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="1_di7x2"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="1_ql87u"]
 
 [resource]
-script = ExtResource("1_di7x2")
+script = ExtResource("1_ql87u")
 damage = 10
-pattern = Array[Vector2i]([Vector2i(-1, 1)])
+front = Array[int]([1])
+back_right = null
+back_left = null
 ui_title = "Basic Attack"
 ui_description = "Attack one tile "
 debug = true
