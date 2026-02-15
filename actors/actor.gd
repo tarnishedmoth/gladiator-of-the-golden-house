@@ -4,6 +4,9 @@ const SHOW_DEBUG_FACING_INDICATOR: bool = true
 const DEBUG_FACING_INDICATOR_SCENE = preload("uid://b3kl75n4nwdge")
 var debug_facing_indicator: Node2D ## instantiated at runtime
 
+#testing only--this will be attached to actions
+#this basically says the ability can target anything up to 2 cells in front of the unit
+var jabx2 = [[Facing.Relative.FRONT,1],[Facing.Relative.FRONT,2]] 
 
 signal queued_actions_finished(actor: Actor)
 var emit_actions_finished_signal: bool = false
@@ -20,7 +23,6 @@ var facing: Facing.Cardinal
 
 var health: int
 @export var starting_health: int
-
 
 #region STATIC METHODS
 
@@ -80,6 +82,8 @@ func _snap_to_nearest_tile() -> void:
 	var tile_coords: Vector2i = tile_map.local_to_map(tile_map.to_local(global_position))
 	assert(TileInteractor.cell_exists(tile_coords, tile_map))
 	current_tile_coords = tile_coords
+	var get_targs = Targeting.get_target_cells(current_tile_coords,facing,jabx2)
+	print("==============valid targs: ",get_targs)
 	global_position = get_global_position_at(tile_map, tile_coords)
 
 func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
@@ -98,8 +102,8 @@ func set_facing(cardinal_direction: Facing.Cardinal) -> void:
 	if SHOW_DEBUG_FACING_INDICATOR && self.is_inside_tree():
 		show_debug_facing_indicator(true)
 	
-func get_facing_values() -> DirectionPattern:
-	return Facing.rotate(face_direction_pattern, facing)
+func get_facing_values() -> DirectionPattern: # dont think we need this anymore
+	return
 	
 func show_debug_facing_indicator(show_: bool = true) -> void:
 	if not show_:

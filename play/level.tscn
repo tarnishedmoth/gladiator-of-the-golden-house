@@ -75,7 +75,7 @@ metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
 metadata/_edit_lock_ = true
 
 [node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=2062837817]
-position = Vector2(-8, 0)
+position = Vector2(96, -35)
 script = ExtResource("4_oo8ce")
 metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
 

@@ -9,6 +9,10 @@ var tile_interactor: TileInteractor
 var latest_tile_coords: Vector2i = Vector2i.ZERO
 var selected_tile ## Null or Vector2i coords
 var _last_selected_tile
+@onready var main_character: Actor = $MainCharacter
+
+func _ready():
+	main_character.set_facing(Facing.Cardinal.SOUTHEAST)
 
 func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 	self.tile_map = tilemap
