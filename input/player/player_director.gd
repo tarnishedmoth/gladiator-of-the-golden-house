@@ -30,7 +30,7 @@ func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 	
 
 func _on_turn_started():
-	TargetFinder.highlight_targets(main_character.current_tile_coords,main_character.facing,main_character.attack_one.get_pattern())	
+	TargetFinder.highlight_targets(main_character.current_tile_coords,main_character.facing,main_character.attack_one.get_tgt_pattern()) #temp until invoked but button	
 	if VERBOSE: p("Player turn started")
 	pass
 	
@@ -57,7 +57,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			var actor_on_tile: Actor = Level.get_actor_at(selected_tile) if selected_tile else null
 			
 			if VERBOSE:
-				p("Selected tile: %s" % selected_tile)
+				p("Selected tile: %s" % selected_tile)				
 				if actor_on_tile:
 					p("Tile coords occupied by actor %s" % actor_on_tile)
 			

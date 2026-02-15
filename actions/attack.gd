@@ -1,13 +1,21 @@
 class_name ActionAttack extends Action
 
 @export var damage: int
-@export_category("ATK Pattern Directions & Ranges Enabled")
-@export var front: Array[int]
-@export var front_right: Array[int]
-@export var back_right: Array[int]
-@export var back: Array[int] 
-@export var back_left: Array[int]
-@export var front_left: Array[int]
+@export_category("Target Pattern")
+@export var tgt_front: Array[int]
+@export var tgt_front_right: Array[int]
+@export var tgt_back_right: Array[int]
+@export var tgt_back: Array[int] 
+@export var tgt_back_left: Array[int]
+@export var tgt_front_left: Array[int]
+@export_category(("AOE Pattern"))
+@export var target_spot_hit: bool
+@export var AE_front: Array[int]
+@export var AE_front_right: Array[int]
+@export var AE_back_right: Array[int]
+@export var AE_back: Array[int] 
+@export var AE_back_left: Array[int]
+@export var AE_front_left: Array[int]
 
 ## On transition to this state
 func enter(from: ResourceState = null) -> void:
@@ -19,19 +27,35 @@ func enter(from: ResourceState = null) -> void:
 	
 	exit()
 
-func get_pattern() -> Array:
+func get_tgt_pattern() -> Array:
 	var pattern = []
-	for r in front:
+	for r in tgt_front:
 		pattern.append([Facing.Relative.FRONT, r])
-	for r in front_right:
+	for r in tgt_front_right:
 		pattern.append([Facing.Relative.FRONT_RIGHT, r])
-	for r in back_right:
+	for r in tgt_back_right:
 		pattern.append([Facing.Relative.BACK_RIGHT, r])
-	for r in back:
+	for r in tgt_back:
 		pattern.append([Facing.Relative.BACK, r])
-	for r in back_left:
+	for r in tgt_back_left:
 		pattern.append([Facing.Relative.BACK_LEFT, r])
-	for r in front_left:
+	for r in tgt_front_left:
+		pattern.append([Facing.Relative.FRONT_LEFT, r])
+	return pattern
+	
+func get_aoe_pattern() -> Array:
+	var pattern = []
+	for r in AE_front:
+		pattern.append([Facing.Relative.FRONT, r])
+	for r in AE_front_right:
+		pattern.append([Facing.Relative.FRONT_RIGHT, r])
+	for r in AE_back_right:
+		pattern.append([Facing.Relative.BACK_RIGHT, r])
+	for r in AE_back:
+		pattern.append([Facing.Relative.BACK, r])
+	for r in AE_back_left:
+		pattern.append([Facing.Relative.BACK_LEFT, r])
+	for r in AE_front_left:
 		pattern.append([Facing.Relative.FRONT_LEFT, r])
 	return pattern
 
