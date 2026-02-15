@@ -37,7 +37,7 @@ func get_pattern() -> Array:
 
 func get_affected_and_deal_damage() -> void:
 	#this should be ready to hook into the target configuration!
-	#NOTE: i think this will be cleaner if we have a dictionary of the booard with the coords as the key. then you can have packed scenes...
+	#NOTE: i think this will be cleaner if we have a dictionary of the booard with the coords as the key. then you can use the coord as a key...
 		#which makes it easy to check if soemthing is in a spot.
 	#step 1: assign an attack to "attack_one" on main character
 	#step 2: configure that resource with the directions and ranges that attack can hit

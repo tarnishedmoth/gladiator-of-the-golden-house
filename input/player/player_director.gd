@@ -14,7 +14,7 @@ var _last_selected_tile
 @onready var main_character: Actor = $MainCharacter
 
 func _ready():
-	main_character.set_facing(Facing.Cardinal.SOUTH)
+	main_character.set_facing(Facing.Cardinal.SOUTHWEST)
 
 func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 	self.tile_map = tilemap

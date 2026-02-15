@@ -6,8 +6,8 @@
 script = ExtResource("1_ql87u")
 damage = 10
 front = Array[int]([1])
-back_right = null
-back_left = null
+front_right = Array[int]([1])
+front_left = Array[int]([1])
 ui_title = "Basic Attack"
 ui_description = "Attack one tile "
 debug = true
