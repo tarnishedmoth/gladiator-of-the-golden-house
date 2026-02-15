@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="15_ew0x2"]
 [ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="16_yonjs"]
 [ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="20_e2bh8"]
+[ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="25_q6hfu"]
 
 [sub_resource type="Resource" id="Resource_e2bh8"]
 script = ExtResource("10_jqsul")
@@ -253,3 +254,5 @@ metadata/_custom_type_script = "uid://mm6inbfx8c45"
 
 [node name="TileMapInteractor" type="Node2D" parent="MouseFollower" unique_id=1205975102]
 script = ExtResource("16_yonjs")
+
+[node name="GridTint" parent="." unique_id=1487691829 instance=ExtResource("25_q6hfu")]

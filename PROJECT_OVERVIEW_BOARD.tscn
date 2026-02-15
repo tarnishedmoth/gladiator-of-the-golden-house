@@ -1,5 +1,10 @@
 [gd_scene format=3 uid="uid://d2w6eaad6ey6s"]
 
+[ext_resource type="Texture2D" uid="uid://duea3mt2s3s25" path="res://utils/textures/hex clock.png" id="1_4f1he"]
+[ext_resource type="Texture2D" uid="uid://dmiussakgcq8b" path="res://utils/textures/hex compass.png" id="2_82yis"]
+[ext_resource type="Texture2D" uid="uid://c2ihg6htcb6w6" path="res://utils/textures/columns.png" id="3_ecxx2"]
+[ext_resource type="Texture2D" uid="uid://b84ykxig0epgc" path="res://utils/textures/stairs.png" id="4_r3cvp"]
+
 [node name="Project Overview Board" type="Node2D" unique_id=724774706]
 
 [node name="Welcome" type="Node2D" parent="." unique_id=967331816]
@@ -142,3 +147,53 @@ We want the player to relate to hating this emperor specifically, so that the em
 The more the player hates the emperor, the more tempting the choice is at the end, to let Rome ([i]but also all your new friends[/i]) burn."
 fit_content = true
 scroll_active = false
+
+[node name="Hex Guides" type="Node2D" parent="." unique_id=1192058881]
+position = Vector2(1644, -2)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Hex Guides" unique_id=1596857518]
+offset_right = 470.0
+offset_bottom = 40.0
+theme_override_constants/separation = 24
+
+[node name="Clock & Compass" type="RichTextLabel" parent="Hex Guides/VBoxContainer" unique_id=38364487]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Hexagon Make Brain Hurt[/b]
+Hexagons might line up nicely, but ordering each tile is different than a standard X,Y grid.
+
+You may hear the edges of the hexagons referred to like numbers on a clock, or like a compass with North East and South East but [i]no East[/i]"
+fit_content = true
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Hex Guides/VBoxContainer" unique_id=1132897709]
+layout_mode = 2
+
+[node name="HexClock" type="TextureRect" parent="Hex Guides/VBoxContainer/HBoxContainer" unique_id=331967061]
+layout_mode = 2
+texture = ExtResource("1_4f1he")
+
+[node name="HexCompass" type="TextureRect" parent="Hex Guides/VBoxContainer/HBoxContainer" unique_id=954880340]
+layout_mode = 2
+texture = ExtResource("2_82yis")
+
+[node name="Columns & Stairs" type="RichTextLabel" parent="Hex Guides/VBoxContainer" unique_id=500213241]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Columns & Stairs[/b]
+Trying to make sense out of the coordinates?
+
+Instead of [i] Columns [/i]& [i]Rows[/i]
+We use[i] Columns [/i]& [i]Stairs Down[/i]"
+fit_content = true
+scroll_active = false
+
+[node name="Columns" type="TextureRect" parent="Hex Guides/VBoxContainer" unique_id=57564896]
+layout_mode = 2
+texture = ExtResource("3_ecxx2")
+expand_mode = 5
+
+[node name="Stairs" type="TextureRect" parent="Hex Guides/VBoxContainer" unique_id=647249266]
+layout_mode = 2
+texture = ExtResource("4_r3cvp")
+expand_mode = 5
