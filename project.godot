@@ -23,6 +23,10 @@ boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="uid://dvuqbrge3doql"
 
+[autoload]
+
+TargetFinder="*uid://bdpt4cmj32tcc"
+
 [display]
 
 window/size/viewport_width=960

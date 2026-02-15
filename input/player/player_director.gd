@@ -11,8 +11,10 @@ var selected_tile ## Null or Vector2i coords
 var _last_selected_tile
 @onready var main_character: Actor = $MainCharacter
 
+var jabx2 = [[Facing.Relative.FRONT,1]] #temp only for testing
+
 func _ready():
-	main_character.set_facing(Facing.Cardinal.SOUTHEAST)
+	main_character.set_facing(Facing.Cardinal.SOUTH)
 
 func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 	self.tile_map = tilemap
@@ -28,6 +30,7 @@ func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 	
 
 func _on_turn_started():
+	TargetFinder.highlight_targets(main_character.current_tile_coords,main_character.facing,jabx2)	
 	if VERBOSE: p("Player turn started")
 	pass
 	
