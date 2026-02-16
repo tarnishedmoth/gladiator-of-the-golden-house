@@ -179,12 +179,24 @@ func init():
 #-----------------------------------------------------------
 #14. remaining built-in virtual methods
 #-----------------------------------------------------------
+func _bug_fix_on_item_selected(index:int): ## BUG FIXME
+	print_rich("[bgcolor=black]IdeaBoard: Bug fix for inconsistent view on startup. Reselecting & reloading... -tarnishedmoth")
+	_on_item_selected(index)
+	reload_button.pressed.emit.call_deferred()
+
 func _on_item_selected(index:int):
 	if _selected_index != -1:
 		saved_item_list.select(_selected_index, true)
+		
 	# 編集中だったら確認ダイアログを出す
 	if no_data_reference_rect.visible:
 		_selected_sekkei_graph_update(index)
+		
+		## HACK BUG FIXME
+		## Files on startup are somehow different than after Reload button pressed,
+		## or after selecting another item first.
+		_bug_fix_on_item_selected.call_deferred(index)
+		
 	elif (_is_left and sekkei_graph_1.dirty) or (!_is_left and sekkei_graph_2.dirty):
 		_dialog_type = DIALOG_TYPE.SAVE_CONFIRM
 		confirmation_dialog.title = _S.tr("Edited data will not be saved.")

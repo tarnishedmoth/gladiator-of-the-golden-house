@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctvg3e2tkspqb"]
+[gd_scene format=3 uid="uid://ctvg3e2tkspqb"]
 
-[ext_resource type="Script" path="res://addons/godot-idea-board/sekkei_main.gd" id="1_2n0ft"]
+[ext_resource type="Script" uid="uid://cvrp427yo5jiv" path="res://addons/godot-idea-board/sekkei_main.gd" id="1_2n0ft"]
 [ext_resource type="Theme" uid="uid://dp1xxx710usj3" path="res://addons/godot-idea-board/main_theme.tres" id="1_eha6v"]
-[ext_resource type="Script" path="res://addons/godot-idea-board/sekkei_graph.gd" id="1_lrq46"]
+[ext_resource type="Script" uid="uid://jnrd4b38u8jd" path="res://addons/godot-idea-board/sekkei_graph.gd" id="1_lrq46"]
 [ext_resource type="ButtonGroup" uid="uid://b8qct4jrxfu76" path="res://addons/godot-idea-board/left_right_button_group.tres" id="2_wtk48"]
-[ext_resource type="Script" path="res://addons/godot-idea-board/context_menu/graph_menu.gd" id="5_extsy"]
+[ext_resource type="Script" uid="uid://dm261y0l8cj16" path="res://addons/godot-idea-board/context_menu/graph_menu.gd" id="5_extsy"]
 
 [sub_resource type="Animation" id="Animation_w05kn"]
 length = 0.001
@@ -39,11 +39,11 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jn6kl"]
 _data = {
-"RESET": SubResource("Animation_w05kn"),
-"blink": SubResource("Animation_gi5j8")
+&"RESET": SubResource("Animation_w05kn"),
+&"blink": SubResource("Animation_gi5j8")
 }
 
-[node name="SekkeiMain" type="HSplitContainer"]
+[node name="SekkeiMain" type="HSplitContainer" unique_id=970369037]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -54,14 +54,14 @@ size_flags_vertical = 3
 theme = ExtResource("1_eha6v")
 script = ExtResource("1_2n0ft")
 
-[node name="SidebarVBoxContainer" type="VBoxContainer" parent="."]
+[node name="SidebarVBoxContainer" type="VBoxContainer" parent="." unique_id=679972260]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="SidebarVBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="SidebarVBoxContainer" unique_id=1978698941]
 layout_mode = 2
 
-[node name="WindowButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer2"]
+[node name="WindowButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer2" unique_id=86671393]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -69,7 +69,7 @@ tooltip_text = "Open Floating Window"
 toggle_mode = true
 icon_alignment = 1
 
-[node name="SplitButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer2"]
+[node name="SplitButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer2" unique_id=501796280]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -77,7 +77,7 @@ tooltip_text = "Toggle H Split View"
 toggle_mode = true
 icon_alignment = 1
 
-[node name="LeftButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer2"]
+[node name="LeftButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer2" unique_id=592756139]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -88,7 +88,7 @@ button_pressed = true
 button_group = ExtResource("2_wtk48")
 icon_alignment = 1
 
-[node name="RightButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer2"]
+[node name="RightButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer2" unique_id=1771046127]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -98,61 +98,61 @@ toggle_mode = true
 button_group = ExtResource("2_wtk48")
 icon_alignment = 1
 
-[node name="ReloadButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer2"]
+[node name="ReloadButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer2" unique_id=888931401]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Reload items"
 icon_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SidebarVBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SidebarVBoxContainer" unique_id=594194605]
 layout_mode = 2
 
-[node name="AddButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer"]
+[node name="AddButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer" unique_id=2015064174]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Add new layout"
 icon_alignment = 1
 
-[node name="DuplicateButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer"]
+[node name="DuplicateButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer" unique_id=650034732]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Duplicate selected layout"
 icon_alignment = 1
 
-[node name="RenameButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer"]
+[node name="RenameButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer" unique_id=1316112383]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "rename selected layout"
 icon_alignment = 1
 
-[node name="RemoveButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer"]
+[node name="RemoveButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer" unique_id=1993678546]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "remove selected layout"
 icon_alignment = 1
 
-[node name="SavedItemList" type="ItemList" parent="SidebarVBoxContainer"]
+[node name="SavedItemList" type="ItemList" parent="SidebarVBoxContainer" unique_id=1701479786]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="SidebarVBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="SidebarVBoxContainer" unique_id=1742365788]
 layout_mode = 2
 
-[node name="MainPathEditButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer3"]
+[node name="MainPathEditButton" type="Button" parent="SidebarVBoxContainer/HBoxContainer3" unique_id=1433477261]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "change layout directory path"
 toggle_mode = true
 icon_alignment = 1
 
-[node name="MainPathLineEdit" type="LineEdit" parent="SidebarVBoxContainer/HBoxContainer3"]
+[node name="MainPathLineEdit" type="LineEdit" parent="SidebarVBoxContainer/HBoxContainer3" unique_id=129599144]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -161,16 +161,16 @@ mouse_filter = 2
 editable = false
 virtual_keyboard_enabled = false
 
-[node name="HSplitContainer" type="HSplitContainer" parent="."]
+[node name="HSplitContainer" type="HSplitContainer" parent="." unique_id=1566997705]
 layout_mode = 2
 
-[node name="NoDataReferenceRect" type="ReferenceRect" parent="HSplitContainer"]
+[node name="NoDataReferenceRect" type="ReferenceRect" parent="HSplitContainer" unique_id=1952375748]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 border_width = 2.0
 
-[node name="SekkeiGraph1" type="GraphEdit" parent="HSplitContainer"]
+[node name="SekkeiGraph1" type="GraphEdit" parent="HSplitContainer" unique_id=1728802789]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -183,17 +183,15 @@ show_zoom_label = true
 show_arrange_button = false
 script = ExtResource("1_lrq46")
 
-[node name="ContextMenu" type="PopupMenu" parent="HSplitContainer/SekkeiGraph1"]
+[node name="ContextMenu" type="PopupMenu" parent="HSplitContainer/SekkeiGraph1" unique_id=359886213]
 script = ExtResource("5_extsy")
 
-[node name="DragPath" type="Line2D" parent="HSplitContainer/SekkeiGraph1"]
+[node name="DragPath" type="Line2D" parent="HSplitContainer/SekkeiGraph1" unique_id=584034794]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HSplitContainer/SekkeiGraph1/DragPath"]
-libraries = {
-"": SubResource("AnimationLibrary_jn6kl")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HSplitContainer/SekkeiGraph1/DragPath" unique_id=1090468624]
+libraries/ = SubResource("AnimationLibrary_jn6kl")
 
-[node name="SekkeiGraph2" type="GraphEdit" parent="HSplitContainer"]
+[node name="SekkeiGraph2" type="GraphEdit" parent="HSplitContainer" unique_id=1556401974]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -204,58 +202,56 @@ zoom_max = 3.0
 show_arrange_button = false
 script = ExtResource("1_lrq46")
 
-[node name="ContextMenu" type="PopupMenu" parent="HSplitContainer/SekkeiGraph2"]
+[node name="ContextMenu" type="PopupMenu" parent="HSplitContainer/SekkeiGraph2" unique_id=1901359434]
 script = ExtResource("5_extsy")
 
-[node name="DragPath" type="Line2D" parent="HSplitContainer/SekkeiGraph2"]
+[node name="DragPath" type="Line2D" parent="HSplitContainer/SekkeiGraph2" unique_id=1178077955]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HSplitContainer/SekkeiGraph2/DragPath"]
-libraries = {
-"": SubResource("AnimationLibrary_jn6kl")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HSplitContainer/SekkeiGraph2/DragPath" unique_id=694585176]
+libraries/ = SubResource("AnimationLibrary_jn6kl")
 
-[node name="FileNameDialog" type="ConfirmationDialog" parent="."]
+[node name="FileNameDialog" type="ConfirmationDialog" parent="." unique_id=1779224944]
 unique_name_in_owner = true
 size = Vector2i(297, 115)
 
-[node name="FileNameMarginContainer" type="MarginContainer" parent="FileNameDialog"]
+[node name="FileNameMarginContainer" type="MarginContainer" parent="FileNameDialog" unique_id=391169013]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 289.0
 offset_bottom = 66.0
 
-[node name="FileNameVBoxContainer" type="VBoxContainer" parent="FileNameDialog/FileNameMarginContainer"]
+[node name="FileNameVBoxContainer" type="VBoxContainer" parent="FileNameDialog/FileNameMarginContainer" unique_id=387231800]
 layout_mode = 2
 theme_override_constants/separation = -4
 
-[node name="FileNameHBoxContainer" type="HBoxContainer" parent="FileNameDialog/FileNameMarginContainer/FileNameVBoxContainer"]
+[node name="FileNameHBoxContainer" type="HBoxContainer" parent="FileNameDialog/FileNameMarginContainer/FileNameVBoxContainer" unique_id=1501616900]
 layout_mode = 2
 
-[node name="FileNameLineEdit" type="LineEdit" parent="FileNameDialog/FileNameMarginContainer/FileNameVBoxContainer/FileNameHBoxContainer"]
+[node name="FileNameLineEdit" type="LineEdit" parent="FileNameDialog/FileNameMarginContainer/FileNameVBoxContainer/FileNameHBoxContainer" unique_id=1105314198]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 
-[node name="FileNameLabel" type="Label" parent="FileNameDialog/FileNameMarginContainer/FileNameVBoxContainer/FileNameHBoxContainer"]
+[node name="FileNameLabel" type="Label" parent="FileNameDialog/FileNameMarginContainer/FileNameVBoxContainer/FileNameHBoxContainer" unique_id=278358380]
 unique_name_in_owner = true
 layout_mode = 2
 text = ".json"
 
-[node name="FileNameMessageLabel" type="Label" parent="FileNameDialog/FileNameMarginContainer/FileNameVBoxContainer"]
+[node name="FileNameMessageLabel" type="Label" parent="FileNameDialog/FileNameMarginContainer/FileNameVBoxContainer" unique_id=1274691592]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.827451, 0.827451, 0.47451, 1)
 
-[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="." unique_id=338563825]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=374937349]
 
-[node name="Window" type="Window" parent="."]
+[node name="Window" type="Window" parent="." unique_id=815726978]
 visible = false
 wrap_controls = true
 always_on_top = true
 
-[node name="SekkeiGraph3" type="GraphEdit" parent="Window"]
+[node name="SekkeiGraph3" type="GraphEdit" parent="Window" unique_id=1181062863]
 unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -271,13 +267,11 @@ show_zoom_label = true
 show_arrange_button = false
 script = ExtResource("1_lrq46")
 
-[node name="ContextMenu" type="PopupMenu" parent="Window/SekkeiGraph3"]
+[node name="ContextMenu" type="PopupMenu" parent="Window/SekkeiGraph3" unique_id=1392568650]
 script = ExtResource("5_extsy")
 
-[node name="DragPath" type="Line2D" parent="Window/SekkeiGraph3"]
+[node name="DragPath" type="Line2D" parent="Window/SekkeiGraph3" unique_id=310299037]
 position = Vector2(706, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Window/SekkeiGraph3/DragPath"]
-libraries = {
-"": SubResource("AnimationLibrary_jn6kl")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Window/SekkeiGraph3/DragPath" unique_id=594718315]
+libraries/ = SubResource("AnimationLibrary_jn6kl")
