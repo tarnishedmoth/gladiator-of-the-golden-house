@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2ihg6htcb6w6"
-path="res://.godot/imported/columns.png-cb5b9970ac71d2356f803d1c25e3f737.ctex"
+uid="uid://duea3mt2s3s25"
+path="res://.godot/imported/hex clock.png-8afa89d6b6300bfa797987729cfbaa1e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://utils/textures/columns.png"
-dest_files=["res://.godot/imported/columns.png-cb5b9970ac71d2356f803d1c25e3f737.ctex"]
+source_file="res://BOARD/hex-stuff/hex clock.png"
+dest_files=["res://.godot/imported/hex clock.png-8afa89d6b6300bfa797987729cfbaa1e.ctex"]
 
 [params]
 

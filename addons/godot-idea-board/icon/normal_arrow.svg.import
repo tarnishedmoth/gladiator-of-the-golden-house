@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b84ykxig0epgc"
-path="res://.godot/imported/stairs.png-344e3294ccd543b44654b4398bf6cb3d.ctex"
+uid="uid://bku7gm2h1pjvy"
+path="res://.godot/imported/normal_arrow.svg-9f52bd607ea8fe9f878103a938870ed1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://utils/textures/stairs.png"
-dest_files=["res://.godot/imported/stairs.png-344e3294ccd543b44654b4398bf6cb3d.ctex"]
+source_file="res://addons/godot-idea-board/icon/normal_arrow.svg"
+dest_files=["res://.godot/imported/normal_arrow.svg-9f52bd607ea8fe9f878103a938870ed1.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

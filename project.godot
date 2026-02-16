@@ -35,7 +35,11 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/project-time-tracker/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot-idea-board/plugin.cfg", "res://addons/project-time-tracker/plugin.cfg")
+
+[godot_idea_board]
+
+directory_path="res://BOARD/savedata/"
 
 [gui]
 

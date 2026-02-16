@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bbh4gir3taygw"
+
+[deps]
+
+files=["res://addons/godot-idea-board/translation/translation.en.translation", "res://addons/godot-idea-board/translation/translation.ja_JP.translation"]
+
+source_file="res://addons/godot-idea-board/translation/translation.csv"
+dest_files=["res://addons/godot-idea-board/translation/translation.en.translation", "res://addons/godot-idea-board/translation/translation.ja_JP.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

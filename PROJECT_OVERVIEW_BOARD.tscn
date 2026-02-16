@@ -1,13 +1,17 @@
 [gd_scene format=3 uid="uid://d2w6eaad6ey6s"]
 
-[ext_resource type="Texture2D" uid="uid://duea3mt2s3s25" path="res://utils/textures/hex clock.png" id="1_4f1he"]
-[ext_resource type="Texture2D" uid="uid://dmiussakgcq8b" path="res://utils/textures/hex compass.png" id="2_82yis"]
-[ext_resource type="Texture2D" uid="uid://c2ihg6htcb6w6" path="res://utils/textures/columns.png" id="3_ecxx2"]
-[ext_resource type="Texture2D" uid="uid://b84ykxig0epgc" path="res://utils/textures/stairs.png" id="4_r3cvp"]
+[ext_resource type="Texture2D" uid="uid://duea3mt2s3s25" path="res://BOARD/hex-stuff/hex clock.png" id="1_4f1he"]
+[ext_resource type="Texture2D" uid="uid://dmiussakgcq8b" path="res://BOARD/hex-stuff/hex compass.png" id="2_82yis"]
+[ext_resource type="Texture2D" uid="uid://c2ihg6htcb6w6" path="res://BOARD/hex-stuff/columns.png" id="3_ecxx2"]
+[ext_resource type="Texture2D" uid="uid://b84ykxig0epgc" path="res://BOARD/hex-stuff/stairs.png" id="4_r3cvp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ecxx2"]
+font_size = 32
 
 [node name="Project Overview Board" type="Node2D" unique_id=724774706]
 
 [node name="Welcome" type="Node2D" parent="." unique_id=967331816]
+visible = false
 
 [node name="Label" type="Label" parent="Welcome" unique_id=231805543]
 offset_left = 12.0
@@ -22,6 +26,7 @@ This scene is designed for in-editor use, not in-game."
 autowrap_mode = 2
 
 [node name="Startup Flow" type="Node2D" parent="." unique_id=246700088]
+visible = false
 position = Vector2(533, 177)
 
 [node name="Label" type="RichTextLabel" parent="Startup Flow" unique_id=1901258218]
@@ -45,6 +50,7 @@ After finished, either 3a or 3b is spawned, conditional to [b]main.gd:load_to_de
 fit_content = true
 
 [node name="Class Inheritance" type="Node2D" parent="." unique_id=1175972175]
+visible = false
 position = Vector2(19, 559)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Class Inheritance" unique_id=256088854]
@@ -85,6 +91,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Story" type="Node2D" parent="." unique_id=557749080]
+visible = false
 position = Vector2(1095, 0)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Story" unique_id=853371121]
@@ -149,6 +156,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Hex Guides" type="Node2D" parent="." unique_id=1192058881]
+visible = false
 position = Vector2(1644, -2)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Hex Guides" unique_id=1596857518]
@@ -162,7 +170,7 @@ bbcode_enabled = true
 text = "[b]Hexagon Make Brain Hurt[/b]
 Hexagons might line up nicely, but ordering each tile is different than a standard X,Y grid.
 
-You may hear the edges of the hexagons referred to like numbers on a clock, or like a compass with North East and South East but [i]no East[/i]"
+You may hear the edges of the hexagons referred to like numbers on a clock, or like a compass with North East and South East but [i]no East or West[/i]"
 fit_content = true
 scroll_active = false
 
@@ -197,3 +205,17 @@ expand_mode = 5
 layout_mode = 2
 texture = ExtResource("4_r3cvp")
 expand_mode = 5
+
+[node name="NEW_IDEA_BOARD_ADDON" type="Label" parent="." unique_id=2124652838]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "We've moved!
+
+Check out the new idea board addon in the \"Board\" tab,
+at the top of the screen, next to your other main window
+tabs such as 2D, 3D, Script, Game, and AssetLib.
+
+If you don't see it, go into your project settings and enable
+the addon.
+Project->Project Settings->Plugins->godot-idea-board"
+label_settings = SubResource("LabelSettings_ecxx2")
