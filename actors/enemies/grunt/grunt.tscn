@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bmv1qvv614ri1"]
+
+[ext_resource type="Script" uid="uid://2lxtpvvfchas" path="res://actors/enemies/grunt/grunt.gd" id="1_q1aho"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_it1al"]
+[ext_resource type="Texture2D" uid="uid://bruvlpfjaf07n" path="res://actors/healthbarBG.png" id="2_oidwr"]
+[ext_resource type="Resource" uid="uid://chyn3vp8qw7ue" path="res://actions/prefabs/grunt_light_attack.tres" id="3_sryjk"]
+[ext_resource type="Texture2D" uid="uid://bidhnpwsgp83c" path="res://actors/healthbar.png" id="3_vwm7r"]
+[ext_resource type="Resource" uid="uid://cior70oyylpmi" path="res://actions/prefabs/grunt_heavy_attack.tres" id="4_6iwa0"]
+[ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="4_r7m32"]
+[ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="5_2g32g"]
+
+[node name="Grunt" type="Node2D" unique_id=84579020]
+script = ExtResource("1_q1aho")
+usable_actions = Array[ExtResource("2_it1al")]([ExtResource("3_sryjk"), ExtResource("4_6iwa0"), ExtResource("5_2g32g")])
+ui_name = "Grunt"
+ui_description = "A low-level combatant. Not dangerous alone, but threatening in numbers."
+starting_health = 18
+
+[node name="health" type="Sprite2D" parent="." unique_id=1720222076]
+position = Vector2(0, -30)
+texture = ExtResource("2_oidwr")
+
+[node name="bar" type="Sprite2D" parent="health" unique_id=1139479760]
+position = Vector2(-22, -3)
+texture = ExtResource("3_vwm7r")
+centered = false
+
+[node name="txt" type="Label" parent="health" unique_id=815925002]
+offset_left = 24.0
+offset_top = -6.0
+offset_right = 46.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 8
+text = "100"
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=844266743]
+self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
+texture = ExtResource("4_r7m32")

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ActionAttack" format=3 uid="uid://cior70oyylpmi"]
+
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="1_yvkix"]
+
+[resource]
+script = ExtResource("1_yvkix")
+damage = 7
+tgt_front = Array[int]([1])
+tgt_front_right = Array[int]([1])
+tgt_back_right = Array[int]([1])
+tgt_back = Array[int]([1])
+tgt_back_left = Array[int]([1])
+tgt_front_left = Array[int]([1])
+target_spot_hit = true
+ui_title = "Heavy Swipe"
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"
