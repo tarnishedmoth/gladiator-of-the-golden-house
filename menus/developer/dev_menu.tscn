@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bm6vflkk8xg30" path="res://play/level.tscn" id="2_aqm70"]
 [ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="3_4m0ib"]
 [ext_resource type="PackedScene" uid="uid://00q7yj5eqvpd" path="res://play/level2.tscn" id="3_k31uv"]
+[ext_resource type="PackedScene" uid="uid://68hce8m10sja" path="res://play/level3.tscn" id="4_k31uv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kvqlu"]
 font_size = 36
@@ -21,7 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_12ima")
-selectable_levels = Array[PackedScene]([ExtResource("2_aqm70"), ExtResource("3_k31uv")])
+selectable_levels = Array[PackedScene]([ExtResource("2_aqm70"), ExtResource("3_k31uv"), ExtResource("4_k31uv")])
 
 [node name="BG" type="ColorRect" parent="." unique_id=228810212]
 unique_name_in_owner = true

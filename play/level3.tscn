@@ -1,0 +1,214 @@
+[gd_scene format=4 uid="uid://68hce8m10sja"]
+
+[ext_resource type="Script" uid="uid://c6sgu6sth1eu1" path="res://play/level.gd" id="1_0wqil"]
+[ext_resource type="Texture2D" uid="uid://c3by065x614qx" path="res://play/tile-atlases/background-level-01.png" id="2_87at7"]
+[ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="3_jvvke"]
+[ext_resource type="Script" uid="uid://d3wjcqjs4jdor" path="res://input/player/player_director.gd" id="4_ukeqs"]
+[ext_resource type="Resource" uid="uid://cja0r0w64c03i" path="res://actions/prefabs/basic_attack_one_tile_front.tres" id="5_87at7"]
+[ext_resource type="Script" uid="uid://cpmor4ij3s6kx" path="res://actors/actor.gd" id="5_bhmob"]
+[ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="6_7xyfh"]
+[ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://input/ai/ai_director.gd" id="7_xa1mk"]
+[ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="8_5q1it"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="9_8cnqm"]
+[ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="10_wsl0v"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="11_nf2ii"]
+[ext_resource type="Texture2D" uid="uid://bruvlpfjaf07n" path="res://actors/healthbarBG.png" id="12_q5378"]
+[ext_resource type="Texture2D" uid="uid://bidhnpwsgp83c" path="res://actors/healthbar.png" id="13_psnjk"]
+[ext_resource type="Texture2D" uid="uid://baforln2mc5me" path="res://play/tile-atlases/test.png" id="14_l40sx"]
+[ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="15_bvluy"]
+[ext_resource type="PackedScene" uid="uid://bs7yj78ykeu7o" path="res://play/hud/hud.tscn" id="16_ocufg"]
+[ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="17_x5l3d"]
+[ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="18_r7mky"]
+[ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="19_kxku1"]
+
+[sub_resource type="Resource" id="Resource_e2bh8"]
+script = ExtResource("11_nf2ii")
+damage = 1
+ui_title = "Weak Attack"
+ui_description = "A very weak attack."
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u4q3m"]
+resource_name = "outline"
+texture = ExtResource("14_l40sx")
+texture_region_size = Vector2i(128, 72)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_fqe43"]
+tile_shape = 3
+tile_layout = 3
+tile_offset_axis = 1
+tile_size = Vector2i(128, 72)
+uv_clipping = true
+sources/0 = SubResource("TileSetAtlasSource_u4q3m")
+
+[node name="Level" type="Node2D" unique_id=13868467 node_paths=PackedStringArray("base_tile_map_layer", "tile_interactor", "hud")]
+texture_filter = 3
+position = Vector2(480, 270)
+script = ExtResource("1_0wqil")
+base_tile_map_layer = NodePath("TileMapLayers/BaseTileMapLayer")
+tile_interactor = NodePath("MouseFollower/TileMapInteractor")
+hud = NodePath("HUD")
+
+[node name="TileMapLayers" type="Node2D" parent="." unique_id=994423606]
+position = Vector2(16, 0)
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Sprite2D" parent="TileMapLayers" unique_id=1621508126]
+position = Vector2(0, -66)
+texture = ExtResource("2_87at7")
+
+[node name="Directors" type="Node2D" parent="TileMapLayers" unique_id=440455703]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
+
+[node name="Player" type="Node2D" parent="TileMapLayers/Directors" unique_id=1321501885]
+script = ExtResource("4_ukeqs")
+metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
+metadata/_edit_lock_ = true
+
+[node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=2062837817]
+position = Vector2(0, 141)
+script = ExtResource("5_bhmob")
+ui_name = "You"
+attack_one = ExtResource("5_87at7")
+metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
+
+[node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/Player/MainCharacter" unique_id=1704811731]
+self_modulate = Color(0.108270444, 0.74155116, 0.77216226, 1)
+texture = ExtResource("6_7xyfh")
+
+[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" unique_id=2134352030]
+script = ExtResource("7_xa1mk")
+metadata/_custom_type_script = "uid://dwys5mwbuw85s"
+metadata/_edit_lock_ = true
+
+[node name="Enemy1" type="Node2D" parent="TileMapLayers/Directors/AIDirector" unique_id=1276070918]
+position = Vector2(16, -148)
+script = ExtResource("8_5q1it")
+usable_actions = Array[ExtResource("9_8cnqm")]([ExtResource("10_wsl0v"), SubResource("Resource_e2bh8")])
+ui_name = "Declinus the Protected"
+ui_subtitle = "Bully"
+ui_description = "Always stands behind his two cronies."
+starting_health = 918
+metadata/_custom_type_script = "uid://pgyek4ai3kpq"
+
+[node name="health" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy1" unique_id=1964007224]
+position = Vector2(0, -30)
+texture = ExtResource("12_q5378")
+
+[node name="bar" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy1/health" unique_id=1804584160]
+position = Vector2(-22, -3)
+texture = ExtResource("13_psnjk")
+centered = false
+
+[node name="txt" type="Label" parent="TileMapLayers/Directors/AIDirector/Enemy1/health" unique_id=518771325]
+offset_left = 24.0
+offset_top = -6.0
+offset_right = 46.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 8
+text = "100"
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy1" unique_id=1668975027]
+self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
+texture = ExtResource("6_7xyfh")
+
+[node name="Enemy2" type="Node2D" parent="TileMapLayers/Directors/AIDirector" unique_id=341779180]
+position = Vector2(100, -115)
+script = ExtResource("8_5q1it")
+usable_actions = Array[ExtResource("9_8cnqm")]([ExtResource("10_wsl0v"), SubResource("Resource_e2bh8")])
+ui_name = "Competus the Right Hand"
+ui_subtitle = "The Less-Dumb One"
+ui_description = "ALMOST knows what's going on, which almost lets him make good decisions... Almost."
+starting_health = 12
+metadata/_custom_type_script = "uid://pgyek4ai3kpq"
+
+[node name="health" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy2" unique_id=740323377]
+position = Vector2(0, -30)
+texture = ExtResource("12_q5378")
+
+[node name="bar" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy2/health" unique_id=2136350767]
+position = Vector2(-22, -3)
+texture = ExtResource("13_psnjk")
+centered = false
+
+[node name="txt" type="Label" parent="TileMapLayers/Directors/AIDirector/Enemy2/health" unique_id=1546333203]
+offset_left = 24.0
+offset_top = -6.0
+offset_right = 46.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 8
+text = "100"
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy2" unique_id=1864126273]
+self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
+texture = ExtResource("6_7xyfh")
+
+[node name="Enemy3" type="Node2D" parent="TileMapLayers/Directors/AIDirector" unique_id=1577823246]
+position = Vector2(-102, -115)
+script = ExtResource("8_5q1it")
+usable_actions = Array[ExtResource("9_8cnqm")]([ExtResource("10_wsl0v"), SubResource("Resource_e2bh8")])
+ui_name = "Nepotus the Left Hand"
+ui_subtitle = "The More-Dumb One"
+ui_description = "Still trying to prove himself... after last time..."
+starting_health = 12
+metadata/_custom_type_script = "uid://pgyek4ai3kpq"
+
+[node name="health" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy3" unique_id=59215988]
+position = Vector2(0, -30)
+texture = ExtResource("12_q5378")
+
+[node name="bar" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy3/health" unique_id=1906743151]
+position = Vector2(-22, -3)
+texture = ExtResource("13_psnjk")
+centered = false
+
+[node name="txt" type="Label" parent="TileMapLayers/Directors/AIDirector/Enemy3/health" unique_id=1455305036]
+offset_left = 24.0
+offset_top = -6.0
+offset_right = 46.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 8
+text = "100"
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy3" unique_id=693282181]
+self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
+texture = ExtResource("6_7xyfh")
+
+[node name="BaseTileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]
+position = Vector2(-64, -36)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAD//wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAABAP//AAAAAAAAAAACAP7/AAAAAAAAAAADAP3/AAAAAAAAAAD//wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wMAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wEAAAAAAAAAAAACAP//AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAEAAAAAAAAAAAD//wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wIAAAAAAAAAAAD/////AAAAAAAAAAD///7/AAAAAAAAAAD+////AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAACAP3/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_fqe43")
+
+[node name="GridTint" parent="TileMapLayers" unique_id=1487691829 instance=ExtResource("19_kxku1")]
+
+[node name="TileHighlight" type="Sprite2D" parent="TileMapLayers" unique_id=646544377]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 0, 0.1882353)
+texture = ExtResource("15_bvluy")
+centered = false
+offset = Vector2(-128, -72)
+
+[node name="Camera" type="Camera2D" parent="." unique_id=695801089]
+editor_description = "Main camera"
+
+[node name="Vignette" parent="Camera" unique_id=1689915564 instance=ExtResource("3_jvvke")]
+offset_left = -480.0
+offset_top = -270.0
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="HUD" parent="." unique_id=414291549 instance=ExtResource("16_ocufg")]
+
+[node name="MouseFollower" type="Node2D" parent="." unique_id=687351869]
+position = Vector2(317, 190)
+script = ExtResource("17_x5l3d")
+metadata/_custom_type_script = "uid://mm6inbfx8c45"
+
+[node name="TileMapInteractor" type="Node2D" parent="MouseFollower" unique_id=1205975102]
+script = ExtResource("18_r7mky")
