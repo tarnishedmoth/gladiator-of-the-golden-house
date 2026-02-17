@@ -9,21 +9,15 @@
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://input/ai/ai_director.gd" id="4_f2owf"]
 [ext_resource type="Script" uid="uid://cpmor4ij3s6kx" path="res://actors/actor.gd" id="4_oo8ce"]
 [ext_resource type="Resource" uid="uid://cja0r0w64c03i" path="res://actions/prefabs/basic_attack_one_tile_front.tres" id="5_81pte"]
-[ext_resource type="Script" uid="uid://ddbas45a3e81e" path="res://play/hud.gd" id="7_gmsnh"]
 [ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="7_sffjp"]
-[ext_resource type="Theme" uid="uid://0t4errmfvln0" path="res://menus/theme_level_hud.theme" id="7_sxuih"]
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="8_p0uv8"]
-[ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="9_avgqe"]
 [ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="9_mung2"]
-[ext_resource type="Script" uid="uid://cnk6cyi6oyhbp" path="res://play/hud/button_with_blips.gd" id="9_rgcgw"]
-[ext_resource type="PackedScene" uid="uid://dhwxpcx7ajaji" path="res://play/hud/blip.tscn" id="10_gwg6o"]
-[ext_resource type="Texture2D" uid="uid://disinbamqthvh" path="res://actions/ui-icons/move.png" id="10_ixd4w"]
 [ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="10_jqsul"]
-[ext_resource type="Script" uid="uid://gb7t3y8ncwep" path="res://utils/delete_on_enter.gd" id="11_0d8q5"]
 [ext_resource type="Texture2D" uid="uid://bruvlpfjaf07n" path="res://actors/healthbarBG.png" id="12_tjdga"]
 [ext_resource type="Texture2D" uid="uid://bidhnpwsgp83c" path="res://actors/healthbar.png" id="13_q6hfu"]
 [ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="15_ew0x2"]
 [ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="16_yonjs"]
+[ext_resource type="PackedScene" uid="uid://bs7yj78ykeu7o" path="res://play/hud/hud.tscn" id="17_mung2"]
 [ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="20_e2bh8"]
 [ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="25_q6hfu"]
 
@@ -48,16 +42,13 @@ tile_size = Vector2i(128, 72)
 uv_clipping = true
 sources/0 = SubResource("TileSetAtlasSource_u4q3m")
 
-[sub_resource type="LabelSettings" id="LabelSettings_0d8q5"]
-font_size = 11
-font_color = Color(1, 1, 1, 0.7058824)
-
-[node name="Level" type="Node2D" unique_id=13868467 node_paths=PackedStringArray("base_tile_map_layer", "tile_interactor")]
+[node name="Level" type="Node2D" unique_id=13868467 node_paths=PackedStringArray("base_tile_map_layer", "tile_interactor", "hud")]
 texture_filter = 3
 position = Vector2(480, 270)
 script = ExtResource("1_bg3j4")
 base_tile_map_layer = NodePath("TileMapLayers/BaseTileMapLayer")
 tile_interactor = NodePath("MouseFollower/TileMapInteractor")
+hud = NodePath("HUD")
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=994423606]
 editor_description = "The 32px X offset is to center the hex grid tiles on 0,0."
@@ -171,83 +162,7 @@ offset_top = -270.0
 offset_right = 480.0
 offset_bottom = 270.0
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=1415317388]
-script = ExtResource("7_gmsnh")
-
-[node name="Root" type="Control" parent="HUD" unique_id=2106034139]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = -3.0
-offset_right = 7.0
-offset_bottom = -3.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-theme = ExtResource("7_sxuih")
-
-[node name="LeftSide" type="VBoxContainer" parent="HUD/Root" unique_id=1569224161]
-clip_contents = true
-layout_mode = 1
-anchors_preset = -1
-anchor_bottom = 1.0
-offset_left = -8.0
-offset_right = 120.0
-grow_vertical = 2
-theme_override_constants/separation = 8
-alignment = 1
-
-[node name="ActionsPanel" type="PanelContainer" parent="HUD/Root/LeftSide" unique_id=1485869668]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Root/LeftSide/ActionsPanel" unique_id=251626780]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Label" type="Label" parent="HUD/Root/LeftSide/ActionsPanel/VBoxContainer" unique_id=1269318302]
-layout_mode = 2
-text = "Actions"
-label_settings = SubResource("LabelSettings_0d8q5")
-horizontal_alignment = 2
-
-[node name="Actions" type="VBoxContainer" parent="HUD/Root/LeftSide/ActionsPanel/VBoxContainer" unique_id=1524081518]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="MoveButton" type="Button" parent="HUD/Root/LeftSide/ActionsPanel/VBoxContainer/Actions" unique_id=635348305]
-layout_mode = 2
-text = "Move"
-icon = ExtResource("10_ixd4w")
-alignment = 2
-script = ExtResource("9_rgcgw")
-metadata/_custom_type_script = "uid://cnk6cyi6oyhbp"
-
-[node name="Blips" type="HBoxContainer" parent="HUD/Root/LeftSide/ActionsPanel/VBoxContainer/Actions/MoveButton" unique_id=1874783822]
-custom_minimum_size = Vector2(0, 6)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 4.0
-grow_horizontal = 2
-alignment = 2
-
-[node name="Blip" parent="HUD/Root/LeftSide/ActionsPanel/VBoxContainer/Actions/MoveButton/Blips" unique_id=2046570082 instance=ExtResource("10_gwg6o")]
-layout_mode = 2
-script = ExtResource("11_0d8q5")
-
-[node name="AttackButton" type="Button" parent="HUD/Root/LeftSide/ActionsPanel/VBoxContainer/Actions" unique_id=1631354247]
-layout_mode = 2
-text = "Slash"
-icon = ExtResource("9_avgqe")
-alignment = 2
-
-[node name="AttackButton2" type="Button" parent="HUD/Root/LeftSide/ActionsPanel/VBoxContainer/Actions" unique_id=1905197509]
-layout_mode = 2
-text = "Jab"
-icon = ExtResource("9_avgqe")
-alignment = 2
+[node name="HUD" parent="." unique_id=414291549 instance=ExtResource("17_mung2")]
 
 [node name="MouseFollower" type="Node2D" parent="." unique_id=687351869]
 position = Vector2(317, 190)

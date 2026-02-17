@@ -61,8 +61,9 @@ static func get_overlap_description() -> String:
 			parts.append("%s at %s" % [names, coords])
 	return ", ".join(parts)
 
-@export var base_tile_map_layer: TileMapLayer ## This is used for detecting mouse input.
+@export var base_tile_map_layer: TileMapLayer
 @export var tile_interactor: TileInteractor ## This is used for detecting mouse input.
+@export var hud: LevelHUD
 	
 var turn_count: int = 0
 
@@ -95,6 +96,7 @@ func _ready() -> void:
 	start_game.call_deferred()
 
 func start_game() -> void:
+	assert(hud)
 	assert(base_tile_map_layer)
 	assert(tile_interactor)
 	tile_interactor.set_tilemap(base_tile_map_layer)

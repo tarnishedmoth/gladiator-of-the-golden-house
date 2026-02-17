@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://bs7yj78ykeu7o"]
+
+[ext_resource type="Script" uid="uid://ddbas45a3e81e" path="res://play/hud/hud.gd" id="1_54fu8"]
+[ext_resource type="Theme" uid="uid://0t4errmfvln0" path="res://menus/theme_level_hud.theme" id="2_xk2m4"]
+[ext_resource type="Texture2D" uid="uid://disinbamqthvh" path="res://actions/ui-icons/move.png" id="3_ksooa"]
+[ext_resource type="Script" uid="uid://cnk6cyi6oyhbp" path="res://play/hud/button_with_blips.gd" id="4_mqh65"]
+[ext_resource type="PackedScene" uid="uid://dhwxpcx7ajaji" path="res://play/hud/blip.tscn" id="5_n2sn3"]
+[ext_resource type="Script" uid="uid://gb7t3y8ncwep" path="res://utils/delete_on_enter.gd" id="6_16pfv"]
+[ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="7_anqqe"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_54fu8"]
+size = Vector2(96, 96)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0d8q5"]
+font_size = 11
+font_color = Color(1, 1, 1, 0.7058824)
+
+[node name="HUD" type="CanvasLayer" unique_id=414291549]
+script = ExtResource("1_54fu8")
+
+[node name="Root" type="Control" parent="." unique_id=1155458102]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -3.0
+offset_right = 7.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("2_xk2m4")
+
+[node name="LeftSide" type="VBoxContainer" parent="Root" unique_id=1212586572]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_right = 148.0
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="HoverPanel" type="PanelContainer" parent="Root/LeftSide" unique_id=1841068285]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+theme_type_variation = &"PartTransparentPanelContainer"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/LeftSide/HoverPanel" unique_id=1327088956]
+layout_mode = 2
+alignment = 2
+
+[node name="Sprite2D" type="TextureRect" parent="Root/LeftSide/HoverPanel/VBoxContainer" unique_id=888443190]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("PlaceholderTexture2D_54fu8")
+stretch_mode = 3
+
+[node name="Description" type="RichTextLabel" parent="Root/LeftSide/HoverPanel/VBoxContainer" unique_id=1850208283]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+theme_override_font_sizes/bold_italics_font_size = 8
+theme_override_font_sizes/italics_font_size = 8
+theme_override_font_sizes/mono_font_size = 8
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
+vertical_alignment = 2
+
+[node name="Title" type="RichTextLabel" parent="Root/LeftSide/HoverPanel/VBoxContainer" unique_id=228192945]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 11
+theme_override_font_sizes/bold_font_size = 11
+theme_override_font_sizes/bold_italics_font_size = 11
+theme_override_font_sizes/italics_font_size = 11
+theme_override_font_sizes/mono_font_size = 11
+bbcode_enabled = true
+text = "[center][b]Gritty the Philadelphian[/b]
+[i]Thrall of Chaos[/i]"
+fit_content = true
+scroll_active = false
+
+[node name="ActionsPanel" type="PanelContainer" parent="Root/LeftSide" unique_id=1129910745]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/LeftSide/ActionsPanel" unique_id=1919909467]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Root/LeftSide/ActionsPanel/VBoxContainer" unique_id=367040664]
+layout_mode = 2
+text = "Actions"
+label_settings = SubResource("LabelSettings_0d8q5")
+horizontal_alignment = 2
+
+[node name="Actions" type="VBoxContainer" parent="Root/LeftSide/ActionsPanel/VBoxContainer" unique_id=1605133322]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MoveButton" type="Button" parent="Root/LeftSide/ActionsPanel/VBoxContainer/Actions" unique_id=542403628]
+layout_mode = 2
+text = "Move"
+icon = ExtResource("3_ksooa")
+alignment = 2
+script = ExtResource("4_mqh65")
+metadata/_custom_type_script = "uid://cnk6cyi6oyhbp"
+
+[node name="Blips" type="HBoxContainer" parent="Root/LeftSide/ActionsPanel/VBoxContainer/Actions/MoveButton" unique_id=382904351]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Blip" parent="Root/LeftSide/ActionsPanel/VBoxContainer/Actions/MoveButton/Blips" unique_id=2046570082 instance=ExtResource("5_n2sn3")]
+layout_mode = 2
+script = ExtResource("6_16pfv")
+
+[node name="AttackButton" type="Button" parent="Root/LeftSide/ActionsPanel/VBoxContainer/Actions" unique_id=2051956955]
+layout_mode = 2
+text = "Slash"
+icon = ExtResource("7_anqqe")
+alignment = 2
+
+[node name="AttackButton2" type="Button" parent="Root/LeftSide/ActionsPanel/VBoxContainer/Actions" unique_id=641805318]
+layout_mode = 2
+text = "Jab"
+icon = ExtResource("7_anqqe")
+alignment = 2

@@ -10,6 +10,7 @@ var latest_tile_coords: Vector2i = Vector2i.ZERO
 var selected_tile ## Null or Vector2i coords
 var _last_selected_tile
 
+var hud: LevelHUD
 
 @onready var main_character: Actor = $MainCharacter
 
@@ -17,6 +18,7 @@ func _ready():
 	main_character.set_facing(Facing.Cardinal.SOUTHWEST)
 
 func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
+	self.hud = Level.get_instance().hud
 	self.tile_map = tilemap
 	self.tile_interactor = interactor
 	if not interactor.tile_changed.is_connected(_on_interactor_tile_changed):
@@ -47,29 +49,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			else:
 				tile = tile_interactor.get_tile_coords_under_interactor()
 				
-			if DESELECT_ON_REPEAT && tile == _last_selected_tile:
-				tile = null ## Deselect
-			
-			## We have our tile coordinates
-			selected_tile = tile
-			
-			## Check for actor on tile
-			var actor_on_tile: Actor = Level.get_actor_at(selected_tile) if selected_tile else null
-			
-			if VERBOSE:
-				p("Selected tile: %s" % selected_tile)				
-				if actor_on_tile:
-					p("Tile coords occupied by actor %s" % actor_on_tile)
-			
-			## Behavior using this data
-			if is_active:
-				## It's our turn
-				pass
-			else:
-				## It's not our turn
-				pass
-				
-			_last_selected_tile = selected_tile
+			_on_click_on_tile(tile)
 	
 	if event.is_action_pressed(&"open_pause_menu"):
 			get_tree().quit() ## FIXME
@@ -93,3 +73,33 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_interactor_tile_changed(new_coords: Vector2i) -> void:
 	latest_tile_coords = new_coords
+
+func _on_click_on_tile(tile) -> void:
+	if DESELECT_ON_REPEAT && tile == _last_selected_tile:
+		tile = null ## Deselect
+	
+	## We have our tile coordinates
+	selected_tile = tile
+	
+	## Check for actor on tile
+	var actor_on_tile: Actor = Level.get_actor_at(selected_tile) if selected_tile else null
+	
+	if VERBOSE:
+		p("Selected tile: %s" % selected_tile)				
+		if actor_on_tile:
+			p("Tile coords occupied by actor %s" % actor_on_tile)
+			
+	if actor_on_tile:
+		hud.show_hover_panel()
+	else:
+		hud.show_hover_panel(false)
+	
+	## Behavior using this data
+	if is_active:
+		## It's our turn
+		pass
+	else:
+		## It's not our turn
+		pass
+		
+	_last_selected_tile = selected_tile
