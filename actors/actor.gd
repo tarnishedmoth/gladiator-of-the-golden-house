@@ -128,10 +128,12 @@ func show_debug_facing_indicator(show_: bool = true) -> void:
 
 func update_healthbar() -> void:
 	## TODO save healthbar as scene and instantiate at runtime
-	if is_instance_valid($health/bar):
-		$health/bar.scale.x = float(health)/float(starting_health)
-	if is_instance_valid($health/txt):
-		$health/txt.text = str(health)
+	var bar = get_node_or_null("health/bar")
+	if is_instance_valid(bar):
+		bar.scale.x = float(health)/float(starting_health)
+	var txt = get_node_or_null("health/txt")
+	if is_instance_valid(txt):
+		txt.text = str(health)
 	
 func take_damage(damage: int) -> void:
 	health -= damage

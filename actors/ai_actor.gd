@@ -15,7 +15,7 @@ func choose_action() -> Action:
 	## Selection
 	var action: Action
 	if not usable_actions.is_empty():
-		action = usable_actions.pick_random() ## FIXME HACK: random
+		action = usable_actions.pick_random().duplicate() ## FIXME HACK: random
 	else:
 		push_error("No usable actions configured!")
 		return null
