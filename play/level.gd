@@ -161,10 +161,17 @@ func show_pause_menu() -> void:
 	playtime_counter_running = false
 	pass
 
+
 var tile_coords_debug_overlay_elements: Array[Node]
+var tile_coords_debug_text_settings: LabelSettings ## Cached resource
+const TILE_COORDS_DEBUG_TEXT_OFFSET: Vector2 = Vector2(0, 20)
 func render_tile_coordinates_debug_overlay() -> void:
 	if not base_tile_map_layer:
 		return
+		
+	if not tile_coords_debug_text_settings:
+		tile_coords_debug_text_settings = LabelSettings.new()
+		tile_coords_debug_text_settings.font_size = 9
 		
 	if not tile_coords_debug_overlay_elements.is_empty():
 		for child in tile_coords_debug_overlay_elements:
@@ -177,4 +184,6 @@ func render_tile_coordinates_debug_overlay() -> void:
 		tile_coords_debug_overlay_elements.push_back(new_label)
 		
 		new_label.text = str(coords)
-		new_label.global_position = base_tile_map_layer.to_global(base_tile_map_layer.map_to_local(coords))
+		new_label.top_level = true ## just to be unaffected by overlays and modulation
+		new_label.label_settings = tile_coords_debug_text_settings
+		new_label.global_position = base_tile_map_layer.to_global(base_tile_map_layer.map_to_local(coords)) + TILE_COORDS_DEBUG_TEXT_OFFSET

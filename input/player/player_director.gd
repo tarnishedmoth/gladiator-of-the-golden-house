@@ -74,32 +74,37 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_interactor_tile_changed(new_coords: Vector2i) -> void:
 	latest_tile_coords = new_coords
 
-func _on_click_on_tile(tile) -> void:
-	if DESELECT_ON_REPEAT && tile == _last_selected_tile:
-		tile = null ## Deselect
+func _on_click_on_tile(tile_coords) -> void:
+	if DESELECT_ON_REPEAT && tile_coords == _last_selected_tile:
+		tile_coords = null ## Deselect
 	
 	## We have our tile coordinates
-	selected_tile = tile
+	selected_tile = tile_coords
 	
-	## Check for actor on tile
-	var actor_on_tile: Actor = Level.get_actor_at(selected_tile) if selected_tile else null
-	
-	if VERBOSE:
-		p("Selected tile: %s" % selected_tile)				
-		if actor_on_tile:
-			p("Tile coords occupied by actor %s" % actor_on_tile)
+	if selected_tile: ## Null check
+		## Get TileData (just for UI for now)
+		#var tile_data: TileData = tile_interactor.get_tile_data(selected_tile) ## TODO this could handle land type
+		
+		## Check for actor on tile
+		var actor_on_tile: Actor = Level.get_actor_at(selected_tile) if selected_tile else null
+		
+		if VERBOSE:
+			p("Selected tile: %s" % selected_tile)
+			if actor_on_tile:
+				p("Tile coords occupied by actor %s" % actor_on_tile)
+		
+		## Behavior using this data
+		if is_active:
+			## It's our turn
+			pass
 			
-	if actor_on_tile:
-		hud.show_hover_panel()
+		else:
+			## It's not our turn
+			pass
+			
+		hud.populate_hover_panel(selected_tile, actor_on_tile)
+		hud.show_hover_panel(true)
 	else:
 		hud.show_hover_panel(false)
-	
-	## Behavior using this data
-	if is_active:
-		## It's our turn
-		pass
-	else:
-		## It's not our turn
-		pass
 		
 	_last_selected_tile = selected_tile

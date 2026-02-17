@@ -29,11 +29,14 @@ func get_tile_coords_under_interactor() -> Variant:
 func get_current_tile_coords() -> Vector2i:
 	return current_coords
 	
-func get_current_tile_data() -> TileData:
+func get_tile_data(coords: Vector2i) -> TileData:
 	if tilemap:
-		return tilemap.get_cell_tile_data(current_coords)
+		return tilemap.get_cell_tile_data(coords)
 	else:
 		return null
+	
+func get_current_tile_data() -> TileData:
+	return get_tile_data(current_coords)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

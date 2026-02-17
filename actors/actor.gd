@@ -16,6 +16,10 @@ var director: Director
 var action_queue: ActionQueue
 func get_action_queue() -> ActionQueue: return action_queue
 
+@export var ui_name: String ## Shown in Hover Panel
+@export var ui_subtitle: String ## (Optional) Shown in hover panel
+@export_multiline() var ui_description: String ## (Optional) Shown in Hover Panel
+
 var facing: Facing.Cardinal
 @export var face_direction_pattern: DirectionPattern = preload("uid://d1amb27satk2b")
 

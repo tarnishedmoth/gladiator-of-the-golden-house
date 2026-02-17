@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://ddbas45a3e81e" path="res://play/hud/hud.gd" id="1_54fu8"]
 [ext_resource type="Theme" uid="uid://0t4errmfvln0" path="res://menus/theme_level_hud.theme" id="2_xk2m4"]
 [ext_resource type="Texture2D" uid="uid://disinbamqthvh" path="res://actions/ui-icons/move.png" id="3_ksooa"]
+[ext_resource type="Script" uid="uid://bnnqg2xtlxuwf" path="res://play/hud/hover_panel.gd" id="3_xk2m4"]
 [ext_resource type="Script" uid="uid://cnk6cyi6oyhbp" path="res://play/hud/button_with_blips.gd" id="4_mqh65"]
+[ext_resource type="Texture2D" uid="uid://dvuqbrge3doql" path="res://menus/gladiator-godot-icon.png" id="4_n2sn3"]
+[ext_resource type="Texture2D" uid="uid://bs8ywso6o5mlp" path="res://icon.svg" id="5_16pfv"]
 [ext_resource type="PackedScene" uid="uid://dhwxpcx7ajaji" path="res://play/hud/blip.tscn" id="5_n2sn3"]
 [ext_resource type="Script" uid="uid://gb7t3y8ncwep" path="res://utils/delete_on_enter.gd" id="6_16pfv"]
 [ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="7_anqqe"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_54fu8"]
-size = Vector2(96, 96)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0d8q5"]
 font_size = 11
@@ -41,25 +41,92 @@ offset_right = 148.0
 grow_vertical = 2
 theme_override_constants/separation = 8
 
-[node name="HoverPanel" type="PanelContainer" parent="Root/LeftSide" unique_id=1841068285]
+[node name="HoverPanel" type="PanelContainer" parent="Root/LeftSide" unique_id=1841068285 node_paths=PackedStringArray("description", "title", "key_stats", "status_effects_flow_container")]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 10
 size_flags_stretch_ratio = 0.8
 theme_type_variation = &"PartTransparentPanelContainer"
+script = ExtResource("3_xk2m4")
+description = NodePath("VBoxContainer/Description")
+title = NodePath("VBoxContainer/Title")
+key_stats = NodePath("VBoxContainer/KeyStats")
+status_effects_flow_container = NodePath("VBoxContainer/PanelContainer/StatusEffectsFlowContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Root/LeftSide/HoverPanel" unique_id=1327088956]
 layout_mode = 2
+theme_override_constants/separation = 8
 alignment = 2
 
-[node name="Sprite2D" type="TextureRect" parent="Root/LeftSide/HoverPanel/VBoxContainer" unique_id=888443190]
+[node name="PanelContainer" type="PanelContainer" parent="Root/LeftSide/HoverPanel/VBoxContainer" unique_id=614446509]
+layout_mode = 2
+theme_type_variation = &"PartTransparentPanelContainer"
+
+[node name="StatusEffectsFlowContainer" type="HFlowContainer" parent="Root/LeftSide/HoverPanel/VBoxContainer/PanelContainer" unique_id=713616998]
 layout_mode = 2
 size_flags_vertical = 3
-texture = SubResource("PlaceholderTexture2D_54fu8")
-stretch_mode = 3
+alignment = 1
+reverse_fill = true
+
+[node name="ExampleStatusEffectButton" type="TextureButton" parent="Root/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=151204551]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+tooltip_text = "Details about this status effect."
+texture_normal = ExtResource("4_n2sn3")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ExampleStatusEffectButton2" type="TextureButton" parent="Root/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=742117741]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+tooltip_text = "Details about this status effect."
+texture_normal = ExtResource("5_16pfv")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ExampleStatusEffectButton3" type="TextureButton" parent="Root/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=781788360]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+tooltip_text = "Details about this status effect."
+texture_normal = ExtResource("4_n2sn3")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ExampleStatusEffectButton4" type="TextureButton" parent="Root/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=96383872]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+tooltip_text = "Details about this status effect."
+texture_normal = ExtResource("5_16pfv")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ExampleStatusEffectButton5" type="TextureButton" parent="Root/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=753052663]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+tooltip_text = "Details about this status effect."
+texture_normal = ExtResource("3_ksooa")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ExampleStatusEffectButton6" type="TextureButton" parent="Root/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=1645544947]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+tooltip_text = "Details about this status effect."
+texture_normal = ExtResource("4_n2sn3")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ExampleStatusEffectButton7" type="TextureButton" parent="Root/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=546895050]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+tooltip_text = "Details about this status effect."
+texture_normal = ExtResource("7_anqqe")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Description" type="RichTextLabel" parent="Root/LeftSide/HoverPanel/VBoxContainer" unique_id=1850208283]
+custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 8
@@ -70,6 +137,19 @@ theme_override_font_sizes/mono_font_size = 8
 bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
 vertical_alignment = 2
+
+[node name="KeyStats" type="RichTextLabel" parent="Root/LeftSide/HoverPanel/VBoxContainer" unique_id=1532825126]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 11
+theme_override_font_sizes/bold_font_size = 11
+theme_override_font_sizes/bold_italics_font_size = 11
+theme_override_font_sizes/italics_font_size = 11
+theme_override_font_sizes/mono_font_size = 11
+bbcode_enabled = true
+text = "[center]HP: 9 / 18"
+fit_content = true
+scroll_active = false
 
 [node name="Title" type="RichTextLabel" parent="Root/LeftSide/HoverPanel/VBoxContainer" unique_id=228192945]
 clip_contents = false

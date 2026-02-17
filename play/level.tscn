@@ -51,7 +51,7 @@ tile_interactor = NodePath("MouseFollower/TileMapInteractor")
 hud = NodePath("HUD")
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=994423606]
-editor_description = "The 32px X offset is to center the hex grid tiles on 0,0."
+position = Vector2(16, 0)
 metadata/_edit_lock_ = true
 
 [node name="Background" type="Sprite2D" parent="TileMapLayers" unique_id=1621508126]
@@ -70,6 +70,7 @@ metadata/_edit_lock_ = true
 [node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=2062837817]
 position = Vector2(96, -35)
 script = ExtResource("4_oo8ce")
+ui_name = "You"
 attack_one = ExtResource("5_81pte")
 metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
 
@@ -86,7 +87,10 @@ metadata/_edit_lock_ = true
 position = Vector2(16, -148)
 script = ExtResource("7_sffjp")
 usable_actions = Array[ExtResource("8_p0uv8")]([ExtResource("9_mung2"), SubResource("Resource_e2bh8")])
-starting_health = 100
+ui_name = "Gritty the Philadelphian"
+ui_subtitle = "Thrall of Chaos"
+ui_description = "Gritty is a 7-foot-tall furry orange creature with googly eyes who wears Flyers gear. Gritty emerged after construction at the Wells Fargo Center, the Flyers' home arena, disturbed his secret hideout."
+starting_health = 918
 metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 
 [node name="health" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy1" unique_id=1964007224]
@@ -115,7 +119,9 @@ texture = ExtResource("4_3a0x6")
 position = Vector2(197, 87)
 script = ExtResource("7_sffjp")
 usable_actions = Array[ExtResource("8_p0uv8")]([ExtResource("9_mung2"), SubResource("Resource_e2bh8")])
-starting_health = 100
+ui_name = "Some Enemy"
+ui_description = "Not known for anything in particular."
+starting_health = 12
 metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 
 [node name="health" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy2" unique_id=740323377]
@@ -145,6 +151,8 @@ position = Vector2(-64, -36)
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAD//wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAABAP//AAAAAAAAAAACAP7/AAAAAAAAAAADAP3/AAAAAAAAAAD//wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wMAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wEAAAAAAAAAAAACAP//AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAEAAAAAAAAAAAD//wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wIAAAAAAAAAAAD/////AAAAAAAAAAD///7/AAAAAAAAAAD+////AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAACAP3/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_fqe43")
 
+[node name="GridTint" parent="TileMapLayers" unique_id=1487691829 instance=ExtResource("25_q6hfu")]
+
 [node name="TileHighlight" type="Sprite2D" parent="TileMapLayers" unique_id=646544377]
 unique_name_in_owner = true
 visible = false
@@ -171,5 +179,3 @@ metadata/_custom_type_script = "uid://mm6inbfx8c45"
 
 [node name="TileMapInteractor" type="Node2D" parent="MouseFollower" unique_id=1205975102]
 script = ExtResource("16_yonjs")
-
-[node name="GridTint" parent="." unique_id=1487691829 instance=ExtResource("25_q6hfu")]
