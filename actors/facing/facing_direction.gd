@@ -30,9 +30,17 @@ const DIRECTIONS = [
 static func get_direction_from_facing(facing: int, relative: int) -> Vector2i:
 	return DIRECTIONS[(facing + relative) % 6]
 
+static func rotate_hex(unit_facing: int, target_pattern):
+	var q = target_pattern.x
+	var r = target_pattern.y
+	for i in unit_facing:
+		var old_q = q
+		q = -r
+		r = old_q + r
+	return Vector2i(q, r)
+
 static func get_target_cells(pos: Vector2i, facing: int, possible_target_pattern: Array) -> Array[Vector2i]:
 	var targets: Array[Vector2i] = []	
-	for entry in possible_target_pattern:
-		var dir = get_direction_from_facing(facing, entry[0])
-		targets.append(pos + dir * entry[1])			
+	for entry in possible_target_pattern:		
+		targets.append(pos + rotate_hex(facing, entry))
 	return targets

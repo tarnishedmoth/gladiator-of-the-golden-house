@@ -2,20 +2,9 @@ class_name ActionAttack extends Action
 
 @export var damage: int
 @export_category("Target Pattern")
-@export var tgt_front: Array[int]
-@export var tgt_front_right: Array[int]
-@export var tgt_back_right: Array[int]
-@export var tgt_back: Array[int] 
-@export var tgt_back_left: Array[int]
-@export var tgt_front_left: Array[int]
+@export var target_pattern: Array[Vector2i] = [] ## Assume coords 0,0 and facing north. Then list the coords they can hit. the rotate hex function in facing will make that pattern work in any direction.
 @export_category(("AOE Pattern"))
-@export var target_spot_hit: bool
-@export var AE_front: Array[int]
-@export var AE_front_right: Array[int]
-@export var AE_back_right: Array[int]
-@export var AE_back: Array[int] 
-@export var AE_back_left: Array[int]
-@export var AE_front_left: Array[int]
+@export var aoe_pattern: Array[Vector2i] = [] ## Assume coords 0,0 and facing north. Then list the coords they can hit. the rotate hex function in facing will make that pattern work in any direction.
 
 ## On transition to this state
 func enter(from: ResourceState = null) -> void:
@@ -27,43 +16,11 @@ func enter(from: ResourceState = null) -> void:
 	
 	exit()
 
-func get_tgt_pattern() -> Array:
-	var pattern = []
-	for r in tgt_front:
-		pattern.append([Facing.Relative.FRONT, r])
-	for r in tgt_front_right:
-		pattern.append([Facing.Relative.FRONT_RIGHT, r])
-	for r in tgt_back_right:
-		pattern.append([Facing.Relative.BACK_RIGHT, r])
-	for r in tgt_back:
-		pattern.append([Facing.Relative.BACK, r])
-	for r in tgt_back_left:
-		pattern.append([Facing.Relative.BACK_LEFT, r])
-	for r in tgt_front_left:
-		pattern.append([Facing.Relative.FRONT_LEFT, r])
-	return pattern
-	
-func get_aoe_pattern() -> Array:
-	var pattern = []
-	for r in AE_front:
-		pattern.append([Facing.Relative.FRONT, r])
-	for r in AE_front_right:
-		pattern.append([Facing.Relative.FRONT_RIGHT, r])
-	for r in AE_back_right:
-		pattern.append([Facing.Relative.BACK_RIGHT, r])
-	for r in AE_back:
-		pattern.append([Facing.Relative.BACK, r])
-	for r in AE_back_left:
-		pattern.append([Facing.Relative.BACK_LEFT, r])
-	for r in AE_front_left:
-		pattern.append([Facing.Relative.FRONT_LEFT, r])
-	return pattern
-
 func get_affected_and_deal_damage() -> void:
 	var targets: Array[Vector2i] = Facing.get_target_cells(
 		_actor.current_tile_coords,
 		_actor.facing,
-		get_tgt_pattern()
+		target_pattern
 	)
 
 	if debug: p("Targeting %d tiles." % targets.size())
