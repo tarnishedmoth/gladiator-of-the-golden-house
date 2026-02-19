@@ -25,6 +25,7 @@ config/icon="uid://dvuqbrge3doql"
 
 [autoload]
 
+SignalBus="*uid://c8eel12dga7c7"
 TargetFinder="*uid://bdpt4cmj32tcc"
 
 [display]
