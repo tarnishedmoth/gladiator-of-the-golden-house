@@ -8,4 +8,5 @@ pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vec
 ui_title = "Move 1"
 ui_description = "Move to an adjacent tile."
 action_category = 1
+energy_cost = 1
 metadata/_custom_type_script = "uid://btfwr4ctycjfk"

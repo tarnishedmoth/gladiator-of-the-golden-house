@@ -24,6 +24,8 @@ const ACTION_CATEGORY_NAMES = {
 var ui_category: String:
 	get:
 		return ACTION_CATEGORY_NAMES.get(action_category,"Unknown")
+		
+@export var energy_cost: int = 0
 
 var _actor: Actor ## The actor that will run this action. This is not any "target" such as for dealing damage.
 func set_actor(actor: Actor) -> void:
