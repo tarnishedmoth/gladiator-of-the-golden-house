@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://bm6vflkk8xg30"]
 
-[ext_resource type="Texture2D" uid="uid://baforln2mc5me" path="res://play/tile-atlases/test.png" id="1_6hll6"]
 [ext_resource type="Script" uid="uid://c6sgu6sth1eu1" path="res://play/level.gd" id="1_bg3j4"]
 [ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="1_u4q3m"]
 [ext_resource type="Texture2D" uid="uid://c3by065x614qx" path="res://play/tile-atlases/background-level-01.png" id="2_e2bh8"]
@@ -22,6 +21,7 @@
 [ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="15_ew0x2"]
 [ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="16_yonjs"]
 [ext_resource type="PackedScene" uid="uid://bs7yj78ykeu7o" path="res://play/hud/hud.tscn" id="17_mung2"]
+[ext_resource type="Texture2D" uid="uid://bnxs8qff8fvcl" path="res://play/tile-atlases/hexagon-lines-black-aa.png" id="18_tjdga"]
 [ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="20_e2bh8"]
 [ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="25_q6hfu"]
 
@@ -34,7 +34,7 @@ metadata/_custom_type_script = "uid://dwk83a2nxfweb"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u4q3m"]
 resource_name = "outline"
-texture = ExtResource("1_6hll6")
+texture = ExtResource("18_tjdga")
 texture_region_size = Vector2i(128, 72)
 0:0/0 = 0
 
@@ -174,10 +174,10 @@ offset = Vector2(-128, -72)
 editor_description = "Main camera"
 
 [node name="Vignette" parent="Camera" unique_id=1689915564 instance=ExtResource("1_u4q3m")]
-offset_left = -480.0
-offset_top = -270.0
-offset_right = 480.0
-offset_bottom = 270.0
+offset_left = -477.0
+offset_top = -289.0
+offset_right = 483.0
+offset_bottom = 251.0
 
 [node name="HUD" parent="." unique_id=414291549 instance=ExtResource("17_mung2")]
 
