@@ -20,14 +20,10 @@ func get_action_queue() -> ActionQueue: return action_queue
 @export var ui_subtitle: String ## (Optional) Shown in hover panel
 @export_multiline() var ui_description: String ## (Optional) Shown in Hover Panel
 
-var facing: Facing.Cardinal
-@export var face_direction_pattern: DirectionPattern = preload("uid://d1amb27satk2b")
+@export var facing: Facing.Cardinal = Facing.Cardinal.NORTH
 
 var health: int
 @export var starting_health: int
-
-@export_category("Attacks:")
-@export var attack_one: ActionAttack
 
 @export_category("Status Effects:")
 @export var _status_effects: Array[Status]
@@ -44,8 +40,8 @@ static func get_global_position_at(map: TileMapLayer, coords: Vector2i) -> Vecto
 func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	self.director = director_
 	self.tile_map = tilemap
-
-	_snap_to_nearest_tile()
+	
+	snap_to_nearest_tile()
 
 	if action_queue:
 		action_queue.free()
@@ -92,10 +88,11 @@ func _on_action_queue_finished() -> void:
 
 #region MOVEMENT
 
-func _snap_to_nearest_tile() -> void:
+func snap_to_nearest_tile() -> void:
 	var tile_coords: Vector2i = tile_map.local_to_map(tile_map.to_local(global_position))
 	assert(TileInteractor.cell_exists(tile_coords, tile_map))
 	global_position = get_global_position_at(tile_map, tile_coords)
+	
 	current_tile_coords = tile_coords
 
 func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
@@ -108,14 +105,17 @@ func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
 	var duration_of_movement: float = 0.75 ## TODO should probably depend on distance covered
 	move_tween.tween_property(self, ^"global_position", get_global_position_at(map, coords), duration_of_movement)
 	
+
+## Sets [member facing]. North is the default value.
 func set_facing(cardinal_direction: Facing.Cardinal) -> void:
 	facing = cardinal_direction
 	
 	if SHOW_DEBUG_FACING_INDICATOR && self.is_inside_tree():
 		show_debug_facing_indicator(true)
 	
-func get_facing_values() -> DirectionPattern: # dont think we need this anymore
-	return
+## Returns [member facing]. North is the default value.
+func get_facing() -> Facing.Cardinal:
+	return facing
 	
 func show_debug_facing_indicator(show_: bool = true) -> void:
 	if not show_:
@@ -176,5 +176,18 @@ func remove_status(status: Status) -> void:
 func process_on_turn_start_status_effects() -> void:
 	for status in _status_effects:
 		status.on_turn_start()
+
+#endregion
+
+#region Highlighting & Planning
+
+func get_action_target_cells(action: Action) -> Array[Vector2i]:
+	if "pattern" in action:
+		return get_translated_pattern(action.pattern)
+	else:
+		return Action.NO_PATTERN
+
+func get_translated_pattern(pattern: Array[Vector2i]) -> Array[Vector2i]:
+	return Facing.get_target_cells(current_tile_coords, facing, pattern)
 
 #endregion

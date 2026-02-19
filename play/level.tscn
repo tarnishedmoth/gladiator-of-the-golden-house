@@ -10,7 +10,9 @@
 [ext_resource type="Script" uid="uid://cpmor4ij3s6kx" path="res://actors/actor.gd" id="4_oo8ce"]
 [ext_resource type="Resource" uid="uid://cja0r0w64c03i" path="res://actions/prefabs/basic_attack_one_tile_front.tres" id="5_81pte"]
 [ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="7_sffjp"]
+[ext_resource type="Resource" uid="uid://chyn3vp8qw7ue" path="res://actions/prefabs/grunt_light_attack.tres" id="7_tjdga"]
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="8_p0uv8"]
+[ext_resource type="Resource" uid="uid://cior70oyylpmi" path="res://actions/prefabs/grunt_heavy_attack.tres" id="8_q6hfu"]
 [ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="9_mung2"]
 [ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="10_jqsul"]
 [ext_resource type="Resource" uid="uid://yrjd3nv2uamc" path="res://actions/prefabs/basic_defense_status_effect.tres" id="12_jqsul"]
@@ -66,6 +68,8 @@ metadata/_edit_lock_ = true
 
 [node name="Player" type="Node2D" parent="TileMapLayers/Directors" unique_id=1321501885]
 script = ExtResource("3_6sy0s")
+hand_size = 2
+starting_actions_deck = Array[ExtResource("8_p0uv8")]([ExtResource("9_mung2"), ExtResource("5_81pte"), ExtResource("7_tjdga"), ExtResource("8_q6hfu")])
 metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
 metadata/_edit_lock_ = true
 
@@ -73,7 +77,6 @@ metadata/_edit_lock_ = true
 position = Vector2(2, -1)
 script = ExtResource("4_oo8ce")
 ui_name = "You"
-attack_one = ExtResource("5_81pte")
 status_effect = ExtResource("12_jqsul")
 metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
 

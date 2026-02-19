@@ -5,12 +5,6 @@
 [resource]
 script = ExtResource("1_c1mkg")
 damage = 4
-tgt_front = Array[int]([1])
-tgt_front_right = Array[int]([1])
-tgt_back_right = Array[int]([1])
-tgt_back = Array[int]([1])
-tgt_back_left = Array[int]([1])
-tgt_front_left = Array[int]([1])
-target_spot_hit = true
+pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
 ui_title = "Light Swipe"
 metadata/_custom_type_script = "uid://dwk83a2nxfweb"

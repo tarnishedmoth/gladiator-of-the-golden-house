@@ -54,3 +54,5 @@ func clear_and_repopulate_actors_from_children() -> void:
 	for child in get_children():
 		if child is Actor:
 			actors.push_back(child)
+	
+	if VERBOSE: p("Found %d actors." % actors.size())

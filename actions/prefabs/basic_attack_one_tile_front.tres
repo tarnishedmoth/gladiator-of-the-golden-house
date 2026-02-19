@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_ql87u")
-damage = 10
-target_pattern = Array[Vector2i]([Vector2i(-1, -1), Vector2i(1, -2)])
+damage = 5
+pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
 ui_title = "Basic Attack"
 ui_description = "Attack one tile "
 debug = true
