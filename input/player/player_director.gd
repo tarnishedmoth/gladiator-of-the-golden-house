@@ -4,11 +4,6 @@ const HOLD_TIME_TO_END_TURN_EARLY: float = 2.5
 const STICKY_TILE_SELECT: bool = false
 const DESELECT_ON_REPEAT: bool = true
 
-signal hand_changed(hand: Array[Action])
-signal held_action_changed(action: Action)
-
-signal selected_actor_changed(actor: Actor)
-
 var tile_map: TileMapLayer
 var tile_interactor: TileInteractor
 var latest_tile_coords: Vector2i = Vector2i.ZERO
@@ -164,7 +159,7 @@ func hold_action(action: Action):
 		TargetFinder.highlight_targets(selected_actor.get_action_target_cells(current_held_action))
 	else:
 		TargetFinder.clear_target_highlights()
-	held_action_changed.emit(current_held_action)
+	SignalBus.player_held_action_changed.emit(current_held_action)
 
 func unhold_action(): hold_action(null)
 
@@ -183,18 +178,18 @@ func draw_next_card():
 	actions_in_hand.push_back(drawn)
 	
 	if VERBOSE: p("Drew action: %s" % drawn.ui_title)
-	hand_changed.emit(actions_in_hand)
+	SignalBus.player_hand_changed.emit(actions_in_hand)
 	
 func discard(card):
 	discard_deck.push_back(card) ## Brain says push_front, but arrays can only be appended so lets just know that this deck is "upside down"
 	actions_in_hand.erase(card)
-	hand_changed.emit(actions_in_hand)
+	SignalBus.player_hand_changed.emit(actions_in_hand)
 	
 func discard_hand():
 	unhold_action()
 	discard_deck.append_array(actions_in_hand)
 	actions_in_hand.clear()
-	hand_changed.emit(actions_in_hand)
+	SignalBus.player_hand_changed.emit(actions_in_hand)
 	
 func play_held_action():
 	selected_actor.run_action(current_held_action)
@@ -211,6 +206,6 @@ func select_actor(actor: Actor) -> void:
 		assert(actor in actors)
 		selected_actor = actor
 		if VERBOSE: p("Selected actor %s" % selected_actor)
-	selected_actor_changed.emit(selected_actor)
+	SignalBus.player_selected_actor_changed.emit(selected_actor)
 
 func deselect_actor() -> void: select_actor(null)
