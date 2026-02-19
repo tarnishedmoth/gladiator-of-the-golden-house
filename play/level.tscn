@@ -21,7 +21,7 @@
 [ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="15_ew0x2"]
 [ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="16_yonjs"]
 [ext_resource type="PackedScene" uid="uid://bs7yj78ykeu7o" path="res://play/hud/hud.tscn" id="17_mung2"]
-[ext_resource type="Texture2D" uid="uid://bnxs8qff8fvcl" path="res://play/tile-atlases/hexagon-lines-black-aa.png" id="18_tjdga"]
+[ext_resource type="Texture2D" uid="uid://bm0816gv1u444" path="res://play/tile-atlases/hexagon-lines-black-no-aa-128x72.png" id="18_tjdga"]
 [ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="20_e2bh8"]
 [ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="25_q6hfu"]
 
