@@ -10,9 +10,11 @@ func setup(tilemap: TileMapLayer) -> void:
 	if VERBOSE: p("Setup done.")
 
 ## We need to plan our moves and store them to be executed at the
-## start of our next turn. This allows the player(s) to see our moves and strategize.
+## start of our next turn. This allows the player(s) to see our  moves and strategize.
 func _on_turn_started():
 	if VERBOSE: p("AI taking turn...")
+	
+	run_status_effects()
 	
 	var result = await execute_queued_moves()
 	
@@ -36,3 +38,8 @@ func select_plans() -> void:
 	for actor in actors:
 		if actor is AIActor:
 			actor.queue_new_actions_for_next_turn()
+
+func run_status_effects() -> void: 
+	for actor in actors:
+		actor.process_on_turn_start_status_effects()
+		

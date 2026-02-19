@@ -13,7 +13,9 @@
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="8_p0uv8"]
 [ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="9_mung2"]
 [ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="10_jqsul"]
+[ext_resource type="Resource" uid="uid://yrjd3nv2uamc" path="res://actions/prefabs/basic_defense_status_effect.tres" id="12_jqsul"]
 [ext_resource type="Texture2D" uid="uid://bruvlpfjaf07n" path="res://actors/healthbarBG.png" id="12_tjdga"]
+[ext_resource type="Script" uid="uid://bhpfulxak0eng" path="res://actions/status-effects/status_effect.gd" id="13_118mn"]
 [ext_resource type="Texture2D" uid="uid://bidhnpwsgp83c" path="res://actors/healthbar.png" id="13_q6hfu"]
 [ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="15_ew0x2"]
 [ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="16_yonjs"]
@@ -72,6 +74,7 @@ position = Vector2(2, -1)
 script = ExtResource("4_oo8ce")
 ui_name = "You"
 attack_one = ExtResource("5_81pte")
+status_effect = ExtResource("12_jqsul")
 metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
 
 [node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/Player/MainCharacter" unique_id=1704811731]
@@ -91,6 +94,7 @@ ui_name = "Gritty the Philadelphian"
 ui_subtitle = "Thrall of Chaos"
 ui_description = "Gritty is a 7-foot-tall furry orange creature with googly eyes who wears Flyers gear. Gritty emerged after construction at the Wells Fargo Center, the Flyers' home arena, disturbed his secret hideout."
 starting_health = 918
+status_effect = ExtResource("12_jqsul")
 metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 
 [node name="health" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy1" unique_id=1964007224]
@@ -122,6 +126,8 @@ usable_actions = Array[ExtResource("8_p0uv8")]([ExtResource("9_mung2"), SubResou
 ui_name = "Some Enemy"
 ui_description = "Not known for anything in particular."
 starting_health = 12
+_status_effects = Array[ExtResource("13_118mn")]([ExtResource("12_jqsul")])
+status_effect = ExtResource("12_jqsul")
 metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 
 [node name="health" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy2" unique_id=740323377]

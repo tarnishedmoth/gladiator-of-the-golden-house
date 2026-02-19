@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DefenseStatus" format=3 uid="uid://yrjd3nv2uamc"]
+
+[ext_resource type="Script" uid="uid://1dtnk6pdhbwq" path="res://actions/status-effects/defense_status_effect.gd" id="1_1gjl3"]
+
+[resource]
+script = ExtResource("1_1gjl3")
+effect_points = 5
+ui_name = "Guard"
+ui_description = "Block incoming damage "
+status_effect_category = 1
+metadata/_custom_type_script = "uid://1dtnk6pdhbwq"

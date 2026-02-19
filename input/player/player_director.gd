@@ -32,6 +32,8 @@ func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 	
 
 func _on_turn_started():
+	main_character.process_on_turn_start_status_effects()
+	
 	TargetFinder.highlight_targets(main_character.current_tile_coords,main_character.facing,main_character.attack_one.target_pattern) #temp until invoked by button	
 	if VERBOSE: p("Player turn started")
 	pass

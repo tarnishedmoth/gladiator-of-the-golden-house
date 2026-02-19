@@ -29,6 +29,10 @@ var health: int
 @export_category("Attacks:")
 @export var attack_one: ActionAttack
 
+@export_category("Status Effects:")
+@export var _status_effects: Array[Status]
+@export var status_effect: Status # Debug this will be removed once we have status effect actions
+
 #region STATIC METHODS
 
 static func get_global_position_at(map: TileMapLayer, coords: Vector2i) -> Vector2:
@@ -51,9 +55,14 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	health = starting_health
 
 	################################################## DEBUG ONLY
+	#defense status effect test
+	self.add_status(status_effect)
+	
 	# take random damage to test the health bar
 	@warning_ignore("narrowing_conversion")
 	take_damage(randi_range(0, starting_health*0.9))
+	
+	
 	################################################## DEBUG ONLY
 
 #region ACTIONS
@@ -136,8 +145,36 @@ func update_healthbar() -> void:
 		txt.text = str(health)
 	
 func take_damage(damage: int) -> void:
-	health -= damage
+	
+	var damage_result: int = damage
+	
+	print("%s incoming damage" % [damage_result])
+	
+	##loop through status effects to recalculate damage_result
+	for effect in _status_effects:
+		damage_result = effect.on_take_damage(damage_result)
+		
+	health -= damage_result
 	health = maxi(0, health)
 	update_healthbar()
+
+#endregion
+
+#region Status Effects
+
+func add_status(status: Status) -> void:
+	var new_status:Status = status.duplicate()
+	new_status.set_actor(self) #setting self to take status effect
+	
+	var index: int =_status_effects.find(new_status)
+	_status_effects.remove_at(index) #Removes old status effect
+	_status_effects.append(new_status) 
+	
+func remove_status(status: Status) -> void:
+	_status_effects.erase(status)
+	
+func process_on_turn_start_status_effects() -> void:
+	for status in _status_effects:
+		status.on_turn_start()
 
 #endregion
