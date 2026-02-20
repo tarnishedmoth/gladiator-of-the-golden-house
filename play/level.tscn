@@ -21,7 +21,7 @@
 [ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="15_ew0x2"]
 [ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="16_yonjs"]
 [ext_resource type="PackedScene" uid="uid://bs7yj78ykeu7o" path="res://play/hud/hud.tscn" id="17_mung2"]
-[ext_resource type="Texture2D" uid="uid://bm0816gv1u444" path="res://play/tile-atlases/hexagon-lines-black-no-aa-128x72.png" id="18_tjdga"]
+[ext_resource type="Texture2D" uid="uid://bbeq54awbdtar" path="res://play/tile-atlases/hexagon-lines-white-no-aa-incomplete-lines-128x72-export.png" id="18_tjdga"]
 [ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="20_e2bh8"]
 [ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="25_q6hfu"]
 
@@ -156,7 +156,7 @@ self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
 texture = ExtResource("4_3a0x6")
 
 [node name="BaseTileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]
-modulate = Color(1, 1, 1, 0.09803922)
+modulate = Color(0.57, 0.31159997, 0.11399999, 1)
 position = Vector2(-64, -36)
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAD//wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAABAP//AAAAAAAAAAACAP7/AAAAAAAAAAADAP3/AAAAAAAAAAD//wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wMAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wEAAAAAAAAAAAACAP//AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAEAAAAAAAAAAAD//wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wIAAAAAAAAAAAD/////AAAAAAAAAAD///7/AAAAAAAAAAD+////AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAACAP3/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_fqe43")
