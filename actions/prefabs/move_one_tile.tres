@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="ActionMove" format=3 uid="uid://jw3r4whhtbxs"]
 
 [ext_resource type="Script" uid="uid://btfwr4ctycjfk" path="res://actions/move.gd" id="1_6gdpy"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_736ov"]
 
 [resource]
 script = ExtResource("1_6gdpy")

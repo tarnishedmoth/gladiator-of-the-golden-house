@@ -199,13 +199,14 @@ func _discard(card):
 	
 func play_held_action_at(coords: Vector2i):
 	#TODO check if requirments are met on the action
-	selected_actor.remove_energy(current_held_action.energy_cost)
-	current_held_action.set_target(coords)
-	selected_actor.run_action(current_held_action)
-	_discard(current_held_action)
-	unhold_action()
-	
-	hud.populate_actions_list(actions_in_hand)
+	if current_held_action.can_player_enter(selected_actor):
+		selected_actor.remove_energy(current_held_action.energy_cost)
+		current_held_action.set_target(coords)
+		selected_actor.run_action(current_held_action)
+		_discard(current_held_action)
+		unhold_action()
+		
+		hud.populate_actions_list(actions_in_hand)
 
 #endregion
 

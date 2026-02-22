@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ActionMove" format=3 uid="uid://cwpbiwwcdfir1"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_2momc"]
+[ext_resource type="Script" uid="uid://btfwr4ctycjfk" path="res://actions/move.gd" id="1_vxb4o"]
+
+[resource]
+script = ExtResource("1_vxb4o")
+pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
+ui_title = "Move Costs 6"
+ui_description = "Move to an adjacent tile."
+action_category = 1
+energy_cost = 6
+debug = true
+metadata/_custom_type_script = "uid://btfwr4ctycjfk"

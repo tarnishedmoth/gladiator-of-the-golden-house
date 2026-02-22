@@ -1,5 +1,9 @@
 class_name Actor extends Node2D
 
+@export var debug: bool = true
+func p(args):
+	print_rich("[bgcolor=grey][color=black]", "Actor %s : " % name, args)
+
 const SHOW_DEBUG_FACING_INDICATOR: bool = true
 const DEBUG_FACING_INDICATOR_SCENE = preload("uid://b3kl75n4nwdge")
 var debug_facing_indicator: Node2D ## instantiated at runtime
@@ -135,7 +139,9 @@ func show_debug_facing_indicator(show_: bool = true) -> void:
 		## Set rotation
 		var degrees: int = 60 * facing
 		debug_facing_indicator.rotation_degrees = degrees
-		print("Facing %s and rotated to %d degrees." % [facing, degrees])
+		
+		if debug:
+			p("Facing %s and rotated to %d degrees." % [facing, degrees])
 		
 #endregion
 
@@ -154,7 +160,8 @@ func take_damage(damage: int) -> void:
 	
 	var damage_result: int = damage
 	
-	print("%s incoming damage" % [damage_result])
+	if debug:
+		p("%s incoming damage" % [damage_result])
 	
 	##loop through status effects to recalculate damage_result
 	for effect in _status_effects:
@@ -170,11 +177,13 @@ func take_damage(damage: int) -> void:
 
 func add_energy(amount:int):
 	energy += amount
-	print("%s energy has been added, total energy: %s" % [amount,energy])
+	if debug:
+		p("%s energy has been added, total energy: %s" % [amount,energy])
 
 func remove_energy(amount:int):
 	energy -= amount
-	print("%s energy has been removed, total energy: %s" % [amount,energy])
+	if debug:
+		p("%s energy has been removed, total energy: %s" % [amount,energy])
 
 func reset_energy() -> void:
 	energy = starting_energy
