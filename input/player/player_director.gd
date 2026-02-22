@@ -27,7 +27,7 @@ func _ready():
 	pass
 
 func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
-	self.hud = Level.get_instance().hud
+	self.hud = Level.get_hud()
 	self.tile_map = tilemap
 	self.tile_interactor = interactor
 	if not interactor.tile_changed.is_connected(_on_interactor_tile_changed):
@@ -50,10 +50,7 @@ func _on_turn_started():
 	
 	select_actor(actors.front())
 	draw_hand()
-	
-	## TESTING remove me
-	hold_action(actions_in_hand.front()) ## TESTING remove me
-	play_held_action() ## TESTING remove me
+	hold_action(actions_in_hand.front())
 	
 	
 func _end_turn() -> void:
@@ -123,7 +120,7 @@ func _on_click_on_tile(tile_coords) -> void:
 				if selected_tile in selected_actor.get_action_target_cells(current_held_action):
 					## Valid play placement
 					if VERBOSE: p("Playing %s on %s" % [current_held_action.ui_title, selected_actor])
-					play_held_action()
+					_on_click_to_play_action(selected_tile)
 				else:
 					## Invalid play placement
 					if VERBOSE: p("Can't play that Action here.")
@@ -149,27 +146,42 @@ func _on_click_on_tile(tile_coords) -> void:
 
 	_last_selected_tile = selected_tile
 	
-func _on_click_to_play_action() -> void:
+func _on_click_to_play_action(target_coords: Vector2i) -> void:
 	TargetFinder.clear_target_highlights()
-	play_held_action()
+	play_held_action_at(target_coords)
 
 #region Actions / Deck Logic
 ## Used to preview actions.
 func hold_action(action: Action):
-	current_held_action = action
+	if (action != null) and (current_held_action == action):
+		unhold_action()
+		return
+	else:
+		current_held_action = action
+		
+	TargetFinder.clear_target_highlights()
 	if current_held_action:
 		TargetFinder.highlight_targets(selected_actor.get_action_target_cells(current_held_action))
-	else:
-		TargetFinder.clear_target_highlights()
-	SignalBus.player_held_action_changed.emit(current_held_action)
+		
+	if VERBOSE:
+		p("Current held action: %s" % (current_held_action.ui_title if current_held_action else "empty"))
 
 func unhold_action(): hold_action(null)
 
 func draw_hand(draw_count: int = hand_size):
 	for card in draw_count:
-		draw_next_card()
+		_draw_next_card()
+	hud.populate_actions_list(actions_in_hand) ## Update HUD
 	
-func draw_next_card():
+func discard_hand():
+	unhold_action()
+	discard_deck.append_array(actions_in_hand)
+	actions_in_hand.clear()
+	
+	hud.populate_actions_list([]) ## Update HUD
+	
+	
+func _draw_next_card():
 	if draw_deck.is_empty():
 		discard_deck.shuffle()
 		draw_deck.append_array(discard_deck)
@@ -180,25 +192,20 @@ func draw_next_card():
 	actions_in_hand.push_back(drawn)
 	
 	if VERBOSE: p("Drew action: %s" % drawn.ui_title)
-	SignalBus.player_hand_changed.emit(actions_in_hand)
 	
-func discard(card):
+func _discard(card):
 	discard_deck.push_back(card) ## Brain says push_front, but arrays can only be appended so lets just know that this deck is "upside down"
 	actions_in_hand.erase(card)
-	SignalBus.player_hand_changed.emit(actions_in_hand)
 	
-func discard_hand():
-	unhold_action()
-	discard_deck.append_array(actions_in_hand)
-	actions_in_hand.clear()
-	SignalBus.player_hand_changed.emit(actions_in_hand)
-	
-func play_held_action():
+func play_held_action_at(coords: Vector2i):
 	#TODO check if requirments are met on the action
-	actors[0].remove_energy(current_held_action.energy_cost) #This will need to be changed when there are multiple player characters
+	selected_actor.remove_energy(current_held_action.energy_cost)
+	current_held_action.set_target(coords)
 	selected_actor.run_action(current_held_action)
+	_discard(current_held_action)
 	unhold_action()
-	discard(current_held_action)
+	
+	hud.populate_actions_list(actions_in_hand)
 
 #endregion
 
@@ -210,6 +217,5 @@ func select_actor(actor: Actor) -> void:
 		assert(actor in actors)
 		selected_actor = actor
 		if VERBOSE: p("Selected actor %s" % selected_actor)
-	SignalBus.player_selected_actor_changed.emit(selected_actor)
 
 func deselect_actor() -> void: select_actor(null)

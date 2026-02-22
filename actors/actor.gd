@@ -2,10 +2,12 @@ class_name Actor extends Node2D
 
 const SHOW_DEBUG_FACING_INDICATOR: bool = true
 const DEBUG_FACING_INDICATOR_SCENE = preload("uid://b3kl75n4nwdge")
-const TARGET_INDICATOR = preload("uid://bw78572gtph87")
-var target_scene: PackedScene = TARGET_INDICATOR
 var debug_facing_indicator: Node2D ## instantiated at runtime
 
+const TARGET_INDICATOR = preload("uid://bw78572gtph87")
+var target_scene: PackedScene = TARGET_INDICATOR
+
+signal animation_finished
 signal queued_actions_finished(actor: Actor)
 var emit_actions_finished_signal: bool = false
 
@@ -108,7 +110,7 @@ func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
 	
 	var duration_of_movement: float = 0.75 ## TODO should probably depend on distance covered
 	move_tween.tween_property(self, ^"global_position", get_global_position_at(map, coords), duration_of_movement)
-	
+	move_tween.tween_callback(animation_finished.emit)
 
 ## Sets [member facing]. North is the default value.
 func set_facing(cardinal_direction: Facing.Cardinal) -> void:

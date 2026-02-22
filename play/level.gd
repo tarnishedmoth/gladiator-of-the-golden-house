@@ -7,13 +7,18 @@ func p(args):
 	
 const SHOW_DEBUG_TILE_COORDS_OVERLAY:bool = true
 
+
+signal current_director_changed(director: Director)
+
+
 ## Static instance, we should only have one Level in the scene tree at any time.
 static var instance: Level:
 	set(value):
 		if instance != null:
-			if is_instance_valid(instance):
-				if not instance.is_queued_for_deletion():
-					push_warning("More than one instance of Level exists.")
+			assert(
+				not (is_instance_valid(instance) and not instance.is_queued_for_deletion()),
+				"More than one instance of Level exists."
+				)
 		instance = value
 
 ## Static instance, we should only have one Level in the scene tree at any time.
@@ -23,6 +28,21 @@ static func get_instance() -> Level:
 	assert(instance)
 	return instance
 	
+## Returns all directors in the level scene in play order.
+static func get_directors() -> Array[Director]:
+	return get_instance().directors
+
+## Returns the director whose turn it currently is.
+static func get_current_director() -> Director:
+	var director = get_instance().directors[instance.current_director_idx]
+	assert(director and is_instance_valid(director), "Invalid current director")
+	return director
+
+## Returns all actors from the director whose turn it currently is.
+static func get_current_directors_actors() -> Array[Actor]:
+	return get_current_director().actors
+
+## Returns all actors from all directors in the level.
 static func get_all_actors_in_play_order() -> Array[Actor]:
 	var actors: Array[Actor] = []
 	if not instance:
@@ -60,15 +80,20 @@ static func get_overlap_description() -> String:
 			var names := (tile_actors[coords] as Array).map(func(a): return a.name)
 			parts.append("%s at %s" % [names, coords])
 	return ", ".join(parts)
+	
+static func get_hud() -> LevelHUD:
+	var hud = get_instance().hud
+	assert(hud != null and is_instance_valid(hud))
+	return hud
 
 @export var base_tile_map_layer: TileMapLayer
 @export var tile_interactor: TileInteractor ## This is used for detecting mouse input.
 @export var hud: LevelHUD
-	
+
 var turn_count: int = 0
 
 var directors: Array[Director] = []
-var current_director: int = -1
+var current_director_idx: int = -1
 var waiting_to_finish: Array[Director] = []
 
 
@@ -135,32 +160,30 @@ func next_turn():
 	for director in directors:
 		waiting_to_finish.append(director)
 	
-	await _ai_turn()
-	_player_turn()
+	current_director_idx = -1
+	_next_directors_turn()
 	
-func _ai_turn():
-	for director in directors:
-		if director is AIDirector:
-			director.take_turn.call_deferred()
-			await director.turn_taken ## Awaits let us wait for animations to play out
-			_on_turn_taken(director)
-			
-func _player_turn():
-	var player_idx: int = directors.find_custom(func(v): return (v is Player))
-	assert(player_idx > -1)
-	var player = directors[player_idx]
-	player.turn_taken.connect(_on_turn_taken, CONNECT_ONE_SHOT)
-	player.take_turn.call_deferred()
+func _next_directors_turn():
+	if (current_director_idx + 1) >= directors.size():
+		current_director_idx = 0
+	else:
+		current_director_idx += 1
+		
+	var director = directors[current_director_idx]
+	assert(is_instance_valid(director))
+	director.turn_taken.connect(_on_turn_taken, CONNECT_ONE_SHOT)
+	director.take_turn.call_deferred()
 	
 func _on_turn_taken(director: Director) -> void:
 	waiting_to_finish.erase(director)
 	if waiting_to_finish.is_empty():
 		next_turn()
+	else:
+		_next_directors_turn()
 
-func show_pause_menu() -> void:
-	playtime_counter_running = false
-	pass
-
+func pause_game(paused: bool) -> void:
+	playtime_counter_running = not paused
+	## TODO
 
 var tile_coords_debug_overlay_elements: Array[Node]
 var tile_coords_debug_text_settings: LabelSettings ## Cached resource

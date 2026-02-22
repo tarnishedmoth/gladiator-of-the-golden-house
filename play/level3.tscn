@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://c3by065x614qx" path="res://play/tile-atlases/background-level-01.png" id="2_87at7"]
 [ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="3_jvvke"]
 [ext_resource type="Script" uid="uid://d3wjcqjs4jdor" path="res://input/player/player_director.gd" id="4_ukeqs"]
-[ext_resource type="Resource" uid="uid://cja0r0w64c03i" path="res://actions/prefabs/basic_attack_one_tile_front.tres" id="5_87at7"]
 [ext_resource type="Script" uid="uid://cpmor4ij3s6kx" path="res://actors/actor.gd" id="5_bhmob"]
 [ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="6_7xyfh"]
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://input/ai/ai_director.gd" id="7_xa1mk"]
@@ -61,22 +60,6 @@ texture = ExtResource("2_87at7")
 [node name="Directors" type="Node2D" parent="TileMapLayers" unique_id=440455703]
 unique_name_in_owner = true
 metadata/_edit_lock_ = true
-
-[node name="Player" type="Node2D" parent="TileMapLayers/Directors" unique_id=1321501885]
-script = ExtResource("4_ukeqs")
-metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
-metadata/_edit_lock_ = true
-
-[node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=2062837817]
-position = Vector2(0, 141)
-script = ExtResource("5_bhmob")
-ui_name = "You"
-attack_one = ExtResource("5_87at7")
-metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
-
-[node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/Player/MainCharacter" unique_id=1704811731]
-self_modulate = Color(0.108270444, 0.74155116, 0.77216226, 1)
-texture = ExtResource("6_7xyfh")
 
 [node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" unique_id=2134352030]
 script = ExtResource("7_xa1mk")
@@ -177,6 +160,21 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy3" unique_id=693282181]
 self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
+texture = ExtResource("6_7xyfh")
+
+[node name="Player" type="Node2D" parent="TileMapLayers/Directors" unique_id=1321501885]
+script = ExtResource("4_ukeqs")
+metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
+metadata/_edit_lock_ = true
+
+[node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=2062837817]
+position = Vector2(0, 141)
+script = ExtResource("5_bhmob")
+ui_name = "You"
+metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
+
+[node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/Player/MainCharacter" unique_id=1704811731]
+self_modulate = Color(0.108270444, 0.74155116, 0.77216226, 1)
 texture = ExtResource("6_7xyfh")
 
 [node name="BaseTileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]

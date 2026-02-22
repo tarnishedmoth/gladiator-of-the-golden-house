@@ -75,11 +75,12 @@ func plan_action_details(action: Action) -> void:
 					coords = self.current_tile_coords
 		
 		## Set the destination coords
-		action.destination_coords = coords
+		action.set_target(coords)
 		
 		## Choose a facing direction
 		## FIXME HACK: Random, this should look towards the destination
 		facing_direction = Facing.Cardinal.values().pick_random()
+		
 		
 	## Set this actor's facing direction
 	## The action determines the facing direction

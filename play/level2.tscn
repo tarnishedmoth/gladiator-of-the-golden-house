@@ -79,20 +79,6 @@ offset_bottom = 270.0
 unique_name_in_owner = true
 metadata/_edit_lock_ = true
 
-[node name="Player" type="Node2D" parent="TileMapLayers/Directors" unique_id=1321501885]
-script = ExtResource("4_erf80")
-metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
-metadata/_edit_lock_ = true
-
-[node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=2062837817]
-position = Vector2(-31, 4)
-script = ExtResource("5_7110k")
-metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
-
-[node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/Player/MainCharacter" unique_id=1704811731]
-self_modulate = Color(0.108270444, 0.74155116, 0.77216226, 1)
-texture = ExtResource("6_rw74c")
-
 [node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" unique_id=2134352030]
 script = ExtResource("7_a7c0b")
 metadata/_custom_type_script = "uid://dwys5mwbuw85s"
@@ -183,6 +169,19 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy3" unique_id=1897044951]
 self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
+texture = ExtResource("6_rw74c")
+
+[node name="Player" type="Node2D" parent="TileMapLayers/Directors" unique_id=1321501885]
+script = ExtResource("4_erf80")
+metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
+
+[node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=2062837817]
+position = Vector2(-31, 4)
+script = ExtResource("5_7110k")
+metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
+
+[node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/Player/MainCharacter" unique_id=1704811731]
+self_modulate = Color(0.108270444, 0.74155116, 0.77216226, 1)
 texture = ExtResource("6_rw74c")
 
 [node name="BaseTileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]

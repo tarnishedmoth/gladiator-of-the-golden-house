@@ -1,6 +1,6 @@
 class_name TileInteractor extends Node2D
 
-const VERBOSE: bool = true
+const VERBOSE: bool = false
 
 signal tile_changed(new_coords: Vector2i)
 
