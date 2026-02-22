@@ -45,13 +45,15 @@ func _on_turn_started():
 	if VERBOSE: p("Player turn started")
 	
 	for actor in actors:
+		actor.reset_energy()
 		actor.process_on_turn_start_status_effects()
-		
+	
 	select_actor(actors.front())
 	draw_hand()
 	
 	## TESTING remove me
 	hold_action(actions_in_hand.front()) ## TESTING remove me
+	play_held_action() ## TESTING remove me
 	
 	
 func _end_turn() -> void:
@@ -192,6 +194,8 @@ func discard_hand():
 	SignalBus.player_hand_changed.emit(actions_in_hand)
 	
 func play_held_action():
+	#TODO check if requirments are met on the action
+	actors[0].remove_energy(current_held_action.energy_cost) #This will need to be changed when there are multiple player characters
 	selected_actor.run_action(current_held_action)
 	unhold_action()
 	discard(current_held_action)

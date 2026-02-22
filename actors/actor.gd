@@ -25,6 +25,9 @@ func get_action_queue() -> ActionQueue: return action_queue
 var health: int
 @export var starting_health: int
 
+var energy: int
+@export var starting_energy: int
+
 @export_category("Status Effects:")
 @export var _status_effects: Array[Status]
 @export var status_effect: Status # Debug this will be removed once we have status effect actions
@@ -49,6 +52,7 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	action_queue.setup(self)
 	
 	health = starting_health
+	energy = starting_energy
 
 	################################################## DEBUG ONLY
 	#defense status effect test
@@ -157,6 +161,21 @@ func take_damage(damage: int) -> void:
 	health -= damage_result
 	health = maxi(0, health)
 	update_healthbar()
+
+#endregion
+
+#region Energy
+
+func add_energy(amount:int):
+	energy += amount
+	print("%s energy has been added, total energy: %s" % [amount,energy])
+
+func remove_energy(amount:int):
+	energy -= amount
+	print("%s energy has been removed, total energy: %s" % [amount,energy])
+
+func reset_energy() -> void:
+	energy = starting_energy
 
 #endregion
 

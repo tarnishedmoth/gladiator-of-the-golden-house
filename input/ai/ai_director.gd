@@ -14,7 +14,7 @@ func setup(tilemap: TileMapLayer) -> void:
 func _on_turn_started():
 	if VERBOSE: p("AI taking turn...")
 	
-	run_status_effects()
+	run_on_start_status_effects()
 	
 	var result = await execute_queued_moves()
 	
@@ -39,7 +39,7 @@ func select_plans() -> void:
 		if actor is AIActor:
 			actor.queue_new_actions_for_next_turn()
 
-func run_status_effects() -> void: 
+func run_on_start_status_effects() -> void: 
 	for actor in actors:
 		actor.process_on_turn_start_status_effects()
 		

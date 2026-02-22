@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bruvlpfjaf07n" path="res://actors/healthbarBG.png" id="12_tjdga"]
 [ext_resource type="Script" uid="uid://bhpfulxak0eng" path="res://actions/status-effects/status_effect.gd" id="13_118mn"]
 [ext_resource type="Texture2D" uid="uid://bidhnpwsgp83c" path="res://actors/healthbar.png" id="13_q6hfu"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="14_q6hfu"]
 [ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="15_ew0x2"]
 [ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="16_yonjs"]
 [ext_resource type="PackedScene" uid="uid://bs7yj78ykeu7o" path="res://play/hud/hud.tscn" id="17_mung2"]
@@ -77,6 +78,8 @@ metadata/_edit_lock_ = true
 position = Vector2(2, -1)
 script = ExtResource("4_oo8ce")
 ui_name = "You"
+starting_health = 100
+starting_energy = 5
 status_effect = ExtResource("12_jqsul")
 metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
 
