@@ -5,3 +5,7 @@
 
 ## Override me! Return true if the requirements are met.
 @abstract func check(actor: Actor) -> bool
+
+
+func _to_string() -> String:
+	return ui_display_title if ui_display_title else "ActionRequirement"

@@ -224,7 +224,7 @@ func get_action_target_cells(action: Action) -> Array[Vector2i]:
 	if "pattern" in action:
 		return get_translated_pattern(action.pattern)
 	else:
-		return Action.NO_PATTERN
+		return get_translated_pattern(Action.NO_PATTERN)
 
 func get_translated_pattern(pattern: Array[Vector2i]) -> Array[Vector2i]:
 	return Facing.get_target_cells(current_tile_coords, facing, pattern)
