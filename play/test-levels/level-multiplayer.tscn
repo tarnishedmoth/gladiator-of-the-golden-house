@@ -15,7 +15,7 @@
 [ext_resource type="Resource" uid="uid://cja0r0w64c03i" path="res://actions/prefabs/basic_attack_one_tile_front.tres" id="14_d2fqj"]
 [ext_resource type="Resource" uid="uid://chyn3vp8qw7ue" path="res://actions/prefabs/grunt_light_attack.tres" id="15_6fwyw"]
 [ext_resource type="Resource" uid="uid://cior70oyylpmi" path="res://actions/prefabs/grunt_heavy_attack.tres" id="16_n76hs"]
-[ext_resource type="Script" uid="uid://cpmor4ij3s6kx" path="res://actors/actor.gd" id="17_0g60d"]
+[ext_resource type="PackedScene" uid="uid://cw8ea0ekkqjyp" path="res://actors/player/main_character.tscn" id="16_yp4h5"]
 [ext_resource type="Texture2D" uid="uid://bbeq54awbdtar" path="res://play/tile-atlases/hexagon-lines-white-no-aa-incomplete-lines-128x72-export.png" id="18_wrxls"]
 [ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="19_ax3k0"]
 [ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="20_sq4i3"]
@@ -140,17 +140,7 @@ hand_size = 2
 starting_actions_deck = Array[ExtResource("5_ewp65")]([ExtResource("6_0pjcq"), ExtResource("14_d2fqj"), ExtResource("15_6fwyw"), ExtResource("16_n76hs")])
 metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
 
-[node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player" unique_id=2062837817]
-position = Vector2(2, -1)
-script = ExtResource("17_0g60d")
-ui_name = "You"
-starting_health = 100
-starting_energy = 5
-metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
-
-[node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/Player/MainCharacter" unique_id=1704811731]
-self_modulate = Color(0.108270444, 0.74155116, 0.77216226, 1)
-texture = ExtResource("11_xjo6j")
+[node name="MainCharacter" parent="TileMapLayers/Directors/Player" unique_id=360471847 instance=ExtResource("16_yp4h5")]
 
 [node name="Player2" type="Node2D" parent="TileMapLayers/Directors" unique_id=2144743789]
 position = Vector2(-94, -34)
@@ -159,17 +149,7 @@ hand_size = 2
 starting_actions_deck = Array[ExtResource("5_ewp65")]([ExtResource("6_0pjcq"), ExtResource("14_d2fqj"), ExtResource("15_6fwyw"), ExtResource("16_n76hs")])
 metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
 
-[node name="MainCharacter" type="Node2D" parent="TileMapLayers/Directors/Player2" unique_id=1188790323]
-position = Vector2(2, -1)
-script = ExtResource("17_0g60d")
-ui_name = "You"
-starting_health = 100
-starting_energy = 5
-metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
-
-[node name="Sprite2D" type="Sprite2D" parent="TileMapLayers/Directors/Player2/MainCharacter" unique_id=381412406]
-self_modulate = Color(0.108270444, 0.74155116, 0.77216226, 1)
-texture = ExtResource("11_xjo6j")
+[node name="MainCharacter" parent="TileMapLayers/Directors/Player2" unique_id=1621582843 instance=ExtResource("16_yp4h5")]
 
 [node name="BaseTileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]
 modulate = Color(0.57, 0.31159997, 0.11399999, 1)

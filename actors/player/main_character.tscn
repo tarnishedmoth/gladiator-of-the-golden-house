@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cw8ea0ekkqjyp"]
+
+[ext_resource type="Script" uid="uid://cpmor4ij3s6kx" path="res://actors/actor.gd" id="1_ng02u"]
+[ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="2_3m1oj"]
+
+[node name="MainCharacter" type="Node2D" unique_id=360471847]
+script = ExtResource("1_ng02u")
+ui_name = "You"
+starting_health = 100
+starting_energy = 5
+metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=503278960]
+self_modulate = Color(0.108270444, 0.74155116, 0.77216226, 1)
+texture = ExtResource("2_3m1oj")
