@@ -49,6 +49,8 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	self.director = director_
 	self.tile_map = tilemap
 	
+	tree_exited.connect(self.director.actors.erase.bind(self))
+	
 	snap_to_nearest_tile()
 
 	if action_queue:
@@ -167,6 +169,13 @@ func take_damage(damage: int) -> void:
 	health -= damage_result
 	health = maxi(0, health)
 	update_healthbar()
+	
+	if health <= 0:
+		die()
+		
+func die() -> void:
+	## TODO
+	Juice.fade_out(self).tween_callback(queue_free)
 
 #endregion
 
