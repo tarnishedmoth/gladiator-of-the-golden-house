@@ -50,7 +50,7 @@ func _on_turn_started():
 	
 	select_actor(actors.front())
 	draw_hand()
-	hold_action(actions_in_hand.front())
+	#hold_action(actions_in_hand.front())
 	
 	
 func _end_turn() -> void:
@@ -119,7 +119,7 @@ func _on_click_on_tile(tile_coords) -> void:
 			if current_held_action:
 				if selected_tile in selected_actor.get_action_target_cells(current_held_action):
 					## Valid play placement
-					if VERBOSE: p("Playing %s on %s" % [current_held_action.ui_title, selected_actor])
+					if VERBOSE: p("Playing %s at %s on %s" % [current_held_action.ui_title, selected_tile, selected_actor])
 					_on_click_to_play_action(selected_tile)
 				else:
 					## Invalid play placement
@@ -147,7 +147,6 @@ func _on_click_on_tile(tile_coords) -> void:
 	_last_selected_tile = selected_tile
 	
 func _on_click_to_play_action(target_coords: Vector2i) -> void:
-	TargetFinder.clear_target_highlights()
 	play_held_action_at(target_coords)
 
 #region Actions / Deck Logic

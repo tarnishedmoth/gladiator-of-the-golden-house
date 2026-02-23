@@ -35,8 +35,7 @@ var energy: int
 @export var starting_energy: int
 
 @export_category("Status Effects:")
-@export var _status_effects: Array[Status]
-@export var status_effect: Status # Debug this will be removed once we have status effect actions
+@export var status_effects: Array[Status]
 
 #region STATIC METHODS
 
@@ -61,8 +60,6 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	energy = starting_energy
 
 	################################################## DEBUG ONLY
-	#defense status effect test
-	self.add_status(status_effect)
 	
 	# take random damage to test the health bar
 	@warning_ignore("narrowing_conversion")
@@ -164,7 +161,7 @@ func take_damage(damage: int) -> void:
 		p("%s incoming damage" % [damage_result])
 	
 	##loop through status effects to recalculate damage_result
-	for effect in _status_effects:
+	for effect in status_effects:
 		damage_result = effect.on_take_damage(damage_result)
 		
 	health -= damage_result
@@ -192,19 +189,31 @@ func reset_energy() -> void:
 
 #region Status Effects
 
-func add_status(status: Status) -> void:
-	var new_status:Status = status.duplicate()
-	new_status.set_actor(self) #setting self to take status effect
-	
-	var index: int =_status_effects.find(new_status)
-	_status_effects.remove_at(index) #Removes old status effect
-	_status_effects.append(new_status) 
+func add_status(status: Status, do_duplicate: bool = true) -> void:
+	if status in status_effects:
+		var _status = status_effects.get(status_effects.find(status))
+		_status.add_points(status.effect_points)
+		if debug:
+			p("Added %d points to status %s." % [status.effect_points, _status.ui_name])
+	else:
+		var new_status: Status
+		if do_duplicate:
+			new_status = status.duplicate()
+		else:
+			new_status = status
+			
+		new_status.set_actor(self) #setting self to take status effect
+		status_effects.append(new_status)
+		if debug:
+			p("Added new status %s." % new_status.ui_name)
 	
 func remove_status(status: Status) -> void:
-	_status_effects.erase(status)
+	status_effects.erase(status)
 	
 func process_on_turn_start_status_effects() -> void:
-	for status in _status_effects:
+	if debug and not status_effects.is_empty():
+		p("Started turn with status effects: %s" % status_effects)
+	for status in status_effects:
 		status.on_turn_start()
 
 #endregion

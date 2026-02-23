@@ -1,6 +1,6 @@
 @abstract class_name Action extends ResourceState
 
-const NO_PATTERN = [] ## Empty value used for targeting logic.
+const NO_PATTERN: Array[Vector2i] = [Vector2i(0,0)] ## Empty value used for targeting logic.
 
 enum ActionCategory{
 	COMBAT,
@@ -18,14 +18,29 @@ const ACTION_CATEGORY_NAMES = {
 	ActionCategory.SPECIAL: "Special",
 }
 
+const ACTION_CATEGORY_ICONS: Dictionary[ActionCategory, Texture2D] = {
+	ActionCategory.MOVEMENT: preload("uid://disinbamqthvh"),
+	ActionCategory.COMBAT: preload("uid://c7ers5ee7squq"),
+	ActionCategory.SKILL: null, ## TODO
+	ActionCategory.CONSUMABLE: null, ## TODO
+	ActionCategory.SPECIAL: null, ## TODO
+}
+
+#@export_group("UI")
 @export var ui_title: String ## Displayed in the Actions list
 @export var ui_description: String ## Displayed when hovering over an action
-@export var action_category: ActionCategory
-var ui_category: String:
+@export var ui_icon: Texture2D: ## If left undefined, will use one according to its [member action_category].
+	get:
+		if ui_icon: return ui_icon
+		else: return ACTION_CATEGORY_ICONS.get(action_category)
+@export var action_category: ActionCategory ## See also [member ui_category].
+var ui_category: String: ## Returns a String from [member ACTION_CATEGORY_NAMES].
 	get:
 		return ACTION_CATEGORY_NAMES.get(action_category,"")
 
+
 #region Energy Cost
+#@export_group("Requirements")
 @export var energy_cost: int = 0
 var _energy_cost_requirement: ActionRequirementEnergy
 func cast_energy_cost_to_requirement() -> void:

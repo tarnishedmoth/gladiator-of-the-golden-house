@@ -33,6 +33,10 @@ func populate_actions(hand: Array[Action]) -> void:
 		new_button.set_blips(card.energy_cost)
 		new_button.text = card.ui_title
 		
+		var icon = card.ui_icon
+		if icon is Texture2D:
+			new_button.icon = icon
+		
 		## picking an action
 		new_button.pressed.connect(_on_action_button_pressed.bind(new_button))
 		## e.g. popup details or other reactions
