@@ -34,10 +34,12 @@ func execute_queued_moves() -> bool:
 
 func select_plans() -> void:
 	## Query all of our actors to queue their next actions.
+	## Track planned destinations so later actors avoid tiles earlier actors claimed.
 	if VERBOSE: p("Choosing actions for next turn.")
+	var claimed_tiles: Array[Vector2i] = []
 	for actor in actors:
 		if actor is AIActor:
-			actor.queue_new_actions_for_next_turn()
+			actor.queue_new_actions_for_next_turn(claimed_tiles)
 
 func run_on_start_status_effects() -> void: 
 	for actor in actors:

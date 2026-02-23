@@ -106,11 +106,18 @@ func snap_to_nearest_tile() -> void:
 
 func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
 	if not tile_map: return
-	
+
+	## Prevent moving onto a tile occupied by another actor
+	var occupant: Actor = Level.get_actor_at(coords)
+	if occupant != null and occupant != self:
+		push_warning("Actor %s tried to move to %s but it is occupied by %s. Staying in place." % [name, coords, occupant.name])
+		animation_finished.emit()
+		return
+
 	current_tile_coords = coords
 	var move_tween := create_tween()
 	move_tween.set_trans(Tween.TRANS_QUAD)
-	
+
 	var duration_of_movement: float = 0.75 ## TODO should probably depend on distance covered
 	move_tween.tween_property(self, ^"global_position", get_global_position_at(map, coords), duration_of_movement)
 	move_tween.tween_callback(animation_finished.emit)
