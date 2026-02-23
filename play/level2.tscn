@@ -18,18 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="15_73ljr"]
 [ext_resource type="PackedScene" uid="uid://cw8ea0ekkqjyp" path="res://actors/player/main_character.tscn" id="15_vnyd5"]
 [ext_resource type="PackedScene" uid="uid://bs7yj78ykeu7o" path="res://play/hud/hud.tscn" id="16_2mu1n"]
+[ext_resource type="PackedScene" uid="uid://btt45gb4p850m" path="res://camera/camera.tscn" id="18_ceenm"]
 [ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="23_n60ia"]
 [ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="24_n6ilt"]
 [ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="25_5riyi"]
-
-[sub_resource type="Animation" id="Animation_3a0x6"]
-resource_name = "new_animation"
-length = 10.0
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ew0x2"]
-_data = {
-&"new_animation": SubResource("Animation_3a0x6")
-}
 
 [sub_resource type="Resource" id="Resource_e2bh8"]
 script = ExtResource("11_k2vqx")
@@ -59,9 +51,6 @@ script = ExtResource("1_jkly1")
 base_tile_map_layer = NodePath("TileMapLayers/BaseTileMapLayer")
 tile_interactor = NodePath("MouseFollower/TileMapInteractor")
 hud = NodePath("HUD")
-
-[node name="Demonstration" type="AnimationPlayer" parent="." unique_id=1815931862]
-libraries/ = SubResource("AnimationLibrary_ew0x2")
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=994423606]
 editor_description = "The 32px X offset is to center the hex grid tiles on 0,0."
@@ -192,8 +181,7 @@ modulate = Color(1, 1, 0, 0.1882353)
 position = Vector2(-32, 0)
 texture = ExtResource("15_73ljr")
 
-[node name="Camera" type="Camera2D" parent="." unique_id=695801089]
-editor_description = "Main camera"
+[node name="Camera" parent="." unique_id=280332911 instance=ExtResource("18_ceenm")]
 
 [node name="HUD" parent="." unique_id=414291549 instance=ExtResource("16_2mu1n")]
 

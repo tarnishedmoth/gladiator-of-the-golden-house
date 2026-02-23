@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://bbeq54awbdtar" path="res://play/tile-atlases/hexagon-lines-white-no-aa-incomplete-lines-128x72-export.png" id="18_wrxls"]
 [ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="19_ax3k0"]
 [ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="20_sq4i3"]
-[ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="21_knkuy"]
+[ext_resource type="PackedScene" uid="uid://btt45gb4p850m" path="res://camera/camera.tscn" id="20_yp4h5"]
 [ext_resource type="PackedScene" uid="uid://bs7yj78ykeu7o" path="res://play/hud/hud.tscn" id="22_uc1fh"]
 [ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="23_y54t5"]
 [ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="24_sqenr"]
@@ -167,15 +167,7 @@ texture = ExtResource("20_sq4i3")
 centered = false
 offset = Vector2(-128, -72)
 
-[node name="Camera" type="Camera2D" parent="." unique_id=695801089]
-editor_description = "Main camera"
-
-[node name="Vignette" parent="Camera" unique_id=1689915564 instance=ExtResource("21_knkuy")]
-offset_left = -480.0
-offset_top = -270.0
-offset_right = 480.0
-offset_bottom = 270.0
-metadata/_edit_lock_ = true
+[node name="Camera" parent="." unique_id=280332911 instance=ExtResource("20_yp4h5")]
 
 [node name="HUD" parent="." unique_id=414291549 instance=ExtResource("22_uc1fh")]
 

@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://btt45gb4p850m"]
+
+[ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="1_lw1ob"]
+
+[sub_resource type="Animation" id="Animation_yp4h5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o2mrn"]
+resource_name = "pan_down_from_horizon"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -336), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nfmxo"]
+_data = {
+&"RESET": SubResource("Animation_yp4h5"),
+&"pan_down_from_horizon": SubResource("Animation_o2mrn")
+}
+
+[node name="Camera" type="Camera2D" unique_id=280332911]
+editor_description = "Main camera"
+
+[node name="Vignette" parent="." unique_id=2143885651 instance=ExtResource("1_lw1ob")]
+offset_left = -480.0
+offset_top = -270.0
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=664886325]
+libraries/ = SubResource("AnimationLibrary_nfmxo")
+autoplay = &"pan_down_from_horizon"
