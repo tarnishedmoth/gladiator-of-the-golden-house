@@ -1,6 +1,8 @@
 class_name ActionsPanel extends PanelContainer
 
 signal action_button_pressed(action: Action)
+signal action_hover_started(action: Action)
+signal action_hover_ended() 
 
 var actions_in_hand: Dictionary[ButtonWithBlips, Action] ## UI element in scene, Action resource from PlayerDirector
 
@@ -54,7 +56,14 @@ func _on_action_button_pressed(button) -> void:
 		push_error("pressed action button gets null action.")
 
 func _on_action_hover_started(button) -> void:
-	pass
+	var hud: LevelHUD = Level.get_hud()
+	var action: Action = get_action_assigned_to(button)
 	
-func _on_action_hover_ended(button) -> void:
-	pass
+	action_hover_started.emit(action) #hands action to hud to populate ActionsHoverPanel
+	hud.show_actions_hover_panel()
+func _on_action_hover_ended() -> void:
+		var hud: LevelHUD = Level.get_hud()
+		
+		hud.show_actions_hover_panel()
+		action_hover_ended.emit()
+		
