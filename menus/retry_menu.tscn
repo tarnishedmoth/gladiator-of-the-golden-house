@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dyaldg7fkhf2y"]
+
+[ext_resource type="Script" uid="uid://b4oxk15nxbbxm" path="res://menus/retry_menu.gd" id="1_dg5x5"]
+
+[node name="Retry Menu" type="Control" unique_id=2012706668]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dg5x5")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1093888896]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 227.0
+offset_right = 496.0
+offset_bottom = 267.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1466407676]
+layout_mode = 2
+
+[node name="Retry" type="Button" parent="PanelContainer/VBoxContainer" unique_id=750981641]
+layout_mode = 2
+text = "Retry?"
+
+[node name="Main Menu" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1082521255]
+layout_mode = 2
+text = "Main Menu "
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]

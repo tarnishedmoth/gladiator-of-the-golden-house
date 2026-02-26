@@ -22,7 +22,11 @@
 [ext_resource type="Texture2D" uid="uid://bbeq54awbdtar" path="res://play/tile-atlases/hexagon-lines-white-no-aa-incomplete-lines-128x72-export.png" id="18_tjdga"]
 [ext_resource type="PackedScene" uid="uid://btt45gb4p850m" path="res://camera/camera.tscn" id="20_118mn"]
 [ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="20_e2bh8"]
+[ext_resource type="PackedScene" uid="uid://dyaldg7fkhf2y" path="res://menus/retry_menu.tscn" id="24_tjdga"]
+[ext_resource type="PackedScene" uid="uid://dtaw53r4qlxv8" path="res://menus/main_menu.tscn" id="25_81pte"]
 [ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="25_q6hfu"]
+[ext_resource type="PackedScene" uid="uid://7b6kamn7xtwi" path="res://menus/continue_menu.tscn" id="26_81pte"]
+[ext_resource type="PackedScene" uid="uid://00q7yj5eqvpd" path="res://play/level2.tscn" id="27_wu5bt"]
 
 [sub_resource type="Resource" id="Resource_e2bh8"]
 script = ExtResource("10_jqsul")
@@ -45,13 +49,15 @@ tile_size = Vector2i(128, 72)
 uv_clipping = true
 sources/0 = SubResource("TileSetAtlasSource_u4q3m")
 
-[node name="Level" type="Node2D" unique_id=13868467 node_paths=PackedStringArray("base_tile_map_layer", "tile_interactor", "hud")]
+[node name="Level" type="Node2D" unique_id=13868467 node_paths=PackedStringArray("base_tile_map_layer", "tile_interactor", "hud", "retry_menu", "continue_menu")]
 texture_filter = 3
 position = Vector2(480, 270)
 script = ExtResource("1_bg3j4")
 base_tile_map_layer = NodePath("TileMapLayers/BaseTileMapLayer")
 tile_interactor = NodePath("MouseFollower/TileMapInteractor")
 hud = NodePath("HUD")
+retry_menu = NodePath("CanvasLayer/Retry Menu")
+continue_menu = NodePath("CanvasLayer/Continue Menu")
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=994423606]
 position = Vector2(16, 0)
@@ -77,7 +83,7 @@ usable_actions = Array[ExtResource("8_p0uv8")]([ExtResource("9_mung2"), SubResou
 ui_name = "Gritty the Philadelphian"
 ui_subtitle = "Thrall of Chaos"
 ui_description = "Gritty is a 7-foot-tall furry orange creature with googly eyes who wears Flyers gear. Gritty emerged after construction at the Wells Fargo Center, the Flyers' home arena, disturbed his secret hideout."
-starting_health = 918
+starting_health = 917
 metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 
 [node name="health" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/Enemy1" unique_id=1964007224]
@@ -170,3 +176,14 @@ metadata/_custom_type_script = "uid://mm6inbfx8c45"
 
 [node name="TileMapInteractor" type="Node2D" parent="MouseFollower" unique_id=1205975102]
 script = ExtResource("16_yonjs")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1228620870]
+
+[node name="Retry Menu" parent="CanvasLayer" unique_id=2012706668 instance=ExtResource("24_tjdga")]
+visible = false
+main_menu_scene = ExtResource("25_81pte")
+
+[node name="Continue Menu" parent="CanvasLayer" unique_id=2014330921 instance=ExtResource("26_81pte")]
+visible = false
+main_menu_scene = ExtResource("25_81pte")
+next_level_scene = ExtResource("27_wu5bt")

@@ -126,6 +126,8 @@ func start_game() -> void:
 	assert(tile_interactor)
 	tile_interactor.set_tilemap(base_tile_map_layer)
 	TargetFinder.setup(base_tile_map_layer)
+
+	get_tree().node_removed.connect(_on_node_removed)
 	
 	## Find and connect signals
 	for child in %Directors.get_children():
@@ -210,3 +212,44 @@ func render_tile_coordinates_debug_overlay() -> void:
 		new_label.top_level = true ## just to be unaffected by overlays and modulation
 		new_label.label_settings = tile_coords_debug_text_settings
 		new_label.global_position = base_tile_map_layer.to_global(base_tile_map_layer.map_to_local(coords)) + TILE_COORDS_DEBUG_TEXT_OFFSET
+
+func _on_node_removed(node):
+	if node is Actor:
+		check_objectives()
+
+@export var retry_menu: Control
+@export var continue_menu: Control
+
+func check_objectives() -> void: 
+	
+	print("Checking game obejectives")
+	await get_tree().process_frame
+	
+	if check_win_condition() == true:
+		#pause game
+		continue_menu.show()
+		print("Win")
+		pass
+	if check_lose_condition() == true:
+		#pause game
+		retry_menu.show() #launch retry menu 
+		print("Lose")
+		pass
+
+func check_win_condition() -> bool:
+	var dirs: Array[Director] = get_directors()
+	for dir in dirs:
+		if dir is AIDirector:
+			if dir.actors.is_empty(): # check for living enemies 
+				return true
+	return false #enemies were found
+
+
+func check_lose_condition() -> bool: 
+	#check if player actors array is not emptpy if it is return false if able to process through all return true
+	var dirs: Array[Director] = get_directors()
+	for dir in dirs:
+		if dir is Player:
+			if !dir.actors.is_empty(): #if there is a player the game continues
+				return false
+	return true # no player actors found game lost

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://7b6kamn7xtwi"]
+
+[ext_resource type="Script" uid="uid://i3ry5wlqj7c4" path="res://menus/continue_menu.gd" id="1_4oub6"]
+
+[node name="Continue Menu" type="Control" unique_id=2012706668]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4oub6")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1093888896]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 227.0
+offset_right = 496.0
+offset_bottom = 267.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1466407676]
+layout_mode = 2
+
+[node name="Continue" type="Button" parent="PanelContainer/VBoxContainer" unique_id=750981641]
+layout_mode = 2
+text = "Next Level"
+
+[node name="Main Menu" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1082521255]
+layout_mode = 2
+text = "Main Menu "
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
