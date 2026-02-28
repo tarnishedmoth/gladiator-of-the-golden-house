@@ -17,7 +17,7 @@ func queue_new_acitons_for_next_turn() -> void:
 	)
 	if not moves.is_empty():
 		var move: Action = moves.pick_random().duplicate()
-		plan_action_details(move)
+		plan_action_details(move, [])
 		queue.append(move)
 
 	append_actions_to_queue(queue)
