@@ -31,16 +31,21 @@ grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("2_xk2m4")
 
-[node name="LeftSide" type="VBoxContainer" parent="Root" unique_id=1212586572]
+[node name="HBoxContainer" type="HBoxContainer" parent="Root" unique_id=463701523]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = -8.0
-offset_right = 148.0
+offset_left = -7.0
+offset_top = 3.0
+offset_right = 109.0
+offset_bottom = 3.0
 grow_vertical = 2
+
+[node name="LeftSide" type="VBoxContainer" parent="Root/HBoxContainer" unique_id=1212586572]
+layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HoverPanel" type="PanelContainer" parent="Root/LeftSide" unique_id=1841068285 node_paths=PackedStringArray("description", "title", "key_stats", "status_effects_flow_container")]
+[node name="HoverPanel" type="PanelContainer" parent="Root/HBoxContainer/LeftSide" unique_id=1841068285 node_paths=PackedStringArray("description", "title", "key_stats", "status_effects_flow_container")]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 2
@@ -53,22 +58,22 @@ title = NodePath("VBoxContainer/Title")
 key_stats = NodePath("VBoxContainer/KeyStats")
 status_effects_flow_container = NodePath("VBoxContainer/PanelContainer/StatusEffectsFlowContainer")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Root/LeftSide/HoverPanel" unique_id=1327088956]
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel" unique_id=1327088956]
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="Root/LeftSide/HoverPanel/VBoxContainer" unique_id=614446509]
+[node name="PanelContainer" type="PanelContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer" unique_id=614446509]
 layout_mode = 2
 theme_type_variation = &"PartTransparentPanelContainer"
 
-[node name="StatusEffectsFlowContainer" type="HFlowContainer" parent="Root/LeftSide/HoverPanel/VBoxContainer/PanelContainer" unique_id=713616998]
+[node name="StatusEffectsFlowContainer" type="HFlowContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer" unique_id=713616998]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 reverse_fill = true
 
-[node name="ExampleStatusEffectButton" type="TextureButton" parent="Root/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=151204551]
+[node name="ExampleStatusEffectButton" type="TextureButton" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=151204551]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 tooltip_text = "Details about this status effect."
@@ -76,7 +81,7 @@ texture_normal = ExtResource("4_n2sn3")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="ExampleStatusEffectButton2" type="TextureButton" parent="Root/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=742117741]
+[node name="ExampleStatusEffectButton2" type="TextureButton" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=742117741]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 tooltip_text = "Details about this status effect."
@@ -84,7 +89,7 @@ texture_normal = ExtResource("5_16pfv")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="ExampleStatusEffectButton3" type="TextureButton" parent="Root/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=781788360]
+[node name="ExampleStatusEffectButton3" type="TextureButton" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=781788360]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 tooltip_text = "Details about this status effect."
@@ -92,7 +97,7 @@ texture_normal = ExtResource("4_n2sn3")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="ExampleStatusEffectButton4" type="TextureButton" parent="Root/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=96383872]
+[node name="ExampleStatusEffectButton4" type="TextureButton" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=96383872]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 tooltip_text = "Details about this status effect."
@@ -100,7 +105,7 @@ texture_normal = ExtResource("5_16pfv")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="ExampleStatusEffectButton5" type="TextureButton" parent="Root/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=753052663]
+[node name="ExampleStatusEffectButton5" type="TextureButton" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=753052663]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 tooltip_text = "Details about this status effect."
@@ -108,7 +113,7 @@ texture_normal = ExtResource("3_ksooa")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="ExampleStatusEffectButton6" type="TextureButton" parent="Root/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=1645544947]
+[node name="ExampleStatusEffectButton6" type="TextureButton" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=1645544947]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 tooltip_text = "Details about this status effect."
@@ -116,7 +121,7 @@ texture_normal = ExtResource("4_n2sn3")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="ExampleStatusEffectButton7" type="TextureButton" parent="Root/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=546895050]
+[node name="ExampleStatusEffectButton7" type="TextureButton" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=546895050]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 tooltip_text = "Details about this status effect."
@@ -124,7 +129,7 @@ texture_normal = ExtResource("7_anqqe")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Description" type="RichTextLabel" parent="Root/LeftSide/HoverPanel/VBoxContainer" unique_id=1850208283]
+[node name="Description" type="RichTextLabel" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer" unique_id=1850208283]
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 size_flags_vertical = 3
@@ -137,7 +142,7 @@ bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
 vertical_alignment = 2
 
-[node name="KeyStats" type="RichTextLabel" parent="Root/LeftSide/HoverPanel/VBoxContainer" unique_id=1532825126]
+[node name="KeyStats" type="RichTextLabel" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer" unique_id=1532825126]
 clip_contents = false
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 11
@@ -150,7 +155,7 @@ text = "[center]HP: 9 / 18"
 fit_content = true
 scroll_active = false
 
-[node name="Title" type="RichTextLabel" parent="Root/LeftSide/HoverPanel/VBoxContainer" unique_id=228192945]
+[node name="Title" type="RichTextLabel" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer" unique_id=228192945]
 clip_contents = false
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 11
@@ -164,27 +169,27 @@ text = "[center][b]Gritty the Philadelphian[/b]
 fit_content = true
 scroll_active = false
 
-[node name="ActionsPanel" type="PanelContainer" parent="Root/LeftSide" unique_id=1129910745 node_paths=PackedStringArray("actions")]
+[node name="ActionsPanel" type="PanelContainer" parent="Root/HBoxContainer/LeftSide" unique_id=1129910745 node_paths=PackedStringArray("actions")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 2
 script = ExtResource("8_n2sn3")
 actions = NodePath("VBoxContainer/Actions")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Root/LeftSide/ActionsPanel" unique_id=1919909467]
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/HBoxContainer/LeftSide/ActionsPanel" unique_id=1919909467]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="Root/LeftSide/ActionsPanel/VBoxContainer" unique_id=367040664]
+[node name="Label" type="Label" parent="Root/HBoxContainer/LeftSide/ActionsPanel/VBoxContainer" unique_id=367040664]
 layout_mode = 2
 text = "Actions"
 label_settings = SubResource("LabelSettings_0d8q5")
 horizontal_alignment = 2
 
-[node name="Actions" type="VBoxContainer" parent="Root/LeftSide/ActionsPanel/VBoxContainer" unique_id=1605133322]
+[node name="Actions" type="VBoxContainer" parent="Root/HBoxContainer/LeftSide/ActionsPanel/VBoxContainer" unique_id=1605133322]
 layout_mode = 2
 
-[node name="ActionsHoverPanel" type="PanelContainer" parent="Root/LeftSide" unique_id=94771617 node_paths=PackedStringArray("description", "title", "energy_cost", "button_icon", "amount_text")]
+[node name="ActionsHoverPanel" type="PanelContainer" parent="Root/HBoxContainer/LeftSide" unique_id=94771617 node_paths=PackedStringArray("description", "title", "energy_cost", "button_icon", "amount_text")]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 2
@@ -198,15 +203,15 @@ energy_cost = NodePath("VBoxContainer/HBoxContainer/Energy Stats")
 button_icon = NodePath("VBoxContainer/TextureRect")
 amount_text = NodePath("VBoxContainer/HBoxContainer/Amount Stats")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Root/LeftSide/ActionsHoverPanel" unique_id=2027641299]
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/HBoxContainer/LeftSide/ActionsHoverPanel" unique_id=2027641299]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="PanelContainer" type="PanelContainer" parent="Root/LeftSide/ActionsHoverPanel/VBoxContainer" unique_id=2033369330]
+[node name="PanelContainer" type="PanelContainer" parent="Root/HBoxContainer/LeftSide/ActionsHoverPanel/VBoxContainer" unique_id=2033369330]
 layout_mode = 2
 theme_type_variation = &"PartTransparentPanelContainer"
 
-[node name="Title" type="RichTextLabel" parent="Root/LeftSide/ActionsHoverPanel/VBoxContainer/PanelContainer" unique_id=1473516817]
+[node name="Title" type="RichTextLabel" parent="Root/HBoxContainer/LeftSide/ActionsHoverPanel/VBoxContainer/PanelContainer" unique_id=1473516817]
 clip_contents = false
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 11
@@ -220,14 +225,14 @@ text = "[center][b]Gritty the Philadelphian[/b]
 fit_content = true
 scroll_active = false
 
-[node name="TextureRect" type="TextureRect" parent="Root/LeftSide/ActionsHoverPanel/VBoxContainer" unique_id=422634004]
+[node name="TextureRect" type="TextureRect" parent="Root/HBoxContainer/LeftSide/ActionsHoverPanel/VBoxContainer" unique_id=422634004]
 custom_minimum_size = Vector2(78, 78)
 layout_mode = 2
 texture = ExtResource("7_anqqe")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Description" type="RichTextLabel" parent="Root/LeftSide/ActionsHoverPanel/VBoxContainer" unique_id=1366328802]
+[node name="Description" type="RichTextLabel" parent="Root/HBoxContainer/LeftSide/ActionsHoverPanel/VBoxContainer" unique_id=1366328802]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 size_flags_vertical = 3
@@ -241,11 +246,11 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Root/LeftSide/ActionsHoverPanel/VBoxContainer" unique_id=1319374009]
+[node name="HBoxContainer" type="HBoxContainer" parent="Root/HBoxContainer/LeftSide/ActionsHoverPanel/VBoxContainer" unique_id=1319374009]
 layout_mode = 2
 alignment = 1
 
-[node name="Energy Stats" type="RichTextLabel" parent="Root/LeftSide/ActionsHoverPanel/VBoxContainer/HBoxContainer" unique_id=127022572]
+[node name="Energy Stats" type="RichTextLabel" parent="Root/HBoxContainer/LeftSide/ActionsHoverPanel/VBoxContainer/HBoxContainer" unique_id=127022572]
 clip_contents = false
 custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
@@ -259,7 +264,7 @@ text = "HP: 9 / 18"
 fit_content = true
 scroll_active = false
 
-[node name="Amount Stats" type="RichTextLabel" parent="Root/LeftSide/ActionsHoverPanel/VBoxContainer/HBoxContainer" unique_id=1723805028]
+[node name="Amount Stats" type="RichTextLabel" parent="Root/HBoxContainer/LeftSide/ActionsHoverPanel/VBoxContainer/HBoxContainer" unique_id=1723805028]
 clip_contents = false
 custom_minimum_size = Vector2(76, 0)
 layout_mode = 2
@@ -272,3 +277,19 @@ bbcode_enabled = true
 text = "[center]HP: 9 / 18"
 fit_content = true
 scroll_active = false
+
+[node name="RightOfLeftSide" type="VBoxContainer" parent="Root/HBoxContainer" unique_id=972711055]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="Root/HBoxContainer/RightOfLeftSide" unique_id=2016011785]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="EndTurnButton" type="Button" parent="Root/HBoxContainer/RightOfLeftSide" unique_id=451416831]
+unique_name_in_owner = true
+layout_mode = 2
+text = "End Turn"
+
+[connection signal="button_down" from="Root/HBoxContainer/RightOfLeftSide/EndTurnButton" to="." method="_on_end_turn_button_down"]
+[connection signal="button_up" from="Root/HBoxContainer/RightOfLeftSide/EndTurnButton" to="." method="_on_end_turn_button_up"]

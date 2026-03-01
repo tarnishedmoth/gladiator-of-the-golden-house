@@ -175,6 +175,7 @@ func _next_directors_turn():
 	assert(is_instance_valid(director))
 	director.turn_taken.connect(_on_turn_taken, CONNECT_ONE_SHOT)
 	director.take_turn.call_deferred()
+	current_director_changed.emit(director)
 	
 func _on_turn_taken(director: Director) -> void:
 	waiting_to_finish.erase(director)

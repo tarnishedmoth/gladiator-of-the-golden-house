@@ -54,10 +54,26 @@ func _on_turn_started():
 	
 	
 func _end_turn() -> void:
-	discard_hand()
-	end_turn()
+	if is_active:
+		discard_hand()
+		end_turn()
 
 var _end_turn_with_available_moves: Tween
+func user_pressed_end_turn_button() -> bool: ## Returns true if turn is ending immediately, false if user must hold.
+	if not actions_in_hand.is_empty():
+		_end_turn_with_available_moves = create_tween()
+		_end_turn_with_available_moves.tween_interval(HOLD_TIME_TO_END_TURN_EARLY)
+		_end_turn_with_available_moves.tween_callback(_end_turn)
+		return false
+	else:
+		_end_turn()
+		return true
+		
+func user_released_end_turn_button() -> void:
+	if _end_turn_with_available_moves:
+		if _end_turn_with_available_moves.is_valid():
+			_end_turn_with_available_moves.kill()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"select_tile"):
 		if not tile_interactor:
@@ -77,17 +93,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			pass
 
 	if is_active:
-		if event.is_action_pressed(&"end_turn"):
-			#if still have available moves:
-				#_end_turn_with_available_moves = create_tween()
-				#_end_turn_with_available_moves.tween_interval(HOLD_TIME_TO_END_TURN_EARLY)
-				#_end_turn_with_available_moves.tween_callback(_end_turn)
-			#else:
-			_end_turn()
+		if event.is_action_pressed(&"end_turn"): ## Keybind. See HUD.gd for clickable button
+			user_pressed_end_turn_button()
 		elif event.is_action_released(&"end_turn"):
-			if _end_turn_with_available_moves:
-				if _end_turn_with_available_moves.is_valid():
-					_end_turn_with_available_moves.kill()
+			user_released_end_turn_button()
 
 	else:
 		pass
