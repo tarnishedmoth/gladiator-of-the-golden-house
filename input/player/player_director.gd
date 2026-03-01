@@ -60,7 +60,11 @@ func _end_turn() -> void:
 
 var _end_turn_with_available_moves: Tween
 func user_pressed_end_turn_button() -> bool: ## Returns true if turn is ending immediately, false if user must hold.
-	var player_has_remaining_actions: bool = (not actions_in_hand.is_empty()) and actors_have_remaining_energy()
+	var player_has_remaining_actions: bool = \
+	(not actions_in_hand.is_empty()) \
+	and actors_have_remaining_energy() \
+	and actors_have_usable_actions(actions_in_hand)
+	
 	if player_has_remaining_actions:
 		_end_turn_with_available_moves = create_tween()
 		_end_turn_with_available_moves.tween_interval(HOLD_TIME_TO_END_TURN_EARLY)
@@ -216,12 +220,6 @@ func play_held_action_at(coords: Vector2i):
 		unhold_action()
 		
 		hud.populate_actions_list(actions_in_hand)
-		
-func actors_have_remaining_energy() -> bool:
-	for actor in actors:
-		if actor.energy > 0:
-			return true
-	return false
 
 #endregion
 
