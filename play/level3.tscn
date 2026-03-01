@@ -51,6 +51,7 @@ sources/0 = SubResource("TileSetAtlasSource_u4q3m")
 texture_filter = 3
 position = Vector2(480, 270)
 script = ExtResource("1_0wqil")
+show_debug_tile_coords_overlay = true
 base_tile_map_layer = NodePath("TileMapLayers/BaseTileMapLayer")
 tile_interactor = NodePath("MouseFollower/TileMapInteractor")
 hud = NodePath("HUD")

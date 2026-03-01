@@ -1,0 +1,134 @@
+[gd_scene format=4 uid="uid://d1ttyn23vyg4k"]
+
+[ext_resource type="Script" uid="uid://c6sgu6sth1eu1" path="res://play/level.gd" id="1_ri7qh"]
+[ext_resource type="Texture2D" uid="uid://c3by065x614qx" path="res://play/tile-atlases/background-level-01.png" id="2_6uewh"]
+[ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://input/ai/ai_director.gd" id="3_dmw0s"]
+[ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="4_fdb4p"]
+[ext_resource type="Script" uid="uid://d3wjcqjs4jdor" path="res://input/player/player_director.gd" id="5_70waw"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="6_ekagw"]
+[ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="7_v3osw"]
+[ext_resource type="Resource" uid="uid://cja0r0w64c03i" path="res://actions/prefabs/basic_attack_one_tile_front.tres" id="8_36ljy"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="10_6uewh"]
+[ext_resource type="Resource" uid="uid://cy67g1itrecss" path="res://actions/prefabs/basic_guard_self.tres" id="10_jwhgm"]
+[ext_resource type="PackedScene" uid="uid://cw8ea0ekkqjyp" path="res://actors/player/main_character.tscn" id="11_dc0cs"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="11_dmw0s"]
+[ext_resource type="Texture2D" uid="uid://bbeq54awbdtar" path="res://play/tile-atlases/hexagon-lines-white-no-aa-incomplete-lines-128x72-export.png" id="12_xsim2"]
+[ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="13_en0dh"]
+[ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="14_s1cwd"]
+[ext_resource type="PackedScene" uid="uid://btt45gb4p850m" path="res://camera/camera.tscn" id="15_a72qr"]
+[ext_resource type="PackedScene" uid="uid://bs7yj78ykeu7o" path="res://play/hud/hud.tscn" id="16_pyw4s"]
+[ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="17_n5den"]
+[ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="18_lypo6"]
+[ext_resource type="PackedScene" uid="uid://dyaldg7fkhf2y" path="res://menus/retry_menu.tscn" id="19_1lklg"]
+[ext_resource type="PackedScene" uid="uid://dtaw53r4qlxv8" path="res://menus/main_menu.tscn" id="20_mdl31"]
+[ext_resource type="PackedScene" uid="uid://7b6kamn7xtwi" path="res://menus/continue_menu.tscn" id="21_4wfbq"]
+[ext_resource type="PackedScene" uid="uid://00q7yj5eqvpd" path="res://play/level2.tscn" id="22_42ivy"]
+
+[sub_resource type="Resource" id="Resource_fdb4p"]
+script = ExtResource("11_dmw0s")
+damage = 12
+pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
+ui_title = "Heavy Attack"
+ui_description = "Attack one tile"
+energy_cost = 3
+debug = true
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u4q3m"]
+resource_name = "outline"
+texture = ExtResource("12_xsim2")
+texture_region_size = Vector2i(128, 72)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_fqe43"]
+tile_shape = 3
+tile_layout = 3
+tile_offset_axis = 1
+tile_size = Vector2i(128, 72)
+uv_clipping = true
+sources/0 = SubResource("TileSetAtlasSource_u4q3m")
+
+[node name="Level" type="Node2D" unique_id=13868467 node_paths=PackedStringArray("base_tile_map_layer", "tile_interactor", "hud", "retry_menu", "continue_menu")]
+texture_filter = 3
+position = Vector2(480, 270)
+script = ExtResource("1_ri7qh")
+base_tile_map_layer = NodePath("TileMapLayers/BaseTileMapLayer")
+tile_interactor = NodePath("MouseFollower/TileMapInteractor")
+hud = NodePath("HUD")
+retry_menu = NodePath("CanvasLayer/Retry Menu")
+continue_menu = NodePath("CanvasLayer/Continue Menu")
+
+[node name="TileMapLayers" type="Node2D" parent="." unique_id=994423606]
+position = Vector2(16, 0)
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Sprite2D" parent="TileMapLayers" unique_id=1621508126]
+position = Vector2(0, -66)
+texture = ExtResource("2_6uewh")
+
+[node name="Directors" type="Node2D" parent="TileMapLayers" unique_id=440455703]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
+
+[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" unique_id=2134352030]
+script = ExtResource("3_dmw0s")
+metadata/_custom_type_script = "uid://dwys5mwbuw85s"
+metadata/_edit_lock_ = true
+
+[node name="Grunt" parent="TileMapLayers/Directors/AIDirector" unique_id=84579020 instance=ExtResource("4_fdb4p")]
+position = Vector2(89, -174)
+facing = 3
+
+[node name="Grunt2" parent="TileMapLayers/Directors/AIDirector" unique_id=218983321 instance=ExtResource("4_fdb4p")]
+position = Vector2(290, 110)
+facing = 5
+
+[node name="Player" type="Node2D" parent="TileMapLayers/Directors" unique_id=1321501885]
+script = ExtResource("5_70waw")
+hand_size = 3
+starting_actions_deck = Array[ExtResource("6_ekagw")]([ExtResource("7_v3osw"), ExtResource("8_36ljy"), ExtResource("10_jwhgm"), SubResource("Resource_fdb4p")])
+metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
+metadata/_edit_lock_ = true
+
+[node name="MainCharacter" parent="TileMapLayers/Directors/Player" unique_id=360471847 instance=ExtResource("11_dc0cs")]
+position = Vector2(2, -1)
+starting_energy = 4
+
+[node name="BaseTileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]
+modulate = Color(0.57, 0.31159997, 0.11399999, 1)
+position = Vector2(-64, -36)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAD//wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAABAP//AAAAAAAAAAACAP7/AAAAAAAAAAADAP3/AAAAAAAAAAD//wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wMAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wEAAAAAAAAAAAACAP//AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAEAAAAAAAAAAAD//wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wIAAAAAAAAAAAD/////AAAAAAAAAAD///7/AAAAAAAAAAD+////AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAACAP3/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_fqe43")
+
+[node name="GridTint" parent="TileMapLayers" unique_id=1487691829 instance=ExtResource("13_en0dh")]
+
+[node name="TileHighlight" type="Sprite2D" parent="TileMapLayers" unique_id=646544377]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 0, 0.1882353)
+texture = ExtResource("14_s1cwd")
+centered = false
+offset = Vector2(-128, -72)
+
+[node name="Camera" parent="." unique_id=280332911 instance=ExtResource("15_a72qr")]
+
+[node name="HUD" parent="." unique_id=414291549 instance=ExtResource("16_pyw4s")]
+
+[node name="MouseFollower" type="Node2D" parent="." unique_id=687351869]
+position = Vector2(317, 190)
+script = ExtResource("17_n5den")
+metadata/_custom_type_script = "uid://mm6inbfx8c45"
+
+[node name="TileMapInteractor" type="Node2D" parent="MouseFollower" unique_id=1205975102]
+script = ExtResource("18_lypo6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1228620870]
+
+[node name="Retry Menu" parent="CanvasLayer" unique_id=2012706668 instance=ExtResource("19_1lklg")]
+visible = false
+main_menu_scene = ExtResource("20_mdl31")
+
+[node name="Continue Menu" parent="CanvasLayer" unique_id=2014330921 instance=ExtResource("21_4wfbq")]
+visible = false
+main_menu_scene = ExtResource("20_mdl31")
+next_level_scene = ExtResource("22_42ivy")

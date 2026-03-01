@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cn5t7ncgbkn2q" path="res://menus/developer/dev_menu.gd" id="1_12ima"]
 [ext_resource type="PackedScene" uid="uid://bm6vflkk8xg30" path="res://play/level.tscn" id="2_aqm70"]
+[ext_resource type="PackedScene" uid="uid://d1ttyn23vyg4k" path="res://play/region-1-levels/r1-l1.tscn" id="2_e57jb"]
 [ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="3_4m0ib"]
 [ext_resource type="PackedScene" uid="uid://00q7yj5eqvpd" path="res://play/level2.tscn" id="3_k31uv"]
 [ext_resource type="PackedScene" uid="uid://68hce8m10sja" path="res://play/level3.tscn" id="4_k31uv"]
@@ -23,7 +24,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_12ima")
-selectable_levels = Array[PackedScene]([ExtResource("2_aqm70"), ExtResource("3_k31uv"), ExtResource("4_k31uv"), ExtResource("5_ycxai")])
+selectable_levels = Array[PackedScene]([ExtResource("2_e57jb"), ExtResource("2_aqm70"), ExtResource("3_k31uv"), ExtResource("4_k31uv"), ExtResource("5_ycxai")])
 
 [node name="BG" type="ColorRect" parent="." unique_id=228810212]
 unique_name_in_owner = true

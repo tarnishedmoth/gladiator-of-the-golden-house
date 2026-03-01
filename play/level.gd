@@ -5,7 +5,13 @@ const VERBOSE: bool = true
 func p(args):
 	print_rich("[bgcolor=red][color=white]", "Level: ", args)
 	
-const SHOW_DEBUG_TILE_COORDS_OVERLAY:bool = true
+@export var show_debug_tile_coords_overlay:bool = false:
+	set(v):
+		if (not show_debug_tile_coords_overlay) and v:
+			render_tile_coordinates_debug_overlay()
+		elif show_debug_tile_coords_overlay and not v:
+			clear_render_tile_coordinates_debug_overlay()
+		show_debug_tile_coords_overlay = v
 
 
 signal current_director_changed(director: Director)
@@ -141,7 +147,7 @@ func start_game() -> void:
 	var overlaps: String = get_overlap_description()
 	assert(overlaps.is_empty(), "Actors overlap: %s" % overlaps)
 	
-	if SHOW_DEBUG_TILE_COORDS_OVERLAY:
+	if show_debug_tile_coords_overlay:
 		render_tile_coordinates_debug_overlay()
 
 	playtime_counter_running = true
@@ -188,9 +194,14 @@ func pause_game(paused: bool) -> void:
 	playtime_counter_running = not paused
 	## TODO
 
+
 var tile_coords_debug_overlay_elements: Array[Node]
 var tile_coords_debug_text_settings: LabelSettings ## Cached resource
 const TILE_COORDS_DEBUG_TEXT_OFFSET: Vector2 = Vector2(0, 20)
+func clear_render_tile_coordinates_debug_overlay() -> void:
+	for child in tile_coords_debug_overlay_elements:
+		child.queue_free()
+	
 func render_tile_coordinates_debug_overlay() -> void:
 	if not base_tile_map_layer:
 		return
@@ -200,8 +211,7 @@ func render_tile_coordinates_debug_overlay() -> void:
 		tile_coords_debug_text_settings.font_size = 9
 		
 	if not tile_coords_debug_overlay_elements.is_empty():
-		for child in tile_coords_debug_overlay_elements:
-			child.queue_free()
+		clear_render_tile_coordinates_debug_overlay()
 	
 	for coords in base_tile_map_layer.get_used_cells():
 		var new_label: Label = Label.new()
@@ -213,6 +223,7 @@ func render_tile_coordinates_debug_overlay() -> void:
 		new_label.top_level = true ## just to be unaffected by overlays and modulation
 		new_label.label_settings = tile_coords_debug_text_settings
 		new_label.global_position = base_tile_map_layer.to_global(base_tile_map_layer.map_to_local(coords)) + TILE_COORDS_DEBUG_TEXT_OFFSET
+
 
 func _on_node_removed(node):
 	if node is Actor:
