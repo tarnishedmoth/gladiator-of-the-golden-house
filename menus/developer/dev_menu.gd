@@ -3,7 +3,6 @@ class_name DeveloperMainMenu extends Control
 @export var selectable_levels: Array[PackedScene]
 
 @onready var select_dropdown: OptionButton = %SelectDropdown
-@onready var main: Main = get_parent()
 
 @onready var bg: ColorRect = %BG
 @onready var contents: VBoxContainer = %Contents
@@ -28,4 +27,4 @@ func _on_launch_button_pressed() -> void:
 	await exit.finished
 	
 	# Action
-	main.change_scene(resource)
+	Main.change_scene(resource)

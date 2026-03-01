@@ -29,9 +29,30 @@ const LOG_PREFIX:String = "MAIN:: "
 @export var show_project_version_label:bool = true
 
 var instanced_root: Node
+var current_packed_scene: PackedScene ## Set each time [method change_scene] is called.
 
 @onready var debug_scene_label: RichTextLabel = %DebugSceneLabel
 @onready var project_version_label: Label = %ProjectVersionLabel
+
+## Static instance, we should only have one Main in the scene tree at any time.
+static var instance: Main:
+	set(value):
+		if instance != null:
+			assert(
+				not (is_instance_valid(instance) and not instance.is_queued_for_deletion()),
+				"More than one instance of Main exists."
+				)
+		instance = value
+
+## Static instance, we should only have one Level in the scene tree at any time.
+## This method uses an assertion and should be used when you don't expect to handle
+## a null value.
+static func get_instance() -> Main:
+	assert(instance)
+	return instance
+	
+func _enter_tree() -> void:
+	instance = self
 
 ## Called only once at program start.
 func _ready() -> void:
@@ -58,11 +79,18 @@ func _ready() -> void:
 		change_scene(dev_main_menu_scene)
 	else:
 		change_scene(main_menu_scene)
+		
+static func reload_current_scene() -> void:
+	change_scene(get_instance().current_packed_scene)
+	
+static func change_scene(packed_scene: PackedScene) -> void:
+	get_instance()._change_scene(packed_scene)
 	
 ## If there is an active scene, unloads it, then instantiates [param packed_scene] and adds it as a child.
-func change_scene(packed_scene: PackedScene) -> void:
+func _change_scene(packed_scene: PackedScene) -> void:
 	assert(packed_scene)
 	assert(packed_scene.can_instantiate())
+	current_packed_scene = packed_scene
 	
 	if instanced_root:
 		l("Unloading active scene.")
@@ -71,9 +99,9 @@ func change_scene(packed_scene: PackedScene) -> void:
 		await instanced_root.tree_exited
 		instanced_root = null
 	
-	var instance = packed_scene.instantiate()
-	add_child(instance)
-	instanced_root = instance
+	var scene_instance = packed_scene.instantiate()
+	add_child(scene_instance)
+	instanced_root = scene_instance
 	
 	var scene_name:String = (
 		packed_scene.resource_path.get_base_dir() + "/"

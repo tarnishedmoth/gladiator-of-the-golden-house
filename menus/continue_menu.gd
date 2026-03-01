@@ -4,9 +4,7 @@ extends Control
 @export var next_level_scene: PackedScene
 
 func _on_continue_pressed() -> void:
-	get_tree().change_scene_to_packed(next_level_scene)
-	pass
+	Main.change_scene(next_level_scene)
 
 func _on_main_menu_pressed() -> void:
-	get_tree().change_scene_to_packed(main_menu_scene)
-	
+	Main.change_scene(main_menu_scene)
