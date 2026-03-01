@@ -65,6 +65,6 @@ func _on_action_hover_started(button) -> void:
 func _on_action_hover_ended(_button) -> void:
 	var hud: LevelHUD = Level.get_hud()
 	
-	hud.show_actions_hover_panel()
+	hud.show_actions_hover_panel(false)
 	action_hover_ended.emit()
 	
