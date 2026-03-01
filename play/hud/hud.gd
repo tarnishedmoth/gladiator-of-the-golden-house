@@ -68,7 +68,6 @@ func _on_action_hover_ended() -> void:
 func _on_current_director_changed(new_director: Director) -> void:
 	end_turn_button.disabled = not new_director is Player
 
-
 const END_TURN_TEXT: String = "End Turn"
 var end_turn_hold_tween: Tween
 func kill_end_turn_hold_tween():

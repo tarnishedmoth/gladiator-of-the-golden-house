@@ -14,7 +14,12 @@ func get_action_assigned_to(button: ButtonWithBlips) -> Action:
 		return actions_in_hand[button]
 	else:
 		return null
-
+		
+func get_button_assigned_to(action: Action) -> ButtonWithBlips: ## NOTE Untested
+	if action in actions_in_hand.values():
+		return actions_in_hand.find_key(action)
+	else:
+		return null
 
 func clear_all_actions() -> void:
 	assert(actions)
@@ -47,6 +52,8 @@ func populate_actions(hand: Array[Action]) -> void:
 		## Controller/keyboard/accessibility support
 		new_button.focus_entered.connect(_on_action_hover_started.bind(new_button))
 		new_button.focus_exited.connect(_on_action_hover_ended.bind(new_button))
+		## reacts to available energy
+		
 
 func _on_action_button_pressed(button) -> void:
 	var action: Action = get_action_assigned_to(button)
@@ -68,3 +75,10 @@ func _on_action_hover_ended(_button) -> void:
 	hud.show_actions_hover_panel(false)
 	action_hover_ended.emit()
 	
+func _on_selected_actor_energy_changed(energy: int) -> void:
+	action_buttons_energy_check_set_disabled(energy)
+	
+func action_buttons_energy_check_set_disabled(energy: int) -> void:
+	for button in actions_in_hand:
+		var action: Action = get_action_assigned_to(button)
+		button.disabled = (action.energy_cost > energy) if action else true

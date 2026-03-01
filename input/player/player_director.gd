@@ -21,7 +21,10 @@ var exhausted_deck: Array[Action] ## Are removed from play for the rest of this 
 var actions_in_hand: Array[Action] ## Action cards that the player currently has on screen to choose from.
 var current_held_action: Action ## The action to be previewed or played.
 
-var selected_actor: Actor
+var selected_actor: Actor:
+	set(v):
+		selected_actor = v
+		update_hud_actions_energy_check()
 
 func _ready():
 	pass
@@ -185,6 +188,7 @@ func draw_hand(draw_count: int = hand_size):
 	for card in draw_count:
 		_draw_next_card()
 	hud.populate_actions_list(actions_in_hand) ## Update HUD
+	update_hud_actions_energy_check()
 	
 func discard_hand():
 	unhold_action()
@@ -192,6 +196,7 @@ func discard_hand():
 	actions_in_hand.clear()
 	
 	hud.populate_actions_list([]) ## Update HUD
+	update_hud_actions_energy_check()
 	
 	
 func _draw_next_card():
@@ -211,7 +216,6 @@ func _discard(card):
 	actions_in_hand.erase(card)
 	
 func play_held_action_at(coords: Vector2i):
-	#TODO check if requirments are met on the action
 	if current_held_action.can_player_enter(selected_actor):
 		selected_actor.remove_energy(current_held_action.energy_cost)
 		current_held_action.set_target(coords)
@@ -220,6 +224,7 @@ func play_held_action_at(coords: Vector2i):
 		unhold_action()
 		
 		hud.populate_actions_list(actions_in_hand)
+		update_hud_actions_energy_check()
 
 #endregion
 
@@ -233,3 +238,8 @@ func select_actor(actor: Actor) -> void:
 		if VERBOSE: p("Selected actor %s" % selected_actor)
 
 func deselect_actor() -> void: select_actor(null)
+
+func update_hud_actions_energy_check() -> void:
+	hud.actions_panel.action_buttons_energy_check_set_disabled(
+		selected_actor.energy if selected_actor else 0
+		)
