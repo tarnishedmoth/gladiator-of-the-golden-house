@@ -1,6 +1,6 @@
 class_name Grunt extends AIActor
 
-func queue_new_acitons_for_next_turn() -> void:
+func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> void:
 	var queue: Array[Action] = []
 
 	# Attack
@@ -17,7 +17,7 @@ func queue_new_acitons_for_next_turn() -> void:
 	)
 	if not moves.is_empty():
 		var move: Action = moves.pick_random().duplicate()
-		plan_action_details(move, [])
+		plan_action_details(move, claimed_tiles)
 		queue.append(move)
 
 	append_actions_to_queue(queue)
