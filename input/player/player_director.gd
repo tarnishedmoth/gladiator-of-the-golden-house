@@ -1,6 +1,6 @@
 class_name Player extends Director
 
-const HOLD_TIME_TO_END_TURN_EARLY: float = 2.5
+const HOLD_TIME_TO_END_TURN_EARLY: float = 1.5
 const STICKY_TILE_SELECT: bool = false
 const DESELECT_ON_REPEAT: bool = true
 
@@ -60,7 +60,8 @@ func _end_turn() -> void:
 
 var _end_turn_with_available_moves: Tween
 func user_pressed_end_turn_button() -> bool: ## Returns true if turn is ending immediately, false if user must hold.
-	if not actions_in_hand.is_empty():
+	var player_has_remaining_actions: bool = (not actions_in_hand.is_empty()) and actors_have_remaining_energy()
+	if player_has_remaining_actions:
 		_end_turn_with_available_moves = create_tween()
 		_end_turn_with_available_moves.tween_interval(HOLD_TIME_TO_END_TURN_EARLY)
 		_end_turn_with_available_moves.tween_callback(_end_turn)
@@ -215,6 +216,12 @@ func play_held_action_at(coords: Vector2i):
 		unhold_action()
 		
 		hud.populate_actions_list(actions_in_hand)
+		
+func actors_have_remaining_energy() -> bool:
+	for actor in actors:
+		if actor.energy > 0:
+			return true
+	return false
 
 #endregion
 
