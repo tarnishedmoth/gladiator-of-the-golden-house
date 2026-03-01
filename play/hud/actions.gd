@@ -61,9 +61,10 @@ func _on_action_hover_started(button) -> void:
 	
 	action_hover_started.emit(action) #hands action to hud to populate ActionsHoverPanel
 	hud.show_actions_hover_panel()
-func _on_action_hover_ended() -> void:
-		var hud: LevelHUD = Level.get_hud()
-		
-		hud.show_actions_hover_panel()
-		action_hover_ended.emit()
-		
+	
+func _on_action_hover_ended(_button) -> void:
+	var hud: LevelHUD = Level.get_hud()
+	
+	hud.show_actions_hover_panel()
+	action_hover_ended.emit()
+	
