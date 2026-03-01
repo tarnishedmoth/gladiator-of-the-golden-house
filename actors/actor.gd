@@ -61,15 +61,6 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	health = starting_health
 	energy = starting_energy
 
-	################################################## DEBUG ONLY
-	
-	# take random damage to test the health bar
-	@warning_ignore("narrowing_conversion")
-	take_damage(randi_range(0, starting_health*0.9))
-	
-	
-	################################################## DEBUG ONLY
-
 #region ACTIONS
 
 func run_queued_actions() -> void: ## Emits a signal when done.
