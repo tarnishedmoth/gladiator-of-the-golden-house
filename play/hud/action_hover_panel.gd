@@ -38,5 +38,6 @@ func populate_using_action_data(action:Action)->void:
 	
 	if action is ActionApplyStatus:
 		amount_text.text = "[center]"
-		amount_text.append_text("Amount: %d" % [action.status.effect_points])
+		if action.status:
+			amount_text.append_text("Amount: %d" % [action.status.effect_points])
 		
