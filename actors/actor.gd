@@ -60,6 +60,8 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	
 	health = starting_health
 	energy = starting_energy
+	
+	update_healthbar()
 
 #region ACTIONS
 
