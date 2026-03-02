@@ -28,7 +28,7 @@ const ACTION_CATEGORY_ICONS: Dictionary[ActionCategory, Texture2D] = {
 
 #@export_group("UI")
 @export var ui_title: String ## Displayed in the Actions list
-@export var ui_description: String ## Displayed when hovering over an action
+@export_multiline() var ui_description: String ## Displayed when hovering over an action
 @export var ui_icon: Texture2D: ## If left undefined, will use one according to its [member action_category].
 	get:
 		if ui_icon: return ui_icon
