@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Stance" format=3 uid="uid://cdixyrgupi5yu"]
+
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="1_f4fcf"]
+[ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://stance/stance.gd" id="2_n8cti"]
+[ext_resource type="Resource" uid="uid://brrcsv7gfpei4" path="res://actions/prefabs/player/class-a_reflexive-swipe.tres" id="2_u21yl"]
+[ext_resource type="Resource" uid="uid://cy67g1itrecss" path="res://actions/prefabs/basic_guard_self.tres" id="3_d2n5e"]
+[ext_resource type="Resource" uid="uid://hhvduggpymbq" path="res://actions/prefabs/player/class-a_leap.tres" id="4_fc1gg"]
+
+[resource]
+script = ExtResource("2_n8cti")
+actions = Array[ExtResource("1_f4fcf")]([ExtResource("2_u21yl"), ExtResource("3_d2n5e"), ExtResource("4_fc1gg")])
+metadata/_custom_type_script = "uid://wxlj5akq7s0v"

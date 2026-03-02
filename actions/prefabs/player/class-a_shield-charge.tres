@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ActionMove" format=3 uid="uid://ildiagc3dm8a"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_wslo4"]
+[ext_resource type="Script" uid="uid://btfwr4ctycjfk" path="res://actions/move.gd" id="2_uuefg"]
+
+[resource]
+script = ExtResource("2_uuefg")
+pattern = Array[Vector2i]([Vector2i(0, -1)])
+ui_title = "Shield Charge"
+ui_description = "Move forward one tile. Knockback & refund 1 energy cost if occupied."
+energy_cost = 3
+metadata/_custom_type_script = "uid://btfwr4ctycjfk"

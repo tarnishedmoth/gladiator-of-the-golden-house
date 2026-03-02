@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ActionApplyStatus" format=3 uid="uid://brrcsv7gfpei4"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_8tgv5"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_a1hl1"]
+
+[resource]
+script = ExtResource("2_a1hl1")
+ui_title = "Reflexive Swipe"
+ui_description = "[b]Reaction[/b]: Upon any damage taken (even if blocked by defense), immediately deal damage in return. Applies until next turn."
+energy_cost = 2
+metadata/_custom_type_script = "uid://ic0qko6fd58l"

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ActionApplyStatus" format=3 uid="uid://bsns58p7gxqe4"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_ug10w"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_urv00"]
+
+[resource]
+script = ExtResource("2_urv00")
+ui_title = "Taunt"
+ui_description = "Apply +2 Strength to target.
+  Increase damage dealt by 1.
+Apply +1 Taunted to target.
+  If next attack action deals no direct
+  damage, gain +2 Vulnerable:
+    Increase damage received by 1.
+    Stack decreases by 1 each turn."
+action_category = 2
+metadata/_custom_type_script = "uid://ic0qko6fd58l"

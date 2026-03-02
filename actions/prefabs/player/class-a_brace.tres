@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ActionApplyStatus" format=3 uid="uid://cf8qxjti6wfjq"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_6ip8s"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_0iwde"]
+[ext_resource type="Script" uid="uid://1dtnk6pdhbwq" path="res://status-effects/defense_status_effect.gd" id="3_swxgv"]
+
+[sub_resource type="Resource" id="Resource_mf7oy"]
+script = ExtResource("3_swxgv")
+effect_points = 10
+status_effect_category = 1
+metadata/_custom_type_script = "uid://1dtnk6pdhbwq"
+
+[resource]
+script = ExtResource("2_0iwde")
+status = SubResource("Resource_mf7oy")
+ui_title = "Brace"
+ui_description = "Only applies to 5 forward tiles.
+Apply +1 Braced:
+  [i]Can not be stunned.
+  Stack decreases by 1 each turn.[/i]"
+energy_cost = 2
+metadata/_custom_type_script = "uid://ic0qko6fd58l"

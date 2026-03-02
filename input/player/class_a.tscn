@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bet8eq50pbkqf"]
+
+[ext_resource type="Script" uid="uid://d3wjcqjs4jdor" path="res://input/player/player_director.gd" id="1_e53f1"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_7fa0g"]
+[ext_resource type="PackedScene" uid="uid://cw8ea0ekkqjyp" path="res://actors/player/main_character.tscn" id="2_klb6h"]
+[ext_resource type="Resource" uid="uid://cjec684q3sb36" path="res://actions/prefabs/player/class-a_swipe.tres" id="3_orwu3"]
+[ext_resource type="Resource" uid="uid://ddgm6fspawicj" path="res://actions/prefabs/player/class-a_slash.tres" id="4_7fa0g"]
+[ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="5_orwu3"]
+[ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://stance/stance.gd" id="6_hh338"]
+[ext_resource type="Resource" uid="uid://0d2gjd1g0oku" path="res://actions/prefabs/player/class-a_stance_murmillo.tres" id="7_qc84x"]
+[ext_resource type="Resource" uid="uid://cdixyrgupi5yu" path="res://actions/prefabs/player/class-a_stance_secutor.tres" id="8_qc84x"]
+
+[node name="Player_ClassA" type="Node2D" unique_id=1133384730]
+script = ExtResource("1_e53f1")
+starting_actions_deck = Array[ExtResource("2_7fa0g")]([ExtResource("3_orwu3"), ExtResource("4_7fa0g")])
+always_available_deck = Array[ExtResource("2_7fa0g")]([ExtResource("5_orwu3")])
+stances = Array[ExtResource("6_hh338")]([ExtResource("7_qc84x"), ExtResource("8_qc84x")])
+metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
+
+[node name="MainCharacter" parent="." unique_id=360471847 instance=ExtResource("2_klb6h")]
+ui_subtitle = "Class A"
+ui_description = "(replace me)"
+starting_health = 80
+starting_energy = 3

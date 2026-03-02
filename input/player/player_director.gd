@@ -15,6 +15,8 @@ var hud: LevelHUD
 ## Actions
 @export var hand_size: int = 5 ## Number of actions that will be drawn at the start of the turn
 @export var starting_actions_deck: Array[Action] ## The entirety of actions available to be drawn.
+@export var always_available_deck: Array[Action] ## These actions are drawn every turn and don't move to the discard pile.
+@export var stances: Array[Stance] ## Branches of action sets (decks) that are equipped in gameplay.
 var draw_deck: Array[Action] ## The entirety of actions available to be drawn.
 var discard_deck: Array[Action] ## When [member draw_deck] runs empty, these are re-shuffled for play.
 var exhausted_deck: Array[Action] ## Are removed from play for the rest of this match.
@@ -41,6 +43,11 @@ func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 		actor.setup(self, tile_map)
 		
 	draw_deck = starting_actions_deck.duplicate()
+	## HACK remove me TESTING
+	for stance in stances:
+		draw_deck.append_array(stance.actions)
+		
+	draw_deck.shuffle()
 	if VERBOSE: p("Setup done.")
 
 
@@ -185,6 +192,10 @@ func hold_action(action: Action):
 func unhold_action(): hold_action(null)
 
 func draw_hand(draw_count: int = hand_size):
+	for card in always_available_deck:
+		if card not in actions_in_hand:
+			actions_in_hand.push_front(card)
+	
 	for card in draw_count:
 		_draw_next_card()
 	hud.populate_actions_list(actions_in_hand) ## Update HUD
@@ -243,3 +254,16 @@ func update_hud_actions_energy_check() -> void:
 	hud.actions_panel.action_buttons_energy_check_set_disabled(
 		selected_actor.energy if selected_actor else 0
 		)
+
+
+#func get_all_cards(and_exhausted: bool = false) -> Array[Action]:
+	#return actions_in_hand + discard_deck + exhausted_deck if and_exhausted else []
+#
+#func change_stance(new_stance: Stance) -> void:
+	### Remove all cards from the old stance, add current stance cards.
+	### And also somehow don't mess up the card stack (shuffle).
+	#if not new_stance == stance:
+		#for action in get_all_cards():
+			#if action not in always_available_deck:
+				#action.free() ## TODO I dont think this works
+				### TODO etc

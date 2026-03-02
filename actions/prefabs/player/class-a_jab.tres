@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ActionAttack" format=3 uid="uid://cv7qvfq24e2jk"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_0sc7e"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="2_bjxqc"]
+
+[resource]
+script = ExtResource("2_bjxqc")
+damage = 1
+pattern = Array[Vector2i]([Vector2i(0, -1)])
+ui_title = "Jab"
+ui_description = "Piercing (deals direct damage)
+
+If target is killed, refund energy cost."
+energy_cost = 1
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"

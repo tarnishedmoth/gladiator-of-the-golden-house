@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ActionAttack" format=3 uid="uid://ddgm6fspawicj"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_wuwoe"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="2_lo5xo"]
+
+[resource]
+script = ExtResource("2_lo5xo")
+damage = 4
+pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1)])
+split_choice = true
+ui_title = "Slash"
+ui_description = "Attack two tiles."
+energy_cost = 1
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"
