@@ -7,7 +7,7 @@ const POST_ACTION_AWAIT_TIME: float = 0.75
 signal queue_size_changed(new_size: int)
 signal finished
 
-var debug: bool = true
+var debug: bool = false
 var actioneer: Actor
 
 var current_action: Action
