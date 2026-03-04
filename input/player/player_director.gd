@@ -203,7 +203,10 @@ func draw_hand(draw_count: int = hand_size):
 	
 func discard_hand():
 	unhold_action()
-	discard_deck.append_array(actions_in_hand)
+	#discard_deck.append_array(actions_in_hand)
+	for card in actions_in_hand:
+		if not card in always_available_deck:
+			discard_deck.append(card)
 	actions_in_hand.clear()
 	
 	hud.populate_actions_list([]) ## Update HUD
@@ -223,7 +226,8 @@ func _draw_next_card():
 	if VERBOSE: p("Drew action: %s" % drawn.ui_title)
 	
 func _discard(card):
-	discard_deck.push_back(card) ## Brain says push_front, but arrays can only be appended so lets just know that this deck is "upside down"
+	if not card in always_available_deck:
+		discard_deck.push_back(card) ## Brain says push_front, but arrays can only be appended so lets just know that this deck is "upside down"
 	actions_in_hand.erase(card)
 	
 func play_held_action_at(coords: Vector2i):
