@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://d1ttyn23vyg4k"]
 
 [ext_resource type="Script" uid="uid://c6sgu6sth1eu1" path="res://play/level.gd" id="1_ri7qh"]
-[ext_resource type="Texture2D" uid="uid://c3by065x614qx" path="res://play/tile-atlases/background-level-01.png" id="2_6uewh"]
+[ext_resource type="PackedScene" uid="uid://3wrjbpemvs03" path="res://play/region-1-levels/region-1-background.tscn" id="2_2ehxp"]
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://input/ai/ai_director.gd" id="3_dmw0s"]
 [ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="4_fdb4p"]
 [ext_resource type="PackedScene" uid="uid://bet8eq50pbkqf" path="res://input/player/class_a.tscn" id="5_ljca4"]
@@ -49,9 +49,8 @@ continue_menu = NodePath("CanvasLayer/Continue Menu")
 position = Vector2(16, 0)
 metadata/_edit_lock_ = true
 
-[node name="Background" type="Sprite2D" parent="TileMapLayers" unique_id=1621508126]
+[node name="Background" parent="TileMapLayers" unique_id=768298569 instance=ExtResource("2_2ehxp")]
 position = Vector2(0, -66)
-texture = ExtResource("2_6uewh")
 
 [node name="Directors" type="Node2D" parent="TileMapLayers" unique_id=440455703]
 unique_name_in_owner = true
