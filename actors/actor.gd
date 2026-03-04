@@ -22,6 +22,9 @@ var director: Director
 var action_queue: ActionQueue
 func get_action_queue() -> ActionQueue: return action_queue
 
+var status_manager: StatusManager
+func get_status_manager() -> StatusManager: return status_manager
+
 @export var ui_name: String ## Shown in Hover Panel
 @export var ui_subtitle: String ## (Optional) Shown in hover panel
 @export_multiline() var ui_description: String ## (Optional) Shown in Hover Panel
@@ -36,6 +39,8 @@ var energy: int
 
 @export_category("Status Effects:")
 @export var status_effects: Array[Status]
+func get_status_effects() -> Array[Status]:
+	return status_effects
 
 #region STATIC METHODS
 
@@ -57,6 +62,10 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 		action_queue.free()
 	action_queue = ActionQueue.new()
 	action_queue.setup(self)
+	
+	if status_manager:
+		status_manager.free()
+	status_manager = StatusManager.new(self)
 	
 	health = starting_health
 	energy = starting_energy
@@ -163,9 +172,8 @@ func take_damage(damage: int) -> void:
 		p("%s incoming damage" % [damage_result])
 	
 	##loop through status effects to recalculate damage_result
-	for effect in status_effects:
-		damage_result = effect.on_take_damage(damage_result)
-		
+	damage_result = status_manager.on_take_damage(damage)
+	
 	health -= damage_result
 	health = maxi(0, health)
 	update_healthbar()
@@ -174,6 +182,8 @@ func take_damage(damage: int) -> void:
 		die()
 		
 func die() -> void:
+	if debug:
+		p("Died!")
 	## TODO
 	Juice.fade_out(self).tween_callback(queue_free)
 
@@ -198,32 +208,14 @@ func reset_energy() -> void:
 
 #region Status Effects
 
-func add_status(status: Status, do_duplicate: bool = true) -> void:
-	if status in status_effects:
-		var _status = status_effects.get(status_effects.find(status))
-		_status.add_points(status.effect_points)
-		if debug:
-			p("Added %d points to status %s." % [status.effect_points, _status.ui_name])
-	else:
-		var new_status: Status
-		if do_duplicate:
-			new_status = status.duplicate()
-		else:
-			new_status = status
-			
-		new_status.set_actor(self) #setting self to take status effect
-		status_effects.append(new_status)
-		if debug:
-			p("Added new status %s." % new_status.ui_name)
+func add_status(status: Status) -> void:
+	status_manager.add_status(status)
 	
 func remove_status(status: Status) -> void:
-	status_effects.erase(status)
+	status_manager.remove_status(status)
 	
 func process_on_turn_start_status_effects() -> void:
-	if debug and not status_effects.is_empty():
-		p("Started turn with status effects: %s" % status_effects)
-	for status in status_effects:
-		status.on_turn_start()
+	status_manager.on_turn_start()
 
 #endregion
 

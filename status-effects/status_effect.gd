@@ -6,6 +6,8 @@ enum StatusEffectCategory{
 }
 
 var _actor: Actor
+var status_manager: StatusManager:
+	get: return _actor.get_status_manager()
 
 @export var effect_points: int 
 
@@ -20,9 +22,17 @@ func set_actor(actor:Actor) -> void:
 func on_turn_start() -> void:
 	pass
 
-func on_take_damage(damage:int) -> int:
-	var newDamage: int = damage
-	return newDamage
+func on_take_damage(damage:int) -> int: ## Override me
+	return damage
+
+func on_deal_damage(damage:int) -> int: ## Override me
+	return damage
+
+# what do we need to really know about for all possible status effects
+# -the actor holding this status effect
+# -the actor being targeted by some action
+# -all actors in the level -- via Level static instance
+# -the tile we're standing on, the tiles in the arena -- via Level static instance
 
 ## Common behaviors
 func remove_if_empty() -> void:
