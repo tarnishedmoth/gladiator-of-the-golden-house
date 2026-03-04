@@ -223,11 +223,26 @@ func process_on_turn_start_status_effects() -> void:
 
 func get_action_target_cells(action: Action) -> Array[Vector2i]:
 	if "pattern" in action:
-		return get_translated_pattern(action.pattern)
+		if action.is_obstructable == true:
+			return get_translated_pattern_without_obstructions(action.pattern) #find cells without actors in them 
+		else: 	
+			return get_translated_pattern(action.pattern)
 	else:
 		return get_translated_pattern(Action.NO_PATTERN)
 
 func get_translated_pattern(pattern: Array[Vector2i]) -> Array[Vector2i]:
 	return Facing.get_target_cells(current_tile_coords, facing, pattern)
+
+func get_translated_pattern_without_obstructions(pattern: Array[Vector2i]) -> Array[Vector2i]:
+	var pat: Array[Vector2i]
+	pat = Facing.get_target_cells(current_tile_coords, facing, pattern) #gets global coords
+	
+	var valid: Array[Vector2i]
+	#adds to valid if no actor is found  
+	for tile in pat:
+		if Level.get_actor_at(tile) != null:
+			continue
+		valid.append(tile)
+	return valid
 
 #endregion

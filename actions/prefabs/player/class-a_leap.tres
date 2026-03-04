@@ -15,4 +15,5 @@ ui_description = "Can’t move along occupied tiles.
   Does not stack."
 action_category = 1
 energy_cost = 1
+is_obstructable = true
 metadata/_custom_type_script = "uid://btfwr4ctycjfk"

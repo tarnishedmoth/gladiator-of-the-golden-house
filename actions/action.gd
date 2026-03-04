@@ -43,6 +43,8 @@ var ui_category: String: ## Returns a String from [member ACTION_CATEGORY_NAMES]
 #@export_group("Requirements")
 @export var energy_cost: int = 0
 var _energy_cost_requirement: ActionRequirementEnergy
+@export var is_obstructable: bool ##Will an action be blocked if an actor is on the tile
+
 func cast_energy_cost_to_requirement() -> void:
 	if energy_cost > 0 && not _energy_cost_requirement:
 		## Kind of a HACK but mostly just dunno what way to refactor this.
