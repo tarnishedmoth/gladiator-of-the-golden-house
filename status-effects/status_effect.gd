@@ -8,6 +8,15 @@ enum StatusEffectCategory{
 var _actor: Actor
 var status_manager: StatusManager:
 	get: return _actor.get_status_manager()
+	
+enum OnStart {
+	NOTHING,
+	SUBTRACT_ONE,
+	HALVE,
+	REMOVE_EFFECT,
+}
+
+@export var on_start_behavior: OnStart = OnStart.REMOVE_EFFECT
 
 @export var effect_points: int 
 
@@ -19,8 +28,14 @@ var status_manager: StatusManager:
 func set_actor(actor:Actor) -> void:
 	self._actor = actor
 
-func on_turn_start() -> void:
-	pass
+func on_turn_start() -> void: ## Call super() if you override
+	match on_start_behavior:
+		OnStart.SUBTRACT_ONE:
+			subtract_points(1)
+		OnStart.HALVE:
+			halve_points()
+		OnStart.REMOVE_EFFECT:
+			remove_effect()
 
 func on_take_damage(damage:int) -> int: ## Override me
 	return damage
