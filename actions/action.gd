@@ -73,9 +73,9 @@ var _actor: Actor ## The actor that will run this action. This is not any "targe
 func set_actor(actor: Actor) -> void:
 	self._actor = actor
 	
-var _target: ## Vector2i absolute
+var _target: Variant = null: ## Vector2i absolute
 	get:
-		if not _target:
+		if _target == null:
 			return _actor.current_tile_coords
 		else:
 			return _target
