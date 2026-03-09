@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatusAffectDamage" format=3 uid="uid://dth73y4ujmctl"]
+
+[ext_resource type="Script" uid="uid://dvm0k3xhgixkl" path="res://status-effects/affect_damage_dealt.gd" id="1_bhr15"]
+
+[resource]
+script = ExtResource("1_bhr15")
+incoming_or_outgoing = 1
+direct_only = true
+factor = 1.0
+on_start_behavior = 1
+effect_points = 10
+ui_name = "Bleed"
+ui_description = "Increase direct damage received by 1."
+metadata/_custom_type_script = "uid://dvm0k3xhgixkl"
