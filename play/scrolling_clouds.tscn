@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://blebayxrcyshs"]
+
+[ext_resource type="Script" uid="uid://cmp1yecwh4cjj" path="res://play/region-1-levels/cloud_shadows.gd" id="1_qvuli"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s0v6d"]
+blend_mode = 2
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_xxuy2"]
+offsets = PackedFloat32Array(0.4636628, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_e1dpa"]
+noise_type = 3
+seed = 121
+frequency = 0.0045
+fractal_octaves = 3
+fractal_lacunarity = 1.685
+fractal_gain = 0.405
+fractal_weighted_strength = 0.46
+cellular_distance_function = 3
+cellular_return_type = 5
+domain_warp_enabled = true
+domain_warp_amplitude = 25.145
+domain_warp_fractal_octaves = 4
+domain_warp_fractal_lacunarity = 4.01
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rqo1g"]
+width = 2048
+height = 2048
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_e1dpa")
+color_ramp = SubResource("Gradient_xxuy2")
+seamless = true
+seamless_blend_skirt = 0.3
+
+[sub_resource type="Gradient" id="Gradient_e1dpa"]
+offsets = PackedFloat32Array(0.625, 0.91715115)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rqo1g"]
+gradient = SubResource("Gradient_e1dpa")
+width = 1080
+height = 1080
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[node name="ScrollingClouds" type="Node2D" unique_id=1473881948]
+
+[node name="CloudShadows" type="Sprite2D" parent="." unique_id=439792530]
+modulate = Color(1, 1, 1, 0.21568628)
+z_index = 999
+texture_filter = 2
+texture_repeat = 2
+material = SubResource("CanvasItemMaterial_s0v6d")
+scale = Vector2(1, 0.6)
+texture = SubResource("NoiseTexture2D_rqo1g")
+script = ExtResource("1_qvuli")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1758673492]
+editor_description = "This jawn makes the shadows only render inside it."
+scale = Vector2(1.8, 1)
+blend_mode = 1
+texture = SubResource("GradientTexture2D_rqo1g")

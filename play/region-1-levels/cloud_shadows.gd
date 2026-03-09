@@ -3,8 +3,8 @@ extends Sprite2D
 ## Autoscrolling clouds
 
 const FADE_TIME: float = 5.0
-const OFFSET_PER_SECOND: float = 0.5
-const LOOP_TIME: float = 30.0
+const OFFSET_PER_SECOND: float = 2.5
+const LOOP_TIME: float = 45.0
 
 var scroll_tween: Tween
 func _ready() -> void:
