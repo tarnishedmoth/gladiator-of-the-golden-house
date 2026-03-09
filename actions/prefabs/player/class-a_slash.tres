@@ -11,4 +11,5 @@ split_choice = true
 ui_title = "Slash"
 ui_description = "Attack two tiles."
 energy_cost = 1
+debug = true
 metadata/_custom_type_script = "uid://dwk83a2nxfweb"

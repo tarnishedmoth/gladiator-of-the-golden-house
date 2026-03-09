@@ -9,4 +9,5 @@ pattern = Array[Vector2i]([Vector2i(0, -1)])
 ui_title = "Shield Charge"
 ui_description = "Move forward one tile. Knockback & refund 1 energy cost if occupied."
 energy_cost = 3
+debug = true
 metadata/_custom_type_script = "uid://btfwr4ctycjfk"

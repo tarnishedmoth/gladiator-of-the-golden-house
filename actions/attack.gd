@@ -30,5 +30,13 @@ func _get_affected_and_deal_damage() -> void:
 		if found_actor != null:
 			if not can_damage_self && found_actor == _actor:
 				return
-			if debug: p("Hitting %s for %d damage" % [found_actor.name, damage])
-			found_actor.take_damage(damage)
+			
+			var modified_damage: int = _actor._on_dealing_damage(damage)
+			## TODO dealing direct damage check
+			var damage_result: Actor.DamageResult = found_actor.take_damage(modified_damage)
+			
+			if debug: p(
+				"Hit %s with %s base damage, %s modified damage.\n%s damage was negated, %s damage was taken directly." % [found_actor.name, damage, modified_damage, damage_result.negated, damage_result.direct]
+				)
+			
+			_actor._on_damage_dealt(damage_result)

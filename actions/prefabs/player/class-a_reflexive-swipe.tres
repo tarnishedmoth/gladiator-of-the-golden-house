@@ -8,4 +8,5 @@ script = ExtResource("2_a1hl1")
 ui_title = "Reflexive Swipe"
 ui_description = "[b]Reaction[/b]: Upon any damage taken (even if blocked by defense), immediately deal damage in return. Applies until next turn."
 energy_cost = 2
+debug = true
 metadata/_custom_type_script = "uid://ic0qko6fd58l"

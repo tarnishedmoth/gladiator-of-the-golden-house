@@ -23,6 +23,8 @@ enum Hook {
 	ON_TAKE_DIRECT_DAMAGE,
 	ON_DEAL_DAMAGE,
 	ON_DEAL_DIRECT_DAMAGE,
+	ON_DAMAGE_DEALT,
+	ON_DIRECT_DAMAGE_DEALT,
 	ON_ACTION_PLAYED, ## TODO
 }
 
@@ -68,6 +70,16 @@ func on_deal_damage(damage:int) -> int: ## Override me
 	
 func on_deal_direct_damage(damage:int) -> int: ## Override me
 	return damage
+
+@warning_ignore("unused_parameter")
+## Happens after damage has been dealt. The value can not be manipulated. Override me.
+func on_damage_dealt(damage:int) -> void:
+	pass
+
+@warning_ignore("unused_parameter")
+## Happens after damage has been dealt. The value can not be manipulated. Override me.
+func on_direct_damage_dealt(damage:int) -> void:
+	pass
 
 # what do we need to really know about for all possible status effects
 # -the actor holding this status effect

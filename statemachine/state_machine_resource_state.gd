@@ -3,7 +3,7 @@
 signal finished(next:ResourceState, source:ResourceState)
 
 @export var next_state: ResourceState
-@export var debug: bool = false
+@export var debug: bool = true
 
 var run:bool = false:
 	set(value):

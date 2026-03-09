@@ -12,4 +12,5 @@ ui_description = "Piercing (deals direct damage)
 
 If target is killed, refund energy cost."
 energy_cost = 1
+debug = true
 metadata/_custom_type_script = "uid://dwk83a2nxfweb"

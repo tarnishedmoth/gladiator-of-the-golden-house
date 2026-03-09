@@ -32,13 +32,13 @@ func _init(host_actor: Actor) -> void:
 
 func on_turn_start() -> void:
 	if debug and not status_effects.is_empty():
-		p("Started turn with status effects: %s" % status_effects)
+		p("Started turn with status effects:" + str(status_effects))
 	for status in status_effects:
 		status.on_turn_start()
 		
 func on_turn_end() -> void:
 	if debug and not status_effects.is_empty():
-		p("Started turn with status effects: %s" % status_effects)
+		p("Started turn with status effects:" + str(status_effects))
 	for status in status_effects:
 		status.on_turn_end()
 
@@ -55,17 +55,29 @@ func on_take_direct_damage(damage:int) -> int:
 		new_damage = status.on_take_direct_damage(new_damage)
 	return new_damage
 
-func on_deal_damage(damage:int) -> int: ## TODO TODO TODO TODO TODO TODO 
+## Happens just before dealing any damage
+func on_deal_damage(damage:int) -> int:
 	var new_damage: int = damage
 	for status in status_effects:
 		new_damage = status.on_deal_damage(new_damage)
 	return new_damage
-	
-func on_deal_direct_damage(damage:int) -> int: ## TODO TODO TODO TODO TODO TODO 
+
+## Happens just before dealing direct damage
+func on_deal_direct_damage(damage:int) -> int:
 	var new_damage: int = damage
 	for status in status_effects:
 		new_damage = status.on_deal_direct_damage(new_damage)
 	return new_damage
+	
+## Happens just before dealing any damage
+func on_damage_dealt(damage:int) -> void:
+	for status in status_effects:
+		status.on_damage_dealt(damage)
+
+## Happens just before dealing direct damage
+func on_direct_damage_dealt(damage:int) -> void:
+	for status in status_effects:
+		status.on_direct_damage_dealt(damage)
 
 #endregion
 

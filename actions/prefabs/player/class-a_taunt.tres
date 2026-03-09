@@ -14,4 +14,5 @@ Apply +1 Taunted to target.
     Increase damage received by 1.
     Stack decreases by 1 each turn."
 action_category = 2
+debug = true
 metadata/_custom_type_script = "uid://ic0qko6fd58l"

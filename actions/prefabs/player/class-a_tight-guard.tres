@@ -10,4 +10,5 @@ status = ExtResource("3_l26wc")
 ui_title = "Tight Guard"
 ui_description = "Only applies to 3 forward tiles."
 energy_cost = 1
+debug = true
 metadata/_custom_type_script = "uid://ic0qko6fd58l"

@@ -12,4 +12,5 @@ ui_description = "For the rest of the match, upon taking damage, gain +2 Strengt
 [i]Increase damage dealt by 1.[/i]"
 action_category = 2
 energy_cost = 3
+debug = true
 metadata/_custom_type_script = "uid://ic0qko6fd58l"

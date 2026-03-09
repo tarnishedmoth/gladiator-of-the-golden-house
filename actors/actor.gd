@@ -170,18 +170,27 @@ func update_healthbar() -> void:
 	var txt = get_node_or_null("health/txt")
 	if is_instance_valid(txt):
 		txt.text = str(health)
+
+
+class DamageResult:
+	var negated: int
+	var direct: int
 	
-func take_damage(damage: int) -> void:
-	var damage_result: int = damage
-	
+	func _init(_negated: int = 0, _direct: int = 0) -> void:
+		negated = _negated
+		direct = _direct
+
+
+func take_damage(damage: int) -> DamageResult:
 	if debug:
-		p("%s incoming damage" % [damage_result])
+		p("%s incoming damage" % [damage])
 	
-	##loop through status effects to recalculate damage_result
-	damage_result = status_manager.on_take_damage(damage)
-	take_direct_damage(damage_result)
+	##loop through status effects to recalculate damage result
+	var unblocked_damage = status_manager.on_take_damage(damage)
+	var damage_result := DamageResult.new(damage - unblocked_damage, take_direct_damage(unblocked_damage))
+	return damage_result
 	
-func take_direct_damage(damage: int) -> void:
+func take_direct_damage(damage: int) -> int:
 	var damage_result = status_manager.on_take_direct_damage(damage)
 	
 	if debug:
@@ -193,7 +202,10 @@ func take_direct_damage(damage: int) -> void:
 	
 	if health <= 0:
 		die()
-	
+		
+	return damage_result
+
+
 func die() -> void:
 	if debug:
 		p("Died!")
@@ -201,6 +213,20 @@ func die() -> void:
 	Juice.fade_out(self).tween_callback(queue_free)
 
 #endregion
+
+func _on_dealing_damage(damage: int) -> int:
+	var changed_damage: int = status_manager.on_deal_damage(damage)
+	return changed_damage
+	
+func _on_dealing_direct_damage(damage: int) -> int: ## TODO TODO TODO TODO
+	var changed_damage: int = status_manager.on_deal_direct_damage(damage)
+	return changed_damage
+
+func _on_damage_dealt(damage_result: DamageResult) -> void:
+	if damage_result.negated > 0:
+		status_manager.on_damage_dealt(damage_result.negated)
+	if damage_result.direct > 0:
+		status_manager.on_direct_damage_dealt(damage_result.direct)
 
 #region Energy
 

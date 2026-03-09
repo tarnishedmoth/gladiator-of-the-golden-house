@@ -19,4 +19,5 @@ Apply +1 Braced:
   [i]Can not be stunned.
   Stack decreases by 1 each turn.[/i]"
 energy_cost = 2
+debug = true
 metadata/_custom_type_script = "uid://ic0qko6fd58l"
