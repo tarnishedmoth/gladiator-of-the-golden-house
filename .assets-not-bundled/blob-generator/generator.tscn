@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://0b8prxcp20px"]
+
+[ext_resource type="Script" uid="uid://w66s15opqrp3" path="res://generator.gd" id="1_v8oxa"]
+[ext_resource type="Texture2D" uid="uid://c4s8ro2h1aawp" path="res://BlobParts/HoodBlue.png" id="2_falek"]
+[ext_resource type="Texture2D" uid="uid://bs2dbhfwtir45" path="res://BlobParts/bodyTone1.png" id="3_2ckvu"]
+[ext_resource type="Texture2D" uid="uid://djogisxpeovu3" path="res://BlobParts/HoodBrown.png" id="3_i0kmc"]
+[ext_resource type="Texture2D" uid="uid://decuiekfgn5cl" path="res://BlobParts/HoodGreen.png" id="4_1akxc"]
+[ext_resource type="Texture2D" uid="uid://bbv6dpgmgl1km" path="res://BlobParts/hairLongBlack.png" id="4_tjihn"]
+[ext_resource type="Texture2D" uid="uid://dmpw14d5sxl6p" path="res://BlobParts/HoodRed.png" id="5_b1rli"]
+[ext_resource type="Texture2D" uid="uid://bg2ioyvktah0t" path="res://BlobParts/TogaBlue.png" id="5_v83aa"]
+[ext_resource type="Texture2D" uid="uid://copkb058mk64e" path="res://BlobParts/bodyTone2.png" id="7_1ql82"]
+[ext_resource type="Texture2D" uid="uid://behufv1npd8hl" path="res://BlobParts/bodyTone3.png" id="8_ehnbf"]
+[ext_resource type="Texture2D" uid="uid://b0uagkahvaj7t" path="res://BlobParts/hairLongBlonde.png" id="10_gunm2"]
+[ext_resource type="Texture2D" uid="uid://ct2q37p6bi161" path="res://BlobParts/hairLongBrown.png" id="11_f2aqx"]
+[ext_resource type="Texture2D" uid="uid://l6ergblfdyfy" path="res://BlobParts/hairLongRed.png" id="12_u4flk"]
+[ext_resource type="Texture2D" uid="uid://relvrx1ic1i5" path="res://BlobParts/hairShortBlack.png" id="13_q55b7"]
+[ext_resource type="Texture2D" uid="uid://nfsnyc1odong" path="res://BlobParts/hairShortBlonde.png" id="14_txpgw"]
+[ext_resource type="Texture2D" uid="uid://ctc2yvbjcwjrj" path="res://BlobParts/hairShortBrown.png" id="15_3xufl"]
+[ext_resource type="Texture2D" uid="uid://c5cspcrk7jy2d" path="res://BlobParts/hairShortRed.png" id="16_1dn7d"]
+[ext_resource type="Texture2D" uid="uid://pusirgdvaw84" path="res://BlobParts/TogaBrown.png" id="18_wky8v"]
+[ext_resource type="Texture2D" uid="uid://cich0qun4jptb" path="res://BlobParts/TogaGreen.png" id="19_xhv7j"]
+[ext_resource type="Texture2D" uid="uid://dwju70affm1eo" path="res://BlobParts/TogaRed.png" id="20_ybc34"]
+[ext_resource type="Texture2D" uid="uid://bv8ia5hck64ne" path="res://BlobParts/TunicBlue.png" id="21_x4wcv"]
+[ext_resource type="Texture2D" uid="uid://dh1op743k501x" path="res://BlobParts/TunicBrown.png" id="22_hch7e"]
+[ext_resource type="Texture2D" uid="uid://bxy0r10dgjswc" path="res://BlobParts/TunicGreen.png" id="23_sl0br"]
+[ext_resource type="Texture2D" uid="uid://fep1m3fu2qog" path="res://BlobParts/TunicRed.png" id="24_e5k1p"]
+
+[node name="Generator" type="Node2D" unique_id=2057479258]
+script = ExtResource("1_v8oxa")
+hood = Array[Texture2D]([null, ExtResource("2_falek"), ExtResource("3_i0kmc"), ExtResource("4_1akxc"), ExtResource("5_b1rli")])
+body = Array[Texture2D]([ExtResource("3_2ckvu"), ExtResource("7_1ql82"), ExtResource("8_ehnbf")])
+hair = Array[Texture2D]([ExtResource("4_tjihn"), ExtResource("10_gunm2"), ExtResource("11_f2aqx"), ExtResource("12_u4flk"), ExtResource("13_q55b7"), ExtResource("14_txpgw"), ExtResource("15_3xufl"), ExtResource("16_1dn7d")])
+clothes = Array[Texture2D]([ExtResource("5_v83aa"), ExtResource("18_wky8v"), ExtResource("19_xhv7j"), ExtResource("20_ybc34"), ExtResource("21_x4wcv"), ExtResource("22_hch7e"), ExtResource("23_sl0br"), ExtResource("24_e5k1p")])
+
+[node name="Hood" type="Sprite2D" parent="." unique_id=2103348007]
+unique_name_in_owner = true
+texture = ExtResource("2_falek")
+
+[node name="Body" type="Sprite2D" parent="." unique_id=1093287810]
+unique_name_in_owner = true
+texture = ExtResource("3_2ckvu")
+
+[node name="Clothes" type="Sprite2D" parent="." unique_id=989347492]
+unique_name_in_owner = true
+texture = ExtResource("5_v83aa")
+
+[node name="Hair" type="Sprite2D" parent="." unique_id=1423760829]
+unique_name_in_owner = true
+texture = ExtResource("4_tjihn")
