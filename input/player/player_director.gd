@@ -54,10 +54,6 @@ func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 func _on_turn_started():
 	if VERBOSE: p("Player turn started")
 	
-	for actor in actors:
-		actor.reset_energy()
-		actor.process_on_turn_start_status_effects()
-	
 	select_actor(actors.front())
 	draw_hand()
 	#hold_action(actions_in_hand.front())

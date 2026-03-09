@@ -30,11 +30,18 @@ func take_turn() -> void:
 	## Do turn stuff
 	is_active = true
 	if VERBOSE: p("It's my turn!..")
+	
+	for actor in actors:
+		actor.on_turn_start()
+	
 	_on_turn_started()
 	
 ## Not intended to interrupt, but to indicate we are finished.
 ## Call this in your extending class to end the turn.
 func end_turn() -> void:
+	for actor in actors:
+		actor.on_turn_end()
+	
 	## Indicate we're done
 	is_active = false
 	if VERBOSE: p("Ending turn...")

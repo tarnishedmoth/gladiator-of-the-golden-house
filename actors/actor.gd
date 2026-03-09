@@ -71,6 +71,13 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	energy = starting_energy
 	
 	update_healthbar()
+	
+func on_turn_start() -> void: ## Called by Director
+	reset_energy()
+	status_manager.on_turn_start()
+	
+func on_turn_end() -> void: ## Called by Director
+	status_manager.on_turn_end()
 
 #region ACTIONS
 
@@ -165,7 +172,6 @@ func update_healthbar() -> void:
 		txt.text = str(health)
 	
 func take_damage(damage: int) -> void:
-	
 	var damage_result: int = damage
 	
 	if debug:
@@ -173,6 +179,13 @@ func take_damage(damage: int) -> void:
 	
 	##loop through status effects to recalculate damage_result
 	damage_result = status_manager.on_take_damage(damage)
+	take_direct_damage(damage_result)
+	
+func take_direct_damage(damage: int) -> void:
+	var damage_result = status_manager.on_take_direct_damage(damage)
+	
+	if debug:
+		p("%s incoming direct damage." % [damage_result]) 
 	
 	health -= damage_result
 	health = maxi(0, health)
@@ -180,7 +193,7 @@ func take_damage(damage: int) -> void:
 	
 	if health <= 0:
 		die()
-		
+	
 func die() -> void:
 	if debug:
 		p("Died!")
@@ -213,9 +226,6 @@ func add_status(status: Status) -> void:
 	
 func remove_status(status: Status) -> void:
 	status_manager.remove_status(status)
-	
-func process_on_turn_start_status_effects() -> void:
-	status_manager.on_turn_start()
 
 #endregion
 
