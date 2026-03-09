@@ -25,6 +25,20 @@
 [ext_resource type="Texture2D" uid="uid://bxy0r10dgjswc" path="res://colosseum-crowd/BlobParts/TunicGreen.png" id="23_sl0br"]
 [ext_resource type="Texture2D" uid="uid://fep1m3fu2qog" path="res://colosseum-crowd/BlobParts/TunicRed.png" id="24_e5k1p"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w0ltm"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_5h1ap"]
+offsets = PackedFloat32Array(0.18604651, 1)
+colors = PackedColorArray(0.8089983, 0.8089983, 0.8089982, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8i360"]
+gradient = SubResource("Gradient_5h1ap")
+width = 16
+height = 12
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Generator" type="Node2D" unique_id=2057479258]
 z_index = 1
 y_sort_enabled = true
@@ -33,6 +47,12 @@ hood = Array[Texture2D]([ExtResource("2_falek"), ExtResource("3_i0kmc"), ExtReso
 body = Array[Texture2D]([ExtResource("3_2ckvu"), ExtResource("7_1ql82"), ExtResource("8_ehnbf")])
 hair = Array[Texture2D]([ExtResource("4_tjihn"), ExtResource("10_gunm2"), ExtResource("11_f2aqx"), ExtResource("12_u4flk"), ExtResource("13_q55b7"), ExtResource("14_txpgw"), ExtResource("15_3xufl"), ExtResource("16_1dn7d")])
 clothes = Array[Texture2D]([ExtResource("5_v83aa"), ExtResource("18_wky8v"), ExtResource("19_xhv7j"), ExtResource("20_ybc34"), ExtResource("21_x4wcv"), ExtResource("22_hch7e"), ExtResource("23_sl0br"), ExtResource("24_e5k1p")])
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=702592995]
+z_index = -1
+material = SubResource("CanvasItemMaterial_w0ltm")
+position = Vector2(0, 14)
+texture = SubResource("GradientTexture2D_8i360")
 
 [node name="Hood" type="Sprite2D" parent="." unique_id=2103348007]
 unique_name_in_owner = true
