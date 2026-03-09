@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pusirgdvaw84"
-path="res://.godot/imported/TogaBrown.png-deecf4ab85dc116987ef2b177d1fe8da.ctex"
+uid="uid://behufv1npd8hl"
+path="res://.godot/imported/bodyTone3.png-473c07d6a589a7a165f8c27b2f3dc54a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://colosseum-crowd/BlobParts/TogaBrown.png"
-dest_files=["res://.godot/imported/TogaBrown.png-deecf4ab85dc116987ef2b177d1fe8da.ctex"]
+source_file="res://colosseum-crowd/blob-parts/bodyTone3.png"
+dest_files=["res://.godot/imported/bodyTone3.png-473c07d6a589a7a165f8c27b2f3dc54a.ctex"]
 
 [params]
 

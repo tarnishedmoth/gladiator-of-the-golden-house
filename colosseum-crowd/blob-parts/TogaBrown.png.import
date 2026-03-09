@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxy0r10dgjswc"
-path="res://.godot/imported/TunicGreen.png-d9a94740e5ce21125dc3e42432012cd6.ctex"
+uid="uid://pusirgdvaw84"
+path="res://.godot/imported/TogaBrown.png-65fa651a4958facb34927e2b9f3d92c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://colosseum-crowd/BlobParts/TunicGreen.png"
-dest_files=["res://.godot/imported/TunicGreen.png-d9a94740e5ce21125dc3e42432012cd6.ctex"]
+source_file="res://colosseum-crowd/blob-parts/TogaBrown.png"
+dest_files=["res://.godot/imported/TogaBrown.png-65fa651a4958facb34927e2b9f3d92c6.ctex"]
 
 [params]
 

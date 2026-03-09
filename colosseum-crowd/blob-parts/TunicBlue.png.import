@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4s8ro2h1aawp"
-path="res://.godot/imported/HoodBlue.png-a6779539c90ac72f22f22e6f62fa1554.ctex"
+uid="uid://bv8ia5hck64ne"
+path="res://.godot/imported/TunicBlue.png-57ce68db1de637597ebf3f8059bd8abe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://colosseum-crowd/BlobParts/HoodBlue.png"
-dest_files=["res://.godot/imported/HoodBlue.png-a6779539c90ac72f22f22e6f62fa1554.ctex"]
+source_file="res://colosseum-crowd/blob-parts/TunicBlue.png"
+dest_files=["res://.godot/imported/TunicBlue.png-57ce68db1de637597ebf3f8059bd8abe.ctex"]
 
 [params]
 

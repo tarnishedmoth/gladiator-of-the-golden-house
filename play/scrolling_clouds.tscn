@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blebayxrcyshs"]
 
-[ext_resource type="Script" uid="uid://cmp1yecwh4cjj" path="res://play/region-1-levels/cloud_shadows.gd" id="1_qvuli"]
+[ext_resource type="Script" uid="uid://cmp1yecwh4cjj" path="res://play/cloud_shadows.gd" id="1_qvuli"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s0v6d"]
 blend_mode = 2

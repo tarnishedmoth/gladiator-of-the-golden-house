@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcuxaplede7yk"
-path="res://.godot/imported/region-1-background-layer1.png-53f12251a1a297fb8dac331d7d6327a3.ctex"
+uid="uid://b0uagkahvaj7t"
+path="res://.godot/imported/hairLongBlonde.png-8bffd7d132d49c9fa90c3839227a33c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://play/region-1-levels/region-1-background-layer1.png"
-dest_files=["res://.godot/imported/region-1-background-layer1.png-53f12251a1a297fb8dac331d7d6327a3.ctex"]
+source_file="res://colosseum-crowd/blob-parts/hairLongBlonde.png"
+dest_files=["res://.godot/imported/hairLongBlonde.png-8bffd7d132d49c9fa90c3839227a33c5.ctex"]
 
 [params]
 

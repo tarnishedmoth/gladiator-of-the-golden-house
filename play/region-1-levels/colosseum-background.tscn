@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://3wrjbpemvs03"]
 
-[ext_resource type="Texture2D" uid="uid://dcuxaplede7yk" path="res://play/region-1-levels/region-1-background-layer1.png" id="1_egxy6"]
-[ext_resource type="PackedScene" uid="uid://blebayxrcyshs" path="res://play/scrolling_clouds.tscn" id="2_xxuy2"]
-[ext_resource type="Script" uid="uid://c1mla0ywbxk60" path="res://play/region-1-levels/crowd.gd" id="3_e1dpa"]
+[ext_resource type="Texture2D" uid="uid://dcuxaplede7yk" path="res://play/region-1-levels/colosseum-background-layer1.png" id="1_v3s0n"]
+[ext_resource type="PackedScene" uid="uid://blebayxrcyshs" path="res://play/scrolling_clouds.tscn" id="2_2426h"]
+[ext_resource type="Script" uid="uid://c1mla0ywbxk60" path="res://colosseum-crowd/crowd.gd" id="3_2rg4j"]
 
 [node name="BackgroundColosseum" type="Sprite2D" unique_id=768298569]
-texture = ExtResource("1_egxy6")
+texture = ExtResource("1_v3s0n")
 
-[node name="ScrollingClouds" parent="." unique_id=1473881948 instance=ExtResource("2_xxuy2")]
+[node name="ScrollingClouds" parent="." unique_id=1473881948 instance=ExtResource("2_2426h")]
 
 [node name="Crowd" type="Node2D" parent="." unique_id=1063972528 node_paths=PackedStringArray("polygons")]
 y_sort_enabled = true
-script = ExtResource("3_e1dpa")
+script = ExtResource("3_2rg4j")
 polygons = [NodePath("Polygon2D"), NodePath("Polygon2D2"), NodePath("Polygon2D3"), NodePath("Polygon2D4"), NodePath("Polygon2D5"), NodePath("Polygon2D6")]
 
 [node name="Polygon2D" type="Polygon2D" parent="Crowd" unique_id=643173275]

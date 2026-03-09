@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv8ia5hck64ne"
-path="res://.godot/imported/TunicBlue.png-43afdcedbdc357b259487b39fbec1ca4.ctex"
+uid="uid://relvrx1ic1i5"
+path="res://.godot/imported/hairShortBlack.png-b6c35fa1eba5a4baf3aa0bb1eef08667.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://colosseum-crowd/BlobParts/TunicBlue.png"
-dest_files=["res://.godot/imported/TunicBlue.png-43afdcedbdc357b259487b39fbec1ca4.ctex"]
+source_file="res://colosseum-crowd/blob-parts/hairShortBlack.png"
+dest_files=["res://.godot/imported/hairShortBlack.png-b6c35fa1eba5a4baf3aa0bb1eef08667.ctex"]
 
 [params]
 

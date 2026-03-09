@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://fxnqdsuaknig"]
+
+[ext_resource type="PackedScene" uid="uid://gpnw6bok7ngf" path="res://play/region-1-levels/inheritable-level_colosseum.tscn" id="1_ki2ix"]
+[ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://input/ai/ai_director.gd" id="2_k8ka1"]
+[ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="3_fys54"]
+[ext_resource type="PackedScene" uid="uid://bet8eq50pbkqf" path="res://input/player/class_a.tscn" id="4_gdvfg"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="5_ksudi"]
+[ext_resource type="Resource" uid="uid://cjec684q3sb36" path="res://actions/prefabs/player/class-a_swipe.tres" id="6_p8g2x"]
+[ext_resource type="Resource" uid="uid://ddgm6fspawicj" path="res://actions/prefabs/player/class-a_slash.tres" id="7_rkfy4"]
+[ext_resource type="Resource" uid="uid://bsns58p7gxqe4" path="res://actions/prefabs/player/class-a_taunt.tres" id="8_hd0lu"]
+
+[node name="Level" unique_id=13868467 instance=ExtResource("1_ki2ix")]
+
+[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=945831410]
+script = ExtResource("2_k8ka1")
+metadata/_custom_type_script = "uid://dwys5mwbuw85s"
+metadata/_edit_lock_ = true
+
+[node name="Grunt" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=84579020 instance=ExtResource("3_fys54")]
+position = Vector2(89, -174)
+facing = 3
+
+[node name="Grunt2" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=1163977369 instance=ExtResource("3_fys54")]
+position = Vector2(290, 110)
+facing = 5
+
+[node name="Player_ClassA" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=1133384730 instance=ExtResource("4_gdvfg")]
+starting_actions_deck = Array[ExtResource("5_ksudi")]([ExtResource("6_p8g2x"), ExtResource("7_rkfy4"), ExtResource("8_hd0lu")])
