@@ -49,7 +49,7 @@ continue_menu = NodePath("CanvasLayer/Continue Menu")
 position = Vector2(16, 0)
 metadata/_edit_lock_ = true
 
-[node name="Background" parent="TileMapLayers" unique_id=768298569 instance=ExtResource("2_2ehxp")]
+[node name="BackgroundColosseum" parent="TileMapLayers" unique_id=768298569 instance=ExtResource("2_2ehxp")]
 position = Vector2(0, -66)
 
 [node name="Directors" type="Node2D" parent="TileMapLayers" unique_id=440455703]
