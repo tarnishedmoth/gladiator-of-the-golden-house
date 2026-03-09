@@ -35,6 +35,12 @@ func on_turn_start() -> void:
 		p("Started turn with status effects: %s" % status_effects)
 	for status in status_effects:
 		status.on_turn_start()
+		
+func on_turn_end() -> void:
+	if debug and not status_effects.is_empty():
+		p("Started turn with status effects: %s" % status_effects)
+	for status in status_effects:
+		status.on_turn_end()
 
 func on_take_damage(damage:int) -> int:
 	var new_damage: int = damage
@@ -42,10 +48,23 @@ func on_take_damage(damage:int) -> int:
 		new_damage = status.on_take_damage(new_damage)
 	return new_damage
 
-func on_deal_damage(damage:int) -> int:
+## Called after [method on_take_damage].
+func on_take_direct_damage(damage:int) -> int:
+	var new_damage: int = damage
+	for status in status_effects:
+		new_damage = status.on_take_direct_damage(new_damage)
+	return new_damage
+
+func on_deal_damage(damage:int) -> int: ## TODO TODO TODO TODO TODO TODO 
 	var new_damage: int = damage
 	for status in status_effects:
 		new_damage = status.on_deal_damage(new_damage)
+	return new_damage
+	
+func on_deal_direct_damage(damage:int) -> int: ## TODO TODO TODO TODO TODO TODO 
+	var new_damage: int = damage
+	for status in status_effects:
+		new_damage = status.on_deal_direct_damage(new_damage)
 	return new_damage
 
 #endregion
@@ -53,9 +72,8 @@ func on_deal_damage(damage:int) -> int:
 #region Status stack
 
 func add_status(status: Status, do_duplicate: bool = true) -> void:
-	#if status in status_effects:
-	if status_effects.has(typeof(status)):
-		var _status = status_effects.get(status_effects.find(status))
+	if status in status_effects: ## FIXME I'm pretty sure this is not working correctly
+		var _status = status_effects.find(status)
 		_status.add_points(status.effect_points)
 		if debug:
 			p("Added %d points to status %s." % [status.effect_points, _status.ui_name])
@@ -75,3 +93,12 @@ func remove_status(status: Status) -> void:
 	status_effects.erase(status)
 
 #endregion
+
+static func apply_status_to_actor(status: Status, target_actor: Actor, override_quantity: int = 0) -> void:
+	var _copy = status.duplicate()
+	
+	if override_quantity > 0:
+		_copy.effect_points = override_quantity
+	
+	#if debug: p("Applying status %s to %s" % [_copy.ui_name, _target])
+	target_actor.add_status(_copy)

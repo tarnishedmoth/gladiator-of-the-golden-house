@@ -17,13 +17,7 @@ func apply_status(actor: Actor) -> void:
 	if not actor:
 		push_error("Actor is invalid")
 	else:
-		var _copy = status.duplicate()
-		
-		if override_quantity > 0:
-			_copy.effect_points = override_quantity
-		
-		if debug: p("Applying status %s to %s" % [_copy.ui_name, _target])
-		actor.add_status(_copy)
+		if debug: p("Applying status %s to %s" % [status.ui_name, _target])
+		StatusManager.apply_status_to_actor(status, actor, override_quantity)
 		
 		await actor.animation_finished
-		## todo actor.set_facing

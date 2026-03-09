@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="StatusReactApplyStatus" format=3 uid="uid://wxswtm3nqvmv"]
+
+[ext_resource type="Script" uid="uid://csj8h4c0pg640" path="res://status-effects/react_apply_status.gd" id="1_qfo70"]
+[ext_resource type="Resource" uid="uid://cq0gsgomekfkm" path="res://status-effects/prefabs/strength.tres" id="2_db8jk"]
+
+[resource]
+script = ExtResource("1_qfo70")
+status_to_apply = ExtResource("2_db8jk")
+override_quantity_to_apply = 2
+trigger = 3
+on_start_behavior = 0
+effect_points = 1
+ui_name = "Indomitable Spirit"
+ui_description = "For the rest of the match, upon taking direct damage, gain +2 Strength."
+metadata/_custom_type_script = "uid://csj8h4c0pg640"

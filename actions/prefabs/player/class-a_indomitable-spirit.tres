@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_twrsr"]
 [ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_j4xn8"]
+[ext_resource type="Resource" uid="uid://wxswtm3nqvmv" path="res://status-effects/prefabs/indomitable-spirit.tres" id="3_j4xn8"]
 
 [resource]
 script = ExtResource("2_j4xn8")
+status = ExtResource("3_j4xn8")
 ui_title = "Indomitable Spirit"
 ui_description = "For the rest of the match, upon taking damage, gain +2 Strength.
 [i]Increase damage dealt by 1.[/i]"

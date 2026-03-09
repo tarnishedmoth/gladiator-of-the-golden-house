@@ -16,7 +16,18 @@ enum OnStart {
 	REMOVE_EFFECT,
 }
 
+enum Hook {
+	ON_TURN_START,
+	ON_TURN_END,
+	ON_TAKE_DAMAGE,
+	ON_TAKE_DIRECT_DAMAGE,
+	ON_DEAL_DAMAGE,
+	ON_DEAL_DIRECT_DAMAGE,
+	ON_ACTION_PLAYED, ## TODO
+}
+
 @export var on_start_behavior: OnStart = OnStart.REMOVE_EFFECT
+@export var on_end_behavior: OnStart = OnStart.NOTHING
 
 @export var effect_points: int 
 
@@ -36,11 +47,26 @@ func on_turn_start() -> void: ## Call super() if you override
 			halve_points()
 		OnStart.REMOVE_EFFECT:
 			remove_effect()
+			
+func on_turn_end() -> void: ## Call super() if you override
+	match on_end_behavior:
+		OnStart.SUBTRACT_ONE:
+			subtract_points(1)
+		OnStart.HALVE:
+			halve_points()
+		OnStart.REMOVE_EFFECT:
+			remove_effect()
 
 func on_take_damage(damage:int) -> int: ## Override me
 	return damage
+	
+func on_take_direct_damage(damage:int) -> int: ## Override me
+	return damage
 
 func on_deal_damage(damage:int) -> int: ## Override me
+	return damage
+	
+func on_deal_direct_damage(damage:int) -> int: ## Override me
 	return damage
 
 # what do we need to really know about for all possible status effects

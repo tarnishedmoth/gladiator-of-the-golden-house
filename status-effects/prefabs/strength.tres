@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="StatusDamageDealt" format=3 uid="uid://cq0gsgomekfkm"]
+
+[ext_resource type="Script" uid="uid://dvm0k3xhgixkl" path="res://status-effects/affect_damage_dealt.gd" id="1_ay5n5"]
+
+[resource]
+script = ExtResource("1_ay5n5")
+factor = 1.0
+on_start_behavior = 0
+effect_points = 1
+ui_name = "Strength"
+ui_description = "Increase damage by +1 for rest of match."
+metadata/_custom_type_script = "uid://dvm0k3xhgixkl"
