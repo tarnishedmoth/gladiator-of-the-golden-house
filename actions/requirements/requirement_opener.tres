@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ActionRequirementOpener" format=3 uid="uid://deo7b33s5fte1"]
+
+[ext_resource type="Script" uid="uid://bnmiwwa41uq8o" path="res://actions/requirements/opener.gd" id="1_ww7jt"]
+
+[resource]
+script = ExtResource("1_ww7jt")
+ui_display_title = "Opener"
+ui_display_description = "This actions needs to be the first action taken this turn."
+metadata/_custom_type_script = "uid://bnmiwwa41uq8o"

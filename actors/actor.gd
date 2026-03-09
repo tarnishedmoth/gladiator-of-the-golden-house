@@ -37,6 +37,8 @@ var health: int
 var energy: int
 @export var starting_energy: int
 
+var action_count: int
+
 @export_category("Status Effects:")
 @export var status_effects: Array[Status]
 func get_status_effects() -> Array[Status]:
@@ -74,6 +76,7 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	
 func on_turn_start() -> void: ## Called by Director
 	reset_energy()
+	reset_action_count()
 	status_manager.on_turn_start()
 	
 func on_turn_end() -> void: ## Called by Director
@@ -96,11 +99,15 @@ func append_actions_to_queue(array: Array[Action]) -> void:
 func run_action(action: Action) -> void: ## Immediately runs one action (and any chained actions).
 	if action_queue.running_queue:
 		push_warning("Action queue is apparently running the queue / Check for bad state?")
+	action_count += 1
 	action_queue.run_action(action)
 	
 func _on_action_queue_finished() -> void:
 	if emit_actions_finished_signal:
 		queued_actions_finished.emit(self)
+
+func reset_action_count() -> void:
+	action_count = 0
 
 #endregion
 

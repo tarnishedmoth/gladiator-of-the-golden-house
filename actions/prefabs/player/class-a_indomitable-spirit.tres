@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="ActionApplyStatus" format=3 uid="uid://b7xlbrug2ge54"]
 
 [ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_twrsr"]
+[ext_resource type="Resource" uid="uid://deo7b33s5fte1" path="res://actions/requirements/requirement_opener.tres" id="2_gd7g2"]
 [ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_j4xn8"]
 [ext_resource type="Resource" uid="uid://wxswtm3nqvmv" path="res://status-effects/prefabs/indomitable-spirit.tres" id="3_j4xn8"]
 
@@ -12,5 +13,5 @@ ui_description = "For the rest of the match, upon taking damage, gain +2 Strengt
 [i]Increase damage dealt by 1.[/i]"
 action_category = 2
 energy_cost = 3
-debug = true
+requirements = Array[ExtResource("1_twrsr")]([ExtResource("2_gd7g2")])
 metadata/_custom_type_script = "uid://ic0qko6fd58l"
