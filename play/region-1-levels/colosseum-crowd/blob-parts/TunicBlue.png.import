@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fep1m3fu2qog"
-path="res://.godot/imported/TunicRed.png-c678d90feda566ad33ff7a4c98abed2a.ctex"
+uid="uid://bv8ia5hck64ne"
+path="res://.godot/imported/TunicBlue.png-7a80e6ea461dc25149046121589ceb79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://colosseum-crowd/blob-parts/TunicRed.png"
-dest_files=["res://.godot/imported/TunicRed.png-c678d90feda566ad33ff7a4c98abed2a.ctex"]
+source_file="res://play/region-1-levels/colosseum-crowd/blob-parts/TunicBlue.png"
+dest_files=["res://.godot/imported/TunicBlue.png-7a80e6ea461dc25149046121589ceb79.ctex"]
 
 [params]
 

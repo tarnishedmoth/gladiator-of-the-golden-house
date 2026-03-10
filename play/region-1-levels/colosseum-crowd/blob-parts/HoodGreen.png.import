@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://copkb058mk64e"
-path="res://.godot/imported/bodyTone2.png-5049f0677e336e0e8c0501f901d99907.ctex"
+uid="uid://decuiekfgn5cl"
+path="res://.godot/imported/HoodGreen.png-2fe9ed693c0f85304ac643091c86696b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://colosseum-crowd/blob-parts/bodyTone2.png"
-dest_files=["res://.godot/imported/bodyTone2.png-5049f0677e336e0e8c0501f901d99907.ctex"]
+source_file="res://play/region-1-levels/colosseum-crowd/blob-parts/HoodGreen.png"
+dest_files=["res://.godot/imported/HoodGreen.png-2fe9ed693c0f85304ac643091c86696b.ctex"]
 
 [params]
 

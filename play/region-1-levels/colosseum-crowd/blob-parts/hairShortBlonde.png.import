@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://behufv1npd8hl"
-path="res://.godot/imported/bodyTone3.png-473c07d6a589a7a165f8c27b2f3dc54a.ctex"
+uid="uid://nfsnyc1odong"
+path="res://.godot/imported/hairShortBlonde.png-5abb62d13bbbf4a956067d3784f484e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://colosseum-crowd/blob-parts/bodyTone3.png"
-dest_files=["res://.godot/imported/bodyTone3.png-473c07d6a589a7a165f8c27b2f3dc54a.ctex"]
+source_file="res://play/region-1-levels/colosseum-crowd/blob-parts/hairShortBlonde.png"
+dest_files=["res://.godot/imported/hairShortBlonde.png-5abb62d13bbbf4a956067d3784f484e9.ctex"]
 
 [params]
 

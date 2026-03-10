@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmpw14d5sxl6p"
-path="res://.godot/imported/HoodRed.png-afde71215c3b1ff23b45af72072515a1.ctex"
+path="res://.godot/imported/HoodRed.png-237ef4e89073fd03e6ffcd9d83c02fe2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://colosseum-crowd/blob-parts/HoodRed.png"
-dest_files=["res://.godot/imported/HoodRed.png-afde71215c3b1ff23b45af72072515a1.ctex"]
+source_file="res://play/region-1-levels/colosseum-crowd/blob-parts/HoodRed.png"
+dest_files=["res://.godot/imported/HoodRed.png-237ef4e89073fd03e6ffcd9d83c02fe2.ctex"]
 
 [params]
 

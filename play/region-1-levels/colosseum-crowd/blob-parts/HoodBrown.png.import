@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg2ioyvktah0t"
-path="res://.godot/imported/TogaBlue.png-fd818fa5646adbc8161d4ed563b5fa40.ctex"
+uid="uid://djogisxpeovu3"
+path="res://.godot/imported/HoodBrown.png-8a22afc2fa1038b1ab6388ce33ee8895.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://colosseum-crowd/blob-parts/TogaBlue.png"
-dest_files=["res://.godot/imported/TogaBlue.png-fd818fa5646adbc8161d4ed563b5fa40.ctex"]
+source_file="res://play/region-1-levels/colosseum-crowd/blob-parts/HoodBrown.png"
+dest_files=["res://.godot/imported/HoodBrown.png-8a22afc2fa1038b1ab6388ce33ee8895.ctex"]
 
 [params]
 

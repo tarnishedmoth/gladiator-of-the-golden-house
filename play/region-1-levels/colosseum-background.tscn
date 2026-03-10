@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dcuxaplede7yk" path="res://play/region-1-levels/colosseum-background-layer1.png" id="1_v3s0n"]
 [ext_resource type="PackedScene" uid="uid://blebayxrcyshs" path="res://play/scrolling_clouds.tscn" id="2_2426h"]
-[ext_resource type="Script" uid="uid://c1mla0ywbxk60" path="res://colosseum-crowd/crowd.gd" id="3_2rg4j"]
+[ext_resource type="Script" uid="uid://c1mla0ywbxk60" path="res://play/region-1-levels/colosseum-crowd/crowd.gd" id="3_2rg4j"]
 
 [node name="BackgroundColosseum" type="Sprite2D" unique_id=768298569]
 texture = ExtResource("1_v3s0n")

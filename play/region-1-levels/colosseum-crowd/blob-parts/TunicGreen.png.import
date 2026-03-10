@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0uagkahvaj7t"
-path="res://.godot/imported/hairLongBlonde.png-8bffd7d132d49c9fa90c3839227a33c5.ctex"
+uid="uid://bxy0r10dgjswc"
+path="res://.godot/imported/TunicGreen.png-3da70f32c88a14c8a3c5b6047fd5d725.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://colosseum-crowd/blob-parts/hairLongBlonde.png"
-dest_files=["res://.godot/imported/hairLongBlonde.png-8bffd7d132d49c9fa90c3839227a33c5.ctex"]
+source_file="res://play/region-1-levels/colosseum-crowd/blob-parts/TunicGreen.png"
+dest_files=["res://.godot/imported/TunicGreen.png-3da70f32c88a14c8a3c5b6047fd5d725.ctex"]
 
 [params]
 
