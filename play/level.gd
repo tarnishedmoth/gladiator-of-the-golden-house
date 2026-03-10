@@ -20,7 +20,7 @@ signal current_director_changed(director: Director)
 ## Static instance, we should only have one Level in the scene tree at any time.
 static var instance: Level:
 	set(value):
-		if instance != null:
+		if value != null && instance != null:
 			assert(
 				not (is_instance_valid(instance) and not instance.is_queued_for_deletion()),
 				"More than one instance of Level exists."
@@ -121,6 +121,10 @@ func _apply_elapsed_play_time():
 	
 func _enter_tree() -> void:
 	instance = self
+	
+func _exit_tree() -> void:
+	if instance == self:
+		instance = null
 
 func _ready() -> void:
 	if VERBOSE: p("Loaded, setting up game.")
