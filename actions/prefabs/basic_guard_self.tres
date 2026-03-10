@@ -10,5 +10,4 @@ status = ExtResource("3_ldrf1")
 ui_title = "Guard"
 ui_description = "Block incoming damage."
 energy_cost = 1
-debug = true
 metadata/_custom_type_script = "uid://ic0qko6fd58l"

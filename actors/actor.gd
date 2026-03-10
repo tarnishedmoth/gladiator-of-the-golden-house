@@ -25,6 +25,8 @@ func get_action_queue() -> ActionQueue: return action_queue
 var status_manager: StatusManager
 func get_status_manager() -> StatusManager: return status_manager
 
+var sfx: ActorSfxHandler
+
 @export var ui_name: String ## Shown in Hover Panel
 @export var ui_subtitle: String ## (Optional) Shown in hover panel
 @export_multiline() var ui_description: String ## (Optional) Shown in Hover Panel
@@ -108,6 +110,10 @@ func _on_action_queue_finished() -> void:
 
 func reset_action_count() -> void:
 	action_count = 0
+	
+func play_sfx(sound: ActorSfxHandler.Sounds) -> void:
+	if sfx:
+		sfx.play(sound)
 
 #endregion
 
@@ -133,10 +139,13 @@ func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
 	current_tile_coords = coords
 	var move_tween := create_tween()
 	move_tween.set_trans(Tween.TRANS_QUAD)
-
-	var duration_of_movement: float = 0.75 ## TODO should probably depend on distance covered
+	
+	#var distance_covered: float = (global_position - get_global_position_at(map, coords)).length()
+	var duration_of_movement: float = 0.5 # * distance_covered
 	move_tween.tween_property(self, ^"global_position", get_global_position_at(map, coords), duration_of_movement)
 	move_tween.tween_callback(animation_finished.emit)
+	
+	play_sfx(ActorSfxHandler.Sounds.MOVE)
 
 ## Sets [member facing]. North is the default value.
 func set_facing(cardinal_direction: Facing.Cardinal) -> void:
@@ -195,13 +204,20 @@ func take_damage(damage: int) -> DamageResult:
 	##loop through status effects to recalculate damage result
 	var unblocked_damage = status_manager.on_take_damage(damage)
 	var damage_result := DamageResult.new(damage - unblocked_damage, take_direct_damage(unblocked_damage))
+	
+	#if damage_result.negated > 0:
+		#play_sfx(ActorSfxHandler.Sounds.BLOCK)
+	
 	return damage_result
 	
 func take_direct_damage(damage: int) -> int:
-	var damage_result = status_manager.on_take_direct_damage(damage)
+	var damage_result: int = status_manager.on_take_direct_damage(damage)
 	
 	if debug:
-		p("%s incoming direct damage." % [damage_result]) 
+		p("%s incoming direct damage." % [damage_result])
+		
+	if damage_result > 0:
+		play_sfx(ActorSfxHandler.Sounds.GET_HIT)
 	
 	health -= damage_result
 	health = maxi(0, health)

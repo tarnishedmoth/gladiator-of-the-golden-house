@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bg6bvpn5h72gn"]
+
+[ext_resource type="AudioStream" uid="uid://dboj3iiv65h2" path="res://sfx/block.wav" id="1_5p8d1"]
+[ext_resource type="Script" uid="uid://b8lempy0ri3x2" path="res://sfx/actor_sfx.gd" id="1_dugws"]
+[ext_resource type="AudioStream" uid="uid://d031isb3scgpj" path="res://sfx/swoosh_1.wav" id="1_nue8q"]
+[ext_resource type="AudioStream" uid="uid://bdgcc55bk3k1s" path="res://sfx/player-move.wav" id="1_sqj4r"]
+[ext_resource type="AudioStream" uid="uid://7d08ngasojl3" path="res://sfx/hit_short.wav" id="2_3jmxn"]
+[ext_resource type="AudioStream" uid="uid://1shnb2yv6kp0" path="res://sfx/swoosh_2.wav" id="2_ysxt7"]
+[ext_resource type="AudioStream" uid="uid://slvse8dx30jn" path="res://sfx/swoosh_3.wav" id="3_sqj4r"]
+[ext_resource type="AudioStream" uid="uid://hemxsgaev825" path="res://sfx/swoosh_4.wav" id="4_dugws"]
+[ext_resource type="AudioStream" uid="uid://dk5w7uote8c4x" path="res://sfx/swoosh_5.wav" id="5_37hkm"]
+[ext_resource type="AudioStream" uid="uid://cfqm0uuxr7bkw" path="res://sfx/swoosh_6.wav" id="6_h0c5d"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dugws"]
+random_pitch = 1.0905077
+streams_count = 1
+stream_0/stream = ExtResource("1_sqj4r")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ptrhp"]
+streams_count = 6
+stream_0/stream = ExtResource("1_nue8q")
+stream_1/stream = ExtResource("2_ysxt7")
+stream_2/stream = ExtResource("3_sqj4r")
+stream_3/stream = ExtResource("4_dugws")
+stream_4/stream = ExtResource("5_37hkm")
+stream_5/stream = ExtResource("6_h0c5d")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ysxt7"]
+random_pitch = 1.0842268
+streams_count = 1
+stream_0/stream = ExtResource("1_5p8d1")
+
+[node name="ActorSfx" type="Node2D" unique_id=1664019728]
+script = ExtResource("1_dugws")
+
+[node name="Move" type="AudioStreamPlayer2D" parent="." unique_id=903723637]
+stream = SubResource("AudioStreamRandomizer_dugws")
+max_polyphony = 2
+bus = &"Sfx"
+
+[node name="Attack" type="AudioStreamPlayer2D" parent="." unique_id=1189287551]
+stream = SubResource("AudioStreamRandomizer_ptrhp")
+max_polyphony = 2
+bus = &"Sfx"
+
+[node name="GetHit" type="AudioStreamPlayer2D" parent="." unique_id=304752993]
+stream = ExtResource("2_3jmxn")
+volume_db = -3.0
+max_polyphony = 2
+bus = &"Sfx"
+
+[node name="Block" type="AudioStreamPlayer2D" parent="." unique_id=1082142148]
+stream = SubResource("AudioStreamRandomizer_ysxt7")
+volume_db = 5.0
+max_polyphony = 2
+bus = &"Sfx"

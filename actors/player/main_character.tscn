@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cpmor4ij3s6kx" path="res://actors/actor.gd" id="1_ng02u"]
 [ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="2_3m1oj"]
+[ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="3_hlp3v"]
 
 [node name="MainCharacter" type="Node2D" unique_id=360471847]
 script = ExtResource("1_ng02u")
@@ -13,3 +14,5 @@ metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=503278960]
 self_modulate = Color(0.108270444, 0.74155116, 0.77216226, 1)
 texture = ExtResource("2_3m1oj")
+
+[node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("3_hlp3v")]

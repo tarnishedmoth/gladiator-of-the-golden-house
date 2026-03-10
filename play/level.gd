@@ -88,9 +88,9 @@ static func get_overlap_description() -> String:
 	return ", ".join(parts)
 	
 static func get_hud() -> LevelHUD:
-	var hud = get_instance().hud
-	assert(hud != null and is_instance_valid(hud))
-	return hud
+	var _hud = get_instance().hud
+	assert(_hud != null and is_instance_valid(_hud))
+	return _hud
 
 @export var base_tile_map_layer: TileMapLayer
 @export var tile_interactor: TileInteractor ## This is used for detecting mouse input.

@@ -4,6 +4,7 @@ class_name StatusDefense extends Status
 
 
 func on_take_damage(damage:int) -> int:
+	_actor.play_sfx(ActorSfxHandler.Sounds.BLOCK)
 	return (reduce_damage(damage))
 	
 func reduce_damage(incoming_damage:int) -> int:

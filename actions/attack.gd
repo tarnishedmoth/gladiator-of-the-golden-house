@@ -13,6 +13,7 @@ func enter(from: ResourceState = null) -> void:
 		p("Attacking!")
 		
 		## run animations etc here
+		_actor.play_sfx(ActorSfxHandler.Sounds.ATTACK)
 		_get_affected_and_deal_damage()
 	else:
 		push_error("No actor configured to run action.")
@@ -36,7 +37,7 @@ func _get_affected_and_deal_damage() -> void:
 			var damage_result: Actor.DamageResult = found_actor.take_damage(modified_damage)
 			
 			if debug: p(
-				"Hit %s with %s base damage, %s modified damage.\n%s damage was negated, %s damage was taken directly." % [found_actor.name, damage, modified_damage, damage_result.negated, damage_result.direct]
+				"Hit %s with %s/%s (base/modified) damage.\n%s damage was negated, %s damage was taken directly." % [found_actor.name, damage, modified_damage, damage_result.negated, damage_result.direct]
 				)
 			
 			_actor._on_damage_dealt(damage_result)
