@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://fxnqdsuaknig"]
 
 [ext_resource type="PackedScene" uid="uid://gpnw6bok7ngf" path="res://play/region-1-levels/inheritable-level_colosseum.tscn" id="1_ki2ix"]
-[ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://input/ai/ai_director.gd" id="2_k8ka1"]
+[ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="2_k8ka1"]
 [ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="3_fys54"]
-[ext_resource type="PackedScene" uid="uid://bet8eq50pbkqf" path="res://input/player/class_a.tscn" id="4_gdvfg"]
+[ext_resource type="PackedScene" uid="uid://bet8eq50pbkqf" path="res://directors/player/class_a.tscn" id="4_gdvfg"]
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="5_ksudi"]
 [ext_resource type="Resource" uid="uid://cjec684q3sb36" path="res://actions/prefabs/player/class-a_swipe.tres" id="6_p8g2x"]
 [ext_resource type="Resource" uid="uid://ddgm6fspawicj" path="res://actions/prefabs/player/class-a_slash.tres" id="7_rkfy4"]
