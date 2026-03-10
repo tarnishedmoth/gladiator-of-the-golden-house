@@ -1,12 +1,15 @@
 class_name AIActor extends Actor
 
+## Base class for actors with AI behaviors. Extend this class and override its methods to implement
+## unique behaviors. This base implementation simply picks randomly from its list of usable actions.
+
 @export var usable_actions: Array[Action] ## TEST
+@export var actions_to_queue_this_turn: int = 1
 
 func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> void:
 	var queue: Array[Action]
-
-	var to_queue: int = 1
-	for i in to_queue:
+	
+	for i in actions_to_queue_this_turn:
 		queue.append(choose_action(claimed_tiles))
 
 	append_actions_to_queue(queue)
