@@ -103,6 +103,9 @@ func run_action(action: Action) -> void: ## Immediately runs one action (and any
 		push_warning("Action queue is apparently running the queue / Check for bad state?")
 	action_count += 1
 	action_queue.run_action(action)
+
+func clear_action_queue() -> void:
+	action_queue.clear_queue()
 	
 func _on_action_queue_finished() -> void:
 	if emit_actions_finished_signal:

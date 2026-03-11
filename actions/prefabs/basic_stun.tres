@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ActionApplyStatusPattern" format=3 uid="uid://v55ki5jxlh1r"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_nk7vi"]
+[ext_resource type="Script" uid="uid://k4rqrulmvg3t" path="res://actions/apply_status_pattern.gd" id="2_wdq5y"]
+[ext_resource type="Resource" uid="uid://r2dtyr3rwvc8" path="res://status-effects/prefabs/stun.tres" id="3_nk7vi"]
+
+[resource]
+script = ExtResource("2_wdq5y")
+pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
+status = ExtResource("3_nk7vi")
+ui_title = "Stun"
+ui_description = "Stun 1 enemy"
+energy_cost = 2
+metadata/_custom_type_script = "uid://k4rqrulmvg3t"

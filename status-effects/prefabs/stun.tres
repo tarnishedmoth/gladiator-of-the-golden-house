@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="StatusEnemyStun" format=3 uid="uid://r2dtyr3rwvc8"]
+
+[ext_resource type="Script" uid="uid://brbcp6fwlwsmu" path="res://status-effects/enemy_stun_status.gd" id="1_ayotd"]
+
+[resource]
+script = ExtResource("1_ayotd")
+on_start_behavior = 0
+on_end_behavior = 1
+effect_points = 2
+ui_name = "Stun"
+ui_description = "Stunned for one turn"

@@ -43,6 +43,9 @@ func run_action(new_action: Action = null, source: Action = null) -> void:
 		new_action.finished.connect(_on_action_finished, ConnectFlags.CONNECT_ONE_SHOT)
 		new_action.process(true)
 		new_action.enter_with(actioneer, source)
+
+func clear_queue() -> void:
+	queue.clear()
 		
 	
 ## If chain_next is empty, the next item in the queue, if any, will be popped.
