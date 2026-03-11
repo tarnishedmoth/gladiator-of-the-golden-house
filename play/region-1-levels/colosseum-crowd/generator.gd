@@ -33,8 +33,12 @@ func make_blob() -> void:
 	_hair.texture = hair.pick_random()
 	_clothes.texture = clothes.pick_random()
 	
-	if rand_bool():
-		_clothes.flip_h = !_clothes.flip_h
+	if rand_bool(): ## Flip clothes sometimes
+		#_clothes.flip_h = !_clothes.flip_h
+		## New implementation for blob oven baker
+		var flip_clothes: Image = _clothes.texture.get_image()
+		flip_clothes.flip_x()
+		_clothes.texture = ImageTexture.create_from_image(flip_clothes)
 
 ## Render the layered sprites down into one texture to reduce draw calls bro.
 func bake_blob() -> void:
