@@ -54,16 +54,17 @@ texture = SubResource("GradientTexture2D_8i360")
 
 [node name="Hood" type="Sprite2D" parent="." unique_id=2103348007]
 unique_name_in_owner = true
-texture = ExtResource("2_falek")
+texture = ExtResource("4_1akxc")
 
 [node name="Body" type="Sprite2D" parent="." unique_id=1093287810]
 unique_name_in_owner = true
-texture = ExtResource("3_2ckvu")
+texture = ExtResource("7_1ql82")
 
 [node name="Clothes" type="Sprite2D" parent="." unique_id=989347492]
 unique_name_in_owner = true
-texture = ExtResource("5_v83aa")
+texture = ExtResource("23_sl0br")
+flip_h = true
 
 [node name="Hair" type="Sprite2D" parent="." unique_id=1423760829]
 unique_name_in_owner = true
-texture = ExtResource("14_txpgw")
+texture = ExtResource("13_q55b7")

@@ -23,7 +23,8 @@ var baked: Sprite2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	make_blob()
-	bake_blob()
+	if not Engine.is_editor_hint():
+		bake_blob()
 
 ## Randomizes the blob bro.
 func make_blob() -> void:
