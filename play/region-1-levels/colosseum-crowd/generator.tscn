@@ -24,9 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dh1op743k501x" path="res://play/region-1-levels/colosseum-crowd/blob-parts/TunicBrown.png" id="22_hch7e"]
 [ext_resource type="Texture2D" uid="uid://bxy0r10dgjswc" path="res://play/region-1-levels/colosseum-crowd/blob-parts/TunicGreen.png" id="23_sl0br"]
 [ext_resource type="Texture2D" uid="uid://fep1m3fu2qog" path="res://play/region-1-levels/colosseum-crowd/blob-parts/TunicRed.png" id="24_e5k1p"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w0ltm"]
-blend_mode = 3
+[ext_resource type="Material" uid="uid://ba42heu1d306" path="res://play/region-1-levels/colosseum-crowd/blob-parts/shadow_canvas-item-material.tres" id="25_rooen"]
 
 [sub_resource type="Gradient" id="Gradient_5h1ap"]
 offsets = PackedFloat32Array(0.18604651, 1)
@@ -48,9 +46,9 @@ body = Array[Texture2D]([ExtResource("3_2ckvu"), ExtResource("7_1ql82"), ExtReso
 hair = Array[Texture2D]([ExtResource("4_tjihn"), ExtResource("10_gunm2"), ExtResource("11_f2aqx"), ExtResource("12_u4flk"), ExtResource("13_q55b7"), ExtResource("14_txpgw"), ExtResource("15_3xufl"), ExtResource("16_1dn7d")])
 clothes = Array[Texture2D]([ExtResource("5_v83aa"), ExtResource("18_wky8v"), ExtResource("19_xhv7j"), ExtResource("20_ybc34"), ExtResource("21_x4wcv"), ExtResource("22_hch7e"), ExtResource("23_sl0br"), ExtResource("24_e5k1p")])
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=702592995]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=702592995]
 z_index = -1
-material = SubResource("CanvasItemMaterial_w0ltm")
+material = ExtResource("25_rooen")
 position = Vector2(0, 14)
 texture = SubResource("GradientTexture2D_8i360")
 
@@ -60,13 +58,12 @@ texture = ExtResource("2_falek")
 
 [node name="Body" type="Sprite2D" parent="." unique_id=1093287810]
 unique_name_in_owner = true
-texture = ExtResource("7_1ql82")
+texture = ExtResource("3_2ckvu")
 
 [node name="Clothes" type="Sprite2D" parent="." unique_id=989347492]
 unique_name_in_owner = true
-texture = ExtResource("19_xhv7j")
-flip_h = true
+texture = ExtResource("5_v83aa")
 
 [node name="Hair" type="Sprite2D" parent="." unique_id=1423760829]
 unique_name_in_owner = true
-texture = ExtResource("11_f2aqx")
+texture = ExtResource("14_txpgw")
