@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c67vjko6cm0ib"]
+
+[ext_resource type="Shader" uid="uid://upex6rhcffcd" path="res://play/region-1-levels/banners-and-flags/waving-banner-shader.gdshader" id="1_b2pqx"]
+
+[resource]
+shader = ExtResource("1_b2pqx")
+shader_parameter/amplitude = 4.00000019
+shader_parameter/frequency = -15.999997720000003
+shader_parameter/speed = 1.0000000475
+shader_parameter/pole_side = 3
+shader_parameter/fixed_edge_range = 0.750000035625

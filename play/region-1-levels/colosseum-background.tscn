@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://c1mla0ywbxk60" path="res://play/region-1-levels/colosseum-crowd/crowd.gd" id="3_2rg4j"]
 [ext_resource type="Material" uid="uid://chc2uvbtjqtj8" path="res://play/region-1-levels/banners-and-flags/waving-banner-material.tres" id="4_2rg4j"]
 [ext_resource type="Texture2D" uid="uid://du84d6vu47bti" path="res://play/region-1-levels/banners-and-flags/banners-top.png" id="4_2426h"]
+[ext_resource type="Material" uid="uid://c67vjko6cm0ib" path="res://play/region-1-levels/banners-and-flags/waving-flag-material.tres" id="4_qq43s"]
+[ext_resource type="Texture2D" uid="uid://b5pw00yp2hvie" path="res://play/region-1-levels/banners-and-flags/flag.png" id="5_xp1k0"]
 
 [node name="BackgroundColosseum" type="Sprite2D" unique_id=768298569]
 texture = ExtResource("1_v3s0n")
@@ -52,6 +54,46 @@ color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(0, -222, 18, -222, 36, -221, 56, -219, 75, -218, 94, -215, 118, -211, 141, -206, 162, -200, 185, -193, 204, -185, 229, -176, 250, -166, 276, -151, 293, -139, 310, -126, 323, -113, 343, -98, 355, -86, 368, -69, 381, -50, 394, -26, 401, -9, 406, 19, 407, 36, 410, 60.276245, 409, 81, 409, 100, 406, 114, 400, 135, 393, 149, 385, 167, 377, 179, 364, 196, 352, 210, 338, 224, 325, 235, 312, 249, 298, 260, 279, 273, 265, 280, 250, 291, 223, 301, 208, 308, 193, 315, 175, 319, 155, 325, 122, 333, 105, 336, 91, 338, 73, 341, 50, 341, 28, 342, 14, 344, -8, 345, -34, 344, -59, 343, -75, 340, -96, 339, -119, 336, -136, 331, -173, 322, -188, 316, -207, 307, -229, 300, -256, 288, -273, 277, -288, 271, -299, 261, -310, 250, -324, 237, -336, 225, -350, 210, -370, 186, -376, 177, -383, 165, -389, 154, -398, 127, -401, 113, -405, 87, -407, 69, -407, 55, -407, 43, -400, 10, -399, -5, -394, -22, -388, -33, -380, -50, -362, -75, -348, -96, -324, -118, -306, -132, -289, -144, -272, -152, -264, -160, -246, -170, -226, -178, -216, -184, -204, -188, -169, -200, -153, -204, -142, -209, -131, -211, -112, -214, -84, -218, -67, -221, -46, -222, -33, -222, -19, -222)
 
 [node name="BannersAndFlags" type="Node2D" parent="." unique_id=360925736]
+
+[node name="flag1" type="Sprite2D" parent="BannersAndFlags" unique_id=1537404474]
+material = ExtResource("4_qq43s")
+position = Vector2(-78, -440)
+texture = ExtResource("5_xp1k0")
+
+[node name="flag2" type="Sprite2D" parent="BannersAndFlags" unique_id=1336859878]
+material = ExtResource("4_qq43s")
+position = Vector2(-14, -440)
+texture = ExtResource("5_xp1k0")
+
+[node name="flag3" type="Sprite2D" parent="BannersAndFlags" unique_id=1813095569]
+material = ExtResource("4_qq43s")
+position = Vector2(50, -440)
+texture = ExtResource("5_xp1k0")
+
+[node name="flag4" type="Sprite2D" parent="BannersAndFlags" unique_id=1936049882]
+material = ExtResource("4_qq43s")
+position = Vector2(114, -440)
+texture = ExtResource("5_xp1k0")
+
+[node name="flag5" type="Sprite2D" parent="BannersAndFlags" unique_id=81586366]
+material = ExtResource("4_qq43s")
+position = Vector2(-244, -152)
+texture = ExtResource("5_xp1k0")
+
+[node name="flag6" type="Sprite2D" parent="BannersAndFlags" unique_id=232149832]
+material = ExtResource("4_qq43s")
+position = Vector2(-244, 250)
+texture = ExtResource("5_xp1k0")
+
+[node name="flag7" type="Sprite2D" parent="BannersAndFlags" unique_id=1685922246]
+material = ExtResource("4_qq43s")
+position = Vector2(280, -152)
+texture = ExtResource("5_xp1k0")
+
+[node name="flag8" type="Sprite2D" parent="BannersAndFlags" unique_id=338705284]
+material = ExtResource("4_qq43s")
+position = Vector2(280, 250)
+texture = ExtResource("5_xp1k0")
 
 [node name="banners-top-left" type="Sprite2D" parent="BannersAndFlags" unique_id=535349915]
 material = ExtResource("4_2rg4j")
