@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="15_bvluy"]
 [ext_resource type="PackedScene" uid="uid://bs7yj78ykeu7o" path="res://play/hud/hud.tscn" id="16_ocufg"]
 [ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="17_x5l3d"]
-[ext_resource type="PackedScene" uid="uid://btt45gb4p850m" path="res://camera/camera.tscn" id="18_jvvke"]
+[ext_resource type="PackedScene" uid="uid://btt45gb4p850m" path="res://play/camera/camera.tscn" id="18_jvvke"]
 [ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="18_r7mky"]
 [ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="19_kxku1"]
 

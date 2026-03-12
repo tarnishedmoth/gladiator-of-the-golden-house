@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="1_1egg1"]
 [ext_resource type="Resource" uid="uid://b7xlbrug2ge54" path="res://actions/prefabs/player/class-a_indomitable-spirit.tres" id="2_h3ox8"]
-[ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://stance/stance.gd" id="2_siod4"]
+[ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://actions/stance/stance.gd" id="2_siod4"]
 [ext_resource type="Resource" uid="uid://cv7qvfq24e2jk" path="res://actions/prefabs/player/class-a_jab.tres" id="3_c5312"]
 [ext_resource type="Resource" uid="uid://cf8qxjti6wfjq" path="res://actions/prefabs/player/class-a_brace.tres" id="4_bwu7t"]
 [ext_resource type="Resource" uid="uid://d21lb2y7se50p" path="res://actions/prefabs/player/class-a_tight-guard.tres" id="5_backn"]

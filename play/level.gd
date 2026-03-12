@@ -197,6 +197,11 @@ func _on_turn_taken(director: Director) -> void:
 func pause_game(paused: bool) -> void:
 	playtime_counter_running = not paused
 	## TODO
+	
+
+func save_persistent_actors_data() -> void:
+	for actor in get_all_actors_in_play_order():
+		actor.push_persistent_data()
 
 
 var tile_coords_debug_overlay_elements: Array[Node]
@@ -242,15 +247,13 @@ func check_objectives() -> void:
 	await get_tree().process_frame
 	
 	if check_win_condition() == true:
-		#pause game
+		save_persistent_actors_data()
 		continue_menu.show()
 		print("Win")
-		pass
+		
 	if check_lose_condition() == true:
-		#pause game
 		retry_menu.show() #launch retry menu 
 		print("Lose")
-		pass
 
 func check_win_condition() -> bool:
 	var dirs: Array[Director] = get_directors()

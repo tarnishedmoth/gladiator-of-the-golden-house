@@ -75,6 +75,9 @@ func _ready() -> void:
 		assert(instanced_root is SplashMenu)
 		await instanced_root.finished
 		
+	## HACK TESTING REMOVE ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	PlayerData.new_playthrough("Big bad developer", "doesntdoanythingyet")
+	
 	if load_to_developer_menu:
 		change_scene(dev_main_menu_scene)
 	else:

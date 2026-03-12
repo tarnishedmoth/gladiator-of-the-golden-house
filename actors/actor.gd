@@ -1,9 +1,20 @@
 class_name Actor extends Node2D
 
+## A thing that does things when things tell it it can, and also what things to do.
+## 
+## This guy can do things by using an [Action].
+## Actions are responsible for making an Actor actually *do* anything, often by calling
+## methods in [Actor].
+## We use a state machine called an [ActionQueue].
+## Generally, actors don't do anything until a [Director] tells them that they can. See [method on_turn_start].
+## Directors don't micro-manage Actors, though. See [AIActor] for more of that.
+
 @export var debug: bool = true
 func p(args):
 	print_rich("[bgcolor=grey][color=black]", "Actor %s : " % name, args)
 
+
+## Level related functionality
 const SHOW_DEBUG_FACING_INDICATOR: bool = true
 const DEBUG_FACING_INDICATOR_SCENE = preload("uid://b3kl75n4nwdge")
 var debug_facing_indicator: Node2D ## instantiated at runtime
@@ -19,14 +30,64 @@ var current_tile_coords: Vector2i
 var tile_map: TileMapLayer
 var director: Director
 
+
+## Managers (objects that do things)
 var action_queue: ActionQueue
-func get_action_queue() -> ActionQueue: return action_queue
+func get_action_queue() -> ActionQueue: ## Use when you dont expect to handle null.
+	assert(action_queue)
+	return action_queue
 
 var status_manager: StatusManager
-func get_status_manager() -> StatusManager: return status_manager
+func get_status_manager() -> StatusManager: ## Use when you dont expect to handle null.
+	assert(status_manager)
+	return status_manager
 
 var sfx: ActorSfxHandler
+func get_sfx_handler() -> ActorSfxHandler:
+	assert(sfx)
+	return sfx
 
+
+## Save / Load
+class PersistentActorData extends Resource:
+	var max_health: int
+	var current_health: int
+	var starting_energy: int
+	var starting_status_effects: Array[Status]
+	
+	var ui_name: String
+	var ui_subtitle: String
+	var ui_description: String
+	
+	func set_stats_from_actor(actor: Actor, include_ui: bool = false) -> void:
+		max_health = actor.starting_health
+		current_health = actor.health
+		starting_energy = actor.starting_energy
+		
+		if include_ui:
+			ui_name = actor.ui_name
+			ui_subtitle = actor.ui_subtitle
+			ui_description = actor.ui_description
+			
+	func persist_status(status: Status) -> void:
+		starting_status_effects.append(status)
+
+var persistent_actor_data: PersistentActorData
+@export_group("Persistent Data", "persistent_")
+@export var persistent_data_key: StringName ## Only for story characters (player, etc)
+
+func set_stats_from_data(data: PersistentActorData = persistent_actor_data) -> void:
+	assert(data)
+	health = data.current_health
+	starting_energy = data.starting_energy
+
+func push_persistent_data() -> void:
+	if persistent_data_key:
+		assert(persistent_actor_data)
+		PlayerData.set_actor_data(persistent_data_key, persistent_actor_data)
+
+
+## Gameplay
 @export var ui_name: String ## Shown in Hover Panel
 @export var ui_subtitle: String ## (Optional) Shown in hover panel
 @export_multiline() var ui_description: String ## (Optional) Shown in Hover Panel
@@ -71,6 +132,17 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 		status_manager.free()
 	status_manager = StatusManager.new(self)
 	
+	if persistent_data_key:
+		persistent_actor_data = PlayerData.get_actor_data(persistent_data_key)
+		if persistent_actor_data:
+			set_stats_from_data()
+		else:
+			persistent_actor_data = PersistentActorData.new()
+			persistent_actor_data.set_stats_from_actor(self, true)
+			#PlayerData.set_actor_data(persistent_data_key, persistent_actor_data)
+			## We could register right away, but I think it's better to only do it when we finish a level.
+			## See method push_persistent_data().
+		
 	health = starting_health
 	energy = starting_energy
 	
@@ -207,9 +279,6 @@ func take_damage(damage: int) -> DamageResult:
 	##loop through status effects to recalculate damage result
 	var unblocked_damage = status_manager.on_take_damage(damage)
 	var damage_result := DamageResult.new(damage - unblocked_damage, take_direct_damage(unblocked_damage))
-	
-	#if damage_result.negated > 0:
-		#play_sfx(ActorSfxHandler.Sounds.BLOCK)
 	
 	return damage_result
 	

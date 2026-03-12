@@ -6,6 +6,7 @@
 
 [node name="MainCharacter" type="Node2D" unique_id=360471847]
 script = ExtResource("1_ng02u")
+persistent_data_key = &"You"
 ui_name = "You"
 starting_health = 100
 starting_energy = 5
