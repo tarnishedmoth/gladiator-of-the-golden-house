@@ -4,6 +4,7 @@ const HOLD_TIME_TO_END_TURN_EARLY: float = 1.5
 const STICKY_TILE_SELECT: bool = false
 const DESELECT_ON_REPEAT: bool = true
 
+
 var tile_map: TileMapLayer
 var tile_interactor: TileInteractor
 var latest_tile_coords: Vector2i = Vector2i.ZERO
@@ -27,6 +28,21 @@ var selected_actor: Actor:
 	set(v):
 		selected_actor = v
 		update_hud_actions_energy_check()
+
+const SELECTED_TILE_VISUAL_SCENE = preload("uid://b5dsq2oi2kchw")
+var _selected_tile_visual: Node2D
+func set_selected_tile_visual(to_show: bool) -> void:
+	if not to_show:
+		if _selected_tile_visual:
+			if _selected_tile_visual.visible:
+				_selected_tile_visual.hide()
+	else:
+		if not _selected_tile_visual:
+			_selected_tile_visual = SELECTED_TILE_VISUAL_SCENE.instantiate()
+			add_child(_selected_tile_visual)
+		_selected_tile_visual.show()
+		_selected_tile_visual.global_position = tile_map.to_global(tile_map.map_to_local(selected_tile))
+
 
 func _ready():
 	pass
@@ -116,22 +132,18 @@ func _on_interactor_tile_changed(new_coords: Vector2i) -> void:
 	latest_tile_coords = new_coords
 
 func _on_click_on_tile(tile_coords) -> void:
-	if DESELECT_ON_REPEAT && tile_coords == _last_selected_tile:
-		tile_coords = null ## Deselect
-
 	## We have our tile coordinates
 	selected_tile = tile_coords
 	if VERBOSE:
 		p("Selected tile: %s" % selected_tile)
 
 	if selected_tile != null: ## Null check
-		## Get TileData (just for UI for now)
 		#var tile_data: TileData = tile_interactor.get_tile_data(selected_tile) ## TODO this could handle land type
 
-		## Check for actor on tile
-		var actor_on_tile: Actor = Level.get_actor_at(selected_tile)
-		if VERBOSE && actor_on_tile:
-			p("Tile coords occupied by actor %s" % actor_on_tile)
+		## Check for actor on tile (testing)
+		#var actor_on_tile: Actor = Level.get_actor_at(selected_tile)
+		#if VERBOSE && actor_on_tile:
+			#p("Tile coords occupied by actor %s" % actor_on_tile)
 
 		## Behavior using this data
 		if is_active:
@@ -145,6 +157,17 @@ func _on_click_on_tile(tile_coords) -> void:
 					## Invalid play placement
 					if VERBOSE: p("Can't play that Action here.")
 					
+			else:
+				if DESELECT_ON_REPEAT && tile_coords == _last_selected_tile:
+					selected_tile = null ## Deselect
+					p("Same tile selected as last click--Deselecting.")
+					set_selected_tile_visual(false)
+					hud.show_hover_panel(false)
+				else:
+					hud.populate_hover_panel(selected_tile, Level.get_actor_at(selected_tile))
+					hud.show_hover_panel(true)
+					set_selected_tile_visual(true)
+				
 			## Tested working, but needs to be separated--presently this control scheme does not make sense.
 			## Thinking that changing selected actor should require pressing a button to highlight your available actors
 			#elif actor_on_tile and actor_on_tile in actors:
@@ -159,9 +182,8 @@ func _on_click_on_tile(tile_coords) -> void:
 			## It's not our turn
 			pass
 
-		hud.populate_hover_panel(selected_tile, actor_on_tile)
-		hud.show_hover_panel(true)
 	else:
+		set_selected_tile_visual(false)
 		hud.show_hover_panel(false)
 
 	_last_selected_tile = selected_tile
