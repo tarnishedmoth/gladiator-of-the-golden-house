@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ksdjo8qa17pc"]
 
 [ext_resource type="Script" uid="uid://cn5t7ncgbkn2q" path="res://menus/developer/dev_menu.gd" id="1_12ima"]
-[ext_resource type="PackedScene" uid="uid://fxnqdsuaknig" path="res://play/region-1-levels/region-1_level-1.tscn" id="2_aqm70"]
+[ext_resource type="PackedScene" uid="uid://d37cvlmrtp1ru" path="res://play/region-1-levels/region-1_level-1.tscn" id="2_aqm70"]
 [ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="3_4m0ib"]
 [ext_resource type="PackedScene" uid="uid://dnd0phjpvx727" path="res://play/test-levels/level-multiplayer.tscn" id="5_ycxai"]
 

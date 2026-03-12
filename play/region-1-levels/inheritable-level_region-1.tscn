@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dn85j1jxgk42"]
+
+[ext_resource type="PackedScene" uid="uid://dnwn75fwwq600" path="res://play/inheritable-level.tscn" id="1_elgb1"]
+[ext_resource type="PackedScene" uid="uid://3wrjbpemvs03" path="res://play/region-1-levels/colosseum-background.tscn" id="2_kgubw"]
+
+[node name="Level" unique_id=13868467 instance=ExtResource("1_elgb1")]
+
+[node name="BackgroundColosseum" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="0" unique_id=768298569 instance=ExtResource("2_kgubw")]
+position = Vector2(0, -66)
