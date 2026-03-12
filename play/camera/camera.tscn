@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://btt45gb4p850m"]
 
+[ext_resource type="Script" uid="uid://ksskg55rbpi1" path="res://play/camera/camera.gd" id="1_k632q"]
 [ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="1_lw1ob"]
 
 [sub_resource type="Animation" id="Animation_yp4h5"]
@@ -41,6 +42,7 @@ _data = {
 
 [node name="Camera" type="Camera2D" unique_id=280332911]
 editor_description = "Main camera"
+script = ExtResource("1_k632q")
 
 [node name="Vignette" parent="." unique_id=2143885651 instance=ExtResource("1_lw1ob")]
 offset_left = -480.0
