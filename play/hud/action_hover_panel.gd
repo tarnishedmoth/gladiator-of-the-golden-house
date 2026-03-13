@@ -1,9 +1,9 @@
 class_name HUDActionHoverPanel extends PanelContainer
 
-@export var description: RichTextLabel
 @export var title: RichTextLabel
+@export var action_image: TextureRect
+@export var description: RichTextLabel
 @export var energy_cost: RichTextLabel
-@export var button_icon: TextureRect
 @export var amount_text: RichTextLabel
 
 
@@ -13,7 +13,7 @@ func clear_all() -> void:
 	energy_cost.text = ""
 	description.text = ""
 	amount_text.text = ""
-	##button_icon.icon = null
+	action_image.texture = null
 
 func populate_using_action_data(action:Action)->void:
 	clear_all()
@@ -22,11 +22,11 @@ func populate_using_action_data(action:Action)->void:
 		title.append_text(TextUtils.bold(action.ui_title))
 	
 	if action.ui_description:
-		title.text = "[center]"
+		#description.text = "[center]"
 		description.text = action.ui_description
 	
 	if action.ui_icon:
-		button_icon.texture = action.ui_icon
+		action_image.texture = action.ui_icon
 	
 	if action.energy_cost > 0:
 		energy_cost.text = "[center]"
