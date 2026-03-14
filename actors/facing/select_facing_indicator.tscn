@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dtgl2ndfa7uub"]
+
+[ext_resource type="Texture2D" uid="uid://kx72cx15wv0" path="res://actors/facing/arrow head.png" id="1_11ydu"]
+
+[node name="DebugFacingIndicator" type="Node2D" unique_id=1440282865]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=518545386]
+texture = ExtResource("1_11ydu")
+offset = Vector2(0, -36)
