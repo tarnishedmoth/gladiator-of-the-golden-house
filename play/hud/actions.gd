@@ -57,6 +57,7 @@ func populate_actions(hand: Array[Action], selected_actor: Actor) -> void:
 	check_actions_disabled(selected_actor)
 	
 func check_actions_disabled(selected_actor: Actor) -> void:
+	actions_header.set_blips(selected_actor.energy)
 	for action in actions_in_hand:
 		action.disabled = not actions_in_hand[action].can_player_enter(selected_actor, true) if selected_actor else true
 
