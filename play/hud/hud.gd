@@ -97,6 +97,7 @@ func _on_action_hover_ended() -> void:
 
 
 func _on_current_director_changed(new_director: Director) -> void:
+	actions_panel.actions_header.set_blips(0)
 	end_turn_button.disabled = not new_director is Player
 
 const END_TURN_TEXT: String = "End Turn"
