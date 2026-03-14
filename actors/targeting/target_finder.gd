@@ -42,3 +42,31 @@ func translate_and_highlight_aoe_spots(pos: Vector2i, facing: int, pattern: Arra
 func clear_target_highlights():
 	for node in get_tree().get_nodes_in_group("target_highlights"):
 		node.queue_free()
+
+
+
+## Each property should be in absolute coordinates to simplify usage???
+class ImplicatedTiles:
+	var source: Vector2i ## To clearly show where the action's actor is
+	
+	var targeted: Array[Vector2i] ## Tiles where the action effect will be applied.
+	
+	var blockers: Array[Vector2i] ## Actor on tile. Not the same as an actor who would take damage.
+	var blocked: Array[Vector2i] ## Tiles where the action effect can not be applied.
+
+## We have an action, an actor, and a place where that actor would play this action.
+## We also can get all the other actors on the field via Level.
+## This should be all the information we need to project what happens when an action runs.
+## Probably need the Action itself to implement callbacks for pieces of this puzzle.
+func get_implicated_tiles(actor: Actor, action: Action, played_at_coords: Vector2i) -> ImplicatedTiles:
+	var tiles := ImplicatedTiles.new()
+	## TODO
+	
+	tiles.source = actor.current_tile_coords
+	tiles.targeted = action.get_targeted_tiles(played_at_coords, actor.facing)
+	
+	return tiles
+
+
+## What if instead, we use a single list of some class "ActionPlanVisual" and have different types that illustrate
+## their effect however they want. That way we can reuse representations without using inheritance.

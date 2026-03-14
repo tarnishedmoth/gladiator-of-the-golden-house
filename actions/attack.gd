@@ -14,6 +14,7 @@ func enter(from: ResourceState = null) -> void:
 		
 		## run animations etc here
 		_actor.play_sfx(ActorSfxHandler.Sounds.ATTACK)
+		await _actor.create_tween().tween_interval(0.5).finished ## let the sound play before hitting the griddy so to speak
 		_get_affected_and_deal_damage()
 	else:
 		push_error("No actor configured to run action.")
@@ -21,7 +22,8 @@ func enter(from: ResourceState = null) -> void:
 	exit()
 
 func _get_affected_and_deal_damage() -> void:
-	var targets: Array[Vector2i] = _actor.get_translated_pattern(pattern)
+	#var targets: Array[Vector2i] = _actor.get_translated_pattern(pattern)
+	var targets: Array[Vector2i] = get_targeted_tiles(_actor.current_tile_coords, _actor.facing)
 
 	if debug: p("Targeting %d tiles." % targets.size())
 
@@ -41,3 +43,6 @@ func _get_affected_and_deal_damage() -> void:
 				)
 			
 			_actor._on_damage_dealt(damage_result)
+
+func get_targeted_tiles(at_coords: Vector2i, facing: Facing.Cardinal) -> Array[Vector2i]:
+	return Facing.get_target_cells(at_coords, facing, pattern)

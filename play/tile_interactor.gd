@@ -72,7 +72,7 @@ func _process(_delta: float) -> void:
 
 func _render_held_action_projection(player: Player) -> void:
 	#print("Rerendering held action projection")
-	var implicated_tiles: Action.ImplicatedTiles = player.current_held_action.get_implicated_tiles(current_coords)
+	var implicated_tiles: Targeting.ImplicatedTiles = player.current_held_action.get_implicated_tiles(current_coords)
 	
 	TargetFinder.highlight_aoe_spots(implicated_tiles.effected)
 	for blocked in implicated_tiles.blocked:

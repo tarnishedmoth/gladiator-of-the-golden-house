@@ -59,6 +59,8 @@ func on_turn_end() -> void: ## Call super() if you override
 		OnStart.REMOVE_EFFECT:
 			remove_effect()
 
+## TODO add a flag for whether to actually execute reactions vs just return the modified data, maybe
+
 func on_take_damage(damage:int) -> int: ## Override me
 	return damage
 	
