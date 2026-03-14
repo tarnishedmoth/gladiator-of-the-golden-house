@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://rim8rln2dqsb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8l4kg"]
+font_size = 18
+
+[node name="PopupNumberIndicator" type="Label" unique_id=2084425927]
+custom_minimum_size = Vector2(48, 0)
+offset_right = 48.0
+offset_bottom = 23.0
+text = "14"
+label_settings = SubResource("LabelSettings_8l4kg")
+horizontal_alignment = 1

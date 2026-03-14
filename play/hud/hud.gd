@@ -1,6 +1,7 @@
 class_name LevelHUD extends CanvasLayer
 
 const SELECTED_ACTOR_ACTION_PANEL = preload("uid://dxvurd53homf")
+const POPUP_NUMBER_INDICATOR = preload("uid://rim8rln2dqsb")
 
 #static var instance: LevelHUD:
 	#set(v):
@@ -134,3 +135,37 @@ func set_end_turn_text(to_append = null) -> void:
 		else:
 			_to_append = to_append
 		end_turn_button.text = END_TURN_TEXT + " (" + (str(_to_append) if _to_append is not String else _to_append) + ")" ##lol
+
+var popups: Array[Label]
+func popup_label(text: Variant, re_parent: Node2D, recolor: Color = Color.WHITE) -> void:
+	var popup: Label = POPUP_NUMBER_INDICATOR.instantiate()
+	#popup.top_level = true
+	#popup.global_position = re_parent.global_position
+	popup.text = str(text) if not (text is String) else text
+	popup.modulate = recolor
+	
+	re_parent.add_child(popup)
+	
+	var _offset: Vector2 = Vector2.ZERO
+	for other in popups:
+		print("Checking %s" % other.global_position.distance_to(re_parent.global_position))
+		if other.global_position.distance_to(re_parent.global_position) < popup.size.y * 2.2:
+			_offset.y += popup.size.y
+			
+	popups.append(popup)
+	
+	popup.position -= popup.size / 2.0
+	
+	print(popup)
+	print(popup.position)
+	print(popup.global_position)
+	
+	popup.position += _offset
+	
+	print(popup)
+	print(popup.position)
+	print(popup.global_position)
+	
+	var t = Juice.flash(popup, Juice.PulsePresets.ThreeFast, recolor, Color.WHITE)
+	t.tween_callback(popups.erase.bind(popup))
+	t.tween_callback(popup.free)
