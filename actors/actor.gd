@@ -42,6 +42,8 @@ func get_status_manager() -> StatusManager: ## Use when you dont expect to handl
 	assert(status_manager)
 	return status_manager
 
+@export var speech_bubble: DialogueBubble
+
 var sfx: ActorSfxHandler
 func get_sfx_handler() -> ActorSfxHandler:
 	assert(sfx)
@@ -148,6 +150,8 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 		
 	health = starting_health
 	energy = starting_energy
+	if speech_bubble:
+		speech_bubble.speak("Ready Fight!")
 	
 	update_healthbar()
 	
@@ -155,6 +159,7 @@ func on_turn_start() -> void: ## Called by Director
 	reset_energy()
 	reset_action_count()
 	status_manager.on_turn_start()
+	
 	
 func on_turn_end() -> void: ## Called by Director
 	status_manager.on_turn_end()
