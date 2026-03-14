@@ -7,7 +7,7 @@ signal action_hover_ended()
 var actions_in_hand: Dictionary[ButtonWithBlips, Action] ## UI element in scene, Action resource from PlayerDirector
 
 @export var actions: VBoxContainer
-
+@onready var actions_header: ButtonWithBlips = %ActionsHeader
 
 func get_action_assigned_to(button: ButtonWithBlips) -> Action:
 	if button in actions_in_hand:
@@ -79,6 +79,7 @@ func _on_selected_actor_energy_changed(energy: int) -> void:
 	action_buttons_energy_check_set_disabled(energy)
 	
 func action_buttons_energy_check_set_disabled(energy: int) -> void:
+	actions_header.set_blips(energy)
 	for button in actions_in_hand:
 		var action: Action = get_action_assigned_to(button)
 		button.disabled = (action.energy_cost > energy) if action else true

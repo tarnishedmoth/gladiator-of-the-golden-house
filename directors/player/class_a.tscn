@@ -19,5 +19,6 @@ metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
 
 [node name="MainCharacter" parent="." unique_id=360471847 instance=ExtResource("2_klb6h")]
 ui_subtitle = "Class A"
-ui_description = "(replace me)"
+ui_description = "Defeat all enemies to win."
 starting_health = 80
+starting_energy = 3

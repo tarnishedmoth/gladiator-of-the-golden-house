@@ -26,3 +26,9 @@ facing = 5
 
 [node name="Player_ClassA" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=1133384730 instance=ExtResource("4_gdvfg")]
 starting_actions_deck = Array[ExtResource("5_ksudi")]([ExtResource("6_p8g2x"), ExtResource("7_rkfy4"), ExtResource("8_hd0lu")])
+
+[node name="BaseTileMapLayer" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="2" unique_id=1254354450]
+modulate = Color(0.57, 0.31159997, 0.11399999, 1)
+
+[node name="MouseFollower" parent="." index="3" unique_id=687351869]
+position = Vector2(57, 55)

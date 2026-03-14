@@ -57,4 +57,5 @@ func set_blips(value:int) -> void:
 			else:
 				assert(BLIP_PREFAB.can_instantiate())
 				var new_blip := BLIP_PREFAB.instantiate()
+				blips.append(new_blip)
 				blips_container.add_child(new_blip)
