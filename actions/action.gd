@@ -88,14 +88,14 @@ func set_target(target) -> void:
 	elif target is Vector2i:
 		_target = target
 
-func can_player_enter(actor: Actor) -> bool:
+func can_player_enter(actor: Actor, quiet: bool = false) -> bool:
 	cast_energy_cost_to_requirement()
 	for requirement: ActionRequirement in requirements:
 		if requirement.check(actor) == false:
-			if debug: p("Failed requirement check: %s" % requirement)
+			if debug && !quiet: p("Failed requirement check: %s" % requirement)
 			return false
 
-		elif debug: p("Passed requirement check: %s" % requirement)
+		elif debug && !quiet: p("Passed requirement check: %s" % requirement)
 
 	return true
 

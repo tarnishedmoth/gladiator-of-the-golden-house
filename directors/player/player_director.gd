@@ -27,7 +27,7 @@ var current_held_action: Action ## The action to be previewed or played.
 var selected_actor: Actor:
 	set(v):
 		selected_actor = v
-		update_hud_actions_energy_check()
+		update_hud_actions_disabled_check()
 
 const SELECTED_TILE_VISUAL_SCENE = preload("uid://b5dsq2oi2kchw")
 var _selected_tile_visual: Node2D
@@ -216,8 +216,8 @@ func draw_hand(draw_count: int = hand_size):
 	
 	for card in draw_count:
 		_draw_next_card()
-	hud.populate_actions_list(actions_in_hand) ## Update HUD
-	update_hud_actions_energy_check()
+	hud.populate_actions_list(actions_in_hand, selected_actor) ## Update HUD
+	update_hud_actions_disabled_check()
 	
 func discard_hand():
 	unhold_action()
@@ -227,8 +227,8 @@ func discard_hand():
 			discard_deck.append(card)
 	actions_in_hand.clear()
 	
-	hud.populate_actions_list([]) ## Update HUD
-	update_hud_actions_energy_check()
+	hud.populate_actions_list([], selected_actor) ## Update HUD
+	update_hud_actions_disabled_check()
 	
 	
 func _draw_next_card():
@@ -256,8 +256,8 @@ func play_held_action_at(coords: Vector2i):
 		_discard(current_held_action)
 		unhold_action()
 		
-		hud.populate_actions_list(actions_in_hand)
-		update_hud_actions_energy_check()
+		hud.populate_actions_list(actions_in_hand, selected_actor)
+		update_hud_actions_disabled_check()
 
 #endregion
 
@@ -272,10 +272,8 @@ func select_actor(actor: Actor) -> void:
 
 func deselect_actor() -> void: select_actor(null)
 
-func update_hud_actions_energy_check() -> void:
-	hud.actions_panel.action_buttons_energy_check_set_disabled(
-		selected_actor.energy if selected_actor else 0
-		)
+func update_hud_actions_disabled_check() -> void:
+	hud.actions_panel.check_actions_disabled(selected_actor)
 
 
 #func get_all_cards(and_exhausted: bool = false) -> Array[Action]:

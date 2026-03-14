@@ -77,8 +77,8 @@ func _on_action_pressed(action: Action) -> void:
 	if player is Player:
 		player.hold_action(action)
 
-func populate_actions_list(hand: Array[Action]) -> void:
-	actions_panel.populate_actions(hand)
+func populate_actions_list(hand: Array[Action], selected_actor: Actor) -> void:
+	actions_panel.populate_actions(hand, selected_actor)
 
 func show_actions_hover_panel(show_:bool = true) -> void:
 	if not show_:
@@ -146,8 +146,9 @@ func popup_label(text: Variant, re_parent: Node2D, recolor: Color = Color.WHITE)
 	
 	var _offset: Vector2 = Vector2.ZERO
 	for other in popups:
-		if other.global_position.distance_to(re_parent.global_position) < popup.size.y * 2.2:
-			_offset.y += popup.size.y
+		if is_instance_valid(other): ## Not sure how this bug is happening but
+			if other.global_position.distance_to(re_parent.global_position) < popup.size.y * 2.2:
+				_offset.y += popup.size.y
 			
 	popups.append(popup)
 	popup.position -= popup.size / 2.0

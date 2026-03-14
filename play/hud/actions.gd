@@ -27,7 +27,7 @@ func clear_all_actions() -> void:
 		card.queue_free()
 	actions_in_hand.clear()
 
-func populate_actions(hand: Array[Action]) -> void:
+func populate_actions(hand: Array[Action], selected_actor: Actor) -> void:
 	assert(actions)
 	clear_all_actions()
 	
@@ -53,7 +53,13 @@ func populate_actions(hand: Array[Action]) -> void:
 		new_button.focus_entered.connect(_on_action_hover_started.bind(new_button))
 		new_button.focus_exited.connect(_on_action_hover_ended.bind(new_button))
 		## reacts to available energy
-		
+	
+	check_actions_disabled(selected_actor)
+	
+func check_actions_disabled(selected_actor: Actor) -> void:
+	for action in actions_in_hand:
+		action.disabled = not actions_in_hand[action].can_player_enter(selected_actor, true) if selected_actor else true
+
 
 func _on_action_button_pressed(button) -> void:
 	var action: Action = get_action_assigned_to(button)
@@ -74,12 +80,3 @@ func _on_action_hover_ended(_button) -> void:
 	
 	hud.show_actions_hover_panel(false)
 	action_hover_ended.emit()
-	
-func _on_selected_actor_energy_changed(energy: int) -> void:
-	action_buttons_energy_check_set_disabled(energy)
-	
-func action_buttons_energy_check_set_disabled(energy: int) -> void:
-	actions_header.set_blips(energy)
-	for button in actions_in_hand:
-		var action: Action = get_action_assigned_to(button)
-		button.disabled = (action.energy_cost > energy) if action else true
