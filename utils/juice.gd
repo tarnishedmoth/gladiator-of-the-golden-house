@@ -65,7 +65,7 @@ static func mod(node:Control, color:Color, speed:float = SNAP, from = null) -> T
 		tween.tween_property(node, ^"modulate", color, speed).from_current()
 	return tween
 
-static func flash(node:Control, pulses:Array[float] = PulsePresets.Two, final_color:Color = node.modulate, trans_color:Color = semitransparent(final_color)) -> Tween:
+static func flash(node:CanvasItem, pulses:Array[float] = PulsePresets.Two, final_color:Color = node.modulate, trans_color:Color = semitransparent(final_color)) -> Tween:
 	var tween = node.create_tween()
 	#var semitransparent:Color = final_color * Color(Color.WHITE, 0.5)
 	for pulse:float in pulses:
