@@ -292,7 +292,11 @@ func take_damage(damage: int) -> DamageResult:
 	
 	##loop through status effects to recalculate damage result
 	var unblocked_damage = status_manager.on_take_damage(damage)
-	var damage_result := DamageResult.new(damage - unblocked_damage, take_direct_damage(unblocked_damage))
+	
+	var damage_result: Actor.DamageResult = DamageResult.new(
+		damage - unblocked_damage,
+		take_direct_damage(unblocked_damage) if unblocked_damage > 0 else 0
+		)
 	
 	return damage_result
 	
