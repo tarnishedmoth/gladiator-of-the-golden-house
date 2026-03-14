@@ -125,6 +125,9 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	
 	snap_to_nearest_tile()
 
+	facing = Facing.Cardinal.NORTH
+	show_debug_facing_indicator()
+
 	if action_queue:
 		action_queue.free()
 	action_queue = ActionQueue.new()
@@ -253,6 +256,9 @@ func show_debug_facing_indicator(show_: bool = true) -> void:
 		
 		if debug:
 			p("Facing %s and rotated to %d degrees." % [facing, degrees])
+			
+func select_facing() -> void:
+	pass
 		
 #endregion
 

@@ -21,4 +21,3 @@ func _get_affected_and_apply_status() -> void:
 		var found_actor: Actor = Level.get_actor_at(coords)
 		if found_actor:
 			apply_status(found_actor)
-
