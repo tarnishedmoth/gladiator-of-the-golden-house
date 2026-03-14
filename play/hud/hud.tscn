@@ -135,88 +135,15 @@ layout_mode = 2
 [node name="RightOfLeftSide" type="VBoxContainer" parent="Root/HBoxContainer" unique_id=972711055]
 layout_mode = 2
 
-[node name="SelectedActorActionsPanel" type="PanelContainer" parent="Root/HBoxContainer/RightOfLeftSide" unique_id=175283094]
+[node name="Spacer2" type="Control" parent="Root/HBoxContainer/RightOfLeftSide" unique_id=1545604245]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.18
+mouse_filter = 2
+
+[node name="SelectedActorActionPanelsVBoxContainer" type="VBoxContainer" parent="Root/HBoxContainer/RightOfLeftSide" unique_id=2099389200]
 unique_name_in_owner = true
-clip_contents = true
 layout_mode = 2
-theme_type_variation = &"PartTransparentPanelContainer"
-script = ExtResource("9_ksooa")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Root/HBoxContainer/RightOfLeftSide/SelectedActorActionsPanel" unique_id=411893646]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="PanelContainer" type="PanelContainer" parent="Root/HBoxContainer/RightOfLeftSide/SelectedActorActionsPanel/VBoxContainer" unique_id=1532463882]
-layout_mode = 2
-theme_type_variation = &"PartTransparentPanelContainer"
-
-[node name="Title" type="RichTextLabel" parent="Root/HBoxContainer/RightOfLeftSide/SelectedActorActionsPanel/VBoxContainer/PanelContainer" unique_id=2145820934]
-clip_contents = false
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 11
-theme_override_font_sizes/bold_font_size = 11
-theme_override_font_sizes/bold_italics_font_size = 11
-theme_override_font_sizes/italics_font_size = 11
-theme_override_font_sizes/mono_font_size = 11
-bbcode_enabled = true
-text = "[center][b]Attack[/b]"
-fit_content = true
-scroll_active = false
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Root/HBoxContainer/RightOfLeftSide/SelectedActorActionsPanel/VBoxContainer" unique_id=1216012544]
-layout_mode = 2
-alignment = 1
-
-[node name="Energy Stats" type="RichTextLabel" parent="Root/HBoxContainer/RightOfLeftSide/SelectedActorActionsPanel/VBoxContainer/HBoxContainer" unique_id=849096446]
-visible = false
-clip_contents = false
-custom_minimum_size = Vector2(36, 0)
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 11
-theme_override_font_sizes/bold_font_size = 11
-theme_override_font_sizes/bold_italics_font_size = 11
-theme_override_font_sizes/italics_font_size = 11
-theme_override_font_sizes/mono_font_size = 11
-bbcode_enabled = true
-text = "[center]EC: 3"
-fit_content = true
-scroll_active = false
-
-[node name="Amount Stats" type="RichTextLabel" parent="Root/HBoxContainer/RightOfLeftSide/SelectedActorActionsPanel/VBoxContainer/HBoxContainer" unique_id=361865867]
-visible = false
-clip_contents = false
-custom_minimum_size = Vector2(76, 0)
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 11
-theme_override_font_sizes/bold_font_size = 11
-theme_override_font_sizes/bold_italics_font_size = 11
-theme_override_font_sizes/italics_font_size = 11
-theme_override_font_sizes/mono_font_size = 11
-bbcode_enabled = true
-text = "[center]HP: 9 / 18"
-fit_content = true
-scroll_active = false
-
-[node name="Description" type="RichTextLabel" parent="Root/HBoxContainer/RightOfLeftSide/SelectedActorActionsPanel/VBoxContainer" unique_id=1821520319]
-custom_minimum_size = Vector2(0, 36)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/normal_font_size = 10
-theme_override_font_sizes/bold_font_size = 10
-theme_override_font_sizes/bold_italics_font_size = 10
-theme_override_font_sizes/italics_font_size = 10
-theme_override_font_sizes/mono_font_size = 10
-bbcode_enabled = true
-text = "Enemy plans to deal 6 damage."
-fit_content = true
-
-[node name="TextureRect" type="TextureRect" parent="Root/HBoxContainer/RightOfLeftSide/SelectedActorActionsPanel/VBoxContainer" unique_id=1347035793]
-visible = false
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-texture = ExtResource("7_anqqe")
-expand_mode = 1
-stretch_mode = 5
 
 [node name="Spacer" type="Control" parent="Root/HBoxContainer/RightOfLeftSide" unique_id=2016011785]
 layout_mode = 2

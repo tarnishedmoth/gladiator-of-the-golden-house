@@ -1,15 +1,19 @@
 class_name LevelHUD extends CanvasLayer
 
+const SELECTED_ACTOR_ACTION_PANEL = preload("uid://dxvurd53homf")
+
 #static var instance: LevelHUD:
 	#set(v):
 		#if (v != null) and (instance != null):
 			#assert(not is_instance_valid(instance), "More than one instance in memory")
 		#instance = v
+		
+var selected_actor_action_panels: Array[HUDSelectedActorActionPanel]
 
 @onready var hover_panel: HUDHoverPanel = %HoverPanel
 @onready var actions_panel: ActionsPanel = %ActionsPanel
 @onready var actions_hover_panel: HUDActionHoverPanel = %ActionsHoverPanel
-@onready var selected_actor_actions_panel: HUDActionHoverPanel = %SelectedActorActionsPanel
+@onready var selected_actor_action_panels_v_box_container: VBoxContainer = %SelectedActorActionPanelsVBoxContainer
 @onready var end_turn_button: Button = %EndTurnButton
 
 #func _enter_tree() -> void:
@@ -25,9 +29,6 @@ func _ready() -> void:
 	actions_hover_panel.modulate = Color.TRANSPARENT
 	#actions_hover_panel.hide()
 	
-	selected_actor_actions_panel.modulate = Color.TRANSPARENT
-	#selected_actor_actions_panel.hide()
-	
 	actions_panel.action_button_pressed.connect(_on_action_pressed)
 	actions_panel.action_hover_started.connect(_on_action_hover_start)
 	actions_panel.action_hover_ended.connect(_on_action_hover_ended)
@@ -37,16 +38,35 @@ func _ready() -> void:
 func show_hover_panel(show_:bool = true) -> void:
 	if not show_:
 		Juice.fade_out(hover_panel)
+		clear_all_selected_actor_action_panels()
 	else:
 		Juice.advanced_fade(hover_panel, Juice.SMOOTH, Color.WHITE)
 
 func populate_hover_panel(tile_coords: Vector2i, actor: Actor) -> void:
 	## Replace tile_coords with TileData or whatever more complex object if we need to.
+	clear_all_selected_actor_action_panels()
 	if actor:
 		hover_panel.populate_using_actor_data(actor)
+		if actor.get_action_queue():
+			if not actor.get_action_queue().queue.is_empty():
+				## Show action details
+				for action in actor.get_action_queue().queue:
+					make_selected_actor_action_panel(actor, action)
 	else:
 		hover_panel.clear_all()
 		hover_panel.title.text = "[center]" + str(tile_coords)
+
+func make_selected_actor_action_panel(actor: Actor, action: Action) -> void:
+	var panel: HUDSelectedActorActionPanel = SELECTED_ACTOR_ACTION_PANEL.instantiate()
+	panel.populate(actor, action)
+	selected_actor_action_panels_v_box_container.add_child(panel)
+	selected_actor_action_panels.push_back(panel)
+	Juice.fade_in(panel)
+
+func clear_all_selected_actor_action_panels() -> void:
+	for child in selected_actor_action_panels:
+		child.queue_free()
+	selected_actor_action_panels.clear()
 
 
 ## Action Panel signals
