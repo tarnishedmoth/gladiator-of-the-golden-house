@@ -64,6 +64,10 @@ select_tile={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_16="MouseLight"
+
 [physics]
 
 common/physics_interpolation=true
