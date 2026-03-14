@@ -9,6 +9,7 @@ class_name LevelHUD extends CanvasLayer
 @onready var hover_panel: HUDHoverPanel = %HoverPanel
 @onready var actions_panel: ActionsPanel = %ActionsPanel
 @onready var actions_hover_panel: HUDActionHoverPanel = %ActionsHoverPanel
+@onready var selected_actor_actions_panel: HUDActionHoverPanel = %SelectedActorActionsPanel
 @onready var end_turn_button: Button = %EndTurnButton
 
 #func _enter_tree() -> void:
@@ -20,7 +21,13 @@ class_name LevelHUD extends CanvasLayer
 func _ready() -> void:
 	## Setup
 	hover_panel.modulate = Color.TRANSPARENT
+	
 	actions_hover_panel.modulate = Color.TRANSPARENT
+	#actions_hover_panel.hide()
+	
+	selected_actor_actions_panel.modulate = Color.TRANSPARENT
+	#selected_actor_actions_panel.hide()
+	
 	actions_panel.action_button_pressed.connect(_on_action_pressed)
 	actions_panel.action_hover_started.connect(_on_action_hover_start)
 	actions_panel.action_hover_ended.connect(_on_action_hover_ended)
@@ -41,6 +48,7 @@ func populate_hover_panel(tile_coords: Vector2i, actor: Actor) -> void:
 		hover_panel.clear_all()
 		hover_panel.title.text = "[center]" + str(tile_coords)
 
+
 ## Action Panel signals
 func _on_action_pressed(action: Action) -> void:
 	var player = Level.get_current_director()
@@ -53,9 +61,10 @@ func populate_actions_list(hand: Array[Action]) -> void:
 
 func show_actions_hover_panel(show_:bool = true) -> void:
 	if not show_:
-		Juice.fade_out(actions_hover_panel).tween_callback(actions_hover_panel.hide)
+		actions_hover_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		Juice.fade_out(actions_hover_panel)
 	else:
-		actions_hover_panel.show()
+		actions_hover_panel.mouse_filter = Control.MOUSE_FILTER_STOP
 		Juice.advanced_fade(actions_hover_panel, Juice.SMOOTH, Color.WHITE)
 		
 func _on_action_hover_start(action:Action) -> void:
