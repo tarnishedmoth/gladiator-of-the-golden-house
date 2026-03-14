@@ -53,8 +53,9 @@ func populate_actions_list(hand: Array[Action]) -> void:
 
 func show_actions_hover_panel(show_:bool = true) -> void:
 	if not show_:
-		Juice.fade_out(actions_hover_panel)
+		Juice.fade_out(actions_hover_panel).tween_callback(actions_hover_panel.hide)
 	else:
+		actions_hover_panel.show()
 		Juice.advanced_fade(actions_hover_panel, Juice.SMOOTH, Color.WHITE)
 		
 func _on_action_hover_start(action:Action) -> void:
