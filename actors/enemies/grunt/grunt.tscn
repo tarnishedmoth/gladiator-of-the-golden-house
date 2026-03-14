@@ -9,10 +9,12 @@
 [ext_resource type="Resource" uid="uid://cior70oyylpmi" path="res://actions/prefabs/grunt_heavy_attack.tres" id="4_6iwa0"]
 [ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="4_r7m32"]
 [ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="5_2g32g"]
+[ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="10_6iwa0"]
 
-[node name="Grunt" type="Node2D" unique_id=84579020]
+[node name="Grunt" type="Node2D" unique_id=84579020 node_paths=PackedStringArray("speech_bubble")]
 script = ExtResource("1_q1aho")
 usable_actions = Array[ExtResource("2_it1al")]([ExtResource("3_sryjk"), ExtResource("4_6iwa0"), ExtResource("5_2g32g")])
+speech_bubble = NodePath("SpeechBubble")
 ui_name = "Grunt"
 ui_description = "A low-level combatant. Not dangerous alone, but threatening in numbers."
 starting_health = 18
@@ -40,3 +42,6 @@ metadata/_edit_use_anchors_ = true
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=844266743]
 self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
 texture = ExtResource("4_r7m32")
+
+[node name="SpeechBubble" parent="." unique_id=757394792 instance=ExtResource("10_6iwa0")]
+position = Vector2(-26, -85)
