@@ -9,6 +9,7 @@ var current_coords: Vector2i ## Last polled coordinates. Updates every frame, be
 var last_coords: Vector2i ## Previous frame's coordinates. Updates every frame, after [signal tile_changed].
 
 @onready var tile_highlight_sprite: Sprite2D = %TileHighlight
+@onready var action_projections: Node2D = %ActionProjections
 
 func set_tilemap(tile_map: TileMapLayer) -> void:
 	tilemap = tile_map
@@ -57,7 +58,24 @@ func _process(_delta: float) -> void:
 				
 				if tile_highlight_sprite:
 					tile_highlight_sprite.position = tilemap.map_to_local(current_coords)
+					
+				
+				var current_director: Director = Level.get_current_director()
+				if current_director is Player:
+					if current_director.current_held_action && current_director.selected_actor:
+						_render_held_action_projection(current_director)
+				
 				
 				if VERBOSE:
 					print("%s at %s" % [tilemap.get_cell_tile_data(coords), current_coords])
 				last_coords = coords
+
+func _render_held_action_projection(player: Player) -> void:
+	#print("Rerendering held action projection")
+	var implicated_tiles: Action.ImplicatedTiles = player.current_held_action.get_implicated_tiles(current_coords)
+	
+	TargetFinder.highlight_aoe_spots(implicated_tiles.effected)
+	for blocked in implicated_tiles.blocked:
+		pass
+	for blockers in implicated_tiles.blockers:
+		pass

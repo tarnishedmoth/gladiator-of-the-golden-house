@@ -63,6 +63,10 @@ texture = ExtResource("5_ff1wu")
 centered = false
 offset = Vector2(-128, -72)
 
+[node name="ActionProjections" type="Node2D" parent="TileMapLayers" unique_id=1748832804]
+unique_name_in_owner = true
+top_level = true
+
 [node name="Camera" parent="." unique_id=280332911 instance=ExtResource("6_5am2h")]
 
 [node name="HUD" parent="." unique_id=414291549 instance=ExtResource("7_wysrq")]
