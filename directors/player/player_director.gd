@@ -3,6 +3,7 @@ class_name Player extends Director
 const HOLD_TIME_TO_END_TURN_EARLY: float = 1.5
 const STICKY_TILE_SELECT: bool = false
 const DESELECT_ON_REPEAT: bool = true
+const SELECT_FACING_INDICATOR = preload("uid://dtgl2ndfa7uub")
 
 
 var tile_map: TileMapLayer
@@ -248,16 +249,36 @@ func _discard(card):
 		discard_deck.push_back(card) ## Brain says push_front, but arrays can only be appended so lets just know that this deck is "upside down"
 	actions_in_hand.erase(card)
 	
-func play_held_action_at(coords: Vector2i):
+func get_facing(place_indicator_pos):
+	var facing_indicator = SELECT_FACING_INDICATOR.instantiate()			
+	self.add_child(facing_indicator)
+	facing_indicator.global_position = place_indicator_pos
+	facing_indicator.show()		
+	TargetFinder.clear_target_highlights()
+	var selected_facing_dir = await facing_indicator.facing_selected		
+	selected_actor.set_facing(selected_facing_dir)
+	facing_indicator.queue_free()
+	
+func play_held_action_at(coords: Vector2i):	
+	var position_for_facing
+	if current_held_action.allow_facing_before:
+		position_for_facing = selected_actor.global_position
+		await get_facing(position_for_facing)
 	if current_held_action.can_player_enter(selected_actor):
-		selected_actor.remove_energy(current_held_action.energy_cost)
-		current_held_action.set_target(coords)
-		selected_actor.run_action(current_held_action)
+		selected_actor.remove_energy(current_held_action.energy_cost)		
+		current_held_action.set_target(coords)		
+		print("before run: ", self.global_position)
+		print("coords: ", coords)
+		selected_actor.run_action(current_held_action)	
+		print("after run: ", self.global_position)
+		print("coords: ", coords)
 		_discard(current_held_action)
+		if current_held_action.allow_facing_after:
+			position_for_facing= selected_actor.global_position #TODO: not sure why this isn't getting the current actor position after the player moves?
+			await get_facing(position_for_facing)		
 		unhold_action()
-		
 		hud.populate_actions_list(actions_in_hand, selected_actor)
-		update_hud_actions_disabled_check()
+		update_hud_actions_disabled_check()		
 
 #endregion
 
