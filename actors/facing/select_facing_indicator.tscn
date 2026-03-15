@@ -16,7 +16,7 @@ position = Vector2(0, -46)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="North" unique_id=132946846]
 shape = SubResource("RectangleShape2D_irotx")
 
-[node name="Sprite2D" type="Sprite2D" parent="North" unique_id=518545386]
+[node name="NorthSprite" type="Sprite2D" parent="North" unique_id=518545386]
 modulate = Color(0.13333334, 1, 0.18039216, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_11ydu")
@@ -28,7 +28,7 @@ rotation = 3.1415927
 [node name="CollisionShape2D" type="CollisionShape2D" parent="South" unique_id=224193737]
 shape = SubResource("RectangleShape2D_irotx")
 
-[node name="Sprite2D" type="Sprite2D" parent="South" unique_id=785588675]
+[node name="SouthSprite" type="Sprite2D" parent="South" unique_id=785588675]
 modulate = Color(0.13333334, 1, 0.18039216, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_11ydu")
@@ -40,7 +40,7 @@ rotation = 4.010402
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SouthWest" unique_id=1587116864]
 shape = SubResource("RectangleShape2D_irotx")
 
-[node name="Sprite2D" type="Sprite2D" parent="SouthWest" unique_id=1559287542]
+[node name="SouthWestSprite" type="Sprite2D" parent="SouthWest" unique_id=1559287542]
 modulate = Color(0.13333334, 1, 0.18039216, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_11ydu")
@@ -52,7 +52,7 @@ rotation = 2.2937615
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SouthEast" unique_id=1782877487]
 shape = SubResource("RectangleShape2D_irotx")
 
-[node name="Sprite2D" type="Sprite2D" parent="SouthEast" unique_id=1239280216]
+[node name="SouthEastSprite" type="Sprite2D" parent="SouthEast" unique_id=1239280216]
 modulate = Color(0.13333334, 1, 0.18039216, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_11ydu")
@@ -64,7 +64,7 @@ rotation = -0.87153304
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NorthWest" unique_id=1286769844]
 shape = SubResource("RectangleShape2D_irotx")
 
-[node name="Sprite2D" type="Sprite2D" parent="NorthWest" unique_id=290306390]
+[node name="NorthWestSprite" type="Sprite2D" parent="NorthWest" unique_id=290306390]
 modulate = Color(0.13333334, 1, 0.18039216, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_11ydu")
@@ -76,7 +76,7 @@ rotation = 0.8286691
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NorthEast" unique_id=359474021]
 shape = SubResource("RectangleShape2D_irotx")
 
-[node name="Sprite2D" type="Sprite2D" parent="NorthEast" unique_id=179612441]
+[node name="NorthEastSprite" type="Sprite2D" parent="NorthEast" unique_id=179612441]
 modulate = Color(0.13333334, 1, 0.18039216, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_11ydu")

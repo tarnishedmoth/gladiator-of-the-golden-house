@@ -1,11 +1,25 @@
 extends Node2D
 
 signal facing_selected(facing)
+@onready var north_sprite: Sprite2D = $North/NorthSprite
+@onready var south_sprite: Sprite2D = $South/SouthSprite
+@onready var south_west_sprite: Sprite2D = $SouthWest/SouthWestSprite
+@onready var south_east_sprite: Sprite2D = $SouthEast/SouthEastSprite
+@onready var north_west_sprite: Sprite2D = $NorthWest/NorthWestSprite
+@onready var north_east_sprite: Sprite2D = $NorthEast/NorthEastSprite
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	tween_the_sprites()
 
+func tween_the_sprites():
+	Juice.scale_pulse(north_sprite,.85,1.0,.8)
+	Juice.scale_pulse(north_west_sprite,.85,1.0,.8)
+	Juice.scale_pulse(north_east_sprite,.85,1.0,.8)
+	Juice.scale_pulse(south_sprite,.85,1.0,.8)
+	Juice.scale_pulse(south_east_sprite,.85,1.0,.8)
+	Juice.scale_pulse(south_west_sprite,.85,1.0,.8)
 	
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:		
@@ -44,7 +58,3 @@ func _input(event):
 					print("northeast selected")
 					facing_selected.emit(Facing.Cardinal.NORTHEAST)
 					return
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

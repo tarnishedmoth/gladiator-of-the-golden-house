@@ -88,3 +88,10 @@ static func flash_using(tween:Tween, node:Control, pulses:Array = PulsePresets.T
 
 static func semitransparent(color:Color, percentage:float = 0.25) -> Color:
 	return color * Color(Color.WHITE, percentage)
+	
+#Tweens that work with property "scale"
+static func scale_pulse(node,down_scale, up_scale, duration):
+	var tween = node.create_tween().set_loops()
+	tween.tween_property(node, "scale", Vector2(down_scale,down_scale),duration)
+	tween.tween_property(node, "scale", Vector2(up_scale,up_scale),duration)
+	return tween
