@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://dnwn75fwwq600"]
 
 [ext_resource type="Script" uid="uid://c6sgu6sth1eu1" path="res://play/level.gd" id="1_fpxwp"]
+[ext_resource type="Material" uid="uid://bng44fo6whcky" path="res://play/light-only_canvas-item-material.tres" id="2_fpxwp"]
 [ext_resource type="Texture2D" uid="uid://bbeq54awbdtar" path="res://play/tile-atlases/hexagon-lines-white-no-aa-incomplete-lines-128x72-export.png" id="3_mvnmw"]
 [ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="4_j2kal"]
 [ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="5_ff1wu"]
@@ -27,6 +28,18 @@ tile_size = Vector2i(128, 72)
 uv_clipping = true
 sources/0 = SubResource("TileSetAtlasSource_u4q3m")
 
+[sub_resource type="Gradient" id="Gradient_3cqig"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fpxwp"]
+gradient = SubResource("Gradient_3cqig")
+width = 380
+height = 380
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [node name="Level" type="Node2D" unique_id=13868467 node_paths=PackedStringArray("base_tile_map_layer", "tile_interactor", "hud", "retry_menu", "continue_menu")]
 texture_filter = 3
 position = Vector2(480, 270)
@@ -46,7 +59,9 @@ unique_name_in_owner = true
 metadata/_edit_lock_ = true
 
 [node name="BaseTileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]
-modulate = Color(0.57, 0.31159997, 0.11399999, 1)
+modulate = Color(0.53571206, 0.29022622, 0.10399745, 1)
+light_mask = 32768
+material = ExtResource("2_fpxwp")
 position = Vector2(-64, -36)
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAD//wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAABAP//AAAAAAAAAAACAP7/AAAAAAAAAAADAP3/AAAAAAAAAAD//wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wMAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wEAAAAAAAAAAAACAP//AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAEAAAAAAAAAAAD//wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wIAAAAAAAAAAAD/////AAAAAAAAAAD///7/AAAAAAAAAAD+////AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAACAP3/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_fqe43")
@@ -72,12 +87,17 @@ top_level = true
 [node name="HUD" parent="." unique_id=414291549 instance=ExtResource("7_wysrq")]
 
 [node name="MouseFollower" type="Node2D" parent="." unique_id=687351869]
-position = Vector2(317, 190)
+position = Vector2(167, 52)
 script = ExtResource("8_xvlf6")
 metadata/_custom_type_script = "uid://mm6inbfx8c45"
 
 [node name="TileMapInteractor" type="Node2D" parent="MouseFollower" unique_id=1205975102]
+texture_filter = 2
 script = ExtResource("9_vvs2t")
+
+[node name="PointLight2D" type="PointLight2D" parent="MouseFollower" unique_id=740285923]
+range_item_cull_mask = 32768
+texture = SubResource("GradientTexture2D_fpxwp")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1228620870]
 

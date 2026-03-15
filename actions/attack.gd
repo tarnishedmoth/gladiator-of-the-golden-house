@@ -14,6 +14,7 @@ func enter(from: ResourceState = null) -> void:
 		
 		## run animations etc here
 		_actor.play_sfx(ActorSfxHandler.Sounds.ATTACK)
+		await _actor.create_tween().tween_interval(0.2).finished ## let the sound play before hitting the griddy so to speak
 		_get_affected_and_deal_damage()
 	else:
 		push_error("No actor configured to run action.")

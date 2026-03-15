@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://g8ol80ukqqcc"]
+
+[ext_resource type="Texture2D" uid="uid://dvuqbrge3doql" path="res://menus/gladiator-godot-icon.png" id="1_201x5"]
+
+[node name="TemplateStatusEffectButton" type="TextureButton" unique_id=1917665449]
+custom_minimum_size = Vector2(24, 24)
+tooltip_text = "Details about this status effect."
+texture_normal = ExtResource("1_201x5")
+ignore_texture_size = true
+stretch_mode = 0

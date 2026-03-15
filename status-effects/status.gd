@@ -5,6 +5,11 @@ enum StatusEffectCategory{
 	DEFENSE,
 }
 
+const STATUS_CATEGORY_ICONS: Dictionary[StatusEffectCategory, Texture2D] = {
+	StatusEffectCategory.NONE: preload("uid://disinbamqthvh"),
+	StatusEffectCategory.DEFENSE: preload("uid://c7ers5ee7squq"),
+}
+
 var _actor: Actor
 var status_manager: StatusManager:
 	get: return _actor.get_status_manager()
@@ -36,6 +41,10 @@ enum Hook {
 @export var ui_name: String 
 @export var ui_description: String 
 @export var status_effect_category: StatusEffectCategory
+@export var ui_icon: Texture2D: ## If left undefined, will use one according to its [member action_category].
+	get:
+		if ui_icon: return ui_icon
+		else: return STATUS_CATEGORY_ICONS.get(status_effect_category)
 
 #set Actor with Status effect
 func set_actor(actor:Actor) -> void:
