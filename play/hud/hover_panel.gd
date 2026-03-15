@@ -1,5 +1,7 @@
 class_name HUDHoverPanel extends PanelContainer
 
+const TEMPLATE_STATUS_EFFECT_BUTTON = preload("uid://g8ol80ukqqcc")
+
 @export var description: RichTextLabel
 @export var title: RichTextLabel
 @export var key_stats: RichTextLabel
@@ -35,5 +37,10 @@ func populate_using_actor_data(actor: Actor) -> void:
 	key_stats.text = "[center]"
 	key_stats.append_text("HP: %d / %d" % [actor.health, actor.starting_health])
 	
-	## TODO show icons for status effects. Set their tooltip to describe the status effect.
-	#foo
+	for status: Status in actor.get_status_effects():
+		var new_status: TextureButton = TEMPLATE_STATUS_EFFECT_BUTTON.instantiate()
+		new_status.tooltip_text = str(status) + ": " + status.ui_description
+		new_status.texture_normal = status.ui_icon
+		status_effects_flow_container_items.append(new_status)
+		status_effects_flow_container.add_child(new_status)
+		
