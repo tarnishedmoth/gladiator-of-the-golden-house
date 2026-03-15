@@ -8,7 +8,6 @@ class_name Actor extends Node2D
 ## We use a state machine called an [ActionQueue].
 ## Generally, actors don't do anything until a [Director] tells them that they can. See [method on_turn_start].
 ## Directors don't micro-manage Actors, though. See [AIActor] for more of that.
-
 @export var debug: bool = true
 func p(args):
 	print_rich("[bgcolor=grey][color=black]", "Actor %s : " % name, args)
@@ -17,6 +16,7 @@ func p(args):
 ## Level related functionality
 const SHOW_DEBUG_FACING_INDICATOR: bool = true
 const DEBUG_FACING_INDICATOR_SCENE = preload("uid://b3kl75n4nwdge")
+const SELECT_FACING_WIDGET = preload("uid://dtgl2ndfa7uub")
 var debug_facing_indicator: Node2D ## instantiated at runtime
 
 const TARGET_INDICATOR = preload("uid://bw78572gtph87")
@@ -48,8 +48,7 @@ var sfx: ActorSfxHandler
 func get_sfx_handler() -> ActorSfxHandler:
 	assert(sfx)
 	return sfx
-
-
+	
 ## Save / Load
 class PersistentActorData extends Resource:
 	var max_health: int

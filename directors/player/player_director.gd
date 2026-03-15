@@ -12,6 +12,7 @@ var selected_tile ## Null or Vector2i coords
 var _last_selected_tile
 
 var hud: LevelHUD
+const SELECT_FACING_INDICATOR = preload("uid://dtgl2ndfa7uub")
 
 ## Actions
 @export var hand_size: int = 5 ## Number of actions that will be drawn at the start of the turn
@@ -23,7 +24,6 @@ var discard_deck: Array[Action] ## When [member draw_deck] runs empty, these are
 var exhausted_deck: Array[Action] ## Are removed from play for the rest of this match.
 var actions_in_hand: Array[Action] ## Action cards that the player currently has on screen to choose from.
 var current_held_action: Action ## The action to be previewed or played.
-
 var selected_actor: Actor:
 	set(v):
 		selected_actor = v
@@ -44,9 +44,9 @@ func set_selected_tile_visual(to_show: bool) -> void:
 		_selected_tile_visual.global_position = tile_map.to_global(tile_map.map_to_local(selected_tile))
 
 
-func _ready():
+func _ready():	
 	pass
-
+	
 func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 	self.hud = Level.get_hud()
 	self.tile_map = tilemap
@@ -182,7 +182,7 @@ func _on_click_on_tile(tile_coords) -> void:
 			## It's not our turn
 			pass
 
-	else:
+	else:		
 		set_selected_tile_visual(false)
 		hud.show_hover_panel(false)
 
@@ -247,17 +247,39 @@ func _discard(card):
 	if not card in always_available_deck:
 		discard_deck.push_back(card) ## Brain says push_front, but arrays can only be appended so lets just know that this deck is "upside down"
 	actions_in_hand.erase(card)
+
+func get_facing(place_indicator_pos):
+	var facing_indicator = SELECT_FACING_INDICATOR.instantiate()			
+	self.add_child(facing_indicator)
+	facing_indicator.global_position = place_indicator_pos
+	facing_indicator.show()		
+	TargetFinder.clear_target_highlights()
+	var selected_facing_dir = await facing_indicator.facing_selected		
+	selected_actor.set_facing(selected_facing_dir)
+	facing_indicator.queue_free()
 	
-func play_held_action_at(coords: Vector2i):
+func play_held_action_at(coords: Vector2i):	
+	var position_for_facing
+	if current_held_action.allow_facing_before:
+		position_for_facing = selected_actor.global_position
+		await get_facing(position_for_facing)
 	if current_held_action.can_player_enter(selected_actor):
-		selected_actor.remove_energy(current_held_action.energy_cost)
-		current_held_action.set_target(coords)
-		selected_actor.run_action(current_held_action)
+		selected_actor.remove_energy(current_held_action.energy_cost)		
+		current_held_action.set_target(coords)		
+		print("before run: ", self.global_position)
+		print("coords: ", coords)
+		selected_actor.run_action(current_held_action)	
+		print("after run: ", self.global_position)
+		print("coords: ", coords)
 		_discard(current_held_action)
+		if current_held_action.allow_facing_after:
+			position_for_facing= selected_actor.global_position #TODO: not sure why this isn't getting the current actor position after the player moves?
+			await get_facing(position_for_facing)		
 		unhold_action()
-		
 		hud.populate_actions_list(actions_in_hand)
 		update_hud_actions_energy_check()
+		print("after all: ", self.global_position)
+		print("coords: ", coords)
 
 #endregion
 
