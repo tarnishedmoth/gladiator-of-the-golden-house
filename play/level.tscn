@@ -19,7 +19,7 @@
 [ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="16_yonjs"]
 [ext_resource type="PackedScene" uid="uid://bs7yj78ykeu7o" path="res://play/hud/hud.tscn" id="17_mung2"]
 [ext_resource type="Resource" uid="uid://cwpbiwwcdfir1" path="res://actions/prefabs/move_expensive_test.tres" id="17_q6hfu"]
-[ext_resource type="Texture2D" uid="uid://bbeq54awbdtar" path="res://play/tile-atlases/hexagon-lines-white-no-aa-incomplete-lines-128x72-export.png" id="18_tjdga"]
+[ext_resource type="Texture2D" uid="uid://chcat6kgh1tb3" path="res://play/tile-atlases/hexagon-grid-cool.png" id="17_wu5bt"]
 [ext_resource type="PackedScene" uid="uid://btt45gb4p850m" path="res://play/camera/camera.tscn" id="20_118mn"]
 [ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="20_e2bh8"]
 [ext_resource type="PackedScene" uid="uid://dyaldg7fkhf2y" path="res://menus/retry_menu.tscn" id="24_tjdga"]
@@ -37,7 +37,7 @@ metadata/_custom_type_script = "uid://dwk83a2nxfweb"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u4q3m"]
 resource_name = "outline"
-texture = ExtResource("18_tjdga")
+texture = ExtResource("17_wu5bt")
 texture_region_size = Vector2i(128, 72)
 0:0/0 = 0
 
@@ -150,12 +150,13 @@ metadata/_edit_lock_ = true
 position = Vector2(2, -1)
 
 [node name="BaseTileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]
-modulate = Color(0.57, 0.31159997, 0.11399999, 1)
+modulate = Color(0.5686275, 0.30980393, 0.11372549, 0.30588236)
 position = Vector2(-64, -36)
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAD//wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAABAP//AAAAAAAAAAACAP7/AAAAAAAAAAADAP3/AAAAAAAAAAD//wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wMAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wEAAAAAAAAAAAACAP//AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAEAAAAAAAAAAAD//wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wIAAAAAAAAAAAD/////AAAAAAAAAAD///7/AAAAAAAAAAD+////AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAACAP3/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_fqe43")
 
 [node name="GridTint" parent="TileMapLayers" unique_id=1487691829 instance=ExtResource("25_q6hfu")]
+visible = false
 
 [node name="TileHighlight" type="Sprite2D" parent="TileMapLayers" unique_id=646544377]
 unique_name_in_owner = true
