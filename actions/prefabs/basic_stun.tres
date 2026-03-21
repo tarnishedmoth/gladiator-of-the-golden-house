@@ -8,6 +8,7 @@
 script = ExtResource("2_wdq5y")
 pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
 status = ExtResource("3_nk7vi")
+override_quantity = 1
 ui_title = "Stun"
 ui_description = "Stun 1 enemy"
 energy_cost = 2

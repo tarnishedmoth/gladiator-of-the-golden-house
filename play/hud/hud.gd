@@ -158,3 +158,26 @@ func popup_label(text: Variant, re_parent: Node2D, recolor: Color = Color.WHITE)
 	var t = Juice.flash(popup, Juice.PulsePresets.ThreeFast, recolor, Color.WHITE)
 	t.tween_callback(popups.erase.bind(popup))
 	t.tween_callback(popup.free)
+
+func popup_label_persistent(text: Variant, re_parent: Node2D, recolor: Color = Color.WHITE) -> Label:
+	var popup: Label = POPUP_NUMBER_INDICATOR.instantiate()
+	popup.text = str(text) if not (text is String) else text
+	popup.modulate = recolor
+	
+	re_parent.add_child(popup)
+	
+	var _offset: Vector2 = Vector2(0,-30)
+	for other in popups:
+		if is_instance_valid(other): ## Not sure how this bug is happening but
+			if other.global_position.distance_to(re_parent.global_position) < popup.size.y * 2.2:
+				_offset.y += popup.size.y
+			
+	popups.append(popup)
+	popup.position -= popup.size / 2.0
+	popup.position += _offset
+	
+	return popup
+
+func clear_popup_persistent_label(popup:Label) -> void:
+	popups.erase.bind(popup)
+	popup.queue_free()

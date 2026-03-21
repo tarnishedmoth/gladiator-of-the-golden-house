@@ -160,14 +160,22 @@ func _on_click_on_tile(tile_coords) -> void:
 					
 			else:
 				if DESELECT_ON_REPEAT && tile_coords == _last_selected_tile:
+					#var ai_actor: AIActor = Level.get_actor_at(selected_tile) as AIActor
+					#if ai_actor != null:
+					#	ai_actor.hide_preview_attack()	
+					TargetFinder.clear_target_highlights()
 					selected_tile = null ## Deselect
 					p("Same tile selected as last click--Deselecting.")
 					set_selected_tile_visual(false)
 					hud.show_hover_panel(false)
+					#TODO ai action preview should be cleared here'
 				else:
+					TargetFinder.clear_target_highlights()
 					hud.populate_hover_panel(selected_tile, Level.get_actor_at(selected_tile))
 					hud.show_hover_panel(true)
 					set_selected_tile_visual(true)
+					update_action_preview()
+										
 				
 			## Tested working, but needs to be separated--presently this control scheme does not make sense.
 			## Thinking that changing selected actor should require pressing a button to highlight your available actors
@@ -296,6 +304,19 @@ func deselect_actor() -> void: select_actor(null)
 func update_hud_actions_disabled_check() -> void:
 	hud.actions_panel.check_actions_disabled(selected_actor)
 
+func update_action_preview() -> void:
+	var non_player_actor: Actor = null
+	
+	#checking if there is an AI actor on the tile from the previews click and hiding thier action preview
+	if _last_selected_tile != null:
+		non_player_actor = Level.get_actor_at(_last_selected_tile)
+		if non_player_actor != null && "action_preview" in non_player_actor: #checking in this way 
+			non_player_actor.hide_preview_attack()
+			non_player_actor = null
+	
+	non_player_actor = Level.get_actor_at(selected_tile) as AIActor
+	if non_player_actor != null:
+		non_player_actor.preview_ai_attack()	
 
 #func get_all_cards(and_exhausted: bool = false) -> Array[Action]:
 	#return actions_in_hand + discard_deck + exhausted_deck if and_exhausted else []

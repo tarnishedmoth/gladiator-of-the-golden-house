@@ -5,6 +5,15 @@ class_name AIActor extends Actor
 
 @export var usable_actions: Array[Action] ## TEST
 @export var actions_to_queue_this_turn: int = 1
+@export var action_preview: ActionPreview
+
+func setup(director_: Director, tilemap: TileMapLayer) -> void:
+	if action_preview:
+		action_preview.free()
+	action_preview = ActionPreview.new()
+	action_preview.setup(self)
+	
+	super(director_,tilemap)
 
 func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> void:
 	var queue: Array[Action]
@@ -87,3 +96,12 @@ func _filter_move_candidates(candidates: Array[Vector2i], claimed_tiles: Array[V
 		valid.append(tile)
 	if debug: p("Valid move candidates: %s" % str(valid))
 	return valid
+
+func preview_ai_attack()-> void:
+	#for each action in actions queue might need to duplcate so I dont use 
+	for action in action_queue.queue:
+		if action.action_category != Action.ActionCategory.MOVEMENT:
+			action_preview.show_preview_action(action)
+
+func hide_preview_attack()-> void:
+	action_preview.hide_preview_action()
