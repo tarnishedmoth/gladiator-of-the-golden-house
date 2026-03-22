@@ -44,4 +44,5 @@ func show_preview_action(action:Action)-> void:
 	
 func hide_preview_action()->void:
 	TargetFinder.clear_target_highlights()
-	Level.get_hud().clear_popup_persistent_label(_popup_label)
+	if _popup_label:
+		Level.get_hud().clear_popup_persistent_label(_popup_label)
