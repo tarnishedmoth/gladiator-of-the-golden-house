@@ -79,6 +79,7 @@ func _on_turn_started():
 func _end_turn() -> void:
 	if is_active:
 		discard_hand()
+		deselect_tile()
 		end_turn()
 
 var _end_turn_with_available_moves: Tween
@@ -163,11 +164,8 @@ func _on_click_on_tile(tile_coords) -> void:
 					#var ai_actor: AIActor = Level.get_actor_at(selected_tile) as AIActor
 					#if ai_actor != null:
 					#	ai_actor.hide_preview_attack()	
-					TargetFinder.clear_target_highlights()
-					selected_tile = null ## Deselect
 					p("Same tile selected as last click--Deselecting.")
-					set_selected_tile_visual(false)
-					hud.show_hover_panel(false)
+					deselect_tile()
 					#TODO ai action preview should be cleared here'
 				else:
 					TargetFinder.clear_target_highlights()
@@ -196,6 +194,12 @@ func _on_click_on_tile(tile_coords) -> void:
 		hud.show_hover_panel(false)
 
 	_last_selected_tile = selected_tile
+	
+func deselect_tile() -> void:
+	selected_tile = null
+	TargetFinder.clear_target_highlights()
+	set_selected_tile_visual(false)
+	hud.show_hover_panel(false)
 	
 func _on_click_to_play_action(target_coords: Vector2i) -> void:
 	play_held_action_at(target_coords)
