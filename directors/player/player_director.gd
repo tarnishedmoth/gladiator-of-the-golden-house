@@ -161,12 +161,10 @@ func _on_click_on_tile(tile_coords) -> void:
 					
 			else:
 				if DESELECT_ON_REPEAT && tile_coords == _last_selected_tile:
-					#var ai_actor: AIActor = Level.get_actor_at(selected_tile) as AIActor
-					#if ai_actor != null:
-					#	ai_actor.hide_preview_attack()	
+						
 					p("Same tile selected as last click--Deselecting.")
 					deselect_tile()
-					#TODO ai action preview should be cleared here'
+					update_action_preview()
 				else:
 					TargetFinder.clear_target_highlights()
 					hud.populate_hover_panel(selected_tile, Level.get_actor_at(selected_tile))
@@ -215,11 +213,13 @@ func hold_action(action: Action):
 		
 	TargetFinder.clear_target_highlights()
 	if current_held_action:
+		update_action_preview()	
 		TargetFinder.highlight_targets(selected_actor.get_action_target_cells(current_held_action))
 		
 	if VERBOSE:
 		p("Current held action: %s" % (current_held_action.ui_title if current_held_action else "empty"))
 
+## Used to discard actions.
 func unhold_action(): hold_action(null)
 
 func draw_hand(draw_count: int = hand_size):
@@ -311,16 +311,18 @@ func update_hud_actions_disabled_check() -> void:
 func update_action_preview() -> void:
 	var non_player_actor: Actor = null
 	
-	#checking if there is an AI actor on the tile from the previews click and hiding thier action preview
+	#check if there is an AI actor on last selected tile needs their preview removed
 	if _last_selected_tile != null:
 		non_player_actor = Level.get_actor_at(_last_selected_tile)
-		if non_player_actor != null && "action_preview" in non_player_actor: #checking in this way 
+		if non_player_actor != null && "action_preview" in non_player_actor: 
 			non_player_actor.hide_preview_attack()
 			non_player_actor = null
 	
-	non_player_actor = Level.get_actor_at(selected_tile) as AIActor
-	if non_player_actor != null:
-		non_player_actor.preview_ai_attack()	
+	#check if there is an AI actor on selected tile needs their preview added
+	if(selected_tile != null and current_held_action == null): #prevents preview from being added when an action is being held
+		non_player_actor = Level.get_actor_at(selected_tile) as AIActor 
+		if non_player_actor != null:
+			non_player_actor.preview_ai_attack()	
 
 #func get_all_cards(and_exhausted: bool = false) -> Array[Action]:
 	#return actions_in_hand + discard_deck + exhausted_deck if and_exhausted else []
