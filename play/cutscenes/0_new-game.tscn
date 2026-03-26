@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://b50441u03h6ll"]
+
+[ext_resource type="Script" uid="uid://by4v57tusbcnq" path="res://play/cutscenes/cutscene.gd" id="1_ijr2w"]
+[ext_resource type="Texture2D" uid="uid://dcuxaplede7yk" path="res://play/region-1-levels/colosseum-background-layer1.png" id="2_gktfq"]
+
+[sub_resource type="Animation" id="Animation_gktfq"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer:offset:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_xwi8v"]
+resource_name = "finished"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2u3dj"]
+resource_name = "new_animation"
+length = 4.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer:offset:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(16, -0.25, 0, 0.25, 0, -16, -0.5666666, 1.5, 0, 0),
+"times": PackedFloat32Array(0, 4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q3h48"]
+_data = {
+&"RESET": SubResource("Animation_gktfq"),
+&"finished": SubResource("Animation_xwi8v"),
+&"new_animation": SubResource("Animation_2u3dj")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8l5bs"]
+animation = &"finished"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kk50r"]
+animation = &"new_animation"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wopri"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y0qs5"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g5o7r"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5k1pm"]
+states/End/position = Vector2(1145, 100)
+states/Start/position = Vector2(212, 100)
+states/finished/node = SubResource("AnimationNodeAnimation_8l5bs")
+states/finished/position = Vector2(990, 100)
+states/new_animation/node = SubResource("AnimationNodeAnimation_kk50r")
+states/new_animation/position = Vector2(531, 100)
+transitions = ["Start", "new_animation", SubResource("AnimationNodeStateMachineTransition_wopri"), "new_animation", "finished", SubResource("AnimationNodeStateMachineTransition_y0qs5"), "finished", "End", SubResource("AnimationNodeStateMachineTransition_g5o7r")]
+graph_offset = Vector2(-418, -28)
+
+[node name="0NewGame" type="Node2D" unique_id=770697048]
+script = ExtResource("1_ijr2w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=796491514]
+libraries/ = SubResource("AnimationLibrary_q3h48")
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer" unique_id=1644997950]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_5k1pm")
+anim_player = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1493767288]
+position = Vector2(480, 540)
+texture = ExtResource("2_gktfq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1340486860]
+offset = Vector2(0, 16)
+transform = Transform2D(1, 0, 0, 1, 0, 16)
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1655640334]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1549537349]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "Game introduction story"
+fit_content = true
+horizontal_alignment = 1

@@ -28,6 +28,9 @@ const LOG_PREFIX:String = "MAIN:: "
 @export var show_debug_scene_label:bool = true
 @export var show_project_version_label:bool = true
 
+#@export_group("Progression")
+@export_file var levels: Array[String] ## In order
+
 var instanced_root: Node
 var current_packed_scene: PackedScene ## Set each time [method change_scene] is called.
 
@@ -57,7 +60,7 @@ func _enter_tree() -> void:
 ## Called only once at program start.
 func _ready() -> void:
 	project_version_label.text = "v" + VERSION
-	#if not debug build: ## TODO FIXME
+	#if not debug build: ## TODO
 		#debug_scene_label.hide()
 	#el
 	if show_debug_scene_label:
@@ -88,6 +91,10 @@ static func reload_current_scene() -> void:
 	
 static func change_scene(packed_scene: PackedScene) -> void:
 	get_instance()._change_scene(packed_scene)
+
+static func change_scene_to_file(filepath: String) -> void:
+	var scene: PackedScene = load(filepath)
+	change_scene(scene)
 	
 ## If there is an active scene, unloads it, then instantiates [param packed_scene] and adds it as a child.
 func _change_scene(packed_scene: PackedScene) -> void:
@@ -119,6 +126,18 @@ static func get_project_version() -> String:
 
 static func l(to_print) -> void:
 	print(LOG_PREFIX, to_print)
+	
+
+static func continue_level() -> void:
+	play_level(PlayerData.this.current_level)
+
+static func progress_level() -> void:
+	PlayerData.this.current_level += 1
+	play_level(PlayerData.this.current_level)
+	
+static func play_level(number: int) -> void:
+	assert(number < instance.levels.size(), "Out of bounds!")
+	change_scene_to_file(instance.levels[number])
 
 
 func _on_return_to_menu_button_pressed() -> void:

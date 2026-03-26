@@ -1,6 +1,7 @@
 class_name PlayerData
 
 ## Holds everything relevant to a playthrough.
+static var this: PlayerData
 
 static func p(args):
 	print_rich("[bgcolor=cyan][color=purple]", "PlayerData: ", args)
@@ -15,10 +16,9 @@ var choice_name: String
 var choice_starting_class: String
 
 var current_level: int = 0
+func get_current_level() -> int: return current_level
 
 var persistent_actors: Dictionary[StringName, Actor.PersistentActorData]
-
-static var this: PlayerData
 
 static func new_playthrough(chosen_name: String, chosen_starting_class: String) -> void:
 	if this:

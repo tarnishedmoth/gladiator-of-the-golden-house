@@ -1,5 +1,10 @@
 [gd_scene format=3 uid="uid://dtaw53r4qlxv8"]
 
+[ext_resource type="Script" uid="uid://daqwomvp4na3y" path="res://menus/main_menu.gd" id="1_8gy84"]
+[ext_resource type="Theme" uid="uid://0t4errmfvln0" path="res://menus/theme_level_hud.theme" id="1_ij7vn"]
+[ext_resource type="Texture2D" uid="uid://bs8ywso6o5mlp" path="res://icon.svg" id="3_rqbgu"]
+[ext_resource type="Texture2D" uid="uid://dvuqbrge3doql" path="res://menus/gladiator-godot-icon.png" id="3_yjgyn"]
+
 [node name="MainMenu" type="Control" unique_id=128426183]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +12,85 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_ij7vn")
+script = ExtResource("1_8gy84")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=449601437]
+layout_mode = 0
+offset_left = -308.0
+offset_top = 256.00003
+offset_right = 858.0
+offset_bottom = 2001.2675
+rotation = -0.80285144
+texture = ExtResource("3_rqbgu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=719863624]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -419.5
+offset_right = 419.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1838108336]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer" unique_id=630770175]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("3_yjgyn")
+stretch_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1814439096]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer" unique_id=1648911170]
+layout_mode = 2
+theme_override_constants/margin_left = 320
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 320
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer" unique_id=204760538]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1706438606]
+layout_mode = 2
+text = "Gladiator of the Golden House"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1314977731]
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1494432604]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Continue"
+
+[node name="NewGameButton" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1667745833]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New Game"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1387304094]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=597702540]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit to Desktop"
+
+[connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
