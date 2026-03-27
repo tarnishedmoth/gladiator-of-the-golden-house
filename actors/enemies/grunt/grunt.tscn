@@ -13,7 +13,7 @@
 
 [node name="Grunt" type="Node2D" unique_id=84579020 node_paths=PackedStringArray("speech_bubble")]
 script = ExtResource("1_q1aho")
-usable_actions = Array[ExtResource("2_it1al")]([ExtResource("3_sryjk"), ExtResource("4_6iwa0"), ExtResource("5_2g32g")])
+usable_actions = Array[ExtResource("2_it1al")]([ExtResource("3_sryjk"), ExtResource("4_6iwa0"), ExtResource("5_2g32g"), null])
 speech_bubble = NodePath("SpeechBubble")
 ui_name = "Grunt"
 ui_description = "A low-level combatant. Not dangerous alone, but threatening in numbers."

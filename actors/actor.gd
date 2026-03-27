@@ -231,6 +231,12 @@ func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
 	move_tween.tween_callback(animation_finished.emit)
 	
 	play_sfx(ActorSfxHandler.Sounds.MOVE)
+	
+	if(director is Player):
+		var pickup: PickUp = Level.get_pick_up_at(coords)
+		if pickup:
+			pickup.on_pick_up(self)
+		
 
 ## Sets [member facing]. North is the default value.
 func set_facing(cardinal_direction: Facing.Cardinal) -> void:

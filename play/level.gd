@@ -70,6 +70,15 @@ static func get_actor_at_relative_pos(actor: Actor,coords: Vector2i) -> Actor:
 	var result: Actor = get_actor_at(global_coords)
 	print("get actors at relative pos: %s",result)
 	return result
+	
+static func get_all_pick_ups()-> Array[PickUp]:
+	return instance.pick_up_manager.pick_ups
+	
+static func get_pick_up_at(coords: Vector2i) -> PickUp:
+	for pick_up in get_all_pick_ups():
+		if pick_up.current_tile_coords == coords:
+			return pick_up
+	return null
 
 ## Returns a description of any actors sharing the same tile, or empty string if none overlap.
 static func get_overlap_description() -> String:
@@ -102,6 +111,7 @@ var directors: Array[Director] = []
 var current_director_idx: int = -1
 var waiting_to_finish: Array[Director] = []
 
+@onready var pick_up_manager: PickUpManager = %PickUpManager
 
 var _play_started_time: float = 0.0
 var total_play_time: float = 0.0
@@ -148,6 +158,10 @@ func start_game() -> void:
 			elif child is AIDirector:
 				child.setup(base_tile_map_layer)
 	
+	pick_up_manager.setup(base_tile_map_layer)
+	
+	
+			
 	var overlaps: String = get_overlap_description()
 	assert(overlaps.is_empty(), "Actors overlap: %s" % overlaps)
 	

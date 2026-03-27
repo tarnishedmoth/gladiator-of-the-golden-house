@@ -292,6 +292,11 @@ func play_held_action_at(coords: Vector2i):
 		hud.populate_actions_list(actions_in_hand, selected_actor)
 		update_hud_actions_disabled_check()		
 
+func add_to_deck(card: Action):
+	if card == null:
+		print("Card to add was null")
+		return
+	draw_deck.push_back(card)
 #endregion
 
 func select_actor(actor: Actor) -> void:
