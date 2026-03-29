@@ -4,13 +4,9 @@
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="2_k8ka1"]
 [ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="3_fys54"]
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="4_gm8ma"]
-[ext_resource type="Resource" uid="uid://v55ki5jxlh1r" path="res://actions/prefabs/basic_stun.tres" id="5_rne3s"]
 [ext_resource type="Resource" uid="uid://cior70oyylpmi" path="res://actions/prefabs/grunt_heavy_attack.tres" id="6_ki2ix"]
 [ext_resource type="Resource" uid="uid://chyn3vp8qw7ue" path="res://actions/prefabs/grunt_light_attack.tres" id="7_k8ka1"]
 [ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="8_gdvfg"]
-[ext_resource type="Resource" uid="uid://bq8t0b6fk1e7n" path="res://pick-ups/test_pick_up.tres" id="8_ksudi"]
-[ext_resource type="PackedScene" uid="uid://du2plfq567q8g" path="res://pick-ups/pick_up.tscn" id="9_fys54"]
-[ext_resource type="Script" uid="uid://b8rocr8na0vw7" path="res://pick-ups/pick_up_manager.gd" id="9_k8ka1"]
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://play/player_insert_placeholder.tscn" id="10_ksudi"]
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_ki2ix")]
@@ -22,10 +18,8 @@ metadata/_edit_lock_ = true
 
 [node name="Grunt" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=84579020 instance=ExtResource("3_fys54")]
 position = Vector2(138, -168)
-on_death_pickup = ExtResource("8_ksudi")
-usable_actions = Array[ExtResource("4_gm8ma")]([ExtResource("5_rne3s"), ExtResource("6_ki2ix"), ExtResource("7_k8ka1")])
+usable_actions = Array[ExtResource("4_gm8ma")]([ExtResource("7_k8ka1"), ExtResource("6_ki2ix"), ExtResource("8_gdvfg")])
 facing = 3
-starting_health = 1
 
 [node name="Grunt2" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=1358176527 instance=ExtResource("3_fys54")]
 position = Vector2(290, 110)
@@ -33,19 +27,10 @@ usable_actions = Array[ExtResource("4_gm8ma")]([ExtResource("7_k8ka1"), ExtResou
 facing = 5
 
 [node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("10_ksudi")]
-position = Vector2(97, -103)
+position = Vector2(15, -8)
 
-[node name="PickUpManager" type="Node2D" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="2" unique_id=889261789]
-unique_name_in_owner = true
-position = Vector2(-16, 0)
-script = ExtResource("9_k8ka1")
-metadata/_custom_type_script = "uid://b8rocr8na0vw7"
-
-[node name="Pick_Up" parent="TileMapLayers/PickUpManager" index="0" unique_id=1699168736 instance=ExtResource("9_fys54")]
-position = Vector2(71, 38)
-
-[node name="BaseTileMapLayer" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="3" unique_id=1254354450]
+[node name="BaseTileMapLayer" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="2" unique_id=1254354450]
 modulate = Color(0.57, 0.31159997, 0.11399999, 1)
 
-[node name="MouseFollower" parent="." index="3" unique_id=687351869]
+[node name="MouseFollower" parent="." index="4" unique_id=687351869]
 position = Vector2(57, 55)
