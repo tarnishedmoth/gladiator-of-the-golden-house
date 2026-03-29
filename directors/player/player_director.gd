@@ -288,15 +288,23 @@ func play_held_action_at(coords: Vector2i):
 		if current_held_action.allow_facing_after:
 			position_for_facing= selected_actor.global_position #TODO: not sure why this isn't getting the current actor position after the player moves?
 			await get_facing(position_for_facing)		
+		remove_used_consumeables(current_held_action)
 		unhold_action()
 		hud.populate_actions_list(actions_in_hand, selected_actor)
 		update_hud_actions_disabled_check()		
 
-func add_to_deck(card: Action):
+func add_to_deck(card: Action) -> void:
 	if card == null:
 		print("Card to add was null")
 		return
 	draw_deck.push_back(card)
+	
+func remove_from_deck(card: Action) -> void:
+	if card == null:
+		print("Card to remove was null")
+		return
+	if card in discard_deck:
+		discard_deck.erase(card)
 #endregion
 
 func select_actor(actor: Actor) -> void:
@@ -307,6 +315,10 @@ func select_actor(actor: Actor) -> void:
 		assert(actor in actors)
 		selected_actor = actor
 		if VERBOSE: p("Selected actor %s" % selected_actor)
+
+func remove_used_consumeables(card: Action) -> void:
+	if card.action_category == Action.ActionCategory.CONSUMABLE:
+		remove_from_deck(card)	
 
 func deselect_actor() -> void: select_actor(null)
 
