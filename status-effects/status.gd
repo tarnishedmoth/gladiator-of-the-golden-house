@@ -38,13 +38,20 @@ enum Hook {
 
 @export var effect_points: int 
 
-@export var ui_name: String 
+@export var ui_name: String ## This name is also used as a [member unique_name], for combining statuses when applied.
 @export var ui_description: String 
 @export var status_effect_category: StatusEffectCategory
 @export var ui_icon: Texture2D: ## If left undefined, will use one according to its [member action_category].
 	get:
 		if ui_icon: return ui_icon
 		else: return STATUS_CATEGORY_ICONS.get(status_effect_category)
+		
+var unique_name: StringName:
+	get:
+		if not unique_name:
+			assert(ui_name, "Status must have a unique name assigned")
+			unique_name = ui_name as StringName
+		return unique_name
 
 #set Actor with Status effect
 func set_actor(actor:Actor) -> void:
@@ -79,6 +86,9 @@ func on_deal_damage(damage:int) -> int: ## Override me
 	
 func on_deal_direct_damage(damage:int) -> int: ## Override me
 	return damage
+	
+func on_applying_status(new_status: Status) -> Status:
+	return new_status
 
 @warning_ignore("unused_parameter")
 ## Happens after damage has been dealt. The value can not be manipulated. Override me.
@@ -88,6 +98,11 @@ func on_damage_dealt(damage:int) -> void:
 @warning_ignore("unused_parameter")
 ## Happens after damage has been dealt. The value can not be manipulated. Override me.
 func on_direct_damage_dealt(damage:int) -> void:
+	pass
+	
+@warning_ignore("unused_parameter")
+## Happens after a status has been applied. Conventionally would say you shouldn't modify the status.
+func on_status_applied(new_status: Status) -> void:
 	pass
 
 # what do we need to really know about for all possible status effects

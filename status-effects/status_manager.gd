@@ -78,17 +78,32 @@ func on_damage_dealt(damage:int) -> void:
 func on_direct_damage_dealt(damage:int) -> void:
 	for status in status_effects:
 		status.on_direct_damage_dealt(damage)
+		
+func on_applying_status(new_status: Status) -> Status:
+	for status in status_effects:
+		new_status = status.on_applying_status(new_status)
+	return new_status
+	
+func on_status_applied(new_status: Status) -> void:
+	for status in status_effects:
+		status.on_status_applied(new_status)
 
 #endregion
 
 #region Status stack
 
 func add_status(status: Status, do_duplicate: bool = true) -> void:
-	if status in status_effects: ## FIXME I'm pretty sure this is not working correctly
-		var _status = status_effects.find(status)
-		_status.add_points(status.effect_points)
+	status = on_applying_status(status)
+	var matching
+	for _status in status_effects:
+		if _status.unique_name == status.unique_name:
+			matching = _status
+			break
+			
+	if matching:
+		matching.add_points(status.effect_points)
 		if debug:
-			p("Added %d points to status %s." % [status.effect_points, _status.ui_name])
+			p("Added %d points to status %s." % [status.effect_points, matching.ui_name])
 	else:
 		var new_status: Status
 		if do_duplicate:
@@ -100,6 +115,7 @@ func add_status(status: Status, do_duplicate: bool = true) -> void:
 		status_effects.append(new_status)
 		if debug:
 			p("Added new status %s." % new_status)
+	on_status_applied(status)
 	
 func remove_status(status: Status) -> void:
 	status_effects.erase(status)
