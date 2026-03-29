@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c5wwjkucrew5h"]
+
+[ext_resource type="Script" uid="uid://cu4ax3w3ygvfu" path="res://play/player_insert_placeholder.gd" id="1_8bolj"]
+[ext_resource type="Texture2D" uid="uid://bs8ywso6o5mlp" path="res://icon.svg" id="2_fy2bw"]
+
+[node name="PlayerPlaceholder" type="Node2D" unique_id=2010280176]
+editor_description = "Will replace itself on ready with a referenced scene via [PlayerData]."
+script = ExtResource("1_8bolj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1363635873]
+texture = ExtResource("2_fy2bw")
+region_enabled = true
+region_rect = Rect2(32, 32, 48, 48)

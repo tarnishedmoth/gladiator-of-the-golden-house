@@ -145,7 +145,12 @@ func start_game() -> void:
 	assert(base_tile_map_layer)
 	assert(tile_interactor)
 	tile_interactor.set_tilemap(base_tile_map_layer)
-	TargetFinder.setup(base_tile_map_layer)	
+	TargetFinder.setup(base_tile_map_layer)
+	
+	## Replace placeholders with chosen starting class
+	for child in %Directors.get_children(): ## Maybe not very efficient
+		if child is PlayerInsertPlaceholder:
+			child.replace()
 
 	get_tree().node_removed.connect(_on_node_removed)
 	

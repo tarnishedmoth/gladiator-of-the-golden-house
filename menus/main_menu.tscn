@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://bs8ywso6o5mlp" path="res://icon.svg" id="3_rqbgu"]
 [ext_resource type="Texture2D" uid="uid://dvuqbrge3doql" path="res://menus/gladiator-godot-icon.png" id="3_yjgyn"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rqbgu"]
+
 [node name="MainMenu" type="Control" unique_id=128426183]
 layout_mode = 3
 anchors_preset = 15
@@ -24,73 +26,135 @@ offset_bottom = 2001.2675
 rotation = -0.80285144
 texture = ExtResource("3_rqbgu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=719863624]
+[node name="TabContainer" type="TabContainer" parent="." unique_id=290841082]
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -419.5
-offset_right = 419.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rqbgu")
+current_tab = 1
+tabs_visible = false
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1838108336]
+[node name="MainMenuTab" type="VBoxContainer" parent="TabContainer" unique_id=719863624]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/MainMenuTab" unique_id=1838108336]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer" unique_id=630770175]
+[node name="TextureRect" type="TextureRect" parent="TabContainer/MainMenuTab/MarginContainer" unique_id=630770175]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("3_yjgyn")
 stretch_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1814439096]
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/MainMenuTab" unique_id=1814439096]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer" unique_id=1648911170]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/MainMenuTab/PanelContainer" unique_id=1648911170]
 layout_mode = 2
 theme_override_constants/margin_left = 320
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 320
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer" unique_id=204760538]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/MainMenuTab/PanelContainer/MarginContainer" unique_id=204760538]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1706438606]
+[node name="Label" type="Label" parent="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer" unique_id=1706438606]
 layout_mode = 2
 text = "Gladiator of the Golden House"
+horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1314977731]
+[node name="HSeparator" type="HSeparator" parent="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer" unique_id=1314977731]
 layout_mode = 2
 
-[node name="ContinueButton" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1494432604]
+[node name="ContinueButton" type="Button" parent="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer" unique_id=1494432604]
 unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "Continue"
 
-[node name="NewGameButton" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1667745833]
+[node name="NewGameButton" type="Button" parent="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer" unique_id=1667745833]
 unique_name_in_owner = true
 layout_mode = 2
 text = "New Game"
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1387304094]
+[node name="OptionsButton" type="Button" parent="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer" unique_id=1387304094]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Options"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=597702540]
+[node name="QuitButton" type="Button" parent="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer" unique_id=597702540]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit to Desktop"
 
-[connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="NewGameTab" type="MarginContainer" parent="TabContainer" unique_id=1440261336]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_right = 80
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/NewGameTab" unique_id=1331974694]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Label" type="Label" parent="TabContainer/NewGameTab/VBoxContainer" unique_id=1944425055]
+layout_mode = 2
+text = "Select your starting class.
+Each class has unique gameplay actions and stats."
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/NewGameTab/VBoxContainer" unique_id=1253228311]
+layout_mode = 2
+
+[node name="ClassesGridContainer" type="HFlowContainer" parent="TabContainer/NewGameTab/VBoxContainer/PanelContainer" unique_id=1496187460]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="ChosenNameLineEdit" type="LineEdit" parent="TabContainer/NewGameTab/VBoxContainer" unique_id=1738103002]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+placeholder_text = "What's your name?"
+alignment = 1
+max_length = 24
+expand_to_text_length = true
+select_all_on_focus = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="TabContainer/NewGameTab/VBoxContainer" unique_id=539192275]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/NewGameTab/VBoxContainer/PanelContainer2" unique_id=412074963]
+layout_mode = 2
+alignment = 1
+
+[node name="GoBackButton" type="Button" parent="TabContainer/NewGameTab/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=1638055323]
+layout_mode = 2
+text = "Go Back"
+
+[node name="ConfirmClassButton" type="Button" parent="TabContainer/NewGameTab/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=1686814505]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Confirm"
+
+[connection signal="pressed" from="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="TabContainer/NewGameTab/VBoxContainer/PanelContainer2/HBoxContainer/GoBackButton" to="." method="_on_go_back_button_pressed"]
+[connection signal="pressed" from="TabContainer/NewGameTab/VBoxContainer/PanelContainer2/HBoxContainer/ConfirmClassButton" to="." method="_on_confirm_button_pressed"]

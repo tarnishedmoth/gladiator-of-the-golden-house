@@ -23,11 +23,14 @@ var persistent_actors: Dictionary[StringName, Actor.PersistentActorData]
 static func new_playthrough(chosen_name: String, chosen_starting_class: String) -> void:
 	if this:
 		p("Overwriting data!")
-	p("%s starting a new playthrough as %s." % [chosen_name, STARTING_CLASSES.find_key("uid://bet8eq50pbkqf")])
+	p("%s starting a new playthrough as %s." % [chosen_name, STARTING_CLASSES.find_key(chosen_starting_class)])
 	
 	this = PlayerData.new()
 	this.choice_name = chosen_name
 	this.choice_starting_class = chosen_starting_class
+	
+func get_chosen_starting_class_scene() -> PackedScene: ## Should be of type [Player] when instantiated
+	return load(choice_starting_class)
 
 static func get_actor_data(actor_key: StringName) -> Actor.PersistentActorData:
 	if not this:
