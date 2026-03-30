@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ActionApplyStatusPattern" format=3 uid="uid://br4bum2xxwq41"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_hrosa"]
+[ext_resource type="Script" uid="uid://k4rqrulmvg3t" path="res://actions/apply_status_pattern.gd" id="2_gtc71"]
+[ext_resource type="Resource" uid="uid://yrjd3nv2uamc" path="res://status-effects/prefabs/defense.tres" id="3_mkpi7"]
+
+[resource]
+script = ExtResource("2_gtc71")
+aoe_pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
+status = ExtResource("3_mkpi7")
+ui_title = "Boost Defense"
+ui_description = "Applies Defense to a target."
+metadata/_custom_type_script = "uid://k4rqrulmvg3t"
