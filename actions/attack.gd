@@ -2,6 +2,7 @@ class_name ActionAttack extends Action
 
 @export var damage: int
 @export var can_damage_self: bool = false
+@export var can_damage_teammates: bool = false
 #@export_category("Target Pattern")
 @export var pattern: Array[Vector2i] = [] ## Assume coords 0,0 and facing north. Then list the coords they can hit. the rotate hex function in facing will make that pattern work in any direction.
 @export var aoe_pattern: Array[Vector2i]
@@ -36,6 +37,8 @@ func get_affected() -> Array[Actor]:
 		var found_actor: Actor = Level.get_actor_at(coords)
 		if found_actor != null:
 			if not can_damage_self && found_actor == _actor:
+				continue
+			if not can_damage_teammates && found_actor.director == _actor.director:
 				continue
 			affected_actors.append(found_actor)
 	return affected_actors
