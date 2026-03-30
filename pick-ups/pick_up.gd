@@ -28,7 +28,7 @@ func setup(manager: PickUpManager, tilemap: TileMapLayer, _pickupdata:PickUpData
 func on_pick_up(actor:Actor) -> void:
 	var actor_director: Player = actor.director
 	if actor_director:
-		actor_director.add_to_deck(pick_up_action)
+		actor_director.add_to_stash(pick_up_action)
 	clear_pick_up()
 
 func snap_to_nearest_tile() -> void:

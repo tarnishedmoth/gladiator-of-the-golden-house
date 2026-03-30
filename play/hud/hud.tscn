@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cnk6cyi6oyhbp" path="res://play/hud/button_with_blips.gd" id="7_ksooa"]
 [ext_resource type="Script" uid="uid://bxiiyyo4td2qr" path="res://play/hud/actions.gd" id="8_n2sn3"]
 [ext_resource type="Script" uid="uid://c1xuhqtthu8qi" path="res://play/hud/action_hover_panel.gd" id="9_ksooa"]
+[ext_resource type="PackedScene" path="res://play/hud/stash_panel.tscn" id="10_stash"]
 
 [node name="HUD" type="CanvasLayer" unique_id=414291549]
 script = ExtResource("1_54fu8")
@@ -132,6 +133,10 @@ script = ExtResource("7_ksooa")
 metadata/_custom_type_script = "uid://cnk6cyi6oyhbp"
 
 [node name="Actions" type="VBoxContainer" parent="Root/HBoxContainer/LeftSide/ActionsPanel/VBoxContainer" unique_id=1605133322]
+layout_mode = 2
+
+[node name="StashPanel" parent="Root/HBoxContainer/LeftSide" instance=ExtResource("10_stash")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="RightOfLeftSide" type="VBoxContainer" parent="Root/HBoxContainer" unique_id=972711055]

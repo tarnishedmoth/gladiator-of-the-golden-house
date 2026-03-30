@@ -13,6 +13,7 @@ var selected_actor_action_panels: Array[HUDSelectedActorActionPanel]
 
 @onready var hover_panel: HUDHoverPanel = %HoverPanel
 @onready var actions_panel: ActionsPanel = %ActionsPanel
+@onready var stash_panel: StashPanel = %StashPanel
 @onready var actions_hover_panel: HUDActionHoverPanel = %ActionsHoverPanel
 @onready var selected_actor_action_panels_v_box_container: VBoxContainer = %SelectedActorActionPanelsVBoxContainer
 @onready var end_turn_button: Button = %EndTurnButton
@@ -33,6 +34,10 @@ func _ready() -> void:
 	actions_panel.action_button_pressed.connect(_on_action_pressed)
 	actions_panel.action_hover_started.connect(_on_action_hover_start)
 	actions_panel.action_hover_ended.connect(_on_action_hover_ended)
+
+	stash_panel.action_button_pressed.connect(_on_stash_action_pressed)
+	stash_panel.action_hover_started.connect(_on_action_hover_start)
+	stash_panel.action_hover_ended.connect(_on_action_hover_ended)
 	
 	Level.get_instance().current_director_changed.connect(_on_current_director_changed)
 
@@ -77,8 +82,17 @@ func _on_action_pressed(action: Action) -> void:
 	if player is Player:
 		player.hold_action(action)
 
+func _on_stash_action_pressed(action: Action) -> void:
+	var player = Level.get_current_director()
+	assert(player is Player)
+	if player is Player:
+		player.hold_action(action, true)
+
 func populate_actions_list(hand: Array[Action], selected_actor: Actor) -> void:
 	actions_panel.populate_actions(hand, selected_actor)
+
+func populate_stash_list(stash: Array[Action], selected_actor: Actor) -> void:
+	stash_panel.populate_stash(stash, selected_actor)
 
 func show_actions_hover_panel(show_:bool = true) -> void:
 	if not show_:

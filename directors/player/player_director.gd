@@ -24,6 +24,8 @@ var discard_deck: Array[Action] ## When [member draw_deck] runs empty, these are
 var exhausted_deck: Array[Action] ## Are removed from play for the rest of this match.
 var actions_in_hand: Array[Action] ## Action cards that the player currently has on screen to choose from.
 var current_held_action: Action ## The action to be previewed or played.
+var stash: Array[Action] ## Persistent bonus cards, consumed on use.
+var _held_action_is_from_stash: bool = false
 
 var selected_actor: Actor:
 	set(v):
@@ -65,6 +67,14 @@ func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 		draw_deck.append_array(stance.actions)
 		
 	draw_deck.shuffle()
+
+	var main_actor: Actor = actors.front()
+	if main_actor and main_actor.persistent_data_key:
+		var actor_data = PlayerData.get_actor_data(main_actor.persistent_data_key)
+		if actor_data and not actor_data.stash.is_empty():
+			stash = actor_data.stash.duplicate()
+			if VERBOSE: p("Loaded %d stashed cards." % stash.size())
+
 	if VERBOSE: p("Setup done.")
 
 
@@ -84,10 +94,11 @@ func _end_turn() -> void:
 
 var _end_turn_with_available_moves: Tween
 func user_pressed_end_turn_button() -> bool: ## Returns true if turn is ending immediately, false if user must hold.
+	var all_available_actions: Array[Action] = actions_in_hand + stash
 	var player_has_remaining_actions: bool = \
-	(not actions_in_hand.is_empty()) \
+	(not all_available_actions.is_empty()) \
 	and actors_have_remaining_energy() \
-	and actors_have_usable_actions(actions_in_hand)
+	and actors_have_usable_actions(all_available_actions)
 	
 	if player_has_remaining_actions:
 		_end_turn_with_available_moves = create_tween()
@@ -204,12 +215,13 @@ func _on_click_to_play_action(target_coords: Vector2i) -> void:
 
 #region Actions / Deck Logic
 ## Used to preview actions.
-func hold_action(action: Action):
+func hold_action(action: Action, from_stash: bool = false):
 	if (action != null) and (current_held_action == action):
 		unhold_action()
 		return
 	else:
 		current_held_action = action
+		_held_action_is_from_stash = from_stash
 		
 	TargetFinder.clear_target_highlights()
 	if current_held_action:
@@ -230,6 +242,7 @@ func draw_hand(draw_count: int = hand_size):
 	for card in draw_count:
 		_draw_next_card()
 	hud.populate_actions_list(actions_in_hand, selected_actor) ## Update HUD
+	hud.populate_stash_list(stash, selected_actor)
 	update_hud_actions_disabled_check()
 	
 func discard_hand():
@@ -281,16 +294,21 @@ func play_held_action_at(coords: Vector2i):
 		current_held_action.set_target(coords)		
 		print("before run: ", self.global_position)
 		print("coords: ", coords)
-		selected_actor.run_action(current_held_action)	
+		selected_actor.run_action(current_held_action)
 		print("after run: ", self.global_position)
 		print("coords: ", coords)
-		_discard(current_held_action)
+		if _held_action_is_from_stash:
+			remove_from_stash(current_held_action)
+		else:
+			_discard(current_held_action)
 		if current_held_action.allow_facing_after:
 			position_for_facing= selected_actor.global_position #TODO: not sure why this isn't getting the current actor position after the player moves?
-			await get_facing(position_for_facing)		
-		remove_used_consumeables(current_held_action)
+			await get_facing(position_for_facing)
+		if not _held_action_is_from_stash:
+			remove_used_consumeables(current_held_action)
 		unhold_action()
 		hud.populate_actions_list(actions_in_hand, selected_actor)
+		hud.populate_stash_list(stash, selected_actor)
 		update_hud_actions_disabled_check()		
 
 func add_to_deck(card: Action) -> void:
@@ -307,6 +325,20 @@ func remove_from_deck(card: Action) -> void:
 	if card in discard_deck:
 		if VERBOSE: p("Removed card %s from deck." % card.ui_name)
 		discard_deck.erase(card)
+
+func add_to_stash(card: Action) -> void:
+	if card == null:
+		if VERBOSE: p("Card to stash was null")
+		return
+	card.action_category = Action.ActionCategory.CONSUMABLE
+	stash.append(card)
+	hud.populate_stash_list(stash, selected_actor)
+	update_hud_actions_disabled_check()
+	if VERBOSE: p("Stashed card: %s" % card.ui_title)
+
+func remove_from_stash(card: Action) -> void:
+	stash.erase(card)
+	if VERBOSE: p("Removed stashed card: %s" % card.ui_title)
 #endregion
 
 func select_actor(actor: Actor) -> void:
@@ -326,6 +358,7 @@ func deselect_actor() -> void: select_actor(null)
 
 func update_hud_actions_disabled_check() -> void:
 	hud.actions_panel.check_actions_disabled(selected_actor)
+	hud.stash_panel.check_actions_disabled(selected_actor)
 
 func update_action_preview() -> void:
 	var non_player_actor: Actor = null
