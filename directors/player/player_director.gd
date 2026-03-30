@@ -25,7 +25,6 @@ var exhausted_deck: Array[Action] ## Are removed from play for the rest of this 
 var actions_in_hand: Array[Action] ## Action cards that the player currently has on screen to choose from.
 var current_held_action: Action ## The action to be previewed or played.
 var stash: Array[Action] ## Persistent bonus cards, consumed on use.
-var _held_action_is_from_stash: bool = false
 
 var selected_actor: Actor:
 	set(v):
@@ -215,13 +214,12 @@ func _on_click_to_play_action(target_coords: Vector2i) -> void:
 
 #region Actions / Deck Logic
 ## Used to preview actions.
-func hold_action(action: Action, from_stash: bool = false):
+func hold_action(action: Action):
 	if (action != null) and (current_held_action == action):
 		unhold_action()
 		return
 	else:
 		current_held_action = action
-		_held_action_is_from_stash = from_stash
 		
 	TargetFinder.clear_target_highlights()
 	if current_held_action:
@@ -290,26 +288,22 @@ func play_held_action_at(coords: Vector2i):
 		position_for_facing = selected_actor.global_position
 		await get_facing(position_for_facing)
 	if current_held_action.can_player_enter(selected_actor):
-		selected_actor.remove_energy(current_held_action.energy_cost)		
-		current_held_action.set_target(coords)		
-		print("before run: ", self.global_position)
-		print("coords: ", coords)
+		selected_actor.remove_energy(current_held_action.energy_cost)
+		current_held_action.set_target(coords)
 		selected_actor.run_action(current_held_action)
-		print("after run: ", self.global_position)
-		print("coords: ", coords)
-		if _held_action_is_from_stash:
+		var is_from_stash: bool = current_held_action in stash
+		if is_from_stash:
 			remove_from_stash(current_held_action)
 		else:
 			_discard(current_held_action)
 		if current_held_action.allow_facing_after:
 			position_for_facing= selected_actor.global_position #TODO: not sure why this isn't getting the current actor position after the player moves?
 			await get_facing(position_for_facing)
-		if not _held_action_is_from_stash:
-			remove_used_consumeables(current_held_action)
+		if not is_from_stash:
+			remove_used_consumables(current_held_action)
 		unhold_action()
 		hud.populate_actions_list(actions_in_hand, selected_actor)
-		hud.populate_stash_list(stash, selected_actor)
-		update_hud_actions_disabled_check()		
+		update_hud_actions_disabled_check()
 
 func add_to_deck(card: Action) -> void:
 	if card == null:
@@ -338,6 +332,8 @@ func add_to_stash(card: Action) -> void:
 
 func remove_from_stash(card: Action) -> void:
 	stash.erase(card)
+	hud.populate_stash_list(stash, selected_actor)
+	update_hud_actions_disabled_check()
 	if VERBOSE: p("Removed stashed card: %s" % card.ui_title)
 #endregion
 
@@ -350,7 +346,7 @@ func select_actor(actor: Actor) -> void:
 		selected_actor = actor
 		if VERBOSE: p("Selected actor %s" % selected_actor)
 
-func remove_used_consumeables(card: Action) -> void:
+func remove_used_consumables(card: Action) -> void:
 	if card.action_category == Action.ActionCategory.CONSUMABLE:
 		remove_from_deck(card)	
 

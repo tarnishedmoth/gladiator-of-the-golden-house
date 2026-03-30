@@ -221,6 +221,13 @@ func pause_game(paused: bool) -> void:
 func save_persistent_actors_data() -> void:
 	for actor in get_all_actors_in_play_order():
 		actor.push_persistent_data()
+	# Save player-director-level data (stash) onto the main actor's persistent record
+	for director in get_directors():
+		if director is Player:
+			var main_actor: Actor = director.actors.front()
+			if main_actor and main_actor.persistent_data_key and main_actor.persistent_actor_data:
+				main_actor.persistent_actor_data.stash = director.stash.duplicate()
+				PlayerData.set_actor_data(main_actor.persistent_data_key, main_actor.persistent_actor_data)
 
 
 var tile_coords_debug_overlay_elements: Array[Node]

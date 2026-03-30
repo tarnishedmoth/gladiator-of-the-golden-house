@@ -86,7 +86,7 @@ func _on_stash_action_pressed(action: Action) -> void:
 	var player = Level.get_current_director()
 	assert(player is Player)
 	if player is Player:
-		player.hold_action(action, true)
+		player.hold_action(action)
 
 func populate_actions_list(hand: Array[Action], selected_actor: Actor) -> void:
 	actions_panel.populate_actions(hand, selected_actor)
@@ -105,9 +105,11 @@ func show_actions_hover_panel(show_:bool = true) -> void:
 func _on_action_hover_start(action:Action) -> void:
 	actions_hover_panel.clear_all()
 	actions_hover_panel.populate_using_action_data(action)
+	show_actions_hover_panel()
 
 func _on_action_hover_ended() -> void:
 	actions_hover_panel.clear_all()
+	show_actions_hover_panel(false)
 
 
 func _on_current_director_changed(new_director: Director) -> void:

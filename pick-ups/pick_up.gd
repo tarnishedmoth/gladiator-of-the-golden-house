@@ -23,12 +23,12 @@ func setup(manager: PickUpManager, tilemap: TileMapLayer, _pickupdata:PickUpData
 		apply_data(_pickupdata)
 	else:
 		apply_data(pick_up_data)# this will be used for the pickup data avaiable at the start of round
-	print ("pick up spawned")	
 
+## Picked-up actions go to the player's stash (persistent bonus cards) rather than the draw deck.
 func on_pick_up(actor:Actor) -> void:
-	var actor_director: Player = actor.director
-	if actor_director:
-		actor_director.add_to_stash(pick_up_action)
+	if actor.director is Player:
+		var player_director: Player = actor.director
+		player_director.add_to_stash(pick_up_action.duplicate())
 	clear_pick_up()
 
 func snap_to_nearest_tile() -> void:

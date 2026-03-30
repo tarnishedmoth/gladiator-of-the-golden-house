@@ -58,7 +58,7 @@ class PersistentActorData extends Resource:
 	var current_health: int
 	var starting_energy: int
 	var starting_status_effects: Array[Status]
-	var stash: Array[Action]
+	var stash: Array[Action] ## Bonus action cards carried between levels.
 
 	var ui_name: String
 	var ui_subtitle: String
@@ -90,8 +90,6 @@ func push_persistent_data() -> void:
 	if persistent_data_key:
 		assert(persistent_actor_data)
 		persistent_actor_data.set_stats_from_actor(self, true)
-		if director is Player:
-			persistent_actor_data.stash = director.stash.duplicate()
 		PlayerData.set_actor_data(persistent_data_key, persistent_actor_data)
 
 
