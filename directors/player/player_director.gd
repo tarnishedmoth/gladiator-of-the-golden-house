@@ -295,15 +295,17 @@ func play_held_action_at(coords: Vector2i):
 
 func add_to_deck(card: Action) -> void:
 	if card == null:
-		print("Card to add was null")
+		if VERBOSE: p("Card to add was null")
 		return
+	if VERBOSE: p("Adding card %s to deck." % card.ui_name)
 	draw_deck.push_back(card)
 	
 func remove_from_deck(card: Action) -> void:
 	if card == null:
-		print("Card to remove was null")
+		if VERBOSE: p("Card to remove was null")
 		return
 	if card in discard_deck:
+		if VERBOSE: p("Removed card %s from deck." % card.ui_name)
 		discard_deck.erase(card)
 #endregion
 

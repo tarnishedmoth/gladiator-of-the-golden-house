@@ -11,14 +11,6 @@ var current_tile_coords: Vector2i
 var tile_map: TileMapLayer
 var pick_up_manager: PickUpManager
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 func setup(manager: PickUpManager, tilemap: TileMapLayer, _pickupdata:PickUpData = null) -> void:
 	pick_up_manager = manager
 	pick_up_manager.pick_ups.push_back(self)
@@ -38,7 +30,6 @@ func on_pick_up(actor:Actor) -> void:
 	if actor_director:
 		actor_director.add_to_deck(pick_up_action)
 	clear_pick_up()
-	pass
 
 func snap_to_nearest_tile() -> void:
 	var tile_coords: Vector2i = tile_map.local_to_map(tile_map.to_local(global_position))
