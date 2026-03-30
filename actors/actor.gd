@@ -88,6 +88,7 @@ func set_stats_from_data(data: PersistentActorData = persistent_actor_data) -> v
 func push_persistent_data() -> void:
 	if persistent_data_key:
 		assert(persistent_actor_data)
+		persistent_actor_data.set_stats_from_actor(self, true)
 		PlayerData.set_actor_data(persistent_data_key, persistent_actor_data)
 
 
@@ -139,6 +140,9 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 		status_manager.free()
 	status_manager = StatusManager.new(self)
 	
+	health = starting_health
+	energy = starting_energy
+	
 	if persistent_data_key:
 		persistent_actor_data = PlayerData.get_actor_data(persistent_data_key)
 		if persistent_actor_data:
@@ -150,8 +154,6 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 			## We could register right away, but I think it's better to only do it when we finish a level.
 			## See method push_persistent_data().
 		
-	health = starting_health
-	energy = starting_energy
 	if speech_bubble:
 		speech_bubble.speak("Ready Fight!")
 	
