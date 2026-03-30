@@ -17,7 +17,7 @@ usable_actions = Array[ExtResource("2_it1al")]([ExtResource("3_sryjk"), ExtResou
 speech_bubble = NodePath("SpeechBubble")
 ui_name = "Grunt"
 ui_description = "A low-level combatant. Not dangerous alone, but threatening in numbers."
-starting_health = 18
+starting_health = 10
 
 [node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("2_vwm7r")]
 
