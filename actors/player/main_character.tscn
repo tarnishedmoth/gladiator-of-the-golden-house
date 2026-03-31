@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="2_3m1oj"]
 [ext_resource type="PackedScene" uid="uid://0b8prxcp20px" path="res://play/region-1-levels/colosseum-crowd/generator.tscn" id="2_eculu"]
 [ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="2_hlp3v"]
+[ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="3_gpw63"]
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="3_hlp3v"]
+[ext_resource type="Script" uid="uid://c23svqo1v3284" path="res://actors/player/weapon-wobble.gd" id="4_a6q5v"]
 
 [node name="MainCharacter" type="Node2D" unique_id=360471847 node_paths=PackedStringArray("speech_bubble")]
 script = ExtResource("1_ng02u")
@@ -16,6 +18,14 @@ starting_energy = 5
 metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
 
 [node name="Generator" parent="." unique_id=2057479258 instance=ExtResource("2_eculu")]
+
+[node name="Sword" type="Sprite2D" parent="." unique_id=1105906846]
+z_index = 1
+position = Vector2(2, 2)
+texture = ExtResource("3_gpw63")
+script = ExtResource("4_a6q5v")
+speed = 1.5
+amplitude = 1.5
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=503278960]
 visible = false
