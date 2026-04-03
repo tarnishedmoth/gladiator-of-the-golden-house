@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dyaldg7fkhf2y" path="res://menus/retry_menu.tscn" id="10_lsuxe"]
 [ext_resource type="PackedScene" uid="uid://dtaw53r4qlxv8" path="res://menus/main_menu.tscn" id="11_404wk"]
 [ext_resource type="PackedScene" uid="uid://7b6kamn7xtwi" path="res://menus/continue_menu.tscn" id="12_jaocw"]
-[ext_resource type="PackedScene" uid="uid://00q7yj5eqvpd" path="res://play/level2.tscn" id="13_h0gie"]
 [ext_resource type="Script" uid="uid://b8rocr8na0vw7" path="res://pick-ups/pick_up_manager.gd" id="14_mvnmw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u4q3m"]
@@ -114,4 +113,3 @@ main_menu_scene = ExtResource("11_404wk")
 [node name="Continue Menu" parent="CanvasLayer" unique_id=2014330921 instance=ExtResource("12_jaocw")]
 visible = false
 main_menu_scene = ExtResource("11_404wk")
-next_level_scene = ExtResource("13_h0gie")

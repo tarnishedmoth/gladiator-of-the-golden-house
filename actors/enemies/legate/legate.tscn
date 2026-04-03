@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_ij7ux"]
 [ext_resource type="Resource" uid="uid://cy67g1itrecss" path="res://actions/prefabs/basic_guard_self.tres" id="4_28bj1"]
 [ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="5_f66cw"]
-[ext_resource type="Resource" uid="uid://v55ki5jxlh1r" path="res://actions/prefabs/basic_stun.tres" id="5_j1js3"]
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="6_imqgp"]
 [ext_resource type="Resource" uid="uid://br4bum2xxwq41" path="res://actions/prefabs/boost-defense.tres" id="6_svhos"]
+[ext_resource type="Resource" uid="uid://c5tfagd2yefvr" path="res://actions/prefabs/boost-focus.tres" id="7_28bj1"]
 [ext_resource type="Texture2D" uid="uid://bruvlpfjaf07n" path="res://actors/healthbarBG.png" id="7_lcbk2"]
 [ext_resource type="Texture2D" uid="uid://bidhnpwsgp83c" path="res://actors/healthbar.png" id="8_sa8pr"]
 [ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="9_et1ln"]
@@ -14,7 +14,7 @@
 
 [node name="Legate" type="Node2D" unique_id=576080733]
 script = ExtResource("1_traui")
-usable_actions = Array[ExtResource("2_ij7ux")]([ExtResource("5_f66cw"), ExtResource("4_28bj1"), ExtResource("5_j1js3"), ExtResource("6_svhos")])
+usable_actions = Array[ExtResource("2_ij7ux")]([ExtResource("5_f66cw"), ExtResource("4_28bj1"), ExtResource("6_svhos"), ExtResource("7_28bj1")])
 ui_name = "Legate"
 ui_description = "Often found among groups of grunts."
 starting_health = 38
