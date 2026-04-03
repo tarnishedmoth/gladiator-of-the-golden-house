@@ -32,4 +32,4 @@ facing = 2
 position = Vector2(3, 1)
 
 [node name="PointLight2D" parent="MouseFollower" parent_id_path=PackedInt32Array(687351869) index="1" unique_id=740285923]
-position = Vector2(-274, -88)
+metadata/_edit_lock_ = true
