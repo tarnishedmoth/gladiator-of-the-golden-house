@@ -34,6 +34,7 @@ enum Hook {
 }
 
 @export var on_start_behavior: OnStart = OnStart.REMOVE_EFFECT
+@export var after_hook_behavior: OnStart = OnStart.NOTHING
 @export var on_end_behavior: OnStart = OnStart.NOTHING
 
 @export var effect_points: int 
@@ -74,6 +75,15 @@ func on_turn_end() -> void: ## Call super() if you override
 			halve_points()
 		OnStart.REMOVE_EFFECT:
 			remove_effect()
+			
+func on_after_hook() -> void: ## Call super() if you override
+	match after_hook_behavior:
+		OnStart.SUBTRACT_ONE:
+			subtract_points(1)
+		OnStart.HALVE:
+			halve_points()
+		OnStart.REMOVE_EFFECT:
+			remove_effect()
 
 func on_take_damage(damage:int) -> int: ## Override me
 	return damage
@@ -91,19 +101,19 @@ func on_applying_status(new_status: Status) -> Status:
 	return new_status
 
 @warning_ignore("unused_parameter")
-## Happens after damage has been dealt. The value can not be manipulated. Override me.
+## Happens after damage has been dealt. The value can not be manipulated. Override me. Call super() to retain after hook effect points change.
 func on_damage_dealt(damage:int) -> void:
-	pass
+	on_after_hook()
 
 @warning_ignore("unused_parameter")
 ## Happens after damage has been dealt. The value can not be manipulated. Override me.
 func on_direct_damage_dealt(damage:int) -> void:
-	pass
+	on_after_hook()
 	
 @warning_ignore("unused_parameter")
 ## Happens after a status has been applied. Conventionally would say you shouldn't modify the status.
 func on_status_applied(new_status: Status) -> void:
-	pass
+	on_after_hook()
 
 # what do we need to really know about for all possible status effects
 # -the actor holding this status effect
