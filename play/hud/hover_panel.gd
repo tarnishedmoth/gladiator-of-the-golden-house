@@ -11,11 +11,8 @@ var status_effects_flow_container_items: Array[Control]
 
 func clear_all() -> void:
 	## HACK when status effects are implemented, reinstate this code
-	#for child in status_effects_flow_container_items:
-		#child.queue_free()
-	for child in status_effects_flow_container.get_children():
-		if child is Control:
-			child.visible = true if randf() > 0.5 else false ## HACK just for visualization
+	for child in status_effects_flow_container_items:
+		child.queue_free()
 		
 	title.text = ""
 	key_stats.text = ""
