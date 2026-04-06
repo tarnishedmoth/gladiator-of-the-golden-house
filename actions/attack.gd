@@ -50,12 +50,14 @@ func get_damage() -> int:
 func _deal_damage(actors:Array[Actor],applied_damage:int) -> void:
 	for actor in actors:
 		var damage_result: Actor.DamageResult = actor.take_damage(applied_damage)
-		
+		if damage_result.direct > 0:
+			damage_result.direct = _actor._on_dealing_direct_damage(damage_result.direct)
 		if debug: p(
 			"Hit %s with %s/%s (base/modified) damage.\n%s damage was negated, %s damage was taken directly." % [actor.name, damage, applied_damage, damage_result.negated, damage_result.direct]
 				)
 		_actor._on_damage_dealt(damage_result)
 		
+## DEPRECATED
 func _get_affected_and_deal_damage() -> void: #break this into 3 methods get_affected, get_damage, deal_damage
 	var targets: Array[Vector2i] = _actor.get_translated_pattern(pattern)
 

@@ -106,18 +106,21 @@ func on_applying_status(new_status: Status) -> Status:
 @warning_ignore("unused_parameter")
 ## Happens after damage has been dealt. The value can not be manipulated. Override me. Call super() to retain after hook effect points change.
 func on_damage_dealt(damage:int) -> void:
-	on_after_hook()
+	pass
+	#on_after_hook()
 
 @warning_ignore("unused_parameter")
 ## Happens after damage has been dealt. The value can not be manipulated. Override me.
 func on_direct_damage_dealt(damage:int) -> void:
-	on_after_hook()
+	pass
+	#on_after_hook() ## Must be invoked by an extension
 	
 @warning_ignore("unused_parameter")
 ## Happens after a status has been applied. Conventionally would say you shouldn't modify the status.
 func on_status_applied(new_status: Status) -> void:
-	if not is_same_status(self, new_status):
-		on_after_hook()
+	pass
+	#if not is_same_status(self, new_status): #on_after_hook() ## Must be invoked by an extension
+		#on_after_hook()
 
 # what do we need to really know about for all possible status effects
 # -the actor holding this status effect

@@ -55,7 +55,8 @@ func modify_damage(damage:int) -> int:
 		Operation.DIVIDE:
 			## NOTE Bad idea to use this with per-point
 			new_damage /= factor if not per_point else factor * effect_points
-	
+			
+	on_after_hook.call_deferred()
 	return int(new_damage)
 
 func on_modify_damage() -> void:
