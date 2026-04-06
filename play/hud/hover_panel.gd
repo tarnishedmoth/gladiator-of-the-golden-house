@@ -12,6 +12,7 @@ var status_effects_flow_container_items: Array[Control]
 func clear_all() -> void:
 	for child in status_effects_flow_container_items:
 		child.queue_free()
+	status_effects_flow_container_items.clear()
 		
 	title.text = ""
 	key_stats.text = ""
