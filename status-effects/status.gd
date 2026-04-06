@@ -53,6 +53,9 @@ var unique_name: StringName:
 			assert(ui_name, "Status must have a unique name assigned")
 			unique_name = ui_name as StringName
 		return unique_name
+		
+static func is_same_status(status_a: Status, status_b: Status) -> bool:
+	return status_a.unique_name == status_b.unique_name
 
 #set Actor with Status effect
 func set_actor(actor:Actor) -> void:
@@ -113,7 +116,8 @@ func on_direct_damage_dealt(damage:int) -> void:
 @warning_ignore("unused_parameter")
 ## Happens after a status has been applied. Conventionally would say you shouldn't modify the status.
 func on_status_applied(new_status: Status) -> void:
-	on_after_hook()
+	if not is_same_status(self, new_status):
+		on_after_hook()
 
 # what do we need to really know about for all possible status effects
 # -the actor holding this status effect

@@ -96,7 +96,7 @@ func add_status(status: Status, do_duplicate: bool = true) -> void:
 	status = on_applying_status(status)
 	var matching
 	for _status in status_effects:
-		if _status.unique_name == status.unique_name:
+		if Status.is_same_status(status, _status):
 			matching = _status
 			break
 			

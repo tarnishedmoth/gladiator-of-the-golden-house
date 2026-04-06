@@ -10,7 +10,6 @@ const TEMPLATE_STATUS_EFFECT_BUTTON = preload("uid://g8ol80ukqqcc")
 var status_effects_flow_container_items: Array[Control]
 
 func clear_all() -> void:
-	## HACK when status effects are implemented, reinstate this code
 	for child in status_effects_flow_container_items:
 		child.queue_free()
 		
