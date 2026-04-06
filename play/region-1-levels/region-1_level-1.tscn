@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dn85j1jxgk42" path="res://play/region-1-levels/inheritable-level_region-1.tscn" id="1_ki2ix"]
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="2_k8ka1"]
 [ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="3_fys54"]
-[ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://play/player_insert_placeholder.tscn" id="10_ksudi"]
+[ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="10_ksudi"]
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_ki2ix")]
 

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="2_3e2m6"]
 [ext_resource type="PackedScene" uid="uid://cp7oafdqv5rpl" path="res://actors/enemies/legate/legate.tscn" id="3_nk51x"]
 [ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="4_c5y5q"]
-[ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://play/player_insert_placeholder.tscn" id="5_nk51x"]
+[ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="5_nk51x"]
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_vq6sr")]
 
