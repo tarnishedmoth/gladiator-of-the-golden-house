@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ActionApplyStatusPattern" format=3 uid="uid://7a2sfsgl5bku"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_e28xr"]
+[ext_resource type="Script" uid="uid://k4rqrulmvg3t" path="res://actions/apply_status_pattern.gd" id="2_wpah8"]
+[ext_resource type="Resource" uid="uid://bxsqvlawime2u" path="res://status-effects/prefabs/focus.tres" id="3_b0no3"]
+
+[resource]
+script = ExtResource("2_wpah8")
+pattern = Array[Vector2i]([Vector2i(0, 0)])
+status = ExtResource("3_b0no3")
+ui_title = "Boost Focus"
+ui_description = "Gain +3 Focus."
+action_category = 2
+energy_cost = 1
+metadata/_custom_type_script = "uid://k4rqrulmvg3t"
