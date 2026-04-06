@@ -4,9 +4,7 @@
 
 [resource]
 script = ExtResource("1_aodm6")
-direct_only = true
 factor = 1.0
-expend_points_when_applied = true
 on_start_behavior = 0
 after_hook_behavior = 3
 effect_points = 3
