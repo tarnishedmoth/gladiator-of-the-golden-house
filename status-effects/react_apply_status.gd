@@ -81,3 +81,4 @@ func apply_status(override_quantity: int = override_quantity_to_apply) -> void:
 			get_target(),
 			override_quantity
 			)
+	on_after_hook()

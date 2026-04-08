@@ -3,11 +3,13 @@
 enum StatusEffectCategory{
 	NONE,
 	DEFENSE,
+	REACTION,
 }
 
 const STATUS_CATEGORY_ICONS: Dictionary[StatusEffectCategory, Texture2D] = {
 	StatusEffectCategory.NONE: preload("uid://disinbamqthvh"),
 	StatusEffectCategory.DEFENSE: preload("uid://c7ers5ee7squq"),
+	StatusEffectCategory.REACTION: preload("uid://c7ers5ee7squq"),
 }
 
 var _actor: Actor
@@ -33,9 +35,10 @@ enum Hook {
 	ON_ACTION_PLAYED, ## TODO
 }
 
-@export var on_start_behavior: OnStart = OnStart.REMOVE_EFFECT
+@export var on_start_behavior: OnStart = OnStart.REMOVE_EFFECT ## Happens when a director's turn begins.
 @export var after_hook_behavior: OnStart = OnStart.NOTHING
-@export var on_end_behavior: OnStart = OnStart.NOTHING
+@export var on_end_behavior: OnStart = OnStart.NOTHING ## Happens when a director's turn ends.
+@export var only_react_to_actors_turn_notifs: bool = false ## Affects [member on_start_behavior] and [member on_end_behavior].
 
 @export var effect_points: int 
 
@@ -62,22 +65,24 @@ func set_actor(actor:Actor) -> void:
 	self._actor = actor
 
 func on_turn_start() -> void: ## Call super() if you override
-	match on_start_behavior:
-		OnStart.SUBTRACT_ONE:
-			subtract_points(1)
-		OnStart.HALVE:
-			halve_points()
-		OnStart.REMOVE_EFFECT:
-			remove_effect()
+	if (not only_react_to_actors_turn_notifs) or (only_react_to_actors_turn_notifs and _actor in Level.get_current_directors_actors()):
+		match on_start_behavior:
+			OnStart.SUBTRACT_ONE:
+				subtract_points(1)
+			OnStart.HALVE:
+				halve_points()
+			OnStart.REMOVE_EFFECT:
+				remove_effect()
 			
 func on_turn_end() -> void: ## Call super() if you override
-	match on_end_behavior:
-		OnStart.SUBTRACT_ONE:
-			subtract_points(1)
-		OnStart.HALVE:
-			halve_points()
-		OnStart.REMOVE_EFFECT:
-			remove_effect()
+	if (not only_react_to_actors_turn_notifs) or (only_react_to_actors_turn_notifs and _actor in Level.get_current_directors_actors()):
+		match on_end_behavior:
+			OnStart.SUBTRACT_ONE:
+				subtract_points(1)
+			OnStart.HALVE:
+				halve_points()
+			OnStart.REMOVE_EFFECT:
+				remove_effect()
 			
 func on_after_hook() -> void: ## Call super() if you override
 	match after_hook_behavior:
@@ -100,23 +105,21 @@ func on_deal_damage(damage:int) -> int: ## Override me
 func on_deal_direct_damage(damage:int) -> int: ## Override me
 	return damage
 	
-func on_applying_status(new_status: Status) -> Status:
+func on_applying_status(new_status: Status) -> Status: ## Override me
 	return new_status
 
 @warning_ignore("unused_parameter")
-## Happens after damage has been dealt. The value can not be manipulated. Override me. Call super() to retain after hook effect points change.
+## Happens after damage has been dealt by the actor with this status. The value can not be manipulated. Override me.
 func on_damage_dealt(damage:int) -> void:
 	pass
-	#on_after_hook()
 
 @warning_ignore("unused_parameter")
-## Happens after damage has been dealt. The value can not be manipulated. Override me.
+## Happens after damage has been dealt by the actor with this status. The value can not be manipulated. Override me.
 func on_direct_damage_dealt(damage:int) -> void:
 	pass
-	#on_after_hook() ## Must be invoked by an extension
 	
 @warning_ignore("unused_parameter")
-## Happens after a status has been applied. Conventionally would say you shouldn't modify the status.
+## Happens after a status has been applied to the actor with this status.
 func on_status_applied(new_status: Status) -> void:
 	pass
 	#if not is_same_status(self, new_status): #on_after_hook() ## Must be invoked by an extension

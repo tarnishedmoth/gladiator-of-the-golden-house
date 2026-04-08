@@ -1,7 +1,7 @@
 class_name StatusDefense extends Status
 
 ## Base clase for defense based status effects
-
+## NOTE Does not use [method on_after_hook].
 
 func on_take_damage(damage:int) -> int:
 	_actor.play_sfx(ActorSfxHandler.Sounds.BLOCK)
