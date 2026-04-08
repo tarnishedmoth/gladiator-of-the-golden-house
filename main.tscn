@@ -13,8 +13,9 @@ script = ExtResource("1_ig7tw")
 splash_scene = ExtResource("2_h2yge")
 main_menu_scene = ExtResource("3_1bvp3")
 dev_main_menu_scene = ExtResource("2_0xm2m")
+load_to_developer_menu = false
 skip_splash = true
-levels = Array[String](["uid://b50441u03h6ll", "uid://d37cvlmrtp1ru", "uid://q7ym5mealfro"])
+levels = Array[String](["uid://b50441u03h6ll", "uid://d37cvlmrtp1ru", "uid://q7ym5mealfro", "uid://c5fd41a5sbeer"])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=867431045]
 layer = 999
