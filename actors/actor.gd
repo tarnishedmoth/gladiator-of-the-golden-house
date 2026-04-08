@@ -385,7 +385,7 @@ func reset_energy() -> void:
 #region Status Effects
 
 func add_status(status: Status) -> void:
-	Level.get_hud().popup_label("%s %d" % [status.ui_name, status.effect_points if status.effect_points != 0 else ""], self, STATUS_POPUP_COLOR)
+	Level.get_hud().popup_label("%s %s" % [status.ui_name, str(status.effect_points) if status.effect_points != 0 else ""], self, STATUS_POPUP_COLOR)
 	status_manager.add_status(status)
 	
 func remove_status(status: Status) -> void:
