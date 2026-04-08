@@ -20,7 +20,7 @@ func enter(from: ResourceState = null) -> void:
 		var affected_actors: Array[Actor] = get_affected()
 		var modified_damage: int = get_damage()
 		_deal_damage(affected_actors,modified_damage)
-		
+		_actor.clear_incoming_damage_by()
 		
 	else:
 		push_error("No actor configured to run action.")
@@ -49,7 +49,7 @@ func get_damage() -> int:
 	
 func _deal_damage(actors:Array[Actor],applied_damage:int) -> void:
 	for actor in actors:
-		var damage_result: Actor.DamageResult = actor.take_damage(applied_damage)
+		var damage_result: Actor.DamageResult = actor.take_damage(applied_damage, _actor)
 		if damage_result.direct > 0:
 			damage_result.direct = _actor._on_dealing_direct_damage(damage_result.direct)
 		if debug: p(

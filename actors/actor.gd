@@ -107,6 +107,10 @@ var energy: int
 @export var starting_energy: int
 
 var action_count: int
+var incoming_damage_by: WeakRef
+func clear_incoming_damage_by() -> void: incoming_damage_by = null
+func get_incoming_damage_by() -> Actor:
+	return incoming_damage_by.get_ref() if incoming_damage_by is WeakRef else null
 
 @export_category("Status Effects:")
 @export var status_effects: Array[Status]
@@ -293,8 +297,12 @@ class DamageResult:
 		negated = _negated
 		direct = _direct
 
-
-func take_damage(damage: int) -> DamageResult:
+func take_damage(damage: int, from: Actor = null) -> DamageResult:
+	if from != null:
+		incoming_damage_by = weakref(from)
+	else:
+		clear_incoming_damage_by()
+	
 	if debug:
 		p("%s incoming damage" % [damage])
 	
@@ -306,9 +314,16 @@ func take_damage(damage: int) -> DamageResult:
 		take_direct_damage(unblocked_damage) if unblocked_damage > 0 else 0
 		)
 	
+	## Clearing this after the action is complete is the idea.
+	## I instead wrapped it in a method and am calling it in ActionAttack (attack.gd).
+	#incoming_damage_by = null
+	## Return value is used by ActionAttack 
 	return damage_result
 	
-func take_direct_damage(damage: int) -> int:
+func take_direct_damage(damage: int, from: Actor = null) -> int:
+	if from != null:
+		incoming_damage_by = weakref(from)
+	
 	var damage_result: int = status_manager.on_take_direct_damage(damage)
 	
 	if debug:
@@ -340,7 +355,7 @@ func _on_dealing_damage(damage: int) -> int:
 	var changed_damage: int = status_manager.on_deal_damage(damage)
 	return changed_damage
 	
-func _on_dealing_direct_damage(damage: int) -> int: ## TODO TODO TODO TODO
+func _on_dealing_direct_damage(damage: int) -> int:
 	var changed_damage: int = status_manager.on_deal_direct_damage(damage)
 	return changed_damage
 
