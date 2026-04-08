@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b7fbgvg5xlb68"]
+
+[ext_resource type="AudioStream" uid="uid://catt1tise3xbb" path="res://sfx/player-pickup-item.wav" id="1_wphjc"]
+
+[sub_resource type="GDScript" id="GDScript_wphjc"]
+script/source = "extends AudioStreamPlayer2D
+
+func _ready() -> void: finished.connect(queue_free)
+"
+
+[node name="Sfx" type="AudioStreamPlayer2D" unique_id=572815539]
+stream = ExtResource("1_wphjc")
+volume_db = -1.0
+bus = &"Sfx"
+script = SubResource("GDScript_wphjc")

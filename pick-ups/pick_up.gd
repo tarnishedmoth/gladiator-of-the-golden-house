@@ -1,5 +1,7 @@
 class_name PickUp extends Node2D
 
+const ONESHOT_SFX = preload("uid://b7fbgvg5xlb68")
+
 @export var pick_up_action: Action
 @export var ui_name: String
 @export var ui_description: String
@@ -29,6 +31,12 @@ func on_pick_up(actor:Actor) -> void:
 	if actor.director is Player:
 		var player_director: Player = actor.director
 		player_director.add_to_stash(pick_up_action.duplicate())
+		
+		var sfx: AudioStreamPlayer2D = ONESHOT_SFX.instantiate()
+		tile_map.add_child(sfx)
+		if not sfx.autoplay: sfx.play()
+	else:
+		push_warning("Actor called PickUp.on_pick_up not Player")
 	clear_pick_up()
 
 func snap_to_nearest_tile() -> void:
