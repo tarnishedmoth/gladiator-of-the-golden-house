@@ -52,3 +52,38 @@ static func set_actor_data(actor_key: StringName, data: Actor.PersistentActorDat
 	else:
 		p("Registering actor %s persistent data." % str(actor_key))
 	this.persistent_actors[actor_key] = data
+
+
+#region SAVE/LOAD
+static func capture_save_data() -> Dictionary:
+	if not this:
+		return {}
+	else:
+		var _persistent_actors: Dictionary = {}
+		for actor in this.persistent_actors.keys():
+			_persistent_actors[actor] = JSON.stringify(this.persistent_actors[actor])
+		
+		var data = {
+			"choice_name" = this.choice_name,
+			"choice_starting_class" = this.choice_starting_class,
+			"current_level" = this.current_level,
+			"persistent_actors" = _persistent_actors,
+		}
+		return data
+	
+static func apply_save_data(save: SaveLoad.LoadedSave) -> void:
+	var data = save.data
+	assert(data)
+	
+	this = PlayerData.new()
+	
+	this.choice_name = data["choice_name"]
+	this.choice_starting_class = data["choice_starting_class"]
+	this.current_level = data["current_level"]
+	
+	this.persistent_actors = {}
+	var _persistent_actors: Dictionary = data["persistent_actors"]
+	for actor in _persistent_actors.keys():
+		this.persistent_actors[actor] = JSON.to_native(JSON.parse_string(_persistent_actors[actor]), true)
+	
+	p("Applied save data.")

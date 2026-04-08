@@ -8,6 +8,7 @@ var selected_starting_class: String: ## UID
 
 @onready var main_menu_tab: VBoxContainer = %MainMenuTab
 @onready var new_game_tab: MarginContainer = %NewGameTab
+@onready var load_game_tab: MarginContainer = %LoadGameTab
 
 @onready var continue_button: Button = %ContinueButton
 @onready var new_game_button: Button = %NewGameButton
@@ -20,6 +21,7 @@ var selected_starting_class: String: ## UID
 
 func _ready() -> void:
 	main_menu_tab.show()
+	continue_button.disabled = SaveLoad.get_save_slots().is_empty()
 
 func populate_starting_classes() -> void:
 	for child in classes_grid_container.get_children(): child.queue_free()
@@ -35,7 +37,8 @@ func _on_class_select_button_pressed(button: Button) -> void:
 
 func _on_continue_button_pressed() -> void:
 	## TODO
-	Main.continue_level()
+	load_game_tab.show()
+	#Main.continue_level()
 
 func _on_new_game_button_pressed() -> void:
 	populate_starting_classes()
@@ -58,4 +61,10 @@ func _on_go_back_button_pressed() -> void:
 
 func _on_confirm_button_pressed() -> void:
 	PlayerData.new_playthrough(chosen_name_line_edit.text, selected_starting_class)
+	#SaveLoad.save_game()
 	Main.play_level(0)
+
+
+func _on_load_save_slot_selected(slot: int) -> void:
+	SaveLoad.load_game(SaveLoad.get_filepath_for_slot(slot))
+	Main.continue_level.call_deferred()

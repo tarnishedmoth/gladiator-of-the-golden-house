@@ -130,6 +130,7 @@ static func continue_level() -> void:
 
 static func progress_level() -> void:
 	PlayerData.this.current_level += 1
+	SaveLoad.save_game()
 	play_level(PlayerData.this.current_level)
 	
 static func play_level(number: int) -> void:
