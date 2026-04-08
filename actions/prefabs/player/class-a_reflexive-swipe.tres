@@ -2,11 +2,14 @@
 
 [ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_8tgv5"]
 [ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_a1hl1"]
+[ext_resource type="Resource" uid="uid://x1wc2ljxhw34" path="res://status-effects/prefabs/reflexive-swipe.tres" id="3_a1hl1"]
 
 [resource]
 script = ExtResource("2_a1hl1")
+status = ExtResource("3_a1hl1")
+override_quantity = 3
 ui_title = "Reflexive Swipe"
-ui_description = "[b]Reaction[/b]: Upon any damage taken (even if blocked by defense), immediately deal damage in return. Applies until next turn."
+ui_description = "+3 Reflexive Swipe."
+action_category = 2
 energy_cost = 2
-debug = true
 metadata/_custom_type_script = "uid://ic0qko6fd58l"

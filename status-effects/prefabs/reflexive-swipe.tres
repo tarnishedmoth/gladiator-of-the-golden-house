@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="StatusReturnDamage" format=3 uid="uid://x1wc2ljxhw34"]
+
+[ext_resource type="Script" uid="uid://d3ij1wgm7w8vj" path="res://status-effects/status_return-damage.gd" id="1_3o1kd"]
+
+[resource]
+script = ExtResource("1_3o1kd")
+after_hook_behavior = 1
+effect_points = 1
+ui_name = "Reflexive Swipe"
+ui_description = "Upon any damage taken (even if blocked by defense), immediately deal damage in return."
+status_effect_category = 2
+metadata/_custom_type_script = "uid://d3ij1wgm7w8vj"
