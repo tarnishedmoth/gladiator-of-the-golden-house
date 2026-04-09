@@ -48,10 +48,16 @@ func get_status_manager() -> StatusManager: ## Use when you dont expect to handl
 @export var speech_bubble: DialogueBubble
 
 var sfx: ActorSfxHandler
+var vfx: ActorVfxHandler
+
 func get_sfx_handler() -> ActorSfxHandler:
 	assert(sfx)
 	return sfx
 	
+func get_vfx_handler() -> ActorVfxHandler:
+	assert(vfx)
+	return vfx
+
 ## Save / Load
 class PersistentActorData extends Resource:
 	var max_health: int
@@ -206,6 +212,11 @@ func reset_action_count() -> void:
 func play_sfx(sound: ActorSfxHandler.Sounds) -> void:
 	if sfx:
 		sfx.play(sound)
+
+func spawn_vfx(effect: ActorVfxHandler.FX) -> void:
+	if vfx:
+		vfx.play(effect)
+
 
 #endregion
 

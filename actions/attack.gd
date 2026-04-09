@@ -15,6 +15,7 @@ func enter(from: ResourceState = null) -> void:
 		
 		## run animations etc here
 		_actor.play_sfx(ActorSfxHandler.Sounds.ATTACK)
+		_actor.spawn_vfx(ActorVfxHandler.FX.ATTACK)
 		await _actor.create_tween().tween_interval(0.2).finished ## let the sound play before hitting the griddy so to speak
 		##_get_affected_and_deal_damage()
 		var affected_actors: Array[Actor] = get_affected()
