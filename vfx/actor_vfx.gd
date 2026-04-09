@@ -19,7 +19,7 @@ enum FX {
 func _ready() -> void:
 	var parent = get_parent()
 	if parent is Actor:
-		parent.sfx = self
+		parent.vfx = self
 	else:
 		push_error("ActorVfxHandler is not a child of an Actor.")
 		
