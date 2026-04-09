@@ -1,14 +1,23 @@
 extends Control
 
+enum SlotScreenStates {
+	LOADING,
+	SAVING
+}
+
 const META_STARTING_CLASS: StringName = &"scene"
 var selected_starting_class: String: ## UID
 	set(v):
 		confirm_class_button.disabled = false if v else true
 		selected_starting_class = v
+		
+var slot_screen_state: SlotScreenStates
 
 @onready var main_menu_tab: VBoxContainer = %MainMenuTab
 @onready var new_game_tab: MarginContainer = %NewGameTab
-@onready var load_game_tab: MarginContainer = %LoadGameTab
+
+@onready var select_save_slot_tab: MarginContainer = %SelectSaveSlotTab
+@onready var save_slots_container: SaveSlotsContainer = %SaveSlotsContainer
 
 @onready var continue_button: Button = %ContinueButton
 @onready var new_game_button: Button = %NewGameButton
@@ -36,9 +45,10 @@ func _on_class_select_button_pressed(button: Button) -> void:
 	selected_starting_class = button.get_meta(META_STARTING_CLASS)
 
 func _on_continue_button_pressed() -> void:
-	## TODO
-	load_game_tab.show()
-	#Main.continue_level()
+	slot_screen_state = SlotScreenStates.LOADING
+	save_slots_container.disable_empty = true
+	save_slots_container.repopulate_buttons()
+	select_save_slot_tab.show()
 
 func _on_new_game_button_pressed() -> void:
 	populate_starting_classes()
@@ -59,12 +69,23 @@ func _on_go_back_button_pressed() -> void:
 	selected_starting_class = ""
 	main_menu_tab.show()
 
+## Configured a new playthrough
 func _on_confirm_button_pressed() -> void:
-	PlayerData.new_playthrough(chosen_name_line_edit.text, selected_starting_class)
-	#SaveLoad.save_game()
-	Main.play_level(0)
+	slot_screen_state = SlotScreenStates.SAVING
+	save_slots_container.disable_empty = false
+	save_slots_container.repopulate_buttons()
+	select_save_slot_tab.show()
 
 
-func _on_load_save_slot_selected(slot: int) -> void:
-	SaveLoad.load_game(SaveLoad.get_filepath_for_slot(slot))
-	Main.continue_level.call_deferred()
+func _on_save_slot_selected(slot: int) -> void:
+	SaveLoad.current_save_slot = slot
+	
+	match slot_screen_state:
+		SlotScreenStates.LOADING:
+			SaveLoad.load_current_save_slot()
+			Main.continue_level.call_deferred()
+		SlotScreenStates.SAVING:
+			## New game
+			PlayerData.new_playthrough(chosen_name_line_edit.text, selected_starting_class)
+			#SaveLoad.save_game()
+			Main.play_level.call_deferred(0)

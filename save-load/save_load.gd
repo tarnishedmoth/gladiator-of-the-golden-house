@@ -95,12 +95,16 @@ static var last_save_path: String = GameSettings.get_value(
 	get_filepath_for_slot(0) ## default save slot
 	)
 static func save_game(slot: int = current_save_slot) -> void:
+	p("Saving game in save slot %d..." % slot)
 	_capture_save_to_disk(get_filepath_for_slot(slot))
 	
 	GameSettings.save_config()
 	
 static func reload_last_save() -> void:
 	load_game(last_save_path)
+	
+static func load_current_save_slot() -> void:
+	load_game(get_filepath_for_slot(current_save_slot))
 	
 static func load_game(file_path: String) -> void:
 	last_save_path = file_path

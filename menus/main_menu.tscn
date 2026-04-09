@@ -154,53 +154,64 @@ layout_mode = 2
 disabled = true
 text = "Confirm"
 
-[node name="LoadGameTab" type="MarginContainer" parent="TabContainer" unique_id=885605780]
+[node name="SelectSaveSlotTab" type="MarginContainer" parent="TabContainer" unique_id=885605780]
 unique_name_in_owner = true
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/LoadGameTab" unique_id=2023913089]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/SelectSaveSlotTab" unique_id=2023913089]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="TabContainer/LoadGameTab/VBoxContainer" unique_id=41802320]
+[node name="Label" type="Label" parent="TabContainer/SelectSaveSlotTab/VBoxContainer" unique_id=41802320]
 layout_mode = 2
-text = "Load Game"
+theme_type_variation = &"HeaderMedium"
+text = "Select a Save Slot..."
 horizontal_alignment = 1
 
-[node name="SaveSlotsContainer" type="PanelContainer" parent="TabContainer/LoadGameTab/VBoxContainer" unique_id=18737033 node_paths=PackedStringArray("slots")]
+[node name="SaveSlotsContainer" type="PanelContainer" parent="TabContainer/SelectSaveSlotTab/VBoxContainer" unique_id=18737033 node_paths=PackedStringArray("slots")]
+unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("5_oblsv")
 slots = [NodePath("VBoxContainer/HBoxContainer/Slot1Button"), NodePath("VBoxContainer/HBoxContainer/Slot2Button"), NodePath("VBoxContainer/HBoxContainer/Slot3Button")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" unique_id=504932197]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" unique_id=504932197]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer" unique_id=1451538254]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer" unique_id=1451538254]
 layout_mode = 2
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="Slot1Button" type="Button" parent="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer" unique_id=1288081002]
+[node name="Slot1Button" type="Button" parent="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer" unique_id=1288081002]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 text = "Slot 1"
 
-[node name="Slot2Button" type="Button" parent="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer" unique_id=1910644379]
+[node name="Slot2Button" type="Button" parent="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer" unique_id=1910644379]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 text = "Slot 2"
 
-[node name="Slot3Button" type="Button" parent="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer" unique_id=184896626]
+[node name="Slot3Button" type="Button" parent="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer" unique_id=184896626]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 text = "Slot 3"
 
-[node name="DisplaySummary" type="Label" parent="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer" unique_id=904963177]
+[node name="DisplaySummary" type="Label" parent="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer" unique_id=904963177]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Display summary of hovered save slot."
 horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="TabContainer/SelectSaveSlotTab/VBoxContainer" unique_id=1618429480]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="GoBackButton" type="Button" parent="TabContainer/SelectSaveSlotTab/VBoxContainer" unique_id=377499209]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Return to Main menu"
 
 [connection signal="pressed" from="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
@@ -208,19 +219,20 @@ horizontal_alignment = 1
 [connection signal="pressed" from="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="TabContainer/NewGameTab/VBoxContainer/PanelContainer2/HBoxContainer/GoBackButton" to="." method="_on_go_back_button_pressed"]
 [connection signal="pressed" from="TabContainer/NewGameTab/VBoxContainer/PanelContainer2/HBoxContainer/ConfirmClassButton" to="." method="_on_confirm_button_pressed"]
-[connection signal="selected" from="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" to="." method="_on_load_save_slot_selected"]
-[connection signal="focus_entered" from="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot1Button" to="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_focus_entered" binds= [0]]
-[connection signal="focus_exited" from="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot1Button" to="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_focus_exited" binds= [0]]
-[connection signal="mouse_entered" from="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot1Button" to="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_mouse_entered" binds= [0]]
-[connection signal="mouse_exited" from="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot1Button" to="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_mouse_exited" binds= [0]]
-[connection signal="pressed" from="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot1Button" to="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_pressed" binds= [0]]
-[connection signal="focus_entered" from="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot2Button" to="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_focus_entered" binds= [1]]
-[connection signal="focus_exited" from="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot2Button" to="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_focus_exited" binds= [1]]
-[connection signal="mouse_entered" from="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot2Button" to="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_mouse_entered" binds= [1]]
-[connection signal="mouse_exited" from="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot2Button" to="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_mouse_exited" binds= [1]]
-[connection signal="pressed" from="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot2Button" to="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_pressed" binds= [1]]
-[connection signal="focus_entered" from="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot3Button" to="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_focus_entered" binds= [2]]
-[connection signal="focus_exited" from="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot3Button" to="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_focus_exited" binds= [2]]
-[connection signal="mouse_entered" from="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot3Button" to="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_mouse_entered" binds= [2]]
-[connection signal="mouse_exited" from="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot3Button" to="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_mouse_exited" binds= [2]]
-[connection signal="pressed" from="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot3Button" to="TabContainer/LoadGameTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_pressed" binds= [2]]
+[connection signal="selected" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" to="." method="_on_save_slot_selected"]
+[connection signal="focus_entered" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot1Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_focus_entered" binds= [0]]
+[connection signal="focus_exited" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot1Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_focus_exited" binds= [0]]
+[connection signal="mouse_entered" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot1Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_mouse_entered" binds= [0]]
+[connection signal="mouse_exited" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot1Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_mouse_exited" binds= [0]]
+[connection signal="pressed" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot1Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_pressed" binds= [0]]
+[connection signal="focus_entered" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot2Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_focus_entered" binds= [1]]
+[connection signal="focus_exited" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot2Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_focus_exited" binds= [1]]
+[connection signal="mouse_entered" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot2Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_mouse_entered" binds= [1]]
+[connection signal="mouse_exited" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot2Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_mouse_exited" binds= [1]]
+[connection signal="pressed" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot2Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_pressed" binds= [1]]
+[connection signal="focus_entered" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot3Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_focus_entered" binds= [2]]
+[connection signal="focus_exited" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot3Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_focus_exited" binds= [2]]
+[connection signal="mouse_entered" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot3Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_mouse_entered" binds= [2]]
+[connection signal="mouse_exited" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot3Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_mouse_exited" binds= [2]]
+[connection signal="pressed" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot3Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_pressed" binds= [2]]
+[connection signal="pressed" from="TabContainer/SelectSaveSlotTab/VBoxContainer/GoBackButton" to="." method="_on_go_back_button_pressed"]
