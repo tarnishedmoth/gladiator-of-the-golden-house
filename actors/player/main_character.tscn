@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="3_gpw63"]
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="3_hlp3v"]
 [ext_resource type="Script" uid="uid://c23svqo1v3284" path="res://actors/player/weapon-wobble.gd" id="4_a6q5v"]
+[ext_resource type="Script" uid="uid://cs3ues47kat7x" path="res://vfx/actor_vfx.gd" id="7_a6q5v"]
+[ext_resource type="PackedScene" uid="uid://b0hnkme2hu37c" path="res://vfx/slash-fx.tscn" id="8_riyk7"]
 
 [node name="MainCharacter" type="Node2D" unique_id=360471847 node_paths=PackedStringArray("speech_bubble")]
 script = ExtResource("1_ng02u")
@@ -33,6 +35,10 @@ self_modulate = Color(0.108270444, 0.74155116, 0.77216226, 1)
 texture = ExtResource("2_3m1oj")
 
 [node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("3_hlp3v")]
+
+[node name="ActorVfx" type="Node2D" parent="." unique_id=1107671119]
+script = ExtResource("7_a6q5v")
+attack = ExtResource("8_riyk7")
 
 [node name="SpeechBubble" parent="." unique_id=757394792 instance=ExtResource("2_hlp3v")]
 position = Vector2(-33, -68)

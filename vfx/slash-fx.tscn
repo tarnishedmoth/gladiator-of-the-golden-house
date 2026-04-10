@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b0hnkme2hu37c"]
+
+[ext_resource type="Texture2D" uid="uid://d4awarssfv34k" path="res://vfx/slash-fx.png" id="1_kcm15"]
+[ext_resource type="Script" uid="uid://d1dmt7r2q4et7" path="res://vfx/emit_wait_destroy.gd" id="2_rev31"]
+
+[sub_resource type="Gradient" id="Gradient_6du28"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="slash-fx" type="CPUParticles2D" unique_id=1982770347]
+emitting = false
+amount = 1
+texture = ExtResource("1_kcm15")
+one_shot = true
+gravity = Vector2(0, 0)
+color_ramp = SubResource("Gradient_6du28")
+script = ExtResource("2_rev31")
