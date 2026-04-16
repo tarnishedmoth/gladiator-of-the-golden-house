@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bfpr0xrhih4p5"
+path="res://.godot/imported/Epic Battle Chiptune.mp3-01e2b09cce0189190635ba7a08c4bbca.mp3str"
+
+[deps]
+
+source_file="res://music/Epic Battle Chiptune.mp3"
+dest_files=["res://.godot/imported/Epic Battle Chiptune.mp3-01e2b09cce0189190635ba7a08c4bbca.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
