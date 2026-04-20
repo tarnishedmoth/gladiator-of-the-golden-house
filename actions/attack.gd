@@ -8,6 +8,12 @@ class_name ActionAttack extends Action
 @export var aoe_pattern: Array[Vector2i]
 @export var split_choice: bool = false ## TODO If true, allows for the pattern to *also* apply counter-clockwise. This is specifically for asymmetrical patterns.
 
+@export_group("Timing")
+## How long to wait after playing FX, before dealing damage. Use for VFX/SFX timing.
+@export_range(0.1, 6.0, 0.1) var pre_attack_duration: float = 0.2
+## How long to wait after running action, before exiting the action and progressing gameplay. Use for VFX/SFX. This stacks with [member ActionQueue.POST_ACTION_AWAIT_TIME].
+@export_range(0.0, 6.0, 0.1) var post_attack_duration: float = 0.0
+
 ## On transition to this state
 func enter(from: ResourceState = null) -> void:
 	if _actor:
@@ -16,16 +22,18 @@ func enter(from: ResourceState = null) -> void:
 		## run animations etc here
 		_actor.play_sfx(ActorSfxHandler.Sounds.ATTACK)
 		_actor.spawn_vfx(ActorVfxHandler.FX.ATTACK)
-		await _actor.create_tween().tween_interval(0.2).finished ## let the sound play before hitting the griddy so to speak
+		await _actor.create_tween().tween_interval(pre_attack_duration).finished
 		##_get_affected_and_deal_damage()
 		var affected_actors: Array[Actor] = get_affected()
 		var modified_damage: int = get_damage()
 		_deal_damage(affected_actors,modified_damage)
 		_actor.clear_incoming_damage_by()
 		
+		if post_attack_duration > 0.0:
+			await _actor.create_tween().tween_interval(post_attack_duration).finished
 	else:
 		push_error("No actor configured to run action.")
-	
+		
 	exit()
 
 func get_affected() -> Array[Actor]:
