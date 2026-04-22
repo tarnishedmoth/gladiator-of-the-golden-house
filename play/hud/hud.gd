@@ -3,6 +3,10 @@ class_name LevelHUD extends CanvasLayer
 const SELECTED_ACTOR_ACTION_PANEL = preload("uid://dxvurd53homf")
 const POPUP_NUMBER_INDICATOR = preload("uid://rim8rln2dqsb")
 
+const STYLE_DAMAGE: PopupStyle = preload("uid://bqhq0381fj7a3")
+const STYLE_STATUS: PopupStyle = preload("uid://bqhq0381urka3")
+const STYLE_NEGATED: PopupStyle = preload("uid://bqhq0381djca3")
+
 #static var instance: LevelHUD:
 	#set(v):
 		#if (v != null) and (instance != null):
