@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PopupStyle" format=3 uid="uid://bqhq0381fj7a3"]
+
+[ext_resource type="Script" uid="uid://ltolqijg3afy" path="res://play/hud/popup_style.gd" id="1_style"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_damage"]
+font_size = 18
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[resource]
+script = ExtResource("1_style")
+color = Color(1, 0, 0, 1)
+label_settings = SubResource("LabelSettings_damage")
+metadata/_custom_type_script = "uid://ltolqijg3afy"

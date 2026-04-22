@@ -3,14 +3,13 @@ class_name LevelHUD extends CanvasLayer
 const SELECTED_ACTOR_ACTION_PANEL = preload("uid://dxvurd53homf")
 const POPUP_NUMBER_INDICATOR = preload("uid://rim8rln2dqsb")
 
-#static var instance: LevelHUD:
-	#set(v):
-		#if (v != null) and (instance != null):
-			#assert(not is_instance_valid(instance), "More than one instance in memory")
-		#instance = v
-		
+const STYLE_DAMAGE: PopupStyle = preload("uid://bqhq0381fj7a3")
+const STYLE_STATUS: PopupStyle = preload("uid://bqhq0381urka3")
+const STYLE_NEGATED: PopupStyle = preload("uid://bqhq0381djca3")
+
 var selected_actor_action_panels: Array[HUDSelectedActorActionPanel]
 
+@onready var root: Control = $Root
 @onready var hover_panel: HUDHoverPanel = %HoverPanel
 @onready var actions_panel: ActionsPanel = %ActionsPanel
 @onready var stash_panel: StashPanel = %StashPanel
@@ -18,19 +17,12 @@ var selected_actor_action_panels: Array[HUDSelectedActorActionPanel]
 @onready var selected_actor_action_panels_v_box_container: VBoxContainer = %SelectedActorActionPanelsVBoxContainer
 @onready var end_turn_button: Button = %EndTurnButton
 
-#func _enter_tree() -> void:
-	#instance = self
-	#
-#func _exit_tree() -> void:
-	#if instance == self: instance = null
-
 func _ready() -> void:
 	## Setup
 	hover_panel.modulate = Color.TRANSPARENT
-	
+
 	actions_hover_panel.modulate = Color.TRANSPARENT
-	#actions_hover_panel.hide()
-	
+
 	actions_panel.action_button_pressed.connect(_on_action_pressed)
 	actions_panel.action_hover_started.connect(_on_action_hover_start)
 	actions_panel.action_hover_ended.connect(_on_action_hover_ended)
@@ -38,7 +30,7 @@ func _ready() -> void:
 	stash_panel.action_button_pressed.connect(_on_stash_action_pressed)
 	stash_panel.action_hover_started.connect(_on_action_hover_start)
 	stash_panel.action_hover_ended.connect(_on_action_hover_ended)
-	
+
 	Level.get_instance().current_director_changed.connect(_on_current_director_changed)
 
 func show_hover_panel(show_:bool = true) -> void:
@@ -101,7 +93,7 @@ func show_actions_hover_panel(show_:bool = true) -> void:
 	else:
 		actions_hover_panel.mouse_filter = Control.MOUSE_FILTER_STOP
 		Juice.advanced_fade(actions_hover_panel, Juice.SMOOTH, Color.WHITE)
-		
+
 func _on_action_hover_start(action:Action) -> void:
 	actions_hover_panel.clear_all()
 	actions_hover_panel.populate_using_action_data(action)
@@ -122,14 +114,14 @@ func kill_end_turn_hold_tween():
 	if end_turn_hold_tween:
 		end_turn_hold_tween.kill()
 	set_end_turn_text()
-	
+
 func _on_end_turn_button_down() -> void:
 	var player = Level.get_current_director()
 	if player is Player:
 		var turn_is_ending_immediately: bool = player.user_pressed_end_turn_button()
-		
+
 		kill_end_turn_hold_tween()
-		
+
 		if not turn_is_ending_immediately:
 			var hold_duration_remaining = player.HOLD_TIME_TO_END_TURN_EARLY
 			end_turn_hold_tween = create_tween()
@@ -154,46 +146,68 @@ func set_end_turn_text(to_append = null) -> void:
 		end_turn_button.text = END_TURN_TEXT + " (" + (str(_to_append) if _to_append is not String else _to_append) + ")" ##lol
 
 var popups: Array[Label]
-func popup_label(text: Variant, re_parent: Node2D, recolor: Color = Color.WHITE) -> void:
-	var popup: Label = POPUP_NUMBER_INDICATOR.instantiate()
-	popup.text = str(text) if not (text is String) else text
-	popup.modulate = recolor
-	
-	re_parent.add_child(popup)
-	
-	var _offset: Vector2 = Vector2.ZERO
-	for other in popups:
-		if is_instance_valid(other): ## Not sure how this bug is happening but
-			if other.global_position.distance_to(re_parent.global_position) < popup.size.y * 2.2:
-				_offset.y += popup.size.y
-			
-	popups.append(popup)
-	popup.position -= popup.size / 2.0
-	popup.position += _offset
-	
-	var t = Juice.flash(popup, Juice.PulsePresets.ThreeFast, recolor, Color.WHITE)
-	t.tween_callback(popups.erase.bind(popup))
-	t.tween_callback(popup.free)
 
-func popup_label_persistent(text: Variant, re_parent: Node2D, recolor: Color = Color.WHITE) -> Label:
-	var popup: Label = POPUP_NUMBER_INDICATOR.instantiate()
-	popup.text = str(text) if not (text is String) else text
-	popup.modulate = recolor
-	
-	re_parent.add_child(popup)
-	
-	var _offset: Vector2 = Vector2(0,-30)
-	for other in popups:
-		if is_instance_valid(other): ## Not sure how this bug is happening but
-			if other.global_position.distance_to(re_parent.global_position) < popup.size.y * 2.2:
-				_offset.y += popup.size.y
-			
-	popups.append(popup)
-	popup.position -= popup.size / 2.0
-	popup.position += _offset
-	
+func popup_damage(value: int, actor: Actor) -> Label:
+	return _popup_transient(value, actor, STYLE_DAMAGE)
+
+func popup_status(text: String, actor: Actor) -> Label:
+	return _popup_transient(text, actor, STYLE_STATUS)
+
+func popup_negated(value: int, actor: Actor) -> Label:
+	return _popup_transient(value, actor, STYLE_NEGATED)
+
+## Caller owns lifetime; release via [method clear_popup_persistent_label].
+func popup_label_persistent(text: Variant, actor: Actor, style: PopupStyle) -> Label:
+	var screen_pos := _screen_pos_for(actor, 0.0)
+	return _spawn_popup(text, screen_pos, style, Vector2(0, -30))
+
+func clear_popup_persistent_label(popup: Label) -> void:
+	popups.erase(popup)
+	popup.queue_free()
+
+func _popup_transient(text: Variant, actor: Actor, style: PopupStyle) -> Label:
+	var jitter_x := randf_range(-style.horizontal_jitter, style.horizontal_jitter)
+	var screen_pos := _screen_pos_for(actor, jitter_x)
+	var popup := _spawn_popup(text, screen_pos, style, Vector2.ZERO)
+	popup.scale = Vector2(style.pop_scale, style.pop_scale)
+
+	var tween := popup.create_tween().set_parallel(true)
+	tween.tween_property(popup, ^"scale", Vector2.ONE, style.pop_duration)\
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(popup, ^"position:y", popup.position.y - style.rise_distance, style.rise_duration)\
+		.set_ease(Tween.EASE_OUT)
+	tween.tween_property(popup, ^"modulate:a", 0.0, style.fade_duration)\
+		.set_delay(style.rise_duration - style.fade_duration)
+	tween.chain().tween_callback(popups.erase.bind(popup))
+	tween.tween_callback(popup.free)
 	return popup
 
-func clear_popup_persistent_label(popup:Label) -> void:
-	popups.erase.bind(popup)
-	popup.queue_free()
+func _spawn_popup(text: Variant, screen_pos: Vector2, style: PopupStyle, base_offset: Vector2) -> Label:
+	var popup: Label = POPUP_NUMBER_INDICATOR.instantiate()
+	popup.label_settings = style.label_settings
+	popup.modulate = style.color
+	popup.text = str(text)
+	root.add_child(popup)
+
+	var stack_offset := _compute_stack_offset(screen_pos, popup.size)
+	popups.append(popup)
+	## Center pivot so the pop_scale tween scales from the middle of the label.
+	popup.pivot_offset = popup.size / 2.0
+	popup.global_position = screen_pos - popup.size / 2.0 + base_offset + stack_offset
+	return popup
+
+## Cumulative offset per overlap (not per cluster): N nearby popups stack N rows.
+## Proximity threshold is ~2x line height + a margin, tuned visually.
+func _compute_stack_offset(screen_pos: Vector2, popup_size: Vector2) -> Vector2:
+	var stack_offset := Vector2.ZERO
+	for other in popups:
+		if other.global_position.distance_to(screen_pos) < popup_size.y * 2.2:
+			stack_offset.y += popup_size.y
+	return stack_offset
+
+func _screen_pos_for(actor: Actor, jitter_x: float) -> Vector2:
+	return _actor_to_screen(actor) + actor.label_anchor + Vector2(jitter_x, 0)
+
+func _actor_to_screen(actor: Actor) -> Vector2:
+	var xform := actor.get_viewport_transform() * actor.get_canvas_transform()
+	return xform * actor.global_position

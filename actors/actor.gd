@@ -22,8 +22,7 @@ var debug_facing_indicator: Node2D ## instantiated at runtime
 const TARGET_INDICATOR = preload("uid://bw78572gtph87")
 var target_scene: PackedScene = TARGET_INDICATOR
 
-const DAMAGE_POPUP_COLOR: Color = Color.RED
-const STATUS_POPUP_COLOR: Color = Color.DEEP_SKY_BLUE
+@export var label_anchor: Vector2 = Vector2(0, -40)
 
 signal animation_finished
 signal queued_actions_finished(actor: Actor)
@@ -322,13 +321,12 @@ func take_damage(damage: int, from: Actor = null) -> DamageResult:
 	
 	var damage_result: Actor.DamageResult = DamageResult.new(
 		damage - unblocked_damage,
-		take_direct_damage(unblocked_damage) if unblocked_damage > 0 else 0
+		take_direct_damage(unblocked_damage)
 		)
-	
-	## Clearing this after the action is complete is the idea.
-	## I instead wrapped it in a method and am calling it in ActionAttack (attack.gd).
-	#incoming_damage_by = null
-	## Return value is used by ActionAttack 
+
+	if damage_result.negated > 0:
+		Level.get_hud().popup_negated(damage_result.negated, self)
+
 	return damage_result
 	
 func take_direct_damage(damage: int, from: Actor = null) -> int:
@@ -342,7 +340,7 @@ func take_direct_damage(damage: int, from: Actor = null) -> int:
 		
 	if damage_result > 0:
 		play_sfx(ActorSfxHandler.Sounds.GET_HIT)
-		Level.get_hud().popup_label(damage_result, self, DAMAGE_POPUP_COLOR)
+		Level.get_hud().popup_damage(damage_result, self)
 	
 	health -= damage_result
 	health = maxi(0, health)
@@ -396,7 +394,8 @@ func reset_energy() -> void:
 #region Status Effects
 
 func add_status(status: Status) -> void:
-	Level.get_hud().popup_label("%s %s" % [status.ui_name, str(status.effect_points) if status.effect_points != 0 else ""], self, STATUS_POPUP_COLOR)
+	var suffix := " %+d" % status.effect_points if status.effect_points != 0 else ""
+	Level.get_hud().popup_status(status.ui_name + suffix, self)
 	status_manager.add_status(status)
 	
 func remove_status(status: Status) -> void:
