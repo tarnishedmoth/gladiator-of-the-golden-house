@@ -321,7 +321,6 @@ func take_damage(damage: int, from: Actor = null) -> DamageResult:
 	
 	var damage_result: Actor.DamageResult = DamageResult.new(
 		damage - unblocked_damage,
-		take_direct_damage(unblocked_damage)
 		take_direct_damage(unblocked_damage) if unblocked_damage > 0 else 0
 		)
 
