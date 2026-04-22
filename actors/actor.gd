@@ -322,11 +322,13 @@ func take_damage(damage: int, from: Actor = null) -> DamageResult:
 	var damage_result: Actor.DamageResult = DamageResult.new(
 		damage - unblocked_damage,
 		take_direct_damage(unblocked_damage)
+		take_direct_damage(unblocked_damage) if unblocked_damage > 0 else 0
 		)
 
 	if damage_result.negated > 0:
 		Level.get_hud().popup_negated(damage_result.negated, self)
 
+	## Return value is used by ActionAttack 
 	return damage_result
 	
 func take_direct_damage(damage: int, from: Actor = null) -> int:
