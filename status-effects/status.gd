@@ -96,7 +96,7 @@ func on_after_hook() -> void: ## Call super() if you override
 	if vfx_hook_triggered:
 		if _actor:
 			if _actor.vfx:
-				_actor.vfx.play_status(vfx_hook_triggered)
+				_actor.vfx.play_status(vfx_hook_triggered, self)
 	
 	match after_hook_behavior:
 		OnStart.SUBTRACT_ONE:

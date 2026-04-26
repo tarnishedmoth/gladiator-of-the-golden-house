@@ -44,10 +44,15 @@ func play(vfx: FX) -> void:
 			push_error("Out of bounds.")
 			
 ## Pass in a vfx PackedScene, configured in the status effect resource.
-func play_status(status_vfx_scene: PackedScene) -> void:
+func play_status(status_vfx_scene: PackedScene, status: Status) -> void:
 	if status_vfx_scene:
 		var instance = status_vfx_scene.instantiate()
 		instance.global_position = global_position
+		
+		if instance is StatusEffectParticles:
+			if instance.use_effect_points_as_quantity && status.effect_points > 0:
+				instance.amount = status.effect_points
+		
 		get_tree().current_scene.add_child(instance)
 
 ## For future use with different weapon/action sounds perhaps.

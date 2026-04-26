@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DefenseStatus" format=3 uid="uid://yrjd3nv2uamc"]
+[gd_resource type="Resource" script_class="StatusDefense" format=3 uid="uid://yrjd3nv2uamc"]
 
 [ext_resource type="Script" uid="uid://1dtnk6pdhbwq" path="res://status-effects/affect_damage_received.gd" id="1_1gjl3"]
 
