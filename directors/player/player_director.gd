@@ -257,10 +257,14 @@ func discard_hand():
 	
 func _draw_next_card():
 	if draw_deck.is_empty():
-		discard_deck.shuffle()
-		draw_deck.append_array(discard_deck)
-		if VERBOSE: p("Reshuffled %d cards in discard deck into draw deck." % discard_deck.size())
-		discard_deck.clear()
+		if not discard_deck.is_empty():
+			discard_deck.shuffle()
+			draw_deck.append_array(discard_deck)
+			if VERBOSE: p("Reshuffled %d cards in discard deck into draw deck." % discard_deck.size())
+			discard_deck.clear()
+		else:
+			push_error("Out of cards!!")
+			return
 	
 	var drawn: Action = draw_deck.pop_front()
 	actions_in_hand.push_back(drawn)
