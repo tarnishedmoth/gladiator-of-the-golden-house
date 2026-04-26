@@ -221,5 +221,4 @@ func _screen_pos_for(actor: Actor, jitter_x: float) -> Vector2:
 	return _actor_to_screen(actor) + actor.label_anchor + Vector2(jitter_x, 0)
 
 func _actor_to_screen(actor: Actor) -> Vector2:
-	var xform := actor.get_viewport_transform() * actor.get_canvas_transform()
-	return xform * actor.global_position
+	return actor.get_canvas_transform() * actor.global_position
