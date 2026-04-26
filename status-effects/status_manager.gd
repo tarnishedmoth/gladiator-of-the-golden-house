@@ -85,6 +85,9 @@ func on_applying_status(new_status: Status) -> Status:
 	return new_status
 	
 func on_status_applied(new_status: Status) -> void:
+	if new_status.vfx_applied && actor.vfx:
+		actor.vfx.play_status(new_status.vfx_applied)
+	
 	for status in status_effects:
 		status.on_status_applied(new_status)
 

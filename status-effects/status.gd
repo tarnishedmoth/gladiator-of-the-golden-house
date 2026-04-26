@@ -49,7 +49,15 @@ enum Hook {
 	get:
 		if ui_icon: return ui_icon
 		else: return STATUS_CATEGORY_ICONS.get(status_effect_category)
-		
+
+@export_group("VFX", "vfx_")
+@export var vfx_applied: PackedScene ## Spawned when applied to an actor. See [StatusManager].
+
+## To be spawned when the status effect hook is triggered.
+## Most statuses should not utilize this at all otherwise visually it could get very cluttered.
+## i.e. save this for boss fights or other special things
+@export var vfx_hook_triggered: PackedScene
+
 var unique_name: StringName:
 	get:
 		if not unique_name:
@@ -85,6 +93,11 @@ func on_turn_end() -> void: ## Call super() if you override
 				remove_effect()
 			
 func on_after_hook() -> void: ## Call super() if you override
+	if vfx_hook_triggered:
+		if _actor:
+			if _actor.vfx:
+				_actor.vfx.play_status(vfx_hook_triggered)
+	
 	match after_hook_behavior:
 		OnStart.SUBTRACT_ONE:
 			subtract_points(1)
@@ -105,6 +118,7 @@ func on_deal_damage(damage:int) -> int: ## Override me
 func on_deal_direct_damage(damage:int) -> int: ## Override me
 	return damage
 	
+## Called when actor just began applying a new status effect.
 func on_applying_status(new_status: Status) -> Status: ## Override me
 	return new_status
 
@@ -119,7 +133,7 @@ func on_direct_damage_dealt(damage:int) -> void:
 	pass
 	
 @warning_ignore("unused_parameter")
-## Happens after a status has been applied to the actor with this status.
+## Happens after some other status has been applied to the actor with this status.
 func on_status_applied(new_status: Status) -> void:
 	pass
 	#if not is_same_status(self, new_status): #on_after_hook() ## Must be invoked by an extension
