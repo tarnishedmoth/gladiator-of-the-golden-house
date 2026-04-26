@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="StatusDefense" format=3 uid="uid://yrjd3nv2uamc"]
 
 [ext_resource type="Script" uid="uid://1dtnk6pdhbwq" path="res://status-effects/affect_damage_received.gd" id="1_1gjl3"]
+[ext_resource type="PackedScene" uid="uid://dpamc84gay4r0" path="res://vfx/status_defense-fx.tscn" id="2_qktww"]
 
 [resource]
 script = ExtResource("1_1gjl3")
@@ -8,4 +9,5 @@ effect_points = 5
 ui_name = "Defense"
 ui_description = "Negates 1 damage for each point."
 status_effect_category = 1
+vfx_applied = ExtResource("2_qktww")
 metadata/_custom_type_script = "uid://1dtnk6pdhbwq"

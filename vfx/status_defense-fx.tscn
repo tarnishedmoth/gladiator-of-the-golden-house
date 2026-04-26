@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dpamc84gay4r0"]
+
+[ext_resource type="Texture2D" uid="uid://way0pow8nkvq" path="res://actions/ui-icons/icon_9-16.png" id="1_xfaex"]
+[ext_resource type="Script" uid="uid://dk272f7wxt55i" path="res://vfx/status_effect_particles.gd" id="2_3d1ls"]
+
+[sub_resource type="Gradient" id="Gradient_s0l67"]
+offsets = PackedFloat32Array(0, 0.20984456, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ryljd"]
+gradient = SubResource("Gradient_s0l67")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g0tay"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(24, 24, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_ryljd")
+
+[node name="StatusEffectParticles" type="GPUParticles2D" unique_id=679055257]
+emitting = false
+amount = 12
+texture = ExtResource("1_xfaex")
+one_shot = true
+explosiveness = 0.8
+randomness = 0.2
+use_fixed_seed = true
+seed = 1149351345
+process_material = SubResource("ParticleProcessMaterial_g0tay")
+script = ExtResource("2_3d1ls")
