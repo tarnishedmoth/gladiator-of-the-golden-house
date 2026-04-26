@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c5tt5o8dkeve3"]
+
+[ext_resource type="Script" uid="uid://d3wjcqjs4jdor" path="res://directors/player/player_director.gd" id="1_7c8ok"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_k14uy"]
+[ext_resource type="Resource" uid="uid://b1a1pqnp0vchc" path="res://actions/prefabs/player/class-greatsword/class-greatsword_guard.tres" id="3_msfsg"]
+[ext_resource type="Resource" uid="uid://dhg041btdeuit" path="res://actions/prefabs/player/class-greatsword/class-greatsword_slash.tres" id="4_7c8ok"]
+[ext_resource type="Resource" uid="uid://q6p1jvo2kwoo" path="res://actions/prefabs/player/class-greatsword/class-greatsword_plunge.tres" id="5_4yltr"]
+[ext_resource type="Resource" uid="uid://cc5g5bc33m7ud" path="res://actions/prefabs/player/class-greatsword/class-greatsword_windup.tres" id="6_msfsg"]
+[ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://actions/stance/stance.gd" id="6_yu7cn"]
+[ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="7_brf7x"]
+[ext_resource type="Resource" uid="uid://duclb7twecrgo" path="res://actions/prefabs/player/class-greatsword/stance_two-handing.tres" id="9_45eod"]
+[ext_resource type="PackedScene" uid="uid://cw8ea0ekkqjyp" path="res://actors/player/main_character.tscn" id="9_t1m4t"]
+[ext_resource type="Resource" uid="uid://dceftm4v15w0u" path="res://actions/prefabs/player/class-greatsword/stance_shield-too.tres" id="10_brf7x"]
+
+[node name="Player_ClassGreatsword" type="Node2D" unique_id=1133384730]
+script = ExtResource("1_7c8ok")
+starting_actions_deck = Array[ExtResource("2_k14uy")]([ExtResource("3_msfsg"), ExtResource("4_7c8ok"), ExtResource("5_4yltr"), ExtResource("6_msfsg")])
+always_available_deck = Array[ExtResource("2_k14uy")]([ExtResource("7_brf7x")])
+stances = Array[ExtResource("6_yu7cn")]([ExtResource("9_45eod"), ExtResource("10_brf7x")])
+metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
+
+[node name="MainCharacter" parent="." unique_id=360471847 instance=ExtResource("9_t1m4t")]
+ui_subtitle = "Greatsword"
+ui_description = "Defeat all enemies to win."
+starting_health = 60
+starting_energy = 4

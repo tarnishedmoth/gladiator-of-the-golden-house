@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Stance" format=3 uid="uid://duclb7twecrgo"]
+
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="1_5xha5"]
+[ext_resource type="Resource" uid="uid://vn88eutmdobx" path="res://actions/prefabs/player/class-greatsword/class-greatsword_colossal-strike.tres" id="2_8bqpl"]
+[ext_resource type="Resource" uid="uid://dtonjn271oon7" path="res://actions/prefabs/player/class-greatsword/class-greatsword_hilt-punch.tres" id="3_tbur6"]
+[ext_resource type="Resource" uid="uid://blklld7qypcof" path="res://actions/prefabs/player/class-greatsword/class-greatsword_feint.tres" id="4_brcrg"]
+[ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://actions/stance/stance.gd" id="5_013xt"]
+
+[resource]
+script = ExtResource("5_013xt")
+actions = Array[ExtResource("1_5xha5")]([ExtResource("2_8bqpl"), ExtResource("3_tbur6"), ExtResource("4_brcrg")])
+metadata/_custom_type_script = "uid://wxlj5akq7s0v"

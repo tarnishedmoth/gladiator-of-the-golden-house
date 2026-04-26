@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ActionApplyStatus" format=3 uid="uid://b1a1pqnp0vchc"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_6t2jc"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_kaovm"]
+[ext_resource type="Resource" uid="uid://yrjd3nv2uamc" path="res://status-effects/prefabs/defense.tres" id="3_t78ul"]
+
+[resource]
+script = ExtResource("2_kaovm")
+status = ExtResource("3_t78ul")
+override_quantity = 4
+ui_title = "Guard"
+ui_description = "Block incoming damage."
+energy_cost = 1
+metadata/_custom_type_script = "uid://ic0qko6fd58l"

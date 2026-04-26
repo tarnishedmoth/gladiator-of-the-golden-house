@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ActionAttack" format=3 uid="uid://q6p1jvo2kwoo"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_yn6sn"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="2_i8h2v"]
+
+[resource]
+script = ExtResource("2_i8h2v")
+damage = 4
+pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -2), Vector2i(1, -1)])
+split_choice = true
+pre_attack_duration = 0.30000000000000004
+allow_facing_before = true
+ui_title = "Greatsword Plunge"
+ui_description = "Deals damage in a deep pattern."
+energy_cost = 1
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"

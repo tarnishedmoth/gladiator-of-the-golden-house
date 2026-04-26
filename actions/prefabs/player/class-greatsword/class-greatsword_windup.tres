@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ActionApplyStatus" format=3 uid="uid://cc5g5bc33m7ud"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_1tuxa"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_65bbj"]
+[ext_resource type="Resource" uid="uid://dik8je544632" path="res://status-effects/prefabs/windup.tres" id="3_65bbj"]
+
+[resource]
+script = ExtResource("2_65bbj")
+status = ExtResource("3_65bbj")
+allow_facing_after = true
+ui_title = "Wind Up"
+ui_description = "Applies Wind Up to self:
+The next Combat played deals 1.5x damage. Does not stack."
+action_category = 2
+energy_cost = 1
+metadata/_custom_type_script = "uid://ic0qko6fd58l"

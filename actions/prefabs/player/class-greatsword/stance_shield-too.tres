@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Stance" format=3 uid="uid://dceftm4v15w0u"]
+
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="1_h8mx8"]
+[ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://actions/stance/stance.gd" id="2_glgv5"]
+[ext_resource type="Resource" uid="uid://cf8qxjti6wfjq" path="res://actions/prefabs/player/class-a_brace.tres" id="2_ixepd"]
+
+[resource]
+script = ExtResource("2_glgv5")
+actions = Array[ExtResource("1_h8mx8")]([ExtResource("2_ixepd")])
+metadata/_custom_type_script = "uid://wxlj5akq7s0v"

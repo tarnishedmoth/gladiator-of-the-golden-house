@@ -10,6 +10,7 @@ static func p(args):
 ## the actual source file.
 const STARTING_CLASSES: Dictionary = {
 	A = "uid://bet8eq50pbkqf",
+	GREATSWORD = "uid://c5tt5o8dkeve3",
 }
 
 var choice_name: String

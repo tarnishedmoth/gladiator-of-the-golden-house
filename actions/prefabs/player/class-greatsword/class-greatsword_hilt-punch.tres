@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ActionAttack" format=3 uid="uid://dtonjn271oon7"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_hvysy"]
+[ext_resource type="Resource" uid="uid://deo7b33s5fte1" path="res://actions/requirements/requirement_opener.tres" id="2_5qw4s"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="3_pa8fv"]
+
+[resource]
+script = ExtResource("3_pa8fv")
+damage = 2
+pattern = Array[Vector2i]([Vector2i(0, -1)])
+ui_title = "Hilt Punch"
+requirements = Array[ExtResource("1_hvysy")]([ExtResource("2_5qw4s")])
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"

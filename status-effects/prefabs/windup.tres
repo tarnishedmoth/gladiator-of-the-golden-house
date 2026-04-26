@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatusAffectDamage" format=3 uid="uid://dik8je544632"]
+
+[ext_resource type="Script" uid="uid://dvm0k3xhgixkl" path="res://status-effects/affect_damage_dealt.gd" id="1_6vomc"]
+
+[resource]
+script = ExtResource("1_6vomc")
+factor = 1.5
+operation = 1
+per_point = false
+on_start_behavior = 0
+after_hook_behavior = 3
+ui_name = "Wind Up"
+ui_description = "The next Combat played deals 1.5x damage."
+metadata/_custom_type_script = "uid://dvm0k3xhgixkl"
