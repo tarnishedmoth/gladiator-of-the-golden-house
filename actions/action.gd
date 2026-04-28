@@ -120,3 +120,35 @@ class ImplicatedTiles:
 func get_implicated_tiles(at_coords: Vector2i) -> ImplicatedTiles:
 	var tiles := ImplicatedTiles.new()
 	return tiles
+
+
+#region Save / Load
+
+## Stash entries are template references with no per-card runtime state today.
+## from_dict() returns a duplicate so future per-card mutable state will not silently leak.
+## If you add per-card runtime state, capture it here too.
+func to_dict() -> Dictionary:
+	var uid_text := SaveUid.resolve(self)
+	assert(uid_text != "", "Action %s has no UID — must originate from a .tres asset (resource_path=%s)." % [self, resource_path])
+	return { "uid": uid_text }
+
+## Returns null on UID-load failure (renamed/deleted .tres) — callers should retain the original dict
+## to round-trip unresolved entries.
+static func from_dict(d: Dictionary) -> Action:
+	var uid_text: String = d.get("uid", "")
+	if uid_text == "":
+		push_warning("Action.from_dict: missing 'uid' key")
+		return null
+	var uid_id := ResourceUID.text_to_id(uid_text)
+	if uid_id == ResourceUID.INVALID_ID or not ResourceUID.has_id(uid_id):
+		push_warning("Action.from_dict: unresolvable UID %s" % uid_text)
+		return null
+	var template := load(ResourceUID.get_id_path(uid_id)) as Action
+	if not template:
+		push_warning("Action.from_dict: failed to load %s" % uid_text)
+		return null
+	var instance := template.duplicate(true) as Action
+	SaveUid.tag_duplicate(template, instance)
+	return instance
+
+#endregion

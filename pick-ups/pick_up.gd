@@ -30,7 +30,9 @@ func setup(manager: PickUpManager, tilemap: TileMapLayer, _pickupdata:PickUpData
 func on_pick_up(actor:Actor) -> void:
 	if actor.director is Player:
 		var player_director: Player = actor.director
-		player_director.add_to_stash(pick_up_action.duplicate())
+		var card_copy: Action = pick_up_action.duplicate()
+		SaveUid.tag_duplicate(pick_up_action, card_copy)
+		player_director.add_to_stash(card_copy)
 		
 		var sfx: AudioStreamPlayer2D = ONESHOT_SFX.instantiate()
 		tile_map.add_child(sfx)

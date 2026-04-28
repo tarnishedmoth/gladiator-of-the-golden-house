@@ -58,43 +58,38 @@ func get_vfx_handler() -> ActorVfxHandler:
 	return vfx
 
 ## Save / Load
-class PersistentActorData extends Resource:
-	var max_health: int
-	var current_health: int
-	var starting_energy: int
-	var starting_status_effects: Array[Status]
-	var stash: Array[Action] ## Bonus action cards carried between levels.
-
-	var ui_name: String
-	var ui_subtitle: String
-	var ui_description: String
-	
-	func set_stats_from_actor(actor: Actor, include_ui: bool = false) -> void:
-		max_health = actor.starting_health
-		current_health = actor.health
-		starting_energy = actor.starting_energy
-		
-		if include_ui:
-			ui_name = actor.ui_name
-			ui_subtitle = actor.ui_subtitle
-			ui_description = actor.ui_description
-			
-	func persist_status(status: Status) -> void:
-		starting_status_effects.append(status)
-
+## See [PersistentActorData] for the snapshot type and serialization.
 var persistent_actor_data: PersistentActorData
 @export_group("Persistent Data", "persistent_")
 @export var persistent_data_key: StringName ## Only for story characters (player, etc)
 
-func set_stats_from_data(data: PersistentActorData = persistent_actor_data) -> void:
+
+## Restores persistent state captured by a previous level's [method push_persistent_data].
+## Bypasses the entire [StatusManager] pipeline (no HUD popup, no `vfx_applied` particles,
+## no `on_applying_status` mutation interactions). Restoration is conceptually different
+## from live application — the saved snapshot IS the truth, applied as-is.
+## Stash is restored separately by [method Player.setup].
+func apply_persistent_data(data: PersistentActorData) -> void:
 	assert(data)
+	max_health = data.max_health
 	health = data.current_health
 	starting_energy = data.starting_energy
+	energy = starting_energy  ## Keep `energy` in sync until first on_turn_start.
+
+	status_effects.clear()
+	for s in data.status_effects:
+		## Detach from the saved snapshot in PlayerData.persistent_actors[...] —
+		## otherwise the first turn tick mutates the snapshot too, eroding state per round-trip.
+		var copy: Status = s.duplicate()
+		SaveUid.tag_duplicate(s, copy)
+		copy.set_actor(self)
+		status_effects.append(copy)
+
 
 func push_persistent_data() -> void:
 	if persistent_data_key:
 		assert(persistent_actor_data)
-		persistent_actor_data.set_stats_from_actor(self, true)
+		persistent_actor_data.capture_from_actor(self)
 		PlayerData.set_actor_data(persistent_data_key, persistent_actor_data)
 
 
@@ -106,7 +101,7 @@ func push_persistent_data() -> void:
 @export var facing: Facing.Cardinal = Facing.Cardinal.NORTH
 
 var health: int
-@export var starting_health: int
+@export var max_health: int
 
 var energy: int
 @export var starting_energy: int
@@ -150,19 +145,17 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 		status_manager.free()
 	status_manager = StatusManager.new(self)
 	
-	health = starting_health
+	health = max_health
 	energy = starting_energy
 	
 	if persistent_data_key:
 		persistent_actor_data = PlayerData.get_actor_data(persistent_data_key)
 		if persistent_actor_data:
-			set_stats_from_data()
+			apply_persistent_data(persistent_actor_data)
 		else:
 			persistent_actor_data = PersistentActorData.new()
-			persistent_actor_data.set_stats_from_actor(self, true)
-			#PlayerData.set_actor_data(persistent_data_key, persistent_actor_data)
-			## We could register right away, but I think it's better to only do it when we finish a level.
-			## See method push_persistent_data().
+			persistent_actor_data.capture_from_actor(self)
+			## We register persistent data only when a level is finished. See [method push_persistent_data].
 		
 	if speech_bubble:
 		speech_bubble.speak("Ready Fight!")
@@ -293,7 +286,7 @@ func update_healthbar() -> void:
 	## TODO save healthbar as scene and instantiate at runtime
 	var bar = get_node_or_null("health/bar")
 	if is_instance_valid(bar):
-		bar.scale.x = float(health)/float(starting_health)
+		bar.scale.x = float(health)/float(max_health)
 	var txt = get_node_or_null("health/txt")
 	if is_instance_valid(txt):
 		txt.text = str(health)

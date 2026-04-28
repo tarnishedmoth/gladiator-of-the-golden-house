@@ -111,6 +111,7 @@ func add_status(status: Status, do_duplicate: bool = true) -> void:
 		var new_status: Status
 		if do_duplicate:
 			new_status = status.duplicate()
+			SaveUid.tag_duplicate(status, new_status)
 		else:
 			new_status = status
 			
@@ -126,8 +127,9 @@ func remove_status(status: Status) -> void:
 #endregion
 
 static func apply_status_to_actor(status: Status, target_actor: Actor, override_quantity: int = 0) -> void:
-	var _copy = status.duplicate()
-	
+	var _copy: Status = status.duplicate()
+	SaveUid.tag_duplicate(status, _copy)
+
 	if override_quantity > 0:
 		_copy.effect_points = override_quantity
 	

@@ -133,8 +133,18 @@ func _enter_tree() -> void:
 	instance = self
 	
 func _exit_tree() -> void:
+	## Disconnect the global node_removed signal so a torn-down Level can't receive
+	## removal events for the next scene's nodes during teardown.
+	if get_tree() and get_tree().node_removed.is_connected(_on_node_removed):
+		get_tree().node_removed.disconnect(_on_node_removed)
 	if instance == self:
 		instance = null
+
+
+## True iff this Level is still the active instance and inside the tree. Used to short-circuit
+## callbacks that may resume after _exit_tree (e.g. anything past an `await`).
+func _is_alive() -> bool:
+	return instance == self and is_inside_tree()
 
 func _ready() -> void:
 	if VERBOSE: p("Loaded, setting up game.")
@@ -226,6 +236,8 @@ func save_persistent_actors_data() -> void:
 		if director is Player:
 			var main_actor: Actor = director.actors.front()
 			if main_actor and main_actor.persistent_data_key and main_actor.persistent_actor_data:
+				## Shallow duplicate — Action templates have no per-card runtime state today.
+				## If Action ever gains mutable per-card state, switch to a deep copy or capture via to_dict here.
 				main_actor.persistent_actor_data.stash = director.stash.duplicate()
 				PlayerData.set_actor_data(main_actor.persistent_data_key, main_actor.persistent_actor_data)
 
@@ -261,17 +273,18 @@ func render_tile_coordinates_debug_overlay() -> void:
 
 
 func _on_node_removed(node):
+	if not _is_alive(): return
 	if node is Actor:
 		check_objectives()
 
 @export var retry_menu: Control
 @export var continue_menu: Control
 
-func check_objectives() -> void: 
-	
+func check_objectives() -> void:
 	print("Checking game obejectives")
 	await get_tree().process_frame
-	
+	if not _is_alive(): return  ## Bail if this Level was torn down during the awaited frame.
+
 	if check_win_condition() == true:
 		save_persistent_actors_data()
 		continue_menu.show()

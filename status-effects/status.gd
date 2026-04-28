@@ -170,3 +170,38 @@ func halve_points() -> void:
 func _to_string() -> String:
 	var format: String = "%s(%d)" % [ui_name if ui_name else "NONAME", effect_points]
 	return format
+
+
+#region Save / Load
+
+## Mutable runtime state worth saving: `effect_points`. Other fields come from the .tres.
+## If you add a mutable field to Status, update to_dict/from_dict.
+func to_dict() -> Dictionary:
+	var uid_text := SaveUid.resolve(self)
+	assert(uid_text != "", "Status %s has no UID — must originate from a .tres asset (resource_path=%s)." % [self, resource_path])
+	return {
+		"uid": uid_text,
+		"effect_points": effect_points,
+	}
+
+## Reconstructs a detached Status instance from a save dict. Returns null on UID-load failure
+## (renamed/deleted .tres) — callers should retain the original dict to round-trip unresolved entries.
+static func from_dict(d: Dictionary) -> Status:
+	var uid_text: String = d.get("uid", "")
+	if uid_text == "":
+		push_warning("Status.from_dict: missing 'uid' key")
+		return null
+	var uid_id := ResourceUID.text_to_id(uid_text)
+	if uid_id == ResourceUID.INVALID_ID or not ResourceUID.has_id(uid_id):
+		push_warning("Status.from_dict: unresolvable UID %s" % uid_text)
+		return null
+	var template := load(ResourceUID.get_id_path(uid_id)) as Status
+	if not template:
+		push_warning("Status.from_dict: failed to load %s" % uid_text)
+		return null
+	var instance := template.duplicate(true) as Status
+	SaveUid.tag_duplicate(template, instance)
+	instance.effect_points = d.get("effect_points", 0)
+	return instance
+
+#endregion

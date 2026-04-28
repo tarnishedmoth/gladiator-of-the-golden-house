@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://q7ym5mealfro" path="res://play/region-1-levels/region-1_level-2.tscn" id="7_necnj"]
 [ext_resource type="PackedScene" uid="uid://cqntgflfq3bvy" path="res://play/test-levels/test-pickups.tscn" id="8_x721y"]
 [ext_resource type="PackedScene" uid="uid://1l4db25wph4c" path="res://play/test-levels/test-focus.tscn" id="9_uc0qm"]
+[ext_resource type="PackedScene" uid="uid://b8s4vj0qkk5lh" path="res://play/test-levels/test-save-load.tscn" id="10_savld"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kvqlu"]
 font_size = 36
@@ -28,7 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_12ima")
-selectable_levels = Array[PackedScene]([ExtResource("2_aqm70"), ExtResource("7_necnj"), ExtResource("4_uiecw"), ExtResource("5_ycxai"), ExtResource("4_e57jb"), ExtResource("5_necnj"), ExtResource("6_x721y"), ExtResource("8_x721y"), ExtResource("9_uc0qm")])
+selectable_levels = Array[PackedScene]([ExtResource("2_aqm70"), ExtResource("7_necnj"), ExtResource("4_uiecw"), ExtResource("5_ycxai"), ExtResource("4_e57jb"), ExtResource("5_necnj"), ExtResource("6_x721y"), ExtResource("8_x721y"), ExtResource("9_uc0qm"), ExtResource("10_savld")])
 
 [node name="BG" type="ColorRect" parent="." unique_id=228810212]
 unique_name_in_owner = true
@@ -85,6 +86,12 @@ layout_mode = 2
 text = "LAUNCH"
 flat = true
 
+[node name="RoundTripAssertButton" type="Button" parent="VBoxContainer/Contents" unique_id=387234605]
+layout_mode = 2
+tooltip_text = "Round-trip a PersistentActorData through to_dict/from_dict and verify equality."
+text = "Round-Trip Assert (save/load smoke test)"
+flat = true
+
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1361815906]
 modulate = Color(1, 1, 1, 0.7137255)
 layout_mode = 2
@@ -107,3 +114,4 @@ fit_content = true
 scroll_active = false
 
 [connection signal="pressed" from="VBoxContainer/Contents/LaunchButton" to="." method="_on_launch_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Contents/RoundTripAssertButton" to="." method="_on_roundtrip_button_pressed"]

@@ -19,7 +19,15 @@ var choice_starting_class: String
 var current_level: int = 0
 func get_current_level() -> int: return current_level
 
-var persistent_actors: Dictionary[StringName, Actor.PersistentActorData]
+var persistent_actors: Dictionary[StringName, PersistentActorData]
+
+## Bump SAVE_VERSION when any of these change incompatibly:
+## - PersistentActorData.to_dict keys (and not handled via d.get default)
+## - Status.to_dict keys
+## - Action.to_dict keys
+## - Top-level keys in capture_save_data
+## Bump NOT required for additive fields read via `d.get(key, default)`.
+const SAVE_VERSION: int = 1
 
 static func new_playthrough(chosen_name: String, chosen_starting_class: String) -> void:
 	if this:
@@ -33,7 +41,7 @@ static func new_playthrough(chosen_name: String, chosen_starting_class: String) 
 func get_chosen_starting_class_scene() -> PackedScene: ## Should be of type [Player] when instantiated
 	return load(choice_starting_class)
 
-static func get_actor_data(actor_key: StringName) -> Actor.PersistentActorData:
+static func get_actor_data(actor_key: StringName) -> PersistentActorData:
 	if not this:
 		push_warning("No playthrough active.")
 		p("No playthrough active.")
@@ -43,7 +51,7 @@ static func get_actor_data(actor_key: StringName) -> Actor.PersistentActorData:
 	else:
 		return this.persistent_actors[actor_key]
 		
-static func set_actor_data(actor_key: StringName, data: Actor.PersistentActorData):
+static func set_actor_data(actor_key: StringName, data: PersistentActorData):
 	if not this:
 		push_warning("No playthrough active.")
 		p("No playthrough active.")
@@ -59,32 +67,40 @@ static func set_actor_data(actor_key: StringName, data: Actor.PersistentActorDat
 static func capture_save_data() -> Dictionary:
 	if not this:
 		return {}
-	else:
-		var _persistent_actors: Dictionary = {}
-		for actor in this.persistent_actors.keys():
-			_persistent_actors[actor] = JSON.stringify(this.persistent_actors[actor])
-		
-		var data = {
-			"choice_name" = this.choice_name,
-			"choice_starting_class" = this.choice_starting_class,
-			"current_level" = this.current_level,
-			"persistent_actors" = _persistent_actors,
-		}
-		return data
-	
+	var actors_dict: Dictionary = {}
+	for actor_key in this.persistent_actors.keys():
+		actors_dict[actor_key] = this.persistent_actors[actor_key].to_dict()
+	return {
+		"save_version": SAVE_VERSION,
+		"choice_name": this.choice_name,
+		"choice_starting_class": this.choice_starting_class,
+		"current_level": this.current_level,
+		"persistent_actors": actors_dict,
+	}
+
 static func apply_save_data(save: SaveLoad.LoadedSave) -> void:
-	var data = save.data
-	assert(data)
-	
+	if not save or not save.data:
+		push_error("PlayerData.apply_save_data: null save data.")
+		return
+	var data: Dictionary = save.data
+	var version: int = data.get("save_version", 0)
+	if version != SAVE_VERSION:
+		push_error("Save file is in incompatible format (version=%d, expected=%d). Delete %s to continue."
+			% [version, SAVE_VERSION, ProjectSettings.globalize_path(SaveLoad.SAVE_DIRECTORY)])
+		return
+
 	this = PlayerData.new()
-	
-	this.choice_name = data["choice_name"]
-	this.choice_starting_class = data["choice_starting_class"]
-	this.current_level = data["current_level"]
-	
+	this.choice_name = data.get("choice_name", "")
+	this.choice_starting_class = data.get("choice_starting_class", "")
+	this.current_level = data.get("current_level", 0)
+
 	this.persistent_actors = {}
-	var _persistent_actors: Dictionary = data["persistent_actors"]
-	for actor in _persistent_actors.keys():
-		this.persistent_actors[actor] = JSON.to_native(JSON.parse_string(_persistent_actors[actor]), true)
-	
+	var actors_dict: Dictionary = data.get("persistent_actors", {})
+	for actor_key in actors_dict.keys():
+		var raw = actors_dict[actor_key]
+		if not raw is Dictionary:
+			push_error("Save slot has malformed persistent_actors entry for %s; skipping." % actor_key)
+			continue
+		## Coerce key to StringName so the typed Dictionary[StringName, ...] accepts it.
+		this.persistent_actors[StringName(actor_key)] = PersistentActorData.from_dict(raw)
 	p("Applied save data.")

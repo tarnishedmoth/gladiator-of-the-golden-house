@@ -36,16 +36,18 @@ class LoadedSave:
 class Metadata:
 	var system_time: float
 	var display_summary: String
-	
+
 	func to_dict() -> Dictionary:
 		var meta_dict: Dictionary = {}
 		meta_dict.system_time = system_time
 		meta_dict.display_summary = display_summary
 		return meta_dict
-		
-	func set_from_dict(dict: Dictionary) -> void:
-		system_time = dict.system_time
-		display_summary = dict.display_summary
+
+	static func from_dict(dict: Dictionary) -> Metadata:
+		var m: Metadata = Metadata.new()
+		m.system_time = dict.system_time
+		m.display_summary = dict.display_summary
+		return m
 
 
 static func _capture_metadata() -> Metadata:
@@ -168,13 +170,11 @@ static func load_metadata_from_disk(file_path: String) -> Metadata:
 
 static func _load_metadata_from_file(file: FileAccess, and_close: bool = true) -> Metadata:
 	var meta_dict: Dictionary = file.get_var()
-	
+
 	if and_close:
 		file.close()
-	
-	var metadata: Metadata = Metadata.new()
-	metadata.set_from_dict(meta_dict)
-	return metadata
+
+	return Metadata.from_dict(meta_dict)
 
 static func _load_save_from_disk(file_path: String) -> LoadedSave:
 	var save: LoadedSave = LoadedSave.new()
