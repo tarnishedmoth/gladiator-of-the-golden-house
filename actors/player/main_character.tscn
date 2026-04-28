@@ -15,7 +15,7 @@ script = ExtResource("1_ng02u")
 speech_bubble = NodePath("SpeechBubble")
 persistent_data_key = &"You"
 ui_name = "You"
-starting_health = 100
+max_health = 100
 starting_energy = 5
 metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
 

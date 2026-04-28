@@ -32,7 +32,7 @@ func populate_using_actor_data(actor: Actor) -> void:
 		description.text = actor.ui_description
 		
 	key_stats.text = "[center]"
-	key_stats.append_text("HP: %d / %d" % [actor.health, actor.starting_health])
+	key_stats.append_text("HP: %d / %d" % [actor.health, actor.max_health])
 	
 	for status: Status in actor.get_status_effects():
 		var new_status: TextureButton = TEMPLATE_STATUS_EFFECT_BUTTON.instantiate()

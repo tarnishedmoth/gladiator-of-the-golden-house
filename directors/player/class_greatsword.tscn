@@ -22,5 +22,5 @@ metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
 [node name="MainCharacter" parent="." unique_id=360471847 instance=ExtResource("9_t1m4t")]
 ui_subtitle = "Greatsword"
 ui_description = "Defeat all enemies to win."
-starting_health = 60
+max_health = 60
 starting_energy = 4

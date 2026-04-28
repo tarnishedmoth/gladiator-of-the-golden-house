@@ -17,7 +17,7 @@ script = ExtResource("1_traui")
 usable_actions = Array[ExtResource("2_ij7ux")]([ExtResource("5_f66cw"), ExtResource("4_28bj1"), ExtResource("6_svhos"), ExtResource("7_28bj1")])
 ui_name = "Legate"
 ui_description = "Often found among groups of grunts."
-starting_health = 38
+max_health = 38
 metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 
 [node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("6_imqgp")]
