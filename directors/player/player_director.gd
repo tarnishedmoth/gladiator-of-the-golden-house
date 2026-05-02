@@ -59,12 +59,12 @@ func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 	clear_and_repopulate_actors_from_children()
 	for actor in actors:
 		actor.setup(self, tile_map)
-		
+
 	draw_deck = starting_actions_deck.duplicate()
 	## HACK remove me TESTING
 	for stance in stances:
 		draw_deck.append_array(stance.actions)
-		
+
 	draw_deck.shuffle()
 
 	var main_actor: Actor = actors.front()
@@ -79,12 +79,12 @@ func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 
 func _on_turn_started():
 	if VERBOSE: p("Player turn started")
-	
+
 	select_actor(actors.front())
 	draw_hand()
 	#hold_action(actions_in_hand.front())
-	
-	
+
+
 func _end_turn() -> void:
 	if is_active:
 		discard_hand()
@@ -98,7 +98,7 @@ func user_pressed_end_turn_button() -> bool: ## Returns true if turn is ending i
 	(not all_available_actions.is_empty()) \
 	and actors_have_remaining_energy() \
 	and actors_have_usable_actions(all_available_actions)
-	
+
 	if player_has_remaining_actions:
 		_end_turn_with_available_moves = create_tween()
 		_end_turn_with_available_moves.tween_interval(HOLD_TIME_TO_END_TURN_EARLY)
@@ -107,7 +107,7 @@ func user_pressed_end_turn_button() -> bool: ## Returns true if turn is ending i
 	else:
 		_end_turn()
 		return true
-		
+
 func user_released_end_turn_button() -> void:
 	if _end_turn_with_available_moves:
 		if _end_turn_with_available_moves.is_valid():
@@ -168,10 +168,10 @@ func _on_click_on_tile(tile_coords) -> void:
 				else:
 					## Invalid play placement
 					if VERBOSE: p("Can't play that Action here.")
-					
+
 			else:
 				if DESELECT_ON_REPEAT && tile_coords == _last_selected_tile:
-						
+
 					p("Same tile selected as last click--Deselecting.")
 					deselect_tile()
 					update_action_preview()
@@ -181,8 +181,8 @@ func _on_click_on_tile(tile_coords) -> void:
 					hud.show_hover_panel(true)
 					set_selected_tile_visual(true)
 					update_action_preview()
-										
-				
+
+
 			## Tested working, but needs to be separated--presently this control scheme does not make sense.
 			## Thinking that changing selected actor should require pressing a button to highlight your available actors
 			#elif actor_on_tile and actor_on_tile in actors:
@@ -202,13 +202,13 @@ func _on_click_on_tile(tile_coords) -> void:
 		hud.show_hover_panel(false)
 
 	_last_selected_tile = selected_tile
-	
+
 func deselect_tile() -> void:
 	selected_tile = null
 	TargetFinder.clear_target_highlights()
 	set_selected_tile_visual(false)
 	hud.show_hover_panel(false)
-	
+
 func _on_click_to_play_action(target_coords: Vector2i) -> void:
 	play_held_action_at(target_coords)
 
@@ -220,12 +220,12 @@ func hold_action(action: Action):
 		return
 	else:
 		current_held_action = action
-		
+
 	TargetFinder.clear_target_highlights()
 	if current_held_action:
-		update_action_preview()	
+		update_action_preview()
 		TargetFinder.highlight_targets(selected_actor.get_action_target_cells(current_held_action))
-		
+
 	if VERBOSE:
 		p("Current held action: %s" % (current_held_action.ui_title if current_held_action else "empty"))
 
@@ -236,13 +236,13 @@ func draw_hand(draw_count: int = hand_size):
 	for card in always_available_deck:
 		if card not in actions_in_hand:
 			actions_in_hand.push_front(card)
-	
+
 	for card in draw_count:
 		_draw_next_card()
 	hud.populate_actions_list(actions_in_hand, selected_actor) ## Update HUD
 	hud.populate_stash_list(stash, selected_actor)
 	update_hud_actions_disabled_check()
-	
+
 func discard_hand():
 	unhold_action()
 	#discard_deck.append_array(actions_in_hand)
@@ -250,11 +250,11 @@ func discard_hand():
 		if not card in always_available_deck:
 			discard_deck.append(card)
 	actions_in_hand.clear()
-	
+
 	hud.populate_actions_list([], selected_actor) ## Update HUD
 	update_hud_actions_disabled_check()
-	
-	
+
+
 func _draw_next_card():
 	if draw_deck.is_empty():
 		if not discard_deck.is_empty():
@@ -265,28 +265,28 @@ func _draw_next_card():
 		else:
 			push_error("Out of cards!!")
 			return
-	
+
 	var drawn: Action = draw_deck.pop_front()
 	actions_in_hand.push_back(drawn)
-	
+
 	if VERBOSE: p("Drew action: %s" % drawn.ui_title)
-	
+
 func _discard(card):
 	if not card in always_available_deck:
 		discard_deck.push_back(card) ## Brain says push_front, but arrays can only be appended so lets just know that this deck is "upside down"
 	actions_in_hand.erase(card)
-	
+
 func get_facing(place_indicator_pos):
-	var facing_indicator = SELECT_FACING_INDICATOR.instantiate()			
+	var facing_indicator = SELECT_FACING_INDICATOR.instantiate()
 	self.add_child(facing_indicator)
 	facing_indicator.global_position = place_indicator_pos
-	facing_indicator.show()		
+	facing_indicator.show()
 	TargetFinder.clear_target_highlights()
-	var selected_facing_dir = await facing_indicator.facing_selected		
+	var selected_facing_dir = await facing_indicator.facing_selected
 	selected_actor.set_facing(selected_facing_dir)
 	facing_indicator.queue_free()
-	
-func play_held_action_at(coords: Vector2i):	
+
+func play_held_action_at(coords: Vector2i):
 	var position_for_facing
 	if current_held_action.allow_facing_before:
 		position_for_facing = selected_actor.global_position
@@ -315,7 +315,7 @@ func add_to_deck(card: Action) -> void:
 		return
 	if VERBOSE: p("Adding card %s to deck." % card.ui_name)
 	draw_deck.push_back(card)
-	
+
 func remove_from_deck(card: Action) -> void:
 	if card == null:
 		if VERBOSE: p("Card to remove was null")
@@ -352,7 +352,7 @@ func select_actor(actor: Actor) -> void:
 
 func remove_used_consumables(card: Action) -> void:
 	if card.action_category == Action.ActionCategory.CONSUMABLE:
-		remove_from_deck(card)	
+		remove_from_deck(card)
 
 func deselect_actor() -> void: select_actor(null)
 
@@ -362,19 +362,19 @@ func update_hud_actions_disabled_check() -> void:
 
 func update_action_preview() -> void:
 	var non_player_actor: Actor = null
-	
+
 	#check if there is an AI actor on last selected tile needs their preview removed
 	if _last_selected_tile != null:
 		non_player_actor = Level.get_actor_at(_last_selected_tile)
-		if non_player_actor != null && "action_preview" in non_player_actor: 
+		if non_player_actor != null && "action_preview" in non_player_actor:
 			non_player_actor.hide_preview_attack()
 			non_player_actor = null
-	
+
 	#check if there is an AI actor on selected tile needs their preview added
 	if(selected_tile != null and current_held_action == null): #prevents preview from being added when an action is being held
-		non_player_actor = Level.get_actor_at(selected_tile) as AIActor 
+		non_player_actor = Level.get_actor_at(selected_tile) as AIActor
 		if non_player_actor != null:
-			non_player_actor.preview_ai_attack()	
+			non_player_actor.preview_ai_attack()
 
 #func get_all_cards(and_exhausted: bool = false) -> Array[Action]:
 	#return actions_in_hand + discard_deck + exhausted_deck if and_exhausted else []
