@@ -35,7 +35,10 @@ func capture_from_actor(actor: Actor) -> void:
 func capture_status_effects_from(actor: Actor) -> void:
 	status_effects = []
 	for s in actor.status_effects:
-		if s.effect_points <= 0: continue  ## Skip expired — would be removed on next turn anyway.
+		
+		#if s.effect_points <= 0: continue  ## Skip expired — would be removed on next turn anyway.
+		## -status don't necessarily use effect points
+		
 		## Detach from live status — a turn tick between capture and to_dict() must not
 		## mutate the saved snapshot.
 		var copy: Status = s.duplicate()
