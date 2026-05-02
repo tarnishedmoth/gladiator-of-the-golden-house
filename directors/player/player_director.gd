@@ -4,6 +4,12 @@ const HOLD_TIME_TO_END_TURN_EARLY: float = 1.5
 const STICKY_TILE_SELECT: bool = false
 const DESELECT_ON_REPEAT: bool = true
 const SELECT_FACING_INDICATOR = preload("uid://dtgl2ndfa7uub")
+var select_facing_is_visible: bool:
+	set(v):
+		select_facing_is_visible = v
+		if tile_interactor:
+			## Hide the tile highlight when the widget is showing
+			tile_interactor.show_highlight = not select_facing_is_visible
 
 
 var tile_map: TileMapLayer
@@ -128,7 +134,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			_on_click_on_tile(tile)
 
 	if event.is_action_pressed(&"open_pause_menu"):
-			get_tree().quit() ## FIXME
+			get_tree().quit() ## TODO FIXME
 			pass
 
 	if is_active:
@@ -277,14 +283,18 @@ func _discard(card):
 	actions_in_hand.erase(card)
 
 func get_facing(place_indicator_pos):
+	select_facing_is_visible = true
+	
 	var facing_indicator = SELECT_FACING_INDICATOR.instantiate()
 	self.add_child(facing_indicator)
 	facing_indicator.global_position = place_indicator_pos
 	facing_indicator.show()
 	TargetFinder.clear_target_highlights()
-	var selected_facing_dir = await facing_indicator.facing_selected
+	
+	var selected_facing_dir = await facing_indicator.facing_selected ## NOTICE AWAIT
 	selected_actor.set_facing(selected_facing_dir)
 	facing_indicator.queue_free()
+	select_facing_is_visible = false
 
 func play_held_action_at(coords: Vector2i):
 	var position_for_facing

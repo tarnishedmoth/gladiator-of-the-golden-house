@@ -8,6 +8,8 @@ var tilemap: TileMapLayer
 var current_coords: Vector2i ## Last polled coordinates. Updates every frame, before [signal tile_changed].
 var last_coords: Vector2i ## Previous frame's coordinates. Updates every frame, after [signal tile_changed].
 
+var show_highlight: bool = true ## Manipulated by [Player] director
+
 @onready var tile_highlight_sprite: Sprite2D = %TileHighlight
 @onready var action_projections: Node2D = %ActionProjections
 
@@ -49,8 +51,11 @@ func _process(_delta: float) -> void:
 			if tile_highlight_sprite: tile_highlight_sprite.hide()
 			
 		else:
-			if not tile_highlight_sprite.visible:
+			if show_highlight and not tile_highlight_sprite.visible:
 				tile_highlight_sprite.show()
+			elif not show_highlight:
+				tile_highlight_sprite.hide()
+				
 			if not last_coords == coords:
 				## New tile
 				current_coords = coords
