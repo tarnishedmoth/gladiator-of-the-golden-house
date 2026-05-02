@@ -9,6 +9,7 @@ class_name AIActor extends Actor
 
 @export_group("Behaviors")
 @export var always_prioritize_nearest_hostile: bool = true
+@export var move_towards_target: bool = true ## TODO this is simple, does not consider attack action pattern
 
 var hostile_target: Actor ## Used for planning
 
@@ -45,8 +46,12 @@ func choose_action(claimed_tiles: Array[Vector2i]) -> Action:
 func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void:
 	if not hostile_target: choose_hostile_target()
 	if action is ActionMove:
-		## FIXME HACK: Random facing -- should face toward destination.
-		var facing_direction: Facing.Cardinal = Facing.Cardinal.values().pick_random()
+		var facing_direction: Facing.Cardinal
+		if hostile_target:
+			facing_direction = Facing.get_direction_to_coordinate(current_tile_coords, hostile_target.current_tile_coords)
+		else:
+			## Fallback but should never run in gameplay
+			facing_direction = Facing.Cardinal.values().pick_random()
 		set_facing(facing_direction)
 
 		var coords: Vector2i
@@ -57,7 +62,17 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 			candidates = _filter_move_candidates(candidates, claimed_tiles)
 
 			if not candidates.is_empty():
-				coords = candidates.pick_random() ## FIXME HACK: random
+				if hostile_target && move_towards_target:
+					## Move in a direction towards the target
+					candidates.sort_custom(
+						func(a: Vector2i, b: Vector2i) -> bool:
+							return \
+							Vector2(a).distance_squared_to(hostile_target.current_tile_coords) < \
+							Vector2(b).distance_squared_to(hostile_target.current_tile_coords)
+					)
+					coords = candidates.front()
+				else:
+					coords = candidates.pick_random()
 			else:
 				coords = self.current_tile_coords
 				if debug: p("No valid move target found, staying in place.")

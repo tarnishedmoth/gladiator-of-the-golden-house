@@ -51,3 +51,12 @@ static func get_target_cells(pos: Vector2i, facing: Cardinal, pattern: Array[Vec
 	for entry in pattern:
 		targets.append(pos + rotate_hex(facing, entry))
 	return targets
+
+## Returns a cardinal direction from "a" pointing to "b".
+static func get_direction_to_coordinate(a: Vector2i, b: Vector2i) -> Cardinal:
+	## We have to convert to floating point to use these methods
+	var dir = Vector2(a).direction_to(Vector2(b))
+	var diri = Vector2i(dir.sign())
+	## TODO FIXME figure out why this isn't exactly working correctly
+	## Perhaps use Vector2.angle_to() / Vector2.angle_to_point()
+	return DIRECTIONS.find(dir) as Cardinal
