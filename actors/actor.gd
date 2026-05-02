@@ -14,10 +14,9 @@ func p(args):
 
 
 ## Level related functionality
-const SHOW_DEBUG_FACING_INDICATOR: bool = true
-const DEBUG_FACING_INDICATOR_SCENE = preload("uid://b3kl75n4nwdge")
-const SELECT_FACING_WIDGET = preload("uid://dtgl2ndfa7uub")
-var debug_facing_indicator: Node2D ## instantiated at runtime
+const SHOW_FACING_INDICATOR: bool = true
+const FACING_INDICATOR_SCENE = preload("uid://b3kl75n4nwdge")
+var facing_indicator: Node2D ## instantiated at runtime
 
 const TARGET_INDICATOR = preload("uid://bw78572gtph87")
 var target_scene: PackedScene = TARGET_INDICATOR
@@ -134,7 +133,7 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	snap_to_nearest_tile()
 
 	facing = Facing.Cardinal.NORTH
-	show_debug_facing_indicator()
+	show_facing_indicator()
 
 	if action_queue:
 		action_queue.free()
@@ -252,25 +251,25 @@ func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
 func set_facing(cardinal_direction: Facing.Cardinal) -> void:
 	facing = cardinal_direction
 	
-	if SHOW_DEBUG_FACING_INDICATOR && self.is_inside_tree():
-		show_debug_facing_indicator(true)
+	if SHOW_FACING_INDICATOR && self.is_inside_tree():
+		show_facing_indicator(true)
 	
 ## Returns [member facing]. North is the default value.
 func get_facing() -> Facing.Cardinal:
 	return facing
 	
-func show_debug_facing_indicator(show_: bool = true) -> void:
+func show_facing_indicator(show_: bool = true) -> void:
 	if not show_:
-		if debug_facing_indicator:
-			debug_facing_indicator.free()
+		if facing_indicator:
+			facing_indicator.free()
 	else:
-		if not debug_facing_indicator:
-			debug_facing_indicator = DEBUG_FACING_INDICATOR_SCENE.instantiate()
-			add_child(debug_facing_indicator)
+		if not facing_indicator:
+			facing_indicator = FACING_INDICATOR_SCENE.instantiate()
+			add_child(facing_indicator)
 		
 		## Set rotation
 		var degrees: int = 60 * facing
-		debug_facing_indicator.rotation_degrees = degrees
+		facing_indicator.rotation_degrees = degrees
 		
 		if debug:
 			p("Facing %s and rotated to %d degrees." % [facing, degrees])
