@@ -7,6 +7,11 @@ class_name AIActor extends Actor
 @export var actions_to_queue_this_turn: int = 1
 @export var action_preview: ActionPreview
 
+@export_group("Behaviors")
+@export var always_prioritize_nearest_hostile: bool = true
+
+var hostile_target: Actor ## Used for planning
+
 func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	if action_preview:
 		action_preview.free()
@@ -38,6 +43,7 @@ func choose_action(claimed_tiles: Array[Vector2i]) -> Action:
 	return action
 
 func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void:
+	if not hostile_target: choose_hostile_target()
 	if action is ActionMove:
 		## FIXME HACK: Random facing -- should face toward destination.
 		var facing_direction: Facing.Cardinal = Facing.Cardinal.values().pick_random()
@@ -75,6 +81,35 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 
 		claimed_tiles.append(coords)
 		action.set_target(coords)
+
+
+## Assigns an Actor to [member hostile_target].
+## If [member always_prioritize_nearest_hostile] it will be the nearest by tile coordinate.
+## Otherwise, it will be random.
+func choose_hostile_target() -> void:
+	## Lets find an enemy actor to target
+	var available_targets: Array[Actor]
+	for _director in Level.get_directors():
+		if _director != director: ## assume all other directors are hostile
+			available_targets.append_array(_director.actors)
+			
+	if available_targets.is_empty():
+		push_error("No hostile actors found")
+		hostile_target = null
+		return
+	elif available_targets.size() != 1:
+		if always_prioritize_nearest_hostile:
+			## Sort the array by nearest
+			available_targets.sort_custom(
+				func(a: Actor, b: Actor) -> bool: return \
+				current_tile_coords.distance_squared_to(a.current_tile_coords) < \
+				current_tile_coords.distance_squared_to(b.current_tile_coords)
+			)
+		else:
+			## Random
+			available_targets.shuffle()
+	hostile_target = available_targets.front()
+	if debug: p("Chose hostile target: %s" % [hostile_target])
 
 
 ## Returns only tiles from [param candidates] that are not occupied by any actor
