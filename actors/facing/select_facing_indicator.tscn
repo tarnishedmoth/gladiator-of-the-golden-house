@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://di8hwrrf7me1s" path="res://actors/facing/select_facing_indicator.gd" id="1_irotx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irotx"]
-size = Vector2(30, 20)
+size = Vector2(32, 32)
 
 [node name="FacingSelection" type="Node2D" unique_id=1440282865]
 z_index = 500
