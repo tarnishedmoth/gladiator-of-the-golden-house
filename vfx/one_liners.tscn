@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dwfr86j8i7cp4"]
+
+[ext_resource type="Script" uid="uid://b3qci8rlwawbh" path="res://actors/one_liners.gd" id="1_u7h6u"]
+[ext_resource type="Texture2D" uid="uid://dxyu6jeid7om3" path="res://vfx/one_liner_speech_bubble.png" id="2_k4sqg"]
+[ext_resource type="LabelSettings" uid="uid://bevyqcdafathp" path="res://vfx/one_liner_label_style.tres" id="3_dt3uo"]
+
+[node name="OneLiners" type="Node2D" unique_id=1096534424]
+script = ExtResource("1_u7h6u")
+
+[node name="one_liner_bg" type="Sprite2D" parent="." unique_id=409433277]
+modulate = Color(0.9372549, 0.99215686, 0.74509805, 0.2509804)
+position = Vector2(0, -32)
+texture = ExtResource("2_k4sqg")
+
+[node name="one_liner_txt" type="Label" parent="." unique_id=1884613291]
+modulate = Color(0.1764706, 0.03137255, 0, 1)
+offset_left = -109.0
+offset_top = -51.0
+offset_right = 110.0
+offset_bottom = -28.0
+text = "Prepare yourself for battle!"
+label_settings = ExtResource("3_dt3uo")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
