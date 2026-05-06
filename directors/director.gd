@@ -73,9 +73,8 @@ func actors_have_remaining_energy() -> bool:
 	
 ## Given an array of [Action]s, finds if any can be used by any [Actor] in [member actors].
 func actors_have_usable_actions(actions: Array[Action]) -> bool:
-	var result: bool = false
 	for actor in actors:
-		if actor.energy > 0:
-			for action in actions:
-				result = true if action.can_player_enter(actor) else result
-	return result
+		for action in actions:
+			if action.can_player_enter(actor, true):
+				return true
+	return false
