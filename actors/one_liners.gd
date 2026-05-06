@@ -46,7 +46,7 @@ const GROUP_NAME: StringName = &"OneLiners" ## Centralized to manage timing (spa
 ## Used to prepend one-liner (i.e. as a "response" to another bark)
 ## If the string ends in a space, it will print as-is.
 ## If not, the method handles choosing punctuation and spacing.
-const AFFIRMATIVES := [
+const AFFIRMATIVES: Array[String] = [
 	"Yes",
 	"You'll see",
 	"Truly",
@@ -60,7 +60,7 @@ const AFFIRMATIVES := [
 	"Indeed",
 	"As I thought",
 ]
-const NEGATIVES := [
+const NEGATIVES: Array[String] = [
 	"No",
 	"No way",
 	"Impossible",

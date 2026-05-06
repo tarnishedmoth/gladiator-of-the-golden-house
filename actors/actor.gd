@@ -334,6 +334,10 @@ func take_direct_damage(damage: int, from: Actor = null) -> int:
 	if damage_result > 0:
 		play_sfx(ActorSfxHandler.Sounds.GET_HIT)
 		Level.get_hud().popup_damage(damage_result, self)
+		
+	if (health - damage_result > 0) && (health - damage_result < health/2.0):
+		## not gonna die but it's a heavy hit
+		Level.get_instance().trigger_response_speech_bubbles(director is Player)
 	
 	health -= damage_result
 	health = maxi(0, health)
