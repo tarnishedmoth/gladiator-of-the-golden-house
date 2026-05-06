@@ -15,6 +15,7 @@ const STARTING_CLASSES: Dictionary = {
 
 var choice_name: String
 var choice_starting_class: String
+var combat_playtime: float
 
 var current_level: int = 0
 func get_current_level() -> int: return current_level
@@ -37,6 +38,7 @@ static func new_playthrough(chosen_name: String, chosen_starting_class: String) 
 	this = PlayerData.new()
 	this.choice_name = chosen_name
 	this.choice_starting_class = chosen_starting_class
+	this.combat_playtime = 0.0
 	
 func get_chosen_starting_class_scene() -> PackedScene: ## Should be of type [Player] when instantiated
 	return load(choice_starting_class)
@@ -74,6 +76,7 @@ static func capture_save_data() -> Dictionary:
 		"save_version": SAVE_VERSION,
 		"choice_name": this.choice_name,
 		"choice_starting_class": this.choice_starting_class,
+		"combat_playtime": this.combat_playtime,
 		"current_level": this.current_level,
 		"persistent_actors": actors_dict,
 	}
@@ -92,6 +95,7 @@ static func apply_save_data(save: SaveLoad.LoadedSave) -> void:
 	this = PlayerData.new()
 	this.choice_name = data.get("choice_name", "")
 	this.choice_starting_class = data.get("choice_starting_class", "")
+	this.combat_playtime = data.get("combat_playtime", 0.0)
 	this.current_level = data.get("current_level", 0)
 
 	this.persistent_actors = {}

@@ -286,7 +286,13 @@ func check_objectives() -> void:
 	if not _is_alive(): return  ## Bail if this Level was torn down during the awaited frame.
 
 	if check_win_condition() == true:
+		## Record and save the final play time
+		playtime_counter_running = false
+		PlayerData.this.combat_playtime += total_play_time
+		
+		## Save actor data
 		save_persistent_actors_data()
+		
 		continue_menu.show()
 		print("Win")
 		
