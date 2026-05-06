@@ -1,4 +1,4 @@
-extends Node2D
+class_name OneLiners extends Node2D
 
 @export var seconds_before_starting: float = 5.0
 @export var bubble_timespan_seconds: float = 2.0
@@ -40,6 +40,46 @@ extends Node2D
 	"Oorah!",
 	"I shall defeat you!",
 	]
+	
+## Used to prepend one-liner (i.e. as a "response" to another bark)
+## If the string ends in a space, it will print as-is.
+## If not, the method handles choosing punctuation and spacing.
+const AFFIRMATIVES = [
+	"Yes",
+	"You'll see",
+	"Truly",
+	"By the gods",
+	"Well well... ",
+	"Ha ha",
+	"Ha",
+	"Ha ha ha",
+	"Ah",
+	"Of course",
+	"Indeed",
+	"As I thought",
+]
+const NEGATIVES = [
+	"No",
+	"No way",
+	"Impossible",
+	"It can't be",
+	"That's impossible",
+	"Never",
+	"I can't believe it",
+	"I can hardly believe",
+	"Don't count me out",
+	"You can't",
+	"You mustn't",
+	"You'll die!! ",
+	"Fool",
+	"You fool",
+	"Foolish",
+	"I can't fail",
+	"I mustn't fail",
+	"I... ",
+	"What-! ",
+	"Gasp",
+]
 
 var one_liner_delay_remaining:float = 0.0
 var bubble_time_remaining:float = 0.0
@@ -72,6 +112,13 @@ func display_random_oneliner():
 	# TODO avoid repeats? go in sequence+loop from a random start index?
 	var str = one_liners[randi() % one_liners.size()]
 	say_this_oneliner(str)
+	
+## Random line with a random prefix for variety
+func display_response_oneliner(positive: bool) -> void:
+	if positive:
+		say_this_oneliner(TextUtils.prepend(AFFIRMATIVES, one_liners.pick_random()))
+	else:
+		say_this_oneliner(TextUtils.prepend(NEGATIVES, one_liners.pick_random()))
 
 func _process(delta):
 	
