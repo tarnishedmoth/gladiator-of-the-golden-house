@@ -14,6 +14,9 @@ func setup(tilemap: TileMapLayer) -> void:
 func _on_turn_started():
 	if VERBOSE: p("AI taking turn...")
 	
+	## Let's put the random one-liners here
+	Level.get_instance().trigger_speech_bubbles()
+	
 	var result = await execute_queued_moves()
 	
 	select_plans()

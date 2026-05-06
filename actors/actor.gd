@@ -348,7 +348,9 @@ func take_direct_damage(damage: int, from: Actor = null) -> int:
 func die() -> void:
 	if debug:
 		p("Died!")
-	## TODO
+		
+	Level.get_instance().trigger_response_speech_bubbles(director is Player)
+	
 	Juice.fade_out(self).tween_callback(queue_free)
 
 #endregion

@@ -317,3 +317,22 @@ func check_lose_condition() -> bool:
 			if !dir.actors.is_empty(): #if there is a player the game continues
 				return false
 	return true # no player actors found game lost
+
+
+func trigger_speech_bubbles() -> void:
+	if randf() > 0.5:
+		var oneliners = get_tree().get_nodes_in_group(OneLiners.GROUP_NAME)
+		if oneliners.size() > 1:
+			for n in randi_range(0, oneliners.size()-1):
+				var inst = oneliners.pick_random() as OneLiners
+				inst.display_random_oneliner()
+				oneliners.erase(inst)
+				
+func trigger_response_speech_bubbles(positive: bool) -> void:
+	#if randf() > 0.5:
+	var oneliners = get_tree().get_nodes_in_group(OneLiners.GROUP_NAME)
+	if oneliners.size() > 1:
+		for n in randi_range(0, oneliners.size()-1):
+			var inst = oneliners.pick_random() as OneLiners
+			inst.display_response_oneliner(positive)
+			oneliners.erase(inst)

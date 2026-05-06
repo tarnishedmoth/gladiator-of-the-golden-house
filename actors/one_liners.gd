@@ -1,9 +1,11 @@
 class_name OneLiners extends Node2D
 
+const GROUP_NAME: StringName = &"OneLiners" ## Centralized to manage timing (spam)
+
 @export var seconds_before_starting: float = 5.0
 @export var bubble_timespan_seconds: float = 2.0
-@export var wait_seconds_min: float = 7.0
-@export var wait_seconds_max: float = 20.0
+@export var wait_seconds_min: float = 15.0
+@export var wait_seconds_max: float = 60.0
 @export var only_trigger_once: bool = false
 
 @export var one_liners: Array[String] = [
@@ -44,7 +46,7 @@ class_name OneLiners extends Node2D
 ## Used to prepend one-liner (i.e. as a "response" to another bark)
 ## If the string ends in a space, it will print as-is.
 ## If not, the method handles choosing punctuation and spacing.
-const AFFIRMATIVES = [
+const AFFIRMATIVES := [
 	"Yes",
 	"You'll see",
 	"Truly",
@@ -58,7 +60,7 @@ const AFFIRMATIVES = [
 	"Indeed",
 	"As I thought",
 ]
-const NEGATIVES = [
+const NEGATIVES := [
 	"No",
 	"No way",
 	"Impossible",
@@ -89,7 +91,7 @@ var bubble_time_remaining:float = 0.0
 # for example, in response to getting hit! #
 ############################################
 func say_this_oneliner(bark:String):
-	print("one liner: "+bark)
+	#print("one liner: "+bark)
 	# show the bubble for a while
 	bubble_time_remaining = bubble_timespan_seconds
 	# plus a random delay afterwards before barks continue
@@ -100,6 +102,7 @@ func say_this_oneliner(bark:String):
 	show()
 
 func _ready():
+	add_to_group(GROUP_NAME)
 	randomize()
 	hide() # the bubble to begin with
 	# wait before starting random oneliners
