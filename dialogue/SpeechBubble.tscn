@@ -17,6 +17,7 @@ duration = 5.0
 dialogue = NodePath("PanelContainer/RichTextLabel")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1156102134]
+z_index = 8
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_hms5b")

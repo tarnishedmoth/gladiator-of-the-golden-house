@@ -53,8 +53,9 @@ class Metadata:
 static func _capture_metadata() -> Metadata:
 	var meta: Metadata = Metadata.new()
 	meta.system_time = Time.get_unix_time_from_system()
-	meta.display_summary = "%s - Level %s - %s" % [
+	meta.display_summary = "%s - %s: Level %s - %s" % [
 		PlayerData.this.choice_name,
+		PlayerData.this.combat_playtime,
 		PlayerData.this.current_level,
 		PlayerData.STARTING_CLASSES.find_key(PlayerData.this.choice_starting_class)
 		]
