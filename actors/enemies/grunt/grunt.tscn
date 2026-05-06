@@ -62,4 +62,4 @@ texture = ExtResource("4_r7m32")
 position = Vector2(-26, -85)
 
 [node name="OneLiners" parent="." unique_id=1096534424 instance=ExtResource("14_ubwg3")]
-position = Vector2(0, -26)
+position = Vector2(0, -16)

@@ -2,8 +2,9 @@ extends Node2D
 
 @export var seconds_before_starting: float = 5.0
 @export var bubble_timespan_seconds: float = 2.0
-@export var wait_seconds_min: float = 5.0
-@export var wait_seconds_max: float = 10.0
+@export var wait_seconds_min: float = 7.0
+@export var wait_seconds_max: float = 20.0
+@export var only_trigger_once: bool = false
 
 @export var one_liners: Array[String] = [
 	"Excelcior!",
@@ -83,4 +84,5 @@ func _process(delta):
 	one_liner_delay_remaining -= delta
 	if one_liner_delay_remaining <= 0.0:
 		display_random_oneliner()
+		if only_trigger_once: one_liner_delay_remaining = INF
 		

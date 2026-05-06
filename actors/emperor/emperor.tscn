@@ -4,8 +4,10 @@
 [ext_resource type="Material" uid="uid://cvtvuq50oy655" path="res://actors/emperor/emperor-tail-wobble-material.tres" id="1_hcldh"]
 [ext_resource type="Texture2D" uid="uid://xln3qjs0ga2c" path="res://actors/emperor/emperor-placeholder-sprite.png" id="1_t6nd0"]
 [ext_resource type="Texture2D" uid="uid://cbo53lrhuoop" path="res://actors/emperor/emperor-tail.png" id="2_63nwy"]
+[ext_resource type="PackedScene" uid="uid://dwfr86j8i7cp4" path="res://vfx/one_liners.tscn" id="5_p3pdj"]
 
 [node name="emperor" type="Node2D" unique_id=1077291446]
+z_index = 100
 script = ExtResource("1_63nwy")
 
 [node name="emperor-tail-wobble" type="Sprite2D" parent="." unique_id=370377091]
@@ -19,3 +21,12 @@ region_rect = Rect2(32, 0, 32, 64)
 [node name="emperor-body" type="Sprite2D" parent="." unique_id=200480517]
 position = Vector2(0, -27)
 texture = ExtResource("1_t6nd0")
+
+[node name="OneLiners" parent="." unique_id=1096534424 instance=ExtResource("5_p3pdj")]
+position = Vector2(-40, -36)
+seconds_before_starting = 11.0
+bubble_timespan_seconds = 7.0
+wait_seconds_min = 0.0
+wait_seconds_max = 0.0
+only_trigger_once = true
+one_liners = Array[String](["Let the battle begin!"])
