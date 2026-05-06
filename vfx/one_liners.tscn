@@ -4,22 +4,57 @@
 [ext_resource type="Texture2D" uid="uid://dxyu6jeid7om3" path="res://vfx/one_liner_speech_bubble.png" id="2_k4sqg"]
 [ext_resource type="LabelSettings" uid="uid://bevyqcdafathp" path="res://vfx/one_liner_label_style.tres" id="3_dt3uo"]
 
-[node name="OneLiners" type="Node2D" unique_id=1096534424]
-script = ExtResource("1_u7h6u")
-
-[node name="one_liner_bg" type="Sprite2D" parent="." unique_id=409433277]
-modulate = Color(0.9372549, 0.99215686, 0.74509805, 0.2509804)
-position = Vector2(0, -32)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dt3uo"]
+content_margin_left = 2.0
+content_margin_right = 2.0
 texture = ExtResource("2_k4sqg")
+texture_margin_left = 16.0
+texture_margin_top = 4.0
+texture_margin_right = 84.0
+texture_margin_bottom = 10.0
+expand_margin_left = 2.0
+expand_margin_right = 4.0
+expand_margin_bottom = 2.0
+modulate_color = Color(0.9372549, 0.99215686, 0.74509805, 0.39215687)
 
-[node name="one_liner_txt" type="Label" parent="." unique_id=1884613291]
+[node name="OneLiners" type="Node2D" unique_id=1096534424 node_paths=PackedStringArray("one_liner_txt")]
+script = ExtResource("1_u7h6u")
+one_liner_txt = NodePath("Size/one_liner_bg/one_liner_txt")
+
+[node name="Size" type="Control" parent="." unique_id=92490154]
+z_index = 12
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="one_liner_bg" type="PanelContainer" parent="Size" unique_id=24018421]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -122.0
+offset_top = -29.0
+offset_right = 122.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_dt3uo")
+
+[node name="one_liner_txt" type="Label" parent="Size/one_liner_bg" unique_id=1884613291]
 modulate = Color(0.1764706, 0.03137255, 0, 1)
-offset_left = -109.0
-offset_top = -48.0
-offset_right = 110.0
-offset_bottom = -25.0
-text = "Prepare yourself for battle!"
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Prepare yourself!"
 label_settings = ExtResource("3_dt3uo")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 metadata/_edit_use_anchors_ = true

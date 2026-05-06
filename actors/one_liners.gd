@@ -2,6 +2,8 @@ class_name OneLiners extends Node2D
 
 const GROUP_NAME: StringName = &"OneLiners" ## Centralized to manage timing (spam)
 
+@export var one_liner_txt: Label
+
 @export var seconds_before_starting: float = 5.0
 @export var bubble_timespan_seconds: float = 2.0
 @export var wait_seconds_min: float = 15.0
@@ -86,6 +88,7 @@ const NEGATIVES: Array[String] = [
 var one_liner_delay_remaining:float = 0.0
 var bubble_time_remaining:float = 0.0
 
+
 ############################################
 # you can call this function from anywhere #
 # for example, in response to getting hit! #
@@ -97,7 +100,7 @@ func say_this_oneliner(bark:String):
 	# plus a random delay afterwards before barks continue
 	one_liner_delay_remaining = randf_range(wait_seconds_min, wait_seconds_max)
 	# change the text
-	$one_liner_txt.text = bark
+	one_liner_txt.text = bark
 	# make bubble visible
 	show()
 

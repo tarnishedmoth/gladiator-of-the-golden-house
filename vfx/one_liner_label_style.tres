@@ -3,5 +3,6 @@
 [ext_resource type="FontFile" uid="uid://cag3kgbgq06vp" path="res://vfx/PressStart2P-Regular.ttf" id="1_1jerb"]
 
 [resource]
+line_spacing = -2.0
 font = ExtResource("1_1jerb")
 font_size = 14
