@@ -23,10 +23,7 @@ position = Vector2(0, -27)
 texture = ExtResource("1_t6nd0")
 
 [node name="OneLiners" parent="." unique_id=1096534424 instance=ExtResource("5_p3pdj")]
-position = Vector2(-40, -36)
-seconds_before_starting = 11.0
-bubble_timespan_seconds = 7.0
-wait_seconds_min = 0.0
-wait_seconds_max = 0.0
-only_trigger_once = true
-one_liners = Array[String](["Let the battle begin!"])
+position = Vector2(-40, -56)
+seconds_before_starting = 10.0
+wait_seconds_min = 10.0
+wait_seconds_max = 30.0

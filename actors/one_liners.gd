@@ -110,8 +110,8 @@ func _ready():
 	hide() # the bubble to begin with
 	# wait before starting random oneliners
 	one_liner_delay_remaining = seconds_before_starting
-	# extra so they don't start at the same time
-	one_liner_delay_remaining += randf_range(wait_seconds_min, wait_seconds_max)
+	# we could add extra so other NPCs don't start at the same time:
+	# one_liner_delay_remaining += randf_range(wait_seconds_min, wait_seconds_max)
 
 func display_random_oneliner():
 	# choose one randomly

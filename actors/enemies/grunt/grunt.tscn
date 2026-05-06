@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="7_2n3b8"]
 [ext_resource type="Script" uid="uid://c23svqo1v3284" path="res://actors/player/weapon-wobble.gd" id="8_ubwg3"]
 [ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="10_6iwa0"]
-[ext_resource type="PackedScene" uid="uid://dwfr86j8i7cp4" path="res://vfx/one_liners.tscn" id="14_ubwg3"]
 
 [node name="Grunt" type="Node2D" unique_id=84579020 node_paths=PackedStringArray("speech_bubble")]
 script = ExtResource("1_q1aho")
@@ -60,6 +59,3 @@ texture = ExtResource("4_r7m32")
 
 [node name="SpeechBubble" parent="." unique_id=757394792 instance=ExtResource("10_6iwa0")]
 position = Vector2(-26, -85)
-
-[node name="OneLiners" parent="." unique_id=1096534424 instance=ExtResource("14_ubwg3")]
-position = Vector2(0, -16)
