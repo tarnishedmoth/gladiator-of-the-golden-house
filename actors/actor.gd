@@ -394,11 +394,14 @@ func reset_energy() -> void:
 #endregion
 
 #region Status Effects
+## Used to track status effects by a keyword
+func erase_keyed_statuses(key) -> void:
+	status_manager.remove_keyed_statuses(key)
 
-func add_status(status: Status) -> void:
+func add_status(status: Status, key = null) -> void:
 	var suffix := " %+d" % status.effect_points if status.effect_points != 0 else ""
 	Level.get_hud().popup_status(status.ui_name + suffix, self)
-	status_manager.add_status(status)
+	status_manager.add_status(status, key)
 	
 func remove_status(status: Status) -> void:
 	status_manager.remove_status(status)

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ActionChangeStance" format=3 uid="uid://cnrny0r1m5j20"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_qycgg"]
+[ext_resource type="Script" uid="uid://dj1vqqabqwo2g" path="res://actions/action_change-stance.gd" id="2_otlyw"]
+[ext_resource type="Script" uid="uid://bhpfulxak0eng" path="res://status-effects/status.gd" id="3_sq1a7"]
+
+[resource]
+script = ExtResource("2_otlyw")
+stance_uid = "uid://0d2gjd1g0oku"
+allow_facing_after = true
+ui_title = "Murmillo"
+action_category = 4
+energy_cost = 1
+metadata/_custom_type_script = "uid://dj1vqqabqwo2g"

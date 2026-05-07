@@ -7,8 +7,10 @@
 [ext_resource type="Resource" uid="uid://cf8qxjti6wfjq" path="res://actions/prefabs/player/class-a_brace.tres" id="4_bwu7t"]
 [ext_resource type="Resource" uid="uid://d21lb2y7se50p" path="res://actions/prefabs/player/class-a_tight-guard.tres" id="5_backn"]
 [ext_resource type="Resource" uid="uid://ildiagc3dm8a" path="res://actions/prefabs/player/class-a_shield-charge.tres" id="6_l5rcs"]
+[ext_resource type="Resource" uid="uid://cnrny0r1m5j20" path="res://actions/prefabs/player/stance-change_murmillo.tres" id="7_bwu7t"]
 
 [resource]
 script = ExtResource("2_siod4")
 actions = Array[ExtResource("1_1egg1")]([ExtResource("2_h3ox8"), ExtResource("3_c5312"), ExtResource("4_bwu7t"), ExtResource("5_backn"), ExtResource("6_l5rcs")])
+pickme_action = ExtResource("7_bwu7t")
 metadata/_custom_type_script = "uid://wxlj5akq7s0v"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ActionChangeStance" format=3 uid="uid://bkqvnkxxyq60c"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_n7xs8"]
+[ext_resource type="Script" uid="uid://dj1vqqabqwo2g" path="res://actions/action_change-stance.gd" id="2_gjmf5"]
+[ext_resource type="Script" uid="uid://bhpfulxak0eng" path="res://status-effects/status.gd" id="3_37847"]
+
+[resource]
+script = ExtResource("2_gjmf5")
+stance_uid = "uid://cdixyrgupi5yu"
+allow_facing_after = true
+ui_title = "Secutor"
+action_category = 4
+energy_cost = 1
+metadata/_custom_type_script = "uid://dj1vqqabqwo2g"

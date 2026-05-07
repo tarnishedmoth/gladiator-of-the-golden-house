@@ -95,13 +95,17 @@ func on_status_applied(new_status: Status) -> void:
 
 #region Status stack
 
-func add_status(status: Status, do_duplicate: bool = true) -> void:
+func add_status(status: Status, key = "", do_duplicate: bool = true) -> void:
 	status = on_applying_status(status)
 	var matching
 	for _status in status_effects:
 		if Status.is_same_status(status, _status):
-			matching = _status
-			break
+			if not key:
+				matching = _status
+				break
+			elif _status.get_meta(&"key") == key:
+				matching = _status
+				break
 			
 	if matching:
 		matching.add_points(status.effect_points)
@@ -115,6 +119,9 @@ func add_status(status: Status, do_duplicate: bool = true) -> void:
 		else:
 			new_status = status
 			
+		if key:
+			new_status.set_meta(&"key", key)
+			
 		new_status.set_actor(actor) #setting self to take status effect
 		status_effects.append(new_status)
 		if debug:
@@ -123,6 +130,16 @@ func add_status(status: Status, do_duplicate: bool = true) -> void:
 	
 func remove_status(status: Status) -> void:
 	status_effects.erase(status)
+	
+func remove_keyed_statuses(key) -> void:
+	var to_remove: Array
+	for status in status_effects:
+		var meta_key = status.get_meta(&"key", INF)
+		if meta_key == key:
+			to_remove.append(status)
+	
+	for status in to_remove:
+		remove_status(status)
 
 #endregion
 
