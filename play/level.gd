@@ -127,7 +127,7 @@ var playtime_counter_running: bool = false:
 		playtime_counter_running = value
 
 func _apply_elapsed_play_time():
-	total_play_time += Time.get_ticks_msec() - _play_started_time
+	total_play_time += (Time.get_ticks_msec() - _play_started_time) / 1000.0
 	
 func _enter_tree() -> void:
 	instance = self

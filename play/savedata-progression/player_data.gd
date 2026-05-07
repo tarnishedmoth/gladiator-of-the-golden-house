@@ -15,7 +15,7 @@ const STARTING_CLASSES: Dictionary = {
 
 var choice_name: String
 var choice_starting_class: String
-var combat_playtime: float
+var combat_playtime: float ## See [Playtime] class for conversion
 
 var current_level: int = 0
 func get_current_level() -> int: return current_level
