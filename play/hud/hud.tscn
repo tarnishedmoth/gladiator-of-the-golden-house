@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bs7yj78ykeu7o"]
 
 [ext_resource type="Script" uid="uid://ddbas45a3e81e" path="res://play/hud/hud.gd" id="1_54fu8"]
-[ext_resource type="Theme" uid="uid://0t4errmfvln0" path="res://menus/theme_level_hud.theme" id="2_xk2m4"]
+[ext_resource type="Theme" uid="uid://de2vbcxalv6dy" path="res://menus/theme_level_hud.tres" id="2_mqh65"]
 [ext_resource type="Script" uid="uid://bnnqg2xtlxuwf" path="res://play/hud/hover_panel.gd" id="3_xk2m4"]
 [ext_resource type="PackedScene" uid="uid://g8ol80ukqqcc" path="res://play/hud/template_status_effect_button.tscn" id="4_xk2m4"]
 [ext_resource type="Script" uid="uid://gb7t3y8ncwep" path="res://utils/delete_on_enter.gd" id="5_ksooa"]
@@ -22,7 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme = ExtResource("2_xk2m4")
+theme = ExtResource("2_mqh65")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Root" unique_id=463701523]
 layout_mode = 1
@@ -170,11 +170,6 @@ theme_type_variation = &"PartTransparentPanelContainer"
 [node name="Title" type="RichTextLabel" parent="Root/HBoxContainer/RightOfLeftSide/ActionsHoverPanel/VBoxContainer/PanelContainer" unique_id=1473516817]
 clip_contents = false
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 8
-theme_override_font_sizes/bold_font_size = 8
-theme_override_font_sizes/bold_italics_font_size = 8
-theme_override_font_sizes/italics_font_size = 8
-theme_override_font_sizes/mono_font_size = 8
 bbcode_enabled = true
 text = "[center][b]Big Swipe[/b]"
 fit_content = true

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dtaw53r4qlxv8"]
 
 [ext_resource type="Script" uid="uid://daqwomvp4na3y" path="res://menus/main_menu.gd" id="1_8gy84"]
-[ext_resource type="Theme" uid="uid://0t4errmfvln0" path="res://menus/theme_level_hud.theme" id="1_ij7vn"]
+[ext_resource type="Theme" uid="uid://de2vbcxalv6dy" path="res://menus/theme_level_hud.tres" id="1_oblsv"]
 [ext_resource type="Texture2D" uid="uid://bs8ywso6o5mlp" path="res://icon.svg" id="3_rqbgu"]
 [ext_resource type="Texture2D" uid="uid://dvuqbrge3doql" path="res://menus/gladiator-godot-icon.png" id="3_yjgyn"]
 [ext_resource type="Script" uid="uid://djrq7aycfpw12" path="res://menus/save_slots_container.gd" id="5_oblsv"]
@@ -15,7 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_ij7vn")
+theme = ExtResource("1_oblsv")
 script = ExtResource("1_8gy84")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=449601437]
@@ -35,12 +35,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rqbgu")
-current_tab = 1
+current_tab = 0
 tabs_visible = false
 
 [node name="MainMenuTab" type="VBoxContainer" parent="TabContainer" unique_id=719863624]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -107,6 +106,7 @@ text = "Quit to Desktop"
 
 [node name="NewGameTab" type="MarginContainer" parent="TabContainer" unique_id=1440261336]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 80
 theme_override_constants/margin_right = 80
