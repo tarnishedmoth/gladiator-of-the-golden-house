@@ -146,8 +146,23 @@ func _unhandled_input(event: InputEvent) -> void:
 	else:
 		pass
 
+var _previous_hovered_actor: Actor ## For health
 func _on_interactor_tile_changed(new_coords: Vector2i) -> void:
 	latest_tile_coords = new_coords
+	
+	if _previous_hovered_actor:
+		_previous_hovered_actor.on_unhovered()
+	
+	var actor: Actor = Level.get_actor_at(new_coords)
+	if actor:
+		actor.on_hovered()
+		_previous_hovered_actor = actor
+		
+	if is_active and current_held_action and selected_actor:
+		return
+		## TODO not implemented...
+		tile_interactor.render_held_action_projection(self)
+		
 
 func _on_click_on_tile(tile_coords) -> void:
 	## We have our tile coordinates

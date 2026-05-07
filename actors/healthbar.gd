@@ -5,6 +5,13 @@ class_name Healthbar extends Sprite2D
 
 var tween: Tween
 
+func show_() -> void:
+	if tween:
+		tween.kill()
+	bar.modulate = Color.WHITE
+	modulate = Color.WHITE
+	show()
+
 func update_healthbar(health: float, max_health: float) -> void:
 	if bar:
 		bar.scale.x = health/max_health

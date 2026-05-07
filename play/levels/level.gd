@@ -58,6 +58,7 @@ static func get_all_actors_in_play_order() -> Array[Actor]:
 			actors.append_array(dir.actors)
 	return actors
 
+## Returns an Actor if there is one at the given coordinates, otherwise returns Null.
 static func get_actor_at(coords: Vector2i) -> Actor:
 	for actor in get_all_actors_in_play_order():
 		if actor.current_tile_coords == coords:

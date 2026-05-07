@@ -281,6 +281,13 @@ func select_facing() -> void:
 #endregion
 
 #region HEALTH
+func show_healthbar() -> void:
+	if health_bar:
+		health_bar.show_()
+		
+func hide_healthbar() -> void:
+	if health_bar:
+		health_bar.fade_out()
 
 func update_healthbar() -> void:
 	if health_bar:
@@ -423,5 +430,11 @@ func get_translated_pattern_without_obstructions(pattern: Array[Vector2i]) -> Ar
 			continue
 		valid.append(tile)
 	return valid
+	
+func on_hovered() -> void:
+	show_healthbar()
+	
+func on_unhovered() -> void:
+	hide_healthbar()
 
 #endregion
