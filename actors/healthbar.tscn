@@ -3,6 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://bruvlpfjaf07n" path="res://actors/healthbarBG.png" id="1_nfgy1"]
 [ext_resource type="Script" uid="uid://bs67fklinftlj" path="res://actors/healthbar.gd" id="2_j55ni"]
 [ext_resource type="Texture2D" uid="uid://bidhnpwsgp83c" path="res://actors/healthbar.png" id="2_rgoi3"]
+[ext_resource type="FontFile" uid="uid://cag3kgbgq06vp" path="res://fonts/PressStart2P-Regular.ttf" id="4_j55ni"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m0g1b"]
+font = ExtResource("4_j55ni")
+font_size = 14
 
 [node name="health" type="Sprite2D" unique_id=1326189825]
 texture = ExtResource("1_nfgy1")
@@ -15,10 +20,11 @@ texture = ExtResource("2_rgoi3")
 centered = false
 
 [node name="txt" type="Label" parent="." unique_id=1830493824]
-offset_left = 24.0
-offset_top = -6.0
-offset_right = 46.0
-offset_bottom = 7.0
+offset_left = 26.0
+offset_top = -9.0
+offset_right = 53.0
+offset_bottom = 8.0
 theme_override_font_sizes/font_size = 8
 text = "100"
+label_settings = SubResource("LabelSettings_m0g1b")
 metadata/_edit_use_anchors_ = true

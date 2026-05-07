@@ -4,14 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="2_3m1oj"]
 [ext_resource type="PackedScene" uid="uid://0b8prxcp20px" path="res://play/levels/colosseum/colosseum-crowd/generator.tscn" id="2_eculu"]
 [ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="2_hlp3v"]
+[ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="3_4uvav"]
 [ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="3_gpw63"]
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="3_hlp3v"]
 [ext_resource type="Script" uid="uid://c23svqo1v3284" path="res://actors/player/weapon-wobble.gd" id="4_a6q5v"]
 [ext_resource type="Script" uid="uid://cs3ues47kat7x" path="res://vfx/actor_vfx.gd" id="7_a6q5v"]
 [ext_resource type="PackedScene" uid="uid://b0hnkme2hu37c" path="res://vfx/slash-fx.tscn" id="8_riyk7"]
 
-[node name="MainCharacter" type="Node2D" unique_id=360471847 node_paths=PackedStringArray("speech_bubble")]
+[node name="MainCharacter" type="Node2D" unique_id=360471847 node_paths=PackedStringArray("health_bar", "speech_bubble")]
 script = ExtResource("1_ng02u")
+health_bar = NodePath("health")
 speech_bubble = NodePath("SpeechBubble")
 persistent_data_key = &"You"
 ui_name = "You"
@@ -20,6 +22,10 @@ starting_energy = 5
 metadata/_custom_type_script = "uid://cpmor4ij3s6kx"
 
 [node name="Generator" parent="." unique_id=2057479258 instance=ExtResource("2_eculu")]
+
+[node name="health" parent="." unique_id=1326189825 instance=ExtResource("3_4uvav")]
+z_index = 2
+position = Vector2(0, -26)
 
 [node name="Sword" type="Sprite2D" parent="." unique_id=1105906846]
 z_index = 1
