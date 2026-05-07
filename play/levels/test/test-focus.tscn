@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://1l4db25wph4c"]
+
+[ext_resource type="PackedScene" uid="uid://dnwn75fwwq600" path="res://play/levels/inheritable-level.tscn" id="1_5i2fa"]
+[ext_resource type="Script" uid="uid://d3wjcqjs4jdor" path="res://directors/player/player_director.gd" id="2_b6guh"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="3_457yo"]
+[ext_resource type="Resource" uid="uid://bejg4y5kke6cf" path="res://actions/prefabs/move_one_tile_opener.tres" id="4_05682"]
+[ext_resource type="Resource" uid="uid://7a2sfsgl5bku" path="res://actions/prefabs/boost-focus-self.tres" id="5_ka82q"]
+[ext_resource type="Resource" uid="uid://cjec684q3sb36" path="res://actions/prefabs/player/class-a_swipe.tres" id="6_2qu8o"]
+[ext_resource type="PackedScene" uid="uid://cw8ea0ekkqjyp" path="res://actors/player/main_character.tscn" id="7_d7sc1"]
+[ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="8_05682"]
+[ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="9_ka82q"]
+
+[node name="Level" unique_id=13868467 instance=ExtResource("1_5i2fa")]
+
+[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=349637130]
+script = ExtResource("8_05682")
+metadata/_custom_type_script = "uid://dwys5mwbuw85s"
+
+[node name="Grunt" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=84579020 instance=ExtResource("9_ka82q")]
+position = Vector2(200, -2)
+
+[node name="Player" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=1133384730]
+script = ExtResource("2_b6guh")
+hand_size = 2
+starting_actions_deck = Array[ExtResource("3_457yo")]([ExtResource("5_ka82q"), ExtResource("6_2qu8o")])
+always_available_deck = Array[ExtResource("3_457yo")]([ExtResource("4_05682")])
+metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
+
+[node name="MainCharacter" parent="TileMapLayers/Directors/Player" index="0" unique_id=360471847 instance=ExtResource("7_d7sc1")]
+ui_subtitle = "Class A"
+ui_description = "Defeat all enemies to win."
+max_health = 80
+starting_energy = 3

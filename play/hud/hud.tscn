@@ -72,11 +72,6 @@ script = ExtResource("5_ksooa")
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 8
-theme_override_font_sizes/bold_font_size = 8
-theme_override_font_sizes/bold_italics_font_size = 8
-theme_override_font_sizes/italics_font_size = 8
-theme_override_font_sizes/mono_font_size = 8
 bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
 vertical_alignment = 2
@@ -84,11 +79,6 @@ vertical_alignment = 2
 [node name="KeyStats" type="RichTextLabel" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer" unique_id=1532825126]
 clip_contents = false
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 11
-theme_override_font_sizes/bold_font_size = 11
-theme_override_font_sizes/bold_italics_font_size = 11
-theme_override_font_sizes/italics_font_size = 11
-theme_override_font_sizes/mono_font_size = 11
 bbcode_enabled = true
 text = "[center]HP: 9 / 18"
 fit_content = true
@@ -97,11 +87,11 @@ scroll_active = false
 [node name="Title" type="RichTextLabel" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer" unique_id=228192945]
 clip_contents = false
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 11
-theme_override_font_sizes/bold_font_size = 11
-theme_override_font_sizes/bold_italics_font_size = 11
-theme_override_font_sizes/italics_font_size = 11
-theme_override_font_sizes/mono_font_size = 11
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+theme_override_font_sizes/bold_italics_font_size = 8
+theme_override_font_sizes/italics_font_size = 8
+theme_override_font_sizes/mono_font_size = 8
 bbcode_enabled = true
 text = "[center][b]Gritty the Philadelphian[/b]
 [i]Thrall of Chaos[/i]"
@@ -124,7 +114,6 @@ theme_override_constants/separation = 0
 [node name="ActionsHeader" type="Button" parent="Root/HBoxContainer/LeftSide/ActionsPanel/VBoxContainer" unique_id=1977200429]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
 disabled = true
 text = "Actions"
 flat = true
@@ -135,7 +124,7 @@ metadata/_custom_type_script = "uid://cnk6cyi6oyhbp"
 [node name="Actions" type="VBoxContainer" parent="Root/HBoxContainer/LeftSide/ActionsPanel/VBoxContainer" unique_id=1605133322]
 layout_mode = 2
 
-[node name="StashPanel" parent="Root/HBoxContainer/LeftSide" instance=ExtResource("10_stash")]
+[node name="StashPanel" parent="Root/HBoxContainer/LeftSide" unique_id=517737598 instance=ExtResource("10_stash")]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -181,11 +170,11 @@ theme_type_variation = &"PartTransparentPanelContainer"
 [node name="Title" type="RichTextLabel" parent="Root/HBoxContainer/RightOfLeftSide/ActionsHoverPanel/VBoxContainer/PanelContainer" unique_id=1473516817]
 clip_contents = false
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 11
-theme_override_font_sizes/bold_font_size = 11
-theme_override_font_sizes/bold_italics_font_size = 11
-theme_override_font_sizes/italics_font_size = 11
-theme_override_font_sizes/mono_font_size = 11
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+theme_override_font_sizes/bold_italics_font_size = 8
+theme_override_font_sizes/italics_font_size = 8
+theme_override_font_sizes/mono_font_size = 8
 bbcode_enabled = true
 text = "[center][b]Big Swipe[/b]"
 fit_content = true
@@ -199,11 +188,6 @@ alignment = 1
 clip_contents = false
 custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 11
-theme_override_font_sizes/bold_font_size = 11
-theme_override_font_sizes/bold_italics_font_size = 11
-theme_override_font_sizes/italics_font_size = 11
-theme_override_font_sizes/mono_font_size = 11
 bbcode_enabled = true
 text = "[center]EC: 3"
 fit_content = true
@@ -213,11 +197,6 @@ scroll_active = false
 clip_contents = false
 custom_minimum_size = Vector2(76, 0)
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 11
-theme_override_font_sizes/bold_font_size = 11
-theme_override_font_sizes/bold_italics_font_size = 11
-theme_override_font_sizes/italics_font_size = 11
-theme_override_font_sizes/mono_font_size = 11
 bbcode_enabled = true
 text = "[center]HP: 9 / 18"
 fit_content = true
@@ -227,13 +206,9 @@ scroll_active = false
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/normal_font_size = 10
-theme_override_font_sizes/bold_font_size = 10
-theme_override_font_sizes/bold_italics_font_size = 10
-theme_override_font_sizes/italics_font_size = 10
-theme_override_font_sizes/mono_font_size = 10
 bbcode_enabled = true
-text = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis."
+text = "Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis."
 fit_content = true
 
 [node name="TextureRect" type="TextureRect" parent="Root/HBoxContainer/RightOfLeftSide/ActionsHoverPanel/VBoxContainer" unique_id=422634004]
@@ -247,6 +222,7 @@ stretch_mode = 5
 [node name="EndTurnButton" type="Button" parent="Root/HBoxContainer/RightOfLeftSide" unique_id=451416831]
 unique_name_in_owner = true
 layout_mode = 2
+theme_type_variation = &"BigButton"
 text = "End Turn"
 
 [connection signal="button_down" from="Root/HBoxContainer/RightOfLeftSide/EndTurnButton" to="." method="_on_end_turn_button_down"]

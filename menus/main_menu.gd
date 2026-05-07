@@ -36,6 +36,7 @@ func populate_starting_classes() -> void:
 	for child in classes_grid_container.get_children(): child.queue_free()
 	for iter in PlayerData.STARTING_CLASSES.size():
 		var button = Button.new()
+		button.theme_type_variation = &"BigButton"
 		button.text = PlayerData.STARTING_CLASSES.keys()[iter]
 		button.set_meta(META_STARTING_CLASS, PlayerData.STARTING_CLASSES.values()[iter])
 		button.pressed.connect(_on_class_select_button_pressed.bind(button))

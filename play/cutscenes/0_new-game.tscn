@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b50441u03h6ll"]
 
 [ext_resource type="Script" uid="uid://by4v57tusbcnq" path="res://play/cutscenes/cutscene.gd" id="1_ijr2w"]
-[ext_resource type="Texture2D" uid="uid://dcuxaplede7yk" path="res://play/region-1-levels/colosseum-background-layer1.png" id="2_gktfq"]
+[ext_resource type="Texture2D" uid="uid://dcuxaplede7yk" path="res://play/levels/colosseum/colosseum-background-layer1.png" id="2_gktfq"]
 
 [sub_resource type="Animation" id="Animation_gktfq"]
 length = 0.001

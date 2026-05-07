@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://cvtvuq50oy655"]
 
-[ext_resource type="Shader" uid="uid://upex6rhcffcd" path="res://play/region-1-levels/banners-and-flags/waving-banner-shader.gdshader" id="1_wprb4"]
+[ext_resource type="Shader" uid="uid://upex6rhcffcd" path="res://play/levels/colosseum/banners-and-flags/waving-banner-shader.gdshader" id="1_wprb4"]
 
 [resource]
 shader = ExtResource("1_wprb4")

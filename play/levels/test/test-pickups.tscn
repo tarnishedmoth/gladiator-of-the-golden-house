@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cqntgflfq3bvy"]
+
+[ext_resource type="PackedScene" uid="uid://dnwn75fwwq600" path="res://play/levels/inheritable-level.tscn" id="1_31j28"]
+[ext_resource type="PackedScene" uid="uid://bet8eq50pbkqf" path="res://directors/player/class_a.tscn" id="2_2owdl"]
+[ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="3_53hgo"]
+[ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="4_wrk0k"]
+[ext_resource type="PackedScene" uid="uid://du2plfq567q8g" path="res://pick-ups/pick_up.tscn" id="5_lbxjs"]
+
+[node name="Level" unique_id=13868467 instance=ExtResource("1_31j28")]
+
+[node name="Player_ClassA" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=1133384730 instance=ExtResource("2_2owdl")]
+position = Vector2(-1, -3)
+
+[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=7132370]
+script = ExtResource("3_53hgo")
+metadata/_custom_type_script = "uid://dwys5mwbuw85s"
+
+[node name="Grunt" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=84579020 instance=ExtResource("4_wrk0k")]
+position = Vector2(193, -9)
+
+[node name="Pickup" parent="PickUpManager" parent_id_path=PackedInt32Array(490287025) index="0" unique_id=1699168736 instance=ExtResource("5_lbxjs")]
+position = Vector2(16, 73)

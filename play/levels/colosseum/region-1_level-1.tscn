@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://d37cvlmrtp1ru"]
+
+[ext_resource type="PackedScene" uid="uid://dn85j1jxgk42" path="res://play/levels/colosseum/inheritable-level_region-1.tscn" id="1_ki2ix"]
+[ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="2_k8ka1"]
+[ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="3_fys54"]
+[ext_resource type="PackedScene" uid="uid://c0cd2sq6is7ra" path="res://actors/emperor/emperor.tscn" id="5_exjhn"]
+[ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="10_ksudi"]
+
+[node name="Level" unique_id=13868467 instance=ExtResource("1_ki2ix")]
+
+[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=658224117]
+script = ExtResource("2_k8ka1")
+metadata/_custom_type_script = "uid://dwys5mwbuw85s"
+metadata/_edit_lock_ = true
+
+[node name="Grunt" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=84579020 instance=ExtResource("3_fys54")]
+position = Vector2(138, -168)
+facing = 3
+
+[node name="Grunt2" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=1358176527 instance=ExtResource("3_fys54")]
+position = Vector2(290, 110)
+facing = 5
+
+[node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("10_ksudi")]
+position = Vector2(15, -8)
+
+[node name="BaseTileMapLayer" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="2" unique_id=1254354450]
+modulate = Color(0.57, 0.31159997, 0.11399999, 1)
+
+[node name="MouseFollower" parent="." index="4" unique_id=687351869]
+position = Vector2(57, 55)
+
+[node name="emperor" parent="." index="6" unique_id=1077291446 instance=ExtResource("5_exjhn")]
+position = Vector2(620, -18)

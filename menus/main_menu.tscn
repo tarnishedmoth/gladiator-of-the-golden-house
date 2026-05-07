@@ -35,7 +35,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rqbgu")
-current_tab = 2
+current_tab = 1
 tabs_visible = false
 
 [node name="MainMenuTab" type="VBoxContainer" parent="TabContainer" unique_id=719863624]
@@ -73,6 +73,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer" unique_id=1706438606]
 layout_mode = 2
+theme_override_font_sizes/font_size = 18
 text = "Gladiator of the Golden House"
 horizontal_alignment = 1
 
@@ -82,27 +83,30 @@ layout_mode = 2
 [node name="ContinueButton" type="Button" parent="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer" unique_id=1494432604]
 unique_name_in_owner = true
 layout_mode = 2
+theme_type_variation = &"BigButton"
 disabled = true
 text = "Continue"
 
 [node name="NewGameButton" type="Button" parent="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer" unique_id=1667745833]
 unique_name_in_owner = true
 layout_mode = 2
+theme_type_variation = &"BigButton"
 text = "New Game"
 
 [node name="OptionsButton" type="Button" parent="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer" unique_id=1387304094]
 unique_name_in_owner = true
 layout_mode = 2
+theme_type_variation = &"BigButton"
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer" unique_id=597702540]
 unique_name_in_owner = true
 layout_mode = 2
+theme_type_variation = &"BigButton"
 text = "Quit to Desktop"
 
 [node name="NewGameTab" type="MarginContainer" parent="TabContainer" unique_id=1440261336]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 80
 theme_override_constants/margin_right = 80
@@ -146,16 +150,19 @@ alignment = 1
 
 [node name="GoBackButton" type="Button" parent="TabContainer/NewGameTab/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=1638055323]
 layout_mode = 2
+theme_type_variation = &"BigButton"
 text = "Go Back"
 
 [node name="ConfirmClassButton" type="Button" parent="TabContainer/NewGameTab/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=1686814505]
 unique_name_in_owner = true
 layout_mode = 2
+theme_type_variation = &"BigButton"
 disabled = true
 text = "Confirm"
 
 [node name="SelectSaveSlotTab" type="MarginContainer" parent="TabContainer" unique_id=885605780]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -186,16 +193,19 @@ alignment = 1
 [node name="Slot1Button" type="Button" parent="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer" unique_id=1288081002]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
+theme_type_variation = &"BigButton"
 text = "Slot 1"
 
 [node name="Slot2Button" type="Button" parent="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer" unique_id=1910644379]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
+theme_type_variation = &"BigButton"
 text = "Slot 2"
 
 [node name="Slot3Button" type="Button" parent="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer" unique_id=184896626]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
+theme_type_variation = &"BigButton"
 text = "Slot 3"
 
 [node name="DisplaySummary" type="Label" parent="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer" unique_id=904963177]
@@ -211,6 +221,7 @@ layout_mode = 2
 [node name="GoBackButton" type="Button" parent="TabContainer/SelectSaveSlotTab/VBoxContainer" unique_id=377499209]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_type_variation = &"BigButton"
 text = "Return to Main menu"
 
 [connection signal="pressed" from="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dgn7uo77dus0i"]
 
-[ext_resource type="Script" uid="uid://yxs1aq3g0h0e" path="res://play/grid_tint_hide_at_runtime.gd" id="1_2lilf"]
+[ext_resource type="Script" uid="uid://yxs1aq3g0h0e" path="res://utils/grid_tint_hide_at_runtime.gd" id="1_2lilf"]
 
 [node name="GridTint" type="Polygon2D" unique_id=1487691829]
 color = Color(0, 0, 0, 0.2)

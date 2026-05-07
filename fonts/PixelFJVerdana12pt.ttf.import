@@ -1,0 +1,41 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://cyjv3dlgb061t"
+path="res://.godot/imported/PixelFJVerdana12pt.ttf-7c12ba22e3d40f0eb525cbcea4b6697d.fontdata"
+
+[deps]
+
+source_file="res://fonts/PixelFJVerdana12pt.ttf"
+dest_files=["res://.godot/imported/PixelFJVerdana12pt.ttf-7c12ba22e3d40f0eb525cbcea4b6697d.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=0
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=true
+modulate_color_glyphs=false
+hinting=2
+subpixel_positioning=0
+keep_rounding_remainders=true
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+&"size": Vector2i(12, 0)
+}]
+language_support={}
+script_support={}
+opentype_features={}
