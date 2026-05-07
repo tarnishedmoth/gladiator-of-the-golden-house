@@ -11,6 +11,9 @@
 [ext_resource type="Script" uid="uid://c1xuhqtthu8qi" path="res://play/hud/action_hover_panel.gd" id="9_ksooa"]
 [ext_resource type="PackedScene" path="res://play/hud/stash_panel.tscn" id="10_stash"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqh65"]
+bg_color = Color(0.6901961, 0.67058825, 0.32941177, 1)
+
 [node name="HUD" type="CanvasLayer" unique_id=414291549]
 script = ExtResource("1_54fu8")
 
@@ -56,7 +59,7 @@ alignment = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer" unique_id=614446509]
 layout_mode = 2
-theme_type_variation = &"PartTransparentPanelContainer"
+theme_override_styles/panel = SubResource("StyleBoxFlat_mqh65")
 
 [node name="StatusEffectsFlowContainer" type="HFlowContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer" unique_id=713616998]
 layout_mode = 2

@@ -21,11 +21,11 @@ const ACTION_CATEGORY_NAMES = {
 }
 
 const ACTION_CATEGORY_ICONS: Dictionary[ActionCategory, Texture2D] = {
-	ActionCategory.MOVEMENT: preload("uid://disinbamqthvh"),
+	ActionCategory.MOVEMENT: preload("uid://di4of536vet0h"),
 	ActionCategory.COMBAT: preload("uid://c7ers5ee7squq"),
-	ActionCategory.SKILL: null, ## TODO
-	ActionCategory.CONSUMABLE: null, ## TODO
-	ActionCategory.SPECIAL: null, ## TODO
+	ActionCategory.SKILL: preload("uid://d3xi5wfi8m2c8"),
+	ActionCategory.CONSUMABLE: preload("uid://y7cl8xvqff14"),
+	ActionCategory.SPECIAL: preload("uid://djkuqh38qkm5l"),
 }
 
 #@export_group("UI")

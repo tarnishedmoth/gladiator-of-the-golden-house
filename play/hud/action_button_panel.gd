@@ -27,9 +27,12 @@ func populate_action_buttons(actions: Array[Action], selected_actor: Actor) -> v
 		action_buttons[new_button] = card
 		new_button.set_blips(card.energy_cost)
 		new_button.text = card.ui_title
+		new_button.custom_minimum_size = Vector2(0.0, 26.0)
+		
 		var icon = card.ui_icon
 		if icon is Texture2D:
 			new_button.icon = icon
+			
 		new_button.pressed.connect(_on_action_button_pressed.bind(new_button))
 		new_button.mouse_entered.connect(_on_action_hover_started.bind(new_button))
 		new_button.mouse_exited.connect(_on_action_hover_ended.bind(new_button))
