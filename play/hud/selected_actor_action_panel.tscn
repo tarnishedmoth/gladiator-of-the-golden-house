@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://dxvurd53homf"]
 
 [ext_resource type="Script" uid="uid://cpgq1l62vrdml" path="res://play/hud/selected_actor_action_panel.gd" id="1_njn3c"]
+[ext_resource type="Theme" uid="uid://de2vbcxalv6dy" path="res://menus/theme_level_hud.tres" id="1_rp6h8"]
 [ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="2_rp6h8"]
 
 [node name="SelectedActorActionPanel" type="PanelContainer" unique_id=2055054535 node_paths=PackedStringArray("title", "action_image", "description")]
 clip_contents = true
 custom_minimum_size = Vector2(160, 0)
+theme = ExtResource("1_rp6h8")
 theme_type_variation = &"PartTransparentPanelContainer"
 script = ExtResource("1_njn3c")
 title = NodePath("VBoxContainer/PanelContainer/Title")
@@ -23,11 +25,6 @@ theme_type_variation = &"PartTransparentPanelContainer"
 [node name="Title" type="RichTextLabel" parent="VBoxContainer/PanelContainer" unique_id=1343202811]
 clip_contents = false
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 11
-theme_override_font_sizes/bold_font_size = 11
-theme_override_font_sizes/bold_italics_font_size = 11
-theme_override_font_sizes/italics_font_size = 11
-theme_override_font_sizes/mono_font_size = 11
 bbcode_enabled = true
 text = "[center][b]Attack[/b]"
 fit_content = true
@@ -37,11 +34,6 @@ scroll_active = false
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/normal_font_size = 10
-theme_override_font_sizes/bold_font_size = 10
-theme_override_font_sizes/bold_italics_font_size = 10
-theme_override_font_sizes/italics_font_size = 10
-theme_override_font_sizes/mono_font_size = 10
 bbcode_enabled = true
 text = "Enemy plans to deal 6 damage."
 fit_content = true
