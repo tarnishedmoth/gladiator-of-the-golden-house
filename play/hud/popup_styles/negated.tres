@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ltolqijg3afy" path="res://play/hud/popup_style.gd" id="1_style"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_block"]
-font_size = 14
+font_size = 8
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
