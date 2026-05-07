@@ -7,14 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="6_imqgp"]
 [ext_resource type="Resource" uid="uid://br4bum2xxwq41" path="res://actions/prefabs/boost-defense.tres" id="6_svhos"]
 [ext_resource type="Resource" uid="uid://c5tfagd2yefvr" path="res://actions/prefabs/boost-focus.tres" id="7_28bj1"]
-[ext_resource type="Texture2D" uid="uid://bruvlpfjaf07n" path="res://actors/healthbarBG.png" id="7_lcbk2"]
-[ext_resource type="Texture2D" uid="uid://bidhnpwsgp83c" path="res://actors/healthbar.png" id="8_sa8pr"]
+[ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="8_20tlr"]
 [ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="9_et1ln"]
 [ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="10_smlxf"]
 
-[node name="Legate" type="Node2D" unique_id=576080733]
+[node name="Legate" type="Node2D" unique_id=576080733 node_paths=PackedStringArray("health_bar", "speech_bubble")]
 script = ExtResource("1_traui")
 usable_actions = Array[ExtResource("2_ij7ux")]([ExtResource("5_f66cw"), ExtResource("4_28bj1"), ExtResource("6_svhos"), ExtResource("7_28bj1")])
+health_bar = NodePath("health")
+speech_bubble = NodePath("SpeechBubble")
 ui_name = "Legate"
 ui_description = "Often found among groups of grunts."
 max_health = 38
@@ -22,27 +23,12 @@ metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 
 [node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("6_imqgp")]
 
-[node name="health" type="Sprite2D" parent="." unique_id=1720222076]
+[node name="health" parent="." unique_id=1326189825 instance=ExtResource("8_20tlr")]
 position = Vector2(0, -30)
-texture = ExtResource("7_lcbk2")
-
-[node name="bar" type="Sprite2D" parent="health" unique_id=1139479760]
-position = Vector2(-22, -3)
-texture = ExtResource("8_sa8pr")
-centered = false
-
-[node name="txt" type="Label" parent="health" unique_id=815925002]
-offset_left = 24.0
-offset_top = -6.0
-offset_right = 46.0
-offset_bottom = 7.0
-theme_override_font_sizes/font_size = 8
-text = "100"
-metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=844266743]
 self_modulate = Color(0.5537113, 0.32033986, 0.7125296, 1)
 texture = ExtResource("9_et1ln")
 
 [node name="SpeechBubble" parent="." unique_id=757394792 instance=ExtResource("10_smlxf")]
-position = Vector2(-26, -85)
+position = Vector2(0, -38)

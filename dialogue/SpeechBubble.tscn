@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://jryaj0mvtclm" path="res://dialogue/dialogue_bubble.gd" id="1_hms5b"]
 [ext_resource type="Texture2D" uid="uid://d2j2p8y58k4oi" path="res://dialogue/IMG_0155.png" id="2_hms5b"]
+[ext_resource type="FontFile" uid="uid://cag3kgbgq06vp" path="res://vfx/PressStart2P-Regular.ttf" id="3_l1p6r"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hms5b"]
 texture = ExtResource("2_hms5b")
@@ -14,16 +15,44 @@ texture_margin_bottom = 8.0
 script = ExtResource("1_hms5b")
 timer = NodePath("Timer")
 duration = 5.0
-dialogue = NodePath("PanelContainer/RichTextLabel")
+dialogue = NodePath("Size/PanelContainer/RichTextLabel")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1156102134]
+[node name="Size" type="Control" parent="." unique_id=948294202]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Size" unique_id=1156102134]
 z_index = 8
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -20.0
+offset_right = 26.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_hms5b")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer" unique_id=1322344966]
+[node name="RichTextLabel" type="RichTextLabel" parent="Size/PanelContainer" unique_id=1322344966]
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_l1p6r")
+theme_override_fonts/bold_font = ExtResource("3_l1p6r")
+theme_override_fonts/bold_italics_font = ExtResource("3_l1p6r")
+theme_override_fonts/italics_font = ExtResource("3_l1p6r")
+bbcode_enabled = true
 text = "TEST"
 fit_content = true
 autowrap_mode = 0

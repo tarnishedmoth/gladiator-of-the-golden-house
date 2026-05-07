@@ -21,7 +21,7 @@ const PulsePresets = {
 }
 
 ## Linearly animates [member CanvasItem.modulate] from [param from] to [member Color.WHITE].
-static func fade_in(node, speed:float = SNAPPY, from:Color = Color.TRANSPARENT) -> Tween:
+static func fade_in(node: CanvasItem, speed:float = SNAPPY, from:Color = Color.TRANSPARENT) -> Tween:
 	var tween:Tween = node.create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(node, "modulate", Color.WHITE, speed).from(from)
@@ -29,7 +29,7 @@ static func fade_in(node, speed:float = SNAPPY, from:Color = Color.TRANSPARENT) 
 
 ## Linearly animates [member CanvasItem.modulate] from the current value to [param to], which is
 ## [member Color.TRANSPARENT] by default.
-static func fade_out(node, speed:float = SMOOTH, to:Color = Color.TRANSPARENT) -> Tween:
+static func fade_out(node: CanvasItem, speed:float = SMOOTH, to:Color = Color.TRANSPARENT) -> Tween:
 	var tween:Tween = node.create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(node, "modulate", to, speed)
@@ -40,7 +40,7 @@ static func fade_out(node, speed:float = SMOOTH, to:Color = Color.TRANSPARENT) -
 ## By default, the [member Tween.TransitionType.TRANS_SINE] type is used,
 ## instead of [b]Linear[/b], and no easing is applied.
 static func advanced_fade(
-	node,
+	node: CanvasItem,
 	speed:float = SMOOTH,
 	to:Color = Color.TRANSPARENT,
 	trans:Tween.TransitionType = Tween.TransitionType.TRANS_SINE,
@@ -58,7 +58,7 @@ static func advanced_fade(
 	return tween
 
 ## Short hand for tween modulate
-static func mod(node:Control, color:Color, speed:float = SNAP, from = null) -> Tween:
+static func mod(node:CanvasItem, color:Color, speed:float = SNAP, from = null) -> Tween:
 	var tween = node.create_tween()
 	if from:
 		tween.tween_property(node, ^"modulate", color, speed).from(from)
@@ -73,7 +73,7 @@ static func flash(node:CanvasItem, pulses:Array = PulsePresets.Two, final_color:
 		tween.tween_property(node, ^"modulate", final_color, pulse).from(trans_color)
 	return tween
 
-static func flash_using(tween:Tween, node:Control, pulses:Array = PulsePresets.Two, final_color:Color = node.modulate, trans_color:Color = semitransparent(final_color)) -> Tween:
+static func flash_using(tween:Tween, node:CanvasItem, pulses:Array = PulsePresets.Two, final_color:Color = node.modulate, trans_color:Color = semitransparent(final_color)) -> Tween:
 	if tween:
 		if tween.is_running():
 			tween.kill()

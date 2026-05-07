@@ -43,6 +43,7 @@ func get_status_manager() -> StatusManager: ## Use when you dont expect to handl
 	assert(status_manager)
 	return status_manager
 
+@export var health_bar: Healthbar
 @export var speech_bubble: DialogueBubble
 
 var sfx: ActorSfxHandler
@@ -282,13 +283,8 @@ func select_facing() -> void:
 #region HEALTH
 
 func update_healthbar() -> void:
-	## TODO save healthbar as scene and instantiate at runtime
-	var bar = get_node_or_null("health/bar")
-	if is_instance_valid(bar):
-		bar.scale.x = float(health)/float(max_health)
-	var txt = get_node_or_null("health/txt")
-	if is_instance_valid(txt):
-		txt.text = str(health)
+	if health_bar:
+		health_bar.update_healthbar(health, max_health)
 
 
 class DamageResult:
