@@ -33,7 +33,11 @@ const ACTION_CATEGORY_ICONS: Dictionary[ActionCategory, Texture2D] = {
 
 #@export_group("UI")
 @export var ui_title: String ## Displayed in the Actions list
-@export_multiline() var ui_description: String ## Displayed when hovering over an action
+
+## Displayed when hovering over an action.
+## NOTE the following actions will append some information to the description procedurally:
+## Apply Status (status effect UI name and description).
+@export_multiline() var ui_description: String
 @export var ui_icon: Texture2D: ## If left undefined, will use one according to its [member action_category].
 	get:
 		if ui_icon: return ui_icon

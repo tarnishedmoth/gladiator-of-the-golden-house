@@ -27,7 +27,17 @@ func populate_using_action_data(action:Action)->void:
 	
 	#description.text = "[center]"
 	if action.ui_description:
-		description.text += "\n" + action.ui_description
+		description.text = action.ui_description
+	
+	if action is ActionChangeStance:
+		## Append the actions in this stance.
+		var stance: Stance = ResourceLoader.load(ResourceUID.uid_to_path(action.stance_uid))
+		var i: int = 0 if description.text.is_empty() else 1 ## Adds a newline to existing text
+		for _action in stance.actions:
+			description.append_text(TextUtils.ital(
+				("\n" if i > 0 else "") + _action.ui_title)
+				)
+			i += 1
 	
 	if action.ui_icon:
 		action_image.texture = action.ui_icon
@@ -46,7 +56,8 @@ func populate_using_action_data(action:Action)->void:
 			if action.status.effect_points:
 				amount_text.append_text("Amount: %d" % [action.status.effect_points])
 			
-			description.text += "\n" + \
-				action.status.ui_name + "\n" + \
-				action.status.ui_description
+			description.append_text("\n" + \
+				action.status.ui_name + ":\n" + \
+				TextUtils.ital(action.status.ui_description)
+				)
 		

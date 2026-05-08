@@ -9,7 +9,6 @@ script = ExtResource("2_a1hl1")
 status = ExtResource("3_a1hl1")
 override_quantity = 3
 ui_title = "Reflexive Swipe"
-ui_description = "+3 Reflexive Swipe."
 action_category = 2
 energy_cost = 2
 metadata/_custom_type_script = "uid://ic0qko6fd58l"

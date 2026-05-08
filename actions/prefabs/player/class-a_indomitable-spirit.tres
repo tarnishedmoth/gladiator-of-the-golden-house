@@ -9,8 +9,6 @@
 script = ExtResource("2_j4xn8")
 status = ExtResource("3_j4xn8")
 ui_title = "Indomitable Spirit"
-ui_description = "For the rest of the match, upon taking damage, gain +2 Strength.
-[i]Increase damage dealt by 1.[/i]"
 action_category = 2
 energy_cost = 3
 requirements = Array[ExtResource("1_twrsr")]([ExtResource("2_gd7g2")])

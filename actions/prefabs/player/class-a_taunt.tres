@@ -6,7 +6,8 @@
 [resource]
 script = ExtResource("2_urv00")
 ui_title = "Taunt"
-ui_description = "Apply +2 Strength to target.
+ui_description = "TODO
+Apply +2 Strength to target.
   Increase damage dealt by 1.
 Apply +1 Taunted to target.
   If next attack action deals no direct
@@ -14,5 +15,4 @@ Apply +1 Taunted to target.
     Increase damage received by 1.
     Stack decreases by 1 each turn."
 action_category = 2
-debug = true
 metadata/_custom_type_script = "uid://ic0qko6fd58l"
