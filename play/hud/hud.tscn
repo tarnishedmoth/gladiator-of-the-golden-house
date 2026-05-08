@@ -128,6 +128,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="RightOfLeftSide" type="VBoxContainer" parent="Root/HBoxContainer" unique_id=972711055]
+custom_minimum_size = Vector2(168, 0)
 layout_mode = 2
 
 [node name="Spacer2" type="Control" parent="Root/HBoxContainer/RightOfLeftSide" unique_id=1545604245]
