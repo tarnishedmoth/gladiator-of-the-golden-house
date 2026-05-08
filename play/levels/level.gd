@@ -106,6 +106,7 @@ static func get_hud() -> LevelHUD:
 @export var tile_interactor: TileInteractor ## This is used for detecting mouse input.
 @export var hud: LevelHUD
 
+var is_complete: bool = false
 var turn_count: int = 0
 
 var directors: Array[Director] = []
@@ -282,17 +283,21 @@ func _on_node_removed(node):
 @export var continue_menu: Control
 
 func check_objectives() -> void:
-	print("Checking game obejectives")
+	if is_complete: return
+	print("Checking game objectives")
 	await get_tree().process_frame
 	if not _is_alive(): return  ## Bail if this Level was torn down during the awaited frame.
 
 	if check_win_condition() == true:
+		is_complete = true
+		
 		## Record and save the final play time
 		playtime_counter_running = false
 		PlayerData.this.combat_playtime += total_play_time
 		
-		## Save actor data
+		## Save
 		save_persistent_actors_data()
+		Main.register_level_progressed()
 		
 		continue_menu.show()
 		print("Win")

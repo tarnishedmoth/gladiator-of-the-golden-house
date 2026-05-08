@@ -128,10 +128,12 @@ static func l(to_print) -> void:
 static func continue_level() -> void:
 	play_level(PlayerData.this.current_level)
 
-static func progress_level() -> void:
+static func load_latest_level() -> void:
+	play_level(PlayerData.this.current_level)
+	
+static func register_level_progressed() -> void:
 	PlayerData.this.current_level += 1
 	SaveLoad.save_game()
-	play_level(PlayerData.this.current_level)
 	
 static func play_level(number: int) -> void:
 	assert(number < instance.levels.size(), "Out of bounds!")
