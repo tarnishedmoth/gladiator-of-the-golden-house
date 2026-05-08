@@ -98,13 +98,24 @@ func populate_actions_list(hand: Array[Action], selected_actor: Actor) -> void:
 func populate_stash_list(stash: Array[Action], selected_actor: Actor) -> void:
 	stash_panel.populate_stash(stash, selected_actor)
 
+var actions_hover_panel_tween: Tween
 func show_actions_hover_panel(show_:bool = true) -> void:
 	if not show_:
 		actions_hover_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		Juice.fade_out(actions_hover_panel)
+		
+		if actions_hover_panel_tween:
+			actions_hover_panel_tween.kill()
+		actions_hover_panel_tween = actions_hover_panel.create_tween()
+		actions_hover_panel_tween.tween_property(actions_hover_panel, ^"modulate", Color.TRANSPARENT, Juice.SNAP)
+		actions_hover_panel_tween.tween_callback(actions_hover_panel.hide)
 	else:
 		actions_hover_panel.mouse_filter = Control.MOUSE_FILTER_STOP
-		Juice.advanced_fade(actions_hover_panel, Juice.SMOOTH, Color.WHITE)
+		
+		if actions_hover_panel_tween:
+			actions_hover_panel_tween.kill()
+		actions_hover_panel_tween = actions_hover_panel.create_tween()
+		actions_hover_panel_tween.tween_property(actions_hover_panel, ^"modulate", Color.WHITE, Juice.SMOOTH)
+		actions_hover_panel.show()
 
 func _on_action_hover_start(action:Action) -> void:
 	actions_hover_panel.clear_all()

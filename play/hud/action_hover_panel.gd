@@ -1,5 +1,7 @@
 class_name HUDActionHoverPanel extends PanelContainer
 
+const SCROLL_SPEED: int = 6
+
 @export var title: RichTextLabel
 @export var action_image: TextureRect
 @export var category: RichTextLabel
@@ -7,7 +9,15 @@ class_name HUDActionHoverPanel extends PanelContainer
 @export var energy_cost: RichTextLabel
 @export var amount_text: RichTextLabel
 
-
+func _unhandled_input(event: InputEvent) -> void:
+	if visible:
+		if event.is_action(&"scroll_down"):
+			scroll_description(true)
+		elif event.is_action(&"scroll_up"):
+			scroll_description(false)
+		
+func scroll_description(down: bool) -> void:
+	description.get_v_scroll_bar().value += SCROLL_SPEED if down else -SCROLL_SPEED
 
 func clear_all() -> void:
 	title.text = ""
