@@ -58,12 +58,11 @@ static func _capture_metadata() -> Metadata:
 	tool.set_seconds(PlayerData.this.combat_playtime)
 	var string_time: String = tool.get_string_time()
 	
-	meta.display_summary = "%s - %s: Level %s - %s" % [
-		PlayerData.this.choice_name,
-		string_time,
-		PlayerData.this.current_level,
-		PlayerData.STARTING_CLASSES.find_key(PlayerData.this.choice_starting_class)
-		]
+	meta.display_summary = "%s - %s: %3d" % \
+	[PlayerData.this.choice_name,
+	string_time,
+	(float(PlayerData.this.current_level) / Main.get_instance().levels.size()) * 100.0] \
+	+ "%" + " - %s" % [PlayerData.STARTING_CLASSES.find_key(PlayerData.this.choice_starting_class)]
 	
 	return meta
 
