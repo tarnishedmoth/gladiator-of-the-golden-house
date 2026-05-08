@@ -10,6 +10,6 @@ stance_uid = "uid://duclb7twecrgo"
 allow_facing_after = true
 ui_title = "Two-handing"
 ui_description = "Focus all your strength and dexterity by using both hands to hold your colossal greatsword."
-action_category = 4
+action_category = 5
 energy_cost = 1
 metadata/_custom_type_script = "uid://dj1vqqabqwo2g"

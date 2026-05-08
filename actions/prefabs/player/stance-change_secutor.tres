@@ -9,6 +9,6 @@ script = ExtResource("2_gjmf5")
 stance_uid = "uid://cdixyrgupi5yu"
 allow_facing_after = true
 ui_title = "Secutor"
-action_category = 4
+action_category = 5
 energy_cost = 1
 metadata/_custom_type_script = "uid://dj1vqqabqwo2g"

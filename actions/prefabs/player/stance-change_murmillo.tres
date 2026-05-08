@@ -9,6 +9,6 @@ script = ExtResource("2_otlyw")
 stance_uid = "uid://0d2gjd1g0oku"
 allow_facing_after = true
 ui_title = "Murmillo"
-action_category = 4
+action_category = 5
 energy_cost = 1
 metadata/_custom_type_script = "uid://dj1vqqabqwo2g"

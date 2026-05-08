@@ -10,6 +10,6 @@ stance_uid = "uid://dceftm4v15w0u"
 allow_facing_after = true
 ui_title = "Shield, Too"
 ui_description = "An unwieldy but more defensive stance."
-action_category = 4
+action_category = 5
 energy_cost = 1
 metadata/_custom_type_script = "uid://dj1vqqabqwo2g"

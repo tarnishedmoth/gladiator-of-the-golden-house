@@ -5,11 +5,12 @@ const NO_PATTERN: Array[Vector2i] = [Vector2i(0,0)] ## Empty value used for targ
 @export var allow_facing_after: bool
 
 enum ActionCategory{
-	COMBAT,
-	MOVEMENT,
-	SKILL,
-	CONSUMABLE,
-	SPECIAL,
+	COMBAT = 0,
+	MOVEMENT = 1,
+	SKILL = 2,
+	CONSUMABLE = 3,
+	SPECIAL = 4,
+	CHANGE_STANCE = 5,
 }
 
 const ACTION_CATEGORY_NAMES = {
@@ -18,6 +19,7 @@ const ACTION_CATEGORY_NAMES = {
 	ActionCategory.SKILL: "Skill",
 	ActionCategory.CONSUMABLE: "Consumable",
 	ActionCategory.SPECIAL: "Special",
+	ActionCategory.CHANGE_STANCE: "Change Stance",
 }
 
 const ACTION_CATEGORY_ICONS: Dictionary[ActionCategory, Texture2D] = {
@@ -26,6 +28,7 @@ const ACTION_CATEGORY_ICONS: Dictionary[ActionCategory, Texture2D] = {
 	ActionCategory.SKILL: preload("uid://d3xi5wfi8m2c8"),
 	ActionCategory.CONSUMABLE: preload("uid://y7cl8xvqff14"),
 	ActionCategory.SPECIAL: preload("uid://djkuqh38qkm5l"),
+	ActionCategory.CHANGE_STANCE: preload("uid://c8q1l70wfws3p"),
 }
 
 #@export_group("UI")
