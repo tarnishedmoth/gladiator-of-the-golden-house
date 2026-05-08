@@ -9,7 +9,7 @@ static func p(args):
 ## You can hover over these UID strings in the editor IDE to quickly access
 ## the actual source file.
 const STARTING_CLASSES: Dictionary = {
-	A = "uid://bet8eq50pbkqf",
+	CLASSIC = "uid://bet8eq50pbkqf",
 	GREATSWORD = "uid://c5tt5o8dkeve3",
 }
 
