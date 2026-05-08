@@ -2,11 +2,24 @@
 
 [ext_resource type="Script" uid="uid://daqwomvp4na3y" path="res://menus/main_menu.gd" id="1_8gy84"]
 [ext_resource type="Theme" uid="uid://de2vbcxalv6dy" path="res://menus/theme_level_hud.tres" id="1_oblsv"]
-[ext_resource type="Texture2D" uid="uid://bs8ywso6o5mlp" path="res://icon.svg" id="3_rqbgu"]
 [ext_resource type="Texture2D" uid="uid://dvuqbrge3doql" path="res://menus/gladiator-godot-icon.png" id="3_yjgyn"]
 [ext_resource type="Script" uid="uid://djrq7aycfpw12" path="res://menus/save_slots_container.gd" id="5_oblsv"]
 
+[sub_resource type="Gradient" id="Gradient_rqbgu"]
+interpolation_mode = 2
+interpolation_color_space = 2
+colors = PackedColorArray(0, 0, 0, 1, 0.054793783, 0.06020228, 0.071520485, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oblsv"]
+gradient = SubResource("Gradient_rqbgu")
+width = 280
+height = 280
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rqbgu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oblsv"]
 
 [node name="MainMenu" type="Control" unique_id=128426183]
 layout_mode = 3
@@ -20,12 +33,9 @@ script = ExtResource("1_8gy84")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=449601437]
 layout_mode = 0
-offset_left = -308.0
-offset_top = 256.00003
-offset_right = 858.0
-offset_bottom = 2001.2675
-rotation = -0.80285144
-texture = ExtResource("3_rqbgu")
+offset_right = 960.0
+offset_bottom = 540.0
+texture = SubResource("GradientTexture2D_oblsv")
 
 [node name="TabContainer" type="TabContainer" parent="." unique_id=290841082]
 layout_mode = 1
@@ -55,10 +65,10 @@ texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("3_yjgyn")
-stretch_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="TabContainer/MainMenuTab" unique_id=1814439096]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_oblsv")
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/MainMenuTab/PanelContainer" unique_id=1648911170]
 layout_mode = 2
