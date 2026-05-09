@@ -2,7 +2,14 @@ class_name TargetIndicatorVisual extends Node2D
 
 const ALPHA_VALUE = 114
 
+var _despawning: bool = false
+
 func _ready() -> void:
+	var tween = create_tween()
+	tween.tween_property(self, ^"modulate", modulate, Juice.BLITZ).from(Color.TRANSPARENT)
+	tween.tween_callback(pulse)
+
+func pulse() -> void:
 	var tween = create_tween().set_loops()
 	tween.tween_property(self, "scale", Vector2(0.95,0.95),1.0)
 	tween.tween_property(self, "scale", Vector2(1.1,1.1),1.0)
@@ -10,3 +17,8 @@ func _ready() -> void:
 func set_color(color: Color) -> void:
 	color.a = ALPHA_VALUE / 255.0
 	modulate = color
+
+func despawn() -> void:
+	if not _despawning:
+		_despawning = true
+		Juice.fade_out(self, Juice.SNAP).tween_callback(queue_free)

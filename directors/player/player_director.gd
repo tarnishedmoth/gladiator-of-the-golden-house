@@ -156,8 +156,12 @@ func _on_interactor_tile_changed(new_coords: Vector2i) -> void:
 	if actor:
 		actor.on_hovered()
 		_previous_hovered_actor = actor
+	
+	if not current_held_action:
+		update_action_preview()
 		
 	if is_active and current_held_action and selected_actor:
+		## TODO not functional -- see Action.ImplicatedTiles...
 		#tile_interactor.render_held_action_projection(self)
 		pass
 		
@@ -169,13 +173,6 @@ func _on_click_on_tile(tile_coords) -> void:
 		p("Selected tile: %s" % selected_tile)
 
 	if selected_tile != null: ## Null check
-		#var tile_data: TileData = tile_interactor.get_tile_data(selected_tile) ## TODO this could handle land type
-
-		## Check for actor on tile (testing)
-		#var actor_on_tile: Actor = Level.get_actor_at(selected_tile)
-		#if VERBOSE && actor_on_tile:
-			#p("Tile coords occupied by actor %s" % actor_on_tile)
-
 		## Behavior using this data
 		if is_active:
 			## It's our turn
@@ -193,15 +190,14 @@ func _on_click_on_tile(tile_coords) -> void:
 
 					p("Same tile selected as last click--Deselecting.")
 					deselect_tile()
-					update_action_preview()
+					
 				else:
-					TargetFinder.clear_target_highlights()
 					hud.populate_hover_panel(selected_tile, Level.get_actor_at(selected_tile))
 					hud.show_hover_panel(true)
 					set_selected_tile_visual(true)
-					update_action_preview()
 
-
+			
+			## --CHANGING SELECTED ACTOR
 			## Tested working, but needs to be separated--presently this control scheme does not make sense.
 			## Thinking that changing selected actor should require pressing a button to highlight your available actors
 			#elif actor_on_tile and actor_on_tile in actors:
@@ -224,23 +220,25 @@ func _on_click_on_tile(tile_coords) -> void:
 
 func deselect_tile() -> void:
 	selected_tile = null
-	TargetFinder.clear_target_highlights()
 	set_selected_tile_visual(false)
 	hud.show_hover_panel(false)
 
 func _on_click_to_play_action(target_coords: Vector2i) -> void:
+	TargetFinder.clear_target_highlights()
 	play_held_action_at(target_coords)
 
 #region Actions / Deck Logic
 ## Used to preview actions.
+var _self_action_preview_showing: bool = false
 func hold_action(action: Action):
 	if (action != null) and (current_held_action == action):
 		unhold_action()
 		return
 	else:
 		current_held_action = action
-
-	TargetFinder.clear_target_highlights()
+	
+	if _self_action_preview_showing:
+		TargetFinder.clear_target_highlights()
 	if current_held_action:
 		update_action_preview()
 		
@@ -254,6 +252,7 @@ func hold_action(action: Action):
 		else:
 			color = Targeting.COLORS.RED
 		
+		_self_action_preview_showing = true
 		TargetFinder.highlight_targets(
 			selected_actor.get_action_target_cells(current_held_action),
 			color)
@@ -323,7 +322,6 @@ func get_facing(place_indicator_pos):
 	self.add_child(facing_indicator)
 	facing_indicator.global_position = place_indicator_pos
 	facing_indicator.show()
-	TargetFinder.clear_target_highlights()
 	
 	var selected_facing_dir = await facing_indicator.facing_selected ## NOTICE AWAIT
 	selected_actor.set_facing(selected_facing_dir)
@@ -340,16 +338,20 @@ func play_held_action_at(coords: Vector2i):
 		selected_actor.remove_energy(current_held_action.energy_cost)
 		current_held_action.set_target(coords)
 		selected_actor.run_action(current_held_action)
+		
 		var is_from_stash: bool = current_held_action in stash
 		if is_from_stash:
 			remove_from_stash(current_held_action)
 		else:
 			_discard(current_held_action)
+			
 		if current_held_action.allow_facing_after:
 			position_for_facing= selected_actor.global_position #TODO: not sure why this isn't getting the current actor position after the player moves?
 			await get_facing(position_for_facing)
+			
 		if not is_from_stash:
 			remove_used_consumables(current_held_action)
+			
 		unhold_action()
 		hud.populate_actions_list(actions_in_hand, selected_actor)
 		update_hud_actions_disabled_check()
@@ -409,21 +411,20 @@ func update_hud_actions_disabled_check() -> void:
 	hud.actions_panel.check_actions_disabled(selected_actor)
 	hud.stash_panel.check_actions_disabled(selected_actor)
 
+var _action_preview_showing: bool = false
 func update_action_preview() -> void:
-	var non_player_actor: Actor = null
-
-	#check if there is an AI actor on last selected tile needs their preview removed
-	if _last_selected_tile != null:
-		non_player_actor = Level.get_actor_at(_last_selected_tile)
-		if non_player_actor != null && "action_preview" in non_player_actor:
-			non_player_actor.hide_preview_attack()
-			non_player_actor = null
+	if _action_preview_showing:
+		for actor in Level.get_all_actors_in_play_order():
+			if actor is AIActor:
+				actor.hide_preview_attack()
 
 	#check if there is an AI actor on selected tile needs their preview added
-	if(selected_tile != null and current_held_action == null): #prevents preview from being added when an action is being held
-		non_player_actor = Level.get_actor_at(selected_tile) as AIActor
-		if non_player_actor != null:
-			non_player_actor.preview_ai_attack()
+	if is_active:
+		if(latest_tile_coords != null and current_held_action == null): #prevents preview from being added when an action is being held
+			var actor = Level.get_actor_at(latest_tile_coords) as AIActor
+			if actor != null:
+				_action_preview_showing = true
+				actor.preview_ai_attack()
 
 
 func get_all_cards(and_exhausted: bool = false) -> Array[Action]:

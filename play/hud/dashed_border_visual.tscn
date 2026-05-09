@@ -76,5 +76,6 @@ shader_parameter/speed = -4.0
 
 [node name="DashedBorderVisual" type="Sprite2D" unique_id=72038806]
 top_level = true
+z_index = 2
 material = SubResource("ShaderMaterial_hlp3v")
 texture = ExtResource("1_h2acn")

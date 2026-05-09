@@ -4,6 +4,7 @@ class_name Juice
 ## for animating parameters with tweens (see [Tween]).
 ## The tweens made by these methods run even if the [SceneTree] is paused.
 
+const BLITZ = 0.12
 const SNAP = 0.2
 const SNAPPY = 0.3
 const FAST = 0.45

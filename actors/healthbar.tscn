@@ -10,6 +10,7 @@ font = ExtResource("4_j55ni")
 font_size = 14
 
 [node name="health" type="Sprite2D" unique_id=1326189825]
+z_index = 3
 texture = ExtResource("1_nfgy1")
 script = ExtResource("2_j55ni")
 metadata/_custom_type_script = "uid://bs67fklinftlj"

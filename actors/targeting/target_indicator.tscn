@@ -7,6 +7,6 @@
 script = ExtResource("1_py5aw")
 
 [node name="TargetHighLight" type="Sprite2D" parent="." unique_id=497166907]
-z_index = 100
+z_index = 1
 scale = Vector2(0.85, 0.85)
 texture = ExtResource("1_wl56n")
