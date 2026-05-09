@@ -158,9 +158,8 @@ func _on_interactor_tile_changed(new_coords: Vector2i) -> void:
 		_previous_hovered_actor = actor
 		
 	if is_active and current_held_action and selected_actor:
-		return
-		## TODO not implemented...
-		tile_interactor.render_held_action_projection(self)
+		#tile_interactor.render_held_action_projection(self)
+		pass
 		
 
 func _on_click_on_tile(tile_coords) -> void:
@@ -244,7 +243,20 @@ func hold_action(action: Action):
 	TargetFinder.clear_target_highlights()
 	if current_held_action:
 		update_action_preview()
-		TargetFinder.highlight_targets(selected_actor.get_action_target_cells(current_held_action))
+		
+		var color: Color
+		if current_held_action is ActionMove:
+			color = Targeting.COLORS.BLUE
+		elif current_held_action is ActionApplyStatus:
+			color = Targeting.COLORS.YELLOW
+		elif current_held_action is ActionChangeStance:
+			color = Targeting.COLORS.WHITE
+		else:
+			color = Targeting.COLORS.RED
+		
+		TargetFinder.highlight_targets(
+			selected_actor.get_action_target_cells(current_held_action),
+			color)
 
 	if VERBOSE:
 		p("Current held action: %s" % (current_held_action.ui_title if current_held_action else "empty"))
