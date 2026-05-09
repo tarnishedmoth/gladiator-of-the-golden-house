@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dtaw53r4qlxv8" path="res://menus/main_menu.tscn" id="3_1bvp3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
-font_size = 9
+font_size = 8
 
 [node name="Main" type="Node" unique_id=665979855]
 script = ExtResource("1_ig7tw")

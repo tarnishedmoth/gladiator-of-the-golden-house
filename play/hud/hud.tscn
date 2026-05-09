@@ -108,7 +108,6 @@ actions = NodePath("VBoxContainer/Actions")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Root/HBoxContainer/LeftSide/ActionsPanel" unique_id=1919909467]
 layout_mode = 2
-theme_override_constants/separation = 0
 
 [node name="ActionsHeader" type="Button" parent="Root/HBoxContainer/LeftSide/ActionsPanel/VBoxContainer" unique_id=1977200429]
 unique_name_in_owner = true
@@ -122,6 +121,7 @@ metadata/_custom_type_script = "uid://cnk6cyi6oyhbp"
 
 [node name="Actions" type="VBoxContainer" parent="Root/HBoxContainer/LeftSide/ActionsPanel/VBoxContainer" unique_id=1605133322]
 layout_mode = 2
+theme_override_constants/separation = 1
 
 [node name="StashPanel" parent="Root/HBoxContainer/LeftSide" unique_id=517737598 instance=ExtResource("10_stash")]
 unique_name_in_owner = true
