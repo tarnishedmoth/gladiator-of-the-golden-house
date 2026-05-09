@@ -167,13 +167,11 @@ func _on_interactor_tile_changed(new_coords: Vector2i) -> void:
 		
 
 func _on_click_on_tile(tile_coords) -> void:
-	## We have our tile coordinates
-	selected_tile = tile_coords
 	if VERBOSE:
-		p("Selected tile: %s" % selected_tile)
+		p("Clicked tile: %s" % tile_coords)
 
-	if selected_tile != null: ## Null check
-		## Behavior using this data
+	if tile_coords != null: ## Null check
+		selected_tile = tile_coords
 		if is_active:
 			## It's our turn
 			if current_held_action:
@@ -184,6 +182,7 @@ func _on_click_on_tile(tile_coords) -> void:
 				else:
 					## Invalid play placement
 					if VERBOSE: p("Can't play that Action here.")
+					unhold_action()
 
 			else:
 				if DESELECT_ON_REPEAT && tile_coords == _last_selected_tile:
@@ -225,6 +224,7 @@ func deselect_tile() -> void:
 
 func _on_click_to_play_action(target_coords: Vector2i) -> void:
 	TargetFinder.clear_target_highlights()
+	deselect_tile()
 	play_held_action_at(target_coords)
 
 #region Actions / Deck Logic

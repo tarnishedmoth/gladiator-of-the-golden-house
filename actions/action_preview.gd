@@ -11,38 +11,37 @@ func show_preview_action(action:Action)-> void:
 	_action=action
 	print("Action Preview Activated.")
 
-	if action is ActionAttack:
-		var targets: Array[Vector2i] = _actor.get_action_target_cells(action)
-		for coords in targets:
-			var found_actor: Actor = Level.get_actor_at(coords)
-			if found_actor != null:
+	var all: Array[Vector2i] = _actor.get_action_target_cells(action)
+	if action is ActionMove:
+		TargetFinder.highlight_targets(all, Targeting.COLORS.GREY)
+		return
+	
+	var targets: Array[Vector2i]
+	var potential: Array[Vector2i]
+	for coords in all:
+		var found_actor: Actor = Level.get_actor_at(coords)
+		
+		if found_actor != null:
+			targets.append(coords)
+			
+			if action is ActionAttack:
 				var damage: String = str(action.damage)
 				_popup_labels.append(Level.get_hud().popup_label_persistent("Damage: " + damage, found_actor, LevelHUD.STYLE_DAMAGE))
-		
-		TargetFinder.highlight_targets(targets, Targeting.COLORS.RED)
-
-	if action is ActionApplyStatusPattern:
-		var targets: Array[Vector2i] = _actor.get_action_target_cells(action)
-		for coords in targets:
-			var found_actor: Actor = Level.get_actor_at(coords)
-			if found_actor != null:
+				TargetFinder.highlight_targets(targets, Targeting.COLORS.RED)
+				
+			elif action is ActionApplyStatus:
 				var effect_points: String = str(action.override_quantity)
 				_popup_labels.append(Level.get_hud().popup_label_persistent(action.status.ui_name+ ": " +effect_points, found_actor, LevelHUD.STYLE_STATUS))
-		
-		TargetFinder.highlight_targets(targets, Targeting.COLORS.RED)
-		return
-
-
-	if action is ActionApplyStatus:
-		var targets: Array[Vector2i] = _actor.get_action_target_cells(action)
-		for coords in targets:
-			var found_actor: Actor = Level.get_actor_at(coords)
-			if found_actor != null:
-				var effect_points: String = str(action.override_quantity)
-				_popup_labels.append(Level.get_hud().popup_label_persistent(action.status.ui_name+ ": " +effect_points, found_actor, LevelHUD.STYLE_STATUS))
-		
-		TargetFinder.highlight_targets(targets, Targeting.COLORS.RED)
-		return
+				TargetFinder.highlight_targets(targets, Targeting.COLORS.YELLOW)
+				
+			elif action is ActionMove:
+				TargetFinder.highlight_targets(targets, Targeting.COLORS.PINK)
+			
+		else:
+			potential.append(coords)
+	
+	TargetFinder.highlight_targets(potential, Targeting.COLORS.PINK)
+	
 
 func hide_preview_action()->void:
 	TargetFinder.clear_target_highlights()

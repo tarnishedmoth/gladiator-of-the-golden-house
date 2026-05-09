@@ -2,6 +2,7 @@ class_name Targeting extends Node
 
 const COLORS = {
 	RED = Color("ff0000ff"),
+	PINK = Color("bf5065ff"),
 	WHITE = Color("ffffffff"),
 	BLUE = Color("7a5cffff"),
 	YELLOW = Color("dec000ff"),

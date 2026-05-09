@@ -1,7 +1,12 @@
 class_name ActionApplyStatus extends Action
 
 @export var status: Status
-@export_range(0, 99, 1, "or_greater") var override_quantity: int
+@export_range(0, 99, 1, "or_greater") var override_quantity: int:
+	get:
+		if not override_quantity:
+			return status.effect_points
+		else:
+			return override_quantity
 
 ## On transition to this state
 func enter(from: ResourceState = null) -> void:

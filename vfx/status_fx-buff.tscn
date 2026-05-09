@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://dpamc84gay4r0"]
+[gd_scene format=3 uid="uid://b8g0o8rwa4uvg"]
 
-[ext_resource type="Texture2D" uid="uid://way0pow8nkvq" path="res://actions/ui-icons/icon_9-16.png" id="1_xfaex"]
-[ext_resource type="Script" uid="uid://dk272f7wxt55i" path="res://vfx/status_effect_particles.gd" id="2_3d1ls"]
+[ext_resource type="Texture2D" uid="uid://way0pow8nkvq" path="res://actions/ui-icons/icon_9-16.png" id="1_hd4rv"]
+[ext_resource type="Script" uid="uid://dk272f7wxt55i" path="res://vfx/status_effect_particles.gd" id="2_cplw4"]
 
 [sub_resource type="Gradient" id="Gradient_s0l67"]
 offsets = PackedFloat32Array(0, 0.20984456, 1)
@@ -24,11 +24,11 @@ color_ramp = SubResource("GradientTexture1D_ryljd")
 [node name="StatusEffectParticles" type="GPUParticles2D" unique_id=679055257]
 emitting = false
 amount = 12
-texture = ExtResource("1_xfaex")
+texture = ExtResource("1_hd4rv")
 one_shot = true
 explosiveness = 0.8
 randomness = 0.2
 use_fixed_seed = true
 seed = 1149351345
 process_material = SubResource("ParticleProcessMaterial_g0tay")
-script = ExtResource("2_3d1ls")
+script = ExtResource("2_cplw4")

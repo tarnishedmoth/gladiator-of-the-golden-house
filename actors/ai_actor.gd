@@ -150,8 +150,7 @@ func _filter_move_candidates(candidates: Array[Vector2i], claimed_tiles: Array[V
 func preview_ai_attack()-> void:
 	#for each action in actions queue might need to duplcate so I dont use 
 	for action in action_queue.queue:
-		if action.action_category != Action.ActionCategory.MOVEMENT:
-			action_preview.show_preview_action(action)
+		action_preview.show_preview_action(action)
 
 func hide_preview_attack()-> void:
 	action_preview.hide_preview_action()
