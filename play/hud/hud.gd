@@ -15,7 +15,6 @@ const STYLE_NEGATED: PopupStyle = preload("uid://bqhq0381djca3")
 		
 var selected_actor_action_panels: Array[HUDSelectedActorActionPanel]
 
-@onready var root: Control = $Root
 @onready var hover_panel: HUDHoverPanel = %HoverPanel
 @onready var actions_panel: ActionsPanel = %ActionsPanel
 @onready var stash_panel: StashPanel = %StashPanel
@@ -182,7 +181,7 @@ func popup_negated(value: int, actor: Actor) -> Label:
 ## Caller owns lifetime; release via [method clear_popup_persistent_label].
 func popup_label_persistent(text: Variant, actor: Actor, style: PopupStyle) -> Label:
 	var screen_pos := _screen_pos_for(actor, 0.0)
-	return _spawn_popup(text, screen_pos, style, Vector2(0, -30))
+	return _spawn_popup(text, screen_pos, style, Vector2(10.0, 30))
 
 func clear_popup_persistent_label(popup: Label) -> void:
 	popups.erase(popup)
@@ -210,7 +209,7 @@ func _spawn_popup(text: Variant, screen_pos: Vector2, style: PopupStyle, base_of
 	popup.label_settings = style.label_settings
 	popup.modulate = style.color
 	popup.text = str(text)
-	root.add_child(popup)
+	Level.get_instance().add_child(popup)
 
 	var stack_offset := _compute_stack_offset(screen_pos, popup.size)
 	popups.append(popup)
