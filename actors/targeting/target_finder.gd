@@ -10,13 +10,15 @@ const COLORS = {
 
 const TARGET_INDICATOR_VISUAL = preload("uid://bw78572gtph87")
 var targ_scene: PackedScene = TARGET_INDICATOR_VISUAL
-var tilemap = TileMapLayer
+var tilemap: TileMapLayer
 
 func setup(tilemap_ref: TileMapLayer):
 	tilemap = tilemap_ref
 
 ## Alpha value is overridden in the script [TargetIndicatorVisual] (target_indicator.gd)
 func highlight_target(pos: Vector2i, color: Color) -> void:
+	#if tilemap.get
+	
 	var target_highlight: TargetIndicatorVisual = targ_scene.instantiate()
 	#target_highlight.hide()
 	target_highlight.set_color(color)

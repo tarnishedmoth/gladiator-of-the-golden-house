@@ -331,11 +331,12 @@ func get_facing(place_indicator_pos):
 	select_facing_is_visible = false
 
 func play_held_action_at(coords: Vector2i):
-	var position_for_facing
-	if current_held_action.allow_facing_before:
-		position_for_facing = selected_actor.global_position
-		await get_facing(position_for_facing)
 	if current_held_action.can_player_enter(selected_actor):
+		var position_for_facing
+		if current_held_action.allow_facing_before:
+			position_for_facing = selected_actor.global_position
+			await get_facing(position_for_facing)
+		
 		selected_actor.remove_energy(current_held_action.energy_cost)
 		current_held_action.set_target(coords)
 		selected_actor.run_action(current_held_action)
