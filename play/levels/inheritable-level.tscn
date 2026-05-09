@@ -51,7 +51,7 @@ retry_menu = NodePath("CanvasLayer/Retry Menu")
 continue_menu = NodePath("CanvasLayer/Continue Menu")
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=994423606]
-position = Vector2(16, 0)
+position = Vector2(32, 0)
 metadata/_edit_lock_ = true
 
 [node name="Directors" type="Node2D" parent="TileMapLayers" unique_id=440455703]

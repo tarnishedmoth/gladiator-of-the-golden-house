@@ -2,7 +2,7 @@ extends Camera2D
 
 const TRACK_MOUSE: bool = true
 
-var axis_ratio: Vector2 = Vector2(0.20, 0.20)
+var axis_ratio: Vector2 = Vector2(0.08, 0.14)
 @export var range_limit: Vector2i = Vector2i(960, 540)
 
 @export var use_position_lerp: bool = false ## TODO configurable in user options
