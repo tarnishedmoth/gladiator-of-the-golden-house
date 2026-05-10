@@ -30,6 +30,7 @@ const DIRECTIONS = [
 static func get_direction_from_facing(facing: int, relative: int) -> Vector2i:
 	return DIRECTIONS[(facing + relative) % 6]
 
+## Use to relative vectors into absolute vectors.
 static func rotate_hex(unit_facing: Cardinal, hex_coords: Vector2i):
 	var q = hex_coords.x
 	var r = hex_coords.y
@@ -39,10 +40,30 @@ static func rotate_hex(unit_facing: Cardinal, hex_coords: Vector2i):
 		r = old_q + r
 	return Vector2i(q, r)
 
+## Use to relative vectors into absolute vectors.
 static func rotate_hex_array(unit_facing: Cardinal, pattern: Array[Vector2i]) -> Array[Vector2i]:
 	var targets: Array[Vector2i] = []
 	for entry in pattern:
 		targets.append(rotate_hex(unit_facing, entry))
+	return targets
+
+
+## Use to convert absolute vectors into relative vectors to the facing direction.
+static func unrotate_hex(unit_facing: Cardinal, hex_coords: Vector2i):
+	var q = hex_coords.x
+	var r = hex_coords.y
+	
+	for i in unit_facing:
+		q += r
+		r -= q
+	
+	return Vector2i(q, r)
+	
+## Use to convert absolute vectors into relative vectors to the facing direction.
+static func unrotate_hex_array(unit_facing: Cardinal, pattern: Array[Vector2i]) -> Array[Vector2i]:
+	var targets: Array[Vector2i] = []
+	for entry in pattern:
+		targets.append(unrotate_hex(unit_facing, entry))
 	return targets
 
 
