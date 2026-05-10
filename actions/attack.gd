@@ -4,9 +4,16 @@ class_name ActionAttack extends Action
 @export var can_damage_self: bool = false
 @export var can_damage_teammates: bool = false
 #@export_category("Target Pattern")
-@export var pattern: Array[Vector2i] = [] ## Assume coords 0,0 and facing north. Then list the coords they can hit. the rotate hex function in facing will make that pattern work in any direction.
+@export var pattern: Array[Vector2i] = []: ## Assume coords 0,0 and facing north. Then list the coords they can hit. the rotate hex function in facing will make that pattern work in any direction.
+	get:
+		if split_choice: ## TESTING TESTING TESTING TESTING TESTING
+			return Facing.mirror(pattern)
+		else:
+			return pattern
 @export var aoe_pattern: Array[Vector2i]
-@export var split_choice: bool = false ## TODO If true, allows for the pattern to *also* apply counter-clockwise. This is specifically for asymmetrical patterns.
+## TODO If true, allows for the pattern to *also* apply mirrored (asymmetrical patterns).
+## In code, you can mirror a pattern using [method Facing.mirror].
+@export var split_choice: bool = false
 
 @export_group("Timing")
 ## How long to wait after playing FX, before dealing damage. Use for VFX/SFX timing.
@@ -23,7 +30,7 @@ func enter(from: ResourceState = null) -> void:
 		_actor.play_sfx(ActorSfxHandler.Sounds.ATTACK)
 		_actor.spawn_vfx(ActorVfxHandler.FX.ATTACK)
 		await _actor.create_tween().tween_interval(pre_attack_duration).finished
-		##_get_affected_and_deal_damage()
+		
 		var affected_actors: Array[Actor] = get_affected()
 		var modified_damage: int = get_damage()
 		_deal_damage(affected_actors,modified_damage)
@@ -42,6 +49,7 @@ func get_affected() -> Array[Actor]:
 	var targets: Array[Vector2i] = _actor.get_translated_pattern(pattern)
 
 	if debug: p("Targeting %d tiles." % targets.size())
+	
 	for coords in targets:
 		var found_actor: Actor = Level.get_actor_at(coords)
 		if found_actor != null:

@@ -60,3 +60,22 @@ static func get_direction_to_coordinate(a: Vector2i, b: Vector2i) -> Cardinal:
 	## TODO FIXME figure out why this isn't exactly working correctly
 	## Perhaps use Vector2.angle_to() / Vector2.angle_to_point()
 	return DIRECTIONS.find(dir) as Cardinal
+
+## Returns a mirrored copy of a coordinate hex grid along the vertical axis (0, y).
+## Works for all patterns on either or both sides.
+static func mirror(pattern: Array[Vector2i]) -> Array[Vector2i]:
+	#print("Original:", pattern)
+	
+	var copy: Array[Vector2i] = [] ## Arrays are passed by reference--values are mutable.
+	for coord: Vector2i in pattern:
+		if coord.x == 0:
+			## Centerline
+			copy.append(coord)
+		else:
+			copy.append(Vector2i(
+				-coord.x,
+				coord.y + coord.x
+			))
+	
+	#print("Mirrored:", copy)
+	return copy
