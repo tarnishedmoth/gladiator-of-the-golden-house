@@ -3,6 +3,7 @@
 const NO_PATTERN: Array[Vector2i] = [Vector2i(0,0)] ## Empty value used for targeting logic.
 @export var allow_facing_before: bool
 @export var allow_facing_after: bool
+var run_mirrored: bool = false ## see split choice in [ActionAttack]
 
 enum ActionCategory{
 	COMBAT = 0,

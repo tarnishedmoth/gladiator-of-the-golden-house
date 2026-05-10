@@ -6,10 +6,15 @@ class_name ActionAttack extends Action
 #@export_category("Target Pattern")
 @export var pattern: Array[Vector2i] = []: ## Assume coords 0,0 and facing north. Then list the coords they can hit. the rotate hex function in facing will make that pattern work in any direction.
 	get:
-		if split_choice: ## TESTING TESTING TESTING TESTING TESTING
-			return Facing.mirror(pattern)
-		else:
-			return pattern
+		if split_choice:
+			if run_mirrored:
+				if mirrored_pattern.is_empty():
+					mirrored_pattern = Facing.mirror(pattern) ## Caching, WARNING does not check equivalency
+				return mirrored_pattern
+		return pattern
+
+var mirrored_pattern: Array[Vector2i] ## Cached.
+
 @export var aoe_pattern: Array[Vector2i]
 ## TODO If true, allows for the pattern to *also* apply mirrored (asymmetrical patterns).
 ## In code, you can mirror a pattern using [method Facing.mirror].

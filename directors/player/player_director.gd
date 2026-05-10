@@ -14,7 +14,7 @@ var select_facing_is_visible: bool:
 
 var tile_map: TileMapLayer
 var tile_interactor: TileInteractor
-var latest_tile_coords: Vector2i = Vector2i.ZERO
+var _last_hovered_tile: Vector2i = Vector2i.ZERO ## See also [method TileInteractor.get_current_tile_coords()].
 var selected_tile ## Null or Vector2i coords
 var _last_selected_tile
 
@@ -147,7 +147,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 var _previous_hovered_actor: Actor ## For health
 func _on_interactor_tile_changed(new_coords: Vector2i) -> void:
-	latest_tile_coords = new_coords
+	_last_hovered_tile = new_coords
 	
 	if _previous_hovered_actor:
 		_previous_hovered_actor.on_unhovered()
@@ -159,11 +159,20 @@ func _on_interactor_tile_changed(new_coords: Vector2i) -> void:
 	
 	if not current_held_action:
 		update_action_preview()
+	else:
+		if current_held_action.get(&"split_choice"):
+			## Check which side of the forward axis we're on, to decide to mirror
+			var relative_coord: Vector2i = Facing.unrotate_hex(selected_actor.facing, new_coords - selected_actor.current_tile_coords)
+			var mirror: bool = signi(relative_coord.x) < 0
+			#if VERBOSE: p("Split Choice -- rel: %s, mirroring: %s" % [relative_coord, mirror])
+			if mirror != current_held_action.run_mirrored:
+				current_held_action.run_mirrored = mirror
+				rerender_held_action_targets()
 		
-	if is_active and current_held_action and selected_actor:
+	#elif is_active and current_held_action and selected_actor:
 		## TODO not functional -- see Action.ImplicatedTiles...
 		#tile_interactor.render_held_action_projection(self)
-		pass
+		#pass
 		
 
 func _on_click_on_tile(tile_coords) -> void:
@@ -227,18 +236,12 @@ func _on_click_to_play_action(target_coords: Vector2i) -> void:
 	deselect_tile()
 	play_held_action_at(target_coords)
 
-#region Actions / Deck Logic
-## Used to preview actions.
+
 var _self_action_preview_showing: bool = false
-func hold_action(action: Action):
-	if (action != null) and (current_held_action == action):
-		unhold_action()
-		return
-	else:
-		current_held_action = action
-	
+func rerender_held_action_targets() -> void:
 	if _self_action_preview_showing:
 		TargetFinder.clear_target_highlights()
+		
 	if current_held_action:
 		update_action_preview()
 		
@@ -252,11 +255,48 @@ func hold_action(action: Action):
 		else:
 			color = Targeting.COLORS.RED
 		
-		_self_action_preview_showing = true
+		#var mirror: bool = false ## We calculate this before this method is called just because the logic sequence works that way
+		#if current_held_action.get(&"split_choice"): ## Returns null if invalid, or false or true, nice...
+			## WARNING: thinking out loud ahead...
+			## We need to know what side of the centerline we are on.
+			## If we're clockwise of the facing direction, the pattern is normal.
+			## If we're counterclockwise of the facing direction, the pattern is mirrored.
+			## I think we can use the dot product here
+			## Given a vector pointing relative RIGHT (east) of the facing direction (north), the dot product would be positive for east and negative for west.
+			## Alternatively the cross product of the FORWARD vector is positive for left (west) and negative for right (east), 0.0 at poles.
+			
+			## To do this with the mouse pointer,
+			## We need to get the position of our selected actor on screen as our center point
+			## then get the normalized vector towards the mouse pointer.
+			
+			## Alternatively we can use the grid coordinates instead
+			## which makes more sense for this method in this script.
+			## Maybe consider bringing this functionality out into the HUD somehow
+			## to use mouse pointer for higher precision.
+			
+			## Relative X is our vertical/forward axis.
+			## So the Sign value of X will tell us to mirror the pattern or not.
+			## First to get the relative offset of our highlighted coordinate
+			#var relative_coord: Vector2i = Facing.unrotate_hex(selected_actor.facing, tile_interactor.get_current_tile_coords() - selected_actor.current_tile_coords)
+			#mirror = signi(relative_coord.x) < 0
+			
 		TargetFinder.highlight_targets(
 			selected_actor.get_action_target_cells(current_held_action),
 			color)
+				
+		_self_action_preview_showing = true
+			
 
+#region Actions / Deck Logic
+## Used to preview actions.
+func hold_action(action: Action):
+	if (action != null) and (current_held_action == action):
+		unhold_action()
+		return
+	else:
+		current_held_action = action
+	
+	rerender_held_action_targets()
 	if VERBOSE:
 		p("Current held action: %s" % (current_held_action.ui_title if current_held_action else "empty"))
 
@@ -420,8 +460,8 @@ func update_action_preview() -> void:
 
 	#check if there is an AI actor on selected tile needs their preview added
 	if is_active:
-		if(latest_tile_coords != null and current_held_action == null): #prevents preview from being added when an action is being held
-			var actor = Level.get_actor_at(latest_tile_coords) as AIActor
+		if(_last_hovered_tile != null and current_held_action == null): #prevents preview from being added when an action is being held
+			var actor = Level.get_actor_at(_last_hovered_tile) as AIActor
 			if actor != null:
 				_action_preview_showing = true
 				actor.preview_ai_attack()

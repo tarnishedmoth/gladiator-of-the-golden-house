@@ -21,6 +21,7 @@ static func cell_exists(coords: Vector2i, tile_map: TileMapLayer) -> bool:
 	return true if tile_map.get_cell_tile_data(coords) else false
 	
 ## Returns the coordinates if a valid tile, otherwise returns null.
+## This method does not read or modify a cached value.
 func get_tile_coords_under_interactor() -> Variant:
 	var coords: Vector2i = tilemap.local_to_map(tilemap.to_local(global_position))
 	var data: TileData = tilemap.get_cell_tile_data(coords)
@@ -28,7 +29,8 @@ func get_tile_coords_under_interactor() -> Variant:
 		return coords
 	else:
 		return null
-	
+
+## Uses a cached value [member current_coords] updated every frame.
 func get_current_tile_coords() -> Vector2i:
 	return current_coords
 	
@@ -37,7 +39,8 @@ func get_tile_data(coords: Vector2i) -> TileData:
 		return tilemap.get_cell_tile_data(coords)
 	else:
 		return null
-	
+
+## Uses a cached value [member current_coords] updated every frame.
 func get_current_tile_data() -> TileData:
 	return get_tile_data(current_coords)
 
