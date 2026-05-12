@@ -16,6 +16,7 @@ class_name ActionAttack extends Action
 var mirrored_pattern: Array[Vector2i] ## Cached.
 
 @export var aoe_pattern: Array[Vector2i]
+
 ## TODO If true, allows for the pattern to *also* apply mirrored (asymmetrical patterns).
 ## In code, you can mirror a pattern using [method Facing.mirror].
 @export var split_choice: bool = false
@@ -50,8 +51,15 @@ func enter(from: ResourceState = null) -> void:
 
 func get_affected() -> Array[Actor]:
 	var affected_actors: Array[Actor]
+	var targets: Array[Vector2i]
+	var facing: Facing.Cardinal = _actor.get_facing() ## TODO maybe use Facing.get_direction_to_coordinate()
 	
-	var targets: Array[Vector2i] = _actor.get_translated_pattern(pattern)
+	if aoe_pattern:
+		## Translate our aoe pattern to the _target coordinate
+		targets = Facing.get_target_cells(_target, facing, aoe_pattern)
+	else:
+		## Every coord relative to _actor
+		targets = _actor.get_translated_pattern(pattern)
 
 	if debug: p("Targeting %d tiles." % targets.size())
 	
