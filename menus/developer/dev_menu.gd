@@ -26,7 +26,7 @@ func _ready() -> void:
 
 func _on_launch_button_pressed() -> void:
 	## Preset the persistent player data for proper functionality
-	PlayerData.new_playthrough("Developer", PlayerData.STARTING_CLASSES.A) ## TESTING
+	PlayerData.new_playthrough("Developer", PlayerData.STARTING_CLASSES.CLASSIC) ## TESTING
 
 	var resource:PackedScene = load(select_dropdown.get_item_metadata(select_dropdown.selected))
 
