@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cnjj4x8vv6fpo"]
+
+[ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="1_um4xk"]
+
+[node name="Projectile" type="Sprite2D" unique_id=1656139331]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_um4xk")

@@ -94,6 +94,55 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 
 		claimed_tiles.append(coords)
 		action.set_target(coords)
+		
+		
+	elif action is ActionAttack:
+		if debug: p("Planning ActionAttack.")
+		var potential_targets: Array[Vector2i] = get_action_target_cells(action) ## Absolute coordsva
+		var _potential_affected: Dictionary[Vector2i, Array] ## Absolute target coord, absolute aoe tiles
+		
+		for coord in potential_targets:
+			if action.aoe_pattern:
+				var affected: Array[Vector2i]= Facing.get_target_cells(
+					coord,
+					facing,
+					action.aoe_pattern
+					)
+				_potential_affected[coord] = affected
+			else:
+				_potential_affected[coord] = [coord]
+		
+		if debug: p("Target candidates: %s" % [potential_targets])
+		
+		var choice_target = null ## Absolute
+		
+		for target: Vector2i in _potential_affected.keys():
+			if hostile_target.current_tile_coords in _potential_affected[target]:
+				## Target in AoE
+				choice_target = target
+				break
+				
+		if choice_target == null:
+			## Sort by distance
+			## It's honestly safe to assume that the target coord itself is a good approximation--
+			## no need to iterate through every single affected AoE tile.
+			potential_targets.sort_custom(sort_hostile_distance)
+			choice_target = potential_targets.front()
+			if debug: p("Closest target to hostile is %s." % [choice_target])
+		else:
+			if debug: p("Hostile target within AoE for %s." % [choice_target])
+		
+		assert(choice_target != null)
+		if debug:
+			## Sanity check
+			assert(choice_target in Facing.get_target_cells(current_tile_coords, facing, action.pattern))
+			p("Verified target choice is valid.")
+		
+		action.set_target(choice_target)
+	
+	else:
+		push_warning("Unconfigured planning behavior for action subclass!")
+
 
 ## Given two coordinates, returns the one closer to [member hostile_target.current_tile_coords].
 func sort_hostile_distance(a: Vector2i, b: Vector2i) -> bool:

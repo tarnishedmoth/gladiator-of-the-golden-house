@@ -24,8 +24,9 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 		queue.append(move)
 
 	append_actions_to_queue(queue)
+	
 func die() -> void:
-	#Test for pickup feature
+	## TEST HACK FIXME for pickup feature
 	if(on_death_pickup):
 		%PickUpManager.spawn_pick_up(on_death_pickup, current_tile_coords)
 	super()

@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cxi4p8eptxxm4"]
+
+[ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="1_or6x3"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_38auy"]
+[ext_resource type="Resource" uid="uid://nkaun0fgvwiu" path="res://actions/prefabs/toss-bomb.tres" id="4_506x5"]
+[ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="5_q2nfv"]
+[ext_resource type="PackedScene" uid="uid://0b8prxcp20px" path="res://play/levels/colosseum/colosseum-crowd/generator.tscn" id="6_ae6mv"]
+[ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="7_d2po5"]
+[ext_resource type="Script" uid="uid://c23svqo1v3284" path="res://actors/player/weapon-wobble.gd" id="8_m852i"]
+[ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="9_md8ss"]
+[ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="10_aoxar"]
+[ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="11_ooije"]
+[ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="12_y5tlk"]
+
+[node name="BombGrunt" type="Node2D" unique_id=1783091050 node_paths=PackedStringArray("health_bar", "speech_bubble")]
+script = ExtResource("1_or6x3")
+usable_actions = Array[ExtResource("2_38auy")]([ExtResource("5_q2nfv"), ExtResource("4_506x5")])
+health_bar = NodePath("health")
+speech_bubble = NodePath("SpeechBubble")
+ui_name = "Bomb Grunt"
+ui_description = "Hot potato!"
+max_health = 24
+metadata/_custom_type_script = "uid://pgyek4ai3kpq"
+
+[node name="Generator" parent="." unique_id=2057479258 instance=ExtResource("6_ae6mv")]
+
+[node name="Sword" type="Sprite2D" parent="." unique_id=1996593367]
+z_index = 1
+position = Vector2(2, 2)
+texture = ExtResource("7_d2po5")
+script = ExtResource("8_m852i")
+speed = 1.5
+amplitude = 1.5
+
+[node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("9_md8ss")]
+
+[node name="health" parent="." unique_id=1326189825 instance=ExtResource("10_aoxar")]
+position = Vector2(0, -30)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=644278418]
+visible = false
+self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
+texture = ExtResource("11_ooije")
+
+[node name="SpeechBubble" parent="." unique_id=757394792 instance=ExtResource("12_y5tlk")]
+position = Vector2(0, -38)
