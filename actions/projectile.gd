@@ -23,8 +23,14 @@ enum VfxBehavior {
 var _finito: bool = false
 
 func enter(from: ResourceState = null) -> void:
-	if (not _target) or (not _actor):
+	if (_target == null) or (not _actor):
 		push_error("Missing setup")
+		exit()
+		return
+		
+	if not TileInteractor.cell_exists(_target, _actor.tile_map):
+		## Invalid target tile--early exit
+		await _actor.create_tween().tween_interval(0.25).finished
 		exit()
 		return
 	

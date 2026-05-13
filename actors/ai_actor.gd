@@ -101,6 +101,13 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 		var potential_targets: Array[Vector2i] = get_action_target_cells(action) ## Absolute coordsva
 		var _potential_affected: Dictionary[Vector2i, Array] ## Absolute target coord, absolute aoe tiles
 		
+		potential_targets = potential_targets.filter(TileInteractor.cell_exists.bind(tile_map))
+		
+		if potential_targets.is_empty():
+			## No valid choices for this action
+			push_warning("Did not configure action due to no valid moves")
+			return
+		
 		for coord in potential_targets:
 			if action.aoe_pattern:
 				var affected: Array[Vector2i]= Facing.get_target_cells(
