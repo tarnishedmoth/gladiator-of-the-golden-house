@@ -67,12 +67,7 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 			if not candidates.is_empty():
 				if hostile_target && move_towards_target:
 					## Move in a direction towards the target
-					candidates.sort_custom(
-						func(a: Vector2i, b: Vector2i) -> bool:
-							return \
-							Vector2(a).distance_squared_to(hostile_target.current_tile_coords) < \
-							Vector2(b).distance_squared_to(hostile_target.current_tile_coords)
-					)
+					candidates.sort_custom(sort_hostile_distance)
 					coords = candidates.front()
 				else:
 					coords = candidates.pick_random()
@@ -100,6 +95,15 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 		claimed_tiles.append(coords)
 		action.set_target(coords)
 
+## Given two coordinates, returns the one closer to [member hostile_target.current_tile_coords].
+func sort_hostile_distance(a: Vector2i, b: Vector2i) -> bool:
+	## Must convert to global position due to coordinates not being square.
+	var _a: Vector2 = get_global_position_at(tile_map, a)
+	var _b: Vector2 = get_global_position_at(tile_map, b)
+	var _hostile: Vector2 = get_global_position_at(tile_map, hostile_target.current_tile_coords)
+	return \
+	_a.distance_squared_to(_hostile) < \
+	_b.distance_squared_to(_hostile)
 
 ## Assigns an Actor to [member hostile_target].
 ## If [member always_prioritize_nearest_hostile] it will be the nearest by tile coordinate.
