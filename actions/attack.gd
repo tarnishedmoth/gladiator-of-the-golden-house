@@ -58,8 +58,11 @@ func get_affected() -> Array[Actor]:
 		## Translate our aoe pattern to the _target coordinate
 		targets = Facing.get_target_cells(_target, facing, aoe_pattern)
 	else:
-		## Every coord relative to _actor
-		targets = _actor.get_translated_pattern(pattern)
+		## (Old behavior): Every coord relative to _actor 
+		#targets = _actor.get_translated_pattern(pattern)
+		
+		## New behavior: only the _target tile
+		targets.append(_target)
 
 	if debug: p("Targeting %d tiles." % targets.size())
 	
