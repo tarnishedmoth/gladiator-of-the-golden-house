@@ -250,7 +250,11 @@ func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
 
 ## Sets [member facing]. North is the default value.
 func set_facing(cardinal_direction: Facing.Cardinal) -> void:
-	facing = cardinal_direction
+	if not cardinal_direction in Facing.Cardinal.values():
+		push_error("Out of bounds")
+		cardinal_direction = 0
+	else:
+		facing = cardinal_direction
 	
 	if SHOW_FACING_INDICATOR && self.is_inside_tree():
 		show_facing_indicator(true)

@@ -33,6 +33,12 @@ static var instance: Level:
 static func get_instance() -> Level:
 	assert(instance)
 	return instance
+
+## We expect to have this for game play
+static func get_base_tile_map_layer() -> TileMapLayer:
+	assert(instance)
+	assert(instance.base_tile_map_layer)
+	return instance.base_tile_map_layer
 	
 ## Returns all directors in the level scene in play order.
 static func get_directors() -> Array[Director]:

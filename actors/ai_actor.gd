@@ -17,6 +17,7 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	if action_preview:
 		action_preview.free()
 	action_preview = ActionPreview.new()
+	add_child(action_preview)
 	action_preview.setup(self)
 	
 	super(director_,tilemap)
@@ -33,7 +34,7 @@ func choose_action(claimed_tiles: Array[Vector2i]) -> Action:
 	## Selection
 	var action: Action
 	if not usable_actions.is_empty():
-		action = usable_actions.pick_random().duplicate() ## FIXME HACK: random
+		action = usable_actions.pick_random().duplicate() ## HACK: random
 	else:
 		push_error("No usable actions configured!")
 		return null
@@ -46,9 +47,11 @@ func choose_action(claimed_tiles: Array[Vector2i]) -> Action:
 func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void:
 	if not hostile_target: choose_hostile_target()
 	if action is ActionMove:
+		if debug: p("Planning ActionMove.")
 		var facing_direction: Facing.Cardinal
 		if hostile_target:
-			facing_direction = Facing.get_direction_to_coordinate(current_tile_coords, hostile_target.current_tile_coords)
+			#facing_direction = Facing.get_direction_to_coordinate(current_tile_coords, hostile_target.current_tile_coords)
+			facing_direction = Facing.get_direction_to_global_position(global_position, hostile_target.global_position)
 		else:
 			## Fallback but should never run in gameplay
 			facing_direction = Facing.Cardinal.values().pick_random()

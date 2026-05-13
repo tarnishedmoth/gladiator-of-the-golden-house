@@ -74,16 +74,35 @@ static func get_target_cells(pos: Vector2i, facing: Cardinal, pattern: Array[Vec
 	var targets: Array[Vector2i] = []
 	for entry in pattern:
 		targets.append(pos + rotate_hex(facing, entry))
+	
+	#print("ORIG", pattern)
+	#print("Rotated %s" % facing)
+	#print("CHANGED, targets)
 	return targets
 
 ## Returns a cardinal direction from "a" pointing to "b".
-static func get_direction_to_coordinate(a: Vector2i, b: Vector2i) -> Cardinal:
+## NOTE this is in global position space, not hex-grid coordinate space!
+## Reasoning is that I couldn't get it to work right the other way lol
+static func get_direction_to_global_position(a: Vector2, b: Vector2) -> Cardinal:
 	## We have to convert to floating point to use these methods
-	var dir = Vector2(a).direction_to(Vector2(b))
-	var diri = Vector2i(dir.sign())
-	## TODO FIXME figure out why this isn't exactly working correctly
-	## Perhaps use Vector2.angle_to() / Vector2.angle_to_point()
-	return DIRECTIONS.find(dir) as Cardinal
+	## First we get the degree of the angle from point a to point b.
+	## Then we subtract 30 degrees (half of a tile arc) to center the angle on a direction.
+	#var dir = rad_to_deg(Vector2.ZERO.angle_to_point(b-a)) - 30
+	var dir = rad_to_deg(a.angle_to_point(b))
+	dir = wrapf(dir, -30.0, 330.0)
+	
+	var cardinal: Facing.Cardinal
+	for slice in Facing.Cardinal.values():
+		var min_angle: float = (60.0 * slice) - 30.0
+		var max_angle: float = min_angle + 60.0
+		
+		if dir > min_angle and dir < max_angle:
+			cardinal = slice + 1 as Facing.Cardinal ## Classic off by one error... idk fam
+			
+	assert(cardinal in Facing.Cardinal.values())
+	print_rich("[bgcolor=YELLOW][color=black]The angle from %s to %s is: %s degrees. %s" % [a, b, dir, cardinal])
+	
+	return cardinal
 
 ## Returns a mirrored copy of a coordinate hex grid along the vertical axis (0, y).
 ## Works for all patterns on either or both sides.
