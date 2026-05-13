@@ -27,6 +27,9 @@ const DIRECTIONS = [
 	Vector2i(-1, 0),   # 5 = NORTHWEST
 ]
 
+static func get_deg_rotation(facing: Cardinal) -> float: return 60 * facing
+static func get_rad_rotation(facing: Cardinal) -> float: return deg_to_rad(60 * facing)
+
 static func get_direction_from_facing(facing: int, relative: int) -> Vector2i:
 	return DIRECTIONS[(facing + relative) % 6]
 
@@ -66,7 +69,7 @@ static func unrotate_hex_array(unit_facing: Cardinal, pattern: Array[Vector2i]) 
 		targets.append(unrotate_hex(unit_facing, entry))
 	return targets
 
-
+## Translates and rotates the pattern to absolute coordinates.
 static func get_target_cells(pos: Vector2i, facing: Cardinal, pattern: Array[Vector2i]) -> Array[Vector2i]:
 	var targets: Array[Vector2i] = []
 	for entry in pattern:
