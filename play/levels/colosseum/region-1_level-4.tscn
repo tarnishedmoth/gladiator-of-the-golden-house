@@ -16,12 +16,15 @@ metadata/_custom_type_script = "uid://dwys5mwbuw85s"
 
 [node name="BombGrunt" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=2076353106 instance=ExtResource("4_irob3")]
 position = Vector2(93, -112)
+facing = 3
 
 [node name="BombGrunt2" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=1552185127 instance=ExtResource("4_irob3")]
 position = Vector2(-94, -183)
+facing = 3
 
 [node name="BombGrunt3" parent="TileMapLayers/Directors/AIDirector" index="2" unique_id=1661159290 instance=ExtResource("4_irob3")]
 position = Vector2(289, -42)
+facing = 4
 
 [node name="GridTint" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="3" unique_id=1487691829]
 visible = true

@@ -132,8 +132,7 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	tree_exited.connect(self.director.actors.erase.bind(self))
 	
 	snap_to_nearest_tile()
-
-	facing = Facing.Cardinal.NORTH
+	
 	show_facing_indicator()
 
 	if action_queue:
