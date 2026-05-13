@@ -59,14 +59,14 @@ func enter(from: ResourceState = null) -> void:
 			
 			var x_move: Tween = projectile.create_tween()
 			var y_move: Tween = projectile.create_tween()
-			x_move.tween_property(projectile, ^"global_position:x", target_gp.x, duration).set_trans(Tween.TRANS_SINE)#.set_ease(Tween.EASE_OUT)
+			x_move.tween_property(projectile, ^"global_position:x", target_gp.x, duration).set_trans(Tween.TRANS_LINEAR)
 			
 			if is_zero_approx(arc):
 				y_move.tween_property(projectile, ^"global_position:y", target_gp.y, duration)#.set_trans(Tween.TRANS_CIRC)
 			else:
 				var arc_midpoint: Vector2 = _actor.global_position.lerp(target_gp, 0.5)
-				y_move.tween_property(projectile, ^"global_position:y", arc_midpoint.y - arc, duration/2.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-				y_move.tween_property(projectile, ^"global_position:y", target_gp.y, duration/2.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+				y_move.tween_property(projectile, ^"global_position:y", arc_midpoint.y - arc, duration/2.0).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
+				y_move.tween_property(projectile, ^"global_position:y", target_gp.y, duration/2.0).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN)
 			
 			x_move.tween_callback(_on_projectile_finito)
 			x_move.tween_callback(projectile.queue_free)
