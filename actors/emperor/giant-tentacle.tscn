@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://diwkqfyr57888"]
 
 [ext_resource type="Script" uid="uid://ci57spj238ous" path="res://actors/emperor/tentacle_pivot.gd" id="1_0oeuv"]
+[ext_resource type="Texture2D" uid="uid://cvhkktn0chihu" path="res://vfx/blob-shadow-64px.png" id="1_6oi75"]
 [ext_resource type="Texture2D" uid="uid://dxj7miwxas4je" path="res://actors/emperor/giant-tentacle.png" id="1_44mwf"]
 [ext_resource type="Texture2D" uid="uid://cewc200t7fvh0" path="res://vfx/8px-circle-no-aa.png" id="2_0oeuv"]
+[ext_resource type="Material" uid="uid://ccqfgt5eq875p" path="res://actors/emperor/giant-tentacle-wobble.tres" id="2_uw0mj"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0oeuv"]
 size = Vector2(200, 100)
+
+[sub_resource type="Curve" id="Curve_0oeuv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_uw0mj"]
 colors = PackedColorArray(0.23921569, 0.20392157, 0.09411765, 1, 0.23921569, 0.20392157, 0.09411765, 0)
@@ -15,6 +21,10 @@ offsets = PackedFloat32Array(0.004219409, 1)
 colors = PackedColorArray(0.4691444, 0.33809522, 3.85046e-07, 1, 1, 1, 1, 1)
 
 [node name="GiantTentacle" type="Node2D" unique_id=1916901696]
+
+[node name="Blob Shadow" type="Sprite2D" parent="." unique_id=722335881]
+position = Vector2(-1.515, -8)
+texture = ExtResource("1_6oi75")
 
 [node name="Clip Mask" type="Sprite2D" parent="." unique_id=2081511991]
 clip_children = 1
@@ -26,17 +36,20 @@ position = Vector2(4, 50)
 script = ExtResource("1_0oeuv")
 
 [node name="Tentacle Sprite" type="Sprite2D" parent="Clip Mask/Tentacle Pivot" unique_id=299484839]
+material = ExtResource("2_uw0mj")
 position = Vector2(-4, -40)
 texture = ExtResource("1_44mwf")
 
 [node name="Mud Particles" type="CPUParticles2D" parent="." unique_id=852424989]
-amount = 64
+amount = 128
 texture = ExtResource("2_0oeuv")
-lifetime = 0.25
+lifetime = 0.5
 emission_shape = 3
-emission_rect_extents = Vector2(12, 1)
+emission_rect_extents = Vector2(16, 4)
 direction = Vector2(0, -1)
-initial_velocity_min = 64.0
-initial_velocity_max = 256.0
+gravity = Vector2(0, 300)
+initial_velocity_min = 32.0
+initial_velocity_max = 128.0
+scale_amount_curve = SubResource("Curve_0oeuv")
 color_ramp = SubResource("Gradient_uw0mj")
 color_initial_ramp = SubResource("Gradient_6oi75")
