@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://l5cyxitgqmvp"]
 
 [ext_resource type="Texture2D" uid="uid://dspbuiiftmqvp" path="res://characters/Charles.png" id="1_ghkkw"]
+[ext_resource type="Script" uid="uid://bep72nafk08d5" path="res://characters/weapon_anchor.gd" id="2_ewcus"]
 
 [node name="Charles" type="Sprite2D" unique_id=762533680]
 texture = ExtResource("1_ghkkw")
+
+[node name="WeaponAnchor" type="Marker2D" parent="." unique_id=1398679612]
+position = Vector2(-11, 11)
+script = ExtResource("2_ewcus")

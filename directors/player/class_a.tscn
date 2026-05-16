@@ -9,6 +9,9 @@
 [ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://actions/stance/stance.gd" id="6_hh338"]
 [ext_resource type="Resource" uid="uid://0d2gjd1g0oku" path="res://actions/prefabs/player/class-a_stance_murmillo.tres" id="7_qc84x"]
 [ext_resource type="Resource" uid="uid://cdixyrgupi5yu" path="res://actions/prefabs/player/class-a_stance_secutor.tres" id="8_qc84x"]
+[ext_resource type="Script" uid="uid://bep72nafk08d5" path="res://characters/weapon_anchor.gd" id="10_ajugt"]
+[ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="10_w332n"]
+[ext_resource type="Script" uid="uid://c23svqo1v3284" path="res://vfx/weapon-wobble.gd" id="11_ajugt"]
 
 [node name="Player_ClassA" type="Node2D" unique_id=1133384730]
 script = ExtResource("1_e53f1")
@@ -22,3 +25,16 @@ ui_subtitle = "Class A"
 ui_description = "Defeat all enemies to win."
 max_health = 80
 starting_energy = 3
+
+[node name="WeaponAnchorer" type="Marker2D" parent="MainCharacter" unique_id=587022517]
+script = ExtResource("10_ajugt")
+which = 1
+metadata/_custom_type_script = "uid://bep72nafk08d5"
+
+[node name="Sword" type="Sprite2D" parent="MainCharacter/WeaponAnchorer" unique_id=812238839]
+z_index = 1
+position = Vector2(2, -3)
+texture = ExtResource("10_w332n")
+script = ExtResource("11_ajugt")
+speed = 2.0
+amplitude = 1.0

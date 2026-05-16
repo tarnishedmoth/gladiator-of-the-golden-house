@@ -11,6 +11,9 @@
 [ext_resource type="Resource" uid="uid://duclb7twecrgo" path="res://actions/prefabs/player/class-greatsword/stance_two-handing.tres" id="9_45eod"]
 [ext_resource type="PackedScene" uid="uid://cw8ea0ekkqjyp" path="res://actors/player/main_character.tscn" id="9_t1m4t"]
 [ext_resource type="Resource" uid="uid://dceftm4v15w0u" path="res://actions/prefabs/player/class-greatsword/stance_shield-too.tres" id="10_brf7x"]
+[ext_resource type="Texture2D" uid="uid://bevn7nwcab4e5" path="res://actions/ui-icons/weapon_sprite_greatsword.png" id="12_adxv6"]
+[ext_resource type="Script" uid="uid://bep72nafk08d5" path="res://characters/weapon_anchor.gd" id="12_yu7cn"]
+[ext_resource type="Script" uid="uid://c23svqo1v3284" path="res://vfx/weapon-wobble.gd" id="13_yu7cn"]
 
 [node name="Player_ClassGreatsword" type="Node2D" unique_id=1133384730]
 script = ExtResource("1_7c8ok")
@@ -24,3 +27,16 @@ ui_subtitle = "Greatsword"
 ui_description = "Defeat all enemies to win."
 max_health = 60
 starting_energy = 4
+
+[node name="WeaponAnchorer" type="Marker2D" parent="MainCharacter" unique_id=818257545]
+script = ExtResource("12_yu7cn")
+which = 1
+metadata/_custom_type_script = "uid://bep72nafk08d5"
+
+[node name="Greatsword" type="Sprite2D" parent="MainCharacter/WeaponAnchorer" unique_id=1220959871]
+z_index = 1
+position = Vector2(12, -12)
+texture = ExtResource("12_adxv6")
+script = ExtResource("13_yu7cn")
+speed = 1.0
+amplitude = 1.0

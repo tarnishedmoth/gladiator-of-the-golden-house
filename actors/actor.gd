@@ -46,6 +46,12 @@ func get_status_manager() -> StatusManager: ## Use when you dont expect to handl
 @export var health_bar: Healthbar
 @export var speech_bubble: DialogueBubble
 
+@export_group("Sprite Anchors")
+@export var anchor_hand: Marker2D:
+	set(v):
+		anchor_hand = v
+		_callback_anchor_waiters()
+
 var sfx: ActorSfxHandler
 var vfx: ActorVfxHandler
 
@@ -169,7 +175,29 @@ func on_turn_start() -> void: ## Called by Director
 	
 func on_turn_end() -> void: ## Called by Director
 	status_manager.on_turn_end()
+	
+#region Weapon Anchors
 
+var _anchors_to_call: Array[WeaponAnchorer]
+
+## Calls the callable [param callback] and passes the weapon anchor as an argument.
+func subscribe_weapon(weapon: WeaponAnchorer) -> void:
+	if anchor_hand:
+		weapon.set_anchor(anchor_hand)
+	else:
+		_anchors_to_call.append(weapon)
+		
+func register_anchor(node: Node2D) -> void:
+	if debug:
+		p("Registered weapon anchor %s" % node)
+	anchor_hand = node
+	
+func _callback_anchor_waiters() -> void:
+	for s in _anchors_to_call:
+		if is_instance_valid(s):
+			s.set_anchor(anchor_hand)
+
+#endregion
 #region ACTIONS
 
 func run_queued_actions() -> void: ## Emits a signal when done.
@@ -251,7 +279,6 @@ func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
 func set_facing(cardinal_direction: Facing.Cardinal) -> void:
 	if not cardinal_direction in Facing.Cardinal.values():
 		push_error("Out of bounds")
-		cardinal_direction = 0
 	else:
 		facing = cardinal_direction
 	
