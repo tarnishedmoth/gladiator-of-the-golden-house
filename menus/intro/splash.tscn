@@ -8,15 +8,12 @@
 blend_mode = 2
 
 [sub_resource type="LabelSettings" id="LabelSettings_56kac"]
-font_size = 48
+font_size = 30
 shadow_size = 20
 shadow_color = Color(0, 0, 0, 0.03137255)
 shadow_offset = Vector2(1, 20)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bl3qm"]
-font_size = 22
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
 
 [node name="Splash" type="Node" unique_id=1039972038]
 script = ExtResource("1_b04ml")
