@@ -1,20 +1,33 @@
 class_name PlayerData
 
 ## Holds everything relevant to a playthrough.
-static var this: PlayerData
 
-static func p(args):
+static func p(args): ## Print method
 	print_rich("[bgcolor=cyan][color=purple]", "PlayerData: ", args)
+
+#region Variables & Getters
 
 ## You can hover over these UID strings in the editor IDE to quickly access
 ## the actual source file.
-const STARTING_CLASSES: Dictionary = {
+## These are PlayerDirector scenes with the configured set of actions.
+const STARTING_CLASSES: Dictionary[StringName, String] = {
 	CLASSIC = "uid://bet8eq50pbkqf",
 	GREATSWORD = "uid://c5tt5o8dkeve3",
 }
 
-var choice_name: String
-var choice_starting_class: String
+var choice_name: String ## Display name used for save metadata shown to user
+
+var choice_starting_class: String ## File UID
+func get_chosen_starting_class_scene() -> PackedScene: ## Should be of type [Player] when instantiated
+	return load(choice_starting_class)
+
+var choice_character_scene: String ## File UID
+func get_character_scene() -> PackedScene:
+	#if not choice_character_scene: return null
+	assert(choice_character_scene)
+	var scene: PackedScene = ResourceLoader.load(choice_character_scene, "PackedScene", ResourceLoader.CACHE_MODE_REUSE)
+	return scene
+
 var combat_playtime: float ## See [Playtime] class for conversion
 
 var current_level: int = 0
@@ -22,7 +35,7 @@ func get_current_level() -> int: return current_level
 
 var persistent_actors: Dictionary[StringName, PersistentActorData]
 
-## Bump SAVE_VERSION when any of these change incompatibly:
+## CRITICAL Bump SAVE_VERSION when any of these change incompatibly:
 ## - PersistentActorData.to_dict keys (and not handled via d.get default)
 ## - Status.to_dict keys
 ## - Action.to_dict keys
@@ -40,8 +53,6 @@ static func new_playthrough(chosen_name: String, chosen_starting_class: String) 
 	this.choice_starting_class = chosen_starting_class
 	this.combat_playtime = 0.0
 	
-func get_chosen_starting_class_scene() -> PackedScene: ## Should be of type [Player] when instantiated
-	return load(choice_starting_class)
 
 static func get_actor_data(actor_key: StringName) -> PersistentActorData:
 	if not this:
