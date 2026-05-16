@@ -36,9 +36,8 @@ TargetFinder="*uid://bdpt4cmj32tcc"
 window/size/viewport_width=960
 window/size/viewport_height=540
 window/stretch/mode="viewport"
-mouse_cursor/custom_image="uid://d1jgkow5h80ft"
-mouse_cursor/tooltip_position_offset=Vector2(16, 10)
 window/stretch/scale_mode="integer"
+mouse_cursor/custom_image="uid://d1jgkow5h80ft"
 
 [editor_plugins]
 
