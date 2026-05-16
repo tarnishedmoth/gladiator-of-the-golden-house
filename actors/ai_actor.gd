@@ -50,8 +50,7 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 		if debug: p("Planning ActionMove.")
 		var facing_direction: Facing.Cardinal
 		if hostile_target:
-			#facing_direction = Facing.get_direction_to_coordinate(current_tile_coords, hostile_target.current_tile_coords)
-			facing_direction = Facing.get_direction_to_global_position(global_position, hostile_target.global_position)
+			facing_direction = Facing.get_direction_to_cell(tile_map, current_tile_coords, hostile_target.current_tile_coords)
 		else:
 			## Fallback but should never run in gameplay
 			facing_direction = Facing.Cardinal.values().pick_random()

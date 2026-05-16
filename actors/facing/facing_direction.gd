@@ -81,28 +81,33 @@ static func get_target_cells(pos: Vector2i, facing: Cardinal, pattern: Array[Vec
 	return targets
 
 ## Returns a cardinal direction from "a" pointing to "b".
-## NOTE this is in global position space, not hex-grid coordinate space!
-## Reasoning is that I couldn't get it to work right the other way lol
+## These parameters are in global 2D space. To use hex grid coordinates,
+## see [method get_direction_to_cell].
 static func get_direction_to_global_position(a: Vector2, b: Vector2) -> Cardinal:
-	## We have to convert to floating point to use these methods
-	## First we get the degree of the angle from point a to point b.
-	## Then we subtract 30 degrees (half of a tile arc) to center the angle on a direction.
-	#var dir = rad_to_deg(Vector2.ZERO.angle_to_point(b-a)) - 30
 	var dir = rad_to_deg(a.angle_to_point(b))
-	dir = wrapf(dir, -30.0, 330.0)
+	dir = wrapf(
+		dir + 90,
+		-30.0, 330.0)
 	
 	var cardinal: Facing.Cardinal
-	for slice in Facing.Cardinal.values():
-		var min_angle: float = (60.0 * slice) - 30.0
+	for i in Facing.Cardinal.size():
+		var min_angle: float = (60.0 * i) - 30.0
 		var max_angle: float = min_angle + 60.0
 		
 		if dir > min_angle and dir < max_angle:
-			cardinal = slice + 1 as Facing.Cardinal ## Classic off by one error... idk fam
+			cardinal = i as Facing.Cardinal
 			
 	assert(cardinal in Facing.Cardinal.values())
-	print_rich("[bgcolor=YELLOW][color=black]The angle from %s to %s is: %s degrees. %s" % [a, b, dir, cardinal])
+	#print_rich("[bgcolor=YELLOW][color=black]The angle from %s to %s is: %s degrees. %s" % [a, b, dir, Cardinal.keys()[cardinal]])
 	
 	return cardinal
+	
+## Returns a cardinal direction using hex grid tile coords.
+static func get_direction_to_cell(tilemap: TileMapLayer, a: Vector2i, b: Vector2i) -> Cardinal:
+	return get_direction_to_global_position(
+		tilemap.map_to_local(a),
+		tilemap.map_to_local(b)
+	)
 
 ## Returns a mirrored copy of a coordinate hex grid along the vertical axis (0, y).
 ## Works for all patterns on either or both sides.
