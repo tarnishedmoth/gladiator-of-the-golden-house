@@ -114,7 +114,7 @@ layout_mode = 2
 theme_type_variation = &"BigButton"
 text = "Quit to Desktop"
 
-[node name="NewGameTab" type="MarginContainer" parent="TabContainer" unique_id=1440261336]
+[node name="SelectClassTab" type="MarginContainer" parent="TabContainer" unique_id=1440261336]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -122,26 +122,26 @@ theme_override_constants/margin_left = 80
 theme_override_constants/margin_right = 80
 metadata/_tab_index = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/NewGameTab" unique_id=1331974694]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/SelectClassTab" unique_id=1331974694]
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="Label" type="Label" parent="TabContainer/NewGameTab/VBoxContainer" unique_id=1944425055]
+[node name="Label" type="Label" parent="TabContainer/SelectClassTab/VBoxContainer" unique_id=1944425055]
 layout_mode = 2
 text = "Select your starting class.
 Each class has unique gameplay actions and stats."
 horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="TabContainer/NewGameTab/VBoxContainer" unique_id=1253228311]
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/SelectClassTab/VBoxContainer" unique_id=1253228311]
 layout_mode = 2
 
-[node name="ClassesGridContainer" type="HFlowContainer" parent="TabContainer/NewGameTab/VBoxContainer/PanelContainer" unique_id=1496187460]
+[node name="ClassesGridContainer" type="HFlowContainer" parent="TabContainer/SelectClassTab/VBoxContainer/PanelContainer" unique_id=1496187460]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 
-[node name="ChosenNameLineEdit" type="LineEdit" parent="TabContainer/NewGameTab/VBoxContainer" unique_id=1738103002]
+[node name="ChosenNameLineEdit" type="LineEdit" parent="TabContainer/SelectClassTab/VBoxContainer" unique_id=1738103002]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -151,19 +151,62 @@ max_length = 24
 expand_to_text_length = true
 select_all_on_focus = true
 
-[node name="PanelContainer2" type="PanelContainer" parent="TabContainer/NewGameTab/VBoxContainer" unique_id=539192275]
+[node name="PanelContainer2" type="PanelContainer" parent="TabContainer/SelectClassTab/VBoxContainer" unique_id=539192275]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/NewGameTab/VBoxContainer/PanelContainer2" unique_id=412074963]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/SelectClassTab/VBoxContainer/PanelContainer2" unique_id=412074963]
 layout_mode = 2
 alignment = 1
 
-[node name="GoBackButton" type="Button" parent="TabContainer/NewGameTab/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=1638055323]
+[node name="GoBackButton" type="Button" parent="TabContainer/SelectClassTab/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=1638055323]
 layout_mode = 2
 theme_type_variation = &"BigButton"
 text = "Go Back"
 
-[node name="ConfirmClassButton" type="Button" parent="TabContainer/NewGameTab/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=1686814505]
+[node name="ConfirmClassButton" type="Button" parent="TabContainer/SelectClassTab/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=1686814505]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"BigButton"
+disabled = true
+text = "Confirm"
+
+[node name="SelectArtTab" type="MarginContainer" parent="TabContainer" unique_id=511267166]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/SelectArtTab" unique_id=1644127257]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="TabContainer/SelectArtTab/VBoxContainer" unique_id=1422484909]
+layout_mode = 2
+text = "Choose your character art.
+This is cosmetic and does not affect gameplay."
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/SelectArtTab/VBoxContainer" unique_id=407813593]
+layout_mode = 2
+
+[node name="ArtGridContainer" type="HFlowContainer" parent="TabContainer/SelectArtTab/VBoxContainer/PanelContainer" unique_id=558515435]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="TabContainer/SelectArtTab/VBoxContainer" unique_id=662280287]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/SelectArtTab/VBoxContainer/PanelContainer2" unique_id=818062356]
+layout_mode = 2
+alignment = 1
+
+[node name="GoBackToClassesButton" type="Button" parent="TabContainer/SelectArtTab/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=1094362108]
+layout_mode = 2
+theme_type_variation = &"BigButton"
+text = "Go Back"
+
+[node name="ConfirmArtButton" type="Button" parent="TabContainer/SelectArtTab/VBoxContainer/PanelContainer2/HBoxContainer" unique_id=47622177]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"BigButton"
@@ -174,7 +217,7 @@ text = "Confirm"
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-metadata/_tab_index = 2
+metadata/_tab_index = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/SelectSaveSlotTab" unique_id=2023913089]
 layout_mode = 2
@@ -238,8 +281,10 @@ text = "Return to Main menu"
 [connection signal="pressed" from="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="TabContainer/NewGameTab/VBoxContainer/PanelContainer2/HBoxContainer/GoBackButton" to="." method="_on_go_back_button_pressed"]
-[connection signal="pressed" from="TabContainer/NewGameTab/VBoxContainer/PanelContainer2/HBoxContainer/ConfirmClassButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="TabContainer/SelectClassTab/VBoxContainer/PanelContainer2/HBoxContainer/GoBackButton" to="." method="_on_go_back_button_pressed"]
+[connection signal="pressed" from="TabContainer/SelectClassTab/VBoxContainer/PanelContainer2/HBoxContainer/ConfirmClassButton" to="." method="_on_confirm_class_button_pressed"]
+[connection signal="pressed" from="TabContainer/SelectArtTab/VBoxContainer/PanelContainer2/HBoxContainer/GoBackToClassesButton" to="." method="_on_go_back_button_pressed"]
+[connection signal="pressed" from="TabContainer/SelectArtTab/VBoxContainer/PanelContainer2/HBoxContainer/ConfirmArtButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="selected" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" to="." method="_on_save_slot_selected"]
 [connection signal="focus_entered" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot1Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_focus_entered" binds= [0]]
 [connection signal="focus_exited" from="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer/VBoxContainer/HBoxContainer/Slot1Button" to="TabContainer/SelectSaveSlotTab/VBoxContainer/SaveSlotsContainer" method="_on_slot_button_focus_exited" binds= [0]]

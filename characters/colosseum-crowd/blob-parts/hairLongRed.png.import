@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://relvrx1ic1i5"
-path="res://.godot/imported/hairShortBlack.png-7153029238589137654be2e9a97fecd0.ctex"
+uid="uid://l6ergblfdyfy"
+path="res://.godot/imported/hairLongRed.png-1681dfef21613a6338a884878f385875.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://play/levels/colosseum/colosseum-crowd/blob-parts/hairShortBlack.png"
-dest_files=["res://.godot/imported/hairShortBlack.png-7153029238589137654be2e9a97fecd0.ctex"]
+source_file="res://characters/colosseum-crowd/blob-parts/hairLongRed.png"
+dest_files=["res://.godot/imported/hairLongRed.png-1681dfef21613a6338a884878f385875.ctex"]
 
 [params]
 

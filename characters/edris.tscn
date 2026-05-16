@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://xpbxvcrymw24"]
+
+[ext_resource type="Texture2D" uid="uid://cqkf7y4cv7dfs" path="res://characters/Edris.png" id="1_vk8cl"]
+
+[node name="Edris" type="Sprite2D" unique_id=2018640814]
+texture = ExtResource("1_vk8cl")

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5cspcrk7jy2d"
-path="res://.godot/imported/hairShortRed.png-a63900c5081ccac012ba0d4de6ac731d.ctex"
+path="res://.godot/imported/hairShortRed.png-9ed462082a133d2d4d1f88732ad58c4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://play/levels/colosseum/colosseum-crowd/blob-parts/hairShortRed.png"
-dest_files=["res://.godot/imported/hairShortRed.png-a63900c5081ccac012ba0d4de6ac731d.ctex"]
+source_file="res://characters/colosseum-crowd/blob-parts/hairShortRed.png"
+dest_files=["res://.godot/imported/hairShortRed.png-9ed462082a133d2d4d1f88732ad58c4a.ctex"]
 
 [params]
 

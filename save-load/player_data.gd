@@ -11,8 +11,16 @@ static func p(args): ## Print method
 ## the actual source file.
 ## These are PlayerDirector scenes with the configured set of actions.
 const STARTING_CLASSES: Dictionary[StringName, String] = {
-	CLASSIC = "uid://bet8eq50pbkqf",
+	SHORT_SWORD = "uid://bet8eq50pbkqf",
 	GREATSWORD = "uid://c5tt5o8dkeve3",
+}
+
+## These are scenes with the art assets specifically.
+const CHARACTER_SCENES: Dictionary[StringName, String] = {
+	NOBODY = "uid://dkxist2lihrf0",
+	CHARLES = "uid://l5cyxitgqmvp",
+	EDRIS = "uid://xpbxvcrymw24",
+	XODIAC = "uid://dupb85srefjlo",
 }
 
 var choice_name: String ## Display name used for save metadata shown to user
@@ -41,9 +49,15 @@ var persistent_actors: Dictionary[StringName, PersistentActorData]
 ## - Action.to_dict keys
 ## - Top-level keys in capture_save_data
 ## Bump NOT required for additive fields read via `d.get(key, default)`.
-const SAVE_VERSION: int = 1
+const SAVE_VERSION: int = 2
 
-static func new_playthrough(chosen_name: String, chosen_starting_class: String) -> void:
+static var this: PlayerData ## Static object
+
+#endregion
+
+## [param chosen_name] can be anything, [param chosen_starting_class] [param chosen_character_art] must be UID as a string.
+## See [member STARTING_CLASSES] and [member CHARACTER_SCENES]
+static func new_playthrough(chosen_name: String, chosen_starting_class: String, chosen_character_scene: String) -> void:
 	if this:
 		p("Overwriting data!")
 	p("%s starting a new playthrough as %s." % [chosen_name, STARTING_CLASSES.find_key(chosen_starting_class)])
@@ -51,6 +65,7 @@ static func new_playthrough(chosen_name: String, chosen_starting_class: String) 
 	this = PlayerData.new()
 	this.choice_name = chosen_name
 	this.choice_starting_class = chosen_starting_class
+	this.choice_character_scene = chosen_character_scene
 	this.combat_playtime = 0.0
 	
 
@@ -87,6 +102,7 @@ static func capture_save_data() -> Dictionary:
 		"save_version": SAVE_VERSION,
 		"choice_name": this.choice_name,
 		"choice_starting_class": this.choice_starting_class,
+		"choice_character_scene": this.choice_character_scene,
 		"combat_playtime": this.combat_playtime,
 		"current_level": this.current_level,
 		"persistent_actors": actors_dict,
@@ -106,6 +122,7 @@ static func apply_save_data(save: SaveLoad.LoadedSave) -> void:
 	this = PlayerData.new()
 	this.choice_name = data.get("choice_name", "")
 	this.choice_starting_class = data.get("choice_starting_class", "")
+	this.choice_character_scene = data.get("choice_character_scene", CHARACTER_SCENES.values().front())
 	this.combat_playtime = data.get("combat_playtime", 0.0)
 	this.current_level = data.get("current_level", 0)
 

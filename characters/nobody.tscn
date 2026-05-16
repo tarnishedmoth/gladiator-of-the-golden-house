@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dkxist2lihrf0"]
+
+[ext_resource type="PackedScene" uid="uid://0b8prxcp20px" path="res://characters/colosseum-crowd/generator.tscn" id="1_4llth"]
+[ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="2_fk17y"]
+[ext_resource type="Script" uid="uid://c23svqo1v3284" path="res://actors/player/weapon-wobble.gd" id="3_6iq73"]
+
+[node name="Nobody" type="Node2D" unique_id=1453263004]
+
+[node name="Generator" parent="." unique_id=2057479258 instance=ExtResource("1_4llth")]
+
+[node name="Sword" type="Sprite2D" parent="." unique_id=1692666815]
+z_index = 1
+position = Vector2(2, 2)
+texture = ExtResource("2_fk17y")
+script = ExtResource("3_6iq73")
+speed = 1.5
+amplitude = 1.5

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_38auy"]
 [ext_resource type="Resource" uid="uid://nkaun0fgvwiu" path="res://actions/prefabs/toss-bomb.tres" id="4_506x5"]
 [ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="5_q2nfv"]
-[ext_resource type="PackedScene" uid="uid://0b8prxcp20px" path="res://play/levels/colosseum/colosseum-crowd/generator.tscn" id="6_ae6mv"]
+[ext_resource type="PackedScene" uid="uid://0b8prxcp20px" path="res://characters/colosseum-crowd/generator.tscn" id="6_ae6mv"]
 [ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="7_d2po5"]
 [ext_resource type="Script" uid="uid://c23svqo1v3284" path="res://actors/player/weapon-wobble.gd" id="8_m852i"]
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="9_md8ss"]

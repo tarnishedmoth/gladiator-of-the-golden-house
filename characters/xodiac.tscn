@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dupb85srefjlo"]
+
+[ext_resource type="Texture2D" uid="uid://dfkghfhc78g2y" path="res://characters/Xodiac.png" id="1_lclnr"]
+
+[node name="Xodiac" type="Sprite2D" unique_id=1490299025]
+texture = ExtResource("1_lclnr")

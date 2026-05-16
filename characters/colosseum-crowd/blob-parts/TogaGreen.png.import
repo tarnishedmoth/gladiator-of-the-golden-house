@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0uagkahvaj7t"
-path="res://.godot/imported/hairLongBlonde.png-900775b4235148db53f0fd1a433f27f4.ctex"
+uid="uid://cich0qun4jptb"
+path="res://.godot/imported/TogaGreen.png-997c4dc92d18b46e4d62a3aa6a72a60c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://play/levels/colosseum/colosseum-crowd/blob-parts/hairLongBlonde.png"
-dest_files=["res://.godot/imported/hairLongBlonde.png-900775b4235148db53f0fd1a433f27f4.ctex"]
+source_file="res://characters/colosseum-crowd/blob-parts/TogaGreen.png"
+dest_files=["res://.godot/imported/TogaGreen.png-997c4dc92d18b46e4d62a3aa6a72a60c.ctex"]
 
 [params]
 

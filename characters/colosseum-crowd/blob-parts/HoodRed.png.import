@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwju70affm1eo"
-path="res://.godot/imported/TogaRed.png-776631906066bcf7d866f8409d5ef127.ctex"
+uid="uid://dmpw14d5sxl6p"
+path="res://.godot/imported/HoodRed.png-8dd6ed85def948f8f11b2dbd545cd78d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://play/levels/colosseum/colosseum-crowd/blob-parts/TogaRed.png"
-dest_files=["res://.godot/imported/TogaRed.png-776631906066bcf7d866f8409d5ef127.ctex"]
+source_file="res://characters/colosseum-crowd/blob-parts/HoodRed.png"
+dest_files=["res://.godot/imported/HoodRed.png-8dd6ed85def948f8f11b2dbd545cd78d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv8ia5hck64ne"
-path="res://.godot/imported/TunicBlue.png-7fcf09c50c126ffb0fe6be5091d36056.ctex"
+uid="uid://bg2ioyvktah0t"
+path="res://.godot/imported/TogaBlue.png-9132f197b18845c2fb7ec957d6db527d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://play/levels/colosseum/colosseum-crowd/blob-parts/TunicBlue.png"
-dest_files=["res://.godot/imported/TunicBlue.png-7fcf09c50c126ffb0fe6be5091d36056.ctex"]
+source_file="res://characters/colosseum-crowd/blob-parts/TogaBlue.png"
+dest_files=["res://.godot/imported/TogaBlue.png-9132f197b18845c2fb7ec957d6db527d.ctex"]
 
 [params]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dcuxaplede7yk" path="res://play/levels/colosseum/colosseum-background-layer1.png" id="1_v3s0n"]
 [ext_resource type="PackedScene" uid="uid://blebayxrcyshs" path="res://vfx/scrolling_clouds.tscn" id="2_2426h"]
-[ext_resource type="Script" uid="uid://c1mla0ywbxk60" path="res://play/levels/colosseum/colosseum-crowd/crowd.gd" id="3_2rg4j"]
+[ext_resource type="Script" uid="uid://c1mla0ywbxk60" path="res://characters/colosseum-crowd/crowd.gd" id="3_2rg4j"]
 [ext_resource type="Material" uid="uid://chc2uvbtjqtj8" path="res://play/levels/colosseum/banners-and-flags/waving-banner-material.tres" id="4_2rg4j"]
 [ext_resource type="Texture2D" uid="uid://du84d6vu47bti" path="res://play/levels/colosseum/banners-and-flags/banners-top.png" id="4_2426h"]
 [ext_resource type="Material" uid="uid://c67vjko6cm0ib" path="res://play/levels/colosseum/banners-and-flags/waving-flag-material.tres" id="4_qq43s"]
