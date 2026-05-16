@@ -167,7 +167,7 @@ func _on_interactor_tile_changed(new_coords: Vector2i) -> void:
 			#if VERBOSE: p("Split Choice -- rel: %s, mirroring: %s" % [relative_coord, mirror])
 			if mirror != current_held_action.run_mirrored:
 				current_held_action.run_mirrored = mirror
-				rerender_held_action_targets()
+		rerender_held_action_targets()
 		
 	#elif is_active and current_held_action and selected_actor:
 		## TODO not functional -- see Action.ImplicatedTiles...
@@ -251,17 +251,35 @@ func rerender_held_action_targets() -> void:
 		elif current_held_action is ActionApplyStatus:
 			color = Targeting.COLORS.YELLOW
 		elif current_held_action is ActionChangeStance:
-			color = Targeting.COLORS.WHITE
+			color = Targeting.COLORS.YELLOW
 		else:
 			color = Targeting.COLORS.RED
 		
-			
+		var playable_tiles: Array[Vector2i] = selected_actor.get_action_target_cells(current_held_action)
+		if "split_choice" in current_held_action:
+			if current_held_action.split_choice:
+				playable_tiles.append_array(
+					Facing.rotate_hex_array(selected_actor.facing,
+						Facing.mirror(
+							Facing.unrotate_hex_array(selected_actor.facing, playable_tiles))
+						)
+					)
+		
+		var hovered_tile_is_valid: bool = _last_hovered_tile in playable_tiles
+		playable_tiles.erase(_last_hovered_tile)
 		TargetFinder.highlight_targets(
-			selected_actor.get_action_target_cells(current_held_action),
-			color)
+			playable_tiles,
+			Color.WHITE if not hovered_tile_is_valid else Color.GRAY
+			)
+			
+		var aoe_tiles = selected_actor.get_action_target_cells_at(_last_hovered_tile, current_held_action)
+		if aoe_tiles != null:
+			TargetFinder.highlight_aoe_spots(
+				aoe_tiles,
+				color
+				)
 			
 		_self_action_preview_showing = true
-			
 
 #region Actions / Deck Logic
 ## Used to preview actions.

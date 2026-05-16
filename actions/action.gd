@@ -121,12 +121,15 @@ func run_on(actor: Actor) -> void:
 ## Each property is in absolute coordinates!
 class ImplicatedTiles:
 	var source: Vector2i ## To clearly show where the action's actor is
+	var playable: Array[Vector2i] ## Playable tiles for this action. AoE would be translated to this tile.
 	var effected: Array[Vector2i] ## Tiles where the action effect will be applied.
-	var blocked: Array[Vector2i] ## Tiles where the action effect can not be applied.
-	var blockers: Array[Vector2i] ## Actor on tile. Not the same as an actor who would take damage.
+	#var blocked: Array[Vector2i] ## Tiles where the action effect can not be applied.
+	#var blockers: Array[Vector2i] ## Actor on tile. Not the same as an actor who would take damage.
 
 func get_implicated_tiles(at_coords: Vector2i) -> ImplicatedTiles:
 	var tiles := ImplicatedTiles.new()
+	tiles.source = _actor.current_tile_coords
+	#tiles.playable = Facing.get_target_cells(_actor.current_tile_coords, _actor.facing, pattern)
 	## TODO
 	return tiles
 

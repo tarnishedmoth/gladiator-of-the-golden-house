@@ -15,7 +15,18 @@ class_name ActionAttack extends Action
 
 var mirrored_pattern: Array[Vector2i] ## Cached.
 
-@export var aoe_pattern: Array[Vector2i]
+@export var aoe_pattern: Array[Vector2i]:
+	get:
+		if aoe_pattern.is_empty():
+			return NO_PATTERN
+		if split_choice:
+			if run_mirrored:
+				if mirrored_aoe_pattern.is_empty():
+					mirrored_aoe_pattern = Facing.mirror(aoe_pattern) ## Caching, WARNING does not check equivalency
+				return mirrored_aoe_pattern
+		return aoe_pattern
+
+var mirrored_aoe_pattern: Array[Vector2i] ## Cached.
 
 ## TODO If true, allows for the pattern to *also* apply mirrored (asymmetrical patterns).
 ## In code, you can mirror a pattern using [method Facing.mirror].

@@ -12,6 +12,7 @@ func show_preview_action(action:Action)-> void:
 	print("Action Preview Activated.")
 
 	var all: Array[Vector2i] = _actor.get_action_target_cells(_action)
+	
 	if _action is ActionMove:
 		TargetFinder.highlight_targets(all, Targeting.COLORS.GREY)
 		return

@@ -412,6 +412,25 @@ func remove_status(status: Status) -> void:
 #endregion
 
 #region Highlighting & Planning
+## Updated method to work with AoE patterns, original pattern is assumed to be just for selection
+func get_action_target_cells_at(play_tile: Vector2i, action: Action) -> Array[Vector2i]:
+	var aoe: Array[Vector2i]
+	if not "pattern" in action:
+		if current_tile_coords == play_tile:
+			aoe.append(current_tile_coords)
+		return aoe
+		
+	if not play_tile in Facing.get_target_cells(current_tile_coords, facing, action.pattern):
+		## Invalid play tile
+		return aoe
+	
+	if not "aoe_pattern" in action:
+		aoe = Action.NO_PATTERN
+	else:
+		aoe = action.aoe_pattern
+	
+	var _facing = get_facing()
+	return Facing.get_target_cells(play_tile, _facing, aoe)
 
 func get_action_target_cells(action: Action) -> Array[Vector2i]:
 	if "pattern" in action:

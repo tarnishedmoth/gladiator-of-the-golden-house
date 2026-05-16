@@ -22,6 +22,7 @@ func highlight_target(coords: Vector2i, color: Color) -> void:
 		var target_highlight: TargetIndicatorVisual = targ_scene.instantiate()
 		
 		target_highlight.set_color(color)
+		target_highlight.scale *= 0.6
 		add_child(target_highlight)
 		target_highlight.global_position = tilemap.to_global(tilemap.map_to_local(coords))
 		target_highlight.add_to_group("target_highlights")

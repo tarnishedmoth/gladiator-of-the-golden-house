@@ -3,6 +3,7 @@ class_name TargetIndicatorVisual extends Node2D
 const ALPHA_VALUE = 114
 
 var _despawning: bool = false
+@onready var _starting_scale: Vector2 = scale
 
 func _ready() -> void:
 	var tween = create_tween()
@@ -11,8 +12,8 @@ func _ready() -> void:
 
 func pulse() -> void:
 	var tween = create_tween().set_loops()
-	tween.tween_property(self, "scale", Vector2(0.95,0.95),1.0)
-	tween.tween_property(self, "scale", Vector2(1.1,1.1),1.0)
+	tween.tween_property(self, "scale", Vector2(0.95,0.95) * _starting_scale, 1.0)
+	tween.tween_property(self, "scale", Vector2(1.1,1.1) * _starting_scale, 1.0)
 
 func set_color(color: Color) -> void:
 	color.a = ALPHA_VALUE / 255.0
