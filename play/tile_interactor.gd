@@ -1,6 +1,7 @@
 class_name TileInteractor extends Node2D
 
 const VERBOSE: bool = false
+const MAGIC_OFFSET := Vector2(-128.0, -72.0) / 2.0 ## Used rather than Sprite2D's offset because of how scaling works
 
 signal tile_changed(new_coords: Vector2i)
 
@@ -44,32 +45,36 @@ func get_tile_data(coords: Vector2i) -> TileData:
 func get_current_tile_data() -> TileData:
 	return get_tile_data(current_coords)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+## Called every frame.
+var _tween: Tween
 func _process(_delta: float) -> void:
-	if tilemap:
-		## Check if we're hovering over any tile
-		var coords = get_tile_coords_under_interactor()
-		if coords == null:
-			## No tile under cursor
-			if tile_highlight_sprite: tile_highlight_sprite.hide()
+	if not tilemap: return
+	
+	## Check if we're hovering over any tile
+	var coords = get_tile_coords_under_interactor()
+	if coords == null:
+		## No tile under cursor
+		if tile_highlight_sprite:
+			tile_highlight_sprite.hide()
+		
+	else:
+		if not last_coords == coords:
+			## New tile
+			current_coords = coords
+			tile_changed.emit(current_coords)
 			
-		else:
-			if not last_coords == coords:
-				## New tile
-				current_coords = coords
-				tile_changed.emit(current_coords)
-				
-				if tile_highlight_sprite:
-					tile_highlight_sprite.position = tilemap.map_to_local(current_coords)
-				
-				if VERBOSE:
-					print("%s at %s" % [tilemap.get_cell_tile_data(coords), current_coords])
-				last_coords = coords
+			if tile_highlight_sprite:
+				tile_highlight_sprite.position = tilemap.map_to_local(current_coords) + MAGIC_OFFSET
+				_pulse()
 			
-			if show_highlight and not tile_highlight_sprite.visible:
-				tile_highlight_sprite.show()
-			elif not show_highlight:
-				tile_highlight_sprite.hide()
+			if VERBOSE:
+				print("%s at %s" % [tilemap.get_cell_tile_data(coords), current_coords])
+			last_coords = coords
+		
+		if show_highlight and not tile_highlight_sprite.visible:
+			tile_highlight_sprite.show()
+		elif not show_highlight:
+			tile_highlight_sprite.hide()
 				
 
 func render_held_action_projection(player: Player) -> void:
@@ -82,3 +87,15 @@ func render_held_action_projection(player: Player) -> void:
 		TargetFinder.highlight_aoe_spots(implicated_tiles.blockers, Targeting.COLORS.GREY)
 	for blockers in implicated_tiles.blockers:
 		TargetFinder.highlight_aoe_spots(implicated_tiles.blockers, Targeting.COLORS.YELLOW)
+
+func _pulse() -> void:
+	if _tween:
+		_tween.kill()
+	_tween = tile_highlight_sprite.create_tween()
+	_tween.set_parallel()
+	#_tween.set_ease(Tween.EASE_OUT)
+	_tween.set_trans(Tween.TRANS_SPRING)
+	_tween.tween_property(
+		tile_highlight_sprite, ^"modulate", Color.WHITE, Juice.SNAP
+		).from(Color.AQUA.lerp(Color.TRANSPARENT, 0.5))
+	_tween.tween_property(tile_highlight_sprite, ^"scale", Vector2.ONE, Juice.BLITZ).from(Vector2(0.92, 0.88))

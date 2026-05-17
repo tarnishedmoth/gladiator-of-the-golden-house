@@ -71,12 +71,9 @@ visible = false
 
 [node name="TileHighlight" type="Sprite2D" parent="TileMapLayers" unique_id=646544377]
 unique_name_in_owner = true
-visible = false
-modulate = Color(1, 1, 0, 0.16470589)
+self_modulate = Color(1, 1, 0, 0.16470589)
 light_mask = 0
 texture = ExtResource("5_ff1wu")
-centered = false
-offset = Vector2(-128, -72)
 
 [node name="ActionProjections" type="Node2D" parent="TileMapLayers" unique_id=1748832804]
 unique_name_in_owner = true
