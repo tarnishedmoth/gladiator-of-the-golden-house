@@ -65,15 +65,18 @@ func get_affected() -> Array[Actor]:
 	var targets: Array[Vector2i]
 	var facing: Facing.Cardinal = _actor.get_facing() ## TODO maybe use Facing.get_direction_to_coordinate()
 	
-	if aoe_pattern:
+	if aoe_pattern && _target != null:
 		## Translate our aoe pattern to the _target coordinate
 		targets = Facing.get_target_cells(_target, facing, aoe_pattern)
 	else:
-		## (Old behavior): Every coord relative to _actor 
-		#targets = _actor.get_translated_pattern(pattern)
-		
 		## New behavior: only the _target tile
-		targets.append(_target)
+		if _target != null:
+			targets.append(_target)
+		else:
+			## (Old behavior): Every coord relative to _actor
+			## We still use this for AI units in some cases, this is good to keep.
+			#targets = _actor.get_translated_pattern(pattern)
+			targets = _actor.get_action_target_cells(self)
 
 	if debug: p("Targeting %d tiles." % targets.size())
 	
