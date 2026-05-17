@@ -363,6 +363,8 @@ func get_facing(place_indicator_pos):
 
 func play_held_action_at(coords: Vector2i):
 	if current_held_action.can_player_enter(selected_actor):
+		hud.end_turn_button.hide()
+		hud.end_turn_button.disabled = true
 		hud.on_player_running_action(current_held_action)
 		
 		var position_for_facing
@@ -392,6 +394,8 @@ func play_held_action_at(coords: Vector2i):
 		unhold_action()
 		hud.populate_actions_list(actions_in_hand, selected_actor)
 		update_hud_actions_disabled_check()
+		hud.end_turn_button.disabled = false
+		hud.end_turn_button.show()
 
 func add_to_deck(card: Action) -> void:
 	if card == null:
