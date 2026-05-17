@@ -28,6 +28,8 @@ signal queued_actions_finished(actor: Actor)
 var emit_actions_finished_signal: bool = false
 
 var current_tile_coords: Vector2i
+var previous_tile_coords: Vector2i
+
 var tile_map: TileMapLayer
 var director: Director
 
@@ -258,9 +260,11 @@ func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
 	var occupant: Actor = Level.get_actor_at(coords)
 	if occupant != null and occupant != self:
 		push_warning("Actor %s tried to move to %s but it is occupied by %s. Staying in place." % [name, coords, occupant.name])
+		await create_tween().tween_interval(0.1).finished
 		animation_finished.emit()
 		return
 
+	previous_tile_coords = current_tile_coords
 	current_tile_coords = coords
 	var move_tween := create_tween()
 	move_tween.set_trans(Tween.TRANS_QUAD)

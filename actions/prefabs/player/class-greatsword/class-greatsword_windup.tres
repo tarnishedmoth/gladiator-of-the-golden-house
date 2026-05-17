@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_65bbj")
 status = ExtResource("3_65bbj")
-allow_facing_after = true
+allow_facing_before = true
 ui_title = "Wind Up"
 ui_description = "Applies Wind Up to self:
 The next Combat played deals 1.5x damage. Does not stack."

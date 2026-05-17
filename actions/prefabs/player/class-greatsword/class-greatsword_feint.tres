@@ -1,7 +1,15 @@
 [gd_resource type="Resource" script_class="ActionMove" format=3 uid="uid://blklld7qypcof"]
 
 [ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_nc53v"]
+[ext_resource type="Script" uid="uid://cgsd01ejbkcr7" path="res://actions/action_create-tile-watcher.gd" id="2_l1kp7"]
 [ext_resource type="Script" uid="uid://btfwr4ctycjfk" path="res://actions/move.gd" id="2_maifc"]
+[ext_resource type="PackedScene" uid="uid://bxj4lg1ejht70" path="res://actions/tile-watchers/test.tscn" id="3_l1kp7"]
+
+[sub_resource type="Resource" id="Resource_ndohb"]
+script = ExtResource("2_l1kp7")
+tile_watcher = ExtResource("3_l1kp7")
+action_category = 4
+metadata/_custom_type_script = "uid://cgsd01ejbkcr7"
 
 [resource]
 script = ExtResource("2_maifc")
@@ -13,4 +21,5 @@ Reaction:
   If an actor moves onto last tile,
   deal damage and Interrupt. TODO"
 energy_cost = 2
+next_state = SubResource("Resource_ndohb")
 metadata/_custom_type_script = "uid://btfwr4ctycjfk"

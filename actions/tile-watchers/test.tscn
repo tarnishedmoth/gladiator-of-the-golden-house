@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bxj4lg1ejht70"]
+
+[ext_resource type="Script" uid="uid://ddlg7xxf3vrq" path="res://status-effects/react-tile.gd" id="1_7psmh"]
+
+[node name="Test" type="Node2D" unique_id=2071874915]
+script = ExtResource("1_7psmh")
+metadata/_custom_type_script = "uid://ddlg7xxf3vrq"

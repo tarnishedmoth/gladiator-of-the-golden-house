@@ -19,4 +19,5 @@ func move_actor(actor: Actor) -> void:
 		actor.call_deferred("move_to_tile", _target)
 		
 		await actor.animation_finished
-		## todo actor.set_facing
+		
+		Level.get_instance().on_actor_moved(actor)

@@ -230,6 +230,10 @@ func _on_turn_taken(director: Director) -> void:
 		next_turn()
 	else:
 		_next_directors_turn()
+		
+func on_actor_moved(actor: Actor) -> void:
+	for node: TileWatcher in get_tree().get_nodes_in_group(TileWatcher.GROUP_NAME):
+		await node.on_actor_moved(actor)
 
 func pause_game(paused: bool) -> void:
 	playtime_counter_running = not paused
