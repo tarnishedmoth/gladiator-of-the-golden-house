@@ -117,6 +117,10 @@ func enter_with(actor: Actor, from: Action = null) -> void:
 func run_on(actor: Actor) -> void:
 	actor.run_action(self)
 
+func exit() -> void:
+	if _target != null && next_state:
+		next_state.set_target(_target)
+	super()
 
 ## Each property is in absolute coordinates!
 class ImplicatedTiles:
