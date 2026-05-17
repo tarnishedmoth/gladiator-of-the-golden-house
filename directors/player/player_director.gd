@@ -255,15 +255,14 @@ func rerender_held_action_targets() -> void:
 		else:
 			color = Targeting.COLORS.RED
 		
-		var playable_tiles: Array[Vector2i] = selected_actor.get_action_target_cells(current_held_action)
-		if "split_choice" in current_held_action:
-			if current_held_action.split_choice:
-				playable_tiles.append_array(
-					Facing.rotate_hex_array(selected_actor.facing,
-						Facing.mirror(
-							Facing.unrotate_hex_array(selected_actor.facing, playable_tiles))
-						)
-					)
+		var playable_tiles: Array[Vector2i]
+		if not "split_choice" in current_held_action:
+			playable_tiles = selected_actor.get_action_target_cells(current_held_action)
+		elif current_held_action.split_choice:
+			playable_tiles = selected_actor.get_action_target_cells(current_held_action, true) ## Include mirrored
+		else:
+			playable_tiles = selected_actor.get_action_target_cells(current_held_action)
+			
 		
 		var hovered_tile_is_valid: bool = _last_hovered_tile in playable_tiles
 		playable_tiles.erase(_last_hovered_tile)

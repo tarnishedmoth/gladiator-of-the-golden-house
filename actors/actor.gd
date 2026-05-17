@@ -459,12 +459,25 @@ func get_action_target_cells_at(play_tile: Vector2i, action: Action) -> Array[Ve
 	var _facing = get_facing()
 	return Facing.get_target_cells(play_tile, _facing, aoe)
 
-func get_action_target_cells(action: Action) -> Array[Vector2i]:
+func get_action_target_cells(action: Action, include_mirrored: bool = false) -> Array[Vector2i]:
 	if "pattern" in action:
+		var result: Array[Vector2i]
+		
 		if action.is_obstructable == true:
-			return get_translated_pattern_without_obstructions(action.pattern) #find cells without actors in them 
-		else: 	
-			return get_translated_pattern(action.pattern)
+			result = get_translated_pattern_without_obstructions(action.pattern) #find cells without actors in them 
+			if include_mirrored:
+				result.append_array(get_translated_pattern_without_obstructions(
+					Facing.mirror(action.pattern))
+					)
+			
+		else:
+			result = get_translated_pattern(action.pattern)
+			if include_mirrored:
+				result.append_array(get_translated_pattern(
+					Facing.mirror(action.pattern))
+					)
+		
+		return result
 	else:
 		return get_translated_pattern(Action.NO_PATTERN)
 
