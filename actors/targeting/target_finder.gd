@@ -9,6 +9,8 @@ const COLORS = {
 	GREY = Color("555555ff")
 }
 
+const GROUP_NAME: StringName = &"target_highlights"
+
 const TARGET_INDICATOR_VISUAL = preload("uid://bw78572gtph87")
 var targ_scene: PackedScene = TARGET_INDICATOR_VISUAL
 var tilemap: TileMapLayer
@@ -25,7 +27,7 @@ func highlight_target(coords: Vector2i, color: Color) -> void:
 		target_highlight.scale *= 0.6
 		add_child(target_highlight)
 		target_highlight.global_position = tilemap.to_global(tilemap.map_to_local(coords))
-		target_highlight.add_to_group("target_highlights")
+		target_highlight.add_to_group(GROUP_NAME)
 
 func highlight_targets(targets: Array[Vector2i], color: Color):
 	for entry in targets:
@@ -41,7 +43,7 @@ func highlight_aoe(coords: Vector2i, color: Color) -> void:
 		aoe_target_highlight.set_color(color)
 		add_child(aoe_target_highlight)
 		aoe_target_highlight.global_position = tilemap.to_global(tilemap.map_to_local(coords))
-		aoe_target_highlight.add_to_group("target_highlights")
+		aoe_target_highlight.add_to_group(GROUP_NAME)
 	
 func highlight_aoe_spots(targets: Array[Vector2i], color: Color):
 	for entry in targets:
@@ -52,5 +54,5 @@ func translate_and_highlight_aoe_spots(pos: Vector2i, facing: int, pattern: Arra
 
 
 func clear_target_highlights():
-	for node: TargetIndicatorVisual in get_tree().get_nodes_in_group("target_highlights"):
+	for node: TargetIndicatorVisual in get_tree().get_nodes_in_group(GROUP_NAME):
 		node.despawn()
