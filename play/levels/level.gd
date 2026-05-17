@@ -11,6 +11,7 @@ func p(args):
 
 signal current_director_changed(director: Director)
 
+@export var use_randomized_rotation_and_mirror: bool = true
 @export var show_debug_tile_coords_overlay:bool = false:
 	set(v):
 		if (not show_debug_tile_coords_overlay) and v:
@@ -33,6 +34,10 @@ var directors: Array[Director] = [] ## A list of all player and AI directors in 
 var current_director_idx: int = -1 ## The index of the current director within [member directors].
 var waiting_to_finish: Array[Director] = [] ## A list of all directors who need to complete their turn before the cycle repeats.
 @onready var pick_up_manager: PickUpManager = %PickUpManager
+
+## Random level rotation/mirroring
+@onready var _level_start_facing: Facing.Cardinal = Facing.Cardinal.values().pick_random() as Facing.Cardinal
+@onready var _level_start_mirror: bool = randf() > 0.5
 
 #endregion
 #region Static Instances
@@ -109,6 +114,29 @@ static func get_pick_up_at(coords: Vector2i) -> PickUp:
 		if pick_up.current_tile_coords == coords:
 			return pick_up
 	return null
+	
+## Used by Actors to reposition themselves at the start of the game
+## to the pseudo-randomized location.
+static func get_starting_coord(original: Vector2i) -> Vector2i:
+	var inst = get_instance()
+	if not inst.use_randomized_rotation_and_mirror:
+		return original
+	else:
+		return Facing.rotate_hex(
+			inst._level_start_facing,
+			Facing.mirror_cell(original) if inst._level_start_mirror else original
+			)
+			
+## Used by Actors to translate their facing direction at the start of the game.
+static func get_starting_facing(original: Facing.Cardinal) -> Facing.Cardinal:
+	var inst = get_instance()
+	if not inst.use_randomized_rotation_and_mirror:
+		return original
+	else:
+		if inst._level_start_mirror:
+			return Facing.get_combined(Facing.mirror_facing(original), inst._level_start_facing)
+		else:
+			return Facing.get_combined(original, inst._level_start_facing)
 
 #endregion
 #region Virtuals

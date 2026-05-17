@@ -32,6 +32,9 @@ static func get_rad_rotation(facing: Cardinal) -> float: return deg_to_rad(60 * 
 
 static func get_direction_from_facing(facing: int, relative: int) -> Vector2i:
 	return DIRECTIONS[(facing + relative) % 6]
+	
+static func get_combined(a: Cardinal, b: Cardinal) -> Cardinal:
+	return wrapi(a + b, 0, 6) as Cardinal
 
 ## Use to relative vectors into absolute vectors.
 static func rotate_hex(unit_facing: Cardinal, hex_coords: Vector2i):
@@ -112,18 +115,17 @@ static func get_direction_to_cell(tilemap: TileMapLayer, a: Vector2i, b: Vector2
 ## Returns a mirrored copy of a coordinate hex grid along the vertical axis (0, y).
 ## Works for all patterns on either or both sides.
 static func mirror(pattern: Array[Vector2i]) -> Array[Vector2i]:
-	#print("Original:", pattern)
-	
 	var copy: Array[Vector2i] = [] ## Arrays are passed by reference--values are mutable.
 	for coord: Vector2i in pattern:
-		if coord.x == 0:
-			## Centerline
-			copy.append(coord)
-		else:
-			copy.append(Vector2i(
-				-coord.x,
-				coord.y + coord.x
-			))
-	
-	#print("Mirrored:", copy)
+		copy.append(mirror_cell(coord))
 	return copy
+
+static func mirror_cell(coord: Vector2i) -> Vector2i:
+	if coord.x == 0:
+		## Centerline
+		return coord
+	else:
+		return Vector2i(-coord.x, coord.y + coord.x)
+
+static func mirror_facing(facing: Cardinal) -> Cardinal:
+	return wrapi(0 - facing, 0, 6) as Cardinal

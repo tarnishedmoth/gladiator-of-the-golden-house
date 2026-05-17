@@ -139,7 +139,7 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	
 	tree_exited.connect(self.director.actors.erase.bind(self))
 	
-	snap_to_nearest_tile()
+	_reorient_to_level_rotation() ## Also snaps
 	
 	show_facing_indicator()
 
@@ -245,6 +245,16 @@ func spawn_vfx(effect: ActorVfxHandler.FX) -> void:
 #endregion
 
 #region MOVEMENT
+
+func _reorient_to_level_rotation() -> void:
+	var original: Vector2i = tile_map.local_to_map(tile_map.to_local(global_position))
+	assert(tile_map.get_cell_tile_data(original))
+	
+	facing = Level.get_starting_facing(facing)
+	var actual: Vector2i = Level.get_starting_coord(original)
+	
+	global_position = get_global_position_at(tile_map, actual)
+	current_tile_coords = actual
 
 func snap_to_nearest_tile() -> void:
 	var tile_coords: Vector2i = tile_map.local_to_map(tile_map.to_local(global_position))
