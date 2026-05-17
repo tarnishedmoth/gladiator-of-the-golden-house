@@ -1,5 +1,6 @@
 class_name LevelHUD extends CanvasLayer
 
+const END_TURN_TEXT: String = "End Turn"
 const SELECTED_ACTOR_ACTION_PANEL = preload("uid://dxvurd53homf")
 const POPUP_NUMBER_INDICATOR = preload("uid://rim8rln2dqsb")
 
@@ -7,12 +8,6 @@ const STYLE_DAMAGE: PopupStyle = preload("uid://bqhq0381fj7a3")
 const STYLE_STATUS: PopupStyle = preload("uid://bqhq0381urka3")
 const STYLE_NEGATED: PopupStyle = preload("uid://bqhq0381djca3")
 
-#static var instance: LevelHUD:
-	#set(v):
-		#if (v != null) and (instance != null):
-			#assert(not is_instance_valid(instance), "More than one instance in memory")
-		#instance = v
-		
 var selected_actor_action_panels: Array[HUDSelectedActorActionPanel]
 
 @onready var hover_panel: HUDHoverPanel = %HoverPanel
@@ -21,12 +16,6 @@ var selected_actor_action_panels: Array[HUDSelectedActorActionPanel]
 @onready var actions_hover_panel: HUDActionHoverPanel = %ActionsHoverPanel
 @onready var selected_actor_action_panels_v_box_container: VBoxContainer = %SelectedActorActionPanelsVBoxContainer
 @onready var end_turn_button: Button = %EndTurnButton
-
-#func _enter_tree() -> void:
-	#instance = self
-	#
-#func _exit_tree() -> void:
-	#if instance == self: instance = null
 
 func _ready() -> void:
 	## Setup
@@ -77,6 +66,8 @@ func clear_all_selected_actor_action_panels() -> void:
 		child.queue_free()
 	selected_actor_action_panels.clear()
 
+func on_player_running_action(action: Action) -> void:
+	actions_panel.on_player_running_action(action)
 
 ## Action Panel signals
 func _on_action_pressed(action: Action) -> void:
@@ -92,7 +83,7 @@ func _on_stash_action_pressed(action: Action) -> void:
 		player.hold_action(action)
 
 func populate_actions_list(hand: Array[Action], selected_actor: Actor) -> void:
-	actions_panel.populate_actions(hand, selected_actor)
+	actions_panel.populate_action_buttons(hand, selected_actor)
 
 func populate_stash_list(stash: Array[Action], selected_actor: Actor) -> void:
 	stash_panel.populate_stash(stash, selected_actor)
@@ -125,12 +116,11 @@ func _on_action_hover_ended() -> void:
 	actions_hover_panel.clear_all()
 	show_actions_hover_panel(false)
 
-
 func _on_current_director_changed(new_director: Director) -> void:
 	actions_panel.actions_header.set_blips(0)
 	end_turn_button.disabled = not new_director is Player
 
-const END_TURN_TEXT: String = "End Turn"
+
 var end_turn_hold_tween: Tween
 func kill_end_turn_hold_tween():
 	if end_turn_hold_tween:

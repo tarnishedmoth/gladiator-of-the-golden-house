@@ -13,6 +13,12 @@ func get_action_assigned_to(button: ButtonWithBlips) -> Action:
 		return action_buttons[button]
 	else:
 		return null
+		
+func get_button_assigned_to(action: Action) -> ButtonWithBlips:
+	if action in action_buttons.values():
+		return action_buttons.find_key(action)
+	else:
+		return null
 
 func clear_all_actions() -> void:
 	for card in action_buttons.keys():
@@ -21,6 +27,7 @@ func clear_all_actions() -> void:
 
 func populate_action_buttons(actions: Array[Action], selected_actor: Actor) -> void:
 	clear_all_actions()
+	await get_tree().process_frame
 	for card in actions:
 		var new_button: ButtonWithBlips = ButtonWithBlips.new()
 		actions_container.add_child(new_button)
@@ -57,3 +64,18 @@ func _on_action_hover_started(button) -> void:
 
 func _on_action_hover_ended(_button) -> void:
 	action_hover_ended.emit()
+
+
+var fade_tween: Tween
+func on_player_running_action(action: Action) -> void:
+	## We want to lightly disable the menu to hide some of the gears turning
+	if fade_tween:
+		fade_tween.kill()
+	fade_tween = create_tween()
+	fade_tween.set_parallel()
+	
+	var this_button: ButtonWithBlips = get_button_assigned_to(action)
+	for button in action_buttons.keys():
+		if button != this_button:
+			fade_tween.tween_property(button, ^"modulate", Color.WHITE.lerp(Color.TRANSPARENT, 0.5), Juice.SNAPPY)
+	## and we don't need to worry about resetting because all the buttons will be destroyed and recreated

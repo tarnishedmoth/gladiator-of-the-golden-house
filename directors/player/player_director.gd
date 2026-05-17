@@ -363,6 +363,8 @@ func get_facing(place_indicator_pos):
 
 func play_held_action_at(coords: Vector2i):
 	if current_held_action.can_player_enter(selected_actor):
+		hud.on_player_running_action(current_held_action)
+		
 		var position_for_facing
 		if current_held_action.allow_facing_before:
 			position_for_facing = selected_actor.global_position
