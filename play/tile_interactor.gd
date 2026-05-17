@@ -54,11 +54,6 @@ func _process(_delta: float) -> void:
 			if tile_highlight_sprite: tile_highlight_sprite.hide()
 			
 		else:
-			if show_highlight and not tile_highlight_sprite.visible:
-				tile_highlight_sprite.show()
-			elif not show_highlight:
-				tile_highlight_sprite.hide()
-				
 			if not last_coords == coords:
 				## New tile
 				current_coords = coords
@@ -70,6 +65,12 @@ func _process(_delta: float) -> void:
 				if VERBOSE:
 					print("%s at %s" % [tilemap.get_cell_tile_data(coords), current_coords])
 				last_coords = coords
+			
+			if show_highlight and not tile_highlight_sprite.visible:
+				tile_highlight_sprite.show()
+			elif not show_highlight:
+				tile_highlight_sprite.hide()
+				
 
 func render_held_action_projection(player: Player) -> void:
 	#print("Rerendering held action projection")

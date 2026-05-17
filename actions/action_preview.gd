@@ -9,7 +9,7 @@ func setup(actor:Actor)->void:
 
 func show_preview_action(action:Action)-> void:
 	_action=action
-	print("Action Preview Activated.")
+	#print("Action Preview Activated.")
 
 	var all: Array[Vector2i] = _actor.get_action_target_cells(_action)
 	
