@@ -370,20 +370,22 @@ func play_held_action_at(coords: Vector2i):
 		
 		selected_actor.remove_energy(current_held_action.energy_cost)
 		current_held_action.set_target(coords)
-		selected_actor.run_action(current_held_action)
+		
+		selected_actor.queue_action(current_held_action, true)
+		await selected_actor.queued_actions_finished
 		
 		var is_from_stash: bool = current_held_action in stash
 		if is_from_stash:
 			remove_from_stash(current_held_action)
 		else:
-			_discard(current_held_action)
-			
+			if current_held_action.action_category == Action.ActionCategory.CONSUMABLE:
+				remove_from_deck(current_held_action)
+			else:
+				_discard(current_held_action)
+		
 		if current_held_action.allow_facing_after:
-			position_for_facing= selected_actor.global_position #TODO: not sure why this isn't getting the current actor position after the player moves?
+			position_for_facing = selected_actor.global_position
 			await get_facing(position_for_facing)
-			
-		if not is_from_stash:
-			remove_used_consumables(current_held_action)
 			
 		unhold_action()
 		hud.populate_actions_list(actions_in_hand, selected_actor)
@@ -433,10 +435,6 @@ func select_actor(actor: Actor) -> void:
 		assert(actor in actors)
 		selected_actor = actor
 		if VERBOSE: p("Selected actor %s" % selected_actor)
-
-func remove_used_consumables(card: Action) -> void:
-	if card.action_category == Action.ActionCategory.CONSUMABLE:
-		remove_from_deck(card)
 
 func deselect_actor() -> void: select_actor(null)
 

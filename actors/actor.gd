@@ -206,10 +206,12 @@ func run_queued_actions() -> void: ## Emits a signal when done.
 
 func queue_action(action: Action, and_run_queue: bool = false) -> void:
 	action_queue.queue.append(action)
+	action_count += 1
 	if and_run_queue:
 		run_queued_actions()
 		
 func append_actions_to_queue(array: Array[Action]) -> void:
+	action_count += array.size()
 	action_queue.queue.append_array(array)
 
 func run_action(action: Action) -> void: ## Immediately runs one action (and any chained actions).
@@ -219,6 +221,7 @@ func run_action(action: Action) -> void: ## Immediately runs one action (and any
 	action_queue.run_action(action)
 
 func clear_action_queue() -> void:
+	action_count -= action_queue.queue.size()
 	action_queue.clear_queue()
 	
 func _on_action_queue_finished() -> void:
