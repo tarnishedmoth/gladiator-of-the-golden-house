@@ -11,11 +11,27 @@ class_name ActionApplyStatus extends Action
 ## On transition to this state
 func enter(_from: ResourceState = null) -> void:
 	if status:
-		var target_actor = Level.get_actor_at(_target)
-		if debug:
-			p("Searched %s for actors and found %s" % [_target, target_actor])
-		apply_status(target_actor)
+		_get_affected_and_apply_status()
 	exit()
+	
+func _get_affected_and_apply_status() -> void:
+	var targets: Array[Vector2i]
+	
+	if _target != null:
+		## New behavior: only the _target tile
+		targets.append(_target)
+	else:
+		## (Old behavior): Every coord relative to _actor
+		## Still utilized by AI Actors for some actions
+		targets = _actor.get_action_target_cells(self)
+
+	if debug: p("Targeting %d tiles." % targets.size())
+
+	for coords in targets:
+		var found_actor: Actor = Level.get_actor_at(coords)
+		if found_actor:
+			apply_status(found_actor)
+
 
 ## Copies the status effect resource and applies it to the actor.
 func apply_status(actor: Actor) -> void:
