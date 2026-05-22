@@ -28,13 +28,17 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 	var queue: Array[Action]
 	
 	if conditions_met and and_always_begin_with:
-		queue.append(and_always_begin_with)
+		var _action: Action = and_always_begin_with.duplicate()
+		plan_action_details(_action, claimed_tiles)
+		queue.append(_action)
 	
 	for i in actions_to_queue_this_turn:
 		queue.append(choose_action(claimed_tiles, actions_to_use))
 	
 	if conditions_met and and_always_end_with:
-		queue.append(and_always_end_with)
+		var _action: Action = and_always_end_with.duplicate()
+		plan_action_details(_action, claimed_tiles)
+		queue.append(_action)
 	
 	append_actions_to_queue(queue)
 
