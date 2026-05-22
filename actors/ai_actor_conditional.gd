@@ -37,7 +37,7 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 		queue.append(_action)
 	
 	var _actions_to_queue: int
-	if alt_actions_to_queue_this_turn >= 0:
+	if conditions_met and alt_actions_to_queue_this_turn >= 0:
 		_actions_to_queue = alt_actions_to_queue_this_turn
 	else:
 		_actions_to_queue = actions_to_queue_this_turn
