@@ -116,8 +116,8 @@ func _ready():
 func display_random_oneliner():
 	# choose one randomly
 	# TODO avoid repeats? go in sequence+loop from a random start index?
-	var str = one_liners[randi() % one_liners.size()]
-	say_this_oneliner(str)
+	var string = one_liners[randi() % one_liners.size()]
+	say_this_oneliner(string)
 	
 ## Random line with a random prefix for variety
 func display_response_oneliner(positive: bool) -> void:

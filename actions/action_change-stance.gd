@@ -6,7 +6,7 @@ class_name ActionChangeStance extends Action
 ## Change stance with this action...
 
 ## On transition to this state
-func enter(from: ResourceState = null) -> void:
+func enter(_from: ResourceState = null) -> void:
 	change_stance(_actor)
 	exit()
 

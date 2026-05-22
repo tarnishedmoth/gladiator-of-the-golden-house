@@ -25,7 +25,7 @@ var mirrored_aoe_pattern: Array[Vector2i] ## Cached.
 
 
 # Called when the node enters the scene tree for the first time.
-func enter(from: ResourceState = null) -> void:
+func enter(_from: ResourceState = null) -> void:
 	if status:
 		_get_affected_and_apply_status()
 	exit()

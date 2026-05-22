@@ -9,7 +9,7 @@ class_name ActionApplyStatus extends Action
 			return override_quantity
 
 ## On transition to this state
-func enter(from: ResourceState = null) -> void:
+func enter(_from: ResourceState = null) -> void:
 	if status:
 		var target_actor = Level.get_actor_at(_target)
 		if debug:

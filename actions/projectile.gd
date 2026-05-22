@@ -22,7 +22,7 @@ enum VfxBehavior {
 
 var _finito: bool = false
 
-func enter(from: ResourceState = null) -> void:
+func enter(_from: ResourceState = null) -> void:
 	if (_target == null) or (not _actor):
 		push_error("Missing setup")
 		exit()

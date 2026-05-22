@@ -7,7 +7,7 @@ class_name ActionMove extends Action
 @export var pattern: Array[Vector2i]
 
 ## On transition to this state
-func enter(from: ResourceState = null) -> void:
+func enter(_from: ResourceState = null) -> void:
 	move_actor(_actor)
 	exit()
 

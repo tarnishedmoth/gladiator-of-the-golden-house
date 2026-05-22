@@ -39,7 +39,7 @@ var mirrored_aoe_pattern: Array[Vector2i] ## Cached.
 @export_range(0.0, 6.0, 0.1) var post_attack_duration: float = 0.0
 
 ## On transition to this state
-func enter(from: ResourceState = null) -> void:
+func enter(_from: ResourceState = null) -> void:
 	if _actor:
 		p("Attacking!")
 		

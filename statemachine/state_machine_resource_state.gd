@@ -25,5 +25,5 @@ func exit() -> void:
 		self
 		)
 
-func on_event(message) -> void:
+func on_event(_message) -> void:
 	pass

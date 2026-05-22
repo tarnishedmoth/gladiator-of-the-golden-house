@@ -117,6 +117,8 @@ func exit() -> void:
 		next_state.set_target(_target)
 	super()
 
+## NOTICE NOT IMPLEMENTED
+## NOTICE NOT IMPLEMENTED
 ## Each property is in absolute coordinates!
 class ImplicatedTiles:
 	var source: Vector2i ## To clearly show where the action's actor is
@@ -125,7 +127,9 @@ class ImplicatedTiles:
 	#var blocked: Array[Vector2i] ## Tiles where the action effect can not be applied.
 	#var blockers: Array[Vector2i] ## Actor on tile. Not the same as an actor who would take damage.
 
-func get_implicated_tiles(at_coords: Vector2i) -> ImplicatedTiles:
+## NOTICE NOT IMPLEMENTED
+## NOTICE NOT IMPLEMENTED
+func get_implicated_tiles(_at_coords: Vector2i) -> ImplicatedTiles:
 	var tiles := ImplicatedTiles.new()
 	tiles.source = _actor.current_tile_coords
 	#tiles.playable = Facing.get_target_cells(_actor.current_tile_coords, _actor.facing, pattern)
