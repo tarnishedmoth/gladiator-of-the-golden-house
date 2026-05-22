@@ -17,7 +17,14 @@ func _on_turn_started():
 	## Let's put the random one-liners here
 	Level.get_instance().trigger_speech_bubbles()
 	
+	var _minimum_wait_time: Tween = create_tween()
+	_minimum_wait_time.tween_interval(1.2)
+	
 	var _result = await execute_queued_moves()
+	
+	if _minimum_wait_time:
+		if _minimum_wait_time.is_running():
+			await _minimum_wait_time.finished
 	
 	select_plans()
 	
