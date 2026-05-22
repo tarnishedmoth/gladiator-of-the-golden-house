@@ -35,9 +35,11 @@ var current_director_idx: int = -1 ## The index of the current director within [
 var waiting_to_finish: Array[Director] = [] ## A list of all directors who need to complete their turn before the cycle repeats.
 @onready var pick_up_manager: PickUpManager = %PickUpManager
 
+@warning_ignore_start("unused_private_class_variable")
 ## Random level rotation/mirroring
 @onready var _level_start_facing: Facing.Cardinal = Facing.Cardinal.values().pick_random() as Facing.Cardinal
 @onready var _level_start_mirror: bool = randf() > 0.5
+@warning_ignore_restore("unused_private_class_variable")
 
 #endregion
 #region Static Instances

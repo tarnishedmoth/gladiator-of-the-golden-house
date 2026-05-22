@@ -33,7 +33,7 @@ func _on_slot_button_focus_entered(slot: int) -> void:
 	display_summary.modulate = Color.WHITE
 
 
-func _on_slot_button_focus_exited(slot: int) -> void:
+func _on_slot_button_focus_exited(_slot: int) -> void:
 	display_summary.modulate = Color.TRANSPARENT
 
 
@@ -42,5 +42,5 @@ func _on_slot_button_mouse_entered(slot: int) -> void:
 	display_summary.modulate = Color.WHITE
 
 
-func _on_slot_button_mouse_exited(slot: int) -> void:
+func _on_slot_button_mouse_exited(_slot: int) -> void:
 	display_summary.modulate = Color.TRANSPARENT
