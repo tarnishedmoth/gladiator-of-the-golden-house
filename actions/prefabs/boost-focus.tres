@@ -6,9 +6,10 @@
 
 [resource]
 script = ExtResource("2_0a7ng")
-pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
+pattern = Array[Vector2i]([Vector2i(0, 0)])
+aoe_pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
 status = ExtResource("3_ey1y5")
 ui_title = "Boost Focus"
-ui_description = "Applies +3 Focus to affected."
+ui_description = "Apply +3 Focus to affected."
 action_category = 2
 metadata/_custom_type_script = "uid://k4rqrulmvg3t"

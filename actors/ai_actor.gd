@@ -3,7 +3,7 @@ class_name AIActor extends Actor
 ## Base class for actors with AI behaviors. Extend this class and override its methods to implement
 ## unique behaviors. This base implementation simply picks randomly from its list of usable actions.
 
-@export var usable_actions: Array[Action] ## TEST
+@export var usable_actions: Array[Action]
 @export var actions_to_queue_this_turn: int = 1
 @export var action_preview: ActionPreview
 
@@ -30,11 +30,11 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 
 	append_actions_to_queue(queue)
 
-func choose_action(claimed_tiles: Array[Vector2i]) -> Action:
+func choose_action(claimed_tiles: Array[Vector2i], _usable_actions: Array[Action] = usable_actions) -> Action:
 	## Selection
 	var action: Action
-	if not usable_actions.is_empty():
-		action = usable_actions.pick_random().duplicate() ## HACK: random
+	if not _usable_actions.is_empty():
+		action = _usable_actions.pick_random().duplicate() ## HACK: random
 	else:
 		push_error("No usable actions configured!")
 		return null
@@ -145,7 +145,7 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 			p("Verified target choice is valid.")
 		
 		action.set_target(choice_target)
-	
+		
 	else:
 		push_warning("Unconfigured planning behavior for action subclass!")
 
