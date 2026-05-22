@@ -18,6 +18,10 @@ class_name AIActorConditional extends AIActor
 ## queued [i]after[/i] regularly queued actions ([member actions_to_queue_this_turn]).
 @export var and_always_end_with: Action
 
+## How many actions to queue if the conditional is met.
+## Set to -1 to disable.
+@export_range(-1, 9, 1.0, "or_greater", "suffix:actions") var alt_actions_to_queue_this_turn: int = -1
+
 
 func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> void:
 	var conditions_met: bool = _check_conditions()
@@ -32,7 +36,13 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 		plan_action_details(_action, claimed_tiles)
 		queue.append(_action)
 	
-	for i in actions_to_queue_this_turn:
+	var _actions_to_queue: int
+	if alt_actions_to_queue_this_turn >= 0:
+		_actions_to_queue = alt_actions_to_queue_this_turn
+	else:
+		_actions_to_queue = actions_to_queue_this_turn
+	
+	for i in _actions_to_queue:
 		queue.append(choose_action(claimed_tiles, actions_to_use))
 	
 	if conditions_met and and_always_end_with:
