@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ksdjo8qa17pc" path="res://menus/developer/dev_menu.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dgjwny10ywnvr" path="res://menus/intro/splash.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dtaw53r4qlxv8" path="res://menus/main_menu.tscn" id="3_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://b7vm1xwkwmbs1" path="res://music/Epic Battle Chiptune - Menu Loop.mp3" id="5_lquwl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
 font_size = 8
@@ -68,5 +69,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 flat = true
+
+[node name="Music_MenuLoop" type="AudioStreamPlayer" parent="." unique_id=843985129]
+stream = ExtResource("5_lquwl")
+bus = &"Music"
+parameters/looping = true
 
 [connection signal="pressed" from="CanvasLayer/Debug/HBoxContainer/DebugSceneLabel/ReturnToMenuButton" to="." method="_on_return_to_menu_button_pressed"]

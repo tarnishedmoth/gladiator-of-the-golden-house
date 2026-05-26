@@ -41,6 +41,10 @@ var slot_screen_state: SlotScreenStates
 func _ready() -> void:
 	main_menu_tab.show()
 	continue_button.disabled = SaveLoad.get_save_slots().is_empty()
+	
+	var start_music = create_tween()
+	start_music.tween_interval(1.8) ## Wait a hot moment
+	start_music.tween_callback(Main.play_music_menu_loop.bind(true))
 
 func populate_starting_classes() -> void:
 	for child in classes_grid_container.get_children(): child.queue_free()
@@ -154,6 +158,8 @@ func _on_save_slot_selected(slot: int) -> void:
 		SlotScreenStates.LOADING:
 			SaveLoad.load_current_save_slot()
 			Main.continue_level.call_deferred()
+			Main.play_music_menu_loop(false) ## First cutscene in a new playthrough will mute the music otherwise
+		
 		SlotScreenStates.SAVING:
 			## New game
 			PlayerData.new_playthrough(chosen_name_line_edit.text, selected_starting_class, selected_character_art)

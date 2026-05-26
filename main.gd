@@ -36,6 +36,7 @@ var current_packed_scene: PackedScene ## Set each time [method change_scene] is 
 
 @onready var debug_scene_label: RichTextLabel = %DebugSceneLabel
 @onready var project_version_label: Label = %ProjectVersionLabel
+@onready var music_menu_loop: AudioStreamPlayer = $Music_MenuLoop
 
 ## Static instance, we should only have one Main in the scene tree at any time.
 static var instance: Main:
@@ -71,6 +72,8 @@ func _ready() -> void:
 		project_version_label.show()
 	else:
 		project_version_label.hide()
+		
+	music_menu_loop.volume_linear = 0.0
 	
 	l("GLADIATOR OF THE GOLDEN HOUSE %s" % [VERSION])
 	if not skip_splash:
@@ -145,3 +148,24 @@ func _on_return_to_menu_button_pressed() -> void:
 		change_scene(dev_main_menu_scene)
 	else:
 		change_scene(main_menu_scene)
+
+static var music_fade: Tween
+## True to play + fade in, false to fade out + stop
+static func play_music_menu_loop(playing: bool) -> void:
+	if not instance:
+		return
+	if music_fade:
+		music_fade.kill()
+	
+	music_fade = instance.create_tween()
+	music_fade.tween_property(
+		instance.music_menu_loop,
+		"volume_linear",
+		1.0 if playing else 0.0,
+		6.0 if playing else 3.0,
+		).from(0.0 if playing else 1.0)
+	
+	if playing:
+		instance.music_menu_loop.play()
+	else:
+		music_fade.tween_callback(instance.music_menu_loop.stop)
