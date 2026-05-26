@@ -12,6 +12,7 @@ speed = 160.0
 arc = 72.0
 hit_vfx_scene = ExtResource("1_ghi12")
 damage = 9
+use_directional_vulnerability = 2
 can_damage_self = true
 can_damage_teammates = true
 pattern = Array[Vector2i]([Vector2i(-2, 0), Vector2i(-1, -1), Vector2i(0, -2), Vector2i(1, -2), Vector2i(2, -2)])
