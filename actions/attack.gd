@@ -1,6 +1,17 @@
 class_name ActionAttack extends Action
 
+enum VulnerabilityMethods {
+	NONE = 0, ## Directional vulnerability is not calculated.
+	ACTOR = 1, ## Use the coordinate of the attacking actor.
+	TARGET = 2, ## Use the coordinate of the target point, where AoE is placed.
+}
+
 @export var damage: int
+
+## Utilize directional damage multipliers on affected actors.
+## See [method Actor.calculate_directional_damage_from].
+@export var use_directional_vulnerability: VulnerabilityMethods = VulnerabilityMethods.ACTOR
+
 @export var can_damage_self: bool = false
 @export var can_damage_teammates: bool = false
 #@export_category("Target Pattern")
@@ -90,39 +101,36 @@ func get_affected() -> Array[Actor]:
 			affected_actors.append(found_actor)
 	return affected_actors
 
+
 func get_damage() -> int:
 	var modified_damage: int = _actor._on_dealing_damage(damage)
 	return modified_damage
-	
+
+
 func _deal_damage(actors:Array[Actor],applied_damage:int) -> void:
 	for actor in actors:
-		var damage_result: Actor.DamageResult = actor.take_damage(applied_damage, _actor)
+		var _damage: int = do_directional_calculation(actor, applied_damage)
+		
+		var damage_result: Actor.DamageResult = actor.take_damage(_damage, _actor)
 		if damage_result.direct > 0:
 			damage_result.direct = _actor._on_dealing_direct_damage(damage_result.direct)
 		if debug: p(
-			"Hit %s with %s/%s (base/modified) damage.\n%s damage was negated, %s damage was taken directly." % [actor.name, damage, applied_damage, damage_result.negated, damage_result.direct]
+			"Hit %s with %s/%s (base/modified) damage.\n%s damage was negated, %s damage was taken directly." % [actor.name, damage, _damage, damage_result.negated, damage_result.direct]
 				)
 		_actor._on_damage_dealt(damage_result)
-		
-## DEPRECATED
-func _get_affected_and_deal_damage() -> void: #break this into 3 methods get_affected, get_damage, deal_damage
-	var targets: Array[Vector2i] = _actor.get_translated_pattern(pattern)
 
-	if debug: p("Targeting %d tiles." % targets.size())
-
-	for coords in targets:
-		var found_actor: Actor = Level.get_actor_at(coords)
-		
-		if found_actor != null:
-			if not can_damage_self && found_actor == _actor:
-				return
-			
-			var modified_damage: int = _actor._on_dealing_damage(damage)
-			## TODO dealing direct damage check
-			var damage_result: Actor.DamageResult = found_actor.take_damage(modified_damage)
-			
-			if debug: p(
-				"Hit %s with %s/%s (base/modified) damage.\n%s damage was negated, %s damage was taken directly." % [found_actor.name, damage, modified_damage, damage_result.negated, damage_result.direct]
-				)
-			
-			_actor._on_damage_dealt(damage_result)
+## See [member use_directional_vulnerability].
+func do_directional_calculation(target_actor: Actor, dmg: int) -> int:
+	## Directional received damage multiplier
+	var _damage: int
+	match use_directional_vulnerability:
+		VulnerabilityMethods.ACTOR:
+			_damage = target_actor.calculate_directional_damage_from(_actor, dmg)
+		VulnerabilityMethods.TARGET:
+			_damage = target_actor.calculate_directional_damage_from(_target, dmg)
+		_:
+			_damage = dmg
+	if debug:
+		var calc: float = float(_damage) / dmg
+		p("Directional calculation results: %s/%s (base/modified) actual ratio: %s" % [dmg, _damage, calc])
+	return _damage
