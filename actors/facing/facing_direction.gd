@@ -36,11 +36,10 @@ static func get_direction_from_facing(facing: int, relative: int) -> Vector2i:
 static func get_combined(a: Cardinal, b: Cardinal) -> Cardinal:
 	return wrapi(a + b, 0, 6) as Cardinal
 
-## Does the same thing as [method get_combined] but returns a Relative.
 ## Given a unit's facing direction, and a cardinal direction,
 ## returns the unit's relative direction to that cardinal.
 static func get_relative_direction(facing: Cardinal, direction: Cardinal) -> Relative:
-	return wrapi(facing + direction, 0, 6) as Relative
+	return wrapi(direction - facing, 0, 6) as Relative
 
 ## Use to relative vectors into absolute vectors.
 static func rotate_hex(unit_facing: Cardinal, hex_coords: Vector2i):

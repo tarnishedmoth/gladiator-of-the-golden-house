@@ -134,8 +134,8 @@ func do_directional_calculation(target_actor: Actor, dmg: int) -> int:
 			_damage = dmg
 			
 	var calc: float = float(_damage) / dmg
-	if not is_equal_approx(calc, 1.0) and DISPLAY_VULN_MULT_POPUP:
-		Level.get_hud().popup_mult(calc, target_actor)
+	if DISPLAY_VULN_MULT_POPUP and (not is_zero_approx(calc - 1.0)):
+		Level.get_hud().popup_vulnerability(calc, target_actor)
 	if debug:
 		p("Directional calculation results: %s/%s (base/modified) actual ratio: %s" % [dmg, _damage, calc])
 	return _damage

@@ -340,6 +340,7 @@ func show_facing_indicator(show_: bool = true) -> void:
 ##
 func calculate_directional_damage_from(actor_or_absolute_coords: Variant, damage: int) -> int:
 	var face: Facing.Relative = get_incoming_damage_face(actor_or_absolute_coords)
+	#print("Relative %s to %s" % [face, actor_or_absolute_coords])
 	return calculate_directional_damage(damage, face)
 
 ## Rounds upwards.
@@ -376,7 +377,10 @@ func get_incoming_damage_face(actor_or_absolute_coords: Variant) -> Facing.Relat
 		return Facing.Relative.FRONT
 	
 	var cardinal = Facing.get_direction_to_cell(tile_map, current_tile_coords, incoming_coords)
-	return Facing.get_relative_direction(facing, cardinal)
+	var relative = Facing.get_relative_direction(facing, cardinal)
+	if debug:
+		p("Vulnerability: from %s aka %s, facing %s, direction is %s" % [incoming_coords, cardinal, facing, relative])
+	return relative
 
 #endregion
 

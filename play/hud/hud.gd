@@ -7,6 +7,7 @@ const POPUP_NUMBER_INDICATOR = preload("uid://rim8rln2dqsb")
 const STYLE_DAMAGE: PopupStyle = preload("uid://bqhq0381fj7a3")
 const STYLE_STATUS: PopupStyle = preload("uid://bqhq0381urka3")
 const STYLE_NEGATED: PopupStyle = preload("uid://bqhq0381djca3")
+const STYLE_VULNERABILITY: PopupStyle = preload("uid://sjdlsxm6sqin")
 
 var selected_actor_action_panels: Array[HUDSelectedActorActionPanel]
 
@@ -168,8 +169,8 @@ func popup_status(text: String, actor: Actor) -> Label:
 func popup_negated(value: int, actor: Actor) -> Label:
 	return _popup_transient(value, actor, STYLE_NEGATED)
 	
-func popup_mult(value: float, actor: Actor) -> Label:
-	return _popup_transient("%.1fx" % value, actor, STYLE_DAMAGE)
+func popup_vulnerability(value: float, actor: Actor) -> Label:
+	return _popup_transient("%.1fx" % value, actor, STYLE_VULNERABILITY)
 
 ## Caller owns lifetime; release via [method clear_popup_persistent_label].
 func popup_label_persistent(text: Variant, actor: Actor, style: PopupStyle) -> Label:
