@@ -167,6 +167,9 @@ func popup_status(text: String, actor: Actor) -> Label:
 
 func popup_negated(value: int, actor: Actor) -> Label:
 	return _popup_transient(value, actor, STYLE_NEGATED)
+	
+func popup_mult(value: float, actor: Actor) -> Label:
+	return _popup_transient("%.1fx" % value, actor, STYLE_DAMAGE)
 
 ## Caller owns lifetime; release via [method clear_popup_persistent_label].
 func popup_label_persistent(text: Variant, actor: Actor, style: PopupStyle) -> Label:

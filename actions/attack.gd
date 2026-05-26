@@ -1,5 +1,7 @@
 class_name ActionAttack extends Action
 
+const DISPLAY_VULN_MULT_POPUP: bool = true
+
 enum VulnerabilityMethods {
 	NONE = 0, ## Directional vulnerability is not calculated.
 	ACTOR = 1, ## Use the coordinate of the attacking actor.
@@ -130,7 +132,10 @@ func do_directional_calculation(target_actor: Actor, dmg: int) -> int:
 			_damage = target_actor.calculate_directional_damage_from(_target, dmg)
 		_:
 			_damage = dmg
+			
+	var calc: float = float(_damage) / dmg
+	if not is_equal_approx(calc, 1.0) and DISPLAY_VULN_MULT_POPUP:
+		Level.get_hud().popup_mult(calc, target_actor)
 	if debug:
-		var calc: float = float(_damage) / dmg
 		p("Directional calculation results: %s/%s (base/modified) actual ratio: %s" % [dmg, _damage, calc])
 	return _damage
