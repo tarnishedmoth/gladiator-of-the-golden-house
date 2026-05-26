@@ -33,6 +33,6 @@ func fire() -> void:
 			#target.take_direct_damage(damage_amount, _actor) ## Not yet warranted by gameplay
 			target.take_direct_damage(damage_amount)
 	else:
-		push_warning("Status hooked but no target actor set!")
+		push_warning("StatusReturnDamage hooked but no target actor set!")
 		
 	on_after_hook()

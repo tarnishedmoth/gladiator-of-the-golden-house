@@ -114,6 +114,15 @@ var health: int
 var energy: int
 @export var starting_energy: int
 
+## Directional multipliers for incoming damage
+@export_group("Directional Vulnerability", "dm_")
+@export var dm_dmg_f: float = 1.0 ## mult for the relative forward direction
+@export var dm_dmg_fr: float = 1.0 ## mult for the relative forward right direction
+@export var dm_dmg_rr: float = 1.2 ## mult for the relative rearward right direction
+@export var dm_dmg_r: float = 1.5 ## mult for the relative rearward direction
+@export var dm_dmg_rl: float = 1.2 ## mult for the relative rearward left direction
+@export var dm_dmg_fl: float = 1.0 ## mult for the relative forward left direction
+
 var action_count: int
 var incoming_damage_by: WeakRef
 func clear_incoming_damage_by() -> void: incoming_damage_by = null
@@ -244,7 +253,7 @@ func spawn_vfx(effect: ActorVfxHandler.FX) -> void:
 
 #endregion
 
-#region MOVEMENT
+#region MOVEMENT & FACING
 
 func _reorient_to_level_rotation() -> void:
 	var original: Vector2i = tile_map.local_to_map(tile_map.to_local(global_position))
@@ -321,10 +330,54 @@ func show_facing_indicator(show_: bool = true) -> void:
 		
 		if debug:
 			p("Facing %s and rotated to %d degrees." % [facing, degrees])
-			
-func select_facing() -> void:
-	pass
-		
+
+
+## All-in-one wrapper method for [method get_incoming_damage_face] and [method calculate_direcitonal_damage].
+## Provide an [Actor] or [Vector2i] absolute coordinates to get modified damage value
+## based on the export properties for directional vulnerability/multipliers. See [member dm_dmg_f].
+##
+## NOTE: These methods are not used in [Actor]'s take damage methods. It is utilized by [Action]s themselves.
+##
+func calculate_directional_damage_from(actor_or_absolute_coords: Variant, damage: int) -> int:
+	var face: Facing.Relative = get_incoming_damage_face(actor_or_absolute_coords)
+	return calculate_directional_damage(damage, face)
+
+## Rounds upwards.
+func calculate_directional_damage(damage: int, direction: Facing.Relative) -> int:
+	var dm: float
+	match direction:
+		Facing.Relative.FRONT:
+			dm = dm_dmg_f
+		Facing.Relative.FRONT_RIGHT:
+			dm = dm_dmg_fr
+		Facing.Relative.BACK_RIGHT:
+			dm = dm_dmg_rr
+		Facing.Relative.BACK:
+			dm = dm_dmg_r
+		Facing.Relative.BACK_RIGHT:
+			dm = dm_dmg_rl
+		Facing.Relative.FRONT_LEFT:
+			dm = dm_dmg_fl
+	return ceili(dm * damage)
+
+## You can provide an [Actor] or [Vector2i]. When given an Actor, it will use the
+## [member Actor.current_tile_coords].
+func get_incoming_damage_face(actor_or_absolute_coords: Variant) -> Facing.Relative:
+	var incoming_coords: Vector2i
+	if actor_or_absolute_coords is Actor:
+		incoming_coords = actor_or_absolute_coords.current_tile_coords
+	elif actor_or_absolute_coords is Vector2i:
+		incoming_coords = actor_or_absolute_coords
+	elif actor_or_absolute_coords is Vector2:
+		push_error("Method was provided Vector2 instead of Vector2i.")
+		incoming_coords = Vector2i(actor_or_absolute_coords)
+	else:
+		push_error("Invalid argument passed to method get_incoming_damage_face().")
+		return Facing.Relative.FRONT
+	
+	var cardinal = Facing.get_direction_to_cell(tile_map, current_tile_coords, incoming_coords)
+	return Facing.get_relative_direction(facing, cardinal)
+
 #endregion
 
 #region HEALTH
@@ -363,6 +416,7 @@ func take_damage(damage: int, from: Actor = null) -> DamageResult:
 	
 	var damage_result: Actor.DamageResult = DamageResult.new(
 		damage - unblocked_damage,
+		## loop through status effects to calculate direct damage result
 		take_direct_damage(unblocked_damage) if unblocked_damage > 0 else 0
 		)
 
@@ -397,7 +451,6 @@ func take_direct_damage(damage: int, from: Actor = null) -> int:
 		die()
 		
 	return damage_result
-
 
 func die() -> void:
 	if debug:
