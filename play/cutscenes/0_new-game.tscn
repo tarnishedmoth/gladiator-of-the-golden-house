@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://by4v57tusbcnq" path="res://play/cutscenes/cutscene.gd" id="1_ijr2w"]
 [ext_resource type="Texture2D" uid="uid://dcuxaplede7yk" path="res://play/levels/colosseum/colosseum-background-layer1.png" id="2_gktfq"]
+[ext_resource type="Script" uid="uid://djxoplepbsxn5" path="res://play/cutscenes/iterative_reveal.gd" id="3_xwi8v"]
 
 [sub_resource type="Animation" id="Animation_gktfq"]
 length = 0.001
@@ -62,6 +63,10 @@ animation = &"finished"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kk50r"]
 animation = &"new_animation"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g5o7r"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wopri"]
 switch_mode = 2
 advance_mode = 2
@@ -70,19 +75,22 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g5o7r"]
-switch_mode = 2
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5k1pm"]
-states/End/position = Vector2(1145, 100)
+states/End/position = Vector2(1143, 93)
 states/Start/position = Vector2(212, 100)
 states/finished/node = SubResource("AnimationNodeAnimation_8l5bs")
-states/finished/position = Vector2(990, 100)
+states/finished/position = Vector2(934, 5)
 states/new_animation/node = SubResource("AnimationNodeAnimation_kk50r")
-states/new_animation/position = Vector2(531, 100)
-transitions = ["Start", "new_animation", SubResource("AnimationNodeStateMachineTransition_wopri"), "new_animation", "finished", SubResource("AnimationNodeStateMachineTransition_y0qs5"), "finished", "End", SubResource("AnimationNodeStateMachineTransition_g5o7r")]
+states/new_animation/position = Vector2(572, 35)
+transitions = ["finished", "End", SubResource("AnimationNodeStateMachineTransition_g5o7r"), "Start", "End", SubResource("AnimationNodeStateMachineTransition_wopri"), "new_animation", "finished", SubResource("AnimationNodeStateMachineTransition_y0qs5")]
 graph_offset = Vector2(-418, -28)
+
+[sub_resource type="Gradient" id="Gradient_gktfq"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xwi8v"]
+gradient = SubResource("Gradient_gktfq")
 
 [node name="0NewGame" type="Node2D" unique_id=770697048]
 script = ExtResource("1_ijr2w")
@@ -96,12 +104,20 @@ tree_root = SubResource("AnimationNodeStateMachine_5k1pm")
 anim_player = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1493767288]
+visible = false
 position = Vector2(480, 540)
 texture = ExtResource("2_gktfq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1340486860]
 offset = Vector2(0, 16)
 transform = Transform2D(1, 0, 0, 1, 0, 16)
+
+[node name="BG" type="TextureRect" parent="CanvasLayer" unique_id=1679383094]
+offset_left = -282.0
+offset_top = -240.0
+offset_right = 1308.0
+offset_bottom = 734.0
+texture = SubResource("GradientTexture2D_xwi8v")
 
 [node name="Control" type="Control" parent="CanvasLayer" unique_id=1655640334]
 layout_mode = 3
@@ -110,16 +126,61 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_xwi8v")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1549537349]
+visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
+offset_left = 27.0
+offset_top = -143.0
+offset_right = -20.0
+offset_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "Game introduction story"
+text = "[b]A.D. 81[/b]  -  Imperial Rome
+
+[i]The spectacular Flavian Amphitheatre has been built by the command of the Emperor.  Now, a great festival is thrown to celebrate the empire's fearsome might,  to satiate the public's thirst for bloodsport,  and to gather the patricians of the region..."
 fit_content = true
-horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1045754797]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 116.0
+offset_top = -149.0
+offset_right = -116.0
+offset_bottom = 103.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[i]... even here, deep in the imperial core, there are murmurings of unrest and a looming threat, beyond the walls.
+
+All eyes are on the Emperor as he claims there is nothing to fret.  How else could such prosperity be concentrated here? ..."
+fit_content = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1566063330]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 133.0
+offset_top = -144.0
+offset_right = -125.0
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[i]... the Inaugural Games now summons the strongest warriors to compete,  to delight the audience,  to indulge the Emperor,  and to earn honor among your fellow warriors ..."
+fit_content = true
+
+[connection signal="finished" from="CanvasLayer/Control" to="." method="on_finished"]
