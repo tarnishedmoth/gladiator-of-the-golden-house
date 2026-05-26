@@ -159,7 +159,7 @@ func _on_interactor_tile_changed(new_coords: Vector2i) -> void:
 	
 	if not current_held_action:
 		update_action_preview()
-	else:
+	elif not _currently_playing_action: ## Prevent highlights from appearing when selecting facing direction/animations playing
 		if current_held_action.get(&"split_choice"):
 			## Check which side of the forward axis we're on, to decide to mirror
 			var relative_coord: Vector2i = Facing.unrotate_hex(selected_actor.facing, new_coords - selected_actor.current_tile_coords)
@@ -234,26 +234,18 @@ func deselect_tile() -> void:
 func _on_click_to_play_action(target_coords: Vector2i) -> void:
 	TargetFinder.clear_target_highlights()
 	deselect_tile()
+	TargetFinder.highlight_target(target_coords, get_action_color(current_held_action)) ## Keep our selection highlighted
 	play_held_action_at(target_coords)
-
 
 var _self_action_preview_showing: bool = false
 func rerender_held_action_targets() -> void:
 	if _self_action_preview_showing:
 		TargetFinder.clear_target_highlights()
-		
+	
 	if current_held_action:
 		update_action_preview()
 		
-		var color: Color
-		if current_held_action is ActionMove:
-			color = Targeting.COLORS.BLUE
-		elif current_held_action is ActionApplyStatus:
-			color = Targeting.COLORS.YELLOW
-		elif current_held_action is ActionChangeStance:
-			color = Targeting.COLORS.YELLOW
-		else:
-			color = Targeting.COLORS.RED
+		var color: Color = get_action_color(current_held_action)
 		
 		var playable_tiles: Array[Vector2i]
 		if not "split_choice" in current_held_action:
@@ -279,6 +271,16 @@ func rerender_held_action_targets() -> void:
 				)
 			
 		_self_action_preview_showing = true
+
+func get_action_color(action: Action) -> Color:
+	if action is ActionMove:
+		return Targeting.COLORS.BLUE
+	elif current_held_action is ActionApplyStatus:
+		return Targeting.COLORS.YELLOW
+	elif current_held_action is ActionChangeStance:
+		return Targeting.COLORS.YELLOW
+	else:
+		return Targeting.COLORS.RED
 
 #region Actions / Deck Logic
 ## Used to preview actions.
@@ -361,11 +363,14 @@ func get_facing(place_indicator_pos):
 	facing_indicator.queue_free()
 	select_facing_is_visible = false
 
+var _currently_playing_action: bool = false
 func play_held_action_at(coords: Vector2i):
 	if current_held_action.can_player_enter(selected_actor):
+		_currently_playing_action = true
+		
 		hud.end_turn_button.hide()
 		hud.end_turn_button.disabled = true
-		hud.on_player_running_action(current_held_action)
+		hud.on_player_running_action(current_held_action) ## Action button list animations/dimming
 		
 		var position_for_facing
 		if current_held_action.allow_facing_before:
@@ -390,7 +395,8 @@ func play_held_action_at(coords: Vector2i):
 		if current_held_action.allow_facing_after:
 			position_for_facing = selected_actor.global_position
 			await get_facing(position_for_facing)
-			
+		
+		_currently_playing_action = false
 		unhold_action()
 		hud.populate_actions_list(actions_in_hand, selected_actor)
 		update_hud_actions_disabled_check()
