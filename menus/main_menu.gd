@@ -23,6 +23,9 @@ var slot_screen_state: SlotScreenStates
 @onready var select_class_tab: MarginContainer = %SelectClassTab
 @onready var select_art_tab: MarginContainer = %SelectArtTab
 
+@onready var legal_tab: MarginContainer = %LegalTab
+@onready var credits_tab: MarginContainer = %CreditsTab
+
 @onready var select_save_slot_tab: MarginContainer = %SelectSaveSlotTab
 @onready var save_slots_container: SaveSlotsContainer = %SaveSlotsContainer
 
@@ -38,10 +41,15 @@ var slot_screen_state: SlotScreenStates
 @onready var art_grid_container: HFlowContainer = %ArtGridContainer
 @onready var confirm_art_button: Button = %ConfirmArtButton
 
+func _enter_tree() -> void:
+	modulate = Color.BLACK
+
 func _ready() -> void:
+	Juice.fade_in(self, Juice.SLOW)
+	
 	main_menu_tab.show()
 	continue_button.disabled = SaveLoad.get_save_slots().is_empty()
-	quit_button.disabled = OS.has_feature("web")
+	quit_button.visible = not OS.has_feature("web")
 	
 	var start_music = create_tween()
 	start_music.tween_interval(1.4) ## Wait a hot moment
@@ -164,3 +172,10 @@ func _on_save_slot_selected(slot: int) -> void:
 			PlayerData.new_playthrough(chosen_name_line_edit.text, selected_starting_class, selected_character_art)
 			#SaveLoad.save_game()
 			Main.play_level.call_deferred(0)
+
+
+func _on_legal_button_pressed() -> void:
+	legal_tab.show()
+
+func _on_credits_button_pressed() -> void:
+	credits_tab.show()

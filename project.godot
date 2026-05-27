@@ -102,4 +102,5 @@ renderer/rendering_method.mobile="gl_compatibility"
 textures/lossless_compression/force_png=true
 viewport/hdr_2d=true
 environment/glow/upscale_mode.mobile=1
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 2d/snap/snap_2d_transforms_to_pixel=true

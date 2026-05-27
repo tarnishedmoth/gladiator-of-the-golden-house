@@ -2,10 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cef5121i0cwd6" path="res://menus/intro/splash.gd" id="1_b04ml"]
 [ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="2_d525n"]
-[ext_resource type="Texture2D" uid="uid://bs8ywso6o5mlp" path="res://icon.svg" id="4_d525n"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_56kac"]
-blend_mode = 2
+[ext_resource type="Texture2D" uid="uid://dvuqbrge3doql" path="res://menus/gladiator-godot-icon.png" id="3_56kac"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_56kac"]
 font_size = 30
@@ -36,18 +33,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+color = Color(0.8509804, 0.6745098, 0.54509807, 1)
 
 [node name="Vignette" parent="UI" unique_id=163976660 instance=ExtResource("2_d525n")]
 layout_mode = 1
 
 [node name="Studio" type="Sprite2D" parent="UI" unique_id=409209664]
 unique_name_in_owner = true
-self_modulate = Color(1, 1, 1, 0.29411766)
-material = SubResource("CanvasItemMaterial_56kac")
-position = Vector2(480, -27.096)
-scale = Vector2(11.66, 11.66)
-texture = ExtResource("4_d525n")
+texture_filter = 2
+position = Vector2(480, 191)
+scale = Vector2(2, 2)
+texture = ExtResource("3_56kac")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=1576631532]
 layout_mode = 1
@@ -68,7 +64,6 @@ alignment = 1
 [node name="Spacer2" type="Control" parent="UI/MarginContainer/VBoxContainer" unique_id=1628986937]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.25
 
 [node name="Title" type="Label" parent="UI/MarginContainer/VBoxContainer" unique_id=586133042]
 unique_name_in_owner = true
@@ -85,6 +80,7 @@ label_settings = SubResource("LabelSettings_bl3qm")
 horizontal_alignment = 2
 
 [node name="Spacer" type="Control" parent="UI/MarginContainer/VBoxContainer" unique_id=414536047]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.25

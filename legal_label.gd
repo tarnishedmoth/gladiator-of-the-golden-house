@@ -1,3 +1,4 @@
+@tool
 class_name LegalLabel extends RichTextLabel
 
 ## Automatically populates with the required license info.
