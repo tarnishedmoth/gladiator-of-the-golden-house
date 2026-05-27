@@ -45,6 +45,15 @@ size_flags_vertical = 0
 text = "Version"
 label_settings = SubResource("LabelSettings_h2yge")
 
+[node name="GoToDevMenuButton" type="Button" parent="CanvasLayer/Debug/HBoxContainer/ProjectVersionLabel" unique_id=603525318]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
 [node name="DebugSceneLabel" type="RichTextLabel" parent="CanvasLayer/Debug/HBoxContainer" unique_id=2022737281]
 unique_name_in_owner = true
 z_index = 100
@@ -75,4 +84,5 @@ stream = ExtResource("5_lquwl")
 bus = &"Music"
 parameters/looping = true
 
+[connection signal="pressed" from="CanvasLayer/Debug/HBoxContainer/ProjectVersionLabel/GoToDevMenuButton" to="." method="_on_go_to_dev_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Debug/HBoxContainer/DebugSceneLabel/ReturnToMenuButton" to="." method="_on_return_to_menu_button_pressed"]

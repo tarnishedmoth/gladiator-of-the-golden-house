@@ -105,6 +105,9 @@ func _change_scene(packed_scene: PackedScene) -> void:
 	if instanced_root:
 		l("Unloading active scene.")
 		# TODO maybe fade to black or something fancy to cover up the scene swap.
+		if instanced_root is Level:
+			instanced_root.is_complete = true ## HACK ?
+		
 		instanced_root.queue_free()
 		await instanced_root.tree_exited
 		instanced_root = null
@@ -144,10 +147,10 @@ static func play_level(number: int) -> void:
 
 
 func _on_return_to_menu_button_pressed() -> void:
-	if load_to_developer_menu:
-		change_scene(dev_main_menu_scene)
-	else:
-		change_scene(main_menu_scene)
+	change_scene(main_menu_scene)
+
+func _on_go_to_dev_menu_button_pressed() -> void:
+	change_scene(dev_main_menu_scene)
 
 static var music_fade: Tween
 ## True to play + fade in, false to fade out + stop
