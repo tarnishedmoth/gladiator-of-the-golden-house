@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://by4v57tusbcnq" path="res://play/cutscenes/cutscene.gd" id="1_ijr2w"]
 [ext_resource type="Texture2D" uid="uid://dcuxaplede7yk" path="res://play/levels/colosseum/colosseum-background-layer1.png" id="2_gktfq"]
+[ext_resource type="Texture2D" uid="uid://dx76445dxlqo6" path="res://play/cutscenes/map.jpg" id="3_2u3dj"]
 [ext_resource type="Script" uid="uid://djxoplepbsxn5" path="res://play/cutscenes/iterative_reveal.gd" id="3_xwi8v"]
 
 [sub_resource type="Gradient" id="Gradient_gktfq"]
@@ -10,6 +11,91 @@ colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_xwi8v"]
 gradient = SubResource("Gradient_gktfq")
+
+[sub_resource type="Animation" id="Animation_2u3dj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-10, -274)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.55, 0.55)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_q3h48"]
+resource_name = "move"
+length = 26.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(5.1, 25.9),
+"transitions": PackedFloat32Array(2.3784142, 1),
+"update": 0,
+"values": [Vector2(-10, -40), Vector2(-420, -650)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5.1, 25.9),
+"transitions": PackedFloat32Array(2.0000005, 1),
+"update": 0,
+"values": [Vector2(0.55, 0.55), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5.2, 11.333333, 20.1, 25.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8l5bs"]
+_data = {
+&"RESET": SubResource("Animation_2u3dj"),
+&"move": SubResource("Animation_q3h48")
+}
 
 [node name="0NewGame" type="Node2D" unique_id=770697048]
 script = ExtResource("1_ijr2w")
@@ -31,6 +117,20 @@ offset_right = 1308.0
 offset_bottom = 734.0
 texture = SubResource("GradientTexture2D_xwi8v")
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=2136682336]
+texture_filter = 4
+offset_left = -10.0
+offset_top = -274.0
+offset_right = 1830.0
+offset_bottom = 1189.0
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("3_2u3dj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/TextureRect" unique_id=1431709316]
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_8l5bs")
+autoplay = &"move"
+
 [node name="Control" type="Control" parent="CanvasLayer" unique_id=1655640334]
 layout_mode = 3
 anchors_preset = 15
@@ -39,10 +139,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_xwi8v")
-iterative_duration = 26.0
+iterative_duration = 28.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1549537349]
-visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5

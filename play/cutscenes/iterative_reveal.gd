@@ -11,6 +11,11 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	nodes.append_array(get_children())
+	for ci:CanvasItem in nodes:
+		ci.hide()
+		ci.modulate = Color.TRANSPARENT
+	
+	await get_tree().create_timer(0.5).timeout
 	start_reveal_iter()
 	show()
 
@@ -24,9 +29,6 @@ func start_reveal_iter() -> void:
 	#for group:Array in groups:
 		#for ci:CanvasItem in group:
 			#ci.hide()
-	for ci:CanvasItem in nodes:
-		ci.hide()
-		ci.modulate = Color.TRANSPARENT
 	
 	iter_current = -1
 	
