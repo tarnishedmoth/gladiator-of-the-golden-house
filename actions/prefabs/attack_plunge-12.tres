@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ActionAttack" format=3 uid="uid://dndcidgrypfmp"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_ye4p6"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="2_6aq51"]
+
+[resource]
+script = ExtResource("2_6aq51")
+damage = 12
+pattern = Array[Vector2i]([Vector2i(1, -1)])
+aoe_pattern = Array[Vector2i]([Vector2i(-1, 0), Vector2i(0, -1), Vector2i(0, 0)])
+split_choice = true
+pre_attack_duration = 0.30000000000000004
+ui_title = "Plunge II"
+ui_description = "Deals damage in a deep pattern."
+energy_cost = 1
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"

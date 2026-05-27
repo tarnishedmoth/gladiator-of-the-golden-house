@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://5ru23xnf2yyh"]
+
+[ext_resource type="PackedScene" uid="uid://dn85j1jxgk42" path="res://play/levels/colosseum/inheritable-level_region-1.tscn" id="1_hhkjl"]
+[ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="2_idxuu"]
+[ext_resource type="PackedScene" uid="uid://cxi4p8eptxxm4" path="res://actors/enemies/bomb_grunt.tscn" id="3_picyr"]
+[ext_resource type="PackedScene" uid="uid://riabfvwpcg63" path="res://actors/enemies/legionary.tscn" id="4_p2nhf"]
+[ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="5_kq8d3"]
+
+[node name="Level" unique_id=13868467 instance=ExtResource("1_hhkjl")]
+
+[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=887418229]
+script = ExtResource("2_idxuu")
+metadata/_custom_type_script = "uid://dwys5mwbuw85s"
+
+[node name="BombGrunt" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=2076353106 instance=ExtResource("3_picyr")]
+position = Vector2(-8, -215)
+facing = 3
+
+[node name="Legionary2" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=84579020 instance=ExtResource("4_p2nhf")]
+position = Vector2(-291, 40)
+
+[node name="Legionary" parent="TileMapLayers/Directors/AIDirector" index="2" unique_id=1600990448 instance=ExtResource("4_p2nhf")]
+position = Vector2(197, -72)
+
+[node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("5_kq8d3")]
+position = Vector2(-3, 71)
+
+[node name="GridTint" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="3" unique_id=1487691829]
+visible = true
+
+[node name="PauseMenu" parent="CanvasLayer" parent_id_path=PackedInt32Array(1228620870) index="2" unique_id=339135320]
+visible = false

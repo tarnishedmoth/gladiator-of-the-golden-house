@@ -20,7 +20,7 @@ health_bar = NodePath("health")
 speech_bubble = NodePath("SpeechBubble")
 ui_name = "Bomb Grunt"
 ui_description = "Hot potato!"
-max_health = 24
+max_health = 16
 metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 
 [node name="Generator" parent="." unique_id=2057479258 instance=ExtResource("6_ae6mv")]

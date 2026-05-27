@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://riabfvwpcg63"]
+
+[ext_resource type="Script" uid="uid://2lxtpvvfchas" path="res://actors/enemies/grunt/grunt.gd" id="1_gm0mo"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_fsf37"]
+[ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="3_8h8qb"]
+[ext_resource type="Resource" uid="uid://lbxk1wbouqvx" path="res://actions/prefabs/attack_slash-14.tres" id="4_ymfpf"]
+[ext_resource type="Resource" uid="uid://dndcidgrypfmp" path="res://actions/prefabs/attack_plunge-12.tres" id="5_6urur"]
+[ext_resource type="PackedScene" uid="uid://0b8prxcp20px" path="res://characters/colosseum-crowd/generator.tscn" id="6_xv4om"]
+[ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="7_5q8mj"]
+[ext_resource type="Script" uid="uid://c23svqo1v3284" path="res://vfx/weapon-wobble.gd" id="8_s0wf2"]
+[ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="9_8d74r"]
+[ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="10_dq3dl"]
+[ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="11_whgdp"]
+[ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="12_7c5xg"]
+
+[node name="Legionary" type="Node2D" unique_id=84579020 node_paths=PackedStringArray("health_bar", "speech_bubble")]
+script = ExtResource("1_gm0mo")
+usable_actions = Array[ExtResource("2_fsf37")]([ExtResource("3_8h8qb"), ExtResource("4_ymfpf"), ExtResource("5_6urur")])
+health_bar = NodePath("health")
+speech_bubble = NodePath("SpeechBubble")
+ui_name = "Legionary"
+ui_description = "A standard citizen soldier, loyal to the Emperor."
+max_health = 24
+
+[node name="Generator" parent="." unique_id=2057479258 instance=ExtResource("6_xv4om")]
+
+[node name="Sword" type="Sprite2D" parent="." unique_id=2126137423]
+z_index = 1
+position = Vector2(2, 2)
+texture = ExtResource("7_5q8mj")
+script = ExtResource("8_s0wf2")
+speed = 1.5
+amplitude = 1.5
+
+[node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("9_8d74r")]
+
+[node name="health" parent="." unique_id=43880176 instance=ExtResource("10_dq3dl")]
+position = Vector2(0, -30)
+
+[node name="placeholder" type="Sprite2D" parent="." unique_id=844266743]
+self_modulate = Color(0.77, 0.22920333, 0.107799985, 1)
+texture = ExtResource("11_whgdp")
+
+[node name="SpeechBubble" parent="." unique_id=757394792 instance=ExtResource("12_7c5xg")]
+position = Vector2(0, -38)

@@ -3,13 +3,15 @@ class_name HUDSelectedActorActionPanel extends PanelContainer
 @export var title: RichTextLabel
 @export var action_image: TextureRect
 @export var description: RichTextLabel
-
+@export var amount: RichTextLabel
 
 
 func clear_all() -> void:
 	title.text = ""
 	description.text = ""
 	action_image.texture = null
+	amount.text = "[center]"
+	amount.hide()
 
 func populate(actor: Actor, action:Action) -> void:
 	clear_all()
@@ -19,6 +21,10 @@ func populate(actor: Actor, action:Action) -> void:
 	
 	if action.ui_icon:
 		action_image.texture = action.ui_icon
+		
+	if action is ActionAttack:
+		amount.append_text("%d damage" % action.damage)
+		amount.show()
 	
 	var _description: String = actor.ui_name + " plans to "
 	if action.ui_description:

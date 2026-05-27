@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ksdjo8qa17pc"]
 
 [ext_resource type="Script" uid="uid://cn5t7ncgbkn2q" path="res://menus/developer/dev_menu.gd" id="1_12ima"]
+[ext_resource type="PackedScene" uid="uid://5ru23xnf2yyh" path="res://play/levels/colosseum/region-1_level-6.tscn" id="2_3hfor"]
 [ext_resource type="PackedScene" uid="uid://d37cvlmrtp1ru" path="res://play/levels/colosseum/region-1_level-1.tscn" id="2_aqm70"]
 [ext_resource type="PackedScene" uid="uid://blegsn4xctlno" path="res://play/levels/colosseum/region-1_level-4.tscn" id="2_b3ud4"]
 [ext_resource type="PackedScene" uid="uid://6gbdlm7qrbdd" path="res://play/levels/colosseum/region-1_level-5.tscn" id="2_uiecw"]
@@ -28,7 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_12ima")
-selectable_levels = Array[PackedScene]([ExtResource("2_uiecw"), ExtResource("2_b3ud4"), ExtResource("2_aqm70"), ExtResource("7_necnj"), ExtResource("4_uiecw"), ExtResource("5_ycxai"), ExtResource("8_x721y"), ExtResource("9_uc0qm"), ExtResource("10_savld")])
+selectable_levels = Array[PackedScene]([ExtResource("2_3hfor"), ExtResource("2_uiecw"), ExtResource("2_b3ud4"), ExtResource("2_aqm70"), ExtResource("7_necnj"), ExtResource("4_uiecw"), ExtResource("5_ycxai"), ExtResource("8_x721y"), ExtResource("9_uc0qm"), ExtResource("10_savld")])
 
 [node name="BG" type="ColorRect" parent="." unique_id=228810212]
 unique_name_in_owner = true

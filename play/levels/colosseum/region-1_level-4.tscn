@@ -35,3 +35,6 @@ position = Vector2(-93, 104)
 
 [node name="GridTint" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="3" unique_id=1487691829]
 visible = true
+
+[node name="PauseMenu" parent="CanvasLayer" parent_id_path=PackedInt32Array(1228620870) index="2" unique_id=339135320]
+visible = true

@@ -14,9 +14,11 @@ metadata/_custom_type_script = "uid://dwys5mwbuw85s"
 
 [node name="Legate" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=576080733 instance=ExtResource("4_2j33d")]
 position = Vector2(3, -141)
+cond_team_count = 1
 
 [node name="Legate2" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=656354215 instance=ExtResource("4_2j33d")]
 position = Vector2(3, -69)
+cond_team_count = 1
 
 [node name="Grunt" parent="TileMapLayers/Directors/AIDirector" index="2" unique_id=84579020 instance=ExtResource("5_qxkrc")]
 position = Vector2(-84, -109)
@@ -35,3 +37,6 @@ position = Vector2(2, 156)
 
 [node name="MouseFollower" parent="." index="4" unique_id=687351869]
 position = Vector2(50, -4)
+
+[node name="PauseMenu" parent="CanvasLayer" parent_id_path=PackedInt32Array(1228620870) index="2" unique_id=339135320]
+visible = true
