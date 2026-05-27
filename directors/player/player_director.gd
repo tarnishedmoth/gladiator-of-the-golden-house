@@ -69,7 +69,8 @@ func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 		actor.setup(self, tile_map)
 
 	draw_deck = starting_actions_deck.duplicate()
-	change_stance(stances.front().pickme_action.stance_uid)
+	if not stances.is_empty():
+		change_stance(stances.front().pickme_action.stance_uid)
 	draw_deck.shuffle()
 
 	var main_actor: Actor = actors.front()
