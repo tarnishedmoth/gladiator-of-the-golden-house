@@ -151,6 +151,10 @@ static func show_options_panel() -> void:
 	if not instance: return
 	instance.options_panel.show()
 
+static func go_to_main_menu() -> void:
+	if not instance: return
+	change_scene(instance.main_menu_scene)
+
 func _on_return_to_menu_button_pressed() -> void:
 	change_scene(main_menu_scene)
 
@@ -170,7 +174,7 @@ static func play_music_menu_loop(playing: bool) -> void:
 		instance.music_menu_loop,
 		"volume_linear",
 		1.0 if playing else 0.0,
-		6.0 if playing else 3.0,
+		12.0 if playing else 4.0,
 		).from(0.0 if playing else 1.0)
 	
 	if playing:

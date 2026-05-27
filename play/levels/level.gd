@@ -26,6 +26,7 @@ signal current_director_changed(director: Director)
 
 @export var retry_menu: Control
 @export var continue_menu: Control
+@export var pause_menu: Control
 
 var is_complete: bool = false ## If true, the level has concluded. Used to prevent duplicate logic.
 var turn_count: int = 0 ## Incremented by one each time the current director changes.
@@ -250,7 +251,9 @@ func _on_turn_taken(director: Director) -> void:
 
 func pause_game(paused: bool) -> void:
 	playtime_counter_running = not paused
-	## TODO
+	get_tree().paused = paused
+	if paused && pause_menu:
+		pause_menu.show()
 
 #endregion
 #region Objective Monitoring

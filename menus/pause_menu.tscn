@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bjiculwufo5b8"]
+
+[ext_resource type="Theme" uid="uid://de2vbcxalv6dy" path="res://menus/theme_level_hud.tres" id="1_p1qj3"]
+[ext_resource type="Script" uid="uid://pykqhi5krwti" path="res://menus/pause_menu.gd" id="2_0wv6w"]
+
+[node name="PauseMenu" type="PanelContainer" unique_id=339135320]
+process_mode = 3
+custom_minimum_size = Vector2(180, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_p1qj3")
+script = ExtResource("2_0wv6w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1977740519]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=189202405]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Paused"
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer" unique_id=840186790]
+layout_mode = 2
+theme_type_variation = &"BigButton"
+text = "Resume"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer" unique_id=999598221]
+layout_mode = 2
+theme_type_variation = &"BigButton"
+text = "Options"
+
+[node name="MainMenuButton" type="Button" parent="VBoxContainer" unique_id=101241047]
+layout_mode = 2
+theme_type_variation = &"BigButton"
+text = "Main Menu"
+
+[connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

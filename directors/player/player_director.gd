@@ -134,8 +134,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			_on_click_on_tile(tile)
 
 	if event.is_action_pressed(&"open_pause_menu"):
-			get_tree().quit() ## TODO FIXME
-			pass
+		Level.get_instance().pause_game(true)
 
 	if is_active:
 		if event.is_action_pressed(&"end_turn"): ## Keybind. See HUD.gd for clickable button

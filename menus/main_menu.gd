@@ -41,9 +41,10 @@ var slot_screen_state: SlotScreenStates
 func _ready() -> void:
 	main_menu_tab.show()
 	continue_button.disabled = SaveLoad.get_save_slots().is_empty()
+	quit_button.disabled = OS.has_feature("web")
 	
 	var start_music = create_tween()
-	start_music.tween_interval(1.8) ## Wait a hot moment
+	start_music.tween_interval(1.4) ## Wait a hot moment
 	start_music.tween_callback(Main.play_music_menu_loop.bind(true))
 
 func populate_starting_classes() -> void:
@@ -124,8 +125,7 @@ func _on_options_button_pressed() -> void:
 
 
 func _on_quit_button_pressed() -> void:
-	## TODO
-	pass # Replace with function body.
+	get_tree().quit()
 
 
 func _on_go_back_button_pressed() -> void:

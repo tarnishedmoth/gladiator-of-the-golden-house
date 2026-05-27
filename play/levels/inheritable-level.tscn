@@ -9,8 +9,8 @@
 [ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="8_xvlf6"]
 [ext_resource type="Script" uid="uid://bxc680xdvkakb" path="res://play/tile_interactor.gd" id="9_vvs2t"]
 [ext_resource type="PackedScene" uid="uid://dyaldg7fkhf2y" path="res://menus/retry_menu.tscn" id="10_lsuxe"]
-[ext_resource type="PackedScene" uid="uid://dtaw53r4qlxv8" path="res://menus/main_menu.tscn" id="11_404wk"]
 [ext_resource type="PackedScene" uid="uid://7b6kamn7xtwi" path="res://menus/continue_menu.tscn" id="12_jaocw"]
+[ext_resource type="PackedScene" uid="uid://bjiculwufo5b8" path="res://menus/pause_menu.tscn" id="13_pt8uj"]
 [ext_resource type="Script" uid="uid://b8rocr8na0vw7" path="res://pick-ups/pick_up_manager.gd" id="14_mvnmw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u4q3m"]
@@ -39,7 +39,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[node name="Level" type="Node2D" unique_id=13868467 node_paths=PackedStringArray("base_tile_map_layer", "tile_interactor", "hud", "retry_menu", "continue_menu")]
+[node name="Level" type="Node2D" unique_id=13868467 node_paths=PackedStringArray("base_tile_map_layer", "tile_interactor", "hud", "retry_menu", "continue_menu", "pause_menu")]
 texture_filter = 3
 position = Vector2(480, 270)
 script = ExtResource("1_fpxwp")
@@ -48,6 +48,7 @@ tile_interactor = NodePath("MouseFollower/TileMapInteractor")
 hud = NodePath("HUD")
 retry_menu = NodePath("CanvasLayer/Retry Menu")
 continue_menu = NodePath("CanvasLayer/Continue Menu")
+pause_menu = NodePath("CanvasLayer/PauseMenu")
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=994423606]
 position = Vector2(32, 0)
@@ -103,8 +104,8 @@ texture = SubResource("GradientTexture2D_fpxwp")
 
 [node name="Retry Menu" parent="CanvasLayer" unique_id=2012706668 instance=ExtResource("10_lsuxe")]
 visible = false
-main_menu_scene = ExtResource("11_404wk")
 
 [node name="Continue Menu" parent="CanvasLayer" unique_id=2014330921 instance=ExtResource("12_jaocw")]
 visible = false
-main_menu_scene = ExtResource("11_404wk")
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=339135320 instance=ExtResource("13_pt8uj")]
