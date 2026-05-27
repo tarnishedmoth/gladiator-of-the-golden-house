@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cpijhxgji3wdj"]
+
+[ext_resource type="Script" uid="uid://b85dnaidm7tur" path="res://menus/volume_slider.gd" id="1_xrrjj"]
+
+[node name="OutputVolume" type="HBoxContainer" unique_id=1315297237]
+custom_minimum_size = Vector2(520, 0)
+size_flags_horizontal = 4
+alignment = 1
+script = ExtResource("1_xrrjj")
+title = "Output"
+bus_name = &"Master"
+
+[node name="Label" type="Label" parent="." unique_id=138304579]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Output"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="." unique_id=54417443]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_vertical = 4
+tick_count = 5
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="Units" type="Label" parent="." unique_id=1630306299]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "100%"
+horizontal_alignment = 1
+
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
