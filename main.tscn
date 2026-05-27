@@ -4,10 +4,22 @@
 [ext_resource type="PackedScene" uid="uid://ksdjo8qa17pc" path="res://menus/developer/dev_menu.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dgjwny10ywnvr" path="res://menus/intro/splash.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dtaw53r4qlxv8" path="res://menus/main_menu.tscn" id="3_1bvp3"]
+[ext_resource type="Theme" uid="uid://de2vbcxalv6dy" path="res://menus/theme_level_hud.tres" id="5_5vw27"]
+[ext_resource type="PackedScene" uid="uid://cpijhxgji3wdj" path="res://menus/volume_slider.tscn" id="5_7mycd"]
+[ext_resource type="Script" uid="uid://casmgdrk04k73" path="res://menus/options_panel.gd" id="5_272bh"]
 [ext_resource type="AudioStream" uid="uid://b7vm1xwkwmbs1" path="res://music/Epic Battle Chiptune - Menu Loop.mp3" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://n3wocoqn040k" path="res://menus/confirm_page.gd" id="8_kek77"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
 font_size = 8
+
+[sub_resource type="Gradient" id="Gradient_5vw27"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.6901961, 0.6666667, 0.3254902, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kek77"]
+gradient = SubResource("Gradient_5vw27")
+height = 4
 
 [node name="Main" type="Node" unique_id=665979855]
 script = ExtResource("1_ig7tw")
@@ -79,6 +91,247 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
+[node name="OptionsPanel" type="PanelContainer" parent="CanvasLayer" unique_id=1961963543]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_5vw27")
+script = ExtResource("5_272bh")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/OptionsPanel" unique_id=147431440]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/OptionsPanel/MarginContainer" unique_id=1601844332]
+layout_mode = 2
+current_tab = 0
+tabs_visible = false
+
+[node name="MainOptions" type="VBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer" unique_id=198311297]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions" unique_id=1784696048]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Options"
+
+[node name="VolumeControls" type="MarginContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions" unique_id=1814226346]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/VolumeControls" unique_id=1148546007]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/VolumeControls/PanelContainer" unique_id=2077072972]
+layout_mode = 2
+
+[node name="OutputVolume" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/VolumeControls/PanelContainer/VBoxContainer" unique_id=1315297237 instance=ExtResource("5_7mycd")]
+layout_mode = 2
+
+[node name="SFXVolume" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/VolumeControls/PanelContainer/VBoxContainer" unique_id=976415755 instance=ExtResource("5_7mycd")]
+layout_mode = 2
+title = "SFX"
+bus_name = &"Sfx"
+
+[node name="MusicVolume" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/VolumeControls/PanelContainer/VBoxContainer" unique_id=31346091 instance=ExtResource("5_7mycd")]
+layout_mode = 2
+title = "Music"
+bus_name = &"Music"
+
+[node name="Misc" type="MarginContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions" unique_id=1664693066]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/Misc" unique_id=2111942279]
+layout_mode = 2
+
+[node name="HelpButton" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/Misc/VBoxContainer" unique_id=1647707422]
+layout_mode = 2
+text = "Help & Accessibility ..."
+
+[node name="ExitOptionsButton" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions" unique_id=647039918]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"BigButton"
+text = "Exit Options"
+
+[node name="HelpOptions" type="VBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer" unique_id=1296927721]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions" unique_id=1531541484]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Help & Accessibility Options"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions" unique_id=118450721]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_kek77")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions" unique_id=2021760347]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions/MarginContainer" unique_id=216120448]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions/MarginContainer/PanelContainer" unique_id=1082960804]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions/MarginContainer/PanelContainer/VBoxContainer" unique_id=1144706689]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Progression & Recovery:"
+
+[node name="StuckGameButton" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions/MarginContainer/PanelContainer/VBoxContainer" unique_id=2124013506]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_type_variation = &"BigButton"
+text = " My game is stuck! ..."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions/MarginContainer/PanelContainer/VBoxContainer" unique_id=2046747920]
+layout_mode = 2
+alignment = 1
+
+[node name="RestartLevelButton" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=359488185]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Restart level"
+
+[node name="SkipLevelButton" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1315980578]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Skip level"
+
+[node name="GoBackLevelButton" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1730776007]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Go backwards a level"
+
+[node name="ClearCharacterDatatButton" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions/MarginContainer/PanelContainer/VBoxContainer" unique_id=639848801]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Clear character data"
+
+[node name="BackToOptions" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions" unique_id=1059799375]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"BigButton"
+text = "Return to Options ..."
+
+[node name="StuckGameOptions" type="VBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer" unique_id=1807427970]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/StuckGameOptions" unique_id=1522574561]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "My game is stuck !!!"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/StuckGameOptions" unique_id=264222948]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_kek77")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/StuckGameOptions" unique_id=1198564410]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/StuckGameOptions/MarginContainer" unique_id=1043035615]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/StuckGameOptions/MarginContainer/VBoxContainer" unique_id=1365317513]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Sorry about that. Try one of these buttons to shake things loose without losing your progress. If that fails, you can try restarting or skipping the level to continue the game. Good luck to you!"
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/StuckGameOptions/MarginContainer/VBoxContainer" unique_id=866954184]
+layout_mode = 2
+alignment = 1
+
+[node name="CheckObjectivesButton" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/StuckGameOptions/MarginContainer/VBoxContainer/HBoxContainer" unique_id=635047810]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Check Objectives"
+
+[node name="EndTurnButton" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/StuckGameOptions/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2117319092]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "End Current Team's Turn"
+
+[node name="BackToOptions" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/StuckGameOptions" unique_id=97462903]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"BigButton"
+text = "Return to Options ..."
+
+[node name="ConfirmPage" type="VBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer" unique_id=1900664227]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("8_kek77")
+metadata/_tab_index = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/ConfirmPage" unique_id=60353746]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Are you sure?"
+
+[node name="ConfirmDetails" type="Label" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/ConfirmPage" unique_id=584416365]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/ConfirmPage" unique_id=1537792221]
+layout_mode = 2
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/ConfirmPage/HBoxContainer" unique_id=1735125629]
+layout_mode = 2
+theme_type_variation = &"BigButton"
+text = "Cancel"
+
+[node name="ConfirmButton" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/ConfirmPage/HBoxContainer" unique_id=372104948]
+layout_mode = 2
+theme_type_variation = &"BigButton"
+text = "Confirm"
+
 [node name="Music_MenuLoop" type="AudioStreamPlayer" parent="." unique_id=843985129]
 stream = ExtResource("5_lquwl")
 bus = &"Music"
@@ -86,3 +339,16 @@ parameters/looping = true
 
 [connection signal="pressed" from="CanvasLayer/Debug/HBoxContainer/ProjectVersionLabel/GoToDevMenuButton" to="." method="_on_go_to_dev_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Debug/HBoxContainer/DebugSceneLabel/ReturnToMenuButton" to="." method="_on_return_to_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/Misc/VBoxContainer/HelpButton" to="CanvasLayer/OptionsPanel" method="_on_help_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/ExitOptionsButton" to="CanvasLayer/OptionsPanel" method="_on_exit_options_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions/MarginContainer/PanelContainer/VBoxContainer/StuckGameButton" to="CanvasLayer/OptionsPanel" method="_on_stuck_game_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/RestartLevelButton" to="CanvasLayer/OptionsPanel" method="_on_restart_level_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/SkipLevelButton" to="CanvasLayer/OptionsPanel" method="_on_skip_level_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer/GoBackLevelButton" to="CanvasLayer/OptionsPanel" method="_on_go_back_level_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions/MarginContainer/PanelContainer/VBoxContainer/ClearCharacterDatatButton" to="CanvasLayer/OptionsPanel" method="_on_clear_character_datat_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions/BackToOptions" to="CanvasLayer/OptionsPanel" method="_on_back_to_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/StuckGameOptions/MarginContainer/VBoxContainer/HBoxContainer/CheckObjectivesButton" to="CanvasLayer/OptionsPanel" method="_on_check_objectives_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/StuckGameOptions/MarginContainer/VBoxContainer/HBoxContainer/EndTurnButton" to="CanvasLayer/OptionsPanel" method="_on_end_turn_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/StuckGameOptions/BackToOptions" to="CanvasLayer/OptionsPanel" method="_on_back_to_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/ConfirmPage/HBoxContainer/CancelButton" to="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/ConfirmPage" method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/ConfirmPage/HBoxContainer/ConfirmButton" to="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/ConfirmPage" method="_on_confirm_button_pressed"]

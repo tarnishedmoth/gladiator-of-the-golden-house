@@ -37,6 +37,8 @@ var current_packed_scene: PackedScene ## Set each time [method change_scene] is 
 @onready var debug_scene_label: RichTextLabel = %DebugSceneLabel
 @onready var project_version_label: Label = %ProjectVersionLabel
 @onready var music_menu_loop: AudioStreamPlayer = $Music_MenuLoop
+@onready var options_panel: PanelContainer = %OptionsPanel
+
 
 ## Static instance, we should only have one Main in the scene tree at any time.
 static var instance: Main:
@@ -145,6 +147,9 @@ static func play_level(number: int) -> void:
 	assert(number < instance.levels.size(), "Out of bounds!")
 	change_scene_to_file(instance.levels[number])
 
+static func show_options_panel() -> void:
+	if not instance: return
+	instance.options_panel.show()
 
 func _on_return_to_menu_button_pressed() -> void:
 	change_scene(main_menu_scene)

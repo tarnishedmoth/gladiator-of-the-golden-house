@@ -89,6 +89,12 @@ static func set_actor_data(actor_key: StringName, data: PersistentActorData):
 	else:
 		p("Registering actor %s persistent data." % str(actor_key))
 	this.persistent_actors[actor_key] = data
+	
+static func wipe_actor_data() -> void:
+	if not this:
+		return
+	else:
+		this.persistent_actors.clear()
 
 
 #region SAVE/LOAD

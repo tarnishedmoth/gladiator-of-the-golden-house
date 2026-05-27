@@ -120,8 +120,7 @@ func _on_new_game_button_pressed() -> void:
 
 
 func _on_options_button_pressed() -> void:
-	## TODO
-	pass # Replace with function body.
+	Main.show_options_panel()
 
 
 func _on_quit_button_pressed() -> void:
