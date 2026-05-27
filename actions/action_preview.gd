@@ -1,5 +1,7 @@
 class_name ActionPreview extends Node
 
+## DEPRECATED functionality has been merged into [Actor], thank you!!
+
 var _actor: Actor
 var _action: Action
 var _popup_labels: Array[Label]
@@ -14,7 +16,7 @@ func show_preview_action(action:Action)-> void:
 	var all: Array[Vector2i] = _actor.get_action_target_cells(_action)
 	
 	if _action is ActionMove:
-		TargetFinder.highlight_targets(all, Targeting.COLORS.GREY)
+		TargetFinder.highlight_targets(all, Targeting.COLORS.GREY, _actor)
 		return
 	
 	var targets: Array[Vector2i]
@@ -28,24 +30,24 @@ func show_preview_action(action:Action)-> void:
 			if action is ActionAttack:
 				var damage: String = str(_action.damage)
 				_popup_labels.append(Level.get_hud().popup_label_persistent("Damage: " + damage, found_actor, LevelHUD.STYLE_DAMAGE))
-				TargetFinder.highlight_target(coords, Targeting.COLORS.RED)
+				TargetFinder.highlight_target(coords, Targeting.COLORS.RED, _actor)
 				
 			elif action is ActionApplyStatus:
 				var effect_points: String = str(_action.override_quantity)
 				_popup_labels.append(Level.get_hud().popup_label_persistent(_action.status.ui_name+ ": " +effect_points, found_actor, LevelHUD.STYLE_STATUS))
-				TargetFinder.highlight_target(coords, Targeting.COLORS.YELLOW)
+				TargetFinder.highlight_target(coords, Targeting.COLORS.YELLOW, _actor)
 				
 			elif action is ActionMove:
-				TargetFinder.highlight_target(coords, Targeting.COLORS.PINK)
+				TargetFinder.highlight_target(coords, Targeting.COLORS.PINK, _actor)
 			
 		else:
 			potential.append(coords)
 	
-	TargetFinder.highlight_targets(potential, Targeting.COLORS.PINK)
+	TargetFinder.highlight_targets(potential, Targeting.COLORS.PINK, _actor)
 	
 
 func hide_preview_action()->void:
-	TargetFinder.clear_target_highlights()
+	TargetFinder.clear_target_highlights(_actor)
 	for popup in _popup_labels:
 		if is_instance_valid(popup):
 			Level.get_hud().clear_popup_persistent_label(popup)

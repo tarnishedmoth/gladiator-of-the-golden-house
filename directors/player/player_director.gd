@@ -158,7 +158,7 @@ func _on_interactor_tile_changed(new_coords: Vector2i) -> void:
 		_previous_hovered_actor = actor
 	
 	if not current_held_action:
-		update_action_preview()
+		update_npc_action_preview()
 	elif not _currently_playing_action: ## Prevent highlights from appearing when selecting facing direction/animations playing
 		if current_held_action.get(&"split_choice"):
 			## Check which side of the forward axis we're on, to decide to mirror
@@ -232,55 +232,21 @@ func deselect_tile() -> void:
 	hud.show_hover_panel(false)
 
 func _on_click_to_play_action(target_coords: Vector2i) -> void:
-	TargetFinder.clear_target_highlights()
+	TargetFinder.clear_all_highlights()
 	deselect_tile()
-	TargetFinder.highlight_target(target_coords, get_action_color(current_held_action)) ## Keep our selection highlighted
+	TargetFinder.highlight_target(target_coords, Action.get_action_color(current_held_action), selected_actor) ## Keep our selection highlighted
 	play_held_action_at(target_coords)
 
 var _self_action_preview_showing: bool = false
-func rerender_held_action_targets() -> void:
+func rerender_held_action_targets() -> void: ## Clear all highlighted tiles and re-render
 	if _self_action_preview_showing:
-		TargetFinder.clear_target_highlights()
+		#TargetFinder.clear_target_highlights(selected_actor) ## HACK
+		selected_actor.hide_preview_for_actions()
 	
 	if current_held_action:
-		update_action_preview()
-		
-		var color: Color = get_action_color(current_held_action)
-		
-		var playable_tiles: Array[Vector2i]
-		if not "split_choice" in current_held_action:
-			playable_tiles = selected_actor.get_action_target_cells(current_held_action)
-		elif current_held_action.split_choice:
-			playable_tiles = selected_actor.get_action_target_cells(current_held_action, true) ## Include mirrored
-		else:
-			playable_tiles = selected_actor.get_action_target_cells(current_held_action)
-			
-		
-		var hovered_tile_is_valid: bool = _last_hovered_tile in playable_tiles
-		playable_tiles.erase(_last_hovered_tile)
-		TargetFinder.highlight_targets(
-			playable_tiles,
-			Color.WHITE if not hovered_tile_is_valid else Color.GRAY
-			)
-			
-		var aoe_tiles = selected_actor.get_action_target_cells_at(_last_hovered_tile, current_held_action)
-		if aoe_tiles != null:
-			TargetFinder.highlight_aoe_spots(
-				aoe_tiles,
-				color
-				)
-			
+		update_npc_action_preview() ## clears/resets any existing previews
+		selected_actor.render_preview_for_action(current_held_action, _last_hovered_tile)
 		_self_action_preview_showing = true
-
-func get_action_color(action: Action) -> Color:
-	if action is ActionMove:
-		return Targeting.COLORS.BLUE
-	elif current_held_action is ActionApplyStatus:
-		return Targeting.COLORS.YELLOW
-	elif current_held_action is ActionChangeStance:
-		return Targeting.COLORS.YELLOW
-	else:
-		return Targeting.COLORS.RED
 
 #region Actions / Deck Logic
 ## Used to preview actions.
@@ -454,12 +420,16 @@ func update_hud_actions_disabled_check() -> void:
 	hud.actions_panel.check_actions_disabled(selected_actor)
 	hud.stash_panel.check_actions_disabled(selected_actor)
 
+
 var _action_preview_showing: bool = false
-func update_action_preview() -> void:
+## This method updates AIActor action previews.
+## This method calls every [method AIActor.hide_preview_attack], then finds the
+## actor on our mouse-hovered tile and calls [method AIActor.preview_ai_attack].
+func update_npc_action_preview() -> void:
 	if _action_preview_showing:
 		for actor in Level.get_all_actors_in_play_order():
 			if actor is AIActor:
-				actor.hide_preview_attack()
+				actor.hide_preview_for_actions()
 
 	#check if there is an AI actor on selected tile needs their preview added
 	if is_active:

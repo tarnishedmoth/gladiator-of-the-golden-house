@@ -13,7 +13,8 @@ func p(args):
 	print_rich("[bgcolor=grey][color=black]", "Actor %s : " % name, args)
 
 
-## Level related functionality
+const RENDER_AI_PLAYABLE_TILES: bool = false ## Set to true to render grey tiles for unselected playable target tiles of ai action previews
+
 const SHOW_FACING_INDICATOR: bool = true
 const FACING_INDICATOR_SCENE = preload("uid://b3kl75n4nwdge")
 var facing_indicator: Node2D ## instantiated at runtime
@@ -519,7 +520,88 @@ func remove_status(status: Status) -> void:
 #endregion
 
 #region Highlighting & Planning
-## Updated method to work with AoE patterns, original pattern is assumed to be just for selection
+var _popup_labels: Array[Label]
+## Clear highlights and popup labels
+func hide_preview_for_actions()->void:
+	TargetFinder.clear_target_highlights(self)
+	for popup in _popup_labels:
+		if is_instance_valid(popup):
+			Level.get_hud().clear_popup_persistent_label(popup)
+	_popup_labels.clear()
+
+
+## Renders tile highlights previewing a given action's available tiles and AoE for a selected tile.
+## [param target] should be Vector2i
+func render_preview_for_action(action: Action, target) -> void:
+	var color: Color = Action.get_action_color(action)
+	
+	## Find targetable tiles (pattern).
+	var playable_tiles: Array[Vector2i]
+	if not "split_choice" in action:
+		playable_tiles = get_action_target_cells(action)
+	elif action.split_choice:
+		playable_tiles = get_action_target_cells(action, true) ## Include mirrored
+	else:
+		playable_tiles = get_action_target_cells(action)
+	
+	if director is Player:
+		## Render playable tiles with finesse to show the player how they can interact
+		
+		## If a target tile is in the playable pattern, ...
+		var hovered_tile_is_valid: bool = false
+		if target != null:
+			hovered_tile_is_valid = target in playable_tiles
+			playable_tiles.erase(target) ## maybe don't need this ............... brb
+		
+		## ... Highlight playable tiles as selectable or not currently selected
+		TargetFinder.highlight_targets(
+			playable_tiles,
+			Color.WHITE if not hovered_tile_is_valid else Targeting.COLORS.GREY,
+			self
+			)
+	else:
+		## AI action previews
+		#if action is ActionMove:
+			#TargetFinder.highlight_targets(playable_tiles, Targeting.COLORS.GREY, self)
+		#else:
+		if RENDER_AI_PLAYABLE_TILES:
+			TargetFinder.highlight_targets(playable_tiles, Targeting.COLORS.GREY, self)
+		if target != null:
+			TargetFinder.highlight_target(target, Targeting.COLORS.PINK, self)
+	
+	## Render AoE pattern if applicable
+	if target != null:
+		var aoe_tiles = get_action_target_cells_at(target, action)
+		for coords in aoe_tiles:
+			var found_actor: Actor = Level.get_actor_at(coords)
+			
+			if found_actor != null:
+				if action is ActionAttack:
+					_popup_labels.append(Level.get_hud().popup_label_persistent("Damage: %s" % action.damage, found_actor, LevelHUD.STYLE_DAMAGE))
+					TargetFinder.highlight_target(coords, Targeting.COLORS.RED, self)
+					
+				elif action is ActionApplyStatus:
+					_popup_labels.append(Level.get_hud().popup_label_persistent("%s: %s" % [action.status.ui_name, action.override_quantity], found_actor, LevelHUD.STYLE_STATUS))
+					TargetFinder.highlight_target(coords, Targeting.COLORS.YELLOW, self)
+					
+				elif action is ActionMove:
+					TargetFinder.highlight_target(coords, Targeting.COLORS.PINK, self)
+				
+				else:
+					TargetFinder.highlight_target(coords, color, self)
+			else:
+				TargetFinder.highlight_target(coords, color, self)
+		
+		#if aoe_tiles != null:
+			#TargetFinder.highlight_aoe_spots(
+				#aoe_tiles,
+				#color,
+				#self
+				#)
+
+
+## Updated method to work with AoE patterns, original pattern is assumed to be just for selection.
+## Does check if the play tile is a valid playable tile.
 func get_action_target_cells_at(play_tile: Vector2i, action: Action) -> Array[Vector2i]:
 	var aoe: Array[Vector2i]
 	if not "pattern" in action:

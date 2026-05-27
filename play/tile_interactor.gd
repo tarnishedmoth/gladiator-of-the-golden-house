@@ -77,16 +77,16 @@ func _process(_delta: float) -> void:
 			tile_highlight_sprite.hide()
 				
 
-func render_held_action_projection(player: Player) -> void:
-	#print("Rerendering held action projection")
-	var implicated_tiles: Action.ImplicatedTiles = player.current_held_action.get_implicated_tiles(current_coords)
-	
-	TargetFinder.highlight_aoe_spots(implicated_tiles.effected, Targeting.COLORS.RED)
-	
-	for blocked in implicated_tiles.blocked:
-		TargetFinder.highlight_aoe_spots(implicated_tiles.blockers, Targeting.COLORS.GREY)
-	for blockers in implicated_tiles.blockers:
-		TargetFinder.highlight_aoe_spots(implicated_tiles.blockers, Targeting.COLORS.YELLOW)
+#func render_held_action_projection(player: Player) -> void:
+	##print("Rerendering held action projection")
+	#var implicated_tiles: Action.ImplicatedTiles = player.current_held_action.get_implicated_tiles(current_coords)
+	#
+	#TargetFinder.highlight_aoe_spots(implicated_tiles.effected, Targeting.COLORS.RED)
+	#
+	#for blocked in implicated_tiles.blocked:
+		#TargetFinder.highlight_aoe_spots(implicated_tiles.blockers, Targeting.COLORS.GREY)
+	#for blockers in implicated_tiles.blockers:
+		#TargetFinder.highlight_aoe_spots(implicated_tiles.blockers, Targeting.COLORS.YELLOW)
 
 func _pulse() -> void:
 	if _tween:

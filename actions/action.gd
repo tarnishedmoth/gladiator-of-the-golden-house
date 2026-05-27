@@ -32,6 +32,16 @@ const ACTION_CATEGORY_ICONS: Dictionary[ActionCategory, Texture2D] = {
 	ActionCategory.CHANGE_STANCE: preload("uid://c8q1l70wfws3p"),
 }
 
+static func get_action_color(action: Action) -> Color:
+	if action is ActionMove:
+		return Targeting.COLORS.BLUE
+	elif action is ActionApplyStatus:
+		return Targeting.COLORS.YELLOW
+	elif action is ActionChangeStance:
+		return Targeting.COLORS.YELLOW
+	else:
+		return Targeting.COLORS.RED
+
 #@export_group("UI")
 @export var ui_title: String ## Displayed in the Actions list
 

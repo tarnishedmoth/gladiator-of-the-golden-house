@@ -5,7 +5,7 @@ class_name AIActor extends Actor
 
 @export var usable_actions: Array[Action]
 @export var actions_to_queue_this_turn: int = 1
-@export var action_preview: ActionPreview
+@export var action_preview: ActionPreview ## DEPRECATED functionality has been merged into [Actor], see [method Actor.render_preview_for_action].
 
 @export_group("Behaviors")
 @export var always_prioritize_nearest_hostile: bool = true
@@ -13,14 +13,14 @@ class_name AIActor extends Actor
 
 var hostile_target: Actor ## Used for planning
 
-func setup(director_: Director, tilemap: TileMapLayer) -> void:
-	if action_preview:
-		action_preview.free()
-	action_preview = ActionPreview.new()
-	add_child(action_preview)
-	action_preview.setup(self)
-	
-	super(director_,tilemap)
+#func setup(director_: Director, tilemap: TileMapLayer) -> void:
+	#if action_preview:
+		#action_preview.free()
+	#action_preview = ActionPreview.new()
+	#add_child(action_preview)
+	#action_preview.setup(self)
+	#
+	#super(director_,tilemap)
 
 func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> void:
 	var queue: Array[Action]
@@ -211,8 +211,16 @@ func _filter_move_candidates(candidates: Array[Vector2i], claimed_tiles: Array[V
 
 func preview_ai_attack()-> void:
 	#for each action in actions queue might need to duplcate so I dont use 
-	for action in action_queue.queue:
-		action_preview.show_preview_action(action)
+	#for action in action_queue.queue:
+		#action_preview.show_preview_action(action)
+		
+	## OK let's be honest, only the first action really needs to be rendered.
+	## Reason being, the second action is typically either movement, or it depends on the result of the first action.
+	## Rather than trying to design a way to step through every action
+	## Let's settle for the first action and leave the other ones to the player's purview
+	var first_action: Action = action_queue.queue.front()
+	if first_action:
+		render_preview_for_action(first_action, first_action._target)
 
-func hide_preview_attack()-> void:
-	action_preview.hide_preview_action()
+#func hide_preview_attack()-> void: ## DEPRECATED merged into [Actor]
+	#action_preview.hide_preview_action() 
