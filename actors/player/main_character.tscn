@@ -5,8 +5,7 @@
 [ext_resource type="Script" uid="uid://cmeyq4dmg5dka" path="res://actors/player/player_art.gd" id="2_if6wd"]
 [ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="3_4uvav"]
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="3_hlp3v"]
-[ext_resource type="Script" uid="uid://cs3ues47kat7x" path="res://vfx/actor_vfx.gd" id="7_a6q5v"]
-[ext_resource type="PackedScene" uid="uid://b0hnkme2hu37c" path="res://vfx/slash-fx.tscn" id="8_riyk7"]
+[ext_resource type="PackedScene" uid="uid://l1r068mo4353" path="res://vfx/actor_vfx_handler.tscn" id="5_emcn6"]
 
 [node name="MainCharacter" type="Node2D" unique_id=360471847 node_paths=PackedStringArray("health_bar", "speech_bubble")]
 script = ExtResource("1_ng02u")
@@ -27,9 +26,7 @@ position = Vector2(0, -26)
 
 [node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("3_hlp3v")]
 
-[node name="ActorVfx" type="Node2D" parent="." unique_id=1107671119]
-script = ExtResource("7_a6q5v")
-attack = ExtResource("8_riyk7")
+[node name="ActorVfx" parent="." unique_id=374718462 instance=ExtResource("5_emcn6")]
 
 [node name="SpeechBubble" parent="." unique_id=757394792 instance=ExtResource("2_hlp3v")]
 position = Vector2(-33, -68)

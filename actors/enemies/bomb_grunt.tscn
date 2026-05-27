@@ -15,6 +15,7 @@
 [node name="BombGrunt" type="Node2D" unique_id=1783091050 node_paths=PackedStringArray("health_bar", "speech_bubble")]
 script = ExtResource("1_or6x3")
 usable_actions = Array[ExtResource("2_38auy")]([ExtResource("5_q2nfv"), ExtResource("4_506x5")])
+move_towards_target = false
 health_bar = NodePath("health")
 speech_bubble = NodePath("SpeechBubble")
 ui_name = "Bomb Grunt"

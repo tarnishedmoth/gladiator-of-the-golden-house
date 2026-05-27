@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://l1r068mo4353"]
+
+[ext_resource type="Script" uid="uid://cs3ues47kat7x" path="res://vfx/actor_vfx.gd" id="1_jvd23"]
+[ext_resource type="PackedScene" uid="uid://b0hnkme2hu37c" path="res://vfx/slash-fx.tscn" id="2_x248f"]
+
+[node name="ActorVfx" type="Node2D" unique_id=374718462]
+script = ExtResource("1_jvd23")
+attack = ExtResource("2_x248f")

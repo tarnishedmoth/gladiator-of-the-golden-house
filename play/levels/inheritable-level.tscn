@@ -109,3 +109,4 @@ visible = false
 visible = false
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=339135320 instance=ExtResource("13_pt8uj")]
+visible = false

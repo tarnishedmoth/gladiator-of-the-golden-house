@@ -16,6 +16,11 @@ enum VulnerabilityMethods {
 
 @export var can_damage_self: bool = false
 @export var can_damage_teammates: bool = false
+
+## The attack will run this many times when entered.
+@export_range(1, 99, 1, "or_greater") var multiple_attacks: int = 1:
+	get: return maxi(1, multiple_attacks)
+
 #@export_category("Target Pattern")
 @export var pattern: Array[Vector2i] = []: ## Assume coords 0,0 and facing north. Then list the coords they can hit. the rotate hex function in facing will make that pattern work in any direction.
 	get:
@@ -54,20 +59,23 @@ var mirrored_aoe_pattern: Array[Vector2i] ## Cached.
 ## On transition to this state
 func enter(_from: ResourceState = null) -> void:
 	if _actor:
-		p("Attacking!")
-		
-		## run animations etc here
-		_actor.play_sfx(ActorSfxHandler.Sounds.ATTACK)
-		_actor.spawn_vfx(ActorVfxHandler.FX.ATTACK)
-		await _actor.create_tween().tween_interval(pre_attack_duration).finished
-		
-		var affected_actors: Array[Actor] = get_affected()
-		var modified_damage: int = get_damage()
-		_deal_damage(affected_actors,modified_damage)
-		_actor.clear_incoming_damage_by()
-		
-		if post_attack_duration > 0.0:
-			await _actor.create_tween().tween_interval(post_attack_duration).finished
+		for i in multiple_attacks:
+			p("Attacking!")
+			
+			## run animations etc here
+			_actor.play_sfx(ActorSfxHandler.Sounds.ATTACK)
+			_actor.spawn_vfx(ActorVfxHandler.FX.ATTACK)
+			await _actor.create_tween().tween_interval(pre_attack_duration).finished
+			
+			var affected_actors: Array[Actor] = get_affected()
+			var modified_damage: int = get_damage()
+			_deal_damage(affected_actors,modified_damage)
+			
+			if i >= multiple_attacks:
+				_actor.clear_incoming_damage_by()
+			
+			if post_attack_duration > 0.0:
+				await _actor.create_tween().tween_interval(post_attack_duration).finished
 	else:
 		push_error("No actor configured to run action.")
 		

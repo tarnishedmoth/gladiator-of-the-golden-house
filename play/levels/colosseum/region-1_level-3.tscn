@@ -8,10 +8,7 @@
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_ee00a")]
 
-[node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=2010280176 instance=ExtResource("2_n1dqt")]
-position = Vector2(2, 156)
-
-[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2120627388]
+[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=2120627388]
 script = ExtResource("3_cssh2")
 metadata/_custom_type_script = "uid://dwys5mwbuw85s"
 
@@ -32,6 +29,9 @@ position = Vector2(-86, -171)
 
 [node name="Grunt4" parent="TileMapLayers/Directors/AIDirector" index="5" unique_id=919754956 instance=ExtResource("5_qxkrc")]
 position = Vector2(90, -171)
+
+[node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("2_n1dqt")]
+position = Vector2(2, 156)
 
 [node name="MouseFollower" parent="." index="4" unique_id=687351869]
 position = Vector2(50, -4)

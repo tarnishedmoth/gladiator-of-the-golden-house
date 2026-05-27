@@ -21,6 +21,8 @@ var facing_indicator: Node2D ## instantiated at runtime
 const TARGET_INDICATOR = preload("uid://bw78572gtph87")
 var target_scene: PackedScene = TARGET_INDICATOR
 
+const DEFAULT_VFX_HANDLER = preload("uid://l1r068mo4353")
+
 @export var label_anchor: Vector2 = Vector2(0, -40)
 
 signal animation_finished
@@ -160,6 +162,10 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	if status_manager:
 		status_manager.free()
 	status_manager = StatusManager.new(self)
+	
+	if not vfx:
+		vfx = DEFAULT_VFX_HANDLER.instantiate()
+		add_child(vfx)
 	
 	health = max_health
 	energy = starting_energy

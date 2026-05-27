@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="StatusAffectDamage" format=3 uid="uid://do1183bc5h0a4"]
+
+[ext_resource type="Script" uid="uid://dvm0k3xhgixkl" path="res://status-effects/affect_damage_dealt.gd" id="1_dbo5n"]
+[ext_resource type="Texture2D" uid="uid://rgt67qcloo4u" path="res://actions/ui-icons/icon_6-16.png" id="2_3j78x"]
+[ext_resource type="PackedScene" uid="uid://b11vclccqbpug" path="res://vfx/status_fx-debuff.tscn" id="3_sv3i8"]
+
+[resource]
+script = ExtResource("1_dbo5n")
+factor = 0.6
+operation = 1
+per_point = false
+on_start_behavior = 1
+only_react_to_actors_turn_notifs = true
+effect_points = 2
+ui_name = "Weak"
+ui_description = "Reduced attack damage by 40%."
+status_effect_category = 2
+ui_icon = ExtResource("2_3j78x")
+vfx_applied = ExtResource("3_sv3i8")
+metadata/_custom_type_script = "uid://dvm0k3xhgixkl"

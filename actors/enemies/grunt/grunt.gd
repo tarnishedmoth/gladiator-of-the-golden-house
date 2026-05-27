@@ -12,6 +12,7 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 	)
 	if not attacks.is_empty():
 		var attack: Action = attacks.pick_random().duplicate()
+		plan_action_details(attack, claimed_tiles)
 		queue.append(attack)
 
 	# Move

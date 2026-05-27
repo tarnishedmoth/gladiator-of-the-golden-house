@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ActionApplyStatus" format=3 uid="uid://dkvnt5ik187cv"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_6n4y7"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_a407i"]
+[ext_resource type="Resource" uid="uid://do1183bc5h0a4" path="res://status-effects/prefabs/weak.tres" id="3_u7kkj"]
+
+[resource]
+script = ExtResource("2_a407i")
+status = ExtResource("3_u7kkj")
+allow_facing_before = true
+ui_title = "Panic"
+ui_description = "Lose your bearings."
+metadata/_custom_type_script = "uid://ic0qko6fd58l"

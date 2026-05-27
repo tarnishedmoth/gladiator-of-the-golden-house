@@ -168,7 +168,9 @@ func halve_points() -> void:
 	## If 0 or below, leave it unchanged.
 
 func _to_string() -> String:
-	var format: String = "%s(%d)" % [ui_name if ui_name else "NONAME", effect_points]
+	var format: String = "%s" % ui_name if ui_name else "NONAME"
+	if effect_points != 0:
+		format += "(%d)" % effect_points
 	return format
 
 
