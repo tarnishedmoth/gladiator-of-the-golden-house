@@ -3,13 +3,21 @@ class_name AIActor extends Actor
 ## Base class for actors with AI behaviors. Extend this class and override its methods to implement
 ## unique behaviors. This base implementation simply picks randomly from its list of usable actions.
 
+
+enum MoveBehavior { ## Determines target tiles during [method plan_action_details] for ActionMoves.
+	TO_TARGET,
+	RANDOM
+}
+
 @export var usable_actions: Array[Action]
 @export var actions_to_queue_this_turn: int = 1
 @export var action_preview: ActionPreview ## DEPRECATED functionality has been merged into [Actor], see [method Actor.render_preview_for_action].
 
 @export_group("Behaviors")
 @export var always_prioritize_nearest_hostile: bool = true
+@export var move_behavior:MoveBehavior = MoveBehavior.TO_TARGET
 @export var move_towards_target: bool = true ## TODO this is simple, does not consider attack action pattern
+## DEPRECATED: Use MoveBehavior instead of move_towards_target
 
 var hostile_target: Actor ## Used for planning
 
@@ -63,12 +71,18 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 			candidates = get_translated_pattern(action.pattern)
 			candidates = _filter_move_candidates(candidates, claimed_tiles)
 
-			if not candidates.is_empty():
-				if hostile_target && move_towards_target:
-					## Move in a direction towards the target
-					candidates.sort_custom(sort_hostile_distance)
-					coords = candidates.front()
-				else:
+			if not candidates.is_empty() && hostile_target:
+				match move_behavior: ## TBD: Expand here any time new MoveBehaviors are added
+					MoveBehavior.TO_TARGET:
+						## Move in a direction towards the target
+						candidates.sort_custom(sort_hostile_distance)
+						coords = candidates.front()
+					MoveBehavior.RANDOM: 
+						coords = candidates.pick_random()
+					_: ## Default to random if MoveBehavior is not yet handled
+						coords = candidates.pick_random()
+						if debug: p("MoveBehavior %s is unhandled, picking random instead." % MoveBehavior.find_key(move_behavior))
+			elif not candidates.is_empty() && not hostile_target:
 					coords = candidates.pick_random()
 			else:
 				coords = self.current_tile_coords
