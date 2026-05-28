@@ -33,6 +33,8 @@ enum Hook {
 	ON_DAMAGE_DEALT,
 	ON_DIRECT_DAMAGE_DEALT,
 	ON_ACTION_PLAYED, ## TODO
+	ON_APPLYING_STATUS,
+	ON_STATUS_APPLIED,
 }
 
 @export var on_start_behavior: OnStart = OnStart.REMOVE_EFFECT ## Happens when a director's turn begins.

@@ -279,6 +279,9 @@ func draw_hand(draw_count: int = hand_size):
 
 	for card in draw_count:
 		_draw_next_card()
+	refresh_hud_actions_and_stash()
+
+func refresh_hud_actions_and_stash() -> void:
 	hud.populate_actions_list(actions_in_hand, selected_actor) ## Update HUD
 	hud.populate_stash_list(stash, selected_actor)
 	update_hud_actions_disabled_check()
