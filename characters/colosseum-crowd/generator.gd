@@ -11,6 +11,8 @@ enum Face {
 @export var body: Array[Texture2D]
 @export var hair: Array[Texture2D]
 @export var clothes: Array[Texture2D]
+@export var armor: Array[Texture2D]
+@export var flip_clothes: bool = true
 
 var baked: Sprite2D
 
@@ -18,6 +20,7 @@ var baked: Sprite2D
 @onready var _body: Sprite2D = %Body
 @onready var _hair: Sprite2D = %Hair
 @onready var _clothes: Sprite2D = %Clothes
+@onready var _armor: Sprite2D = %Armor
 
 
 # Called when the node enters the scene tree for the first time.
@@ -28,17 +31,23 @@ func _ready():
 
 ## Randomizes the blob bro.
 func make_blob() -> void:
-	if rand_bool(): _hood.texture = hood.pick_random()
-	_body.texture = body.pick_random()
-	_hair.texture = hair.pick_random()
-	_clothes.texture = clothes.pick_random()
+	if hood:
+		if rand_bool(): _hood.texture = hood.pick_random()
+	if body:
+		_body.texture = body.pick_random()
+	if hair:
+		_hair.texture = hair.pick_random()
+	if clothes:
+		_clothes.texture = clothes.pick_random()
+	if armor:
+		_armor.texture = armor.pick_random()
 	
-	if rand_bool(): ## Flip clothes sometimes
+	if flip_clothes and rand_bool(): ## Flip clothes sometimes
 		#_clothes.flip_h = !_clothes.flip_h
 		## New implementation for blob oven baker
-		var flip_clothes: Image = _clothes.texture.get_image()
-		flip_clothes.flip_x()
-		_clothes.texture = ImageTexture.create_from_image(flip_clothes)
+		var flipped_clothes: Image = _clothes.texture.get_image()
+		flipped_clothes.flip_x()
+		_clothes.texture = ImageTexture.create_from_image(flipped_clothes)
 
 ## Render the layered sprites down into one texture to reduce draw calls bro.
 func bake_blob() -> void:
@@ -51,8 +60,9 @@ func bake_blob() -> void:
 	## Order is important.
 	if _hood.texture: textures.append(_hood.texture)
 	textures.append(_body.texture)
-	textures.append(_hair.texture)
 	textures.append(_clothes.texture)
+	textures.append(_armor.texture)
+	textures.append(_hair.texture)
 	
 	baked.texture = BlobOven.bake(textures)
 	add_child(baked)

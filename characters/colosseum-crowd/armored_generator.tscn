@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://bm3twpweegoav"]
+
+[ext_resource type="Script" uid="uid://xncfhurfi6t4" path="res://characters/colosseum-crowd/generator.gd" id="1_hseia"]
+[ext_resource type="Texture2D" uid="uid://bs2dbhfwtir45" path="res://characters/colosseum-crowd/blob-parts/bodyTone1.png" id="6_ceivf"]
+[ext_resource type="Texture2D" uid="uid://copkb058mk64e" path="res://characters/colosseum-crowd/blob-parts/bodyTone2.png" id="7_0snuu"]
+[ext_resource type="Texture2D" uid="uid://behufv1npd8hl" path="res://characters/colosseum-crowd/blob-parts/bodyTone3.png" id="8_0htka"]
+[ext_resource type="Texture2D" uid="uid://bbv6dpgmgl1km" path="res://characters/colosseum-crowd/blob-parts/hairLongBlack.png" id="9_lfcmh"]
+[ext_resource type="Texture2D" uid="uid://b0uagkahvaj7t" path="res://characters/colosseum-crowd/blob-parts/hairLongBlonde.png" id="10_axds6"]
+[ext_resource type="Texture2D" uid="uid://ct2q37p6bi161" path="res://characters/colosseum-crowd/blob-parts/hairLongBrown.png" id="11_7w41v"]
+[ext_resource type="Texture2D" uid="uid://l6ergblfdyfy" path="res://characters/colosseum-crowd/blob-parts/hairLongRed.png" id="12_i6ma2"]
+[ext_resource type="Texture2D" uid="uid://relvrx1ic1i5" path="res://characters/colosseum-crowd/blob-parts/hairShortBlack.png" id="13_y54k7"]
+[ext_resource type="Texture2D" uid="uid://cv1b68kfkllv1" path="res://characters/colosseum-crowd/blob-parts/armored_red.png" id="14_kc07q"]
+[ext_resource type="Texture2D" uid="uid://nfsnyc1odong" path="res://characters/colosseum-crowd/blob-parts/hairShortBlonde.png" id="14_y71bs"]
+[ext_resource type="Texture2D" uid="uid://ctc2yvbjcwjrj" path="res://characters/colosseum-crowd/blob-parts/hairShortBrown.png" id="15_cxwhq"]
+[ext_resource type="Texture2D" uid="uid://c5cspcrk7jy2d" path="res://characters/colosseum-crowd/blob-parts/hairShortRed.png" id="16_g22h8"]
+[ext_resource type="Material" uid="uid://ba42heu1d306" path="res://characters/colosseum-crowd/blob-parts/shadow_canvas-item-material.tres" id="25_x3efr"]
+
+[sub_resource type="Gradient" id="Gradient_5h1ap"]
+offsets = PackedFloat32Array(0.18604651, 1)
+colors = PackedColorArray(0.8089983, 0.8089983, 0.8089982, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8i360"]
+gradient = SubResource("Gradient_5h1ap")
+width = 16
+height = 12
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Generator" type="Node2D" unique_id=2057479258]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_hseia")
+body = Array[Texture2D]([ExtResource("6_ceivf"), ExtResource("7_0snuu"), ExtResource("8_0htka")])
+hair = Array[Texture2D]([ExtResource("9_lfcmh"), ExtResource("10_axds6"), ExtResource("11_7w41v"), ExtResource("12_i6ma2"), ExtResource("13_y54k7"), ExtResource("14_y71bs"), ExtResource("15_cxwhq"), ExtResource("16_g22h8")])
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=702592995]
+z_index = -1
+material = ExtResource("25_x3efr")
+position = Vector2(0, 14)
+texture = SubResource("GradientTexture2D_8i360")
+
+[node name="Hood" type="Sprite2D" parent="." unique_id=2103348007]
+unique_name_in_owner = true
+
+[node name="Body" type="Sprite2D" parent="." unique_id=1093287810]
+unique_name_in_owner = true
+texture = ExtResource("7_0snuu")
+
+[node name="Clothes" type="Sprite2D" parent="." unique_id=989347492]
+unique_name_in_owner = true
+flip_h = true
+
+[node name="Armor" type="Sprite2D" parent="." unique_id=1950140066]
+unique_name_in_owner = true
+texture = ExtResource("14_kc07q")
+
+[node name="Hair" type="Sprite2D" parent="." unique_id=1423760829]
+unique_name_in_owner = true
+texture = ExtResource("13_y54k7")
