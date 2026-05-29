@@ -8,10 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://b0uagkahvaj7t" path="res://characters/colosseum-crowd/blob-parts/hairLongBlonde.png" id="10_axds6"]
 [ext_resource type="Texture2D" uid="uid://ct2q37p6bi161" path="res://characters/colosseum-crowd/blob-parts/hairLongBrown.png" id="11_7w41v"]
 [ext_resource type="Texture2D" uid="uid://l6ergblfdyfy" path="res://characters/colosseum-crowd/blob-parts/hairLongRed.png" id="12_i6ma2"]
+[ext_resource type="Texture2D" uid="uid://b3ochlidl0n8w" path="res://characters/colosseum-crowd/blob-parts/armored_blue.png" id="13_8tr3f"]
 [ext_resource type="Texture2D" uid="uid://relvrx1ic1i5" path="res://characters/colosseum-crowd/blob-parts/hairShortBlack.png" id="13_y54k7"]
 [ext_resource type="Texture2D" uid="uid://cv1b68kfkllv1" path="res://characters/colosseum-crowd/blob-parts/armored_red.png" id="14_kc07q"]
+[ext_resource type="Texture2D" uid="uid://cu5ommj6wrlyy" path="res://characters/colosseum-crowd/blob-parts/armored_brown.png" id="14_l6dd6"]
 [ext_resource type="Texture2D" uid="uid://nfsnyc1odong" path="res://characters/colosseum-crowd/blob-parts/hairShortBlonde.png" id="14_y71bs"]
 [ext_resource type="Texture2D" uid="uid://ctc2yvbjcwjrj" path="res://characters/colosseum-crowd/blob-parts/hairShortBrown.png" id="15_cxwhq"]
+[ext_resource type="Texture2D" uid="uid://bl4qqbcnbweo8" path="res://characters/colosseum-crowd/blob-parts/armored_green.png" id="15_y410q"]
 [ext_resource type="Texture2D" uid="uid://c5cspcrk7jy2d" path="res://characters/colosseum-crowd/blob-parts/hairShortRed.png" id="16_g22h8"]
 [ext_resource type="Material" uid="uid://ba42heu1d306" path="res://characters/colosseum-crowd/blob-parts/shadow_canvas-item-material.tres" id="25_x3efr"]
 
@@ -32,6 +35,7 @@ y_sort_enabled = true
 script = ExtResource("1_hseia")
 body = Array[Texture2D]([ExtResource("6_ceivf"), ExtResource("7_0snuu"), ExtResource("8_0htka")])
 hair = Array[Texture2D]([ExtResource("9_lfcmh"), ExtResource("10_axds6"), ExtResource("11_7w41v"), ExtResource("12_i6ma2"), ExtResource("13_y54k7"), ExtResource("14_y71bs"), ExtResource("15_cxwhq"), ExtResource("16_g22h8")])
+armor = Array[Texture2D]([ExtResource("13_8tr3f"), ExtResource("14_l6dd6"), ExtResource("15_y410q")])
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=702592995]
 z_index = -1
@@ -44,7 +48,7 @@ unique_name_in_owner = true
 
 [node name="Body" type="Sprite2D" parent="." unique_id=1093287810]
 unique_name_in_owner = true
-texture = ExtResource("7_0snuu")
+texture = ExtResource("6_ceivf")
 
 [node name="Clothes" type="Sprite2D" parent="." unique_id=989347492]
 unique_name_in_owner = true

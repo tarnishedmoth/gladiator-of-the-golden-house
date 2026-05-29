@@ -50,6 +50,7 @@ func _on_go_back_level_button_pressed() -> void:
 		PlayerData.this.current_level -= 1
 		Main.load_latest_level()
 		close_options()
+		get_tree().paused = false
 	else:
 		help_options.show()
 
@@ -66,6 +67,7 @@ func _on_skip_level_button_pressed() -> void:
 		Main.register_level_progressed()
 		Main.load_latest_level()
 		close_options()
+		get_tree().paused = false
 	else:
 		help_options.show()
 
@@ -82,6 +84,7 @@ func _on_restart_level_button_pressed() -> void:
 	if confirm_dialog.last_result:
 		Main.load_latest_level()
 		close_options()
+		get_tree().paused = false
 	else:
 		help_options.show()
 

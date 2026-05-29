@@ -5,9 +5,10 @@ class_name BlobOven
 static func bake(textures: Array[Texture2D]) -> ImageTexture:
 	var images: Array[Image]
 	for t in textures:
-		var image = t.get_image()
-		image.convert(Image.FORMAT_RGBA8)
-		images.push_back(image)
+		if t:
+			var image = t.get_image()
+			image.convert(Image.FORMAT_RGBA8)
+			images.push_back(image)
 	
 	var merged_image: Image
 	merged_image = Image.create_from_data(images[0].get_width(), images[0].get_height(), false, Image.FORMAT_RGBA8, images[0].get_data())

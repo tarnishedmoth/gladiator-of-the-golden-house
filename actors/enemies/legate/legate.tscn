@@ -10,7 +10,7 @@
 [ext_resource type="Resource" uid="uid://br4bum2xxwq41" path="res://actions/prefabs/boost-defense.tres" id="6_svhos"]
 [ext_resource type="Resource" uid="uid://c5tfagd2yefvr" path="res://actions/prefabs/boost-focus.tres" id="7_28bj1"]
 [ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="8_20tlr"]
-[ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="9_et1ln"]
+[ext_resource type="PackedScene" uid="uid://b3tclp663pywm" path="res://characters/colosseum-crowd/armored_brown.tscn" id="10_28bj1"]
 [ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="10_smlxf"]
 
 [node name="Legate" type="Node2D" unique_id=576080733 node_paths=PackedStringArray("health_bar", "speech_bubble")]
@@ -26,12 +26,10 @@ metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 
 [node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("6_imqgp")]
 
+[node name="Generator" parent="." unique_id=2057479258 instance=ExtResource("10_28bj1")]
+
 [node name="health" parent="." unique_id=1326189825 instance=ExtResource("8_20tlr")]
 position = Vector2(0, -30)
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=844266743]
-self_modulate = Color(0.5537113, 0.32033986, 0.7125296, 1)
-texture = ExtResource("9_et1ln")
 
 [node name="SpeechBubble" parent="." unique_id=757394792 instance=ExtResource("10_smlxf")]
 position = Vector2(0, -38)

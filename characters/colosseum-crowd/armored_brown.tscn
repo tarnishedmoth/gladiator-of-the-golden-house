@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b3tclp663pywm"]
 
 [ext_resource type="Script" uid="uid://xncfhurfi6t4" path="res://characters/colosseum-crowd/generator.gd" id="1_h6ywg"]
-[ext_resource type="Texture2D" uid="uid://djogisxpeovu3" path="res://characters/colosseum-crowd/blob-parts/HoodBrown.png" id="2_eqti4"]
 [ext_resource type="Texture2D" uid="uid://bs2dbhfwtir45" path="res://characters/colosseum-crowd/blob-parts/bodyTone1.png" id="2_iuxn8"]
 [ext_resource type="Texture2D" uid="uid://copkb058mk64e" path="res://characters/colosseum-crowd/blob-parts/bodyTone2.png" id="3_eqti4"]
 [ext_resource type="Texture2D" uid="uid://behufv1npd8hl" path="res://characters/colosseum-crowd/blob-parts/bodyTone3.png" id="4_c1ajd"]
@@ -31,7 +30,6 @@ fill_from = Vector2(0.5, 0.5)
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_h6ywg")
-hood = Array[Texture2D]([ExtResource("2_eqti4")])
 body = Array[Texture2D]([ExtResource("2_iuxn8"), ExtResource("3_eqti4"), ExtResource("4_c1ajd")])
 hair = Array[Texture2D]([ExtResource("5_v2s0q"), ExtResource("6_iqoa3"), ExtResource("7_bfs7y"), ExtResource("8_b8do3"), ExtResource("9_jkeiy"), ExtResource("10_d68l6"), ExtResource("11_b8lqh"), ExtResource("12_ubjq7")])
 
@@ -58,4 +56,4 @@ texture = ExtResource("14_ggmwv")
 
 [node name="Hair" type="Sprite2D" parent="." unique_id=1423760829]
 unique_name_in_owner = true
-texture = ExtResource("7_bfs7y")
+texture = ExtResource("11_b8lqh")
