@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://ua1ksh0d8wqk"]
+
+[ext_resource type="Texture2D" uid="uid://cojsjlla0fs32" path="res://vfx/rune-circle.png" id="1_544vo"]
+
+[sub_resource type="Curve" id="Curve_kmliu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.6974637, 0.69438595), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5foc1"]
+width = 64
+curve = SubResource("Curve_kmliu")
+
+[sub_resource type="Gradient" id="Gradient_yo13b"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.07692308, 0.45787546, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.3383579, 0.009990283, 0.2527719, 1, 0.6803451, 0.21811613, 0.040726483, 1, 0.5850815, 0.1113889, 0.38842413, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pgk8x"]
+gradient = SubResource("Gradient_yo13b")
+width = 64
+
+[sub_resource type="Curve" id="Curve_jsn88"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.6974637, 0.69438595), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_m410s"]
+width = 64
+curve = SubResource("Curve_jsn88")
+
+[sub_resource type="Curve" id="Curve_2dj1n"]
+_limits = [0.0, 1.25, 0.0, 2.0]
+_data = [Vector2(0, 1.0105264), 0.0, -0.10852816, 0, 0, Vector2(0.33333337, 0.9763159), 0.0, 0.0, 0, 0, Vector2(2, 1.0390352), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0neks"]
+width = 64
+curve = SubResource("Curve_2dj1n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y1qu1"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, -0.1, 0)
+scale_curve = SubResource("CurveTexture_0neks")
+color_ramp = SubResource("GradientTexture1D_pgk8x")
+alpha_curve = SubResource("CurveTexture_5foc1")
+emission_curve = SubResource("CurveTexture_m410s")
+hue_variation_min = -0.100000024
+hue_variation_max = 0.09999997
+
+[node name="RuneParticles" type="GPUParticles2D" unique_id=936515396]
+z_index = 1
+emitting = false
+amount = 2
+texture = ExtResource("1_544vo")
+lifetime = 6.0
+explosiveness = 0.5
+randomness = 0.5
+fixed_fps = 12
+process_material = SubResource("ParticleProcessMaterial_y1qu1")
