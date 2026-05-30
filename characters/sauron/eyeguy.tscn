@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://bxtwk62yntlh7"]
+
+[ext_resource type="Texture2D" uid="uid://c81865ocjbik0" path="res://characters/sauron/sauron.png" id="1_2lfwe"]
+[ext_resource type="Texture2D" uid="uid://vheq1gpohft1" path="res://actions/ui-icons/icon_3-16.png" id="1_q7ac8"]
+
+[sub_resource type="Gradient" id="Gradient_v3b6a"]
+offsets = PackedFloat32Array(0, 0.18131869, 0.71428573, 1)
+colors = PackedColorArray(0.52980304, 8.259237e-05, 0.47186363, 1, 0.5888265, 0.19533458, 0, 1, 0.9045051, 0.8646287, 0, 1, 0.98159975, 0.8011218, 0.35323477, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hmk4d"]
+gradient = SubResource("Gradient_v3b6a")
+width = 32
+
+[sub_resource type="Curve" id="Curve_sgwr2"]
+_limits = [0.0, 4.0, 0.0, 1.0]
+_data = [Vector2(0.0018115938, 0.5150876), 0.0, 9.782815, 0, 0, Vector2(0.26630434, 1.5733333), 4.091577, 4.091577, 0, 0, Vector2(1, 1.8470175), -5.8105254, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qpj42"]
+width = 64
+curve = SubResource("Curve_sgwr2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yfki4"]
+particle_flag_disable_z = true
+angle_min = -4.9999895
+angle_max = 5.000011
+spread = 180.0
+initial_velocity_min = 25.0
+initial_velocity_max = 25.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -18.000002
+radial_accel_max = -14.000002
+scale_curve = SubResource("CurveTexture_qpj42")
+color = Color(1, 1, 1, 0.7529412)
+color_ramp = SubResource("GradientTexture1D_hmk4d")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q7ac8"]
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+direction = Vector3(0, -1, 1)
+spread = 75.0
+flatness = 1.0
+initial_velocity_min = 75.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 1, 0)
+damping_min = 1.0
+damping_max = 1.0
+color = Color(0.7980923, 0.60343695, 0.15020227, 1)
+
+[sub_resource type="Animation" id="Animation_0s1ru"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_3y8dk"]
+resource_name = "idle"
+length = 2.33
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.33),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 19]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q2c42"]
+_data = {
+&"RESET": SubResource("Animation_0s1ru"),
+&"idle": SubResource("Animation_3y8dk")
+}
+
+[node name="Eyeguy" type="Node2D" unique_id=552246709]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=154756120]
+amount = 32
+texture = ExtResource("1_q7ac8")
+lifetime = 0.8
+randomness = 0.05
+fixed_fps = 16
+interpolate = false
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_yfki4")
+
+[node name="Flyaways" type="GPUParticles2D" parent="." unique_id=1854432486]
+amount = 16
+lifetime = 8.0
+explosiveness = 0.5
+randomness = 0.7
+fixed_fps = 8
+interpolate = false
+process_material = SubResource("ParticleProcessMaterial_q7ac8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1467555401]
+texture = ExtResource("1_2lfwe")
+hframes = 5
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=2087084201]
+libraries/ = SubResource("AnimationLibrary_q2c42")
+autoplay = &"idle"
