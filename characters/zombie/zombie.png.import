@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h154gauy424s"
-path="res://.godot/imported/TEST.png-59cf32fc31468e7e85c4703138c4094a.ctex"
+uid="uid://dl6m3wte5bauc"
+path="res://.godot/imported/zombie.png-39b86f8463d4f92fd647b5c37e21728c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/colosseum-crowd/blob-parts/TEST.png"
-dest_files=["res://.godot/imported/TEST.png-59cf32fc31468e7e85c4703138c4094a.ctex"]
+source_file="res://characters/zombie/zombie.png"
+dest_files=["res://.godot/imported/zombie.png-39b86f8463d4f92fd647b5c37e21728c.ctex"]
 
 [params]
 
