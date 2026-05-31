@@ -4,6 +4,7 @@
 [ext_resource type="Material" uid="uid://bng44fo6whcky" path="res://vfx/light-only_canvas-item-material.tres" id="2_fpxwp"]
 [ext_resource type="Texture2D" uid="uid://chcat6kgh1tb3" path="res://play/tile-atlases/hexagon-grid-cool.png" id="3_fpxwp"]
 [ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="4_j2kal"]
+[ext_resource type="Script" uid="uid://4qohp0g814ff" path="res://utils/tilemap_debug_coordinates.gd" id="4_pt8uj"]
 [ext_resource type="PackedScene" uid="uid://btt45gb4p850m" path="res://play/camera/camera.tscn" id="6_5am2h"]
 [ext_resource type="PackedScene" uid="uid://bs7yj78ykeu7o" path="res://play/hud/hud.tscn" id="7_wysrq"]
 [ext_resource type="Script" uid="uid://mm6inbfx8c45" path="res://utils/mouse_follower.gd" id="8_xvlf6"]
@@ -26,6 +27,9 @@ tile_offset_axis = 1
 tile_size = Vector2i(128, 72)
 uv_clipping = true
 sources/0 = SubResource("TileSetAtlasSource_u4q3m")
+
+[sub_resource type="LabelSettings" id="LabelSettings_pt8uj"]
+font_size = 6
 
 [sub_resource type="Gradient" id="Gradient_3cqig"]
 interpolation_mode = 2
@@ -65,6 +69,9 @@ material = ExtResource("2_fpxwp")
 position = Vector2(-64, -36)
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP3/AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAD//wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAABAP//AAAAAAAAAAACAP7/AAAAAAAAAAADAP3/AAAAAAAAAAD//wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wMAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wEAAAAAAAAAAAACAP//AAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAEAAAAAAAAAAAD//wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wIAAAAAAAAAAAD/////AAAAAAAAAAD///7/AAAAAAAAAAD+////AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAACAP3/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_fqe43")
+script = ExtResource("4_pt8uj")
+show_coordinates_in_editor = true
+tile_coords_debug_text_settings = SubResource("LabelSettings_pt8uj")
 
 [node name="GridTint" parent="TileMapLayers" unique_id=1487691829 instance=ExtResource("4_j2kal")]
 visible = false

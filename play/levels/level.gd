@@ -12,13 +12,6 @@ func p(args):
 signal current_director_changed(director: Director)
 
 @export var use_randomized_rotation_and_mirror: bool = true
-@export var show_debug_tile_coords_overlay:bool = false:
-	set(v):
-		if (not show_debug_tile_coords_overlay) and v:
-			render_tile_coordinates_debug_overlay()
-		elif show_debug_tile_coords_overlay and not v:
-			clear_render_tile_coordinates_debug_overlay()
-		show_debug_tile_coords_overlay = v
 
 @export var base_tile_map_layer: TileMapLayer
 @export var tile_interactor: TileInteractor ## Used for detecting mouse input.
@@ -189,9 +182,6 @@ func start_game() -> void:
 
 	var overlaps: String = _get_overlap_description()
 	assert(overlaps.is_empty(), "Actors overlap: %s" % overlaps)
-
-	if show_debug_tile_coords_overlay:
-		render_tile_coordinates_debug_overlay()
 
 	playtime_counter_running = true
 	next_turn()
@@ -375,39 +365,5 @@ func trigger_response_speech_bubbles(positive: bool) -> void:
 			var inst = oneliners.pick_random() as OneLiners
 			inst.display_response_oneliner(positive)
 			oneliners.erase(inst)
-
-#endregion
-#region Tile Coords Debug Overlay
-
-const TILE_COORDS_DEBUG_TEXT_OFFSET: Vector2 = Vector2(0, 20)
-
-var tile_coords_debug_overlay_elements: Array[Node]
-var tile_coords_debug_text_settings: LabelSettings ## Cached resource
-
-func clear_render_tile_coordinates_debug_overlay() -> void:
-	for child in tile_coords_debug_overlay_elements:
-		child.queue_free()
-
-func render_tile_coordinates_debug_overlay() -> void:
-	if not base_tile_map_layer:
-		return
-
-	if not tile_coords_debug_text_settings:
-		tile_coords_debug_text_settings = LabelSettings.new()
-		tile_coords_debug_text_settings.font_size = 9
-
-	if not tile_coords_debug_overlay_elements.is_empty():
-		clear_render_tile_coordinates_debug_overlay()
-
-	for coords in base_tile_map_layer.get_used_cells():
-		var new_label: Label = Label.new()
-		add_child(new_label)
-
-		tile_coords_debug_overlay_elements.push_back(new_label)
-
-		new_label.text = str(coords)
-		new_label.top_level = true ## just to be unaffected by overlays and modulation
-		new_label.label_settings = tile_coords_debug_text_settings
-		new_label.global_position = base_tile_map_layer.to_global(base_tile_map_layer.map_to_local(coords)) + TILE_COORDS_DEBUG_TEXT_OFFSET
 
 #endregion
