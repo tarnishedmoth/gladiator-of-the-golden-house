@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://ca1u1weh7rbc6"]
+
+[ext_resource type="PackedScene" uid="uid://dnwn75fwwq600" path="res://play/levels/inheritable-level.tscn" id="1_0wo7v"]
+[ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="2_qoyf6"]
+[ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="3_1gnf7"]
+[ext_resource type="PackedScene" uid="uid://c61s2rc1qc6vp" path="res://actors/enemies/void_grunt.tscn" id="3_qoyf6"]
+
+[node name="Level" unique_id=13868467 instance=ExtResource("1_0wo7v")]
+
+[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=1373896942]
+script = ExtResource("2_qoyf6")
+metadata/_custom_type_script = "uid://dwys5mwbuw85s"
+
+[node name="VoidGrunt" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=612736880 instance=ExtResource("3_qoyf6")]
+position = Vector2(-186, -155)
+
+[node name="VoidGrunt2" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=1318065200 instance=ExtResource("3_qoyf6")]
+position = Vector2(196, -148)
+
+[node name="VoidGrunt3" parent="TileMapLayers/Directors/AIDirector" index="2" unique_id=87440535 instance=ExtResource("3_qoyf6")]
+position = Vector2(189, 142)
+
+[node name="VoidGrunt4" parent="TileMapLayers/Directors/AIDirector" index="3" unique_id=851972756 instance=ExtResource("3_qoyf6")]
+position = Vector2(-187, 147)
+
+[node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("3_1gnf7")]
+position = Vector2(-1, -1)

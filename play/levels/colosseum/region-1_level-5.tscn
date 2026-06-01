@@ -29,5 +29,8 @@ facing = 4
 [node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("2_d4lr2")]
 position = Vector2(-3, 71)
 
+[node name="BaseTileMapLayer" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="2" unique_id=1254354450]
+script = null
+
 [node name="GridTint" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="3" unique_id=1487691829]
 visible = true

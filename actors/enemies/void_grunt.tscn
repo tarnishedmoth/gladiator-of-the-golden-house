@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://c61s2rc1qc6vp"]
+
+[ext_resource type="Script" uid="uid://2lxtpvvfchas" path="res://actors/enemies/grunt/grunt.gd" id="1_5brh6"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_wvmyn"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="3_othuv"]
+[ext_resource type="PackedScene" uid="uid://l1r068mo4353" path="res://vfx/actor_vfx_handler.tscn" id="4_2ku68"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="4_vctl3"]
+[ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="5_rewct"]
+[ext_resource type="Resource" uid="uid://dkvnt5ik187cv" path="res://actions/prefabs/panic.tres" id="6_5brh6"]
+[ext_resource type="Texture2D" uid="uid://bnepfqy7b6vc0" path="res://characters/zombie/zombie_anim.png" id="7_wvmyn"]
+[ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="8_dtxg8"]
+[ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="9_gxvl4"]
+[ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="11_l0swk"]
+
+[sub_resource type="Resource" id="Resource_5brh6"]
+script = ExtResource("4_vctl3")
+damage = 4
+can_damage_teammates = true
+pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
+ui_title = "Light Attack"
+energy_cost = 1
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"
+
+[sub_resource type="Resource" id="Resource_wvmyn"]
+script = ExtResource("4_vctl3")
+damage = 10
+can_damage_teammates = true
+pattern = Array[Vector2i]([Vector2i(0, -1)])
+ui_title = "Heavy Attack"
+ui_description = "Attack one tile "
+energy_cost = 1
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"
+
+[sub_resource type="Animation" id="Animation_0m6fe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_y38ml"]
+resource_name = "attack"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.26666668, 0.36666667, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 4, 5, 4]
+}
+
+[sub_resource type="Animation" id="Animation_griro"]
+resource_name = "collapse"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.5, 0.73333335, 0.96666664, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 2, 1, 2, 1, 4]
+}
+
+[sub_resource type="Animation" id="Animation_2ku68"]
+resource_name = "get_hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h1mkt"]
+_data = {
+&"RESET": SubResource("Animation_0m6fe"),
+&"attack": SubResource("Animation_y38ml"),
+&"collapse": SubResource("Animation_griro"),
+&"get_hit": SubResource("Animation_2ku68")
+}
+
+[node name="VoidGrunt" type="Node2D" unique_id=612736880 node_paths=PackedStringArray("health_bar", "speech_bubble")]
+script = ExtResource("1_5brh6")
+usable_actions = Array[ExtResource("2_wvmyn")]([ExtResource("5_rewct"), SubResource("Resource_5brh6"), SubResource("Resource_wvmyn"), ExtResource("6_5brh6")])
+health_bar = NodePath("health")
+speech_bubble = NodePath("SpeechBubble")
+ui_name = "? ? ?"
+ui_description = "Where are you?"
+max_health = 20
+metadata/_custom_type_script = "uid://2lxtpvvfchas"
+
+[node name="Zombie" type="Sprite2D" parent="." unique_id=1368758138]
+texture = ExtResource("7_wvmyn")
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Zombie" unique_id=448592839]
+libraries/ = SubResource("AnimationLibrary_h1mkt")
+
+[node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("8_dtxg8")]
+
+[node name="ActorVfx" parent="." unique_id=374718462 node_paths=PackedStringArray("animation_player") instance=ExtResource("4_2ku68")]
+animation_player = NodePath("../Zombie/AnimationPlayer")
+animation_attack = &"attack"
+animation_get_hit = &"get_hit"
+animation_transform = &"collapse"
+start_as_transformed = true
+
+[node name="health" parent="." unique_id=1326189825 instance=ExtResource("9_gxvl4")]
+position = Vector2(0, -30)
+
+[node name="SpeechBubble" parent="." unique_id=757394792 instance=ExtResource("11_l0swk")]
+position = Vector2(0, -38)
