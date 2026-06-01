@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ActionDoNothing" format=3 uid="uid://bxvvng0ducbc3"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_jlecq"]
+[ext_resource type="Script" uid="uid://cwjlhkoayrvtm" path="res://actions/action_do-nothing.gd" id="2_sifve"]
+
+[resource]
+script = ExtResource("2_sifve")
+ui_title = "Do Nothing"
+ui_description = "Do nothing this turn."
+action_category = 4
+debug = false
+metadata/_custom_type_script = "uid://cwjlhkoayrvtm"

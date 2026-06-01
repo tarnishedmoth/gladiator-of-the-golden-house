@@ -3,6 +3,7 @@ class_name AIActor extends Actor
 ## Base class for actors with AI behaviors. Extend this class and override its methods to implement
 ## unique behaviors. This base implementation simply picks randomly from its list of usable actions.
 
+const DO_NOTHING_ACTION: Resource = preload("res://actions/action_do-nothing.gd")
 
 enum MoveBehavior { ## Determines target tiles during [method plan_action_details] for ActionMoves.
 	TO_TARGET,
@@ -32,6 +33,9 @@ var hostile_target: Actor ## Used for planning
 
 func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> void:
 	var queue: Array[Action]
+	
+	if actions_to_queue_this_turn == 0:
+		queue.append(DO_NOTHING_ACTION.duplicate())
 	
 	for i in actions_to_queue_this_turn:
 		queue.append(choose_action(claimed_tiles))
