@@ -181,7 +181,7 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 			## We register persistent data only when a level is finished. See [method push_persistent_data].
 		
 	if speech_bubble:
-		speech_bubble.speak("Ready Fight!")
+		speech_bubble.speak("!!")
 	
 	update_healthbar()
 	
@@ -564,10 +564,12 @@ func render_preview_for_action(action: Action, target) -> void:
 		#if action is ActionMove:
 			#TargetFinder.highlight_targets(playable_tiles, Targeting.COLORS.GREY, self)
 		#else:
-		if RENDER_AI_PLAYABLE_TILES:
-			TargetFinder.highlight_targets(playable_tiles, Targeting.COLORS.GREY, self)
-		if target != null:
+		if target == null:
+			TargetFinder.highlight_targets(playable_tiles, color, self)
+		else:
 			TargetFinder.highlight_target(target, Targeting.COLORS.PINK, self)
+			if RENDER_AI_PLAYABLE_TILES:
+				TargetFinder.highlight_targets(playable_tiles, Targeting.COLORS.GREY, self)
 	
 	## Render AoE pattern if applicable
 	if target != null:
@@ -608,9 +610,11 @@ func get_action_target_cells_at(play_tile: Vector2i, action: Action) -> Array[Ve
 		if current_tile_coords == play_tile:
 			aoe.append(current_tile_coords)
 		return aoe
-		
-	if not play_tile in Facing.get_target_cells(current_tile_coords, facing, action.pattern):
+	
+	var valid_cells := Facing.get_target_cells(current_tile_coords, facing, action.pattern)
+	if not play_tile in valid_cells:
 		## Invalid play tile
+		p("get_action_target_cells_at: Invalid play tile %s in %s." % [play_tile, valid_cells])
 		return aoe
 	
 	if not "aoe_pattern" in action:

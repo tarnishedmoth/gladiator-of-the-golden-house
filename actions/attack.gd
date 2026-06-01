@@ -36,7 +36,8 @@ var mirrored_pattern: Array[Vector2i] ## Cached.
 @export var aoe_pattern: Array[Vector2i]:
 	get:
 		if aoe_pattern.is_empty():
-			return NO_PATTERN
+			#return NO_PATTERN
+			return aoe_pattern
 		if split_choice:
 			if run_mirrored:
 				if mirrored_aoe_pattern.is_empty():

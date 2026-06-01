@@ -111,6 +111,11 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 		
 	elif action is ActionAttack:
 		if debug: p("Planning ActionAttack.")
+		if not action.aoe_pattern:
+			## We can hit every tile
+			if debug: p("Action does not use AoE--skipping target planning.")
+			return
+		
 		var potential_targets: Array[Vector2i] = get_action_target_cells(action) ## Absolute coordsva
 		var _potential_affected: Dictionary[Vector2i, Array] ## Absolute target coord, absolute aoe tiles
 		
@@ -118,6 +123,7 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 		
 		if potential_targets.is_empty():
 			## No valid choices for this action
+			if debug: p("Did not configure action due to no valid moves")
 			push_warning("Did not configure action due to no valid moves")
 			return
 		
@@ -156,7 +162,7 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 		if debug:
 			## Sanity check
 			assert(choice_target in Facing.get_target_cells(current_tile_coords, facing, action.pattern))
-			p("Verified target choice is valid.")
+			if debug: p("Verified target choice is valid.")
 		
 		action.set_target(choice_target)
 		
