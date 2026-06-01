@@ -31,6 +31,12 @@ var hostile_target: Actor ## Used for planning
 	#
 	#super(director_,tilemap)
 
+func replace_usable_actions(new_usable_actions: Array[Action], change_queue_size: int = -1) -> void:
+	usable_actions.clear()
+	usable_actions.append_array(new_usable_actions)
+	if change_queue_size > -1:
+		actions_to_queue_this_turn = change_queue_size
+
 func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> void:
 	var queue: Array[Action]
 	

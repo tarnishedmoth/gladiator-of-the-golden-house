@@ -88,7 +88,6 @@ func cast_energy_cost_to_requirement() -> void:
 ## Consider populating the requirements array in _init, or _enter_tree.
 @export var requirements: Array[ActionRequirement]
 
-
 var _actor: Actor ## The actor that will run this action. This is not any "target" such as for dealing damage.
 func set_actor(actor: Actor) -> void:
 	self._actor = actor
