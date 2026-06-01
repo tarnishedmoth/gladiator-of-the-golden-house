@@ -8,6 +8,7 @@ enum FX {
 	ATTACK,
 	BLOCK,
 	GET_HIT,
+	TRANSFORM,
 }
 
 # scenes to spawn (particle effects)
@@ -16,13 +17,27 @@ enum FX {
 @export var block: PackedScene
 @export var get_hit: PackedScene
 
+@export var animation_player: AnimationPlayer
+@export var animation_idle: StringName
+@export var animation_move: StringName
+@export var animation_attack: StringName
+@export var animation_block: StringName
+@export var animation_get_hit: StringName
+@export var animation_transform: StringName
+@export var start_as_transformed: bool = false
+
 func _ready() -> void:
 	var parent = get_parent()
 	if parent is Actor:
 		parent.vfx = self
 	else:
 		push_error("ActorVfxHandler is not a child of an Actor.")
-		
+	
+	if animation_transform and start_as_transformed:
+		play_animation(animation_transform)
+	elif animation_idle:
+		play_animation(animation_idle)
+
 func _exit_tree() -> void:
 	var parent = get_parent()
 	if parent is Actor:
@@ -40,6 +55,8 @@ func play(vfx: FX) -> void:
 			on_block()
 		FX.GET_HIT:
 			on_get_hit()
+		FX.TRANSFORM:
+			on_transform()
 		_:
 			push_error("Out of bounds.")
 			
@@ -55,12 +72,16 @@ func play_status(status_vfx_scene: PackedScene, status: Status) -> void:
 		
 		get_tree().current_scene.add_child(instance)
 
+func play_animation(string_name: StringName) -> void:
+	if animation_player:
+		animation_player.play(string_name)
+
 ## For future use with different weapon/action sounds perhaps.
 func change_attack_vfx(useThisSceneInstead: PackedScene) -> void:
 	attack = useThisSceneInstead
 	
 func on_move() -> void:
-	print("spawning MOVE particles")
+	#print("spawning MOVE particles")
 	if move:
 		var spawnedFX = move.instantiate()
 		spawnedFX.global_position = global_position
@@ -68,10 +89,12 @@ func on_move() -> void:
 		# we could spawn as a child of this actor:
 		# add_child(spawnedFX) 
 		# but choose to spawn on root node so fx persist even if actor is destroyed:
-		get_tree().current_scene.add_child(spawnedFX) 
+		get_tree().current_scene.add_child(spawnedFX)
+	if animation_move:
+		play_animation(animation_move)
 
 func on_attack() -> void:
-	print("spawning ATTACK particles")
+	#print("spawning ATTACK particles")
 	# TODO? spawn different particles at beginning and end of an attack
 	# (example use: swing "slash" vs hit "sparks" which comes later)
 	# if attack.finished.is_connected(attack_sound_finished.emit):
@@ -81,19 +104,28 @@ func on_attack() -> void:
 		var spawnedFX = attack.instantiate()
 		spawnedFX.global_position = global_position
 		# TODO: rotate based on direction of tile we are attacking (not facing)
-		get_tree().current_scene.add_child(spawnedFX) 
+		get_tree().current_scene.add_child(spawnedFX)
+	if animation_attack:
+		play_animation(animation_attack)
 
 func on_block() -> void:
-	print("spawning BLOCK particles")
+	#print("spawning BLOCK particles")
 	if block:
 		var spawnedFX = block.instantiate()
 		spawnedFX.global_position = global_position
-		get_tree().current_scene.add_child(spawnedFX) 
+		get_tree().current_scene.add_child(spawnedFX)
+	if animation_block:
+		play_animation(animation_block)
 	
 func on_get_hit() -> void:
-	print("spawning GET_HIT particles")
+	#print("spawning GET_HIT particles")
 	if get_hit:
 		var spawnedFX = get_hit.instantiate()
 		spawnedFX.global_position = global_position
-		get_tree().current_scene.add_child(spawnedFX) 
+		get_tree().current_scene.add_child(spawnedFX)
+	if animation_get_hit:
+		play_animation(animation_get_hit)
 	
+func on_transform() -> void:
+	if animation_transform:
+		play_animation(animation_transform)
