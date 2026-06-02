@@ -4,6 +4,7 @@ const GROUP_NAME: StringName = &"OneLiners" ## Centralized to manage timing (spa
 
 @export var one_liner_txt: Label
 
+@export var run_random_triggers: bool = true
 @export var seconds_before_starting: float = 5.0
 @export var bubble_timespan_seconds: float = 2.0
 @export var wait_seconds_min: float = 15.0
@@ -106,12 +107,12 @@ func say_this_oneliner(bark:String):
 
 func _ready():
 	add_to_group(GROUP_NAME)
-	randomize()
+	#randomize()
 	hide() # the bubble to begin with
 	# wait before starting random oneliners
 	one_liner_delay_remaining = seconds_before_starting
 	# we could add extra so other NPCs don't start at the same time:
-	# one_liner_delay_remaining += randf_range(wait_seconds_min, wait_seconds_max)
+	one_liner_delay_remaining += randf_range(wait_seconds_min, wait_seconds_max)
 
 func display_random_oneliner():
 	# choose one randomly
@@ -127,7 +128,8 @@ func display_response_oneliner(positive: bool) -> void:
 		say_this_oneliner(TextUtils.prepend(NEGATIVES, one_liners.pick_random()))
 
 func _process(delta):
-	
+	if not run_random_triggers:
+		return
 	bubble_time_remaining -= delta
 	if (bubble_time_remaining > 0.0):
 		return # keep showing it
