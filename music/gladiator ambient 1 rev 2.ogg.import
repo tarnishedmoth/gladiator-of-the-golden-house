@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cwvxgdkgn01ib"
+path="res://.godot/imported/gladiator ambient 1 rev 2.ogg-12ecbc098aaf1cb2af7938e8cf6a6f59.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/gladiator ambient 1 rev 2.ogg"
+dest_files=["res://.godot/imported/gladiator ambient 1 rev 2.ogg-12ecbc098aaf1cb2af7938e8cf6a6f59.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
