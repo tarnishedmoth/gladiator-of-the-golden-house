@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://daqwomvp4na3y" path="res://menus/main_menu.gd" id="1_8gy84"]
 [ext_resource type="Theme" uid="uid://de2vbcxalv6dy" path="res://menus/theme_level_hud.tres" id="1_oblsv"]
+[ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://vfx/vignette.tscn" id="3_a63lr"]
 [ext_resource type="Texture2D" uid="uid://dvuqbrge3doql" path="res://menus/gladiator-godot-icon.png" id="3_yjgyn"]
 [ext_resource type="PackedScene" uid="uid://dfsb03s1gr8a" path="res://legal_menu_screen.tscn" id="5_a63lr"]
 [ext_resource type="Script" uid="uid://djrq7aycfpw12" path="res://menus/save_slots_container.gd" id="5_oblsv"]
@@ -9,7 +10,8 @@
 [sub_resource type="Gradient" id="Gradient_rqbgu"]
 interpolation_mode = 2
 interpolation_color_space = 2
-colors = PackedColorArray(0, 0, 0, 1, 0.054793783, 0.06020228, 0.071520485, 1)
+offsets = PackedFloat32Array(0, 0.22372882, 0.5118644, 0.63728815, 0.67288136, 0.88305086, 1)
+colors = PackedColorArray(0.16862746, 0.15686275, 0.12941177, 1, 0.8509804, 0.6745098, 0.54509807, 1, 0.83137256, 0.5019608, 0.3019608, 1, 0.6901961, 0.22745098, 0.28235295, 1, 0.3647059, 0.44705883, 0.45882353, 1, 0.14087662, 0.23877454, 0.36016852, 1, 0.31896943, 0.21497387, 0.41525784, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oblsv"]
 gradient = SubResource("Gradient_rqbgu")
@@ -32,7 +34,16 @@ grow_vertical = 2
 theme = ExtResource("1_oblsv")
 script = ExtResource("1_8gy84")
 
+[node name="Vignette" parent="." unique_id=1697100378 instance=ExtResource("3_a63lr")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
 [node name="TextureRect" type="TextureRect" parent="." unique_id=449601437]
+self_modulate = Color(1, 1, 1, 0.23529412)
 layout_mode = 0
 offset_right = 960.0
 offset_bottom = 540.0
@@ -51,7 +62,6 @@ tabs_visible = false
 
 [node name="MainMenuTab" type="VBoxContainer" parent="TabContainer" unique_id=719863624]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -317,6 +327,7 @@ text = "Return to Main Menu"
 
 [node name="CreditsTab" type="MarginContainer" parent="TabContainer" unique_id=863408981]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 120
 theme_override_constants/margin_top = 20

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://btt45gb4p850m"]
 
 [ext_resource type="Script" uid="uid://ksskg55rbpi1" path="res://play/camera/camera.gd" id="1_k632q"]
-[ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="1_lw1ob"]
+[ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://vfx/vignette.tscn" id="1_lw1ob"]
 
 [sub_resource type="Animation" id="Animation_yp4h5"]
 length = 0.001

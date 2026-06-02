@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dgjwny10ywnvr"]
 
 [ext_resource type="Script" uid="uid://cef5121i0cwd6" path="res://menus/intro/splash.gd" id="1_b04ml"]
-[ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://utils/vignette.tscn" id="2_d525n"]
+[ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://vfx/vignette.tscn" id="2_d525n"]
 [ext_resource type="Texture2D" uid="uid://dvuqbrge3doql" path="res://menus/gladiator-godot-icon.png" id="3_56kac"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_56kac"]

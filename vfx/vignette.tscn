@@ -5,7 +5,7 @@ blend_mode = 3
 
 [sub_resource type="Gradient" id="Gradient_56kac"]
 interpolation_mode = 2
-interpolation_color_space = 1
+interpolation_color_space = 2
 offsets = PackedFloat32Array(0.18023255, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.49747366, 0.49747372, 0.49747342, 1)
 
@@ -24,4 +24,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
 texture = SubResource("GradientTexture2D_d525n")
