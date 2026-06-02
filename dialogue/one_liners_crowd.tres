@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="OneLinersStrings" format=3 uid="uid://c0bk22awn1bq1"]
+
+[ext_resource type="Script" uid="uid://dkxh07rw1g7rr" path="res://dialogue/one_liners_strings.gd" id="1_dg4pe"]
+
+[resource]
+script = ExtResource("1_dg4pe")
+one_liners = Array[String](["Excelcior!", "I see storms on the horizon!", "For glory!", "Imperium vitae!", "Deus Vult!", "Ad astra per aspera!", "Respect!", "Glorious!", "Honorable!", "Tennoheika banzai!", "I'm getting my money's worth!", "What a show!", "Unbelievable.", "I can't believe my own eyes.", "What is this?", "Who is that?", "Wow!", "I never expected this.", "I'm shook!", "The earth trembles!", "This is a delight.", "If only I were that strong.", "Weakness can't be tolerated.", "Only the strongest.", "Move over, I can't see.", "!!!", "Should I wait to the end?", "Would you fill my goblet?", "Great weather today.", "They look incredible.", "Is this really our strongest?", "Could they be stronger?", "Who's your bet on?", "Should've brought more to gamble...", "I'm calling it!", "These seats could be better.", "I think I'm turning sick...", "Wondrous!", "Can't bear to look...", "How brutish.", "They're all brutes.", "Imagine being like that.", "Could you imagine?", "This is what I came for.", "It's everything I hoped!", "These games are spectacular.", "Long live our emperor.", "Where's the washroom?", "I'm not impressed."])
+metadata/_custom_type_script = "uid://dkxh07rw1g7rr"

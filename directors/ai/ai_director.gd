@@ -17,7 +17,7 @@ func _on_turn_started():
 	if VERBOSE: p("AI taking turn...")
 	
 	## Let's put the random one-liners here
-	Level.get_instance().trigger_speech_bubbles()
+	Level.get_instance().trigger_random_actor_speech_bubbles()
 	
 	var _minimum_wait_time: Tween = create_tween()
 	_minimum_wait_time.tween_interval(1.2)

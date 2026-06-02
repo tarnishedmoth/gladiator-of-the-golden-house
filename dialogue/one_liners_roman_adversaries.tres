@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="OneLinersStrings" format=3 uid="uid://dqr1ooiqef8nw"]
+
+[ext_resource type="Script" uid="uid://dkxh07rw1g7rr" path="res://dialogue/one_liners_strings.gd" id="1_f1f4y"]
+
+[resource]
+script = ExtResource("1_f1f4y")
+metadata/_custom_type_script = "uid://dkxh07rw1g7rr"

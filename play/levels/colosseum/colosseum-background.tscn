@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://du84d6vu47bti" path="res://play/levels/colosseum/banners-and-flags/banners-top.png" id="4_2426h"]
 [ext_resource type="Material" uid="uid://c67vjko6cm0ib" path="res://play/levels/colosseum/banners-and-flags/waving-flag-material.tres" id="4_qq43s"]
 [ext_resource type="Texture2D" uid="uid://b5pw00yp2hvie" path="res://play/levels/colosseum/banners-and-flags/flag.png" id="5_xp1k0"]
+[ext_resource type="PackedScene" uid="uid://dwfr86j8i7cp4" path="res://dialogue/one_liners.tscn" id="7_pgk8x"]
+[ext_resource type="Resource" uid="uid://c0bk22awn1bq1" path="res://dialogue/one_liners_crowd.tres" id="8_jsn88"]
 
 [node name="BackgroundColosseum" type="Node2D" unique_id=651320207]
 script = ExtResource("1_5foc1")
@@ -68,6 +70,224 @@ position = Vector2(1.1934814, -74.1799)
 scale = Vector2(1.2044063, 1.2874782)
 color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(0, -222, 18, -222, 36, -221, 56, -219, 75, -218, 105.28551, -213.45613, 118, -211, 129.8779, -208.41785, 141, -206, 152.61172, -202.58217, 181.67169, -193.26161, 194.95624, -188.60133, 229, -176, 250, -166, 276, -151, 293, -139, 310, -126, 323, -113, 343, -98, 355, -86, 368, -69, 381, -50, 394, -26, 401, -9, 406, 19, 407, 36, 406, 114, 400, 135, 393, 149, 385, 167, 375.95828, 177.23012, 367.33496, 190.98474, 352, 210, 338, 224, 327.8018, 233.15341, 317.83838, 244.02737, 309.53552, 252.57121, 291.26926, 264.2219, 279, 273, 265, 280, 250, 291, 228.16763, 299.17395, 208, 308, 193, 315, 179.18083, 319.36844, 152.61172, 325.58215, 139.32716, 331.79584, 122, 333, 105, 336, 91, 338, 73, 341, -59, 343, -75, 340, -96, 339, -119, 336, -136, 331, -162.06616, 324.80542, -173, 322, -188, 316, -207, 307, -229, 300, -256, 288, -273, 277, -288, 271, -299, 261, -310, 250, -324, 237, -336, 225, -350, 210, -362.99506, 200.5315, -370, 186, -376, 177, -383, 165, -389, 154, -398, 127, -401, 113, -405, 87, -407, 69, -404.7034, 46.373726, -400, 10, -399, -5, -394, -22, -388, -33, -380, -50, -371.29788, -66.65752, -362, -75, -351.37106, -89.182175, -332.2745, -109.37669, -324, -118, -314.00824, -125.68765, -301.554, -134.23148, -289, -144, -272, -152, -264, -160, -245.09462, -169.18353, -236.79178, -173.0671, -216, -184, -204, -188, -191.12613, -192.4849, -179.50214, -195.59175, -169, -200, -149.6119, -202.58217, -137.9879, -205.68901, -126.363914, -207.24245, -113.07935, -208.79585, -84, -218, -67, -221, -46, -222, -33, -222, -19, -222)
+
+[node name="Oneliners" type="Node2D" parent="Nonemissive/Crowd" unique_id=968635287]
+
+[node name="OneLiners" parent="Nonemissive/Crowd/Oneliners" unique_id=1096534424 instance=ExtResource("7_pgk8x")]
+position = Vector2(-129, -236)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners2" parent="Nonemissive/Crowd/Oneliners" unique_id=697076527 instance=ExtResource("7_pgk8x")]
+position = Vector2(-76, -267)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners3" parent="Nonemissive/Crowd/Oneliners" unique_id=1244181010 instance=ExtResource("7_pgk8x")]
+position = Vector2(-336, -144)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners4" parent="Nonemissive/Crowd/Oneliners" unique_id=807264015 instance=ExtResource("7_pgk8x")]
+position = Vector2(36, -257)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners5" parent="Nonemissive/Crowd/Oneliners" unique_id=1471986112 instance=ExtResource("7_pgk8x")]
+position = Vector2(77, -210)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners6" parent="Nonemissive/Crowd/Oneliners" unique_id=1055663613 instance=ExtResource("7_pgk8x")]
+position = Vector2(-181, -209)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners7" parent="Nonemissive/Crowd/Oneliners" unique_id=891865484 instance=ExtResource("7_pgk8x")]
+position = Vector2(-246, -186)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners8" parent="Nonemissive/Crowd/Oneliners" unique_id=64439752 instance=ExtResource("7_pgk8x")]
+position = Vector2(122, -234)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners9" parent="Nonemissive/Crowd/Oneliners" unique_id=147900779 instance=ExtResource("7_pgk8x")]
+position = Vector2(150, -269)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners10" parent="Nonemissive/Crowd/Oneliners" unique_id=227899099 instance=ExtResource("7_pgk8x")]
+position = Vector2(274, -157)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners11" parent="Nonemissive/Crowd/Oneliners" unique_id=1206667213 instance=ExtResource("7_pgk8x")]
+position = Vector2(174, -187)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners12" parent="Nonemissive/Crowd/Oneliners" unique_id=1704450308 instance=ExtResource("7_pgk8x")]
+position = Vector2(340, -81)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners13" parent="Nonemissive/Crowd/Oneliners" unique_id=1758296927 instance=ExtResource("7_pgk8x")]
+position = Vector2(347, -28)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners14" parent="Nonemissive/Crowd/Oneliners" unique_id=2112877782 instance=ExtResource("7_pgk8x")]
+position = Vector2(-411, -66)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners15" parent="Nonemissive/Crowd/Oneliners" unique_id=251164180 instance=ExtResource("7_pgk8x")]
+position = Vector2(-351, 253)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners16" parent="Nonemissive/Crowd/Oneliners" unique_id=556156063 instance=ExtResource("7_pgk8x")]
+position = Vector2(-346, 283)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners17" parent="Nonemissive/Crowd/Oneliners" unique_id=730540127 instance=ExtResource("7_pgk8x")]
+position = Vector2(-236, 312)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners21" parent="Nonemissive/Crowd/Oneliners" unique_id=2038905291 instance=ExtResource("7_pgk8x")]
+position = Vector2(29, 331)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners22" parent="Nonemissive/Crowd/Oneliners" unique_id=846103427 instance=ExtResource("7_pgk8x")]
+position = Vector2(-65, 356)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners23" parent="Nonemissive/Crowd/Oneliners" unique_id=587137432 instance=ExtResource("7_pgk8x")]
+position = Vector2(183, 308)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners24" parent="Nonemissive/Crowd/Oneliners" unique_id=924717983 instance=ExtResource("7_pgk8x")]
+position = Vector2(188, 338)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners25" parent="Nonemissive/Crowd/Oneliners" unique_id=845102016 instance=ExtResource("7_pgk8x")]
+position = Vector2(316, 201)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners26" parent="Nonemissive/Crowd/Oneliners" unique_id=571126787 instance=ExtResource("7_pgk8x")]
+position = Vector2(272, 248)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners27" parent="Nonemissive/Crowd/Oneliners" unique_id=1589244597 instance=ExtResource("7_pgk8x")]
+position = Vector2(408, 170)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners28" parent="Nonemissive/Crowd/Oneliners" unique_id=183138411 instance=ExtResource("7_pgk8x")]
+position = Vector2(405, 124)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners29" parent="Nonemissive/Crowd/Oneliners" unique_id=671332143 instance=ExtResource("7_pgk8x")]
+position = Vector2(438, -58)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
+
+[node name="OneLiners30" parent="Nonemissive/Crowd/Oneliners" unique_id=1325044868 instance=ExtResource("7_pgk8x")]
+position = Vector2(364, -124)
+is_crowd = true
+seconds_before_starting = 7.0
+bubble_timespan_seconds = 2.5
+wait_seconds_max = 240.0
+one_liners = ExtResource("8_jsn88")
 
 [node name="BannersAndFlags" type="Node2D" parent="Nonemissive" unique_id=360925736]
 

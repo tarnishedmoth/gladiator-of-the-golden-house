@@ -4,11 +4,12 @@
 [ext_resource type="Material" uid="uid://cvtvuq50oy655" path="res://actors/emperor/emperor-tail-wobble-material.tres" id="1_hcldh"]
 [ext_resource type="Texture2D" uid="uid://xln3qjs0ga2c" path="res://actors/emperor/emperor-placeholder-sprite.png" id="1_t6nd0"]
 [ext_resource type="Texture2D" uid="uid://cbo53lrhuoop" path="res://actors/emperor/emperor-tail.png" id="2_63nwy"]
-[ext_resource type="PackedScene" uid="uid://dwfr86j8i7cp4" path="res://vfx/one_liners.tscn" id="5_p3pdj"]
+[ext_resource type="PackedScene" uid="uid://dwfr86j8i7cp4" path="res://dialogue/one_liners.tscn" id="5_p3pdj"]
 
-[node name="emperor" type="Node2D" unique_id=1077291446]
+[node name="emperor" type="Node2D" unique_id=1077291446 node_paths=PackedStringArray("one_liners")]
 z_index = 100
 script = ExtResource("1_63nwy")
+one_liners = NodePath("OneLiners")
 
 [node name="emperor-tail-wobble" type="Sprite2D" parent="." unique_id=370377091]
 material = ExtResource("1_hcldh")

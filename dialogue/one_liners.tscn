@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dwfr86j8i7cp4"]
 
-[ext_resource type="Script" uid="uid://b3qci8rlwawbh" path="res://actors/one_liners.gd" id="1_u7h6u"]
-[ext_resource type="Texture2D" uid="uid://dxyu6jeid7om3" path="res://vfx/one_liner_speech_bubble.png" id="2_k4sqg"]
-[ext_resource type="LabelSettings" uid="uid://bevyqcdafathp" path="res://vfx/one_liner_label_style.tres" id="3_dt3uo"]
+[ext_resource type="Script" uid="uid://b3qci8rlwawbh" path="res://dialogue/one_liners.gd" id="1_u7h6u"]
+[ext_resource type="Texture2D" uid="uid://dxyu6jeid7om3" path="res://dialogue/one_liner_speech_bubble.png" id="2_k4sqg"]
+[ext_resource type="Resource" uid="uid://dqr1ooiqef8nw" path="res://dialogue/one_liners_roman_adversaries.tres" id="2_q8xp1"]
+[ext_resource type="LabelSettings" uid="uid://bevyqcdafathp" path="res://dialogue/one_liner_label_style.tres" id="3_dt3uo"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dt3uo"]
 content_margin_left = 2.0
@@ -20,6 +21,7 @@ modulate_color = Color(0.9372549, 0.99215686, 0.74509805, 0.39215687)
 [node name="OneLiners" type="Node2D" unique_id=1096534424 node_paths=PackedStringArray("one_liner_txt")]
 script = ExtResource("1_u7h6u")
 one_liner_txt = NodePath("Size/one_liner_bg/one_liner_txt")
+one_liners = ExtResource("2_q8xp1")
 
 [node name="Size" type="Control" parent="." unique_id=92490154]
 z_index = 12
@@ -52,7 +54,7 @@ modulate = Color(0.1764706, 0.03137255, 0, 1)
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Prepare yourself!"
+text = "..."
 label_settings = ExtResource("3_dt3uo")
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -376,24 +376,54 @@ func save_persistent_actors_data() -> void:
 				PlayerData.set_actor_data(main_actor.persistent_data_key, main_actor.persistent_actor_data)
 				
 
-## Triggers a random oneliner speech bubble to appear.
-func trigger_speech_bubbles() -> void:
-	if randf() > 0.5:
-		var oneliners = get_tree().get_nodes_in_group(OneLiners.GROUP_NAME)
-		if oneliners.size() > 1:
-			for n in randi_range(0, oneliners.size()-1):
-				var inst = oneliners.pick_random() as OneLiners
-				inst.display_random_oneliner()
-				oneliners.erase(inst)
+
+func trigger_random_actor_speech_bubbles(strings: OneLinersStrings = null) -> void:
+	var oneliners = get_tree().get_nodes_in_group(OneLiners.GROUP_NAME)
+	oneliners = oneliners.filter(func(a:OneLiners): return not a.is_crowd)
+	if oneliners.is_empty():
+		return
+	for n in randi_range(1, oneliners.size()):
+		var inst = oneliners.pick_random() as OneLiners
+		inst.display_random_oneliner(strings)
+		oneliners.erase(inst)
+
+func trigger_random_crowd_speech_bubbles(strings: OneLinersStrings = null) -> void:
+	var oneliners = get_tree().get_nodes_in_group(OneLiners.GROUP_NAME)
+	oneliners = oneliners.filter(func(a:OneLiners): return a.is_crowd)
+	if oneliners.is_empty():
+		return
+	for n in randi_range(1, oneliners.size()):
+		var inst = oneliners.pick_random() as OneLiners
+		inst.display_random_oneliner(strings)
+		oneliners.erase(inst)
 
 ## Same as above but it prepends a random phrase depending on the context [param positive].
 func trigger_response_speech_bubbles(positive: bool) -> void:
 	#if randf() > 0.5:
 	var oneliners = get_tree().get_nodes_in_group(OneLiners.GROUP_NAME)
-	if oneliners.size() > 1:
-		for n in randi_range(0, oneliners.size()-1):
-			var inst = oneliners.pick_random() as OneLiners
-			inst.display_response_oneliner(positive)
-			oneliners.erase(inst)
+	if oneliners.is_empty():
+			return
+	for n in randi_range(1, oneliners.size()):
+		var inst = oneliners.pick_random() as OneLiners
+		inst.display_response_oneliner(positive)
+		oneliners.erase(inst)
+
+func trigger_actor_speech_bubble(string: String) -> void:
+	var oneliners = get_tree().get_nodes_in_group(OneLiners.GROUP_NAME)
+	oneliners = oneliners.filter(func(a:OneLiners): return not a.is_crowd)
+	if oneliners.is_empty():
+		return
+		
+	var inst = oneliners.pick_random() as OneLiners
+	inst.say_this_oneliner(string)
+
+func trigger_crowd_speech_bubble(string: String) -> void:
+	var oneliners = get_tree().get_nodes_in_group(OneLiners.GROUP_NAME)
+	oneliners = oneliners.filter(func(a:OneLiners): return a.is_crowd)
+	if oneliners.is_empty():
+		return
+	
+	var inst = oneliners.pick_random() as OneLiners
+	inst.say_this_oneliner(string)
 
 #endregion
