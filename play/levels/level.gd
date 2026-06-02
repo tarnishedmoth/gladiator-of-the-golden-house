@@ -186,6 +186,19 @@ func start_game() -> void:
 	playtime_counter_running = true
 	next_turn()
 
+func add_director(director: Director, at_front: bool = false) -> void:
+	if at_front:
+		directors.push_front(director)
+	else:
+		directors.push_back(director)
+	
+	if director is Player:
+		director.setup(base_tile_map_layer, tile_interactor)
+	elif director is AIDirector:
+		director.setup(base_tile_map_layer)
+	
+	p("Added director %s." % director)
+
 ## Returns a description of any actors sharing the same tile, or empty string if none overlap.
 func _get_overlap_description() -> String:
 	var tile_actors: Dictionary = {} # Vector2i -> Array[Actor]
@@ -214,19 +227,28 @@ func next_turn():
 	## Enemies queue their actions for next turn.
 	## Player is given control, they take time to examine the field and make their moves immediately.
 	## Turn ends, cycles.
-	for director in directors:
-		waiting_to_finish.append(director)
+	assert(waiting_to_finish.is_empty())
+	waiting_to_finish.append_array(directors)
 
 	current_director_idx = -1
 	_next_directors_turn()
 
 func _next_directors_turn():
-	if (current_director_idx + 1) >= directors.size():
-		current_director_idx = 0
-	else:
-		current_director_idx += 1
-
-	var director = directors[current_director_idx]
+	## Old logic
+	#if (current_director_idx + 1) >= directors.size():
+		#current_director_idx = 0
+	#else:
+		#current_director_idx += 1
+#
+	#var director = directors[current_director_idx]
+	
+	## New logic
+	var director = waiting_to_finish.front()
+	current_director_idx = directors.find_custom(
+		func(dir: Director): return dir == director
+	)
+	p("Current director index is %d" % current_director_idx)
+	
 	assert(is_instance_valid(director))
 	director.turn_taken.connect(_on_turn_taken, CONNECT_ONE_SHOT)
 	director.take_turn.call_deferred()
