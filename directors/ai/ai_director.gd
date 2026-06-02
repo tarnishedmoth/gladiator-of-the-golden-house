@@ -2,6 +2,8 @@ class_name AIDirector extends Director
 
 ## A singular AI team coordinator that can manage multiple characters.
 
+@export var allied_with_player: bool = false
+
 func setup(tilemap: TileMapLayer) -> void:
 	clear_and_repopulate_actors_from_children()
 	for actor in actors:
@@ -48,3 +50,5 @@ func select_plans() -> void:
 	for actor in actors:
 		if actor is AIActor:
 			actor.queue_new_actions_for_next_turn(claimed_tiles)
+		else:
+			push_error("Non-AIActor found in actor array: %s" % actor)

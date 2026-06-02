@@ -276,16 +276,19 @@ func check_win_condition() -> bool:
 	var dirs: Array[Director] = get_directors()
 	for dir in dirs:
 		if dir is AIDirector:
-			if dir.actors.is_empty(): # check for living enemies
-				return true
-	return false #enemies were found
+			if not dir.allied_with_player:
+				if not dir.actors.is_empty():
+					# Enemies remain, game continues
+					return false
+	# No enemies found, game win
+	return true
 
 func check_lose_condition() -> bool:
 	#check if player actors array is not emptpy if it is return false if able to process through all return true
 	var dirs: Array[Director] = get_directors()
 	for dir in dirs:
 		if dir is Player:
-			if !dir.actors.is_empty(): #if there is a player the game continues
+			if not dir.actors.is_empty(): #if there is a player the game continues
 				return false
 	return true # no player actors found game lost
 

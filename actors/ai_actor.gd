@@ -199,7 +199,14 @@ func choose_hostile_target() -> void:
 	for _director in Level.get_directors():
 		if _director != director: ## assume all other directors are hostile
 			available_targets.append_array(_director.actors)
-			
+	
+	if director is AIDirector: ## should be a given but for static typing sake
+		if director.allied_with_player:
+			## Remove player characters from the list
+			available_targets = available_targets.filter(
+				func(v: Actor): return false if v.director is Player else true
+			)
+	
 	if available_targets.is_empty():
 		push_error("No hostile actors found")
 		hostile_target = null
