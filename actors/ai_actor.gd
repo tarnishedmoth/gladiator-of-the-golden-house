@@ -126,15 +126,16 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 			if debug: p("Action does not use AoE--skipping target planning.")
 			return
 		
-		var potential_targets: Array[Vector2i] = get_action_target_cells(action) ## Absolute coordsva
+		var potential_targets: Array[Vector2i] = get_action_target_cells(action) ## Absolute coords
 		var _potential_affected: Dictionary[Vector2i, Array] ## Absolute target coord, absolute aoe tiles
 		
 		potential_targets = potential_targets.filter(TileInteractor.cell_exists.bind(tile_map))
 		
 		if potential_targets.is_empty():
 			## No valid choices for this action
-			if debug: p("Did not configure action due to no valid moves")
-			push_warning("Did not configure action due to no valid moves")
+			var string: String = "Did not configure action %s due to no valid moves." % action
+			if debug: p(string)
+			push_warning(string)
 			return
 		
 		for coord in potential_targets:
@@ -177,7 +178,7 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 		action.set_target(choice_target)
 		
 	else:
-		push_warning("Unconfigured planning behavior for action subclass!")
+		push_warning("Unconfigured planning behavior for action %s subclass!" % action)
 
 
 ## Given two coordinates, returns the one closer to [member hostile_target.current_tile_coords].

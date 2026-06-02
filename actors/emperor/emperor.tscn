@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://xln3qjs0ga2c" path="res://actors/emperor/emperor-placeholder-sprite.png" id="1_t6nd0"]
 [ext_resource type="Texture2D" uid="uid://cbo53lrhuoop" path="res://actors/emperor/emperor-tail.png" id="2_63nwy"]
 [ext_resource type="PackedScene" uid="uid://dwfr86j8i7cp4" path="res://dialogue/one_liners.tscn" id="5_p3pdj"]
+[ext_resource type="Resource" uid="uid://by8vmqwwbt0p6" path="res://dialogue/strings_emperor-normal.tres" id="6_3yh5q"]
 
 [node name="emperor" type="Node2D" unique_id=1077291446 node_paths=PackedStringArray("one_liners")]
 z_index = 100
@@ -24,7 +25,9 @@ position = Vector2(0, -27)
 texture = ExtResource("1_t6nd0")
 
 [node name="OneLiners" parent="." unique_id=1096534424 instance=ExtResource("5_p3pdj")]
-position = Vector2(-40, -56)
-seconds_before_starting = 10.0
+position = Vector2(-59, -59)
+seconds_before_starting = 15.0
+bubble_timespan_seconds = 3.5
 wait_seconds_min = 10.0
-wait_seconds_max = 30.0
+wait_seconds_max = 90.0
+one_liners = ExtResource("6_3yh5q")

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="OneLinersStrings" format=3 uid="uid://cmkeua4ngk1h6"]
+
+[ext_resource type="Script" uid="uid://dkxh07rw1g7rr" path="res://dialogue/one_liners_strings.gd" id="1_k7uvq"]
+
+[resource]
+script = ExtResource("1_k7uvq")
+one_liners = Array[String](["What's going on?", "What are those?", "What is that??", "Oh my...", "What???", "Where did they come from?", "What are those people?", "That doesn't look right.", "Something's not right.", "Are you seeing this?", "?", "Is everything okay?", "Was that supposed to happen?", "Are they supposed to be in there?", "I don't understand.", "What are they doing?", "Why do they look like that?", "This doesn't look right.", "Those things look horrendous!"])
+metadata/_custom_type_script = "uid://dkxh07rw1g7rr"

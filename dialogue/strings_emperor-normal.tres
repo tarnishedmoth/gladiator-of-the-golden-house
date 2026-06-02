@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="OneLinersStrings" format=3 uid="uid://by8vmqwwbt0p6"]
+
+[ext_resource type="Script" uid="uid://dkxh07rw1g7rr" path="res://dialogue/one_liners_strings.gd" id="1_y7pf1"]
+
+[resource]
+script = ExtResource("1_y7pf1")
+one_liners = Array[String](["Today is a good day to die!", "Are you not entertained?", "Strength and honor!", "I am pleased.", "Honorable warriors.", "Could this be my strongest?", "I demand more.", "I demand a real fight.", "I demand your strength.", "I demand your servitude.", "Combat is the great filter.", "I am your emperor.", "Impress me.", "I am impressed.", "Impressive.", "Satisfactory.", "Hm...", "I am not impressed.", "You have proven nothing.", "Fear me if you do not fear death."])
+metadata/_custom_type_script = "uid://dkxh07rw1g7rr"

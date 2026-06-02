@@ -176,3 +176,6 @@ static func from_dict(d: Dictionary) -> Action:
 	return instance
 
 #endregion
+
+func _to_string() -> String:
+	return ui_title if ui_title else resource_name

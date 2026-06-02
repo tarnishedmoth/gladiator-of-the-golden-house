@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b3qci8rlwawbh" path="res://dialogue/one_liners.gd" id="1_u7h6u"]
 [ext_resource type="Texture2D" uid="uid://dxyu6jeid7om3" path="res://dialogue/one_liner_speech_bubble.png" id="2_k4sqg"]
-[ext_resource type="Resource" uid="uid://dqr1ooiqef8nw" path="res://dialogue/one_liners_roman_adversaries.tres" id="2_q8xp1"]
+[ext_resource type="Resource" uid="uid://dqr1ooiqef8nw" path="res://dialogue/strings_roman-adversaries.tres" id="2_q8xp1"]
 [ext_resource type="LabelSettings" uid="uid://bevyqcdafathp" path="res://dialogue/one_liner_label_style.tres" id="3_dt3uo"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dt3uo"]

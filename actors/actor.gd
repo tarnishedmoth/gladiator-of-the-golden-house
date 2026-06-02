@@ -366,6 +366,9 @@ func calculate_directional_damage(damage: int, direction: Facing.Relative) -> in
 			dm = dm_dmg_rl
 		Facing.Relative.FRONT_LEFT:
 			dm = dm_dmg_fl
+		_:
+			push_error("Invalid direction returned")
+			breakpoint
 	return ceili(dm * damage)
 
 ## You can provide an [Actor] or [Vector2i]. When given an Actor, it will use the
@@ -452,7 +455,8 @@ func take_direct_damage(damage: int, from: Actor = null) -> int:
 		
 	if (health - damage_result > 0) && (health - damage_result < health/2.0):
 		## not gonna die but it's a heavy hit
-		Level.get_instance().trigger_response_speech_bubbles(director is Player)
+		if randf() > 0.6:
+			Level.get_instance().trigger_response_speech_bubbles(director is Player)
 	
 	health -= damage_result
 	health = maxi(0, health)

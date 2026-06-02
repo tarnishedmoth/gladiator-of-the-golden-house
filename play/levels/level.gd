@@ -186,6 +186,8 @@ func start_game() -> void:
 	get_tree().node_removed.connect(_on_node_removed)
 	playtime_counter_running = true
 	next_turn()
+	
+	trigger_random_crowd_speech_bubbles()
 
 func add_director(director: Director, at_front: bool = false) -> void:
 	if at_front:
@@ -403,7 +405,7 @@ func trigger_response_speech_bubbles(positive: bool) -> void:
 	var oneliners = get_tree().get_nodes_in_group(OneLiners.GROUP_NAME)
 	if oneliners.is_empty():
 			return
-	for n in randi_range(1, oneliners.size()):
+	for n in randi_range(1, roundi(oneliners.size() / 3.0)):
 		var inst = oneliners.pick_random() as OneLiners
 		inst.display_response_oneliner(positive)
 		oneliners.erase(inst)
