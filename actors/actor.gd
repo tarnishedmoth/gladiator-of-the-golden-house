@@ -362,7 +362,7 @@ func calculate_directional_damage(damage: int, direction: Facing.Relative) -> in
 			dm = dm_dmg_rr
 		Facing.Relative.BACK:
 			dm = dm_dmg_r
-		Facing.Relative.BACK_RIGHT:
+		Facing.Relative.BACK_LEFT:
 			dm = dm_dmg_rl
 		Facing.Relative.FRONT_LEFT:
 			dm = dm_dmg_fl
