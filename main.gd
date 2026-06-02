@@ -10,7 +10,7 @@ static var VERSION:String:
 		if not VERSION:
 			VERSION = ProjectSettings.get_setting("application/config/version", "")
 		return VERSION
-const LOG_PREFIX:String = "MAIN:: "
+const LOG_PREFIX:String = "[color=white][b]MAIN[/b]:: "
 
 @export var splash_scene:PackedScene
 @export var main_menu_scene:PackedScene: ## We don't have a main menu yet
@@ -97,15 +97,22 @@ static func change_scene(packed_scene: PackedScene) -> void:
 static func change_scene_to_file(filepath: String) -> void:
 	var scene: PackedScene = load(filepath)
 	change_scene(scene)
-	
+
+## Prints the orphaned nodes to the console, if there are any.
+func _check_print_orphans(msg: String) -> void:
+	if not get_orphan_node_ids().is_empty():
+		l(msg)
+		print_orphan_nodes()
+
 ## If there is an active scene, unloads it, then instantiates [param packed_scene] and adds it as a child.
 func _change_scene(packed_scene: PackedScene) -> void:
+	_check_print_orphans("Orphaned nodes at scene exit:")
 	assert(packed_scene)
 	assert(packed_scene.can_instantiate())
 	current_packed_scene = packed_scene
 	
 	if instanced_root:
-		l("Unloading active scene.")
+		l("Unloading active scene...")
 		# TODO maybe fade to black or something fancy to cover up the scene swap.
 		if instanced_root is Level:
 			instanced_root.is_complete = true ## HACK ?
@@ -126,11 +133,14 @@ func _change_scene(packed_scene: PackedScene) -> void:
 	debug_scene_label.text = scene_name
 	l("New active scene - loaded %s." % [packed_scene.resource_path])
 	
+	await get_tree().process_frame
+	_check_print_orphans("Orphaned nodes after scene entrance:")
+	
 static func get_project_version() -> String:
 	return ProjectSettings.get_setting("application/config/version", "")
 
 static func l(to_print) -> void:
-	print(LOG_PREFIX, to_print)
+	print_rich("\n", LOG_PREFIX, to_print)
 	
 
 static func continue_level() -> void:

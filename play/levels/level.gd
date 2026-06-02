@@ -7,6 +7,9 @@ const VERBOSE: bool = true
 func p(args):
 	if VERBOSE: print_rich("[bgcolor=red][color=white]", "Level: ", args)
 
+## Defers the per-director turn taken logic to the next process frame.
+const DEFERRED_TURN_CHANGE: bool = false
+
 #region Signals and Variables
 
 signal current_director_changed(director: Director)
@@ -141,7 +144,7 @@ func _enter_tree() -> void:
 	instance = self
 
 func _ready() -> void:
-	p("Loaded, setting up game.")
+	p("Ready, setting up game...")
 	start_game.call_deferred()
 
 func _exit_tree() -> void:
@@ -166,9 +169,6 @@ func start_game() -> void:
 	for child in %Directors.get_children(): ## Maybe not very efficient
 		if child is PlayerInsertPlaceholder:
 			child.replace()
-
-	get_tree().node_removed.connect(_on_node_removed)
-
 	## Find and connect signals
 	for child in %Directors.get_children():
 		if child is Director:
@@ -176,13 +176,14 @@ func start_game() -> void:
 			if child.visible:
 				add_director(child)
 			else:
-				p("Skipping hidden director.")
+				p("Skipped hidden director %s." % child)
 
 	pick_up_manager.setup(base_tile_map_layer)
 
 	var overlaps: String = _get_overlap_description()
 	assert(overlaps.is_empty(), "Actors overlap: %s" % overlaps)
-
+	
+	get_tree().node_removed.connect(_on_node_removed)
 	playtime_counter_running = true
 	next_turn()
 
@@ -218,7 +219,7 @@ func _get_overlap_description() -> String:
 
 func next_turn():
 	turn_count += 1
-	p("Starting turn %d" % turn_count)
+	p("Starting turn [b]%d[/b]..." % turn_count)
 
 	assert((directors.size() > 0))
 
@@ -247,7 +248,7 @@ func _next_directors_turn():
 	current_director_idx = directors.find_custom(
 		func(dir: Director): return dir == director
 	)
-	p("Current director index is %d" % current_director_idx)
+	p("Current director index is [b]%d[/b]." % current_director_idx)
 	
 	assert(is_instance_valid(director))
 	director.turn_taken.connect(_on_turn_taken, CONNECT_ONE_SHOT)
@@ -256,6 +257,10 @@ func _next_directors_turn():
 
 func _on_turn_taken(director: Director) -> void:
 	waiting_to_finish.erase(director)
+	
+	if DEFERRED_TURN_CHANGE: ## HACK / TESTING
+		await get_tree().process_frame
+	
 	if waiting_to_finish.is_empty():
 		next_turn()
 	else:
@@ -272,12 +277,12 @@ func pause_game(paused: bool) -> void:
 
 func check_objectives() -> void:
 	if is_complete: return
-	p("Checking game objectives")
+	p("Checking game objectives...")
 	await get_tree().process_frame
 	if not _is_alive(): return  ## Bail if this Level was torn down during the awaited frame.
 
 	if check_win_condition() == true:
-		p("Win")
+		p("Player has won.")
 		is_complete = true
 		_record_playtime()
 		
@@ -288,7 +293,7 @@ func check_objectives() -> void:
 		continue_menu.show()
 
 	elif check_lose_condition() == true:
-		p("Lose")
+		p("Player has lost.")
 		is_complete = true
 		_record_playtime()
 		
