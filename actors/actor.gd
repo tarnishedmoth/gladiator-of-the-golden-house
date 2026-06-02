@@ -614,7 +614,7 @@ func get_action_target_cells_at(play_tile: Vector2i, action: Action) -> Array[Ve
 	var valid_cells := Facing.get_target_cells(current_tile_coords, facing, action.pattern)
 	if not play_tile in valid_cells:
 		## Invalid play tile
-		p("get_action_target_cells_at: Invalid play tile %s in %s." % [play_tile, valid_cells])
+		#if debug: p("get_action_target_cells_at: Invalid play tile %s in %s." % [play_tile, valid_cells]) ## print spam
 		return aoe
 	
 	if not "aoe_pattern" in action:
