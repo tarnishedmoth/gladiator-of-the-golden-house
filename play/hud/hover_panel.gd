@@ -25,8 +25,20 @@ func populate_using_actor_data(actor: Actor) -> void:
 	if actor.ui_name:
 		title.text = "[center]"
 		title.append_text(TextUtils.bold(actor.ui_name))
+		
+		var subtitle_text: String = ""
 		if actor.ui_subtitle:
-			title.append_text("\n" + TextUtils.ital(actor.ui_subtitle))
+			subtitle_text += TextUtils.ital("\n" + actor.ui_subtitle)
+		if actor.director is AIDirector:
+			if actor.director.allied_with_player:
+				## Denote allies
+				subtitle_text += "\n[color=green](Ally)[/color]"
+			else:
+				subtitle_text += "\n[color=red](Adversary)[/color]"
+		else:
+			subtitle_text += "\n[color=orange](Player)[/color]"
+		
+		title.append_text(subtitle_text)
 	
 	if actor.ui_description:
 		description.text = actor.ui_description

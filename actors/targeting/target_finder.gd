@@ -5,10 +5,10 @@ static func p(args) -> void:
 	if VERBOSE: print_rich("[color=white][bgcolor=grey]Targeting: ", args)
 
 const COLORS = {
-	RED = Color("ff0000ff"),
-	PINK = Color("bf5065ff"),
+	RED = Color("da0000ff"),
+	PINK = Color("cd367aff"),
 	WHITE = Color("ffffffff"),
-	BLUE = Color("7a5cffff"),
+	BLUE = Color("4895ffff"),
 	YELLOW = Color("dec000ff"),
 	GREY = Color("555555ff")
 }

@@ -534,6 +534,10 @@ func hide_preview_for_actions()->void:
 ## [param target] should be Vector2i
 func render_preview_for_action(action: Action, target) -> void:
 	var color: Color = Action.get_action_color(action)
+	if director is AIDirector:
+		if director.allied_with_player:
+			## Denote allies
+			color = color.lightened(0.4)
 	
 	## Find targetable tiles (pattern).
 	var playable_tiles: Array[Vector2i]
