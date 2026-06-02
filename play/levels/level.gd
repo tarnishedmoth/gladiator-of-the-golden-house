@@ -172,11 +172,11 @@ func start_game() -> void:
 	## Find and connect signals
 	for child in %Directors.get_children():
 		if child is Director:
-			directors.append(child)
-			if child is Player:
-				child.setup(base_tile_map_layer, tile_interactor)
-			elif child is AIDirector:
-				child.setup(base_tile_map_layer)
+			## Skip hidden directors to be set up some other way.
+			if child.visible:
+				add_director(child)
+			else:
+				p("Skipping hidden director.")
 
 	pick_up_manager.setup(base_tile_map_layer)
 
