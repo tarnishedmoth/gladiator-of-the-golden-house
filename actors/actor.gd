@@ -121,9 +121,9 @@ var energy: int
 @export_group("Directional Vulnerability", "dm_")
 @export var dm_dmg_f: float = 1.0 ## mult for the relative forward direction
 @export var dm_dmg_fr: float = 1.0 ## mult for the relative forward right direction
-@export var dm_dmg_rr: float = 1.2 ## mult for the relative rearward right direction
-@export var dm_dmg_r: float = 1.5 ## mult for the relative rearward direction
-@export var dm_dmg_rl: float = 1.2 ## mult for the relative rearward left direction
+@export var dm_dmg_rr: float = 1.5 ## mult for the relative rearward right direction
+@export var dm_dmg_r: float = 2.0 ## mult for the relative rearward direction
+@export var dm_dmg_rl: float = 1.5 ## mult for the relative rearward left direction
 @export var dm_dmg_fl: float = 1.0 ## mult for the relative forward left direction
 
 var action_count: int
