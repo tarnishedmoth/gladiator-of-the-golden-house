@@ -180,8 +180,8 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 			persistent_actor_data.capture_from_actor(self)
 			## We register persistent data only when a level is finished. See [method push_persistent_data].
 		
-	if speech_bubble:
-		speech_bubble.speak("!!")
+	#if speech_bubble:
+		#speech_bubble.speak("!!")
 	
 	update_healthbar()
 	

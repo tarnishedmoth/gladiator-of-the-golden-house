@@ -8,7 +8,6 @@ func _ready() -> void:
 	self.modulate = Color.TRANSPARENT
 
 func speak(speech:String) -> void:
-	print("Start talking")
 	_populate_speech_bubble(speech)
 	_show_dialogue(true)
 	timer.start(duration)

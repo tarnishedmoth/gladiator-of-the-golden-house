@@ -256,6 +256,8 @@ func preview_ai_attack()-> void:
 	## Reason being, the second action is typically either movement, or it depends on the result of the first action.
 	## Rather than trying to design a way to step through every action
 	## Let's settle for the first action and leave the other ones to the player's purview
+	if action_queue.queue.is_empty():
+		return
 	var first_action: Action = action_queue.queue.front()
 	if first_action:
 		render_preview_for_action(first_action, first_action._target)

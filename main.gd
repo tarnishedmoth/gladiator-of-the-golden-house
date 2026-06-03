@@ -120,6 +120,9 @@ func _change_scene(packed_scene: PackedScene) -> void:
 		instanced_root.queue_free()
 		await instanced_root.tree_exited
 		instanced_root = null
+		
+	if get_tree().paused:
+		get_tree().paused = false
 	
 	var scene_instance = packed_scene.instantiate()
 	add_child(scene_instance)
