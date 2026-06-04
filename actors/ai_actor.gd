@@ -120,11 +120,12 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 		
 		
 	elif action is ActionAttack:
-		if debug: p("Planning ActionAttack.")
 		if not action.aoe_pattern:
 			## We can hit every tile
-			if debug: p("Action does not use AoE--skipping target planning.")
+			if debug: p("Skipping ActionAttack planning (Action does not use AoE).")
 			return
+		
+		if debug: p("Planning ActionAttack.")
 		
 		var potential_targets: Array[Vector2i] = get_action_target_cells(action) ## Absolute coords
 		var _potential_affected: Dictionary[Vector2i, Array] ## Absolute target coord, absolute aoe tiles
@@ -136,6 +137,11 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 			var string: String = "Did not configure action %s due to no valid moves." % action
 			if debug: p(string)
 			push_warning(string)
+			return
+		
+		if not hostile_target:
+			if debug: p("Randomizing ActionAttack planning (no hostile target).")
+			action.set_target(potential_targets.pick_random())
 			return
 		
 		for coord in potential_targets:
@@ -209,7 +215,7 @@ func choose_hostile_target() -> void:
 			)
 	
 	if available_targets.is_empty():
-		push_error("No hostile actors found")
+		push_warning("No hostile actors found")
 		hostile_target = null
 		return
 	elif available_targets.size() != 1:
