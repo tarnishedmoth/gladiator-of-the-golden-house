@@ -263,6 +263,17 @@ func _on_turn_taken(director: Director) -> void:
 	if DEFERRED_TURN_CHANGE: ## HACK / TESTING
 		await get_tree().process_frame
 	
+	if is_complete:
+		var to_print: String = "Game complete--stopping turn loop.\nRemaining actors:"
+		for actor in get_all_actors_in_play_order():
+			to_print += "\n%s (%s)" % [actor, actor.director]
+		p(to_print)
+		return
+	else:
+		assert(not check_win_condition())
+		assert(not check_lose_condition())
+		pass
+
 	if waiting_to_finish.is_empty():
 		next_turn()
 	else:
