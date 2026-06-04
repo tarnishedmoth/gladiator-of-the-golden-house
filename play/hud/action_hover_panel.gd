@@ -29,7 +29,7 @@ func clear_all() -> void:
 
 func populate_using_action_data(action:Action)->void:
 	clear_all()
-	if action.ui_title:
+	if action:
 		title.text = "[center]"
 		title.append_text(TextUtils.bold(action.ui_title))
 	
