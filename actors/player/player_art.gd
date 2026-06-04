@@ -7,5 +7,11 @@ func replace_art() -> void:
 	## Replace ourself and die
 	var scene = PlayerData.this.get_character_scene()
 	var instance = scene.instantiate()
+	var actor_parent := get_parent() as Actor
+	
 	replace_by(instance)
+	
+	if actor_parent:
+		actor_parent.character_visual_root = instance
+	
 	queue_free()

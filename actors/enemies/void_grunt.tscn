@@ -102,9 +102,10 @@ _data = {
 &"get_hit": SubResource("Animation_2ku68")
 }
 
-[node name="VoidGrunt" type="Node2D" unique_id=612736880 node_paths=PackedStringArray("health_bar", "speech_bubble")]
+[node name="VoidGrunt" type="Node2D" unique_id=612736880 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
 script = ExtResource("1_5brh6")
 usable_actions = Array[ExtResource("2_wvmyn")]([ExtResource("5_rewct"), SubResource("Resource_5brh6"), SubResource("Resource_wvmyn"), ExtResource("6_5brh6")])
+character_visual_root = NodePath("Zombie")
 health_bar = NodePath("health")
 speech_bubble = NodePath("SpeechBubble")
 ui_name = "? ? ?"

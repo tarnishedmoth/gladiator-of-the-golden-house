@@ -13,22 +13,25 @@
 [ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="10_dq3dl"]
 [ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="12_7c5xg"]
 
-[node name="Legionary" type="Node2D" unique_id=84579020 node_paths=PackedStringArray("health_bar", "speech_bubble")]
+[node name="Legionary" type="Node2D" unique_id=84579020 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
 script = ExtResource("1_gm0mo")
 usable_actions = Array[ExtResource("2_fsf37")]([ExtResource("3_8h8qb"), ExtResource("4_ymfpf"), ExtResource("5_6urur")])
+character_visual_root = NodePath("VisualRoot")
 health_bar = NodePath("health")
 speech_bubble = NodePath("SpeechBubble")
 ui_name = "Legionary"
 ui_description = "A standard citizen soldier, loyal to the Emperor."
 max_health = 24
 
-[node name="Generator" parent="." unique_id=2057479258 instance=ExtResource("6_gm0mo")]
+[node name="VisualRoot" type="Node2D" parent="." unique_id=614636530]
 
-[node name="helmet" type="Sprite2D" parent="." unique_id=820590566]
+[node name="Generator" parent="VisualRoot" unique_id=2057479258 instance=ExtResource("6_gm0mo")]
+
+[node name="helmet" type="Sprite2D" parent="VisualRoot" unique_id=820590566]
 z_index = 1
 texture = ExtResource("7_gm0mo")
 
-[node name="Sword" type="Sprite2D" parent="." unique_id=2126137423]
+[node name="Sword" type="Sprite2D" parent="VisualRoot" unique_id=2126137423]
 z_index = 1
 position = Vector2(0, 5)
 texture = ExtResource("7_5q8mj")

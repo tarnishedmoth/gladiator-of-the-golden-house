@@ -13,10 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://b3tclp663pywm" path="res://characters/colosseum-crowd/armored_brown.tscn" id="10_28bj1"]
 [ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="10_smlxf"]
 
-[node name="Legate" type="Node2D" unique_id=576080733 node_paths=PackedStringArray("health_bar", "speech_bubble")]
+[node name="Legate" type="Node2D" unique_id=576080733 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
 script = ExtResource("1_traui")
 conditionally_usable_actions = Array[ExtResource("2_ij7ux")]([ExtResource("3_28bj1"), ExtResource("5_j1js3")])
 usable_actions = Array[ExtResource("2_ij7ux")]([ExtResource("5_f66cw"), ExtResource("4_28bj1"), ExtResource("6_svhos"), ExtResource("7_28bj1")])
+character_visual_root = NodePath("Generator")
 health_bar = NodePath("health")
 speech_bubble = NodePath("SpeechBubble")
 ui_name = "Legate"
@@ -24,9 +25,9 @@ ui_description = "Often found among groups of grunts."
 max_health = 38
 metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 
-[node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("6_imqgp")]
-
 [node name="Generator" parent="." unique_id=2057479258 instance=ExtResource("10_28bj1")]
+
+[node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("6_imqgp")]
 
 [node name="health" parent="." unique_id=1326189825 instance=ExtResource("8_20tlr")]
 position = Vector2(0, -30)

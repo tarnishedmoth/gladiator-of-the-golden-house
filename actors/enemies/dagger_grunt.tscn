@@ -12,9 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="10_jnt4w"]
 [ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="11_gngsc"]
 
-[node name="DaggerGrunt" type="Node2D" unique_id=1637427686 node_paths=PackedStringArray("health_bar", "speech_bubble")]
+[node name="DaggerGrunt" type="Node2D" unique_id=1637427686 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
 script = ExtResource("1_351pj")
 usable_actions = Array[ExtResource("2_lutab")]([ExtResource("3_fnhuu"), ExtResource("4_ycl7o")])
+character_visual_root = NodePath("Generator")
 health_bar = NodePath("health")
 speech_bubble = NodePath("SpeechBubble")
 ui_name = "Dagger Grunt"
@@ -25,7 +26,7 @@ metadata/_custom_type_script = "uid://2lxtpvvfchas"
 
 [node name="Generator" parent="." unique_id=2057479258 instance=ExtResource("5_3tg7m")]
 
-[node name="Sword" type="Sprite2D" parent="." unique_id=1232554934]
+[node name="Sword" type="Sprite2D" parent="Generator" unique_id=1232554934]
 z_index = 1
 position = Vector2(2, 2)
 texture = ExtResource("6_3lraw")

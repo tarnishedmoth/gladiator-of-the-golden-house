@@ -47,6 +47,9 @@ var status_manager: StatusManager
 func get_status_manager() -> StatusManager: ## Use when you dont expect to handle null.
 	assert(status_manager)
 	return status_manager
+	
+@export var character_visual_root: Node2D ## The sprite. Right-facing is the correct default direction.
+@export var facing_direction_affects_visual: bool = true ## If true, the [member character_visual_root] will be x-scale flipped for left facing.
 
 @export var health_bar: Healthbar
 @export var speech_bubble: DialogueBubble
@@ -315,6 +318,11 @@ func set_facing(cardinal_direction: Facing.Cardinal) -> void:
 	else:
 		facing = cardinal_direction
 	
+	## flipping the character sprites -- thanks McFunkypants
+	if character_visual_root and facing_direction_affects_visual:
+		# flip if facing down or west (assume sprite faces right)
+		character_visual_root.scale.x = -1 if facing > Facing.Cardinal.SOUTHEAST else 1
+	
 	if SHOW_FACING_INDICATOR && self.is_inside_tree():
 		show_facing_indicator(true)
 	
@@ -334,17 +342,6 @@ func show_facing_indicator(show_: bool = true) -> void:
 		## Set rotation
 		var degrees: int = 60 * facing
 		facing_indicator.rotation_degrees = degrees
-		
-		## flips the actor sprite when facing to the left
-		# FIXME: not sure if this is the best way to detect what's what
-		if has_node("Generator"): $Generator.scale.x = 1 if degrees <= 180 else -1
-		if has_node("Xodiac"): $Xodiac.scale.x = 1 if degrees <= 180 else -1
-		if has_node("Charles"): $Charles.scale.x = 1 if degrees <= 180 else -1
-		if has_node("Edric"): $Edric.scale.x = 1 if degrees <= 180 else -1
-		if has_node("Nobody"): $Nobody.scale.x = 1 if degrees <= 180 else -1
-		
-		# alternate sprite-only way (more brittle?)
-		# if has_node("Sprite2D"): $Sprite2D.flip_h = degrees > 180 
 		
 		if debug:
 			p("Facing %s and rotated to %d degrees." % [facing, degrees])
