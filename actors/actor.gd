@@ -19,12 +19,7 @@ const SHOW_FACING_INDICATOR: bool = true
 const FACING_INDICATOR_SCENE = preload("uid://b3kl75n4nwdge")
 var facing_indicator: Node2D ## instantiated at runtime
 
-const TARGET_INDICATOR = preload("uid://bw78572gtph87")
-var target_scene: PackedScene = TARGET_INDICATOR
-
 const DEFAULT_VFX_HANDLER = preload("uid://l1r068mo4353")
-
-@export var label_anchor: Vector2 = Vector2(0, -40)
 
 signal animation_finished
 signal queued_actions_finished(actor: Actor)
@@ -53,6 +48,8 @@ func get_status_manager() -> StatusManager: ## Use when you dont expect to handl
 
 @export var health_bar: Healthbar
 @export var speech_bubble: DialogueBubble
+
+@export var label_anchor: Vector2 = Vector2(0, -40)
 
 @export_group("Sprite Anchors")
 @export var anchor_hand: Marker2D:
