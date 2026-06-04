@@ -335,6 +335,17 @@ func show_facing_indicator(show_: bool = true) -> void:
 		var degrees: int = 60 * facing
 		facing_indicator.rotation_degrees = degrees
 		
+		## flips the actor sprite when facing to the left
+		# FIXME: not sure if this is the best way to detect what's what
+		if has_node("Generator"): $Generator.scale.x = 1 if degrees <= 180 else -1
+		if has_node("Xodiac"): $Xodiac.scale.x = 1 if degrees <= 180 else -1
+		if has_node("Charles"): $Charles.scale.x = 1 if degrees <= 180 else -1
+		if has_node("Edric"): $Edric.scale.x = 1 if degrees <= 180 else -1
+		if has_node("Nobody"): $Nobody.scale.x = 1 if degrees <= 180 else -1
+		
+		# alternate sprite-only way (more brittle?)
+		# if has_node("Sprite2D"): $Sprite2D.flip_h = degrees > 180 
+		
 		if debug:
 			p("Facing %s and rotated to %d degrees." % [facing, degrees])
 
