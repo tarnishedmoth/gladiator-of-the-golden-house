@@ -17,6 +17,8 @@ mono_crash.*.json
 project_time_traker.json
 
 # IDE
+.idea/
+*.swp
 .vscode/
 .claude/
 CLAUDE.md
