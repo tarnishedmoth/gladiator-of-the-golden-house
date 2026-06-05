@@ -36,8 +36,10 @@ var current_packed_scene: PackedScene ## Set each time [method change_scene] is 
 
 @onready var debug_scene_label: RichTextLabel = %DebugSceneLabel
 @onready var project_version_label: Label = %ProjectVersionLabel
-@onready var music_menu_loop: AudioStreamPlayer = $Music_MenuLoop
 @onready var options_panel: PanelContainer = %OptionsPanel
+
+@onready var music_menu_loop: AudioStreamPlayer = $Music_MenuLoop
+@onready var music_sherman: AudioStreamPlayer = $Music_Sherman
 
 
 ## Static instance, we should only have one Main in the scene tree at any time.
@@ -173,6 +175,10 @@ func _on_return_to_menu_button_pressed() -> void:
 
 func _on_go_to_dev_menu_button_pressed() -> void:
 	change_scene(dev_main_menu_scene)
+	
+	## HACK not really
+	instance.play_music_menu_loop(false)
+	instance.play_sherman(false)
 
 static var music_fade: Tween
 ## True to play + fade in, false to fade out + stop
@@ -194,3 +200,23 @@ static func play_music_menu_loop(playing: bool) -> void:
 		instance.music_menu_loop.play()
 	else:
 		music_fade.tween_callback(instance.music_menu_loop.stop)
+
+static var music_fade_2: Tween
+static func play_sherman(playing: bool) -> void: ## true to play, false to fade out + stop
+	if not instance:
+		return
+	if music_fade_2:
+		music_fade_2.kill()
+	
+	music_fade_2 = instance.create_tween()
+	music_fade_2.tween_property(
+		instance.music_sherman,
+		"volume_linear",
+		1.0 if playing else 0.0,
+		12.0 if playing else 4.0,
+		).from(0.0 if playing else 1.0)
+	
+	if playing:
+		instance.music_sherman.play()
+	else:
+		music_fade_2.tween_callback(instance.music_sherman.stop)

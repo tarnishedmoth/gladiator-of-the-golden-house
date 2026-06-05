@@ -6,6 +6,8 @@ class_name ActionMove extends Action
 @export var distance: Vector2i = Vector2i(1, 1) ## DEPRECATED we should use patterns instead and refactor the ai decision for it
 @export var pattern: Array[Vector2i]
 
+## TODO make movements obstructable
+
 ## On transition to this state
 func enter(_from: ResourceState = null) -> void:
 	move_actor(_actor)

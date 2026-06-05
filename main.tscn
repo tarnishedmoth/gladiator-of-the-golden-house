@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://casmgdrk04k73" path="res://menus/options_panel.gd" id="5_272bh"]
 [ext_resource type="AudioStream" uid="uid://b7vm1xwkwmbs1" path="res://music/Epic Battle Chiptune - Menu Loop.mp3" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://n3wocoqn040k" path="res://menus/confirm_page.gd" id="8_kek77"]
+[ext_resource type="AudioStream" uid="uid://cwvxgdkgn01ib" path="res://music/gladiator ambient 1 rev 2.ogg" id="10_4c57u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
 font_size = 8
@@ -328,6 +329,12 @@ text = "Confirm"
 
 [node name="Music_MenuLoop" type="AudioStreamPlayer" parent="." unique_id=843985129]
 stream = ExtResource("5_lquwl")
+bus = &"Music"
+parameters/looping = true
+
+[node name="Music_Sherman" type="AudioStreamPlayer" parent="." unique_id=54185619]
+stream = ExtResource("10_4c57u")
+volume_db = -4.0
 bus = &"Music"
 parameters/looping = true
 

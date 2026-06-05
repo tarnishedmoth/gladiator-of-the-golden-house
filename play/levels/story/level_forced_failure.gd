@@ -52,13 +52,15 @@ func _progress_to_next_level() -> void:
 	save_persistent_actors_data()
 	Main.register_level_progressed()
 	
-	## TODO transition?
+	## managed transition
+	Main.play_sherman(true) ## start music before cutscene loads
+	await Juice.fade_out(self, 10.0, Color.BLACK).finished
+	
 	Main.load_latest_level()
 
 func run_event() -> void:
 	event.emit()
 	
-	## TODO
 	## - Spawn swarm of new enemies
 	var edge_tiles: Array[Vector2i] = []
 	for tile in base_tile_map_layer.get_used_cells():
@@ -96,7 +98,6 @@ func run_event() -> void:
 		
 		actor_fader.tween_property(actor, ^"modulate", Color.WHITE, randfn(0.25, 0.15)) ## vfx
 	
-	#Juice.fade_in(hidden_ai_director, Juice.VERYLONG, Color.BLACK) ### vfx
 	hidden_ai_director.visible = true
 	Level.get_instance().add_director(hidden_ai_director, true)
 	

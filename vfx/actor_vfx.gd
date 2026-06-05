@@ -45,7 +45,7 @@ func _exit_tree() -> void:
 			parent.vfx = null
 
 func play(vfx: FX) -> void:
-	print("spawning an actor_vfx...")
+	#print("spawning an actor_vfx...")
 	match vfx:
 		FX.MOVE:
 			on_move()
