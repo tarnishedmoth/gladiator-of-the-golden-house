@@ -88,7 +88,11 @@ static func get_all_actors_in_play_order() -> Array[Actor]:
 		push_error("Can't get actors--no active level instance!")
 	else:
 		for dir in instance.directors:
-			actors.append_array(dir.actors)
+			for actor in dir.actors:
+				if (not actor) or (not is_instance_valid(actor)):
+					push_error("Invalid or null Actor in director %s's actor list." % dir)
+				else:
+					actors.append(actor)
 	return actors
 
 ## Returns an Actor if there is one at the given coordinates, otherwise returns Null.

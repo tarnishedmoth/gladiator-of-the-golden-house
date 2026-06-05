@@ -31,6 +31,15 @@ func take_turn() -> void:
 	is_active = true
 	if VERBOSE: p("It's my turn!..")
 	
+	## Check actors
+	if not actors.is_empty():
+		actors = actors.filter(func(actor): return is_instance_valid(actor)) ## null check
+	
+	if actors.is_empty():
+		if VERBOSE: p("No actors to take turn with.")
+		end_turn()
+		return
+	
 	for actor in actors:
 		actor.on_turn_start()
 	

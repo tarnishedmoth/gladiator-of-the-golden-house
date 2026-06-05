@@ -148,12 +148,11 @@ static func get_global_position_at(map: TileMapLayer, coords: Vector2i) -> Vecto
 func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	self.director = director_
 	self.tile_map = tilemap
-	
-	tree_exited.connect(self.director.actors.erase.bind(self))
-	
+	#tree_exited.connect(self.director.actors.erase.bind(self)) ## moved to die() for more explicit control
 	_reorient_to_level_rotation() ## Also snaps
 	
-	show_facing_indicator()
+	if SHOW_FACING_INDICATOR:
+		show_facing_indicator()
 
 	if action_queue:
 		action_queue.free()
@@ -340,8 +339,8 @@ func show_facing_indicator(show_: bool = true) -> void:
 		var degrees: int = 60 * facing
 		facing_indicator.rotation_degrees = degrees
 		
-		if debug:
-			p("Facing %s and rotated to %d degrees." % [facing, degrees])
+		#if debug: ## just spammy
+			#p("Facing %s and rotated to %d degrees." % [facing, degrees])
 
 
 ## All-in-one wrapper method for [method get_incoming_damage_face] and [method calculate_direcitonal_damage].
@@ -478,6 +477,7 @@ func die() -> void:
 		
 	Level.get_instance().trigger_response_speech_bubbles(director is Player)
 	
+	director.actors.erase(self)
 	Juice.fade_out(self).tween_callback(queue_free)
 
 #endregion
