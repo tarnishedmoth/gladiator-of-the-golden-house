@@ -120,14 +120,24 @@ func get_damage() -> int:
 
 func _deal_damage(actors:Array[Actor],applied_damage:int) -> void:
 	for actor in actors:
+		## Multiply the damage by directional vulnerability
 		var _damage: int = do_directional_calculation(actor, applied_damage)
 		
+		## Tell the actor to take damage.
+		## This goes through two layers of status effect hook callbacks,
+		## once for regular damage (all damage),
+		## and once for direct damage.
+		## The result returned is a package of the results after running through all status effects/modifiers.
 		var damage_result: Actor.DamageResult = actor.take_damage(_damage, _actor)
+		
 		if damage_result.direct > 0:
+			## We dealt direct damage.
 			damage_result.direct = _actor._on_dealing_direct_damage(damage_result.direct)
+		
 		if debug: p(
 			"Hit %s with %s/%s (base/modified) damage.\n%s damage was negated, %s damage was taken directly." % [actor.name, damage, _damage, damage_result.negated, damage_result.direct]
 				)
+		
 		_actor._on_damage_dealt(damage_result)
 
 ## See [member use_directional_vulnerability].

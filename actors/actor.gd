@@ -420,6 +420,13 @@ class DamageResult:
 		negated = _negated
 		direct = _direct
 
+## This goes through two layers of status effect hook callbacks,
+## once for regular damage (on_take_damage),
+## and once for direct damage (on_take_direct_damage).
+## The result returned is a package of the results after running through all status effects/modifiers.
+## For example, a Defense status effect might apply to regular damage (on_take_damage), negating points.
+## A piercing attack might deal direct damage, bypassing Defense entirely.
+## That is the purpose of these different status effect hooks.
 func take_damage(damage: int, from: Actor = null) -> DamageResult:
 	if from != null:
 		incoming_damage_by = weakref(from)
