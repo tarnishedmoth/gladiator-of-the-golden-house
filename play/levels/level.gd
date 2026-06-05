@@ -192,6 +192,9 @@ func start_game() -> void:
 func add_director(director: Director, at_front: bool = false) -> void:
 	if at_front:
 		directors.push_front(director)
+		if current_director_idx > -1: ## Bugfix
+			current_director_idx += 1
+			assert(directors.size() > current_director_idx)
 	else:
 		directors.push_back(director)
 	
