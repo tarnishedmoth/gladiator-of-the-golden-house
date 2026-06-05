@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://do8k4mne34fsw"]
+
+[ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="1_33blp"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_o0dvo"]
+[ext_resource type="Resource" uid="uid://cior70oyylpmi" path="res://actions/prefabs/grunt_heavy_attack.tres" id="4_lmgxc"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="5_5k5fe"]
+[ext_resource type="Resource" uid="uid://bsef8hoia6dkr" path="res://actions/prefabs/move_max_distance.tres" id="5_bfmgk"]
+[ext_resource type="Script" uid="uid://cwjlhkoayrvtm" path="res://actions/action_do-nothing.gd" id="6_5k5fe"]
+[ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="9_6545d"]
+[ext_resource type="Material" uid="uid://ba42heu1d306" path="res://characters/colosseum-crowd/blob-parts/shadow_canvas-item-material.tres" id="9_j8xi4"]
+[ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="10_fhmdo"]
+[ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="12_73npf"]
+[ext_resource type="Texture2D" uid="uid://bo5ja6rith414" path="res://characters/chariot1.png" id="13_7jfi1"]
+
+[sub_resource type="Resource" id="Resource_5k5fe"]
+script = ExtResource("6_5k5fe")
+metadata/_custom_type_script = "uid://cwjlhkoayrvtm"
+
+[sub_resource type="Gradient" id="Gradient_5h1ap"]
+offsets = PackedFloat32Array(0.18604651, 1)
+colors = PackedColorArray(0.8089983, 0.8089983, 0.8089982, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sups2"]
+gradient = SubResource("Gradient_5h1ap")
+width = 48
+height = 12
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Chariot" type="Node2D" unique_id=84579020 node_paths=PackedStringArray("health_bar", "speech_bubble")]
+script = ExtResource("1_33blp")
+usable_actions = Array[ExtResource("2_o0dvo")]([ExtResource("5_bfmgk"), ExtResource("4_lmgxc"), SubResource("Resource_5k5fe")])
+health_bar = NodePath("health")
+speech_bubble = NodePath("SpeechBubble")
+ui_name = "Chariot"
+ui_description = "A fast-moving, lightly armored foe."
+max_health = 18
+
+[node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("9_6545d")]
+
+[node name="health" parent="." unique_id=43880176 instance=ExtResource("10_fhmdo")]
+position = Vector2(0, -56)
+
+[node name="SpeechBubble" parent="." unique_id=757394792 instance=ExtResource("12_73npf")]
+position = Vector2(0, -64)
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=820281749]
+material = ExtResource("9_j8xi4")
+position = Vector2(0, 14)
+texture = SubResource("GradientTexture2D_sups2")
+
+[node name="Chariot" type="Sprite2D" parent="." unique_id=1754860747]
+z_index = 1
+position = Vector2(0, -16)
+texture = ExtResource("13_7jfi1")

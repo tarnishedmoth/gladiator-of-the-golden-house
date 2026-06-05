@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bgltwsebcssa7"]
+
+[ext_resource type="PackedScene" uid="uid://do8k4mne34fsw" path="res://actors/enemies/chariot/chariot.tscn" id="1_cfcd4"]
+[ext_resource type="Texture2D" uid="uid://cl85rfvtusdka" path="res://characters/chariot1_headless.png" id="2_1kygq"]
+
+[node name="Chariot" unique_id=84579020 instance=ExtResource("1_cfcd4")]
+
+[node name="Chariot" parent="." index="4" unique_id=1754860747]
+texture = ExtResource("2_1kygq")
