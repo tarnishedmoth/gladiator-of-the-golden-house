@@ -107,3 +107,16 @@ func _on_clear_character_datat_button_pressed() -> void:
 
 func _on_exit_options_button_pressed() -> void:
 	close_options()
+
+
+func _on_camera_movement_button_item_selected(index: int) -> void:
+	match index:
+		0:
+			## Disabled
+			GameSettings.set_value(GameSettings.SECTION.CAMERA, "mouse_movement", LevelCamera.Mode.DISABLED)
+		1:
+			## Direct
+			GameSettings.set_value(GameSettings.SECTION.CAMERA, "mouse_movement", LevelCamera.Mode.DIRECT)
+		2:
+			## Smoothed
+			GameSettings.set_value(GameSettings.SECTION.CAMERA, "mouse_movement", LevelCamera.Mode.SMOOTHED)

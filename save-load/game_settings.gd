@@ -16,6 +16,7 @@ static func p(args): print_rich("[color=green]GameSettings: ", args)
 const SECTION = {
 	GRAPHICS = "graphics",
 	SAVES = "saves",
+	CAMERA = "camera",
 }
 
 static var default_graphics: Dictionary = {
@@ -29,6 +30,8 @@ static var default_graphics: Dictionary = {
 	vsync = ProjectSettings.get_setting("display/window/vsync/vsync_mode"),
 	
 }
+
+const default_camera_mouse_movement: LevelCamera.Mode = LevelCamera.Mode.DIRECT
 
 enum Qualities3 {
 	LOW,
@@ -57,14 +60,14 @@ static func default_config() -> void:
 	## Graphics
 	for key in default_graphics:
 		instance.set_value(SECTION.GRAPHICS, key, default_graphics[key])
-		
-	## etc TODO
+	
+	## camera
+	instance.set_value(SECTION.CAMERA, "mouse_movement", default_camera_mouse_movement)
+	
+	_on_game_settings_changed()
 
 static func save_config() -> void:
 	SaveLoad.check_and_create_directory(CONFIG_FILEPATH.get_base_dir())
-	#if not instance: ## Moved to getter
-		#default_config()
-		
 	instance.save(CONFIG_FILEPATH)
 
 static func load_config() -> void:
@@ -81,6 +84,7 @@ static func load_config() -> void:
 			p("parse failed--is config corrupt?")
 		else:
 			instance = config
+			_on_game_settings_changed()
 
 static func get_value(section: String, key: String, default = null) -> Variant:
 	var value
@@ -94,3 +98,8 @@ static func get_value(section: String, key: String, default = null) -> Variant:
 
 static func set_value(section: String, key: String, value: Variant) -> void:
 	instance.set_value(section, key, value)
+	_on_game_settings_changed()
+
+static func _on_game_settings_changed() -> void:
+	if Main.instance:
+		Main.instance.game_settings_changed.emit()

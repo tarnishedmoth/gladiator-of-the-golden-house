@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cpijhxgji3wdj" path="res://menus/volume_slider.tscn" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://casmgdrk04k73" path="res://menus/options_panel.gd" id="5_272bh"]
 [ext_resource type="AudioStream" uid="uid://b7vm1xwkwmbs1" path="res://music/Epic Battle Chiptune - Menu Loop.mp3" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://bfrkl4plv2ty7" path="res://menus/camera_mouse_movement_option_button.gd" id="8_efxa6"]
 [ext_resource type="Script" uid="uid://n3wocoqn040k" path="res://menus/confirm_page.gd" id="8_kek77"]
 [ext_resource type="AudioStream" uid="uid://cwvxgdkgn01ib" path="res://music/gladiator ambient 1 rev 2.ogg" id="10_4c57u"]
 
@@ -160,6 +161,30 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/Misc" unique_id=2111942279]
 layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CameraMovement" type="HBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/Misc/VBoxContainer" unique_id=421161871]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/Misc/VBoxContainer/CameraMovement" unique_id=1616095415]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Camera movement with mouse:"
+
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/Misc/VBoxContainer/CameraMovement" unique_id=308214483]
+layout_mode = 2
+theme_type_variation = &"WhiteFlatButton"
+flat = true
+alignment = 1
+selected = 1
+item_count = 3
+popup/item_0/text = "Fixed"
+popup/item_0/id = 0
+popup/item_1/text = "Direct"
+popup/item_1/id = 1
+popup/item_2/text = "Smoothed"
+popup/item_2/id = 2
+script = ExtResource("8_efxa6")
 
 [node name="HelpButton" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/Misc/VBoxContainer" unique_id=1647707422]
 layout_mode = 2
@@ -340,6 +365,7 @@ parameters/looping = true
 
 [connection signal="pressed" from="CanvasLayer/Debug/HBoxContainer/ProjectVersionLabel/GoToDevMenuButton" to="." method="_on_go_to_dev_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Debug/HBoxContainer/DebugSceneLabel/ReturnToMenuButton" to="." method="_on_return_to_menu_button_pressed"]
+[connection signal="item_selected" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/Misc/VBoxContainer/CameraMovement/OptionButton" to="CanvasLayer/OptionsPanel" method="_on_camera_movement_button_item_selected"]
 [connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/Misc/VBoxContainer/HelpButton" to="CanvasLayer/OptionsPanel" method="_on_help_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/ExitOptionsButton" to="CanvasLayer/OptionsPanel" method="_on_exit_options_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/HelpOptions/MarginContainer/PanelContainer/VBoxContainer/StuckGameButton" to="CanvasLayer/OptionsPanel" method="_on_stuck_game_button_pressed"]

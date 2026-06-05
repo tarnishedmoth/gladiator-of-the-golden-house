@@ -5,6 +5,8 @@ class_name Main extends Node
 ## Load the splash,
 ## then load the main menu.
 
+signal game_settings_changed
+
 static var VERSION:String:
 	get:
 		if not VERSION:
