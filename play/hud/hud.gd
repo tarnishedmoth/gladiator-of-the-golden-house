@@ -44,14 +44,15 @@ var visibility_tween: Tween
 func show_hud(showing: bool) -> void:
 	if visibility_tween:
 		visibility_tween.kill()
-	visibility_tween = create_tween()
 	
 	if showing:
+		visibility_tween = create_tween()
 		visibility_tween.tween_property(root, ^"modulate", Color.WHITE, Juice.FAST)
 		if not root.visible:
 			root.show()
 	else:
 		if root.visible:
+			visibility_tween = create_tween()
 			visibility_tween.tween_property(root, ^"modulate", Color.TRANSPARENT, Juice.FAST)
 			visibility_tween.tween_callback(root.hide)
 
