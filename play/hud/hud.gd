@@ -11,6 +11,7 @@ const STYLE_VULNERABILITY: PopupStyle = preload("uid://sjdlsxm6sqin")
 
 var selected_actor_action_panels: Array[HUDSelectedActorActionPanel]
 
+@onready var root: Control = %Root
 @onready var hover_panel: HUDHoverPanel = %HoverPanel
 @onready var actions_panel: ActionsPanel = %ActionsPanel
 @onready var stash_panel: StashPanel = %StashPanel
@@ -19,6 +20,10 @@ var selected_actor_action_panels: Array[HUDSelectedActorActionPanel]
 @onready var end_turn_button: Button = %EndTurnButton
 
 func _ready() -> void:
+	## Initially hide the hud
+	root.hide()
+	root.modulate = Color.TRANSPARENT
+	
 	## Setup
 	hover_panel.modulate = Color.TRANSPARENT
 
@@ -33,6 +38,23 @@ func _ready() -> void:
 	stash_panel.action_hover_ended.connect(_on_action_hover_ended)
 
 	Level.get_instance().current_director_changed.connect(_on_current_director_changed)
+
+
+var visibility_tween: Tween
+func show_hud(showing: bool) -> void:
+	if visibility_tween:
+		visibility_tween.kill()
+	visibility_tween = create_tween()
+	
+	if showing:
+		visibility_tween.tween_property(root, ^"modulate", Color.WHITE, Juice.FAST)
+		if not root.visible:
+			root.show()
+	else:
+		if root.visible:
+			visibility_tween.tween_property(root, ^"modulate", Color.TRANSPARENT, Juice.FAST)
+			visibility_tween.tween_callback(root.hide)
+
 
 func show_hover_panel(show_:bool = true) -> void:
 	if not show_:
@@ -119,7 +141,9 @@ func _on_action_hover_ended() -> void:
 
 func _on_current_director_changed(new_director: Director) -> void:
 	actions_panel.actions_header.set_blips(0)
-	end_turn_button.disabled = not new_director is Player
+	var is_player: bool = new_director is Player
+	end_turn_button.disabled = not is_player
+	show_hud(is_player)
 
 
 var end_turn_hold_tween: Tween

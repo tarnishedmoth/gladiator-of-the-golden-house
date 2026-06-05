@@ -18,6 +18,7 @@ bg_color = Color(0.6901961, 0.67058825, 0.32941177, 1)
 script = ExtResource("1_54fu8")
 
 [node name="Root" type="Control" parent="." unique_id=1155458102]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
