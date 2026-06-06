@@ -27,9 +27,10 @@ height = 12
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Chariot" type="Node2D" unique_id=84579020 node_paths=PackedStringArray("health_bar", "speech_bubble")]
+[node name="Chariot" type="Node2D" unique_id=84579020 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
 script = ExtResource("1_33blp")
 usable_actions = Array[ExtResource("2_o0dvo")]([ExtResource("5_bfmgk"), ExtResource("4_lmgxc"), SubResource("Resource_5k5fe")])
+character_visual_root = NodePath("Chariot")
 health_bar = NodePath("health")
 speech_bubble = NodePath("SpeechBubble")
 ui_name = "Chariot"
@@ -53,3 +54,4 @@ texture = SubResource("GradientTexture2D_sups2")
 z_index = 1
 position = Vector2(0, -16)
 texture = ExtResource("13_7jfi1")
+flip_h = true
