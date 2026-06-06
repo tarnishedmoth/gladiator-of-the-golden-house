@@ -17,19 +17,13 @@ enum MoveBehavior { ## Determines target tiles during [method plan_action_detail
 @export_group("Behaviors")
 @export var always_prioritize_nearest_hostile: bool = true
 @export var move_behavior:MoveBehavior = MoveBehavior.TO_TARGET
-@export var move_towards_target: bool = true ## TODO this is simple, does not consider attack action pattern
-## DEPRECATED: Use MoveBehavior instead of move_towards_target
+
+## this is simple, does not consider attack action pattern TODO
+## DEPRECATED: Use [member move_behavior] instead of move_towards_target
+@export var move_towards_target: bool = true
 
 var hostile_target: Actor ## Used for planning
 
-#func setup(director_: Director, tilemap: TileMapLayer) -> void:
-	#if action_preview:
-		#action_preview.free()
-	#action_preview = ActionPreview.new()
-	#add_child(action_preview)
-	#action_preview.setup(self)
-	#
-	#super(director_,tilemap)
 
 func replace_usable_actions(new_usable_actions: Array[Action], change_queue_size: int = -1) -> void:
 	usable_actions.clear()

@@ -6,6 +6,7 @@ extends Level
 signal event
 
 const SHOCKED_REACTIONS: OneLinersStrings = preload("uid://cmkeua4ngk1h6")
+const ENEMY_TO_SPAWN: PackedScene = preload("uid://bqwvnxdyhfrmi")
 
 ## When true, when the Player dies, they will not be prompted to restart the level.
 ## The level will progress automatically rather than prompting the player with the
@@ -49,14 +50,23 @@ func _progress_to_next_level() -> void:
 	_record_playtime()
 	
 	## Save
-	save_persistent_actors_data()
+	#save_persistent_actors_data() ## We have to do something different because of the forced failure. Should reset the health to full
+	PlayerData.wipe_actor_data()
 	Main.register_level_progressed()
 	
 	## managed transition
 	Main.play_sherman(true) ## start music before cutscene loads
-	await Juice.fade_out(self, 10.0, Color.BLACK).finished
 	
-	Main.load_latest_level()
+	var fade_out_tween: Tween = create_tween()
+	fade_out_tween.tween_property(self, ^"modulate", Color.BLACK, 10.0)
+	fade_out_tween.parallel()
+	var audio_bus_index: int = AudioServer.get_bus_index(&"SfxControlled")
+	fade_out_tween.tween_method(
+		func(v): AudioServer.set_bus_volume_linear(audio_bus_index, v),
+		1.0, 0.0, 10.0)
+	
+	fade_out_tween.tween_callback(Main.load_latest_level)
+	fade_out_tween.tween_callback(AudioServer.set_bus_volume_linear.bind(audio_bus_index, 1.0))
 
 func run_event() -> void:
 	event.emit()
@@ -81,10 +91,9 @@ func run_event() -> void:
 	var player_actor: Actor = player_director.actors.front() ## technically a HACK
 	
 	## Spawn enemies around the entire arena edge
-	const SPAWN: PackedScene = preload("uid://c61s2rc1qc6vp") ## TODO change me...?
 	var actor_fader: Tween = create_tween() ## vfx
 	for tile in edge_tiles:
-		var actor: AIActor = SPAWN.instantiate()
+		var actor: AIActor = ENEMY_TO_SPAWN.instantiate()
 		actor.modulate = Color.TRANSPARENT
 		
 		hidden_ai_director.add_child(actor)
@@ -100,6 +109,9 @@ func run_event() -> void:
 	
 	hidden_ai_director.visible = true
 	Level.get_instance().add_director(hidden_ai_director, true)
+	var claimed_tiles: Array[Vector2i]
+	for actor: AIActor in hidden_ai_director.actors: ## HACK
+		actor.queue_new_actions_for_next_turn(claimed_tiles)
 	
 	## - Crowd reactions in shock, asking what are those
 	trigger_random_crowd_speech_bubbles(SHOCKED_REACTIONS)

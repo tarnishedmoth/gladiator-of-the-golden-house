@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://bqwvnxdyhfrmi"]
+
+[ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="1_k28d6"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_jjh3e"]
+[ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="3_8clo5"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="4_76b1t"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="5_8nrpf"]
+[ext_resource type="Texture2D" uid="uid://bnepfqy7b6vc0" path="res://characters/zombie/zombie_anim.png" id="7_0mr4u"]
+[ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="8_3kdj8"]
+[ext_resource type="PackedScene" uid="uid://l1r068mo4353" path="res://vfx/actor_vfx_handler.tscn" id="9_glntv"]
+[ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="10_5xdha"]
+
+[sub_resource type="Resource" id="Resource_5brh6"]
+script = ExtResource("5_8nrpf")
+damage = 9
+pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
+pre_attack_duration = 0.1
+ui_title = "Light Attack"
+energy_cost = 1
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"
+
+[sub_resource type="Resource" id="Resource_wvmyn"]
+script = ExtResource("5_8nrpf")
+damage = 17
+pattern = Array[Vector2i]([Vector2i(0, -1)])
+pre_attack_duration = 0.1
+ui_title = "Heavy Attack"
+energy_cost = 1
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"
+
+[sub_resource type="Animation" id="Animation_0m6fe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_y38ml"]
+resource_name = "attack"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.26666668, 0.36666667, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 4, 5, 4]
+}
+
+[sub_resource type="Animation" id="Animation_griro"]
+resource_name = "collapse"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.5, 0.73333335, 0.96666664, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 2, 1, 2, 1, 4]
+}
+
+[sub_resource type="Animation" id="Animation_2ku68"]
+resource_name = "get_hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h1mkt"]
+_data = {
+&"RESET": SubResource("Animation_0m6fe"),
+&"attack": SubResource("Animation_y38ml"),
+&"collapse": SubResource("Animation_griro"),
+&"get_hit": SubResource("Animation_2ku68")
+}
+
+[node name="ForcedFailureGrunt" type="Node2D" unique_id=40744033 node_paths=PackedStringArray("character_visual_root", "health_bar")]
+script = ExtResource("1_k28d6")
+usable_actions = Array[ExtResource("2_jjh3e")]([ExtResource("3_8clo5"), SubResource("Resource_5brh6"), SubResource("Resource_wvmyn")])
+character_visual_root = NodePath("Zombie")
+health_bar = NodePath("health")
+ui_name = "? ? ?"
+ui_subtitle = "Anomaly"
+ui_description = "Where did they come from?"
+max_health = 20
+metadata/_custom_type_script = "uid://pgyek4ai3kpq"
+
+[node name="Zombie" type="Sprite2D" parent="." unique_id=1368758138]
+texture = ExtResource("7_0mr4u")
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Zombie" unique_id=448592839]
+libraries/ = SubResource("AnimationLibrary_h1mkt")
+
+[node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("8_3kdj8")]
+
+[node name="ActorVfx" parent="." unique_id=374718462 node_paths=PackedStringArray("animation_player") instance=ExtResource("9_glntv")]
+animation_player = NodePath("../Zombie/AnimationPlayer")
+animation_attack = &"attack"
+animation_get_hit = &"get_hit"
+animation_transform = &"collapse"
+start_as_transformed = true
+
+[node name="health" parent="." unique_id=1326189825 instance=ExtResource("10_5xdha")]
+position = Vector2(0, -30)
