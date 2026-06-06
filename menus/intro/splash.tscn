@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://cef5121i0cwd6" path="res://menus/intro/splash.gd" id="1_b04ml"]
 [ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://vfx/vignette.tscn" id="2_d525n"]
 [ext_resource type="Texture2D" uid="uid://dvuqbrge3doql" path="res://menus/gladiator-godot-icon.png" id="3_56kac"]
+[ext_resource type="Texture2D" uid="uid://da2jfnnv7lfv0" path="res://play/tile-atlases/hexagon-corners-fat.png" id="4_d525n"]
+[ext_resource type="Texture2D" uid="uid://tfxpngkkcce3" path="res://menus/intro/dev-pods-logo.webp" id="5_3i4dp"]
+[ext_resource type="Texture2D" uid="uid://cl88t6bb2efir" path="res://menus/intro/logo_small_monochrome_dark.svg" id="6_a6vw5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_56kac"]
 font_size = 30
@@ -33,17 +36,100 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.8509804, 0.6745098, 0.54509807, 1)
-
-[node name="Vignette" parent="UI" unique_id=163976660 instance=ExtResource("2_d525n")]
-layout_mode = 1
+color = Color(0.83137256, 0.5019608, 0.3019608, 1)
 
 [node name="Studio" type="Sprite2D" parent="UI" unique_id=409209664]
 unique_name_in_owner = true
 texture_filter = 2
-position = Vector2(480, 191)
+position = Vector2(480, 200)
 scale = Vector2(2, 2)
 texture = ExtResource("3_56kac")
+
+[node name="SideLogos" type="Control" parent="UI" unique_id=341658423]
+anchors_preset = 0
+offset_left = 480.0
+offset_top = 172.0
+offset_right = 520.0
+offset_bottom = 212.0
+
+[node name="TextureRect2" type="TextureRect" parent="UI/SideLogos" unique_id=1668701202]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -464.0
+offset_top = -96.0
+offset_right = -336.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("4_d525n")
+
+[node name="TextureRect" type="TextureRect" parent="UI/SideLogos/TextureRect2" unique_id=555004601]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 13.0
+offset_right = 57.0
+offset_bottom = 53.0
+texture = ExtResource("5_3i4dp")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Subtext" type="Label" parent="UI/SideLogos/TextureRect2" unique_id=1485804414]
+layout_mode = 0
+offset_left = -62.0
+offset_top = 84.5
+offset_right = 192.0
+offset_bottom = 120.5
+theme_override_font_sizes/font_size = 8
+text = "devpods.gg"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/SideLogos" unique_id=1902904356]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 170.0
+offset_top = -96.0
+offset_right = 298.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("4_d525n")
+
+[node name="TextureRect" type="TextureRect" parent="UI/SideLogos/TextureRect" unique_id=1737879533]
+layout_mode = 0
+offset_left = 11.5
+offset_top = 16.5
+offset_right = 124.5
+offset_bottom = 56.5
+texture = ExtResource("6_a6vw5")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Subtext2" type="Label" parent="UI/SideLogos/TextureRect" unique_id=143866346]
+layout_mode = 0
+offset_left = -62.0
+offset_top = 84.5
+offset_right = 192.0
+offset_bottom = 120.5
+theme_override_font_sizes/font_size = 8
+text = "godotengine.org"
+horizontal_alignment = 1
+
+[node name="Vignette" parent="UI" unique_id=163976660 instance=ExtResource("2_d525n")]
+layout_mode = 1
+offset_left = -120.0
+offset_top = -190.0
+offset_right = 120.0
+offset_bottom = 80.0
 
 [node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=1576631532]
 layout_mode = 1
@@ -55,7 +141,6 @@ grow_vertical = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer" unique_id=1077686527]
 layout_mode = 2
@@ -77,16 +162,4 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "vX.X.X"
 label_settings = SubResource("LabelSettings_bl3qm")
-horizontal_alignment = 2
-
-[node name="Spacer" type="Control" parent="UI/MarginContainer/VBoxContainer" unique_id=414536047]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.25
-
-[node name="Subtext" type="Label" parent="UI/MarginContainer/VBoxContainer" unique_id=1485804414]
-unique_name_in_owner = true
-layout_mode = 2
-text = "a Dev Pods game."
 horizontal_alignment = 2
