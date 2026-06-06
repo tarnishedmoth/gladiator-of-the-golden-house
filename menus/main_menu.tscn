@@ -34,14 +34,6 @@ grow_vertical = 2
 theme = ExtResource("1_oblsv")
 script = ExtResource("1_8gy84")
 
-[node name="Vignette" parent="." unique_id=1697100378 instance=ExtResource("3_a63lr")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-
 [node name="TextureRect" type="TextureRect" parent="." unique_id=449601437]
 self_modulate = Color(1, 1, 1, 0.23529412)
 layout_mode = 0
@@ -354,6 +346,16 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"BigButton"
 text = "Return to Main Menu"
+
+[node name="Vignette" parent="." unique_id=1697100378 instance=ExtResource("3_a63lr")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1200.0
+offset_bottom = 810.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="pressed" from="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]

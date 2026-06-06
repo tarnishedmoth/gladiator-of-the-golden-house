@@ -28,6 +28,7 @@ func _ready() -> void:
 	hover_panel.modulate = Color.TRANSPARENT
 
 	actions_hover_panel.modulate = Color.TRANSPARENT
+	show_actions_hover_panel(false)
 
 	actions_panel.action_button_pressed.connect(_on_action_pressed)
 	actions_panel.action_hover_started.connect(_on_action_hover_start)
