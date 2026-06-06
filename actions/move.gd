@@ -11,11 +11,11 @@ class_name ActionMove extends Action
 ## On transition to this state
 func enter(_from: ResourceState = null) -> void:
 	move_actor(_actor)
-	exit()
 
 func move_actor(actor: Actor) -> void:
 	if not actor:
 		push_error("Actor is invalid")
+		exit()
 	else:
 		if debug: p("Moving to %s!" % _target)
 		actor.call_deferred("move_to_tile", _target)
@@ -23,3 +23,4 @@ func move_actor(actor: Actor) -> void:
 		await actor.animation_finished
 		
 		Level.get_instance().on_actor_moved(actor)
+		exit()

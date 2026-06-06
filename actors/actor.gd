@@ -12,37 +12,21 @@ class_name Actor extends Node2D
 func p(args):
 	print_rich("[bgcolor=grey][color=black]", "Actor %s : " % name, args)
 
-
-const RENDER_AI_PLAYABLE_TILES: bool = false ## Set to true to render grey tiles for unselected playable target tiles of ai action previews
-
-const SHOW_FACING_INDICATOR: bool = true
-const FACING_INDICATOR_SCENE = preload("uid://b3kl75n4nwdge")
-var facing_indicator: Node2D ## instantiated at runtime
-
-const DEFAULT_VFX_HANDLER = preload("uid://l1r068mo4353")
-
+## Signals
 signal animation_finished
 signal queued_actions_finished(actor: Actor)
-var emit_actions_finished_signal: bool = false
 
-var current_tile_coords: Vector2i
-var previous_tile_coords: Vector2i
+## Type constants
+const RENDER_AI_PLAYABLE_TILES: bool = false ## Set to true to render grey tiles for unselected playable target tiles of ai action previews
+const SHOW_FACING_INDICATOR: bool = true
 
-var tile_map: TileMapLayer
-var director: Director
+## Filesystem constants
+const FACING_INDICATOR_SCENE = preload("uid://b3kl75n4nwdge")
+const DEFAULT_VFX_HANDLER = preload("uid://l1r068mo4353")
 
+## Enums
 
-## Managers (objects that do things)
-var action_queue: ActionQueue
-func get_action_queue() -> ActionQueue: ## Use when you dont expect to handle null.
-	assert(action_queue)
-	return action_queue
-
-var status_manager: StatusManager
-func get_status_manager() -> StatusManager: ## Use when you dont expect to handle null.
-	assert(status_manager)
-	return status_manager
-	
+## Export properties
 @export var character_visual_root: Node2D ## The sprite. Right-facing is the correct default direction.
 @export var facing_direction_affects_visual: bool = true ## If true, the [member character_visual_root] will be x-scale flipped for left facing.
 
@@ -57,16 +41,6 @@ func get_status_manager() -> StatusManager: ## Use when you dont expect to handl
 		anchor_hand = v
 		_callback_anchor_waiters()
 
-var sfx: ActorSfxHandler
-var vfx: ActorVfxHandler
-
-func get_sfx_handler() -> ActorSfxHandler:
-	assert(sfx)
-	return sfx
-	
-func get_vfx_handler() -> ActorVfxHandler:
-	assert(vfx)
-	return vfx
 
 ## Save / Load
 ## See [PersistentActorData] for the snapshot type and serialization.
@@ -104,7 +78,6 @@ func push_persistent_data() -> void:
 		PlayerData.set_actor_data(persistent_data_key, persistent_actor_data)
 
 
-## Gameplay
 @export var ui_name: String ## Shown in Hover Panel
 @export var ui_subtitle: String ## (Optional) Shown in hover panel
 @export_multiline() var ui_description: String ## (Optional) Shown in Hover Panel
@@ -126,16 +99,47 @@ var energy: int
 @export var dm_dmg_rl: float = 1.5 ## mult for the relative rearward left direction
 @export var dm_dmg_fl: float = 1.0 ## mult for the relative forward left direction
 
+@export_category("Status Effects:")
+@export var status_effects: Array[Status]
+func get_status_effects() -> Array[Status]:
+	return status_effects
+
+## Variable data
+var emit_actions_finished_signal: bool = false
+var current_tile_coords: Vector2i
+var previous_tile_coords: Vector2i
+
 var action_count: int
 var incoming_damage_by: WeakRef
 func clear_incoming_damage_by() -> void: incoming_damage_by = null
 func get_incoming_damage_by() -> Actor:
 	return incoming_damage_by.get_ref() if incoming_damage_by is WeakRef else null
 
-@export_category("Status Effects:")
-@export var status_effects: Array[Status]
-func get_status_effects() -> Array[Status]:
-	return status_effects
+## Variable objects
+var facing_indicator: Node2D ## instantiated at runtime
+
+var tile_map: TileMapLayer
+var director: Director
+
+var action_queue: ActionQueue
+func get_action_queue() -> ActionQueue: ## Use when you dont expect to handle null.
+	assert(action_queue)
+	return action_queue
+
+var status_manager: StatusManager
+func get_status_manager() -> StatusManager: ## Use when you dont expect to handle null.
+	assert(status_manager)
+	return status_manager
+
+var sfx: ActorSfxHandler
+func get_sfx_handler() -> ActorSfxHandler:
+	assert(sfx)
+	return sfx
+
+var vfx: ActorVfxHandler
+func get_vfx_handler() -> ActorVfxHandler:
+	assert(vfx)
+	return vfx
 
 #region STATIC METHODS
 
@@ -278,8 +282,10 @@ func snap_to_nearest_tile() -> void:
 	
 	current_tile_coords = tile_coords
 
-func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
-	if not tile_map: return
+func move_to_tile(coords: Vector2i, duration_of_movement: float = 0.5) -> void:
+	if not tile_map:
+		push_error("tile_map is invalid.")
+		return
 
 	## Prevent moving onto a tile occupied by another actor
 	var occupant: Actor = Level.get_actor_at(coords)
@@ -295,8 +301,8 @@ func move_to_tile(coords: Vector2i, map: TileMapLayer = tile_map) -> void:
 	move_tween.set_trans(Tween.TRANS_QUAD)
 	
 	#var distance_covered: float = (global_position - get_global_position_at(map, coords)).length()
-	var duration_of_movement: float = 0.5 # * distance_covered
-	move_tween.tween_property(self, ^"global_position", get_global_position_at(map, coords), duration_of_movement)
+	#var duration_of_movement: float = 0.5 # * distance_covered
+	move_tween.tween_property(self, ^"global_position", get_global_position_at(tile_map, coords), duration_of_movement)
 	move_tween.tween_callback(animation_finished.emit)
 	
 	play_sfx(ActorSfxHandler.Sounds.MOVE)
@@ -325,7 +331,7 @@ func set_facing(cardinal_direction: Facing.Cardinal) -> void:
 ## Returns [member facing]. North is the default value.
 func get_facing() -> Facing.Cardinal:
 	return facing
-	
+
 func show_facing_indicator(show_: bool = true) -> void:
 	if not show_:
 		if facing_indicator:
