@@ -25,7 +25,7 @@ func animate() -> void:
 	await Juice.fade_in(title, Juice.PATIENT).finished
 	await Juice.fade_in(version, Juice.SMOOTH).finished
 	await Juice.flash(version, [0.22, 0.66]).finished
-	await get_tree().create_timer(1.2).timeout
+	await get_tree().create_timer(1.0).timeout
 	Juice.fade_out(studio)
 	Juice.fade_out(title)
 	Juice.fade_out(version)
