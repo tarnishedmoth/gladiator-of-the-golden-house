@@ -188,6 +188,12 @@ var popups: Array[Label]
 
 func popup_damage(value: int, actor: Actor) -> Label:
 	return _popup_transient(value, actor, STYLE_DAMAGE)
+	
+func popup_healing(value: int, actor: Actor) -> Label:
+	return _popup_transient("+%s" % value, actor, STYLE_STATUS)
+	
+func popup_knockback(text: String, actor: Actor) -> Label:
+	return _popup_transient(text, actor, STYLE_STATUS)
 
 func popup_status(text: String, actor: Actor) -> Label:
 	return _popup_transient(text, actor, STYLE_STATUS)

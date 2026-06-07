@@ -11,6 +11,9 @@ class_name ActionAttackKnockback extends ActionAttack
 ## and not apply knockback if so. TODO
 @export var only_if_not_facing: bool = false
 
+## i.e. Stunned for being knocked into a wall
+@export var status_to_apply_if_knocked_into_obstacle: Status
+
 ## Simplify things for now too much work
 #enum DamageRequired {
 	#NONE, ## Every affected actor will be knocked back.
@@ -76,6 +79,7 @@ func knockback(actor: Actor) -> void:
 		direction = Facing.get_direction_to_cell(_actor.tile_map, source_tile, actor.current_tile_coords)
 		
 		## Move the actor in that direction
+		Level.get_hud().popup_status("Knockback", actor)
 		var target_tile: Vector2i = actor.current_tile_coords + (Facing.DIRECTIONS[direction] * distance)
 		var result: Vector2i = actor.move_along_path(target_tile)
 		if result != target_tile:
@@ -83,5 +87,5 @@ func knockback(actor: Actor) -> void:
 			on_hit_obstruction(actor, direction)
 
 func on_hit_obstruction(actor: Actor, direction_of_travel: Facing.Cardinal) -> void:
-	p("Would you believe it guys it's 2016")
-	pass
+	if status_to_apply_if_knocked_into_obstacle:
+		actor.add_status(status_to_apply_if_knocked_into_obstacle)
