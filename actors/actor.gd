@@ -557,6 +557,9 @@ func apply_healing(amount: int, from: Actor = null) -> int:
 	var actual_amount: int = mini(amount, max_health - health)
 	if debug:
 		p("%s applying healing." % [actual_amount])
+	
+	if actual_amount > 0:
+		Level.get_hud().popup_healing(actual_amount, self)
 
 	health += actual_amount
 	update_healthbar()
