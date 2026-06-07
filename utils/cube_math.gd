@@ -102,3 +102,17 @@ static func get_inline_tiles(a: Vector2i, b: Vector2i) -> Array[Vector2i]:
 	for cube: Cube in results:
 		axial_results.append(cube.to_axial())
 	return axial_results
+
+## If these two tiles share an axis direction (flat sides), returns true.
+## Returns false if these tiles are at all diagonal from each other (through points).
+static func is_in_row(a: Vector2i, b: Vector2i) -> bool:
+	var ac := Cube.from_axial(a)
+	var bc := Cube.from_axial(b)
+	if ac.q == bc.q:
+		return true
+	if ac.r == bc.r:
+		return true
+	if ac.s == bc.s:
+		return true
+	return false
+	
