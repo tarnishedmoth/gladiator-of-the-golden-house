@@ -11,7 +11,7 @@ var pick_up_template:= preload("res://pick-ups/pick_up.tscn")
 
 func _ready()->void:
 	if pickup_pool == null:
-		p("item pool is empty")
+		p("Pickup pool for this level is EMPTY")
 
 func setup(tilemap: TileMapLayer) -> void:
 	tile_map = tilemap
@@ -19,13 +19,11 @@ func setup(tilemap: TileMapLayer) -> void:
 		if child is PickUp:
 			child.setup(self,tilemap)
 
-func get_weighted_random() -> PickUpData:
-	print("get weighted pool size: ", pickup_pool.size())
+func get_weighted_random() -> PickUpData:	
 	if pickup_pool.is_empty():
 		return null
 	var total := 0.0
-	for entry in pickup_pool:
-		print("entry: ", entry, " weight: ", entry.weight if entry else "NULL ENTRY")
+	for entry in pickup_pool:		
 		total += entry.weight
 	if total <= 0.0:
 		return null
