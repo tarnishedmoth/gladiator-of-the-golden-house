@@ -12,7 +12,6 @@ func _enter_tree() -> void:
 	hide()
 
 func close_options() -> void:
-	Main.sfx_blip() ## sfx
 	hide()
 	main_options.show()
 	exited.emit()
