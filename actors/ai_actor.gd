@@ -5,6 +5,9 @@ class_name AIActor extends Actor
 
 const DO_NOTHING_ACTION: Resource = preload("res://actions/action_do-nothing.gd")
 
+@export var drop_chance:float = 0.0
+@onready var pick_up_manager: PickUpManager = %PickUpManager
+
 enum MoveBehavior { ## Determines target tiles during [method plan_action_details] for ActionMoves.
 	TO_TARGET,
 	RANDOM
@@ -180,6 +183,12 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 	else:
 		push_warning("Unconfigured planning behavior for action %s subclass!" % action)
 
+
+func die()->void:
+	if randi_range(0,1)<drop_chance:
+		var picked_item = pick_up_manager.get_weighted_random()
+		pick_up_manager.spawn_pick_up(picked_item,current_tile_coords)
+	super()
 
 ## Given two coordinates, returns the one closer to [member hostile_target.current_tile_coords].
 func sort_hostile_distance(a: Vector2i, b: Vector2i) -> bool:

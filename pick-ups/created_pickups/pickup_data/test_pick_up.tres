@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://cwpbiwwcdfir1" path="res://actions/prefabs/move_expensive_test.tres" id="1_31ejw"]
 [ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="1_glo0i"]
-[ext_resource type="Texture2D" uid="uid://drr6yyr6jq42y" path="res://pick-ups/sprite.png" id="3_j510t"]
+[ext_resource type="Texture2D" uid="uid://drr6yyr6jq42y" path="res://pick-ups/created_pickups/pickup_data/sprite.png" id="3_j510t"]
 
 [resource]
 script = ExtResource("1_glo0i")

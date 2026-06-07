@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://du2plfq567q8g"]
 
 [ext_resource type="Script" uid="uid://bd4o0lnjje5m7" path="res://pick-ups/pick_up.gd" id="1_2bc0b"]
-[ext_resource type="Resource" uid="uid://bq8t0b6fk1e7n" path="res://pick-ups/test_pick_up.tres" id="2_xy0y7"]
-[ext_resource type="Texture2D" uid="uid://drr6yyr6jq42y" path="res://pick-ups/sprite.png" id="3_xy0y7"]
+[ext_resource type="Resource" uid="uid://bq8t0b6fk1e7n" path="res://pick-ups/created_pickups/pickup_data/test_pick_up.tres" id="2_xy0y7"]
+[ext_resource type="Texture2D" uid="uid://drr6yyr6jq42y" path="res://pick-ups/created_pickups/pickup_data/sprite.png" id="3_xy0y7"]
 
 [node name="Pickup" type="Node2D" unique_id=1699168736 node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_2bc0b")
