@@ -51,6 +51,11 @@ enum Hook {
 	get:
 		if ui_icon: return ui_icon
 		else: return STATUS_CATEGORY_ICONS.get(status_effect_category)
+		
+## If true, uses BUFF and DEBUFF sound effects in the [ActorSfxHandler].
+## If [member status_effect_category] is None, does not play any sfx.
+@export var use_actor_sfx: bool = true
+@export var trigger_sfx_per_effect_point: bool = true
 
 @export_group("VFX", "vfx_")
 @export var vfx_applied: PackedScene ## Spawned when applied to an actor. See [StatusManager].
@@ -95,11 +100,25 @@ func on_turn_end() -> void: ## Call super() if you override
 				remove_effect()
 			
 func on_after_hook() -> void: ## Call super() if you override
-	if vfx_hook_triggered:
-		if _actor:
-			if _actor.vfx:
-				_actor.vfx.play_status(vfx_hook_triggered, self)
+	if vfx_hook_triggered and _actor:
+		if _actor.vfx:
+			_actor.vfx.play_status(vfx_hook_triggered, self)
 	
+	if use_actor_sfx and _actor:
+		var sfx: ActorSfxHandler.Sounds
+		match status_effect_category:
+			StatusEffectCategory.BUFF:
+				sfx = ActorSfxHandler.Sounds.BUFF
+			StatusEffectCategory.DEBUFF:
+				sfx = ActorSfxHandler.Sounds.DEBUFF
+		if not trigger_sfx_per_effect_point:
+			_actor.play_sfx(sfx)
+		else:
+			var play: Tween = _actor.create_tween()
+			for i in effect_points:
+				play.tween_callback(_actor.play_sfx.bind(sfx))
+				play.tween_interval(randfn(Juice.BLITZ, 0.07))
+			
 	match after_hook_behavior:
 		OnStart.SUBTRACT_ONE:
 			subtract_points(1)
