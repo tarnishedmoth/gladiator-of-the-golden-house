@@ -7,12 +7,16 @@ enum Sounds {
 	ATTACK,
 	BLOCK,
 	GET_HIT,
+	BUFF,
+	DEBUFF,
 }
 
 @onready var move: AudioStreamPlayer2D = $Move
 @onready var attack: AudioStreamPlayer2D = $Attack
 @onready var block: AudioStreamPlayer2D = $Block
 @onready var get_hit: AudioStreamPlayer2D = $GetHit
+@onready var buff: AudioStreamPlayer2D = $Buff
+@onready var debuff: AudioStreamPlayer2D = $Debuff
 
 func _ready() -> void:
 	var parent = get_parent()
@@ -37,6 +41,10 @@ func play(sound: Sounds) -> void:
 			on_block()
 		Sounds.GET_HIT:
 			on_get_hit()
+		Sounds.BUFF:
+			on_buff()
+		Sounds.DEBUFF:
+			on_debuff()
 		_:
 			push_error("Out of bounds.")
 			
@@ -59,3 +67,8 @@ func on_block() -> void:
 func on_get_hit() -> void:
 	get_hit.play()
 	
+func on_buff() -> void:
+	buff.play()
+	
+func on_debuff() -> void:
+	debuff.play()
