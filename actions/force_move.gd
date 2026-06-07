@@ -7,6 +7,7 @@ class_name ActionForceMove extends Action
 ## and optionally deal damage and apply a status.
 
 @export var is_obstructable_along_path: bool = true ## If false, behaves like being thrown over the air to that tile.
+@export var TEST_COORDS: Vector2i
 
 var actor_to_move: Actor
 
@@ -17,6 +18,12 @@ func enter(_from: ResourceState = null) -> void:
 
 ## TESTING required
 func do() -> void:
+	##TESTING HACK
+	var actor_idx = Level.get_all_actors_in_play_order().find_custom(func(v: Actor): return v.director is Player)
+	var TEST_ACTOR: Actor = Level.get_all_actors_in_play_order()[actor_idx]
+	actor_to_move = TEST_ACTOR
+	_target = TEST_COORDS
+	
 	if not actor_to_move:
 		push_error("Actor is invalid")
 		return
@@ -36,10 +43,15 @@ func do() -> void:
 		if not end_coord in surrounding_cells:
 			## check along that path for tiles passed over.
 			var tiles_passed_over: Array[Vector2i] = Cube.get_inline_tiles(start_coord, end_coord)
-			if debug: p("Checking path between %s and %s...\nTiles:\n%s" % [start_coord, end_coord, tiles_passed_over])
+			tiles_passed_over.append(end_coord) ## previous method is exclusive of end_coord
+			
+			if debug: p("Checking path between %s and %s...\n%d Tiles: %s" % [start_coord, end_coord, tiles_passed_over.size(), tiles_passed_over])
 			
 			var last_valid_tile: Vector2i = start_coord
 			for tile in tiles_passed_over:
+				if debug: p("Checking tile %s..." % tile)
+				if tile == start_coord:
+					continue
 				if Level.get_actor_at(tile):
 					if debug: p("Obstructed at %s." % tile)
 					break
@@ -47,7 +59,7 @@ func do() -> void:
 			end_coord = last_valid_tile
 	
 	if Level.get_actor_at(end_coord):
-		if debug: p("End tile %s is obstructed--not moving." % end_coord)
+		if debug: p("End tile %s is obstructed (or occupied by self)--not moving." % end_coord)
 		on_hit_obstruction()
 	else:
 		if debug: p("Moving %s to %s!" % [actor_to_move, end_coord])
