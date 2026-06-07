@@ -67,8 +67,11 @@ func play_status(status_vfx_scene: PackedScene, status: Status) -> void:
 		instance.global_position = global_position
 		
 		if instance is StatusEffectParticles:
-			if instance.use_effect_points_as_quantity && status.effect_points > 0:
-				instance.amount = status.effect_points
+			if instance.use_effect_points_as_quantity:
+				if status.effect_points > 0:
+					instance.amount = status.effect_points
+				else:
+					instance.amount = 1
 		
 		get_tree().current_scene.add_child(instance)
 
