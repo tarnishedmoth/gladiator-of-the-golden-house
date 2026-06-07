@@ -282,6 +282,7 @@ func snap_to_nearest_tile() -> void:
 	
 	current_tile_coords = tile_coords
 
+
 func move_to_tile(coords: Vector2i, duration_of_movement: float = 0.5) -> void:
 	if not tile_map:
 		push_error("tile_map is invalid.")
@@ -314,45 +315,53 @@ func move_to_tile(coords: Vector2i, duration_of_movement: float = 0.5) -> void:
 
 ## Marches along a path in a straight line to the target tile, checking each inline tile for obstructions ([Actor]).
 ## Returns actual coordinate when complete (so you can calculate if an obstruction was hit).
+## See [method find_last_unobstructed_tile], [method move_to_tile], [member current_tile_coords], [member previous_tile_coords].
 func move_along_path(target: Vector2i) -> Vector2i:
+	var last_valid_tile: Vector2i = find_last_unobstructed_tile(current_tile_coords, target)
+	if last_valid_tile != current_tile_coords:
+		if debug: p("Moving to %s!" % last_valid_tile)
+		move_to_tile(last_valid_tile)
+	return current_tile_coords
+
+## Steps through every tile inline between [param a] (exclusive) and [param b] (inclusive), looking for [Actor]s.
+## Returns the last unobstructed tile. If the immediate next tile is obstructed, returns [param a].
+func find_last_unobstructed_tile(a: Vector2i, b: Vector2i) -> Vector2i:
 	if not tile_map:
-		push_error("move_along_path(): Tilemap is invalid.")
-		return current_tile_coords
-	if target == null:
-		push_error("move_along_path(): Target coord is invalid.")
-		return current_tile_coords
+		push_error("Tilemap is invalid.")
+		return a
+	if a == null or b == null:
+		push_error("Coord is invalid.")
+		return a
 	
-	var start_coord: Vector2i = current_tile_coords
-	var end_coord: Vector2i = target
+	var last_valid_tile: Vector2i = a
 	
-	if debug: p("Moving along path from %s to %s..." % [start_coord, end_coord])
+	if debug: p("Marching along path from %s to %s..." % [a, b])
 	
-	var surrounding_cells := tile_map.get_surrounding_cells(start_coord)
-	if end_coord in surrounding_cells:
+	var surrounding_cells := tile_map.get_surrounding_cells(a)
+	if b in surrounding_cells:
 		## Tile is adjacent
-		if not end_coord in tile_map.get_used_cells():
+		if not b in tile_map.get_used_cells():
 			if debug: p("%s is an adjacent wall.")
-			return current_tile_coords
+			return a
 		else:
 			## Continuing... (check for obstruction is at end of method)
 			pass
 	else:
 		## check along that path for tiles passed over.
-		var tiles_passed_over: Array[Vector2i] = Cube.get_inline_tiles(start_coord, end_coord)
-		tiles_passed_over.append(end_coord) ## previous method is exclusive of end_coord
+		var tiles_passed_over: Array[Vector2i] = Cube.get_inline_tiles(a, b)
+		tiles_passed_over.append(b) ## previous method is exclusive of end_coord
 		
-		if debug:
-			p("Checking path between %s and %s...\n%d Tiles: %s" % [start_coord, end_coord, tiles_passed_over.size(), tiles_passed_over])
-		
-		if not Cube.is_in_row(start_coord, end_coord):
+		if not Cube.is_in_row(a, b):
 			## Tiles are diagonal. If perfectly diagonal, we should sample both tiles' edge we pass through...
 			## TODO
 			if debug:
 				p("Tiles do not share an axis. Results may vary.")
 		
-		var last_valid_tile: Vector2i = start_coord
+		if debug:
+			p("Checking path between %s and %s...\n%d Tiles: %s" % [a, b, tiles_passed_over.size(), tiles_passed_over])
+		
 		for tile in tiles_passed_over:
-			if tile == start_coord:
+			if tile == a:
 				continue ## Skip the tile we're standing on.
 				
 			if not tile in tile_map.get_used_cells(): ## Remove this for absurdity
@@ -365,18 +374,16 @@ func move_along_path(target: Vector2i) -> Vector2i:
 			
 			if debug: p("Checked tile %s." % tile)
 			last_valid_tile = tile
-		end_coord = last_valid_tile
 	
-	if Level.get_actor_at(end_coord):
-		if debug: ## More detailed debug messages so no one gets confused about the outcome.
-			if end_coord == start_coord:
-				p("Immediate obstruction--not moving.")
-			else:
-				p("End tile %s is obstructed--not moving." % end_coord)
-	else:
-		if debug: p("Moving to %s!" % end_coord)
-		move_to_tile(end_coord)
-	return current_tile_coords ## This gets modified in our [method move_to_tile] call--better to return the actual data rather than assuming.
+	if last_valid_tile == a:
+		p("Immediate obstruction.")
+		return a
+	elif Level.get_actor_at(last_valid_tile):
+		if debug:
+			p("End tile %s is obstructed--not moving." % last_valid_tile)
+		return a
+	
+	return last_valid_tile
 
 
 ## Sets [member facing]. North is the default value.
