@@ -311,7 +311,73 @@ func move_to_tile(coords: Vector2i, duration_of_movement: float = 0.5) -> void:
 		var pickup: PickUp = Level.get_pick_up_at(coords)
 		if pickup:
 			pickup.on_pick_up(self)
+
+## Marches along a path in a straight line to the target tile, checking each inline tile for obstructions ([Actor]).
+## Returns actual coordinate when complete (so you can calculate if an obstruction was hit).
+func move_along_path(target: Vector2i) -> Vector2i:
+	if not tile_map:
+		push_error("move_along_path(): Tilemap is invalid.")
+		return current_tile_coords
+	if target == null:
+		push_error("move_along_path(): Target coord is invalid.")
+		return current_tile_coords
+	
+	var start_coord: Vector2i = current_tile_coords
+	var end_coord: Vector2i = target
+	
+	if debug: p("Moving along path from %s to %s..." % [start_coord, end_coord])
+	
+	var surrounding_cells := tile_map.get_surrounding_cells(start_coord)
+	if end_coord in surrounding_cells:
+		## Tile is adjacent
+		if not end_coord in tile_map.get_used_cells():
+			if debug: p("%s is an adjacent wall.")
+			return current_tile_coords
+		else:
+			## Continuing... (check for obstruction is at end of method)
+			pass
+	else:
+		## check along that path for tiles passed over.
+		var tiles_passed_over: Array[Vector2i] = Cube.get_inline_tiles(start_coord, end_coord)
+		tiles_passed_over.append(end_coord) ## previous method is exclusive of end_coord
 		
+		if debug:
+			p("Checking path between %s and %s...\n%d Tiles: %s" % [start_coord, end_coord, tiles_passed_over.size(), tiles_passed_over])
+		
+		if not Cube.is_in_row(start_coord, end_coord):
+			## Tiles are diagonal. If perfectly diagonal, we should sample both tiles' edge we pass through...
+			## TODO
+			if debug:
+				p("Tiles do not share an axis. Results may vary.")
+		
+		var last_valid_tile: Vector2i = start_coord
+		for tile in tiles_passed_over:
+			if tile == start_coord:
+				continue ## Skip the tile we're standing on.
+				
+			if not tile in tile_map.get_used_cells(): ## Remove this for absurdity
+				if debug: p("%s is an OOB tile." % tile)
+				break ## Exit the loop so the last_valid_tile is valid.
+			
+			if Level.get_actor_at(tile):
+				if debug: p("Obstructed at %s." % tile)
+				break ## Exit the loop so the last_valid_tile is valid.
+			
+			if debug: p("Checked tile %s." % tile)
+			last_valid_tile = tile
+		end_coord = last_valid_tile
+	
+	if Level.get_actor_at(end_coord):
+		if debug: ## More detailed debug messages so no one gets confused about the outcome.
+			if end_coord == start_coord:
+				p("Immediate obstruction--not moving.")
+			else:
+				p("End tile %s is obstructed--not moving." % end_coord)
+	else:
+		if debug: p("Moving to %s!" % end_coord)
+		move_to_tile(end_coord)
+	return current_tile_coords ## This gets modified in our [method move_to_tile] call--better to return the actual data rather than assuming.
+
 
 ## Sets [member facing]. North is the default value.
 func set_facing(cardinal_direction: Facing.Cardinal) -> void:

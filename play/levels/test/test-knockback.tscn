@@ -6,9 +6,18 @@
 [ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="4_1af1m"]
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="4_3ufk3"]
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="5_42ui8"]
-[ext_resource type="Script" uid="uid://cu4ax3w3ygvfu" path="res://directors/player/player_insert_placeholder.gd" id="5_y03m5"]
-[ext_resource type="Resource" uid="uid://br4f6k4pc54r7" path="res://play/levels/test/test-force-move.tres" id="6_3ujy0"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="6_42ui8"]
+[ext_resource type="Script" uid="uid://chptaheu3xjjl" path="res://actions/attack_knockback.gd" id="7_3ujy0"]
 [ext_resource type="Texture2D" uid="uid://bs8ywso6o5mlp" path="res://icon.svg" id="7_42ui8"]
+
+[sub_resource type="Resource" id="Resource_x6pir"]
+script = ExtResource("7_3ujy0")
+distance = 7
+damage = 1
+pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
+ui_title = "Big Freaking Swipe"
+ui_description = "Holy cow"
+metadata/_custom_type_script = "uid://chptaheu3xjjl"
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_v4mfe")]
 
@@ -20,7 +29,7 @@ script = ExtResource("3_7q8ni")
 
 [node name="AIActor" type="Node2D" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=771564754]
 script = ExtResource("4_1af1m")
-usable_actions = Array[ExtResource("5_42ui8")]([ExtResource("6_3ujy0")])
+usable_actions = Array[ExtResource("5_42ui8")]([SubResource("Resource_x6pir")])
 ui_name = "Test guy"
 metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 
@@ -29,10 +38,8 @@ texture = ExtResource("7_42ui8")
 region_enabled = true
 region_rect = Rect2(64, 64, 64, 64)
 
-[node name="PlayerPlaceholder" type="Node2D" parent="TileMapLayers/Directors" index="1" unique_id=2010280176 instance=ExtResource("4_3ufk3")]
-editor_description = "Will replace itself on ready with a referenced scene via [PlayerData]."
+[node name="PlayerPlaceholder" parent="TileMapLayers/Directors" index="1" unique_id=2010280176 instance=ExtResource("4_3ufk3")]
 position = Vector2(-1, 71)
-script = ExtResource("5_y03m5")
 
 [node name="BaseTileMapLayer" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="1" unique_id=1254354450]
 show_coordinates_in_game = true
