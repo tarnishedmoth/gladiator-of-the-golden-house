@@ -187,7 +187,7 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 func die()->void:
 	if randi_range(0,1)<drop_chance:
 		var picked_item = pick_up_manager.get_weighted_random()
-		pick_up_manager.spawn_pick_up(picked_item,current_tile_coords)
+		pick_up_manager.spawn_pick_up(picked_item,current_tile_coords)		
 	super()
 
 ## Given two coordinates, returns the one closer to [member hostile_target.current_tile_coords].

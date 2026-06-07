@@ -9,6 +9,10 @@ var pick_ups: Array[PickUp]
 var tile_map: TileMapLayer
 var pick_up_template:= preload("res://pick-ups/pick_up.tscn")
 
+func _ready()->void:
+	if pickup_pool == null:
+		p("item pool is empty")
+
 func setup(tilemap: TileMapLayer) -> void:
 	tile_map = tilemap
 	for child in self.get_children():
