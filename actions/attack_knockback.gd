@@ -61,6 +61,7 @@ func enter(_from: ResourceState = null) -> void:
 	exit()
 
 func knockback(actor: Actor) -> void:
+	if debug: p("Knocking back %s..." % actor)
 	var direction: Facing.Cardinal
 	if actor.current_tile_coords == _actor.current_tile_coords:
 		## Impressive
@@ -82,10 +83,22 @@ func knockback(actor: Actor) -> void:
 		Level.get_hud().popup_status("Knockback", actor)
 		var target_tile: Vector2i = actor.current_tile_coords + (Facing.DIRECTIONS[direction] * distance)
 		var result: Vector2i = actor.move_along_path(target_tile)
+		
+		if debug:
+			if actor.previous_tile_coords == result:
+				p("Knocked %s into an immediate obstruction." % actor)
+			elif result == target_tile:
+				p("Knocked %s to %s." % [actor, target_tile])
+			else:
+				p("Knocked %s to %s where it was halted by an obstruction." % [actor, result])
+		
 		if result != target_tile:
 			## Hit an obstruction
 			on_hit_obstruction(actor, direction)
+		
 
 func on_hit_obstruction(actor: Actor, direction_of_travel: Facing.Cardinal) -> void:
 	if status_to_apply_if_knocked_into_obstacle:
+		if debug:
+			p("Applying status %s to %s from being knocked into an obstruction." % [status_to_apply_if_knocked_into_obstacle, actor])
 		actor.add_status(status_to_apply_if_knocked_into_obstacle)
