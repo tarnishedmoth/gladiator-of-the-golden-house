@@ -12,32 +12,39 @@ func _enter_tree() -> void:
 	hide()
 
 func close_options() -> void:
+	Main.sfx_blip() ## sfx
 	hide()
 	main_options.show()
 	exited.emit()
 
 
 func _on_help_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	help_options.show()
 	
 func _on_stuck_game_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	stuck_game_options.show()
 
 func _on_back_to_options_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	main_options.show()
 
 
 ## Recovery methods
 
 func _on_check_objectives_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	if Level.instance:
 		Level.get_instance().check_objectives()
 
 func _on_end_turn_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	if Level.instance:
 		Level.get_current_director().end_turn()
 
 func _on_go_back_level_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	if not PlayerData.this:
 		return
 	
@@ -55,6 +62,7 @@ func _on_go_back_level_button_pressed() -> void:
 		help_options.show()
 
 func _on_skip_level_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	if not PlayerData.this:
 		return
 	
@@ -73,6 +81,7 @@ func _on_skip_level_button_pressed() -> void:
 
 
 func _on_restart_level_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	if not PlayerData.this:
 		return
 		
@@ -90,6 +99,7 @@ func _on_restart_level_button_pressed() -> void:
 
 
 func _on_clear_character_datat_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	if not PlayerData.this:
 		return
 		
@@ -106,10 +116,12 @@ func _on_clear_character_datat_button_pressed() -> void:
 
 
 func _on_exit_options_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	close_options()
 
 
 func _on_camera_movement_button_item_selected(index: int) -> void:
+	Main.sfx_blip() ## sfx
 	match index:
 		0:
 			## Disabled

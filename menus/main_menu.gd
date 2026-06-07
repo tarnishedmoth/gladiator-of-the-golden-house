@@ -99,6 +99,7 @@ func populate_starting_classes() -> void:
 
 
 func _on_class_select_button_pressed(button: Button) -> void:
+	Main.sfx_blip() ## sfx
 	selected_starting_class = button.get_meta(
 		META_STARTING_CLASS,
 		PlayerData.STARTING_CLASSES.values().front()
@@ -108,6 +109,7 @@ func _on_class_select_button_pressed(button: Button) -> void:
 		child.set_pressed_no_signal(child == button)
 
 func _on_art_select_button_pressed(button: Button) -> void:
+	Main.sfx_blip() ## sfx
 	selected_character_art = button.get_meta(
 		META_CHARACTER_ART,
 		PlayerData.CHARACTER_SCENES.values().front()
@@ -118,25 +120,31 @@ func _on_art_select_button_pressed(button: Button) -> void:
 
 
 func _on_continue_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	slot_screen_state = SlotScreenStates.LOADING
 	save_slots_container.disable_empty = true
 	save_slots_container.repopulate_buttons()
 	select_save_slot_tab.show()
 
 func _on_new_game_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	populate_starting_classes()
 	select_class_tab.show()
 
 
 func _on_options_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	Main.show_options_panel()
 
 
 func _on_quit_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
+	await get_tree().create_timer(1.0).timeout
 	get_tree().quit()
 
 
 func _on_go_back_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	if select_art_tab.visible:
 		## Go back to class tab
 		select_class_tab.show()
@@ -148,10 +156,12 @@ func _on_go_back_button_pressed() -> void:
 
 ## Picked a class, now to pick character art
 func _on_confirm_class_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	select_art_tab.show()
 
 ## Configured a new playthrough
 func _on_confirm_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	slot_screen_state = SlotScreenStates.SAVING
 	save_slots_container.disable_empty = false
 	save_slots_container.repopulate_buttons()
@@ -159,6 +169,7 @@ func _on_confirm_button_pressed() -> void:
 
 
 func _on_save_slot_selected(slot: int) -> void:
+	Main.sfx_blip() ## sfx
 	SaveLoad.current_save_slot = slot
 	
 	match slot_screen_state:
@@ -175,7 +186,9 @@ func _on_save_slot_selected(slot: int) -> void:
 
 
 func _on_legal_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	legal_tab.show()
 
 func _on_credits_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	credits_tab.show()

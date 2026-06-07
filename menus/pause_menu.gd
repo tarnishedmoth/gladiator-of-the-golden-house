@@ -8,8 +8,10 @@ func _on_resume_button_pressed() -> void:
 	hide()
 
 func _on_options_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	Main.show_options_panel()
 
 
 func _on_main_menu_button_pressed() -> void:
+	Main.sfx_blip() ## sfx
 	Main.go_to_main_menu()

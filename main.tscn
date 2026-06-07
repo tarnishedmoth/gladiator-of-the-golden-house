@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bfrkl4plv2ty7" path="res://menus/camera_mouse_movement_option_button.gd" id="8_efxa6"]
 [ext_resource type="Script" uid="uid://n3wocoqn040k" path="res://menus/confirm_page.gd" id="8_kek77"]
 [ext_resource type="AudioStream" uid="uid://cwvxgdkgn01ib" path="res://music/gladiator ambient 1 rev 2.ogg" id="10_4c57u"]
+[ext_resource type="AudioStream" uid="uid://dlqufn83ohdsg" path="res://sfx/MenuBlip.wav" id="12_dg77c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
 font_size = 8
@@ -22,6 +23,12 @@ colors = PackedColorArray(0.6901961, 0.6666667, 0.3254902, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kek77"]
 gradient = SubResource("Gradient_5vw27")
 height = 4
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ycdy4"]
+random_pitch = 1.0472941
+random_volume_offset_db = 0.7
+streams_count = 1
+stream_0/stream = ExtResource("12_dg77c")
 
 [node name="Main" type="Node" unique_id=665979855]
 script = ExtResource("1_ig7tw")
@@ -362,6 +369,10 @@ stream = ExtResource("10_4c57u")
 volume_db = -4.0
 bus = &"Music"
 parameters/looping = true
+
+[node name="Blip_Neutral" type="AudioStreamPlayer" parent="." unique_id=1815228523]
+stream = SubResource("AudioStreamRandomizer_ycdy4")
+max_polyphony = 2
 
 [connection signal="pressed" from="CanvasLayer/Debug/HBoxContainer/ProjectVersionLabel/GoToDevMenuButton" to="." method="_on_go_to_dev_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Debug/HBoxContainer/DebugSceneLabel/ReturnToMenuButton" to="." method="_on_return_to_menu_button_pressed"]

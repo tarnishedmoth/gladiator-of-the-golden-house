@@ -43,6 +43,7 @@ var current_packed_scene: PackedScene ## Set each time [method change_scene] is 
 @onready var music_menu_loop: AudioStreamPlayer = $Music_MenuLoop
 @onready var music_sherman: AudioStreamPlayer = $Music_Sherman
 
+@onready var blip_neutral: AudioStreamPlayer = $Blip_Neutral
 
 ## Static instance, we should only have one Main in the scene tree at any time.
 static var instance: Main:
@@ -222,3 +223,7 @@ static func play_sherman(playing: bool) -> void: ## true to play, false to fade 
 		instance.music_sherman.play()
 	else:
 		music_fade_2.tween_callback(instance.music_sherman.stop)
+
+## Play a sfx blip.
+static func sfx_blip() -> void:
+	instance.blip_neutral.play()
