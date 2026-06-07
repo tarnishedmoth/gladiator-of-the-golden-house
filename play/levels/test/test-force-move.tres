@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ActionForceMove" format=3 uid="uid://br4f6k4pc54r7"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_aq3y6"]
+[ext_resource type="Script" uid="uid://bpprvk60vpba" path="res://actions/force_move.gd" id="2_af8fi"]
+
+[resource]
+script = ExtResource("2_af8fi")
+TEST_COORDS = Vector2i(0, -1)
+ui_title = "Test Force Move"
+ui_description = "Knockback?"
+metadata/_custom_type_script = "uid://bpprvk60vpba"
