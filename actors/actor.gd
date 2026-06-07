@@ -484,6 +484,24 @@ func take_direct_damage(damage: int, from: Actor = null) -> int:
 		
 	return damage_result
 
+func apply_healing(amount: int, from: Actor = null) -> int:
+	if from != null:
+		incoming_damage_by = weakref(from)
+
+	var actual_amount: int = mini(amount, max_health - health)
+	if debug:
+		p("%s applying healing." % [actual_amount])
+
+	if actual_amount > 0:
+		# TODO: probably a different sound and popup?
+		play_sfx(ActorSfxHandler.Sounds.GET_HIT)
+		Level.get_hud().popup_damage(actual_amount, self)
+
+	health += actual_amount
+	update_healthbar()
+
+	return actual_amount
+
 func die() -> void:
 	if debug:
 		p("Died!")

@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://1l4db25wph4c" path="res://play/levels/test/test-focus.tscn" id="9_uc0qm"]
 [ext_resource type="PackedScene" uid="uid://b8s4vj0qkk5lh" path="res://play/levels/test/test-save-load.tscn" id="10_savld"]
 [ext_resource type="PackedScene" uid="uid://dvkhy71n5mjnp" path="res://play/levels/test/test_chariots.tscn" id="15_lxetp"]
+[ext_resource type="PackedScene" uid="uid://iu0bv5idy4s1" path="res://play/levels/test/test-health-pickup.tscn" id="16_aikqw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kvqlu"]
 font_size = 24
@@ -33,7 +34,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_12ima")
-selectable_levels = Array[PackedScene]([ExtResource("2_lxetp"), ExtResource("2_qqetk"), ExtResource("2_eioy6"), ExtResource("2_3hfor"), ExtResource("2_uiecw"), ExtResource("2_b3ud4"), ExtResource("2_aqm70"), ExtResource("7_necnj"), ExtResource("4_uiecw"), ExtResource("5_ycxai"), ExtResource("8_x721y"), ExtResource("9_uc0qm"), ExtResource("10_savld"), ExtResource("15_lxetp")])
+selectable_levels = Array[PackedScene]([ExtResource("2_lxetp"), ExtResource("2_qqetk"), ExtResource("2_eioy6"), ExtResource("2_3hfor"), ExtResource("2_uiecw"), ExtResource("2_b3ud4"), ExtResource("2_aqm70"), ExtResource("7_necnj"), ExtResource("4_uiecw"), ExtResource("5_ycxai"), ExtResource("8_x721y"), ExtResource("9_uc0qm"), ExtResource("10_savld"), ExtResource("15_lxetp"), ExtResource("16_aikqw")])
 
 [node name="BG" type="ColorRect" parent="." unique_id=228810212]
 unique_name_in_owner = true

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ActionApplyStatus" format=3 uid="uid://saw7hswsra03"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_iy0w4"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_sk636"]
+[ext_resource type="Resource" uid="uid://16756wki23ty" path="res://status-effects/prefabs/heal-immediate.tres" id="3_3makl"]
+
+[resource]
+script = ExtResource("2_sk636")
+status = ExtResource("3_3makl")
+ui_title = "Healing"
+action_category = 3
+energy_cost = 1
+metadata/_custom_type_script = "uid://ic0qko6fd58l"

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://iu0bv5idy4s1"]
+
+[ext_resource type="PackedScene" uid="uid://dnwn75fwwq600" path="res://play/levels/inheritable-level.tscn" id="1_hn6ve"]
+[ext_resource type="PackedScene" uid="uid://bet8eq50pbkqf" path="res://directors/player/class_a.tscn" id="2_x2no6"]
+[ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="3_h5m7s"]
+[ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="4_32xuf"]
+[ext_resource type="PackedScene" uid="uid://du2plfq567q8g" path="res://pick-ups/pick_up.tscn" id="5_mfnqy"]
+[ext_resource type="Resource" uid="uid://saw7hswsra03" path="res://pick-ups/heal-immediate-10.tres" id="6_mjdga"]
+[ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="7_mfnqy"]
+[ext_resource type="Texture2D" uid="uid://drr6yyr6jq42y" path="res://pick-ups/sprite.png" id="8_c7a5m"]
+[ext_resource type="Resource" uid="uid://bgcshmg6i7nlw" path="res://pick-ups/heal-gradual-15.tres" id="9_mfnqy"]
+
+[sub_resource type="Resource" id="Resource_mjdga"]
+script = ExtResource("7_mfnqy")
+pick_up_action = ExtResource("6_mjdga")
+ui_name = "Heal"
+texture = ExtResource("8_c7a5m")
+metadata/_custom_type_script = "uid://80k033ktqcl0"
+
+[sub_resource type="Resource" id="Resource_07equ"]
+script = ExtResource("7_mfnqy")
+pick_up_action = ExtResource("9_mfnqy")
+ui_name = "Slow Heal"
+texture = ExtResource("8_c7a5m")
+metadata/_custom_type_script = "uid://80k033ktqcl0"
+
+[node name="Level" unique_id=13868467 instance=ExtResource("1_hn6ve")]
+
+[node name="Player_ClassA" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=1133384730 instance=ExtResource("2_x2no6")]
+position = Vector2(-1, -3)
+
+[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=7132370]
+script = ExtResource("3_h5m7s")
+metadata/_custom_type_script = "uid://dwys5mwbuw85s"
+
+[node name="Grunt" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=84579020 instance=ExtResource("4_32xuf")]
+position = Vector2(93, -50)
+
+[node name="QuickHeal" parent="PickUpManager" parent_id_path=PackedInt32Array(490287025) index="0" unique_id=1699168736 instance=ExtResource("5_mfnqy")]
+position = Vector2(16, 73)
+pick_up_data = SubResource("Resource_mjdga")
+
+[node name="SlowHeal" parent="PickUpManager" parent_id_path=PackedInt32Array(490287025) index="1" unique_id=905158276 instance=ExtResource("5_mfnqy")]
+modulate = Color(0.08235294, 1, 1, 1)
+position = Vector2(-62, 27)
+ui_name = "TEST2"
+pick_up_data = SubResource("Resource_07equ")
