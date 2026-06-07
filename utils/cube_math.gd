@@ -78,6 +78,7 @@ static func cround(fq: float, fr: float, fs: float) -> Cube:
 
 	return _cube
 
+## Result is inclusive of [param a], exclusive of [param b].
 static func get_inline(a: Cube, b: Cube) -> Array[Cube]:
 	var n: int = Cube.distance(a, b)
 	
@@ -94,6 +95,7 @@ static func get_inline(a: Cube, b: Cube) -> Array[Cube]:
 		results.append(cround(lerped.x, lerped.y, lerped.z))
 	return results
 
+## Result is inclusive of [param a], exclusive of [param b].
 static func get_inline_tiles(a: Vector2i, b: Vector2i) -> Array[Vector2i]:
 	var results: Array[Cube] = get_inline(Cube.from_axial(a), Cube.from_axial(b))
 	var axial_results: Array[Vector2i] = []

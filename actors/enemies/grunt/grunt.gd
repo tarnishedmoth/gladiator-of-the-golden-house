@@ -1,7 +1,8 @@
 class_name Grunt extends AIActor
 
 ##TEST for pickup
-@export var on_death_pickup: PickUpData
+#@export var on_death_pickup: PickUpData
+#var picked_item: PickUpData
 
 func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> void:
 	var queue: Array[Action] = []
@@ -25,10 +26,3 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 		queue.append(move)
 
 	append_actions_to_queue(queue)
-	
-func die() -> void:
-	## TEST HACK FIXME for pickup feature
-	if(on_death_pickup):
-		%PickUpManager.spawn_pick_up(on_death_pickup, current_tile_coords)
-	super()
-	

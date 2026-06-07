@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PickUpData" format=3 uid="uid://bmmuti6p6qsb6"]
+
+[ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="1_0fkos"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_eu766"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_4hyr2"]
+[ext_resource type="Texture2D" uid="uid://dm7i3qs1bsjlb" path="res://pick-ups/created_pickups/pickup_data/sprite2.png" id="4_eu766"]
+
+[sub_resource type="Resource" id="Resource_2s07u"]
+script = ExtResource("2_4hyr2")
+metadata/_custom_type_script = "uid://ic0qko6fd58l"
+
+[resource]
+script = ExtResource("1_0fkos")
+pick_up_action = SubResource("Resource_2s07u")
+ui_name = "Heal"
+ui_description = "Heal for 10"
+texture = ExtResource("4_eu766")
+metadata/_custom_type_script = "uid://80k033ktqcl0"

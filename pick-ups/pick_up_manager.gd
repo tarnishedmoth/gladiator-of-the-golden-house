@@ -1,5 +1,7 @@
 class_name PickUpManager extends Node2D
 
+@export var pickup_pool: Array [PickupEntry]
+
 func p(args):
 	print_rich("[bgcolor=black][color=blue]", "Pickup Manager: ", args)
 
@@ -7,11 +9,33 @@ var pick_ups: Array[PickUp]
 var tile_map: TileMapLayer
 var pick_up_template:= preload("res://pick-ups/pick_up.tscn")
 
+func _ready()->void:
+	if pickup_pool == null:
+		p("item pool is empty")
+
 func setup(tilemap: TileMapLayer) -> void:
 	tile_map = tilemap
 	for child in self.get_children():
 		if child is PickUp:
 			child.setup(self,tilemap)
+
+func get_weighted_random() -> PickUpData:
+	print("get weighted pool size: ", pickup_pool.size())
+	if pickup_pool.is_empty():
+		return null
+	var total := 0.0
+	for entry in pickup_pool:
+		print("entry: ", entry, " weight: ", entry.weight if entry else "NULL ENTRY")
+		total += entry.weight
+	if total <= 0.0:
+		return null
+	var roll := randf() * total
+	for e in pickup_pool:
+		roll -= e.weight
+		if roll <= 0.0:
+			return e.data
+	return pickup_pool[-1].data
+
 
 #use this to spawn a pick up at a specific coord
 func spawn_pick_up(pick_up: PickUpData,coords: Vector2i) -> void:
