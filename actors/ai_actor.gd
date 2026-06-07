@@ -185,7 +185,7 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 
 
 func die()->void:
-	if randi_range(0,1)<drop_chance:
+	if randf():
 		var picked_item = pick_up_manager.get_weighted_random()
 		pick_up_manager.spawn_pick_up(picked_item,current_tile_coords)		
 	super()

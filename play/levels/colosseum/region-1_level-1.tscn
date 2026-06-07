@@ -6,18 +6,14 @@
 [ext_resource type="Script" uid="uid://bab0cowpfbqgf" path="res://pick-ups/pickup_entry.gd" id="5_dmmgg"]
 [ext_resource type="PackedScene" uid="uid://c0cd2sq6is7ra" path="res://actors/emperor/emperor.tscn" id="5_exjhn"]
 [ext_resource type="PackedScene" uid="uid://diwkqfyr57888" path="res://actors/emperor/giant-tentacle.tscn" id="6_jecfi"]
-[ext_resource type="Resource" uid="uid://bmmuti6p6qsb6" path="res://pick-ups/created_pickups/pickup_data/test2.tres" id="6_udtmn"]
-[ext_resource type="Resource" uid="uid://bq8t0b6fk1e7n" path="res://pick-ups/created_pickups/pickup_data/test_pick_up.tres" id="7_uq7qo"]
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="10_ksudi"]
 
 [sub_resource type="Resource" id="Resource_p1prp"]
 script = ExtResource("5_dmmgg")
-pickup_data = ExtResource("6_udtmn")
 metadata/_custom_type_script = "uid://bab0cowpfbqgf"
 
 [sub_resource type="Resource" id="Resource_8ti4r"]
 script = ExtResource("5_dmmgg")
-pickup_data = ExtResource("7_uq7qo")
 metadata/_custom_type_script = "uid://bab0cowpfbqgf"
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_ki2ix")]

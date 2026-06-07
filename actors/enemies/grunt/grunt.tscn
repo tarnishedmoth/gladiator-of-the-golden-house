@@ -14,6 +14,7 @@
 
 [node name="Grunt" type="Node2D" unique_id=84579020 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
 script = ExtResource("1_q1aho")
+drop_chance = 1.0
 usable_actions = Array[ExtResource("2_it1al")]([ExtResource("3_sryjk"), ExtResource("4_6iwa0"), ExtResource("5_2g32g")])
 character_visual_root = NodePath("Generator")
 health_bar = NodePath("health")

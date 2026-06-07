@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="ActionApplyStatus" format=3 uid="uid://bgcshmg6i7nlw"]
+[gd_resource type="Resource" script_class="ActionApplyStatus" format=3 uid="uid://qdgds1txn3pe"]
 
 [ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_ivtua"]
 [ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_y3fsh"]
-[ext_resource type="Resource" uid="uid://bl5qe1682gtnt" path="res://status-effects/prefabs/heal-gradual.tres" id="3_sjbnl"]
+[ext_resource type="Resource" path="res://status-effects/prefabs/heal-gradual.tres" id="3_sjbnl"]
 
 [resource]
 script = ExtResource("2_y3fsh")
