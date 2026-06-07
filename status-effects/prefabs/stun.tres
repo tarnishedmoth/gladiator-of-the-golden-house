@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="StatusEnemyStun" format=3 uid="uid://r2dtyr3rwvc8"]
 
 [ext_resource type="Script" uid="uid://brbcp6fwlwsmu" path="res://status-effects/enemy_stun_status.gd" id="1_ayotd"]
+[ext_resource type="PackedScene" uid="uid://b11vclccqbpug" path="res://vfx/status_fx-debuff.tscn" id="2_f8yh8"]
 
 [resource]
 script = ExtResource("1_ayotd")
@@ -9,3 +10,5 @@ on_end_behavior = 1
 effect_points = 2
 ui_name = "Stun"
 ui_description = "Stunned for one turn"
+status_effect_category = 2
+vfx_applied = ExtResource("2_f8yh8")

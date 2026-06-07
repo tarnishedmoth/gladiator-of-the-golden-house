@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="StatusDamageDealt" format=3 uid="uid://cq0gsgomekfkm"]
+[gd_resource type="Resource" script_class="StatusAffectDamage" format=3 uid="uid://cq0gsgomekfkm"]
 
 [ext_resource type="Script" uid="uid://dvm0k3xhgixkl" path="res://status-effects/affect_damage_dealt.gd" id="1_ay5n5"]
+[ext_resource type="PackedScene" uid="uid://b8g0o8rwa4uvg" path="res://vfx/status_fx-buff.tscn" id="2_0ksdy"]
 
 [resource]
 script = ExtResource("1_ay5n5")
@@ -9,4 +10,6 @@ on_start_behavior = 0
 effect_points = 1
 ui_name = "Strength"
 ui_description = "Increase damage by +1 for rest of match."
+status_effect_category = 1
+vfx_applied = ExtResource("2_0ksdy")
 metadata/_custom_type_script = "uid://dvm0k3xhgixkl"

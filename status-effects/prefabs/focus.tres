@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="StatusAffectDamage" format=3 uid="uid://bxsqvlawime2u"]
 
 [ext_resource type="Script" uid="uid://dvm0k3xhgixkl" path="res://status-effects/affect_damage_dealt.gd" id="1_aodm6"]
+[ext_resource type="PackedScene" uid="uid://b8g0o8rwa4uvg" path="res://vfx/status_fx-buff.tscn" id="2_7v86w"]
 
 [resource]
 script = ExtResource("1_aodm6")
@@ -10,4 +11,6 @@ after_hook_behavior = 3
 effect_points = 3
 ui_name = "Focus"
 ui_description = "Increase damage per point on next attack."
+status_effect_category = 1
+vfx_applied = ExtResource("2_7v86w")
 metadata/_custom_type_script = "uid://dvm0k3xhgixkl"
