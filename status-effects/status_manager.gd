@@ -87,6 +87,22 @@ func on_applying_status(new_status: Status) -> Status:
 func on_status_applied(new_status: Status) -> void:
 	if new_status.vfx_applied && actor.vfx:
 		actor.vfx.play_status(new_status.vfx_applied, new_status)
+		
+	if new_status.use_actor_sfx:
+		var sfx: ActorSfxHandler.Sounds
+		match new_status.status_effect_category:
+			Status.StatusEffectCategory.BUFF:
+				sfx = ActorSfxHandler.Sounds.BUFF
+			Status.StatusEffectCategory.DEBUFF:
+				sfx = ActorSfxHandler.Sounds.DEBUFF
+		if (not new_status.trigger_sfx_per_effect_point) or new_status.effect_points == 0:
+			actor.play_sfx(sfx)
+		else:
+			var play: Tween = actor.create_tween()
+			for i in new_status.effect_points:
+				play.tween_callback(actor.play_sfx.bind(sfx))
+				const variation: float = 0.03
+				play.tween_interval(randfn(Juice.BLITZ, variation))
 	
 	for status in status_effects:
 		status.on_status_applied(new_status)

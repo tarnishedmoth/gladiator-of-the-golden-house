@@ -103,21 +103,6 @@ func on_after_hook() -> void: ## Call super() if you override
 	if vfx_hook_triggered and _actor:
 		if _actor.vfx:
 			_actor.vfx.play_status(vfx_hook_triggered, self)
-	
-	if use_actor_sfx and _actor:
-		var sfx: ActorSfxHandler.Sounds
-		match status_effect_category:
-			StatusEffectCategory.BUFF:
-				sfx = ActorSfxHandler.Sounds.BUFF
-			StatusEffectCategory.DEBUFF:
-				sfx = ActorSfxHandler.Sounds.DEBUFF
-		if not trigger_sfx_per_effect_point:
-			_actor.play_sfx(sfx)
-		else:
-			var play: Tween = _actor.create_tween()
-			for i in effect_points:
-				play.tween_callback(_actor.play_sfx.bind(sfx))
-				play.tween_interval(randfn(Juice.BLITZ, 0.07))
 			
 	match after_hook_behavior:
 		OnStart.SUBTRACT_ONE:
