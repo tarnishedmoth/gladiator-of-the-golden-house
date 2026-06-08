@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="StatusAffectDamage" format=3 uid="uid://0d7neho624r5"]
+
+[ext_resource type="Script" uid="uid://dvm0k3xhgixkl" path="res://status-effects/affect_damage_dealt.gd" id="1_umyg2"]
+[ext_resource type="PackedScene" uid="uid://dpamc84gay4r0" path="res://vfx/status_fx-defense.tscn" id="2_yf86r"]
+
+[resource]
+script = ExtResource("1_umyg2")
+incoming_or_outgoing = 1
+expend_points_against_damage = true
+use_directional = true
+dir_r = 0.0
+only_react_to_actors_turn_notifs = true
+effect_points = 5
+ui_name = "Defense V"
+ui_description = "Negates 1 damage for each point. Applies only to 5 forward directions."
+status_effect_category = 1
+sfx_success = 3
+sfx_failure = 4
+vfx_applied = ExtResource("2_yf86r")
+metadata/_custom_type_script = "uid://dvm0k3xhgixkl"

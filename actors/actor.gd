@@ -101,7 +101,7 @@ var energy: int
 @export var dm_dmg_fl: float = 1.0 ## mult for the relative forward left direction
 
 @export_category("Status Effects:")
-@export var status_effects: Array[Status]
+@export var status_effects: Array[Status] ## List of all [Status] on this actor. See [StatusManager] for more.
 func get_status_effects() -> Array[Status]:
 	return status_effects
 

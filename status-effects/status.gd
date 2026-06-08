@@ -1,5 +1,8 @@
 @abstract class_name Status extends Resource
 
+func p(args):
+	print_rich("[bgcolor=blue][color=white]Status %s : " % self, args)
+
 enum StatusEffectCategory{
 	NONE,
 	BUFF,
@@ -42,7 +45,7 @@ enum Hook {
 @export var on_end_behavior: OnStart = OnStart.NOTHING ## Happens when a director's turn ends.
 @export var only_react_to_actors_turn_notifs: bool = false ## Affects [member on_start_behavior] and [member on_end_behavior].
 
-@export var effect_points: int 
+@export var effect_points: int
 
 @export var ui_name: String ## This name is also used as a [member unique_name], for combining statuses when applied.
 @export var ui_description: String 
