@@ -76,7 +76,7 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 
 		if not action.pattern.is_empty():
 			candidates = get_translated_pattern(action.pattern)
-			candidates = _filter_move_candidates(candidates, claimed_tiles)
+			candidates = _filter_move_candidates(candidates, claimed_tiles, action.is_obstructable)
 
 			if not candidates.is_empty() && hostile_target:
 				match move_behavior: ## TBD: Expand here any time new MoveBehaviors are added
@@ -104,7 +104,7 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 				var destination: Vector2i = self.current_tile_coords + offset * distance
 				candidates.append(destination)
 
-			candidates = _filter_move_candidates(candidates, claimed_tiles)
+			candidates = _filter_move_candidates(candidates, claimed_tiles, action.is_obstructable)
 
 			if not candidates.is_empty():
 				coords = candidates.pick_random() ## FIXME HACK: random
@@ -239,7 +239,7 @@ func choose_hostile_target() -> void:
 
 ## Returns only tiles from [param candidates] that are not occupied by any actor
 ## and not already claimed by another AI actor's plan this turn.
-func _filter_move_candidates(candidates: Array[Vector2i], claimed_tiles: Array[Vector2i]) -> Array[Vector2i]:
+func _filter_move_candidates(candidates: Array[Vector2i], claimed_tiles: Array[Vector2i], is_obstructable: bool) -> Array[Vector2i]:
 	var valid: Array[Vector2i] = []
 	for tile in candidates:
 		if tile == self.current_tile_coords:
@@ -253,6 +253,10 @@ func _filter_move_candidates(candidates: Array[Vector2i], claimed_tiles: Array[V
 		if tile in claimed_tiles:
 			if debug: p("Rejected %s (claimed by another AI)" % tile)
 			continue
+		if is_obstructable:
+			var result: Vector2i = find_last_unobstructed_tile(current_tile_coords, tile)
+			if result != tile:
+				continue
 		valid.append(tile)
 	if debug: p("Valid move candidates: %s" % str(valid))
 	return valid

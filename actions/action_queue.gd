@@ -2,7 +2,7 @@ class_name ActionQueue
 
 ## A lean state machine for sequentially running [Action]s.
 
-const POST_ACTION_AWAIT_TIME: float = 0.5
+const POST_ACTION_AWAIT_TIME: float = 0.1
 
 signal queue_size_changed(new_size: int)
 signal finished
