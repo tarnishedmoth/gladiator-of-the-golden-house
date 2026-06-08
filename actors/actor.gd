@@ -815,3 +815,38 @@ func on_unhovered() -> void:
 	hide_healthbar()
 
 #endregion
+
+func knockback_in_direction(direction: Facing.Cardinal, distance: int) -> void:
+	#if debug: p("Knocking back %s..." % actor)
+	## Move the actor in that direction
+	Level.get_hud().popup_status("Knockback", self)
+	var target_tile: Vector2i = current_tile_coords + (Facing.DIRECTIONS[direction] * distance)
+	var previous_coords: Vector2i = current_tile_coords
+	var result: Vector2i = move_along_path(target_tile)
+	
+	if debug:
+		if previous_coords == result:
+			p("Knocked into an immediate obstruction.")
+		elif result == target_tile:
+			p("Knocked to %s." % target_tile)
+		else:
+			p("Knocked to %s where it was halted by an obstruction." % result)
+	
+	if result != previous_coords:
+		await animation_finished
+	
+	if result != target_tile:
+		## Hit an obstruction
+		animate_hit_obstruction(direction)
+
+func animate_hit_obstruction(direction_of_travel: Facing.Cardinal) -> void:
+	var vr = character_visual_root
+	if vr:
+		var anim: Tween = create_tween()
+		var magnitude = 32
+		var angle: float = Facing.get_rad_rotation(direction_of_travel) - deg_to_rad(90)
+		var pos: Vector2 = Vector2.from_angle(angle) * magnitude
+		var starting_pos: Vector2 = vr.position
+		p("direction of travel %s, radians %s, target position %s." % [direction_of_travel, angle, pos])
+		anim.tween_property(vr, "position", vr.position + pos, 0.12)
+		anim.tween_property(vr, "position", starting_pos, 0.12).set_ease(Tween.EASE_OUT)

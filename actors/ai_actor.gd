@@ -73,7 +73,7 @@ func choose_action(claimed_tiles: Array[Vector2i], _usable_actions: Array[Action
 		ActionSelection.NO_REPEATS:
 			var _filtered: Array[Action] = _usable_actions.filter(func(v: Action): return not v == _last_action_picked)
 			if _filtered.is_empty():
-				push_error("No usable actions after filtering!")
+				push_warning("No usable actions after filtering! Fallback to random...")
 				action = _usable_actions.pick_random() ## fallback
 			else:
 				action = _filtered.pick_random()
