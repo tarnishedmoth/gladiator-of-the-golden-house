@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://v7bxmuh8pp83"]
+
+[ext_resource type="Script" uid="uid://dk272f7wxt55i" path="res://vfx/status_effect_particles.gd" id="1_6yiqx"]
+
+[sub_resource type="Curve" id="Curve_6yiqx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.74650353, 0.19898993), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_otjre"]
+width = 64
+curve = SubResource("Curve_6yiqx")
+
+[sub_resource type="Gradient" id="Gradient_5plj4"]
+interpolation_mode = 2
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0.024734983, 0.05123675, 0.13250883, 0.31272084, 0.885159, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.85257804, 0.2896491, 0.07030816, 1, 0.98587435, 0.9773088, 0.6650942, 1, 0.89840627, 0.63014454, 0.3872446, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6yiqx"]
+gradient = SubResource("Gradient_5plj4")
+
+[sub_resource type="Curve" id="Curve_otjre"]
+_limits = [4.0, 12.0, 0.0, 4.0]
+_data = [Vector2(0, 12), 0.0, -0.28888774, 0, 0, Vector2(3, 4), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_q8jem"]
+width = 128
+curve = SubResource("Curve_otjre")
+
+[sub_resource type="Curve" id="Curve_jmjsj"]
+_limits = [1.0, 64.0, 0.0, 2.0]
+_data = [Vector2(0, 64), 0.0, 0.0, 0, 0, Vector2(2, 1), -65.65484, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vymal"]
+width = 64
+curve = SubResource("Curve_jmjsj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hawta"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+emission_shape = 1
+emission_sphere_radius = 12.0
+direction = Vector3(0, -1, 0)
+spread = 80.0
+initial_velocity_min = 12.0
+initial_velocity_max = 128.0
+velocity_limit_curve = SubResource("CurveTexture_vymal")
+gravity = Vector3(5, 2, 0)
+radial_accel_min = -5.000002
+radial_accel_max = -5.000002
+damping_min = 0.1
+damping_max = 0.1
+scale_over_velocity_min = 6.0
+scale_over_velocity_max = 32.0
+scale_over_velocity_curve = SubResource("CurveTexture_q8jem")
+color_ramp = SubResource("GradientTexture1D_6yiqx")
+alpha_curve = SubResource("CurveTexture_otjre")
+emission_curve = SubResource("CurveTexture_otjre")
+
+[node name="ParticlesExplosion" type="GPUParticles2D" unique_id=923820036]
+light_mask = 0
+emitting = false
+amount = 24
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.1
+fixed_fps = 16
+process_material = SubResource("ParticleProcessMaterial_hawta")
+script = ExtResource("1_6yiqx")
+use_effect_points_as_quantity = false

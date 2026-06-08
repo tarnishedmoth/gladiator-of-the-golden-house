@@ -10,6 +10,11 @@ enum VfxBehavior {
 	ALL = 2, ## Spawns an instance on every tile in the [member aoe_pattern].
 }
 
+enum VfxShown {
+	ALWAYS, ## Always spawned.
+	ACTORS_AFFECTED, ## Shown only when an actor is affected.
+}
+
 @export var projectile_scene: PackedScene ## This can be just a sprite, or anything. No functionality necessary
 @export var speed: float = 128.0 ## Pixels per second
 @export var arc: float = 0.0
@@ -17,6 +22,7 @@ enum VfxBehavior {
 @export var rotate_to_direction: bool = false ## If true, uses the scene's X+ (RIGHT) direction for forward.
 
 @export var hit_vfx_scene: PackedScene ## Spawned when the projectile hits an actor. Must manage its own freedom (queue_free lol).
+@export var hit_vfx_shown: VfxShown
 @export var hit_vfx_behavior: VfxBehavior = VfxBehavior.CENTER
 @export var deploy_scene: PackedScene ## Spawned only when the projectile does NOT hit an actor. Must manage its own freedom (queue_free lol).
 
@@ -79,25 +85,16 @@ func _on_projectile_finito() -> void:
 	if _finito: return
 	_finito = true
 	
+	if hit_vfx_shown == VfxShown.ALWAYS:
+		_spawn_hit_vfxs()
+	
 	var affected_actors: Array[Actor] = get_affected()
 	if not affected_actors.is_empty():
 		## Hit an actor
 		
 		## VFX
-		if hit_vfx_scene:
-			if hit_vfx_scene.can_instantiate():
-				if hit_vfx_behavior == VfxBehavior.CENTER:
-					spawn_hit_vfx_at(_target)
-				elif aoe_pattern and not aoe_pattern.is_empty():
-						var facing: Facing.Cardinal = _actor.get_facing()
-						var _aoe_targets: Array[Vector2i] = Facing.get_target_cells(_target, facing, aoe_pattern)
-						for coord in _aoe_targets:
-							if hit_vfx_behavior == VfxBehavior.WITH_ACTORS:
-								if not Level.get_actor_at(coord):
-									continue
-							spawn_hit_vfx_at(coord)
-				else:
-					spawn_hit_vfx_at(_target)
+		if hit_vfx_shown == VfxShown.ACTORS_AFFECTED:
+			_spawn_hit_vfxs()
 		
 		## Damage
 		var modified_damage: int = get_damage()
@@ -118,8 +115,27 @@ func _on_projectile_finito() -> void:
 		await _actor.create_tween().tween_interval(post_attack_duration).finished
 		
 	exit()
+	
+func _spawn_hit_vfxs() -> void:
+	if not hit_vfx_scene:
+		return
+	if not hit_vfx_scene.can_instantiate():
+		return
+		
+	if hit_vfx_behavior == VfxBehavior.CENTER:
+		_spawn_hit_vfx_at(_target)
+	elif aoe_pattern and not aoe_pattern.is_empty():
+			var facing: Facing.Cardinal = _actor.get_facing()
+			var _aoe_targets: Array[Vector2i] = Facing.get_target_cells(_target, facing, aoe_pattern)
+			for coord in _aoe_targets:
+				if hit_vfx_behavior == VfxBehavior.WITH_ACTORS:
+					if not Level.get_actor_at(coord):
+						continue
+				_spawn_hit_vfx_at(coord)
+	else:
+		_spawn_hit_vfx_at(_target)
 
-func spawn_hit_vfx_at(coord: Vector2i) -> void: ## Absolute coord
+func _spawn_hit_vfx_at(coord: Vector2i) -> void: ## Absolute coord
 	var vfx: Node2D = hit_vfx_scene.instantiate()
 	_actor.tile_map.add_child(vfx)
 	vfx.global_position = Actor.get_global_position_at(_actor.tile_map, coord)
