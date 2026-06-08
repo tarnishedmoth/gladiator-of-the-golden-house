@@ -39,19 +39,29 @@ func populate_using_action_data(action:Action)->void:
 	
 	category.text = action.ui_category
 	
+	
+	## Description
 	#description.text = "[center]"
+	var _description_text = ""
+	if action.allow_facing_before:
+		_description_text += "Change facing direction before.\n"
 	if action.ui_description:
-		description.text = action.ui_description
+		_description_text += action.ui_description
+	if action.allow_facing_after:
+		_description_text += "\nChange facing direction after."
 	
 	if action is ActionChangeStance:
+		if not _description_text.is_empty():
+			_description_text += "\n\n"
+		_description_text += "Actions:\n"
 		## Append the actions in this stance.
 		var stance: Stance = ResourceLoader.load(ResourceUID.uid_to_path(action.stance_uid))
-		var i: int = 0 if description.text.is_empty() else 1 ## Adds a newline to existing text
+		var i: int = 0
 		for _action in stance.actions:
-			description.append_text(TextUtils.ital(
-				("\n" if i > 0 else "") + _action.ui_title)
-				)
+			_description_text += TextUtils.ital(("\n" if i > 0 else "") + _action.ui_title)
 			i += 1
+	
+	description.text = _description_text
 	
 	if action.ui_icon:
 		action_image.texture = action.ui_icon
