@@ -326,6 +326,7 @@ func move_along_path(target: Vector2i) -> Vector2i:
 ## Steps through every tile inline between [param a] (exclusive) and [param b] (inclusive), looking for [Actor]s.
 ## Returns the last unobstructed tile. If the immediate next tile is obstructed, returns [param a].
 func find_last_unobstructed_tile(a: Vector2i, b: Vector2i) -> Vector2i:
+	const pf: String = "[bgcolor=black][color=white]find_last_unobstructed_tile() : "
 	if not tile_map:
 		push_error("Tilemap is invalid.")
 		return a
@@ -335,17 +336,18 @@ func find_last_unobstructed_tile(a: Vector2i, b: Vector2i) -> Vector2i:
 	
 	var last_valid_tile: Vector2i = a
 	
-	if debug: p("Marching along path from %s to %s..." % [a, b])
+	if debug: p(pf + "Marching along path from %s to %s..." % [a, b])
 	
 	var surrounding_cells := tile_map.get_surrounding_cells(a)
 	if b in surrounding_cells:
 		## Tile is adjacent
 		if not b in tile_map.get_used_cells():
-			if debug: p("%s is an adjacent wall.")
+			if debug: p(pf + "End point is an adjacent wall." % b)
 			return a
 		else:
 			## Continuing... (check for obstruction is at end of method)
 			if not Level.get_actor_at(b):
+				if debug: p(pf + "Adjacent tile is unoccupied.")
 				return b
 	else:
 		## check along that path for tiles passed over.
@@ -356,32 +358,32 @@ func find_last_unobstructed_tile(a: Vector2i, b: Vector2i) -> Vector2i:
 			## Tiles are diagonal. If perfectly diagonal, we should sample both tiles' edge we pass through...
 			## TODO
 			if debug:
-				p("Tiles do not share an axis. Results may vary.")
+				p(pf + "Tiles do not share an axis. Results may vary.")
 		
 		if debug:
-			p("Checking path between %s and %s...\n%d Tiles: %s" % [a, b, tiles_passed_over.size(), tiles_passed_over])
+			p(pf + "Checking path between %s and %s...\n%d Tiles: %s" % [a, b, tiles_passed_over.size(), tiles_passed_over])
 		
 		for tile in tiles_passed_over:
 			if tile == a:
 				continue ## Skip the tile we're standing on.
 				
 			if not tile in tile_map.get_used_cells(): ## Remove this for absurdity
-				if debug: p("%s is an OOB tile." % tile)
+				if debug: p(pf + "%s is an OOB tile." % tile)
 				break ## Exit the loop so the last_valid_tile is valid.
 			
 			if Level.get_actor_at(tile):
-				if debug: p("Obstructed at %s." % tile)
+				if debug: p(pf + "Obstructed at %s." % tile)
 				break ## Exit the loop so the last_valid_tile is valid.
 			
-			if debug: p("Checked tile %s." % tile)
+			if debug: p(pf + "Checked tile %s." % tile)
 			last_valid_tile = tile
 	
 	if last_valid_tile == a:
-		p("Immediate obstruction.")
+		p(pf + "Immediate obstruction.")
 		return a
 	elif Level.get_actor_at(last_valid_tile):
 		if debug:
-			p("End tile %s is obstructed--not moving." % last_valid_tile)
+			p(pf + "End tile %s is obstructed--not moving." % last_valid_tile)
 		return a
 	
 	return last_valid_tile
