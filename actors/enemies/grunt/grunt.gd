@@ -1,8 +1,7 @@
 class_name Grunt extends AIActor
 
-##TEST for pickup
-#@export var on_death_pickup: PickUpData
-#var picked_item: PickUpData
+## A more specific, but simple AI actor.
+## Each turn, queues one movement category action, and one combat category action to play.
 
 func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> void:
 	var queue: Array[Action] = []

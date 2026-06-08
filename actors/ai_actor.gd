@@ -12,6 +12,12 @@ enum MoveBehavior { ## Determines target tiles during [method plan_action_detail
 	RANDOM
 }
 
+enum ActionSelection {
+	RANDOM,
+	POP_QUEUE, ## Shuffles all usable actions into a list, then uses those actions in order until all actions have been used.
+	NO_REPEATS,
+}
+
 @export var usable_actions: Array[Action]
 @export var actions_to_queue_this_turn: int = 1
 @export var action_preview: ActionPreview ## DEPRECATED functionality has been merged into [Actor], see [method Actor.render_preview_for_action].
@@ -19,6 +25,7 @@ enum MoveBehavior { ## Determines target tiles during [method plan_action_detail
 @export_group("Behaviors")
 @export var always_prioritize_nearest_hostile: bool = true
 @export var move_behavior:MoveBehavior = MoveBehavior.TO_TARGET
+@export var selection_behavior:ActionSelection = ActionSelection.NO_REPEATS
 
 ## this is simple, does not consider attack action pattern TODO
 ## DEPRECATED: Use [member move_behavior] instead of move_towards_target
@@ -26,6 +33,8 @@ enum MoveBehavior { ## Determines target tiles during [method plan_action_detail
 
 var hostile_target: Actor ## Used for planning
 
+var _action_pop_queue: Array[Action] = []
+var _last_action_picked: Action
 
 func replace_usable_actions(new_usable_actions: Array[Action], change_queue_size: int = -1) -> void:
 	usable_actions.clear()
@@ -47,15 +56,33 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 func choose_action(claimed_tiles: Array[Vector2i], _usable_actions: Array[Action] = usable_actions) -> Action:
 	## Selection
 	var action: Action
-	if not _usable_actions.is_empty():
-		action = _usable_actions.pick_random().duplicate() ## HACK: random
-	else:
+	if _usable_actions.is_empty():
 		push_error("No usable actions configured!")
 		return null
-
+	
+	match selection_behavior:
+		ActionSelection.RANDOM:
+			action = _usable_actions.pick_random()
+		
+		ActionSelection.POP_QUEUE:
+			if _action_pop_queue.is_empty():
+				_action_pop_queue.append_array(usable_actions)
+				_action_pop_queue.shuffle()
+			action = _action_pop_queue.pop_front()
+			
+		ActionSelection.NO_REPEATS:
+			var _filtered: Array[Action] = _usable_actions.filter(func(v: Action): return not v == _last_action_picked)
+			if _filtered.is_empty():
+				push_error("No usable actions after filtering!")
+				action = _usable_actions.pick_random() ## fallback
+			else:
+				action = _filtered.pick_random()
+	
+	_last_action_picked = action
+	action = action.duplicate()
+	
 	## per-action planning
 	plan_action_details(action, claimed_tiles)
-
 	return action
 
 func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void:
