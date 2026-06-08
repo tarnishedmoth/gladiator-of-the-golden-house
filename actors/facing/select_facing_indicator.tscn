@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://kx72cx15wv0" path="res://actors/facing/arrow head.png" id="1_11ydu"]
 [ext_resource type="Script" uid="uid://di8hwrrf7me1s" path="res://actors/facing/select_facing_indicator.gd" id="1_irotx"]
+[ext_resource type="Script" uid="uid://cxshbpqmkbmo7" path="res://utils/appear_after_time.gd" id="3_u3036"]
+[ext_resource type="LabelSettings" uid="uid://bevyqcdafathp" path="res://dialogue/one_liner_label_style.tres" id="3_x2io2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irotx"]
 size = Vector2(32, 32)
@@ -80,3 +82,29 @@ shape = SubResource("RectangleShape2D_irotx")
 modulate = Color(0.13333334, 1, 0.18039216, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_11ydu")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1726678664]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -102.0
+offset_top = 85.0
+offset_right = 102.0
+offset_bottom = 125.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+mouse_behavior_recursive = 1
+script = ExtResource("3_u3036")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=50086524]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer" unique_id=1906371846]
+layout_mode = 2
+text = "Choose a facing direction."
+label_settings = ExtResource("3_x2io2")

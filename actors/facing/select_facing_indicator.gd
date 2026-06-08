@@ -11,11 +11,13 @@ signal facing_selected(facing)
 @onready var south_east_sprite: Sprite2D = $SouthEast/SouthEastSprite
 @onready var north_west_sprite: Sprite2D = $NorthWest/NorthWestSprite
 @onready var north_east_sprite: Sprite2D = $NorthEast/NorthEastSprite
+@onready var panel_container: PanelContainer = $PanelContainer
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	tween_the_sprites()
+	panel_container.show()
 
 func tween_the_sprites():
 	for sprite: Sprite2D in [
