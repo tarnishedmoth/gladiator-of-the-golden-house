@@ -152,6 +152,7 @@ func _ready() -> void:
 	start_game.call_deferred()
 
 func _exit_tree() -> void:
+	TargetFinder.clear_all_highlights() ## Fixes bug with not despawning these if exiting from the pause menu
 	## Disconnect the global node_removed signal so a torn-down Level can't receive
 	## removal events for the next scene's nodes during teardown.
 	if get_tree() and get_tree().node_removed.is_connected(_on_node_removed):
