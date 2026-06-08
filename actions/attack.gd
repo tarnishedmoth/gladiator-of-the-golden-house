@@ -69,8 +69,12 @@ func enter(_from: ResourceState = null) -> void:
 			await _actor.create_tween().tween_interval(pre_attack_duration).finished
 			
 			var affected_actors: Array[Actor] = get_affected()
-			var modified_damage: int = get_damage()
-			_deal_damage(affected_actors,modified_damage)
+			if not affected_actors.is_empty():
+				var modified_damage: int = get_damage()
+				_deal_damage(affected_actors,modified_damage)
+			else:
+				if debug: p("None affected.")
+				Level.get_hud().popup_label("Missed", _actor, LevelHUD.STYLE_NEGATED)
 			
 			if i >= multiple_attacks:
 				_actor.clear_incoming_damage_by()

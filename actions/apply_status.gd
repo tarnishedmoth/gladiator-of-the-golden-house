@@ -26,11 +26,17 @@ func _get_affected_and_apply_status() -> void:
 		targets = _actor.get_action_target_cells(self)
 
 	if debug: p("Targeting %d tiles." % targets.size())
-
+	
+	var affected: int = 0
 	for coords in targets:
 		var found_actor: Actor = Level.get_actor_at(coords)
 		if found_actor:
 			apply_status(found_actor)
+			affected += 1
+	
+	if affected == 0:
+		if debug: p("None affected.")
+		Level.get_hud().popup_label("Missed", _actor, LevelHUD.STYLE_NEGATED)
 
 
 ## Copies the status effect resource and applies it to the actor.

@@ -186,6 +186,9 @@ func set_end_turn_text(to_append = null) -> void:
 
 var popups: Array[Label]
 
+func popup_label(text: String, actor: Actor, style: PopupStyle) -> Label:
+	return _popup_transient(text, actor, style)
+
 func popup_damage(value: int, actor: Actor) -> Label:
 	return _popup_transient(value, actor, STYLE_DAMAGE)
 	

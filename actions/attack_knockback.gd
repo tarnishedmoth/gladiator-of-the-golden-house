@@ -37,24 +37,29 @@ func enter(_from: ResourceState = null) -> void:
 			await _actor.create_tween().tween_interval(pre_attack_duration).finished
 			
 			var affected_actors: Array[Actor] = get_affected()
-			var modified_damage: int = get_damage()
-			_deal_damage(affected_actors,modified_damage)
 			
-			if i >= multiple_attacks:
-				## Finito
-				_actor.clear_incoming_damage_by()
-			
-			if post_attack_duration > 0.0:
-				await _actor.create_tween().tween_interval(post_attack_duration).finished
-			
-			for affected in affected_actors:
-				await knockback(affected)
-			
-			#match require_damage:
-				#DamageRequired.DAMAGE_DEALT:
-					#if 
-				#DamageRequired.DIRECT_DAMAGE_DEALT:
-					#pass
+			if affected_actors.is_empty():
+				if debug: p("None affected.")
+				Level.get_hud().popup_label("Missed", _actor, LevelHUD.STYLE_NEGATED)
+			else:
+				var modified_damage: int = get_damage()
+				_deal_damage(affected_actors,modified_damage)
+				
+				if i >= multiple_attacks:
+					## Finito
+					_actor.clear_incoming_damage_by()
+				
+				if post_attack_duration > 0.0:
+					await _actor.create_tween().tween_interval(post_attack_duration).finished
+				
+				for affected in affected_actors:
+					await knockback(affected)
+				
+				#match require_damage:
+					#DamageRequired.DAMAGE_DEALT:
+						#if 
+					#DamageRequired.DIRECT_DAMAGE_DEALT:
+						#pass
 					
 			
 	else:
