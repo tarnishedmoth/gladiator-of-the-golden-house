@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://du2plfq567q8g" path="res://pick-ups/pick_up.tscn" id="5_mfnqy"]
 [ext_resource type="Resource" uid="uid://saw7hswsra03" path="res://pick-ups/heal-immediate-10.tres" id="6_mjdga"]
 [ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="7_mfnqy"]
-[ext_resource type="Texture2D" uid="uid://drr6yyr6jq42y" path="res://pick-ups/sprite.png" id="8_c7a5m"]
-[ext_resource type="Resource" uid="uid://bgcshmg6i7nlw" path="res://pick-ups/heal-gradual-15.tres" id="9_mfnqy"]
+[ext_resource type="Texture2D" uid="uid://drr6yyr6jq42y" path="res://pick-ups/created_pickups/pickup_data/sprite.png" id="8_c7a5m"]
+[ext_resource type="Resource" uid="uid://qdgds1txn3pe" path="res://pick-ups/heal-gradual-15.tres" id="9_mfnqy"]
 
 [sub_resource type="Resource" id="Resource_mjdga"]
 script = ExtResource("7_mfnqy")
