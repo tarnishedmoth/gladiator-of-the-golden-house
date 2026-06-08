@@ -30,6 +30,7 @@ func take_turn() -> void:
 	## Do turn stuff
 	is_active = true
 	if VERBOSE: p("It's my turn!..")
+	await get_tree().create_timer(0.35).timeout ## waiting
 	
 	## Check actors
 	if not actors.is_empty():
