@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="3_erxfw"]
 [ext_resource type="PackedScene" uid="uid://c0cd2sq6is7ra" path="res://actors/emperor/emperor.tscn" id="3_o08qo"]
 [ext_resource type="PackedScene" uid="uid://cp7oafdqv5rpl" path="res://actors/enemies/legate/legate.tscn" id="4_ubmqr"]
+[ext_resource type="PackedScene" uid="uid://do8k4mne34fsw" path="res://actors/enemies/chariot/chariot.tscn" id="5_ubmqr"]
 [ext_resource type="PackedScene" uid="uid://cwiyis2d60hie" path="res://actors/enemies/dagger_grunt.tscn" id="5_ue4m8"]
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="7_tx16w"]
 
@@ -23,18 +24,26 @@ script = ExtResource("3_erxfw")
 metadata/_custom_type_script = "uid://dwys5mwbuw85s"
 
 [node name="Legate" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=576080733 instance=ExtResource("4_ubmqr")]
-position = Vector2(292, -40)
+position = Vector2(190, -4)
+drop_chance = 0.5
 facing = 4
 
-[node name="DaggerGrunt" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=1637427686 instance=ExtResource("5_ue4m8")]
-position = Vector2(5, 217)
+[node name="Chariot" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=84579020 instance=ExtResource("5_ubmqr")]
+position = Vector2(185, -69)
+drop_chance = 0.75
+facing = 4
 
-[node name="DaggerGrunt2" parent="TileMapLayers/Directors/AIDirector" index="2" unique_id=261022929 instance=ExtResource("5_ue4m8")]
-position = Vector2(4, -223)
+[node name="DaggerGrunt" parent="TileMapLayers/Directors/AIDirector" index="2" unique_id=1637427686 instance=ExtResource("5_ue4m8")]
+position = Vector2(5, 217)
+drop_chance = 0.15
 facing = 0
 
+[node name="DaggerGrunt2" parent="TileMapLayers/Directors/AIDirector" index="3" unique_id=261022929 instance=ExtResource("5_ue4m8")]
+position = Vector2(4, -223)
+drop_chance = 0.15
+
 [node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="2" unique_id=2010280176 instance=ExtResource("7_tx16w")]
-position = Vector2(-2, -1)
+position = Vector2(-183, -2)
 
 [node name="emperor" parent="." index="6" unique_id=1077291446 instance=ExtResource("3_o08qo")]
 position = Vector2(620, -18)
