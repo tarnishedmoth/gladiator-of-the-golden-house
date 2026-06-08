@@ -38,7 +38,7 @@ fill = 1
 fill_from = Vector2(0.18803419, 1)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ycdy4"]
-random_pitch = 1.0472941
+random_pitch = 1.0382591
 random_volume_offset_db = 0.7
 streams_count = 1
 stream_0/stream = ExtResource("12_dg77c")
@@ -49,6 +49,7 @@ splash_scene = ExtResource("2_h2yge")
 main_menu_scene = ExtResource("3_1bvp3")
 dev_main_menu_scene = ExtResource("2_0xm2m")
 load_to_developer_menu = false
+skip_splash = true
 levels = Array[String](["uid://b50441u03h6ll", "uid://d37cvlmrtp1ru", "uid://q7ym5mealfro", "uid://blegsn4xctlno", "uid://dgrrb1b2ary3k", "uid://bur0bodw1ibgu", "uid://ca1u1weh7rbc6", "uid://bj1n7ftclk3bp"])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=867431045]

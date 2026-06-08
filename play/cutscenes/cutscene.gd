@@ -44,6 +44,7 @@ func on_finished() -> void:
 
 func skip() -> void:
 	if not time_left_to_skip > 0.0:
+		Main.sfx_blip()
 		on_finished()
 
 func go_to_main_menu() -> void:
