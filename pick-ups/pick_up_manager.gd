@@ -19,7 +19,7 @@ func setup(tilemap: TileMapLayer) -> void:
 		if child is PickUp:
 			child.setup(self,tilemap)
 
-func get_weighted_random() -> PickUpData:	
+func get_weighted_random() -> PickUpData:		
 	if pickup_pool.is_empty():
 		return null
 	var total := 0.0
@@ -34,10 +34,15 @@ func get_weighted_random() -> PickUpData:
 			return e.data
 	return pickup_pool[-1].data
 
+func check_if_pickup_already_there(check_cords)->bool: #check if pickup array already has an item at coords
+	for each in pick_ups:
+		if each.current_tile_coords == check_cords: return true
+	return false
 
 #use this to spawn a pick up at a specific coord
 func spawn_pick_up(pick_up: PickUpData,coords: Vector2i) -> void:
-	var pick_up_instance: PickUp = pick_up_template.instantiate()
+	if check_if_pickup_already_there(coords): return #if item already there dont spawn a new item
+	var pick_up_instance: PickUp = pick_up_template.instantiate()	
 	add_child(pick_up_instance)
 	pick_up_instance.global_position = Actor.get_global_position_at(tile_map,coords)
 	pick_up_instance.name = "Pick_Up" + str(pick_ups.size()) 

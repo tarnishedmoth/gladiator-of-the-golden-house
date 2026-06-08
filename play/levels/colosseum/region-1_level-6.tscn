@@ -27,3 +27,9 @@ position = Vector2(-3, 71)
 
 [node name="GridTint" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="3" unique_id=1487691829]
 visible = true
+
+[node name="Camera" parent="." index="2" unique_id=280332911]
+metadata/_edit_lock_ = true
+
+[node name="PointLight2D" parent="MouseFollower" parent_id_path=PackedInt32Array(687351869) index="1" unique_id=740285923]
+metadata/_edit_lock_ = true
