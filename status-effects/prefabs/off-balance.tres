@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="StatusAffectDamage" format=3 uid="uid://c4oe6v8tjo7dk"]
+
+[ext_resource type="Script" uid="uid://dvm0k3xhgixkl" path="res://status-effects/affect_damage_dealt.gd" id="1_ngoiq"]
+[ext_resource type="PackedScene" uid="uid://b11vclccqbpug" path="res://vfx/status_fx-debuff.tscn" id="2_nrtv1"]
+
+[resource]
+script = ExtResource("1_ngoiq")
+factor = 0.5
+operation = 1
+per_point = false
+on_start_behavior = 0
+on_end_behavior = 3
+ui_name = "Off-balance"
+ui_description = "Reduce damage dealt by 50% rest of turn."
+status_effect_category = 2
+vfx_applied = ExtResource("2_nrtv1")
+metadata/_custom_type_script = "uid://dvm0k3xhgixkl"

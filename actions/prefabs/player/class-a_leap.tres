@@ -2,19 +2,25 @@
 
 [ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_myhvm"]
 [ext_resource type="Script" uid="uid://btfwr4ctycjfk" path="res://actions/move.gd" id="2_3juxq"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_6b1sm"]
+[ext_resource type="Resource" uid="uid://c4oe6v8tjo7dk" path="res://status-effects/prefabs/off-balance.tres" id="3_hkjvs"]
+
+[sub_resource type="Resource" id="Resource_fxixn"]
+script = ExtResource("2_6b1sm")
+status = ExtResource("3_hkjvs")
+ui_title = "Off-balance"
+action_category = 4
+metadata/_custom_type_script = "uid://ic0qko6fd58l"
 
 [resource]
 script = ExtResource("2_3juxq")
 pattern = Array[Vector2i]([Vector2i(1, -2), Vector2i(2, -1), Vector2i(1, 1), Vector2i(-1, 2), Vector2i(-2, 1), Vector2i(-1, -1)])
 ui_title = "Leap"
-ui_description = "Can’t move along occupied tiles.
-+Recovering:
-  Can not use Actions that move them.
-+Off-balance:
+ui_description = "+Off-balance:
   Reduce damage dealt by 50% rest of turn.
   Does not stack."
 action_category = 1
 energy_cost = 1
 is_obstructable = true
-debug = true
+next_state = SubResource("Resource_fxixn")
 metadata/_custom_type_script = "uid://btfwr4ctycjfk"
