@@ -77,7 +77,8 @@ func on_block_broken() -> void:
 	block_broken.play()
 	
 func on_get_hit() -> void:
-	get_hit.play()
+	if not _debouncing():
+		get_hit.play()
 
 func on_get_hit_critical() -> void:
 	get_hit_critical.play()
@@ -87,3 +88,13 @@ func on_buff() -> void:
 	
 func on_debuff() -> void:
 	debuff.play()
+
+const DEBOUNCE_TIME: float = 0.0167 # ha
+var _debouncer: Tween
+func _debouncing() -> bool:
+	if _debouncer:
+		return true
+	else:
+		_debouncer = create_tween()
+		_debouncer.tween_interval(DEBOUNCE_TIME)
+		return false
