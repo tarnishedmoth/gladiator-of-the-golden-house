@@ -10,6 +10,8 @@ enum VulnerabilityMethods {
 
 @export var damage: int
 
+@export var direct: bool = false ## If true, bypasses any first-layer status effects (Defense).
+
 ## Utilize directional damage multipliers on affected actors.
 ## See [method Actor.calculate_directional_damage_from].
 @export var use_directional_vulnerability: VulnerabilityMethods = VulnerabilityMethods.ACTOR
@@ -132,7 +134,11 @@ func _deal_damage(actors:Array[Actor],applied_damage:int) -> void:
 		## once for regular damage (all damage),
 		## and once for direct damage.
 		## The result returned is a package of the results after running through all status effects/modifiers.
-		var damage_result: Actor.DamageResult = actor.take_damage(_damage, _actor)
+		var damage_result: Actor.DamageResult
+		if not direct:
+			damage_result = actor.take_damage(_damage, _actor)
+		else:
+			damage_result = Actor.DamageResult.new(0, actor.take_direct_damage(_damage, _actor))
 		
 		if damage_result.direct > 0:
 			## We dealt direct damage.
