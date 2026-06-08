@@ -8,5 +8,8 @@ func _ready() -> void:
 	actions_container = actions
 
 func check_actions_disabled(selected_actor: Actor) -> void:
-	actions_header.set_blips(selected_actor.energy)
+	if not selected_actor:
+		actions_header.set_blips(0)
+	else:
+		actions_header.set_blips(selected_actor.energy)
 	super.check_actions_disabled(selected_actor)
