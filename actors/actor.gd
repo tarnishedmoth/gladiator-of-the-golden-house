@@ -368,7 +368,7 @@ func find_last_unobstructed_tile(a: Vector2i, b: Vector2i) -> Vector2i:
 	if b in surrounding_cells:
 		## Tile is adjacent
 		if not b in tile_map.get_used_cells():
-			if debug: p(pf + "End point is an adjacent wall." % b)
+			if debug: p(pf + "End point is an adjacent wall.")
 			return a
 		else:
 			## Continuing... (check for obstruction is at end of method)

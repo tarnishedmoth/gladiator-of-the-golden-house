@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="ActionApplyStatus" format=3 uid="uid://bxyyhbdpuov8y"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_m8u8e"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_qye5b"]
+[ext_resource type="Script" uid="uid://dvm0k3xhgixkl" path="res://status-effects/affect_damage_dealt.gd" id="3_ji0wj"]
+[ext_resource type="PackedScene" uid="uid://dpamc84gay4r0" path="res://vfx/status_fx-defense.tscn" id="4_56cyp"]
+
+[sub_resource type="Resource" id="Resource_qfpxa"]
+script = ExtResource("3_ji0wj")
+incoming_or_outgoing = 1
+expend_points_against_damage = true
+use_directional = true
+dir_fr = 0.0
+dir_rr = 0.0
+dir_r = 0.0
+dir_rl = 0.0
+dir_fl = 0.0
+only_react_to_actors_turn_notifs = true
+effect_points = 16
+ui_name = "Focused Defense"
+ui_description = "Focus all your defense on the forward facing direction. Offers no protection from the sides."
+status_effect_category = 1
+vfx_applied = ExtResource("4_56cyp")
+metadata/_custom_type_script = "uid://dvm0k3xhgixkl"
+
+[resource]
+script = ExtResource("2_qye5b")
+status = SubResource("Resource_qfpxa")
+ui_title = "Focused Defense"
+metadata/_custom_type_script = "uid://ic0qko6fd58l"

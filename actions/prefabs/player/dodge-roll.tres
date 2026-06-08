@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ActionMove" format=3 uid="uid://ckx8fgy1ktgy"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_cmlj5"]
+[ext_resource type="Script" uid="uid://btfwr4ctycjfk" path="res://actions/move.gd" id="2_byplu"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_j4sfo"]
+[ext_resource type="Resource" uid="uid://dsoygu5qhs5v1" path="res://status-effects/prefabs/slight-invulnerability.tres" id="3_j4sfo"]
+
+[sub_resource type="Resource" id="Resource_acx3g"]
+script = ExtResource("2_j4sfo")
+status = ExtResource("3_j4sfo")
+metadata/_custom_type_script = "uid://ic0qko6fd58l"
+
+[resource]
+script = ExtResource("2_byplu")
+pattern = Array[Vector2i]([Vector2i(0, -2), Vector2i(1, -2), Vector2i(2, -2), Vector2i(2, -1), Vector2i(-2, 1), Vector2i(-2, 0), Vector2i(-1, -1)])
+allow_facing_after = true
+ui_title = "Dodge Roll"
+ui_description = "Move and gain +3 Slight Invulnerability."
+action_category = 1
+energy_cost = 3
+next_state = SubResource("Resource_acx3g")
+metadata/_custom_type_script = "uid://btfwr4ctycjfk"

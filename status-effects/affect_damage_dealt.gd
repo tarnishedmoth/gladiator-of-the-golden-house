@@ -65,7 +65,7 @@ func modify_damage(damage:int) -> int:
 	
 	var _factor: float = factor
 	if use_directional:
-		if not incoming_or_outgoing == DamageHook.RECEIVING:
+		if incoming_or_outgoing == DamageHook.DEALING:
 			## TODO not implemented for dealing damage??? Dunno if that's useful.
 			pass
 		else:

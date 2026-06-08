@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ActionMove" format=3 uid="uid://dtrqu858fqs63"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_3e1gy"]
+[ext_resource type="Script" uid="uid://btfwr4ctycjfk" path="res://actions/move.gd" id="2_26co2"]
+
+[resource]
+script = ExtResource("2_26co2")
+pattern = Array[Vector2i]([Vector2i(0, -2), Vector2i(2, -2), Vector2i(-2, 0)])
+allow_facing_after = true
+ui_title = "Forward Dash"
+ui_description = "An essential move of a dextrous warrior."
+action_category = 1
+is_obstructable = true
+metadata/_custom_type_script = "uid://btfwr4ctycjfk"

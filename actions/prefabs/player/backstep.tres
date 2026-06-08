@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ActionMove" format=3 uid="uid://d02ioirisgne3"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_dgrnn"]
+[ext_resource type="Script" uid="uid://btfwr4ctycjfk" path="res://actions/move.gd" id="2_l8i3v"]
+
+[resource]
+script = ExtResource("2_l8i3v")
+pattern = Array[Vector2i]([Vector2i(-1, 2), Vector2i(0, 2), Vector2i(1, 1)])
+ui_title = "Backstep"
+ui_description = "Keep distance from the enemy helps avoid counter-attacks."
+action_category = 1
+energy_cost = 1
+is_obstructable = true
+metadata/_custom_type_script = "uid://btfwr4ctycjfk"

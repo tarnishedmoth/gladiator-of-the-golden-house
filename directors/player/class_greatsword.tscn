@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://b1a1pqnp0vchc" path="res://actions/prefabs/player/class-greatsword/class-greatsword_guard.tres" id="3_msfsg"]
 [ext_resource type="Resource" uid="uid://dhg041btdeuit" path="res://actions/prefabs/player/class-greatsword/class-greatsword_slash.tres" id="4_7c8ok"]
 [ext_resource type="Resource" uid="uid://q6p1jvo2kwoo" path="res://actions/prefabs/player/class-greatsword/class-greatsword_plunge.tres" id="5_4yltr"]
-[ext_resource type="Resource" uid="uid://cc5g5bc33m7ud" path="res://actions/prefabs/player/class-greatsword/class-greatsword_windup.tres" id="6_msfsg"]
+[ext_resource type="Resource" uid="uid://ckx8fgy1ktgy" path="res://actions/prefabs/player/dodge-roll.tres" id="6_okgc4"]
 [ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://actions/stance/stance.gd" id="6_yu7cn"]
 [ext_resource type="Resource" uid="uid://bejg4y5kke6cf" path="res://actions/prefabs/move_one_tile_opener.tres" id="7_45eod"]
 [ext_resource type="Resource" uid="uid://duclb7twecrgo" path="res://actions/prefabs/player/class-greatsword/stance_two-handing.tres" id="9_45eod"]
@@ -17,7 +17,7 @@
 
 [node name="Player_ClassGreatsword" type="Node2D" unique_id=1133384730]
 script = ExtResource("1_7c8ok")
-starting_actions_deck = Array[ExtResource("2_k14uy")]([ExtResource("3_msfsg"), ExtResource("4_7c8ok"), ExtResource("5_4yltr"), ExtResource("6_msfsg")])
+starting_actions_deck = Array[ExtResource("2_k14uy")]([ExtResource("3_msfsg"), ExtResource("4_7c8ok"), ExtResource("5_4yltr"), ExtResource("6_okgc4")])
 always_available_deck = Array[ExtResource("2_k14uy")]([ExtResource("7_45eod")])
 stances = Array[ExtResource("6_yu7cn")]([ExtResource("9_45eod"), ExtResource("10_brf7x")])
 metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
