@@ -80,6 +80,7 @@ func choose_action(claimed_tiles: Array[Vector2i], _usable_actions: Array[Action
 	
 	_last_action_picked = action
 	action = action.duplicate()
+	if debug: p("Picked action %s." % action)
 	
 	## per-action planning
 	plan_action_details(action, claimed_tiles)

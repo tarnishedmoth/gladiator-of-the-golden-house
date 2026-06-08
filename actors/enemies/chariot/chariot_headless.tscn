@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cl85rfvtusdka" path="res://characters/chariot1_headless.png" id="2_1kygq"]
 
 [node name="Chariot" unique_id=84579020 instance=ExtResource("1_cfcd4")]
+drop_chance = 0.35
 
 [node name="Chariot" parent="." index="4" unique_id=1754860747]
 texture = ExtResource("2_1kygq")
