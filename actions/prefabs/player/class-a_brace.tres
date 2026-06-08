@@ -10,9 +10,6 @@ status = ExtResource("3_6ip8s")
 override_quantity = 10
 allow_facing_before = true
 ui_title = "Brace"
-ui_description = "Only applies to 5 forward tiles.
-Apply +1 Braced: TODO
-  [i]Can not be stunned.
-  Stack decreases by 1 each turn.[/i]"
+ui_description = "Only applies to 5 forward tiles."
 energy_cost = 2
 metadata/_custom_type_script = "uid://ic0qko6fd58l"
