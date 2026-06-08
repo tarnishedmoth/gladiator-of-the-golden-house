@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ActionAttackKnockback" format=3 uid="uid://b34xqoxtpxt5w"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_sh1f1"]
+[ext_resource type="Script" uid="uid://chptaheu3xjjl" path="res://actions/attack_knockback.gd" id="2_s3npi"]
+[ext_resource type="Resource" uid="uid://b38qdbmcp8g2n" path="res://status-effects/prefabs/stunned.tres" id="3_xfbnh"]
+
+[resource]
+script = ExtResource("2_s3npi")
+distance = 2
+damage = 11
+can_damage_teammates = true
+pattern = Array[Vector2i]([Vector2i(0, 0)])
+aoe_pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
+pre_attack_duration = 0.30000000000000004
+post_attack_duration = 0.3
+ui_title = "Demigod Roar"
+ui_description = "Wield the great might of a demigod, sending foes flying away."
+energy_cost = 3
+metadata/_custom_type_script = "uid://chptaheu3xjjl"

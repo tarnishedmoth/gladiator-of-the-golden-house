@@ -110,7 +110,7 @@ health_bar = NodePath("health")
 speech_bubble = NodePath("SpeechBubble")
 ui_name = "? ? ?"
 ui_description = "Where are you?"
-max_health = 20
+max_health = 22
 metadata/_custom_type_script = "uid://2lxtpvvfchas"
 
 [node name="Zombie" type="Sprite2D" parent="." unique_id=1368758138]
