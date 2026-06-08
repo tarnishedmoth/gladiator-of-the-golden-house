@@ -15,16 +15,19 @@ extends HBoxContainer
 
 var audio_bus_idx: int
 
-@onready var label: Label = $Label
-@onready var h_slider: HSlider = $HSlider
-@onready var units: Label = $Units
+@onready var label: Label = $Label if not Engine.is_editor_hint() else null
+@onready var h_slider: HSlider = $HSlider if not Engine.is_editor_hint() else null
+@onready var units: Label = $Units if not Engine.is_editor_hint() else null
+# How bizare you need to do this conditional check for tool scripts...
 
 func _ready() -> void:
-	if not Engine.is_editor_hint():
-		if not bus_name:
-			push_error("Volume slider needs a bus name. Freeing")
-			queue_free()
-			return
+	if Engine.is_editor_hint():
+		return
+	
+	if not bus_name:
+		push_error("Volume slider needs a bus name. Freeing to avoid crash.")
+		queue_free()
+		return
 	
 	audio_bus_idx = AudioServer.get_bus_index(bus_name)
 	if title:
