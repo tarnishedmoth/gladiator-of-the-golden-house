@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_cxyuf")
 pick_up_action = ExtResource("1_q4m7g")
-ui_name = "Heal Immediate"
-ui_description = "HLittle move, Big Cost"
+ui_name = "Immediate Healing Flask"
+ui_description = "Heal immediately"
 texture = ExtResource("3_s6jjf")
 metadata/_custom_type_script = "uid://80k033ktqcl0"

@@ -10,6 +10,32 @@
 [ext_resource type="Resource" uid="uid://dkvnt5ik187cv" path="res://actions/prefabs/panic.tres" id="7_tx2wn"]
 [ext_resource type="PackedScene" uid="uid://cwiyis2d60hie" path="res://actors/enemies/dagger_grunt.tscn" id="8_jwfso"]
 [ext_resource type="PackedScene" uid="uid://riabfvwpcg63" path="res://actors/enemies/legionary.tscn" id="9_maw10"]
+[ext_resource type="Script" path="res://pick-ups/pickup_entry.gd" id="11_82maq"]
+[ext_resource type="Resource" uid="uid://4dlrnlkmxkuy" path="res://pick-ups/created_pickups/pickup_data/heal_gradual.tres" id="12_r0fbu"]
+[ext_resource type="Resource" uid="uid://bq8t0b6fk1e7n" path="res://pick-ups/created_pickups/pickup_data/heal_10.tres" id="13_f1w7c"]
+[ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="14_usec8"]
+[ext_resource type="Texture2D" uid="uid://drr6yyr6jq42y" path="res://pick-ups/created_pickups/pickup_data/sprite.png" id="15_4q88y"]
+
+[sub_resource type="Resource" id="Resource_3xddb"]
+script = ExtResource("11_82maq")
+data = ExtResource("12_r0fbu")
+weight = 0.75
+
+[sub_resource type="Resource" id="Resource_7ht3u"]
+script = ExtResource("11_82maq")
+data = ExtResource("13_f1w7c")
+
+[sub_resource type="Resource" id="Resource_w3u8u"]
+script = ExtResource("14_usec8")
+pick_up_action = ExtResource("6_0lbo5")
+ui_name = "Throwable Bomb"
+texture = ExtResource("15_4q88y")
+metadata/_custom_type_script = "uid://80k033ktqcl0"
+
+[sub_resource type="Resource" id="Resource_nbvby"]
+script = ExtResource("11_82maq")
+data = SubResource("Resource_w3u8u")
+weight = 0.75
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_n35bw")]
 
@@ -39,3 +65,6 @@ position = Vector2(-93, 104)
 
 [node name="GridTint" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="3" unique_id=1487691829]
 visible = true
+
+[node name="PickUpManager" parent="." index="1" unique_id=490287025]
+pickup_pool = Array[ExtResource("11_82maq")]([SubResource("Resource_3xddb"), SubResource("Resource_7ht3u"), SubResource("Resource_nbvby")])

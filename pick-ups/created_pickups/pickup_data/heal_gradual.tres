@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PickUpData" format=3 uid="uid://bmmuti6p6qsb6"]
+[gd_resource type="Resource" script_class="PickUpData" format=3 uid="uid://4dlrnlkmxkuy"]
 
 [ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="1_0fkos"]
 [ext_resource type="Resource" uid="uid://qdgds1txn3pe" path="res://pick-ups/heal-gradual-15.tres" id="1_7l4m1"]
@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_0fkos")
 pick_up_action = ExtResource("1_7l4m1")
-ui_name = "Heal over Time"
+ui_name = "Gradual Healing Flask"
 ui_description = "Heals over time"
 texture = ExtResource("4_eu766")
 metadata/_custom_type_script = "uid://80k033ktqcl0"

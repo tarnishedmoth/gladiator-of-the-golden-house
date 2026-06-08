@@ -5,6 +5,31 @@
 [ext_resource type="PackedScene" uid="uid://cp7oafdqv5rpl" path="res://actors/enemies/legate/legate.tscn" id="3_nk51x"]
 [ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="4_c5y5q"]
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="5_nk51x"]
+[ext_resource type="Script" path="res://pick-ups/pickup_entry.gd" id="6_7uvyf"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="7_fw4se"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="8_pbty2"]
+[ext_resource type="Resource" uid="uid://16756wki23ty" path="res://status-effects/prefabs/heal-immediate.tres" id="9_n0iwo"]
+[ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="10_aowp0"]
+[ext_resource type="Texture2D" uid="uid://dm7i3qs1bsjlb" path="res://pick-ups/created_pickups/pickup_data/sprite2.png" id="11_o8k1s"]
+
+[sub_resource type="Resource" id="Resource_3rf7c"]
+script = ExtResource("8_pbty2")
+status = ExtResource("9_n0iwo")
+override_quantity = 5
+ui_title = "Heal 5"
+action_category = 3
+metadata/_custom_type_script = "uid://ic0qko6fd58l"
+
+[sub_resource type="Resource" id="Resource_jgqa1"]
+script = ExtResource("10_aowp0")
+pick_up_action = SubResource("Resource_3rf7c")
+ui_name = "Immediate Healing Flask"
+texture = ExtResource("11_o8k1s")
+metadata/_custom_type_script = "uid://80k033ktqcl0"
+
+[sub_resource type="Resource" id="Resource_ol4od"]
+script = ExtResource("6_7uvyf")
+data = SubResource("Resource_jgqa1")
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_vq6sr")]
 
@@ -30,6 +55,9 @@ facing = 2
 
 [node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("5_nk51x")]
 position = Vector2(3, 1)
+
+[node name="PickUpManager" parent="." index="1" unique_id=490287025]
+pickup_pool = Array[ExtResource("6_7uvyf")]([SubResource("Resource_ol4od"), SubResource("Resource_ol4od")])
 
 [node name="PointLight2D" parent="MouseFollower" parent_id_path=PackedInt32Array(687351869) index="1" unique_id=740285923]
 metadata/_edit_lock_ = true
