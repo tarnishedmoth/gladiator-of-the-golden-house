@@ -6,7 +6,6 @@ class_name AIActor extends Actor
 const DO_NOTHING_ACTION: Resource = preload("res://actions/action_do-nothing.gd")
 
 @export var drop_chance:float = 0.0
-@onready var pick_up_manager: PickUpManager = %PickUpManager
 
 enum MoveBehavior { ## Determines target tiles during [method plan_action_details] for ActionMoves.
 	TO_TARGET,
@@ -36,10 +35,10 @@ func replace_usable_actions(new_usable_actions: Array[Action], change_queue_size
 
 func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> void:
 	var queue: Array[Action]
-	
+
 	if actions_to_queue_this_turn == 0:
 		queue.append(DO_NOTHING_ACTION.duplicate())
-	
+
 	for i in actions_to_queue_this_turn:
 		queue.append(choose_action(claimed_tiles))
 
@@ -84,7 +83,7 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 						## Move in a direction towards the target
 						candidates.sort_custom(sort_hostile_distance)
 						coords = candidates.front()
-					MoveBehavior.RANDOM: 
+					MoveBehavior.RANDOM:
 						coords = candidates.pick_random()
 					_: ## Default to random if MoveBehavior is not yet handled
 						coords = candidates.pick_random()
@@ -114,33 +113,33 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 
 		claimed_tiles.append(coords)
 		action.set_target(coords)
-		
-		
+
+
 	elif action is ActionAttack:
 		if not action.aoe_pattern:
 			## We can hit every tile
 			if debug: p("Skipping ActionAttack planning (Action does not use AoE).")
 			return
-		
+
 		if debug: p("Planning ActionAttack.")
-		
+
 		var potential_targets: Array[Vector2i] = get_action_target_cells(action) ## Absolute coords
 		var _potential_affected: Dictionary[Vector2i, Array] ## Absolute target coord, absolute aoe tiles
-		
+
 		potential_targets = potential_targets.filter(TileInteractor.cell_exists.bind(tile_map))
-		
+
 		if potential_targets.is_empty():
 			## No valid choices for this action
 			var string: String = "Did not configure action %s due to no valid moves." % action
 			if debug: p(string)
 			push_warning(string)
 			return
-		
+
 		if not hostile_target:
 			if debug: p("Randomizing ActionAttack planning (no hostile target).")
 			action.set_target(potential_targets.pick_random())
 			return
-		
+
 		for coord in potential_targets:
 			if action.aoe_pattern:
 				var affected: Array[Vector2i]= Facing.get_target_cells(
@@ -151,17 +150,17 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 				_potential_affected[coord] = affected
 			else:
 				_potential_affected[coord] = [coord]
-		
+
 		if debug: p("Target candidates: %s" % [potential_targets])
-		
+
 		var choice_target = null ## Absolute
-		
+
 		for target: Vector2i in _potential_affected.keys():
 			if hostile_target.current_tile_coords in _potential_affected[target]:
 				## Target in AoE
 				choice_target = target
 				break
-				
+
 		if choice_target == null:
 			## Sort by distance
 			## It's honestly safe to assume that the target coord itself is a good approximation--
@@ -171,24 +170,26 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 			if debug: p("Closest target to hostile is %s." % [choice_target])
 		else:
 			if debug: p("Hostile target within AoE for %s." % [choice_target])
-		
+
 		assert(choice_target != null)
 		if debug:
 			## Sanity check
 			assert(choice_target in Facing.get_target_cells(current_tile_coords, facing, action.pattern))
 			if debug: p("Verified target choice is valid.")
-		
+
 		action.set_target(choice_target)
-		
+
 	else:
 		push_warning("Unconfigured planning behavior for action %s subclass!" % action)
 
 
 func die()->void:
-	if randf():
-		if pick_up_manager.get_weighted_random() != null:			
-			var picked_item = pick_up_manager.get_weighted_random()		
-			pick_up_manager.spawn_pick_up(picked_item,current_tile_coords)		
+	var pick_up_manager: PickUpManager = Level.get_pickup_manager()
+	if pick_up_manager:
+		if randf():
+			if pick_up_manager.get_weighted_random() != null:
+				var picked_item = pick_up_manager.get_weighted_random()
+				pick_up_manager.spawn_pick_up(picked_item,current_tile_coords)
 	super()
 
 ## Given two coordinates, returns the one closer to [member hostile_target.current_tile_coords].
@@ -210,14 +211,14 @@ func choose_hostile_target() -> void:
 	for _director in Level.get_directors():
 		if _director != director: ## assume all other directors are hostile
 			available_targets.append_array(_director.actors)
-	
+
 	if director is AIDirector: ## should be a given but for static typing sake
 		if director.allied_with_player:
 			## Remove player characters from the list
 			available_targets = available_targets.filter(
 				func(v: Actor): return false if v.director is Player else true
 			)
-	
+
 	if available_targets.is_empty():
 		push_warning("No hostile actors found")
 		hostile_target = null
@@ -262,10 +263,10 @@ func _filter_move_candidates(candidates: Array[Vector2i], claimed_tiles: Array[V
 	return valid
 
 func preview_ai_attack()-> void:
-	#for each action in actions queue might need to duplcate so I dont use 
+	#for each action in actions queue might need to duplcate so I dont use
 	#for action in action_queue.queue:
 		#action_preview.show_preview_action(action)
-		
+
 	## OK let's be honest, only the first action really needs to be rendered.
 	## Reason being, the second action is typically either movement, or it depends on the result of the first action.
 	## Rather than trying to design a way to step through every action
@@ -277,4 +278,4 @@ func preview_ai_attack()-> void:
 		render_preview_for_action(first_action, first_action._target)
 
 #func hide_preview_attack()-> void: ## DEPRECATED merged into [Actor]
-	#action_preview.hide_preview_action() 
+	#action_preview.hide_preview_action()

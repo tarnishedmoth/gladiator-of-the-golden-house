@@ -109,6 +109,9 @@ static func get_actor_at_relative_pos(actor: Actor,coords: Vector2i) -> Actor:
 	var result: Actor = get_actor_at(global_coords)
 	print("get actors at relative pos: %s",result)
 	return result
+	
+static func get_pickup_manager() -> PickUpManager:
+	return get_instance().pick_up_manager
 
 static func get_all_pick_ups()-> Array[PickUp]:
 	return instance.pick_up_manager.pick_ups
