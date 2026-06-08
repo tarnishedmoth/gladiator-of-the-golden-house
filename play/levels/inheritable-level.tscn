@@ -43,13 +43,14 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[node name="Level" type="Node2D" unique_id=13868467 node_paths=PackedStringArray("base_tile_map_layer", "tile_interactor", "hud", "retry_menu", "continue_menu", "pause_menu")]
+[node name="Level" type="Node2D" unique_id=13868467 node_paths=PackedStringArray("base_tile_map_layer", "tile_interactor", "hud", "camera", "retry_menu", "continue_menu", "pause_menu")]
 texture_filter = 3
 position = Vector2(480, 270)
 script = ExtResource("1_fpxwp")
 base_tile_map_layer = NodePath("TileMapLayers/BaseTileMapLayer")
 tile_interactor = NodePath("MouseFollower/TileMapInteractor")
 hud = NodePath("HUD")
+camera = NodePath("Camera")
 retry_menu = NodePath("CanvasLayer/Retry Menu")
 continue_menu = NodePath("CanvasLayer/Continue Menu")
 pause_menu = NodePath("CanvasLayer/PauseMenu")

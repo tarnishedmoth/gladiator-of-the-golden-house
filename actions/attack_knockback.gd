@@ -48,7 +48,7 @@ func enter(_from: ResourceState = null) -> void:
 				await _actor.create_tween().tween_interval(post_attack_duration).finished
 			
 			for affected in affected_actors:
-				knockback(affected)
+				await knockback(affected)
 			
 			#match require_damage:
 				#DamageRequired.DAMAGE_DEALT:
@@ -103,8 +103,21 @@ func knockback(actor: Actor) -> void:
 			on_hit_obstruction(actor, direction)
 		
 
-func on_hit_obstruction(actor: Actor, _direction_of_travel: Facing.Cardinal) -> void:
+func on_hit_obstruction(actor: Actor, direction_of_travel: Facing.Cardinal) -> void:
 	if status_to_apply_if_knocked_into_obstacle:
 		if debug:
 			p("Applying status %s to %s from being knocked into an obstruction." % [status_to_apply_if_knocked_into_obstacle, actor])
 		actor.add_status(status_to_apply_if_knocked_into_obstacle)
+	
+	#Level.get_instance().camera.add_trauma(1.0)
+	
+	var vr = actor.character_visual_root
+	if vr:
+		var anim: Tween = actor.create_tween()
+		var magnitude = 32
+		var angle: float = Facing.get_rad_rotation(direction_of_travel) - deg_to_rad(90)
+		var position: Vector2 = Vector2.from_angle(angle) * magnitude
+		var starting_pos: Vector2 = vr.position
+		p("direction of travel %s, radians %s, target position %s." % [direction_of_travel, angle, position])
+		anim.tween_property(vr, "position", vr.position + position, 0.12)
+		anim.tween_property(vr, "position", starting_pos, 0.12).set_ease(Tween.EASE_OUT)

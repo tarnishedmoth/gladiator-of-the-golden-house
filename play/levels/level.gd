@@ -19,6 +19,7 @@ signal current_director_changed(director: Director)
 @export var base_tile_map_layer: TileMapLayer
 @export var tile_interactor: TileInteractor ## Used for detecting mouse input.
 @export var hud: LevelHUD
+@export var camera: LevelCamera
 
 @export var retry_menu: Control
 @export var continue_menu: Control
