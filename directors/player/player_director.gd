@@ -99,6 +99,7 @@ func _end_turn() -> void:
 	if is_active:
 		discard_hand()
 		deselect_tile()
+		deselect_actor()
 		end_turn()
 
 var _end_turn_with_available_moves: Tween
@@ -419,12 +420,14 @@ func remove_from_stash(card: Action) -> void:
 #endregion
 
 func select_actor(actor: Actor) -> void:
+	for a in actors: a.show_acting_indicator(false) ## UI
 	if actor == null:
 		selected_actor = null
 		if VERBOSE: p("Deselected actor")
 	else:
 		assert(actor in actors)
 		selected_actor = actor
+		selected_actor.show_acting_indicator(true) ## UI
 		if VERBOSE: p("Selected actor %s" % selected_actor)
 
 func deselect_actor() -> void: select_actor(null)

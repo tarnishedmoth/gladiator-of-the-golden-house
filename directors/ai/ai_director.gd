@@ -37,8 +37,10 @@ func execute_queued_moves() -> bool:
 	if VERBOSE: p("Executing queued actions.")
 	for actor in actors:
 		if actor is AIActor:
+			actor.show_acting_indicator(true)
 			actor.run_queued_actions()
 			await actor.queued_actions_finished
+			actor.show_acting_indicator(false)
 	
 	return true
 

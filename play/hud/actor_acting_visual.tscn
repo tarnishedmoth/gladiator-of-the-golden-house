@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b8rcnm7yrsyhq"]
+
+[ext_resource type="Script" uid="uid://bckunpq0hpu8d" path="res://utils/pulse.gd" id="2_mwll8"]
+[ext_resource type="Texture2D" uid="uid://da2jfnnv7lfv0" path="res://play/tile-atlases/hexagon-corners-fat.png" id="2_t21af"]
+[ext_resource type="Texture2D" uid="uid://t6rj88u0ansq" path="res://play/hud/crosshair.png" id="3_xo1gp"]
+
+[node name="BigLines" type="Sprite2D" unique_id=29606358]
+self_modulate = Color(0.36862746, 0.27450982, 0, 0.047058824)
+rotation = -0.27925268
+texture = ExtResource("3_xo1gp")
+offset = Vector2(0, 16)
+
+[node name="DashedBorderVisual" type="Sprite2D" parent="." unique_id=72038806]
+light_mask = 0
+z_index = 1
+rotation = 0.27925268
+scale = Vector2(0.98, 0.98)
+texture = ExtResource("2_t21af")
+script = ExtResource("2_mwll8")
+color_a = Color(1, 1, 1, 0.74509805)
+color_b = Color(0.5019608, 0.5019608, 0.5019608, 0.5058824)

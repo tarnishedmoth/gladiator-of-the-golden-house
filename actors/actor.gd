@@ -21,6 +21,7 @@ const RENDER_AI_PLAYABLE_TILES: bool = false ## Set to true to render grey tiles
 const SHOW_FACING_INDICATOR: bool = true
 
 ## Filesystem constants
+const ACTING_INDICATOR_SCENE = preload("uid://b8rcnm7yrsyhq")
 const FACING_INDICATOR_SCENE = preload("uid://b3kl75n4nwdge")
 const DEFAULT_VFX_HANDLER = preload("uid://l1r068mo4353")
 
@@ -196,6 +197,30 @@ func on_turn_start() -> void: ## Called by Director
 	
 func on_turn_end() -> void: ## Called by Director
 	status_manager.on_turn_end()
+
+
+var _acting_indicator: Node2D
+var _acting_tween: Tween
+func show_acting_indicator(_show: bool = true) -> void: ## Called by [Director].
+	if _show:
+		if not _acting_indicator:
+			assert(ACTING_INDICATOR_SCENE.can_instantiate())
+			_acting_indicator = ACTING_INDICATOR_SCENE.instantiate()
+			_acting_indicator.modulate = Color.TRANSPARENT
+			add_child(_acting_indicator)
+		_acting_indicator.show()
+		
+		if _acting_tween:
+			_acting_tween.kill()
+		_acting_tween = Juice.fade_in(_acting_indicator, Juice.BLITZ)
+	else:
+		if _acting_indicator:
+			if _acting_tween:
+				_acting_tween.kill()
+			_acting_tween = _acting_indicator.create_tween()
+			_acting_tween.tween_property(_acting_indicator, ^"modulate", Color.TRANSPARENT, Juice.BLITZ)
+			_acting_tween.tween_callback(_acting_indicator.hide)
+			
 	
 #region Weapon Anchors
 
