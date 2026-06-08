@@ -701,7 +701,10 @@ func render_preview_for_action(action: Action, target) -> void:
 					TargetFinder.highlight_target(coords, Targeting.COLORS.RED, self)
 					
 				elif action is ActionApplyStatus:
-					_popup_labels.append(Level.get_hud().popup_label_persistent("%s: %s" % [action.status.ui_name, action.override_quantity], found_actor, LevelHUD.STYLE_STATUS))
+					if action.override_quantity != action.status.effect_points:
+						_popup_labels.append(Level.get_hud().popup_label_persistent("%s: %s" % [action.status.ui_name, action.override_quantity], found_actor, LevelHUD.STYLE_STATUS))
+					else:
+						_popup_labels.append(Level.get_hud().popup_label_persistent(action.status, found_actor, LevelHUD.STYLE_STATUS))
 					TargetFinder.highlight_target(coords, Targeting.COLORS.YELLOW, self)
 					
 				elif action is ActionMove:

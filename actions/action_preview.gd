@@ -29,12 +29,23 @@ func show_preview_action(action:Action)-> void:
 			
 			if action is ActionAttack:
 				var damage: String = str(_action.damage)
-				_popup_labels.append(Level.get_hud().popup_label_persistent("Damage: " + damage, found_actor, LevelHUD.STYLE_DAMAGE))
+				_popup_labels.append(Level.get_hud().popup_label_persistent(
+					"Damage: " + damage,
+					found_actor,
+					LevelHUD.STYLE_DAMAGE))
 				TargetFinder.highlight_target(coords, Targeting.COLORS.RED, _actor)
 				
 			elif action is ActionApplyStatus:
-				var effect_points: String = str(_action.override_quantity)
-				_popup_labels.append(Level.get_hud().popup_label_persistent(_action.status.ui_name+ ": " +effect_points, found_actor, LevelHUD.STYLE_STATUS))
+				if _action.override_quantity != _action.status.effect_points:
+					_popup_labels.append(Level.get_hud().popup_label_persistent(
+						"%s: %s" % [_action.status.ui_name, _action.override_quantity],
+						found_actor,
+						LevelHUD.STYLE_STATUS))
+				else:
+					_popup_labels.append(Level.get_hud().popup_label_persistent(
+						_action.status,
+						found_actor,
+						LevelHUD.STYLE_STATUS))
 				TargetFinder.highlight_target(coords, Targeting.COLORS.YELLOW, _actor)
 				
 			elif action is ActionMove:
