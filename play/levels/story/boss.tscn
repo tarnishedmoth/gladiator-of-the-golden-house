@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://bd1sit1vwgt6y"]
+
+[ext_resource type="PackedScene" uid="uid://dnwn75fwwq600" path="res://play/levels/inheritable-level.tscn" id="1_bc0rv"]
+[ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="2_2taxq"]
+[ext_resource type="Script" uid="uid://2lxtpvvfchas" path="res://actors/enemies/grunt/grunt.gd" id="3_dla0w"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="4_kc6lv"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="5_ew1vs"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="6_nwddv"]
+[ext_resource type="Resource" uid="uid://b34xqoxtpxt5w" path="res://actions/prefabs/demigod_roar.tres" id="7_w360o"]
+[ext_resource type="Resource" uid="uid://bxvvng0ducbc3" path="res://actions/prefabs/do-nothing.tres" id="8_r8q6l"]
+[ext_resource type="PackedScene" uid="uid://bxtwk62yntlh7" path="res://characters/sauron/eyeguy.tscn" id="9_v1a3o"]
+[ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="10_1iumx"]
+[ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="11_kvm78"]
+[ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="12_61js5"]
+[ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="13_21mj7"]
+
+[sub_resource type="Resource" id="Resource_71lb7"]
+script = ExtResource("6_nwddv")
+damage = 12
+can_damage_teammates = true
+pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(0, -2), Vector2i(0, -3), Vector2i(1, -1), Vector2i(2, -2), Vector2i(3, -3), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3), Vector2i(-1, 1), Vector2i(-2, 2), Vector2i(-3, 3), Vector2i(-1, 0), Vector2i(-2, 0), Vector2i(-3, 0)])
+ui_title = "Astral Rows"
+energy_cost = 2
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"
+
+[sub_resource type="Resource" id="Resource_nlcid"]
+script = ExtResource("6_nwddv")
+damage = 15
+can_damage_teammates = true
+pattern = Array[Vector2i]([Vector2i(1, -2), Vector2i(2, -1), Vector2i(1, 1), Vector2i(-1, 2), Vector2i(-2, 1), Vector2i(-1, -1)])
+ui_title = "Astral Columns"
+energy_cost = 2
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"
+
+[sub_resource type="Resource" id="Resource_8hsrv"]
+script = ExtResource("6_nwddv")
+damage = 1
+multiple_attacks = 4
+pattern = Array[Vector2i]([Vector2i(0, 0)])
+aoe_pattern = Array[Vector2i]([Vector2i(1, -1), Vector2i(1, 0), Vector2i(-1, 1), Vector2i(-1, 0), Vector2i(0, -2), Vector2i(1, -2), Vector2i(2, -2), Vector2i(2, -1), Vector2i(2, 0), Vector2i(1, 1), Vector2i(0, 2), Vector2i(-1, 2), Vector2i(-2, 2), Vector2i(-2, 1), Vector2i(-2, 0), Vector2i(-1, -1)])
+allow_facing_after = true
+ui_title = "Cosmic Clear"
+ui_description = "Attack a wide area, albeit with low damage."
+energy_cost = 2
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"
+
+[node name="Level" unique_id=13868467 instance=ExtResource("1_bc0rv")]
+fade_self_in = true
+play_music = 2
+
+[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=1216445194]
+script = ExtResource("2_2taxq")
+
+[node name="Sauron" type="Node2D" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=2086574968 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
+script = ExtResource("3_dla0w")
+usable_actions = Array[ExtResource("4_kc6lv")]([SubResource("Resource_71lb7"), SubResource("Resource_nlcid"), ExtResource("7_w360o"), SubResource("Resource_8hsrv"), ExtResource("8_r8q6l")])
+selection_behavior = 1
+character_visual_root = NodePath("Eyeguy")
+health_bar = NodePath("health")
+speech_bubble = NodePath("SpeechBubble")
+ui_name = "? ? ?"
+ui_subtitle = "Cosmic Curiosity"
+ui_description = "Each time you try to get a closer look, it hurts."
+max_health = 48
+dm_dmg_f = 3.0
+dm_dmg_rr = 1.0
+dm_dmg_rl = 1.0
+
+[node name="Eyeguy" parent="TileMapLayers/Directors/AIDirector/Sauron" index="0" unique_id=552246709 instance=ExtResource("9_v1a3o")]
+scale = Vector2(2, 2)
+
+[node name="ActorSfx" parent="TileMapLayers/Directors/AIDirector/Sauron" index="1" unique_id=1664019728 instance=ExtResource("10_1iumx")]
+
+[node name="health" parent="TileMapLayers/Directors/AIDirector/Sauron" index="2" unique_id=1326189825 instance=ExtResource("11_kvm78")]
+position = Vector2(0, -30)
+
+[node name="SpeechBubble" parent="TileMapLayers/Directors/AIDirector/Sauron" index="3" unique_id=757394792 instance=ExtResource("12_61js5")]
+position = Vector2(0, -38)
+
+[node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("13_21mj7")]
+position = Vector2(-189, 3)

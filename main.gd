@@ -42,6 +42,7 @@ var current_packed_scene: PackedScene ## Set each time [method change_scene] is 
 @onready var project_version_label: Label = %ProjectVersionLabel
 @onready var options_panel: PanelContainer = %OptionsPanel
 
+@onready var music_vaillancourt: AudioStreamPlayer = $Music_Vaillancourt
 @onready var music_menu_loop: AudioStreamPlayer = $Music_MenuLoop
 @onready var music_sherman: AudioStreamPlayer = $Music_Sherman
 
@@ -249,6 +250,26 @@ static func play_sherman(playing: bool) -> void: ## true to play, false to fade 
 		instance.music_sherman.play()
 	else:
 		music_fade_2.tween_callback(instance.music_sherman.stop)
+		
+static var music_fade_3: Tween
+static func play_vaillancourt(playing: bool) -> void: ## true to play, false to fade out + stop
+	if not instance:
+		return
+	if music_fade_3:
+		music_fade_3.kill()
+	
+	music_fade_3 = instance.create_tween()
+	music_fade_3.tween_property(
+		instance.music_vaillancourt,
+		"volume_linear",
+		1.0 if playing else 0.0,
+		12.0 if playing else 4.0,
+		).from(0.0 if playing else 1.0)
+	
+	if playing:
+		instance.music_vaillancourt.play()
+	else:
+		music_fade_3.tween_callback(instance.music_vaillancourt.stop)
 
 ## Play a sfx blip.
 static func sfx_blip() -> void:

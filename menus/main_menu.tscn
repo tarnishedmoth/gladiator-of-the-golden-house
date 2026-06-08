@@ -49,11 +49,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rqbgu")
-current_tab = 0
+current_tab = 1
 tabs_visible = false
 
 [node name="MainMenuTab" type="VBoxContainer" parent="TabContainer" unique_id=719863624]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -137,10 +138,7 @@ text = "Credits"
 
 [node name="SelectClassTab" type="MarginContainer" parent="TabContainer" unique_id=1440261336]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
-theme_override_constants/margin_left = 80
-theme_override_constants/margin_right = 80
 metadata/_tab_index = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/SelectClassTab" unique_id=1331974694]

@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://dnwn75fwwq600"]
 
 [ext_resource type="Script" uid="uid://c6sgu6sth1eu1" path="res://play/levels/level.gd" id="1_fpxwp"]
+[ext_resource type="Script" uid="uid://cckqjjqv74g4g" path="res://utils/tool-button_level-template.gd" id="2_b8xfr"]
 [ext_resource type="Material" uid="uid://bng44fo6whcky" path="res://vfx/light-only_canvas-item-material.tres" id="2_fpxwp"]
 [ext_resource type="Texture2D" uid="uid://chcat6kgh1tb3" path="res://play/tile-atlases/hexagon-grid-cool.png" id="3_fpxwp"]
 [ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="4_j2kal"]
@@ -61,6 +62,7 @@ metadata/_edit_lock_ = true
 
 [node name="Directors" type="Node2D" parent="TileMapLayers" unique_id=440455703]
 unique_name_in_owner = true
+script = ExtResource("2_b8xfr")
 metadata/_edit_lock_ = true
 
 [node name="BaseTileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]

@@ -11,13 +11,7 @@ extends Node2D
 		nonemissive_modulate = v
 		update_nonemissive_modulate()
 		
-@export var start_red: bool = false:
-	set(v):
-		if start_red == false && v == true:
-			reveal_red()
-		elif start_red == true && v == false:
-			backdrop_red.modulate = Color.TRANSPARENT
-		start_red = v
+@export var start_red: bool = false
 
 @export var transition_to_color: Color
 @export var transition_time: float = 6.0
@@ -51,6 +45,8 @@ func update_nonemissive_modulate():
 		tween.tween_property(nonemissive, ^"modulate", nonemissive_modulate, transition_time)
 
 func reveal_red() -> Tween:
+	if not backdrop_red:
+		await backdrop_red.ready
 	return Juice.fade_in(backdrop_red, 6.0, Color.TRANSPARENT)
 
 func transition_to_red_and_start_particles() -> void:

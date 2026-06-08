@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://cwvxgdkgn01ib" path="res://music/gladiator ambient 1 rev 2.ogg" id="10_4c57u"]
 [ext_resource type="Texture2D" uid="uid://dvuqbrge3doql" path="res://menus/gladiator-godot-icon.png" id="10_ycdy4"]
 [ext_resource type="AudioStream" uid="uid://dlqufn83ohdsg" path="res://sfx/MenuBlip.wav" id="12_dg77c"]
+[ext_resource type="AudioStream" uid="uid://bfpr0xrhih4p5" path="res://music/Epic Battle Chiptune.mp3" id="12_w48qg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
 font_size = 8
@@ -49,8 +50,9 @@ splash_scene = ExtResource("2_h2yge")
 main_menu_scene = ExtResource("3_1bvp3")
 dev_main_menu_scene = ExtResource("2_0xm2m")
 load_to_developer_menu = false
-skip_splash = true
-levels = Array[String](["uid://b50441u03h6ll", "uid://d37cvlmrtp1ru", "uid://q7ym5mealfro", "uid://blegsn4xctlno", "uid://dgrrb1b2ary3k", "uid://bur0bodw1ibgu", "uid://ca1u1weh7rbc6", "uid://bj1n7ftclk3bp"])
+show_debug_scene_label = false
+show_project_version_label = false
+levels = Array[String](["uid://b50441u03h6ll", "uid://d37cvlmrtp1ru", "uid://q7ym5mealfro", "uid://blegsn4xctlno", "uid://dgrrb1b2ary3k", "uid://bur0bodw1ibgu", "uid://ca1u1weh7rbc6", "uid://bd1sit1vwgt6y", "uid://bj1n7ftclk3bp"])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=867431045]
 process_mode = 3
@@ -420,6 +422,11 @@ texture = ExtResource("10_ycdy4")
 
 [node name="Music_MenuLoop" type="AudioStreamPlayer" parent="." unique_id=843985129]
 stream = ExtResource("5_lquwl")
+bus = &"Music"
+parameters/looping = true
+
+[node name="Music_Vaillancourt" type="AudioStreamPlayer" parent="." unique_id=598347779]
+stream = ExtResource("12_w48qg")
 bus = &"Music"
 parameters/looping = true
 

@@ -10,6 +10,12 @@ func p(args):
 ## Defers the per-director turn taken logic to the next process frame.
 const DEFERRED_TURN_CHANGE: bool = true
 
+enum PlayMusic {
+	NONE,
+	TRACK_SHERMAN,
+	TRACK_VAILLANCOURT
+}
+
 #region Signals and Variables
 
 signal current_director_changed(director: Director)
@@ -17,6 +23,7 @@ signal current_director_changed(director: Director)
 @export var use_randomized_rotation_and_mirror: bool = true
 @export var use_scene_blocking_transition_on_exit: bool = true
 @export var fade_self_in: bool = false
+@export var play_music: PlayMusic = PlayMusic.NONE
 
 @export var base_tile_map_layer: TileMapLayer
 @export var tile_interactor: TileInteractor ## Used for detecting mouse input.
@@ -160,6 +167,19 @@ func _ready() -> void:
 	start_game.call_deferred()
 	if fade_self_in:
 		Juice.fade_in(self, Juice.FAST)
+		
+	if play_music != PlayMusic.NONE:
+		match play_music:
+			PlayMusic.TRACK_SHERMAN:
+				if not Main.get_instance().music_sherman.playing:
+					Main.play_sherman(true)
+				else:
+					Main.play_sherman(true)
+			PlayMusic.TRACK_VAILLANCOURT:
+				if not Main.get_instance().music_vaillancourt.playing:
+					Main.play_vaillancourt(true)
+				else:
+					Main.play_vaillancourt(true)
 
 func _exit_tree() -> void:
 	TargetFinder.clear_all_highlights() ## Fixes bug with not despawning these if exiting from the pause menu
