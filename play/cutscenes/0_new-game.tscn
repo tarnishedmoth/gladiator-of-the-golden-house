@@ -195,4 +195,13 @@ bbcode_enabled = true
 text = "[i]... the Inaugural Games now summons the strongest warriors to compete,  to delight the audience,  to indulge the Emperor,  and to earn honor among your fellow warriors ..."
 fit_content = true
 
+[node name="SkipButton" type="Button" parent="CanvasLayer" unique_id=1811026509]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
 [connection signal="finished" from="CanvasLayer/Control" to="." method="on_finished"]
+[connection signal="pressed" from="CanvasLayer/SkipButton" to="." method="skip"]

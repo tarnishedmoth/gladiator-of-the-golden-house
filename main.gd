@@ -178,7 +178,18 @@ static func register_level_progressed() -> void:
 	
 static func play_level(number: int) -> void:
 	assert(number < instance.levels.size(), "Out of bounds!")
-	change_scene_to_file(instance.levels[number])
+	
+	if instance.current_packed_scene.resource_path != instance.levels[number]:
+		## Not reloading a level
+		if instance.instanced_root is Cutscene or instance.instanced_root is Level:
+			if instance.instanced_root.use_scene_blocking_transition_on_exit:
+				change_scene_to_file(instance.levels[number], true)
+				return
+			else:
+				change_scene_to_file(instance.levels[number], false)
+				return
+	
+	change_scene_to_file(instance.levels[number], true)
 
 static func show_options_panel() -> void:
 	if not instance: return

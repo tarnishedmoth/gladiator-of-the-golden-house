@@ -15,6 +15,7 @@ const DEFERRED_TURN_CHANGE: bool = false
 signal current_director_changed(director: Director)
 
 @export var use_randomized_rotation_and_mirror: bool = true
+@export var use_scene_blocking_transition_on_exit: bool = true
 
 @export var base_tile_map_layer: TileMapLayer
 @export var tile_interactor: TileInteractor ## Used for detecting mouse input.

@@ -13,6 +13,7 @@ gradient = SubResource("Gradient_gktfq")
 [node name="ToVoid" type="Node2D" unique_id=770697048]
 script = ExtResource("1_e6n7q")
 kill_music_at_end = true
+use_scene_blocking_transition_on_exit = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1340486860]
 
@@ -31,10 +32,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_f8apf")
-iterative_duration = 12.0
+iterative_duration = 18.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1549537349]
-visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -65,9 +65,24 @@ offset_bottom = 174.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "[i]Nothing but darkness...
+text = "[i]Nothing but darkness..."
+fit_content = true
 
-                   ... that is, if you were fortunate."
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1741933149]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 160.0
+offset_top = -6.0
+offset_right = -72.0
+offset_bottom = 246.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[i]                   ... that is, if you were fortunate."
 fit_content = true
 
 [connection signal="finished" from="CanvasLayer/Control" to="." method="on_finished"]
