@@ -84,6 +84,7 @@ func knockback(actor: Actor) -> void:
 		## Move the actor in that direction
 		Level.get_hud().popup_status("Knockback", actor)
 		var target_tile: Vector2i = actor.current_tile_coords + (Facing.DIRECTIONS[direction] * distance)
+		var previous_coords: Vector2i = actor.current_tile_coords
 		var result: Vector2i = actor.move_along_path(target_tile)
 		
 		if debug:
@@ -94,7 +95,7 @@ func knockback(actor: Actor) -> void:
 			else:
 				p("Knocked %s to %s where it was halted by an obstruction." % [actor, result])
 		
-		if result != actor.previous_tile_coords:
+		if result != previous_coords:
 			await actor.animation_finished
 		
 		if result != target_tile:

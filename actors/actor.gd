@@ -345,7 +345,8 @@ func find_last_unobstructed_tile(a: Vector2i, b: Vector2i) -> Vector2i:
 			return a
 		else:
 			## Continuing... (check for obstruction is at end of method)
-			pass
+			if not Level.get_actor_at(b):
+				return b
 	else:
 		## check along that path for tiles passed over.
 		var tiles_passed_over: Array[Vector2i] = Cube.get_inline_tiles(a, b)

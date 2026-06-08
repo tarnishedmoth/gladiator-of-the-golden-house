@@ -18,9 +18,16 @@ func move_actor(actor: Actor) -> void:
 		exit()
 	else:
 		if debug: p("Moving to %s!" % _target)
-		actor.call_deferred("move_to_tile", _target)
+		var prev_coord: Vector2i = actor.current_tile_coords
+		var result: Vector2i
+		if not is_obstructable:
+			actor.move_to_tile(_target)
+			result = actor.current_tile_coords
+		else:
+			result = actor.move_along_path(_target)
 		
-		await actor.animation_finished
+		if result != prev_coord:
+			await actor.animation_finished
 		
 		Level.get_instance().on_actor_moved(actor)
 		exit()
