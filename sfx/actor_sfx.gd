@@ -93,8 +93,8 @@ const DEBOUNCE_TIME: float = 0.0167 # ha
 var _debouncer: Tween
 func _debouncing() -> bool:
 	if _debouncer:
-		return true
-	else:
-		_debouncer = create_tween()
-		_debouncer.tween_interval(DEBOUNCE_TIME)
-		return false
+		if _debouncer.is_running():
+			return true
+	_debouncer = create_tween()
+	_debouncer.tween_interval(DEBOUNCE_TIME)
+	return false
