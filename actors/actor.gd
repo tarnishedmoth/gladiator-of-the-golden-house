@@ -283,7 +283,7 @@ func snap_to_nearest_tile() -> void:
 	current_tile_coords = tile_coords
 
 
-func move_to_tile(coords: Vector2i, duration_of_movement: float = 0.5) -> void:
+func move_to_tile(coords: Vector2i, duration_of_movement: float = 0.4) -> void:
 	if not tile_map:
 		push_error("tile_map is invalid.")
 		return
