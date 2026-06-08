@@ -7,8 +7,9 @@
 [resource]
 script = ExtResource("2_0a7ng")
 pattern = Array[Vector2i]([Vector2i(0, 0)])
-aoe_pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
+aoe_pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0), Vector2i(0, -2), Vector2i(1, -2), Vector2i(2, -2), Vector2i(2, -1), Vector2i(2, 0), Vector2i(1, 1), Vector2i(0, 2), Vector2i(-1, 2), Vector2i(-2, 2), Vector2i(-2, 1), Vector2i(-2, 0), Vector2i(-1, -1)])
 status = ExtResource("3_ey1y5")
+allow_facing_after = true
 ui_title = "Boost Focus"
 ui_description = "Apply +3 Focus to affected."
 action_category = 2

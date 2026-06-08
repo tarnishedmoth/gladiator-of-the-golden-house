@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://by8vmqwwbt0p6" path="res://dialogue/strings_emperor-normal.tres" id="6_3yh5q"]
 
 [node name="emperor" type="Node2D" unique_id=1077291446 node_paths=PackedStringArray("one_liners")]
+visible = false
 z_index = 100
 script = ExtResource("1_63nwy")
 one_liners = NodePath("OneLiners")

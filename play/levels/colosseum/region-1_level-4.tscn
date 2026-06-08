@@ -8,6 +8,8 @@
 [ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="5_maw10"]
 [ext_resource type="Resource" uid="uid://nkaun0fgvwiu" path="res://actions/prefabs/toss-bomb.tres" id="6_0lbo5"]
 [ext_resource type="Resource" uid="uid://dkvnt5ik187cv" path="res://actions/prefabs/panic.tres" id="7_tx2wn"]
+[ext_resource type="PackedScene" uid="uid://cwiyis2d60hie" path="res://actors/enemies/dagger_grunt.tscn" id="8_jwfso"]
+[ext_resource type="PackedScene" uid="uid://riabfvwpcg63" path="res://actors/enemies/legionary.tscn" id="9_maw10"]
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_n35bw")]
 
@@ -15,26 +17,25 @@
 script = ExtResource("3_r0fbu")
 metadata/_custom_type_script = "uid://dwys5mwbuw85s"
 
-[node name="BombGrunt" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=2076353106 instance=ExtResource("4_irob3")]
-position = Vector2(93, -112)
-facing = 3
-
-[node name="BombGrunt2" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=1552185127 instance=ExtResource("4_irob3")]
-position = Vector2(-94, -183)
-facing = 3
-
-[node name="ShakyBombGrunt" parent="TileMapLayers/Directors/AIDirector" index="2" unique_id=1661159290 instance=ExtResource("4_irob3")]
+[node name="ShakyBombGrunt" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=1661159290 instance=ExtResource("4_irob3")]
 position = Vector2(289, -42)
 usable_actions = Array[ExtResource("4_jwfso")]([ExtResource("5_maw10"), ExtResource("6_0lbo5"), ExtResource("7_tx2wn")])
 ui_name = "Shaky Bomb Grunt"
 ui_description = "Hot potato! This one is shaky."
 facing = 4
 
+[node name="DaggerGrunt" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=1637427686 instance=ExtResource("8_jwfso")]
+position = Vector2(-283, 102)
+
+[node name="DaggerGrunt2" parent="TileMapLayers/Directors/AIDirector" index="2" unique_id=1353307601 instance=ExtResource("8_jwfso")]
+position = Vector2(97, 182)
+
+[node name="Legionary" parent="TileMapLayers/Directors/AIDirector" index="3" unique_id=84579020 instance=ExtResource("9_maw10")]
+position = Vector2(289, -116)
+facing = 4
+
 [node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("2_82maq")]
 position = Vector2(-93, 104)
 
 [node name="GridTint" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="3" unique_id=1487691829]
-visible = true
-
-[node name="PauseMenu" parent="CanvasLayer" parent_id_path=PackedInt32Array(1228620870) index="2" unique_id=339135320]
 visible = true

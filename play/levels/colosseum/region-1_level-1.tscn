@@ -3,9 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://dn85j1jxgk42" path="res://play/levels/colosseum/inheritable-level_region-1.tscn" id="1_ki2ix"]
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="2_k8ka1"]
 [ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="3_fys54"]
-[ext_resource type="Script" uid="uid://bab0cowpfbqgf" path="res://pick-ups/pickup_entry.gd" id="5_dmmgg"]
+[ext_resource type="Script" path="res://pick-ups/pickup_entry.gd" id="5_dmmgg"]
 [ext_resource type="PackedScene" uid="uid://c0cd2sq6is7ra" path="res://actors/emperor/emperor.tscn" id="5_exjhn"]
-[ext_resource type="PackedScene" uid="uid://diwkqfyr57888" path="res://actors/emperor/giant-tentacle.tscn" id="6_jecfi"]
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="10_ksudi"]
 
 [sub_resource type="Resource" id="Resource_p1prp"]
@@ -45,14 +44,3 @@ position = Vector2(57, 55)
 
 [node name="emperor" parent="." index="6" unique_id=1077291446 instance=ExtResource("5_exjhn")]
 position = Vector2(620, -18)
-
-[node name="[Temp Tentacle Demo]" type="Node2D" parent="." index="7" unique_id=1693592930]
-position = Vector2(370, 0)
-
-[node name="GiantTentacle" parent="[Temp Tentacle Demo]" index="0" unique_id=1916901696 instance=ExtResource("6_jecfi")]
-
-[node name="GiantTentacle2" parent="[Temp Tentacle Demo]" index="1" unique_id=857598535 instance=ExtResource("6_jecfi")]
-position = Vector2(0, -70)
-
-[node name="GiantTentacle3" parent="[Temp Tentacle Demo]" index="2" unique_id=1367987436 instance=ExtResource("6_jecfi")]
-position = Vector2(0, 70)
