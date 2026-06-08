@@ -8,6 +8,13 @@ enum VulnerabilityMethods {
 	TARGET = 2, ## Use the coordinate of the target point, where AoE is placed.
 }
 
+enum RefundTypes {
+	NONE = 0, ## No energy cost refunds.
+	ON_HIT = 1, ## When landing a hit on any enemy (even if damage is negated).
+	ON_KILL = 2, ## When having killed the enemy with this attack.
+	#PER_DAMAGE_POINT, ## TODO.... maybe
+}
+
 @export var damage: int
 
 @export var direct: bool = false ## If true, bypasses any first-layer status effects (Defense).
@@ -53,6 +60,10 @@ var mirrored_aoe_pattern: Array[Vector2i] ## Cached.
 ## In code, you can mirror a pattern using [method Facing.mirror].
 @export var split_choice: bool = false
 
+@export_group("Refundable Energy Cost")
+@export var refundable_cost: RefundTypes = RefundTypes.NONE
+@export var refundable_quantity: int = -1
+
 @export_group("Timing")
 ## How long to wait after playing FX, before dealing damage. Use for VFX/SFX timing.
 @export_range(0.1, 6.0, 0.1) var pre_attack_duration: float = 0.2
@@ -72,6 +83,11 @@ func enter(_from: ResourceState = null) -> void:
 			
 			var affected_actors: Array[Actor] = get_affected()
 			if not affected_actors.is_empty():
+				
+				if refundable_cost == RefundTypes.ON_HIT:
+					var pts: int = refundable_quantity if refundable_quantity != -1 else energy_cost
+					refund(pts)
+				
 				var modified_damage: int = get_damage()
 				_deal_damage(affected_actors,modified_damage)
 			else:
@@ -125,9 +141,11 @@ func get_damage() -> int:
 
 
 func _deal_damage(actors:Array[Actor],applied_damage:int) -> void:
+	var kills: int = 0
 	for actor in actors:
 		## Multiply the damage by directional vulnerability
 		var _damage: int = do_directional_calculation(actor, applied_damage)
+		var _actors_last_health = actor.health
 		
 		## Tell the actor to take damage.
 		## This goes through two layers of status effect hook callbacks,
@@ -141,6 +159,10 @@ func _deal_damage(actors:Array[Actor],applied_damage:int) -> void:
 			damage_result = Actor.DamageResult.new(0, actor.take_direct_damage(_damage, _actor))
 		
 		if damage_result.direct > 0:
+			if damage_result.direct >= _actors_last_health:
+				## Got a kill?
+				kills += 1
+			
 			## We dealt direct damage.
 			damage_result.direct = _actor._on_dealing_direct_damage(damage_result.direct)
 		
@@ -149,6 +171,11 @@ func _deal_damage(actors:Array[Actor],applied_damage:int) -> void:
 				)
 		
 		_actor._on_damage_dealt(damage_result)
+	
+	if refundable_cost == RefundTypes.ON_KILL and kills > 0:
+		var pts: int = refundable_quantity if refundable_quantity != -1 else energy_cost
+		refund(pts)
+
 
 ## See [member use_directional_vulnerability].
 func do_directional_calculation(target_actor: Actor, dmg: int) -> int:
@@ -168,3 +195,9 @@ func do_directional_calculation(target_actor: Actor, dmg: int) -> int:
 	if debug:
 		p("Directional calculation results: %s/%s (base/modified) actual ratio: %s" % [dmg, _damage, calc])
 	return _damage
+
+func refund(energy_points: int) -> void:
+	if not _actor:
+		return
+	if debug: p("Refunding %d energy cost to %s." % [energy_points, _actor])
+	_actor.add_energy(energy_points)
