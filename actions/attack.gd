@@ -62,7 +62,7 @@ var mirrored_aoe_pattern: Array[Vector2i] ## Cached.
 
 @export_group("Refundable Energy Cost")
 @export var refundable_cost: RefundTypes = RefundTypes.NONE
-@export var refundable_quantity: int = -1
+@export var refundable_quantity: int = -1 ## If -1, refunds the full [member energy_cost]. Otherwise, this quantity is used.
 
 @export_group("Timing")
 ## How long to wait after playing FX, before dealing damage. Use for VFX/SFX timing.
