@@ -35,7 +35,7 @@ health_bar = NodePath("health")
 speech_bubble = NodePath("SpeechBubble")
 ui_name = "Chariot"
 ui_description = "A fast-moving, lightly armored foe."
-max_health = 18
+max_health = 26
 
 [node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("9_6545d")]
 
