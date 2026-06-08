@@ -1,37 +1,11 @@
 [gd_scene format=3 uid="uid://blebayxrcyshs"]
 
+[ext_resource type="Texture2D" uid="uid://c6018a7665tg5" path="res://vfx/scrolling_clouds_texture.tres" id="1_gcxaq"]
 [ext_resource type="Script" uid="uid://cmp1yecwh4cjj" path="res://vfx/cloud_shadows.gd" id="1_qvuli"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s0v6d"]
 blend_mode = 2
 light_mode = 2
-
-[sub_resource type="Gradient" id="Gradient_xxuy2"]
-offsets = PackedFloat32Array(0.4636628, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_e1dpa"]
-noise_type = 3
-seed = 121
-frequency = 0.0045
-fractal_octaves = 3
-fractal_lacunarity = 1.685
-fractal_gain = 0.405
-fractal_weighted_strength = 0.46
-cellular_distance_function = 3
-cellular_return_type = 5
-domain_warp_enabled = true
-domain_warp_amplitude = 25.145
-domain_warp_fractal_octaves = 4
-domain_warp_fractal_lacunarity = 4.01
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rqo1g"]
-width = 2048
-height = 2048
-generate_mipmaps = false
-noise = SubResource("FastNoiseLite_e1dpa")
-color_ramp = SubResource("Gradient_xxuy2")
-seamless = true
-seamless_blend_skirt = 0.3
 
 [sub_resource type="Gradient" id="Gradient_e1dpa"]
 offsets = PackedFloat32Array(0.625, 0.91715115)
@@ -47,14 +21,33 @@ fill_to = Vector2(0, 0)
 [node name="ScrollingClouds" type="Node2D" unique_id=1473881948]
 
 [node name="CloudShadows" type="Sprite2D" parent="." unique_id=439792530]
-modulate = Color(1, 1, 1, 0.21568628)
-z_index = 999
+modulate = Color(1, 1, 1, 0.12156863)
+z_index = 3
+z_as_relative = false
 texture_filter = 2
 texture_repeat = 2
 material = SubResource("CanvasItemMaterial_s0v6d")
-scale = Vector2(1, 0.6)
-texture = SubResource("NoiseTexture2D_rqo1g")
+scale = Vector2(1.5, 0.9)
+skew = 0.27925268
+texture = ExtResource("1_gcxaq")
 script = ExtResource("1_qvuli")
+OFFSET_PER_SECOND = 7.0
+
+[node name="CloudShadowsLayer2" type="Sprite2D" parent="." unique_id=200566175]
+modulate = Color(1, 1, 1, 0.27058825)
+z_index = 3
+z_as_relative = false
+texture_filter = 2
+texture_repeat = 2
+material = SubResource("CanvasItemMaterial_s0v6d")
+scale = Vector2(3, 1.8)
+skew = -0.31415927
+texture = ExtResource("1_gcxaq")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 1024, 1024)
+script = ExtResource("1_qvuli")
+OFFSET_PER_SECOND = 1.5
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1758673492]
 editor_description = "This jawn makes the shadows only render inside it."
