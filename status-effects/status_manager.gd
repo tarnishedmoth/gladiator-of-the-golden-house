@@ -102,7 +102,7 @@ func on_status_applied(new_status: Status) -> void:
 			for i in new_status.effect_points:
 				play.tween_callback(actor.play_sfx.bind(sfx))
 				const variation: float = 0.03
-				play.tween_interval(randfn(Juice.BLITZ, variation))
+				play.tween_interval(randfn(0.08, variation))
 	
 	for status in status_effects:
 		status.on_status_applied(new_status)
