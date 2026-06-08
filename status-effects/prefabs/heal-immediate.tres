@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StatusAffectHealing" format=3 uid="uid://16756wki23ty"]
 
-[ext_resource type="Script" uid="uid://11x3dt65s2od" path="res://status-effects/affect_healing.gd" id="1_v3yvr"]
+[ext_resource type="Script" uid="uid://11x3dt65s2od" path="res://status-effects/heal.gd" id="1_v3yvr"]
 [ext_resource type="PackedScene" uid="uid://b8g0o8rwa4uvg" path="res://vfx/status_fx-buff.tscn" id="2_8r7bp"]
 
 [resource]

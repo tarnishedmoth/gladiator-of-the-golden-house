@@ -17,7 +17,7 @@ enum DamageHook {
 @export var factor: float = -1.0
 @export var operation: Operation = Operation.SUM
 @export var per_point: bool = true ## NOTE Don't use this with multiply or divide unless you know what you're doing.
-
+@export var expend_points_against_damage: bool = false ## If true, points are reduced 1:1 with modified damage.
 
 func on_deal_damage(damage: int) -> int:
 	if (not incoming_or_outgoing == DamageHook.DEALING) or direct_only:
@@ -55,9 +55,17 @@ func modify_damage(damage:int) -> int:
 		Operation.DIVIDE:
 			## NOTE Bad idea to use this with per-point
 			new_damage /= factor if not per_point else factor * effect_points
-			
-	on_after_hook()
+	
+	if expend_points_against_damage:
+		effect_points -= damage
+		
+		if effect_points >= 0:
+			on_after_hook(true) ## Successful sound effect
+		else:
+			remove_effect()
+			on_after_hook(false) ## Status broken sound effect
+	
+	else:
+		on_after_hook()
+	
 	return int(new_damage)
-
-func on_modify_damage() -> void:
-	pass

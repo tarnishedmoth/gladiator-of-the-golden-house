@@ -1,5 +1,6 @@
 class_name StatusDefense extends Status
 
+## DEPRECATED -- see [StatusAffectDamage]
 ## Base clase for defense based status effects
 ## NOTE Does not use [method on_after_hook].
 

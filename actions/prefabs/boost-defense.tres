@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_hrosa"]
 [ext_resource type="Script" uid="uid://k4rqrulmvg3t" path="res://actions/apply_status_pattern.gd" id="2_gtc71"]
-[ext_resource type="Resource" uid="uid://yrjd3nv2uamc" path="res://status-effects/prefabs/defense.tres" id="3_mkpi7"]
+[ext_resource type="Resource" uid="uid://xiiykq6dw38n" path="res://status-effects/prefabs/defense.tres" id="3_mkpi7"]
 
 [resource]
 script = ExtResource("2_gtc71")

@@ -3,10 +3,13 @@ class_name ActorSfxHandler extends Node2D
 signal attack_sound_finished
 
 enum Sounds {
+	NONE,
 	MOVE,
 	ATTACK,
 	BLOCK,
+	BLOCK_BROKEN,
 	GET_HIT,
+	GET_HIT_CRITICAL,
 	BUFF,
 	DEBUFF,
 }
@@ -14,7 +17,9 @@ enum Sounds {
 @onready var move: AudioStreamPlayer2D = $Move
 @onready var attack: AudioStreamPlayer2D = $Attack
 @onready var block: AudioStreamPlayer2D = $Block
+@onready var block_broken: AudioStreamPlayer2D = $BlockBroken
 @onready var get_hit: AudioStreamPlayer2D = $GetHit
+@onready var get_hit_critical: AudioStreamPlayer2D = $GetHitCritical
 @onready var buff: AudioStreamPlayer2D = $Buff
 @onready var debuff: AudioStreamPlayer2D = $Debuff
 
@@ -39,14 +44,18 @@ func play(sound: Sounds) -> void:
 			on_attack()
 		Sounds.BLOCK:
 			on_block()
+		Sounds.BLOCK_BROKEN:
+			on_block_broken()
 		Sounds.GET_HIT:
 			on_get_hit()
+		Sounds.GET_HIT_CRITICAL:
+			on_get_hit_critical()
 		Sounds.BUFF:
 			on_buff()
 		Sounds.DEBUFF:
 			on_debuff()
 		_:
-			push_error("Out of bounds.")
+			pass
 			
 ## For future use with different weapon/action sounds perhaps.
 func change_attack_sound(stream: AudioStream) -> void:
@@ -63,9 +72,15 @@ func on_attack() -> void:
 
 func on_block() -> void:
 	block.play()
+
+func on_block_broken() -> void:
+	block_broken.play()
 	
 func on_get_hit() -> void:
 	get_hit.play()
+
+func on_get_hit_critical() -> void:
+	get_hit_critical.play()
 	
 func on_buff() -> void:
 	buff.play()

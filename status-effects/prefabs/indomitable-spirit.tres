@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StatusReactApplyStatus" format=3 uid="uid://wxswtm3nqvmv"]
 
-[ext_resource type="Script" uid="uid://csj8h4c0pg640" path="res://status-effects/react_apply_status.gd" id="1_qfo70"]
+[ext_resource type="Script" uid="uid://csj8h4c0pg640" path="res://status-effects/react_apply-status.gd" id="1_qfo70"]
 [ext_resource type="Resource" uid="uid://cq0gsgomekfkm" path="res://status-effects/prefabs/strength.tres" id="2_db8jk"]
 [ext_resource type="PackedScene" uid="uid://b8g0o8rwa4uvg" path="res://vfx/status_fx-buff.tscn" id="3_db8jk"]
 

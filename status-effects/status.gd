@@ -54,8 +54,11 @@ enum Hook {
 		
 ## If true, uses BUFF and DEBUFF sound effects in the [ActorSfxHandler].
 ## If [member status_effect_category] is None, does not play any sfx.
+@export_group("SFX")
 @export var use_actor_sfx: bool = true
 @export var trigger_sfx_per_effect_point: bool = true
+@export var sfx_success: ActorSfxHandler.Sounds = ActorSfxHandler.Sounds.NONE ## e.g. defense fully negated damage
+@export var sfx_failure: ActorSfxHandler.Sounds = ActorSfxHandler.Sounds.NONE ## e.g. defense overwhelmed
 
 @export_group("VFX", "vfx_")
 @export var vfx_applied: PackedScene ## Spawned when applied to an actor. See [StatusManager].
@@ -102,11 +105,16 @@ func on_turn_end() -> void: ## Call super() if you override
 			OnStart.REMOVE_EFFECT:
 				remove_effect()
 			
-func on_after_hook() -> void: ## Call super() if you override
+func on_after_hook(successful: bool = true) -> void: ## Call super() if you override
 	if vfx_hook_triggered and _actor:
 		if _actor.vfx:
 			_actor.vfx.play_status(vfx_hook_triggered, self)
-			
+	
+	if successful and sfx_success:
+		_actor.play_sfx(sfx_success)
+	elif not successful and sfx_failure:
+		_actor.play_sfx(sfx_failure)
+	
 	match after_hook_behavior:
 		OnStart.SUBTRACT_ONE:
 			subtract_points(1)
