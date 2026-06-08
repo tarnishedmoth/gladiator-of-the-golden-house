@@ -8,8 +8,10 @@ class_name ActionAttackKnockback extends ActionAttack
 @export var distance: int = 1
 
 ## If true, attempts to calculate if the affected actor was facing the blast,
-## and not apply knockback if so. TODO
-@export var only_if_not_facing: bool = false
+## and not apply knockback if so. 
+#@export var only_if_not_facing: bool = false ## TODO
+#@export var only_if_damage_dealt: bool = false ## TODO
+#@export var only_if_direct_damage_dealt: bool = false ## TODO
 
 ## i.e. Stunned for being knocked into a wall
 @export var status_to_apply_if_knocked_into_obstacle: Status = STUN_STATUS
@@ -68,6 +70,10 @@ func enter(_from: ResourceState = null) -> void:
 	exit()
 
 func knockback(actor: Actor) -> void:
+	if not actor.is_alive():
+		if debug: p("Actor is dead, skipping knockback logic.")
+		return
+	
 	var direction: Facing.Cardinal
 	var source_tile: Vector2i
 	if use_directional_vulnerability == VulnerabilityMethods.TARGET and _target != actor.current_tile_coords:

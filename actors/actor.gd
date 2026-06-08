@@ -106,6 +106,7 @@ func get_status_effects() -> Array[Status]:
 	return status_effects
 
 ## Variable data
+var has_died: bool = false ## If this is true, we're currently trying to exit the tree or otherwise cease.
 var emit_actions_finished_signal: bool = false
 var current_tile_coords: Vector2i
 var previous_tile_coords: Vector2i
@@ -601,7 +602,9 @@ func apply_healing(amount: int, from: Actor = null) -> int:
 
 	return actual_amount
 
+func is_alive() -> bool: return (not has_died) and director
 func die() -> void:
+	has_died = true
 	if debug:
 		p("Died!")
 		

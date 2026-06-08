@@ -53,6 +53,10 @@ func move_actor(actor: Actor) -> void:
 
 
 func knockback(actor: Actor) -> void:
+	if not actor.is_alive():
+		if debug: p("Actor is dead, skipping knockback logic.")
+		return
+	
 	var direction: Facing.Cardinal
 	var source_tile: Vector2i = _actor.current_tile_coords
 	direction = Facing.get_direction_to_cell(_actor.tile_map, source_tile, actor.current_tile_coords)
