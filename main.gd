@@ -5,6 +5,7 @@ class_name Main extends Node
 ## Load the splash,
 ## then load the main menu.
 
+@warning_ignore("unused_signal")
 signal game_settings_changed
 
 static var VERSION:String:
@@ -180,8 +181,8 @@ func _on_go_to_dev_menu_button_pressed() -> void:
 	change_scene(dev_main_menu_scene)
 	
 	## HACK not really
-	instance.play_music_menu_loop(false)
-	instance.play_sherman(false)
+	play_music_menu_loop(false)
+	play_sherman(false)
 
 static var music_fade: Tween
 ## True to play + fade in, false to fade out + stop

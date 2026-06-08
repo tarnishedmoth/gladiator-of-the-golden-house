@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="StatusStunned" format=3 uid="uid://b38qdbmcp8g2n"]
+
+[ext_resource type="Script" uid="uid://dq814shnvq512" path="res://status-effects/stunned.gd" id="1_bngi6"]
+[ext_resource type="Texture2D" uid="uid://vheq1gpohft1" path="res://actions/ui-icons/icon_3-16.png" id="2_ojvqq"]
+[ext_resource type="PackedScene" uid="uid://dn6c0djtf3s2p" path="res://vfx/status_fx-stunned.tscn" id="2_v2ch4"]
+
+[resource]
+script = ExtResource("1_bngi6")
+on_start_behavior = 0
+on_end_behavior = 1
+only_react_to_actors_turn_notifs = true
+effect_points = 1
+ui_name = "Stunned"
+ui_description = "Player: +1 energy cost of Actions for this turn.\\nNPC: Can't take any Actions this turn."
+status_effect_category = 2
+ui_icon = ExtResource("2_ojvqq")
+use_actor_sfx = false
+trigger_sfx_per_effect_point = false
+vfx_hook_triggered = ExtResource("2_v2ch4")
+metadata/_custom_type_script = "uid://dq814shnvq512"

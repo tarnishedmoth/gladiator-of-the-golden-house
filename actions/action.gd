@@ -61,7 +61,14 @@ var ui_category: String: ## Returns a String from [member ACTION_CATEGORY_NAMES]
 
 #region Energy Cost
 #@export_group("Requirements")
-@export var energy_cost: int = 0
+@export var energy_cost: int = 0:
+	get:
+		if _actor:
+			var director = _actor.director as Player
+			if director:
+				return energy_cost + director.addtl_energy_cost
+		return energy_cost
+				
 var _energy_cost_requirement: ActionRequirementEnergy
 @export var is_obstructable: bool ##Will an action be blocked if an actor is on the tile
 

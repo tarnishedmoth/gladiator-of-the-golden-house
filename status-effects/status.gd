@@ -79,8 +79,11 @@ static func is_same_status(status_a: Status, status_b: Status) -> bool:
 func set_actor(actor:Actor) -> void:
 	self._actor = actor
 
+func _react_to_this_turn_notif() -> bool:
+	return (not only_react_to_actors_turn_notifs) or (only_react_to_actors_turn_notifs and _actor in Level.get_current_directors_actors())
+
 func on_turn_start() -> void: ## Call super() if you override
-	if (not only_react_to_actors_turn_notifs) or (only_react_to_actors_turn_notifs and _actor in Level.get_current_directors_actors()):
+	if _react_to_this_turn_notif():
 		match on_start_behavior:
 			OnStart.SUBTRACT_ONE:
 				subtract_points(1)
@@ -90,7 +93,7 @@ func on_turn_start() -> void: ## Call super() if you override
 				remove_effect()
 			
 func on_turn_end() -> void: ## Call super() if you override
-	if (not only_react_to_actors_turn_notifs) or (only_react_to_actors_turn_notifs and _actor in Level.get_current_directors_actors()):
+	if _react_to_this_turn_notif():
 		match on_end_behavior:
 			OnStart.SUBTRACT_ONE:
 				subtract_points(1)

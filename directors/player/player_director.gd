@@ -82,10 +82,14 @@ func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 
 	if VERBOSE: p("Setup done.")
 
+func take_turn() -> void:
+	## the super() of this method calls the status effects which would modify this value so we must do this first.
+	clear_addtl_energy_cost()
+	super()
 
 func _on_turn_started():
-	if VERBOSE: p("Player turn started")
-
+	if VERBOSE: p("Player turn started.")
+	
 	select_actor(actors.front())
 	draw_hand()
 	#hold_action(actions_in_hand.front())
@@ -279,6 +283,12 @@ func draw_hand(draw_count: int = hand_size):
 
 	for card in draw_count:
 		_draw_next_card()
+	
+	## HACK to get addtl_energy_cost to work,
+	## typically actions would have no other need to know the actor until they're ready to fire...
+	for card in actions_in_hand:
+		card.set_actor(selected_actor)
+		
 	refresh_hud_actions_and_stash()
 
 func refresh_hud_actions_and_stash() -> void:
@@ -471,3 +481,15 @@ func change_stance(new_stance_uid) -> void:
 			for card in new_stance.actions:
 				add_to_deck(card)
 				draw_deck.shuffle() ## NOTE we also are shuffling the deck when this is called.
+
+## Call to stun the player. Different behavior from [AIActor], where their action queue is cleared...
+## Typically called at the start of your turn by the status effect Stunned.
+var addtl_energy_cost: int = 0
+func stunned(_status: StatusStunned) -> void:
+	## Decrease energy this turn by 1 point.
+	addtl_energy_cost += 1
+	if VERBOSE:
+		p("Stunned--additional energy cost this turn is %d." % addtl_energy_cost)
+
+func clear_addtl_energy_cost() -> void:
+	addtl_energy_cost = 0

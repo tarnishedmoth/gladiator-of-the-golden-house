@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="6_42ui8"]
 [ext_resource type="Script" uid="uid://chptaheu3xjjl" path="res://actions/attack_knockback.gd" id="7_3ujy0"]
 [ext_resource type="Texture2D" uid="uid://bs8ywso6o5mlp" path="res://icon.svg" id="7_42ui8"]
+[ext_resource type="Resource" uid="uid://b38qdbmcp8g2n" path="res://status-effects/prefabs/stunned.tres" id="8_3ujy0"]
 
 [sub_resource type="Resource" id="Resource_x6pir"]
 script = ExtResource("7_3ujy0")

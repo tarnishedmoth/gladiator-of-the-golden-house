@@ -12,7 +12,9 @@ class_name ActionAttackKnockback extends ActionAttack
 @export var only_if_not_facing: bool = false
 
 ## i.e. Stunned for being knocked into a wall
-@export var status_to_apply_if_knocked_into_obstacle: Status
+@export var status_to_apply_if_knocked_into_obstacle: Status = STUN_STATUS
+
+const STUN_STATUS: StatusStunned = preload("uid://b38qdbmcp8g2n") ## For both Player and AI
 
 ## Simplify things for now too much work
 #enum DamageRequired {
@@ -92,12 +94,15 @@ func knockback(actor: Actor) -> void:
 			else:
 				p("Knocked %s to %s where it was halted by an obstruction." % [actor, result])
 		
+		if result != actor.previous_tile_coords:
+			await actor.animation_finished
+		
 		if result != target_tile:
 			## Hit an obstruction
 			on_hit_obstruction(actor, direction)
 		
 
-func on_hit_obstruction(actor: Actor, direction_of_travel: Facing.Cardinal) -> void:
+func on_hit_obstruction(actor: Actor, _direction_of_travel: Facing.Cardinal) -> void:
 	if status_to_apply_if_knocked_into_obstacle:
 		if debug:
 			p("Applying status %s to %s from being knocked into an obstruction." % [status_to_apply_if_knocked_into_obstacle, actor])
