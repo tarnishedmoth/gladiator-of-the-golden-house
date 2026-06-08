@@ -195,9 +195,3 @@ func do_directional_calculation(target_actor: Actor, dmg: int) -> int:
 	if debug:
 		p("Directional calculation results: %s/%s (base/modified) actual ratio: %s" % [dmg, _damage, calc])
 	return _damage
-
-func refund(energy_points: int) -> void:
-	if not _actor:
-		return
-	if debug: p("Refunding %d energy cost to %s." % [energy_points, _actor])
-	_actor.add_energy(energy_points)

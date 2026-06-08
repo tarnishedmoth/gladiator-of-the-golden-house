@@ -133,6 +133,13 @@ func exit() -> void:
 		next_state.set_target(_target)
 	super()
 
+
+func refund(energy_points: int) -> void:
+	if not _actor:
+		return
+	if debug: p("Refunding %d energy cost to %s." % [energy_points, _actor])
+	_actor.add_energy(energy_points)
+
 ## NOTICE NOT IMPLEMENTED
 ## NOTICE NOT IMPLEMENTED
 ## Each property is in absolute coordinates!

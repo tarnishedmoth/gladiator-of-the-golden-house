@@ -6,6 +6,8 @@
 
 [resource]
 script = ExtResource("2_uuefg")
+refundable_cost = 1
+refundable_quantity = 1
 pattern = Array[Vector2i]([Vector2i(0, -1)])
 ui_title = "Shield Charge"
 ui_description = "Move forward one tile. Knockback & refund 1 energy cost if occupied."
