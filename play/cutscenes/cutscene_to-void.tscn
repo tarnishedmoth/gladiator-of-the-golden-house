@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://bur0bodw1ibgu"]
+
+[ext_resource type="Script" uid="uid://by4v57tusbcnq" path="res://play/cutscenes/cutscene.gd" id="1_e6n7q"]
+[ext_resource type="Script" uid="uid://djxoplepbsxn5" path="res://play/cutscenes/iterative_reveal.gd" id="4_f8apf"]
+
+[sub_resource type="Gradient" id="Gradient_gktfq"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xwi8v"]
+gradient = SubResource("Gradient_gktfq")
+
+[node name="ToVoid" type="Node2D" unique_id=770697048]
+script = ExtResource("1_e6n7q")
+kill_music_at_end = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1340486860]
+
+[node name="BG" type="TextureRect" parent="CanvasLayer" unique_id=1679383094]
+offset_left = -282.0
+offset_top = -240.0
+offset_right = 1308.0
+offset_bottom = 734.0
+texture = SubResource("GradientTexture2D_xwi8v")
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1655640334]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_f8apf")
+iterative_duration = 12.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1549537349]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 23.0
+offset_top = -40.0
+offset_right = -24.0
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[i]This...   is   [/i]not  [i]death..."
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1045754797]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 160.0
+offset_top = -78.0
+offset_right = -72.0
+offset_bottom = 174.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[i]Nothing but darkness...
+
+                   ... that is, if you were fortunate."
+fit_content = true
+
+[connection signal="finished" from="CanvasLayer/Control" to="." method="on_finished"]

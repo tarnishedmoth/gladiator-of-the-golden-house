@@ -1,11 +1,42 @@
 class_name Cutscene extends Node2D
 
+enum PlayMusic {
+	NONE,
+	TRACK_SHERMAN,
+}
+
+@export var time_left_to_skip: float = 3.0
+
+@export var play_music: PlayMusic = PlayMusic.NONE
+@export var only_play_track_if_not_playing: bool = true
+
 @export var kill_music_at_end: bool = false
+
+func _ready() -> void:
+	var t: Tween = create_tween()
+	t.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	t.tween_property(self, ^"time_left_to_skip", -0.01, time_left_to_skip)
+	
+	match play_music:
+		PlayMusic.TRACK_SHERMAN:
+			if only_play_track_if_not_playing:
+				if not Main.get_instance().music_sherman.playing:
+					Main.play_sherman(true)
+			else:
+				Main.play_sherman(true)
 
 func on_finished() -> void:
 	if kill_music_at_end:
 		Main.play_music_menu_loop(false)
+		match play_music:
+			PlayMusic.TRACK_SHERMAN:
+				Main.play_sherman(false)
 		
 	await Juice.fade_out(self, Juice.SMOOTH, Color.BLACK).finished
 	Main.register_level_progressed()
 	Main.load_latest_level()
+
+
+func go_to_main_menu() -> void:
+	if not time_left_to_skip > 0.0:
+		Main.go_to_main_menu()

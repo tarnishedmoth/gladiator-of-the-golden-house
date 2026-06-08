@@ -57,3 +57,9 @@ func get_string_time() -> String:
 		return "%02d:%02d:%02.3d" % [hours, minutes, seconds]
 	else:
 		return "%02d:%02.3d" % [minutes, seconds]
+
+func get_verbose_string_time() -> String:
+	if hours > 0:
+		return "%02d hours, %02d minutes and %02.3d seconds" % [hours, minutes, seconds]
+	else:
+		return "%02d minutes and %02.3d seconds" % [minutes, seconds]
