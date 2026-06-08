@@ -15,7 +15,6 @@
 [sub_resource type="Resource" id="Resource_5brh6"]
 script = ExtResource("4_vctl3")
 damage = 4
-can_damage_teammates = true
 pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
 ui_title = "Light Attack"
 energy_cost = 1
@@ -24,7 +23,6 @@ metadata/_custom_type_script = "uid://dwk83a2nxfweb"
 [sub_resource type="Resource" id="Resource_wvmyn"]
 script = ExtResource("4_vctl3")
 damage = 10
-can_damage_teammates = true
 pattern = Array[Vector2i]([Vector2i(0, -1)])
 ui_title = "Heavy Attack"
 ui_description = "Attack one tile "

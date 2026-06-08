@@ -7,17 +7,24 @@
 [ext_resource type="PackedScene" uid="uid://cp7oafdqv5rpl" path="res://actors/enemies/legate/legate.tscn" id="4_ubmqr"]
 [ext_resource type="PackedScene" uid="uid://do8k4mne34fsw" path="res://actors/enemies/chariot/chariot.tscn" id="5_ubmqr"]
 [ext_resource type="PackedScene" uid="uid://cwiyis2d60hie" path="res://actors/enemies/dagger_grunt.tscn" id="5_ue4m8"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="6_pddup"]
+[ext_resource type="Resource" uid="uid://cw0gv31gp47uu" path="res://actions/prefabs/chariot_ram.tres" id="7_g3odh"]
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="7_tx16w"]
+[ext_resource type="Resource" uid="uid://2fcekc26yjbj" path="res://actions/prefabs/chariot_joust.tres" id="8_16kq8"]
 [ext_resource type="Script" path="res://pick-ups/pickup_entry.gd" id="8_tx16w"]
+[ext_resource type="Resource" uid="uid://bsef8hoia6dkr" path="res://actions/prefabs/move_max_distance.tres" id="9_fihtr"]
 [ext_resource type="Resource" uid="uid://4dlrnlkmxkuy" path="res://pick-ups/created_pickups/pickup_data/heal_gradual.tres" id="9_vps2k"]
 [ext_resource type="Resource" uid="uid://bq8t0b6fk1e7n" path="res://pick-ups/created_pickups/pickup_data/heal_10.tres" id="10_a44cs"]
+[ext_resource type="Resource" uid="uid://cior70oyylpmi" path="res://actions/prefabs/grunt_heavy_attack.tres" id="10_t8oev"]
 [ext_resource type="Resource" uid="uid://nkaun0fgvwiu" path="res://actions/prefabs/toss-bomb.tres" id="11_a44cs"]
+[ext_resource type="Resource" uid="uid://bxvvng0ducbc3" path="res://actions/prefabs/do-nothing.tres" id="11_vr3yy"]
 [ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="12_3xddb"]
 [ext_resource type="Texture2D" uid="uid://drr6yyr6jq42y" path="res://pick-ups/created_pickups/pickup_data/sprite.png" id="13_3xddb"]
 
 [sub_resource type="Resource" id="Resource_3xddb"]
 script = ExtResource("8_tx16w")
 data = ExtResource("9_vps2k")
+weight = 0.75
 
 [sub_resource type="Resource" id="Resource_7ht3u"]
 script = ExtResource("8_tx16w")
@@ -33,6 +40,7 @@ metadata/_custom_type_script = "uid://80k033ktqcl0"
 [sub_resource type="Resource" id="Resource_nbvby"]
 script = ExtResource("8_tx16w")
 data = SubResource("Resource_w3u8u")
+weight = 0.75
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_yjv1b")]
 script = ExtResource("2_4cjqa")
@@ -50,12 +58,14 @@ metadata/_custom_type_script = "uid://dwys5mwbuw85s"
 
 [node name="Legate" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=576080733 instance=ExtResource("4_ubmqr")]
 position = Vector2(190, -4)
+cond_team_count = 1
 drop_chance = 0.5
 facing = 4
 
 [node name="Chariot" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=84579020 instance=ExtResource("5_ubmqr")]
 position = Vector2(185, -69)
 drop_chance = 0.75
+usable_actions = Array[ExtResource("6_pddup")]([ExtResource("7_g3odh"), ExtResource("8_16kq8"), ExtResource("9_fihtr"), ExtResource("10_t8oev"), ExtResource("11_vr3yy")])
 facing = 4
 
 [node name="DaggerGrunt" parent="TileMapLayers/Directors/AIDirector" index="2" unique_id=1637427686 instance=ExtResource("5_ue4m8")]

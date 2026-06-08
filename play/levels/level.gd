@@ -8,7 +8,7 @@ func p(args):
 	if VERBOSE: print_rich("[bgcolor=red][color=white]", "Level: ", args)
 
 ## Defers the per-director turn taken logic to the next process frame.
-const DEFERRED_TURN_CHANGE: bool = false
+const DEFERRED_TURN_CHANGE: bool = true
 
 #region Signals and Variables
 
@@ -16,6 +16,7 @@ signal current_director_changed(director: Director)
 
 @export var use_randomized_rotation_and_mirror: bool = true
 @export var use_scene_blocking_transition_on_exit: bool = true
+@export var fade_self_in: bool = false
 
 @export var base_tile_map_layer: TileMapLayer
 @export var tile_interactor: TileInteractor ## Used for detecting mouse input.
@@ -151,10 +152,14 @@ static func get_starting_facing(original: Facing.Cardinal) -> Facing.Cardinal:
 
 func _enter_tree() -> void:
 	instance = self
+	if fade_self_in:
+		self.modulate = Color.TRANSPARENT
 
 func _ready() -> void:
 	p("Ready, setting up game...")
 	start_game.call_deferred()
+	if fade_self_in:
+		Juice.fade_in(self, Juice.FAST)
 
 func _exit_tree() -> void:
 	TargetFinder.clear_all_highlights() ## Fixes bug with not despawning these if exiting from the pause menu

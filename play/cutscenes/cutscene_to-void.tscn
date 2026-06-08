@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bur0bodw1ibgu"]
 
 [ext_resource type="Script" uid="uid://by4v57tusbcnq" path="res://play/cutscenes/cutscene.gd" id="1_e6n7q"]
+[ext_resource type="PackedScene" uid="uid://ua1ksh0d8wqk" path="res://play/levels/colosseum/rune_particles_v2.tscn" id="3_tfepe"]
 [ext_resource type="Script" uid="uid://djxoplepbsxn5" path="res://play/cutscenes/iterative_reveal.gd" id="4_f8apf"]
 
 [sub_resource type="Gradient" id="Gradient_gktfq"]
@@ -12,7 +13,7 @@ gradient = SubResource("Gradient_gktfq")
 
 [node name="ToVoid" type="Node2D" unique_id=770697048]
 script = ExtResource("1_e6n7q")
-kill_music_at_end = true
+play_music = 1
 use_scene_blocking_transition_on_exit = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1340486860]
@@ -35,6 +36,7 @@ script = ExtResource("4_f8apf")
 iterative_duration = 18.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1549537349]
+visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -69,7 +71,7 @@ text = "[i]Nothing but darkness..."
 fit_content = true
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1741933149]
-visible = false
+clip_contents = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -84,5 +86,10 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[i]                   ... that is, if you were fortunate."
 fit_content = true
+
+[node name="RuneParticles" parent="CanvasLayer/Control/RichTextLabel3" unique_id=936515396 instance=ExtResource("3_tfepe")]
+modulate = Color(0.15532124, 0.16039401, 0.1892136, 1)
+position = Vector2(348, 24)
+emitting = true
 
 [connection signal="finished" from="CanvasLayer/Control" to="." method="on_finished"]

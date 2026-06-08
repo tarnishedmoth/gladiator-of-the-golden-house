@@ -3,6 +3,7 @@ extends Control
 signal finished
 
 @export_range(4.0, 300.0, 1.0, "or_greater", "suffix:seconds") var iterative_duration: float = 20.0 ## Total playtime.
+@export var fade_last_out: bool = true
 
 var nodes: Array[CanvasItem] = []
 
@@ -46,6 +47,8 @@ func _on_iterative_tick() -> void:
 	print("iterative tick")
 	iter_current += 1
 	
+	var last_one: bool = iter_current + 1 >= nodes.size()
+	
 	var fade_time:float = tick_interval / 8.0
 	var clear_time:float = fade_time
 	var remainder:float = tick_interval - clear_time - (fade_time * 2)
@@ -59,7 +62,10 @@ func _on_iterative_tick() -> void:
 	## Show time
 	tween.tween_interval(remainder)
 	## Fade Out
-	tween.tween_property(ci, ^"modulate", Color.TRANSPARENT, fade_time)
+	if not fade_last_out and last_one:
+		pass
+	else:
+		tween.tween_property(ci, ^"modulate", Color.TRANSPARENT, fade_time)
 	## Clear time
 	## (do nothing, tween is finished)
 	ci.show()

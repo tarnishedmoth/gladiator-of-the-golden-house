@@ -3,25 +3,88 @@
 [ext_resource type="PackedScene" uid="uid://dnwn75fwwq600" path="res://play/levels/inheritable-level.tscn" id="1_0wo7v"]
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="2_qoyf6"]
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="3_1gnf7"]
+[ext_resource type="PackedScene" uid="uid://bgltwsebcssa7" path="res://actors/enemies/chariot/chariot_headless.tscn" id="3_e8qk0"]
 [ext_resource type="PackedScene" uid="uid://c61s2rc1qc6vp" path="res://actors/enemies/void_grunt.tscn" id="3_qoyf6"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="4_xn458"]
+[ext_resource type="Resource" uid="uid://bsef8hoia6dkr" path="res://actions/prefabs/move_max_distance.tres" id="5_t2l6x"]
+[ext_resource type="Script" path="res://pick-ups/pickup_entry.gd" id="5_tka6d"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="6_e8qk0"]
+[ext_resource type="Resource" uid="uid://cior70oyylpmi" path="res://actions/prefabs/grunt_heavy_attack.tres" id="6_eawp7"]
+[ext_resource type="Resource" uid="uid://c5srl64r60fwn" path="res://actions/prefabs/demigod_slash.tres" id="6_y6ptc"]
+[ext_resource type="Script" uid="uid://cwjlhkoayrvtm" path="res://actions/action_do-nothing.gd" id="8_ooi70"]
+[ext_resource type="Texture2D" uid="uid://bevn7nwcab4e5" path="res://actions/ui-icons/weapon_sprite_greatsword.png" id="8_tka6d"]
+[ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="9_c48y0"]
+[ext_resource type="Resource" uid="uid://b34xqoxtpxt5w" path="res://actions/prefabs/demigod_roar.tres" id="9_tka6d"]
+[ext_resource type="AudioStream" uid="uid://bxex4wkby0uyp" path="res://sfx/eldritch_4.ogg" id="16_g8kll"]
+
+[sub_resource type="Resource" id="Resource_5k5fe"]
+script = ExtResource("8_ooi70")
+metadata/_custom_type_script = "uid://cwjlhkoayrvtm"
+
+[sub_resource type="Resource" id="Resource_ubf63"]
+script = ExtResource("9_c48y0")
+pick_up_action = ExtResource("6_y6ptc")
+ui_name = "Demigod's Weapon"
+ui_description = "Gain a demigod's ability."
+texture = ExtResource("8_tka6d")
+metadata/_custom_type_script = "uid://80k033ktqcl0"
+
+[sub_resource type="Resource" id="Resource_xn458"]
+script = ExtResource("5_tka6d")
+data = SubResource("Resource_ubf63")
+
+[sub_resource type="Resource" id="Resource_e8qk0"]
+script = ExtResource("9_c48y0")
+pick_up_action = ExtResource("9_tka6d")
+ui_name = "Demigod's Weapon"
+ui_description = "Gain a demigod's ability."
+texture = ExtResource("8_tka6d")
+metadata/_custom_type_script = "uid://80k033ktqcl0"
+
+[sub_resource type="Resource" id="Resource_q07th"]
+script = ExtResource("5_tka6d")
+data = SubResource("Resource_e8qk0")
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_0wo7v")]
+fade_self_in = true
 
 [node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=1373896942]
 script = ExtResource("2_qoyf6")
 metadata/_custom_type_script = "uid://dwys5mwbuw85s"
 
-[node name="VoidGrunt" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=612736880 instance=ExtResource("3_qoyf6")]
-position = Vector2(-186, -155)
+[node name="Chariot" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=84579020 instance=ExtResource("3_e8qk0")]
+position = Vector2(-95, 191)
+drop_chance = 1.0
+usable_actions = Array[ExtResource("4_xn458")]([ExtResource("5_t2l6x"), ExtResource("6_eawp7"), SubResource("Resource_5k5fe")])
 
-[node name="VoidGrunt2" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=1318065200 instance=ExtResource("3_qoyf6")]
+[node name="Chariot2" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=1336949797 instance=ExtResource("3_e8qk0")]
+position = Vector2(284, -31)
+drop_chance = 1.0
+usable_actions = Array[ExtResource("4_xn458")]([ExtResource("5_t2l6x"), ExtResource("6_eawp7"), SubResource("Resource_5k5fe")])
+facing = 4
+
+[node name="VoidGrunt" parent="TileMapLayers/Directors/AIDirector" index="2" unique_id=612736880 instance=ExtResource("3_qoyf6")]
+position = Vector2(-186, -155)
+drop_chance = 1.0
+
+[node name="VoidGrunt2" parent="TileMapLayers/Directors/AIDirector" index="3" unique_id=1318065200 instance=ExtResource("3_qoyf6")]
 position = Vector2(196, -148)
 
-[node name="VoidGrunt3" parent="TileMapLayers/Directors/AIDirector" index="2" unique_id=87440535 instance=ExtResource("3_qoyf6")]
+[node name="VoidGrunt3" parent="TileMapLayers/Directors/AIDirector" index="4" unique_id=87440535 instance=ExtResource("3_qoyf6")]
 position = Vector2(189, 142)
+drop_chance = 1.0
 
-[node name="VoidGrunt4" parent="TileMapLayers/Directors/AIDirector" index="3" unique_id=851972756 instance=ExtResource("3_qoyf6")]
+[node name="VoidGrunt4" parent="TileMapLayers/Directors/AIDirector" index="5" unique_id=851972756 instance=ExtResource("3_qoyf6")]
 position = Vector2(-187, 147)
 
 [node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("3_1gnf7")]
 position = Vector2(-1, -1)
+
+[node name="PickUpManager" parent="." index="1" unique_id=490287025]
+pickup_pool = Array[ExtResource("5_tka6d")]([SubResource("Resource_xn458"), SubResource("Resource_q07th")])
+
+[node name="Specialsfx" type="AudioStreamPlayer" parent="." index="6" unique_id=1251976835]
+stream = ExtResource("16_g8kll")
+volume_db = -3.0
+autoplay = true
+bus = &"Sfx"
