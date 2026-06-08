@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bfrkl4plv2ty7" path="res://menus/camera_mouse_movement_option_button.gd" id="8_efxa6"]
 [ext_resource type="Script" uid="uid://n3wocoqn040k" path="res://menus/confirm_page.gd" id="8_kek77"]
 [ext_resource type="AudioStream" uid="uid://cwvxgdkgn01ib" path="res://music/gladiator ambient 1 rev 2.ogg" id="10_4c57u"]
+[ext_resource type="Texture2D" uid="uid://dvuqbrge3doql" path="res://menus/gladiator-godot-icon.png" id="10_ycdy4"]
 [ext_resource type="AudioStream" uid="uid://dlqufn83ohdsg" path="res://sfx/MenuBlip.wav" id="12_dg77c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
@@ -23,6 +24,18 @@ colors = PackedColorArray(0.6901961, 0.6666667, 0.3254902, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kek77"]
 gradient = SubResource("Gradient_5vw27")
 height = 4
+
+[sub_resource type="Gradient" id="Gradient_dg77c"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.07704918, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.20061699, 0.09688636, 0.07499143, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ycdy4"]
+gradient = SubResource("Gradient_dg77c")
+width = 980
+height = 560
+fill = 1
+fill_from = Vector2(0.18803419, 1)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ycdy4"]
 random_pitch = 1.0472941
@@ -358,6 +371,51 @@ text = "Cancel"
 layout_mode = 2
 theme_type_variation = &"BigButton"
 text = "Confirm"
+
+[node name="FADE" type="TextureRect" parent="CanvasLayer" unique_id=1965465048]
+unique_name_in_owner = true
+light_mask = 0
+z_index = 99
+z_as_relative = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.47300002
+anchor_right = 0.5
+anchor_bottom = 0.47300002
+offset_left = -640.0
+offset_top = -345.42
+offset_right = 640.0
+offset_bottom = 374.58
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_ycdy4")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FADE" unique_id=1915003621]
+modulate = Color(1, 1, 1, 0.06666667)
+light_mask = 0
+z_index = 100
+z_as_relative = false
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 75.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("10_ycdy4")
 
 [node name="Music_MenuLoop" type="AudioStreamPlayer" parent="." unique_id=843985129]
 stream = ExtResource("5_lquwl")

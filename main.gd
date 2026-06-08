@@ -7,6 +7,7 @@ class_name Main extends Node
 
 @warning_ignore("unused_signal")
 signal game_settings_changed
+signal change_scene_transition_completed
 
 static var VERSION:String:
 	get:
@@ -46,6 +47,8 @@ var current_packed_scene: PackedScene ## Set each time [method change_scene] is 
 
 @onready var blip_neutral: AudioStreamPlayer = $Blip_Neutral
 
+@onready var fade: TextureRect = %FADE ## Overlays the entire screen for scene transitions
+
 ## Static instance, we should only have one Main in the scene tree at any time.
 static var instance: Main:
 	set(value):
@@ -80,29 +83,40 @@ func _ready() -> void:
 		project_version_label.show()
 	else:
 		project_version_label.hide()
-		
+	
+	_setup_fade_overlay()
 	music_menu_loop.volume_linear = 0.0
 	
 	l("GLADIATOR OF THE GOLDEN HOUSE %s" % [VERSION])
 	if not skip_splash:
-		change_scene(splash_scene)
+		change_scene(splash_scene, false)
 		assert(instanced_root is SplashMenu)
 		await instanced_root.finished
 	
 	if load_to_developer_menu:
 		change_scene(dev_main_menu_scene)
 	else:
-		change_scene(main_menu_scene)
+		change_scene(main_menu_scene, false)
 		
 static func reload_current_scene() -> void:
-	change_scene(get_instance().current_packed_scene)
+	change_scene(get_instance().current_packed_scene, true)
 	
-static func change_scene(packed_scene: PackedScene) -> void:
-	get_instance()._change_scene(packed_scene)
+static func change_scene(packed_scene: PackedScene, use_transition_overlay: bool = true) -> void:
+	var _inst = get_instance()
+	if use_transition_overlay: await _inst.block().finished
+	_inst._change_scene(packed_scene)
+	if use_transition_overlay: await _inst.unblock().finished
+	_inst.change_scene_transition_completed.emit()
 
-static func change_scene_to_file(filepath: String) -> void:
+static func change_scene_to_file(filepath: String, use_transition_overlay: bool = true) -> void:
+	var _inst = get_instance()
+	if use_transition_overlay: await _inst.block().finished
+	
 	var scene: PackedScene = load(filepath)
-	change_scene(scene)
+	_inst._change_scene(scene)
+	
+	if use_transition_overlay: await _inst.unblock().finished
+	_inst.change_scene_transition_completed.emit()
 
 ## Prints the orphaned nodes to the console, if there are any.
 func _check_print_orphans(msg: String) -> void:
@@ -228,3 +242,49 @@ static func play_sherman(playing: bool) -> void: ## true to play, false to fade 
 ## Play a sfx blip.
 static func sfx_blip() -> void:
 	instance.blip_neutral.play()
+
+
+## Fade overlay
+
+## initial state
+func _setup_fade_overlay() -> void:
+	if not fade:
+		return
+	## Animations don't work well with Loading as it'll hitch
+	#const SPEED: float = 4.0
+	#var t: Tween = fade.create_tween()
+	#t.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	#t.set_trans(Tween.TRANS_SINE)
+	#t.tween_property(fade, ^"scale", Vector2(1.25, 1.25), SPEED/2.0)
+	#t.tween_property(fade, ^"scale", Vector2(1, 1), SPEED/2.0)
+	#t.set_loops()
+	
+	fade.modulate = Color.TRANSPARENT
+	fade.hide()
+
+var _blocking: Tween
+## Blocks the screen with an overlay.
+## The signal returned emits at the end of the fade animation.
+func block() -> Tween:
+	if _blocking:
+		_blocking.kill()
+	fade.show()
+	_blocking = create_tween()
+	_blocking.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	_blocking.set_trans(Tween.TRANS_CUBIC)
+	_blocking.tween_property(fade, ^"modulate", Color.WHITE, Juice.SMOOTH)
+	_blocking.tween_interval(1.0/30.0)
+	return _blocking
+
+## Clears the screen from the overlay.
+## The signal returned emits at the end of the fade animation.
+func unblock() -> Tween:
+	if _blocking:
+		_blocking.kill()
+	_blocking = create_tween()
+	_blocking.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	_blocking.set_trans(Tween.TRANS_CUBIC)
+	_blocking.tween_property(fade, ^"modulate", Color.TRANSPARENT, Juice.SMOOTH)
+	_blocking.tween_callback(fade.hide)
+	_blocking.tween_interval(1.0/30.0)
+	return _blocking
