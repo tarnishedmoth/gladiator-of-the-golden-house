@@ -12,6 +12,7 @@ enum Sounds {
 	GET_HIT_CRITICAL,
 	BUFF,
 	DEBUFF,
+	STANCE_CHANGE,
 }
 
 @onready var move: AudioStreamPlayer2D = $Move
@@ -22,6 +23,7 @@ enum Sounds {
 @onready var get_hit_critical: AudioStreamPlayer2D = $GetHitCritical
 @onready var buff: AudioStreamPlayer2D = $Buff
 @onready var debuff: AudioStreamPlayer2D = $Debuff
+@onready var stance_change: AudioStreamPlayer2D = $StanceChange
 
 func _ready() -> void:
 	var parent = get_parent()
@@ -54,6 +56,8 @@ func play(sound: Sounds) -> void:
 			on_buff()
 		Sounds.DEBUFF:
 			on_debuff()
+		Sounds.STANCE_CHANGE:
+			on_stance_change()
 		_:
 			pass
 			
@@ -88,6 +92,9 @@ func on_buff() -> void:
 	
 func on_debuff() -> void:
 	debuff.play()
+	
+func on_stance_change() -> void:
+	stance_change.play()
 
 const DEBOUNCE_TIME: float = 0.0167 # ha
 var _debouncer: Tween

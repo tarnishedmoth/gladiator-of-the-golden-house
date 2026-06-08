@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://ddaxnxnpkbhrg" path="res://sfx/guard_broken.wav" id="11_ptrhp"]
 [ext_resource type="AudioStream" uid="uid://carpxxasddeyi" path="res://sfx/hemorrhage.wav" id="11_vensv"]
 [ext_resource type="AudioStream" uid="uid://c5xysqu5wdx76" path="res://sfx/Debuff.wav" id="12_h0c5d"]
+[ext_resource type="AudioStream" uid="uid://catt1tise3xbb" path="res://sfx/player-pickup-item.wav" id="16_vensv"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dugws"]
 random_pitch = 1.0905077
@@ -65,6 +66,12 @@ random_volume_offset_db = 0.5
 streams_count = 1
 stream_0/stream = ExtResource("12_h0c5d")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_b5oda"]
+random_pitch = 1.0412621
+random_volume_offset_db = 0.5
+streams_count = 1
+stream_0/stream = ExtResource("16_vensv")
+
 [node name="ActorSfx" type="Node2D" unique_id=1664019728]
 script = ExtResource("1_dugws")
 
@@ -108,5 +115,10 @@ bus = &"Sfx"
 
 [node name="Debuff" type="AudioStreamPlayer2D" parent="." unique_id=1065229989]
 stream = SubResource("AudioStreamRandomizer_rwaig")
+max_polyphony = 2
+bus = &"Sfx"
+
+[node name="StanceChange" type="AudioStreamPlayer2D" parent="." unique_id=969544986]
+stream = SubResource("AudioStreamRandomizer_b5oda")
 max_polyphony = 2
 bus = &"Sfx"
