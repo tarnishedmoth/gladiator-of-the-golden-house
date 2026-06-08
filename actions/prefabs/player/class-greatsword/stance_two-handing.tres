@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Stance" format=3 uid="uid://duclb7twecrgo"]
 
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="1_5xha5"]
-[ext_resource type="Resource" uid="uid://vn88eutmdobx" path="res://actions/prefabs/player/class-greatsword/class-greatsword_colossal-strike.tres" id="2_8bqpl"]
+[ext_resource type="Resource" uid="uid://dm6chyx75dgx5" path="res://actions/prefabs/player/class-greatsword/class-greatsword_colossal-strike.tres" id="2_8bqpl"]
 [ext_resource type="Resource" uid="uid://dtonjn271oon7" path="res://actions/prefabs/player/class-greatsword/class-greatsword_hilt-punch.tres" id="3_tbur6"]
 [ext_resource type="Resource" uid="uid://blklld7qypcof" path="res://actions/prefabs/player/class-greatsword/class-greatsword_feint.tres" id="4_brcrg"]
 [ext_resource type="Resource" uid="uid://cl45udxa4lecd" path="res://actions/prefabs/player/class-greatsword/stance-change_two-handing.tres" id="5_8bqpl"]

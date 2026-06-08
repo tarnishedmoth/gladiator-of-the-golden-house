@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="ActionAttack" format=3 uid="uid://vn88eutmdobx"]
+[gd_resource type="Resource" script_class="ActionAttackKnockback" format=3 uid="uid://dm6chyx75dgx5"]
 
 [ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_chbes"]
-[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="2_nipbm"]
+[ext_resource type="Script" uid="uid://chptaheu3xjjl" path="res://actions/attack_knockback.gd" id="2_nipbm"]
+[ext_resource type="Resource" uid="uid://b38qdbmcp8g2n" path="res://status-effects/prefabs/stunned.tres" id="3_7kbt0"]
 
 [resource]
 script = ExtResource("2_nipbm")
 damage = 12
 can_damage_teammates = true
 pattern = Array[Vector2i]([Vector2i(0, -1)])
+aoe_pattern = Array[Vector2i]([Vector2i(0, 0)])
 ui_title = "Colossal Strike"
-ui_description = "2x damage vs Defense. TODO
-If any direct damage is dealt, also Knockback one tile. TODO."
+ui_description = "Knocks back a target one tile."
 energy_cost = 2
-metadata/_custom_type_script = "uid://dwk83a2nxfweb"
+metadata/_custom_type_script = "uid://chptaheu3xjjl"
