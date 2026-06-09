@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="3_1gnf7"]
 [ext_resource type="PackedScene" uid="uid://bgltwsebcssa7" path="res://actors/enemies/chariot/chariot_headless.tscn" id="3_e8qk0"]
 [ext_resource type="PackedScene" uid="uid://c61s2rc1qc6vp" path="res://actors/enemies/void_grunt.tscn" id="3_qoyf6"]
-[ext_resource type="Script" path="res://pick-ups/pickup_entry.gd" id="5_tka6d"]
+[ext_resource type="Script" uid="uid://bab0cowpfbqgf" path="res://pick-ups/pickup_entry.gd" id="5_tka6d"]
 [ext_resource type="Resource" uid="uid://c5srl64r60fwn" path="res://actions/prefabs/demigod_slash.tres" id="6_y6ptc"]
 [ext_resource type="Texture2D" uid="uid://bevn7nwcab4e5" path="res://actions/ui-icons/weapon_sprite_greatsword.png" id="8_tka6d"]
 [ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="9_c48y0"]
@@ -38,6 +38,7 @@ data = SubResource("Resource_e8qk0")
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_0wo7v")]
 fade_self_in = true
+stop_music_on_exit_to_menu = true
 
 [node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=1373896942]
 script = ExtResource("2_qoyf6")

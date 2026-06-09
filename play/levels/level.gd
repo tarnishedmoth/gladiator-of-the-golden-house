@@ -24,6 +24,8 @@ signal current_director_changed(director: Director)
 @export var use_scene_blocking_transition_on_exit: bool = true
 @export var fade_self_in: bool = false
 @export var play_music: PlayMusic = PlayMusic.NONE
+@export var stop_music_on_exit_to_menu: bool = false
+@export var stop_music_on_exit_to_next_level: bool = false ## TODO
 
 @export var base_tile_map_layer: TileMapLayer
 @export var tile_interactor: TileInteractor ## Used for detecting mouse input.

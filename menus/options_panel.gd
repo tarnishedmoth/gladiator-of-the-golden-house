@@ -131,3 +131,9 @@ func _on_camera_movement_button_item_selected(index: int) -> void:
 		2:
 			## Smoothed
 			GameSettings.set_value(GameSettings.SECTION.CAMERA, "mouse_movement", LevelCamera.Mode.SMOOTHED)
+
+
+func _on_stop_music_button_pressed() -> void:
+	Main.play_music_menu_loop(false)
+	Main.play_sherman(false)
+	Main.play_vaillancourt(false)

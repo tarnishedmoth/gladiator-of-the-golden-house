@@ -175,6 +175,19 @@ layout_mode = 2
 title = "Music"
 bus_name = &"Music"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/VolumeControls/PanelContainer/VBoxContainer" unique_id=1674190166]
+layout_mode = 2
+alignment = 2
+
+[node name="StopMusicButton" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/VolumeControls/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1067258005]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Stop Music"
+
+[node name="Spacer" type="Control" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/VolumeControls/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1988755911]
+custom_minimum_size = Vector2(88, 0)
+layout_mode = 2
+
 [node name="Misc" type="MarginContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions" unique_id=1664693066]
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -377,6 +390,7 @@ text = "Confirm"
 
 [node name="FADE" type="TextureRect" parent="CanvasLayer" unique_id=1965465048]
 unique_name_in_owner = true
+visible = false
 light_mask = 0
 z_index = 99
 z_as_relative = false
@@ -398,6 +412,7 @@ mouse_filter = 2
 texture = SubResource("GradientTexture2D_ycdy4")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/FADE" unique_id=1915003621]
 modulate = Color(1, 1, 1, 0.06666667)
@@ -443,6 +458,7 @@ max_polyphony = 2
 
 [connection signal="pressed" from="CanvasLayer/Debug/HBoxContainer/ProjectVersionLabel/GoToDevMenuButton" to="." method="_on_go_to_dev_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Debug/HBoxContainer/DebugSceneLabel/ReturnToMenuButton" to="." method="_on_return_to_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/VolumeControls/PanelContainer/VBoxContainer/HBoxContainer/StopMusicButton" to="CanvasLayer/OptionsPanel" method="_on_stop_music_button_pressed"]
 [connection signal="item_selected" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/Misc/VBoxContainer/CameraMovement/OptionButton" to="CanvasLayer/OptionsPanel" method="_on_camera_movement_button_item_selected"]
 [connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/Misc/VBoxContainer/HelpButton" to="CanvasLayer/OptionsPanel" method="_on_help_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/MainOptions/ExitOptionsButton" to="CanvasLayer/OptionsPanel" method="_on_exit_options_button_pressed"]
