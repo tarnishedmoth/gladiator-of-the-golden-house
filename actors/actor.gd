@@ -156,9 +156,6 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	self.tile_map = tilemap
 	#tree_exited.connect(self.director.actors.erase.bind(self)) ## moved to die() for more explicit control
 	_reorient_to_level_rotation() ## Also snaps
-	
-	if SHOW_FACING_INDICATOR:
-		show_facing_indicator()
 
 	if action_queue:
 		action_queue.free()
@@ -175,6 +172,8 @@ func setup(director_: Director, tilemap: TileMapLayer) -> void:
 	
 	health = max_health
 	energy = starting_energy
+	
+	set_facing(facing) ## update visual
 	
 	if persistent_data_key:
 		persistent_actor_data = PlayerData.get_actor_data(persistent_data_key)
