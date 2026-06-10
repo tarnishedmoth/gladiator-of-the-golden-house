@@ -13,6 +13,7 @@
 
 [node name="BombGrunt" type="Node2D" unique_id=1783091050 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
 script = ExtResource("1_or6x3")
+drop_chance = 0.4
 usable_actions = Array[ExtResource("2_38auy")]([ExtResource("5_q2nfv"), ExtResource("4_506x5")])
 move_behavior = 1
 move_towards_target = false

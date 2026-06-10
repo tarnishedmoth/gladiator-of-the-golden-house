@@ -15,6 +15,7 @@
 
 [node name="Legionary" type="Node2D" unique_id=84579020 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
 script = ExtResource("1_gm0mo")
+drop_chance = 0.75
 usable_actions = Array[ExtResource("2_fsf37")]([ExtResource("3_8h8qb"), ExtResource("4_ymfpf"), ExtResource("5_6urur")])
 character_visual_root = NodePath("VisualRoot")
 health_bar = NodePath("health")

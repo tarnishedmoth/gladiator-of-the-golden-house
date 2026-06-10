@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cp7oafdqv5rpl" path="res://actors/enemies/legate/legate.tscn" id="3_nk51x"]
 [ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="4_c5y5q"]
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="5_nk51x"]
-[ext_resource type="Script" path="res://pick-ups/pickup_entry.gd" id="6_7uvyf"]
+[ext_resource type="Script" uid="uid://bab0cowpfbqgf" path="res://pick-ups/pickup_entry.gd" id="6_7uvyf"]
 [ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="7_fw4se"]
 [ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="8_pbty2"]
 [ext_resource type="Resource" uid="uid://16756wki23ty" path="res://status-effects/prefabs/heal-immediate.tres" id="9_n0iwo"]

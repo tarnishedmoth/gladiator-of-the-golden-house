@@ -21,6 +21,7 @@ func setup(tilemap: TileMapLayer) -> void:
 
 func get_weighted_random() -> PickUpData:		
 	if pickup_pool.is_empty():
+		p("Pickup pool for this level is EMPTY")
 		return null
 	var total := 0.0
 	for entry in pickup_pool:		

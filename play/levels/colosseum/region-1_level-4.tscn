@@ -10,7 +10,7 @@
 [ext_resource type="Resource" uid="uid://dkvnt5ik187cv" path="res://actions/prefabs/panic.tres" id="7_tx2wn"]
 [ext_resource type="PackedScene" uid="uid://cwiyis2d60hie" path="res://actors/enemies/dagger_grunt.tscn" id="8_jwfso"]
 [ext_resource type="PackedScene" uid="uid://riabfvwpcg63" path="res://actors/enemies/legionary.tscn" id="9_maw10"]
-[ext_resource type="Script" path="res://pick-ups/pickup_entry.gd" id="11_82maq"]
+[ext_resource type="Script" uid="uid://bab0cowpfbqgf" path="res://pick-ups/pickup_entry.gd" id="11_82maq"]
 [ext_resource type="Resource" uid="uid://4dlrnlkmxkuy" path="res://pick-ups/created_pickups/pickup_data/heal_gradual.tres" id="12_r0fbu"]
 [ext_resource type="Resource" uid="uid://bq8t0b6fk1e7n" path="res://pick-ups/created_pickups/pickup_data/heal_10.tres" id="13_f1w7c"]
 [ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="14_usec8"]

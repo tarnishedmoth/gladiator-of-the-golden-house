@@ -13,6 +13,7 @@
 
 [node name="DaggerGrunt" type="Node2D" unique_id=1637427686 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
 script = ExtResource("1_351pj")
+drop_chance = 0.5
 usable_actions = Array[ExtResource("2_lutab")]([ExtResource("3_fnhuu"), ExtResource("4_ycl7o")])
 character_visual_root = NodePath("Generator")
 health_bar = NodePath("health")
