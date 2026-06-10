@@ -8,6 +8,7 @@ class_name StatusStunned extends Status
 
 func on_turn_start() -> void:
 	if not _actor:
+		p("No actor")
 		return
 	if not _react_to_this_turn_notif():
 		return

@@ -145,14 +145,22 @@ func add_status(status: Status, key = "", do_duplicate: bool = true) -> void:
 	on_status_applied(status)
 	
 func remove_status(status: Status) -> void:
+	var _start: int = status_effects.size()
 	status_effects.erase(status)
+	if status_effects.size() < _start:
+		if debug: p("Removed status %s." % status)
+	else:
+		if debug: p("Tried to remove status %s, but wasn't found.")
+	
 	
 func remove_keyed_statuses(key) -> void:
+	if debug: p("Removing statuses keyed as '%s'." % key)
 	var to_remove: Array
 	for status in status_effects:
 		var meta_key = status.get_meta(&"key", INF)
 		if meta_key == key:
 			to_remove.append(status)
+			if debug: p("Found keyed status %s." % status)
 	
 	for status in to_remove:
 		remove_status(status)

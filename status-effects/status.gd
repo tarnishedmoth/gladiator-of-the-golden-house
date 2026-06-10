@@ -19,6 +19,13 @@ var _actor: Actor
 var status_manager: StatusManager:
 	get: return _actor.get_status_manager()
 	
+var debug: bool:
+	get:
+		if _actor:
+			return _actor.debug
+		else:
+			return true
+	
 enum OnStart {
 	NOTHING,
 	SUBTRACT_ONE,
@@ -168,24 +175,31 @@ func on_status_applied(new_status: Status) -> void:
 ## Common behaviors
 func remove_if_empty() -> void:
 	if effect_points <= 0:
+		if debug: p("Status empty, removing...")
 		remove_effect()
 
 func remove_effect() -> void:
 	_actor.remove_status(self)
 	
 func subtract_points(i: int, and_remove: bool = true) -> void:
+	var _starting: int = effect_points
 	effect_points -= i
 	if and_remove:
+		if debug: p("Subtracted %d points (%d/%d), and_remove %s." % [i, _starting, effect_points, and_remove])
 		remove_if_empty()
 		
 func add_points(i: int) -> void:
+	var _starting: int = effect_points
 	effect_points += i
+	if debug: p("Added %d points (%d/%d)." % [i, _starting, effect_points])
 
 func halve_points() -> void:
+	var _starting: int = effect_points
 	if effect_points > 1:
 		effect_points = ceili(float(effect_points) / 2.0)
 	## If 1, leave it unchanged.
 	## If 0 or below, leave it unchanged.
+	if debug: p("Halved points (%d/%d)." % [_starting, effect_points])
 
 func _to_string() -> String:
 	var format: String = "%s" % ui_name if ui_name else "NONAME"

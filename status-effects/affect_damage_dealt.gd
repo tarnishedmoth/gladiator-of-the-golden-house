@@ -29,12 +29,6 @@ enum DamageHook {
 @export var dir_rl: float = 1.0
 @export var dir_fl: float = 1.0
 
-var debug: bool:
-	get:
-		if _actor:
-			return _actor.debug
-		return true
-
 func on_deal_damage(damage: int) -> int:
 	if (not incoming_or_outgoing == DamageHook.DEALING) or direct_only:
 		return super(damage)
