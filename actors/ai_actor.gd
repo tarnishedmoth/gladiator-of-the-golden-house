@@ -212,12 +212,14 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 
 
 func die()->void:
-	var pick_up_manager: PickUpManager = Level.get_pickup_manager()
-	if pick_up_manager:
-		if randf() < drop_chance:
-			if pick_up_manager.get_weighted_random() != null:
-				var picked_item = pick_up_manager.get_weighted_random()
-				pick_up_manager.spawn_pick_up(picked_item,current_tile_coords)
+	if drop_chance: # null check
+		if not is_zero_approx(drop_chance): # addtl zero check
+			var pick_up_manager: PickUpManager = Level.get_pickup_manager()
+			if pick_up_manager:
+				if randf() < drop_chance:
+					if pick_up_manager.get_weighted_random() != null:
+						var picked_item = pick_up_manager.get_weighted_random()
+						pick_up_manager.spawn_pick_up(picked_item,current_tile_coords)
 	super()
 
 ## Given two coordinates, returns the one closer to [member hostile_target.current_tile_coords].
