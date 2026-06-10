@@ -58,8 +58,9 @@ func knockback(actor: Actor) -> void:
 		return
 	
 	var direction: Facing.Cardinal
-	var _previous_tile: Vector2i = _actor.current_tile_coords
-	direction = Facing.get_direction_to_cell(_actor.tile_map, actor.current_tile_coords, _previous_tile)
+	var _previous_tile: Vector2i = actor.current_tile_coords ## Defending actor who is being knocked back
+	var _source: Vector2i = _actor.current_tile_coords ## Offending actor who is moving
+	direction = Facing.get_direction_to_cell(_actor.tile_map, _source, _previous_tile)
 	var target_tile: Vector2i = _previous_tile + (Facing.DIRECTIONS[direction])
 
 	## Move the actor in that direction
