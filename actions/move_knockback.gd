@@ -58,15 +58,15 @@ func knockback(actor: Actor) -> void:
 		return
 	
 	var direction: Facing.Cardinal
-	var source_tile: Vector2i = _actor.current_tile_coords
-	direction = Facing.get_direction_to_cell(_actor.tile_map, source_tile, actor.current_tile_coords)
-	var target_tile: Vector2i = source_tile + (Facing.DIRECTIONS[direction])
+	var _previous_tile: Vector2i = _actor.current_tile_coords
+	direction = Facing.get_direction_to_cell(_actor.tile_map, actor.current_tile_coords, _previous_tile)
+	var target_tile: Vector2i = _previous_tile + (Facing.DIRECTIONS[direction])
 
 	## Move the actor in that direction
 	actor.knockback_in_direction(direction, 1)
 	var result: Vector2i = actor.current_tile_coords
 
-	if result != source_tile:
+	if result != _previous_tile:
 		await actor.animation_finished
 
 	if result != target_tile:
