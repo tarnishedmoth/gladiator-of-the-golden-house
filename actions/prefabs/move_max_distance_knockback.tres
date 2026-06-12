@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ActionMoveKnockback" format=3 uid="uid://bv0025i1ofl6g"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_ox331"]
+[ext_resource type="Script" uid="uid://b3lbkjv3giddl" path="res://actions/move_knockback.gd" id="2_bf787"]
+[ext_resource type="Resource" uid="uid://b38qdbmcp8g2n" path="res://status-effects/prefabs/stunned.tres" id="3_i5q6s"]
+
+[resource]
+script = ExtResource("2_bf787")
+pattern = Array[Vector2i]([Vector2i(0, -6), Vector2i(0, -5), Vector2i(0, -4), Vector2i(0, -3), Vector2i(0, -2), Vector2i(0, -1), Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3), Vector2i(0, 4), Vector2i(0, 5), Vector2i(0, 6), Vector2i(-6, 0), Vector2i(-5, 0), Vector2i(-4, 0), Vector2i(-3, 0), Vector2i(-2, 0), Vector2i(-1, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0)])
+ui_title = "Ram Maximum Distance"
+ui_description = "Move unobstructed in one direction, along a potentially great distance. Deals knockback."
+action_category = 1
+energy_cost = 2
+is_obstructable = true
+metadata/_custom_type_script = "uid://b3lbkjv3giddl"

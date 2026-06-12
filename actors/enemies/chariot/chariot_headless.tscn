@@ -2,9 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://do8k4mne34fsw" path="res://actors/enemies/chariot/chariot.tscn" id="1_cfcd4"]
 [ext_resource type="Texture2D" uid="uid://cl85rfvtusdka" path="res://characters/chariot1_headless.png" id="2_1kygq"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_twtti"]
+[ext_resource type="Resource" uid="uid://bsef8hoia6dkr" path="res://actions/prefabs/move_max_distance.tres" id="3_uo7ft"]
+[ext_resource type="Resource" uid="uid://cior70oyylpmi" path="res://actions/prefabs/grunt_heavy_attack.tres" id="4_f1e7m"]
+[ext_resource type="Resource" uid="uid://bv0025i1ofl6g" path="res://actions/prefabs/move_max_distance_knockback.tres" id="4_twtti"]
+[ext_resource type="Resource" uid="uid://c0buxdi07ovft" path="res://actions/prefabs/chariot_headless_joust.tres" id="5_73h8y"]
+[ext_resource type="Resource" uid="uid://dp336bqljq2rg" path="res://actions/prefabs/chariot_headless_ram.tres" id="6_twtti"]
 
-[node name="Chariot" unique_id=84579020 instance=ExtResource("1_cfcd4")]
+[node name="HeadlessChariot" unique_id=84579020 instance=ExtResource("1_cfcd4")]
 drop_chance = 0.35
+usable_actions = Array[ExtResource("2_twtti")]([ExtResource("3_uo7ft"), ExtResource("4_twtti"), ExtResource("4_f1e7m"), ExtResource("5_73h8y"), ExtResource("6_twtti")])
+ui_name = "Headless Chariot"
+ui_description = "A fearsome sight to behold. Deals more damage and has longer reach than the base chariot."
 
 [node name="Chariot" parent="." index="4" unique_id=1754860747]
 texture = ExtResource("2_1kygq")

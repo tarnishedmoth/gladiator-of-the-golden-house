@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="1_33blp"]
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_o0dvo"]
+[ext_resource type="Resource" uid="uid://bv0025i1ofl6g" path="res://actions/prefabs/move_max_distance_knockback.tres" id="4_7jfi1"]
 [ext_resource type="Resource" uid="uid://cior70oyylpmi" path="res://actions/prefabs/grunt_heavy_attack.tres" id="4_lmgxc"]
 [ext_resource type="Resource" uid="uid://bxvvng0ducbc3" path="res://actions/prefabs/do-nothing.tres" id="5_33blp"]
 [ext_resource type="Resource" uid="uid://bsef8hoia6dkr" path="res://actions/prefabs/move_max_distance.tres" id="5_bfmgk"]
@@ -26,13 +27,15 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Chariot" type="Node2D" unique_id=84579020 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
 script = ExtResource("1_33blp")
-usable_actions = Array[ExtResource("2_o0dvo")]([ExtResource("5_bfmgk"), ExtResource("4_lmgxc"), ExtResource("5_33blp"), ExtResource("6_33blp"), ExtResource("7_7jfi1")])
+drop_chance = 0.25
+usable_actions = Array[ExtResource("2_o0dvo")]([ExtResource("5_bfmgk"), ExtResource("4_7jfi1"), ExtResource("4_lmgxc"), ExtResource("5_33blp"), ExtResource("6_33blp"), ExtResource("7_7jfi1")])
+selection_behavior = 3
 character_visual_root = NodePath("Chariot")
 health_bar = NodePath("health")
 speech_bubble = NodePath("SpeechBubble")
 ui_name = "Chariot"
 ui_description = "A fast-moving, lightly armored foe."
-max_health = 26
+max_health = 30
 
 [node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("9_6545d")]
 
