@@ -16,6 +16,8 @@ enum ActionSelection {
 	RANDOM,
 	POP_QUEUE, ## Shuffles all usable actions into a list, then uses those actions in order until all actions have been used.
 	NO_REPEATS,
+	CQC, ## Uses Combat moves exclusively when adjacent to a hostile, and non-combat exclusively otherwise.
+	CQC_NO_REPEATS, ## Prevents repeats if there are usable alternatives in the action category.
 }
 
 @export var usable_actions: Array[Action]
@@ -77,6 +79,40 @@ func choose_action(claimed_tiles: Array[Vector2i], _usable_actions: Array[Action
 				action = _usable_actions.pick_random() ## fallback
 			else:
 				action = _filtered.pick_random()
+		
+		ActionSelection.CQC, ActionSelection.CQC_NO_REPEATS:
+			var surrounding_tiles: Array[Vector2i] = tile_map.get_surrounding_cells(current_tile_coords)
+			var is_near: bool = false
+			
+			for tile in surrounding_tiles:
+				var actor_on_tile: Actor = Level.get_actor_at(tile)
+				if actor_on_tile:
+					if actor_on_tile.director != director:
+						is_near = true
+						break
+			
+			var _filtered: Array[Action]
+			if is_near:
+				## Hostile actor in surrounding tiles
+				if debug: p("(CQC) Found hostile actor in adjacent tile.")
+				_filtered = _usable_actions.filter(func(v: Action): return v.action_category == Action.ActionCategory.COMBAT)
+			else:
+				## No hostile actor in surrounding tiles
+				if debug: p("(CQC) Did not find any hostile actors in adjacent tiles.")
+				_filtered = _usable_actions.filter(func(v: Action): return v.action_category != Action.ActionCategory.COMBAT)
+			
+			if _filtered.is_empty():
+				if debug: p("No usable actions after filtering! Sampling from all actions...")
+				_filtered = _usable_actions.duplicate()
+				
+			if selection_behavior == ActionSelection.CQC_NO_REPEATS:
+				var _no_repeats: Array[Action] = _filtered.filter(func(v: Action): return not v == _last_action_picked)
+				if not _no_repeats.is_empty():
+					_filtered = _no_repeats
+				else:
+					if debug: p("No unrepeated actions found.")
+			
+			action = _filtered.pick_random()
 	
 	_last_action_picked = action
 	action = action.duplicate()
