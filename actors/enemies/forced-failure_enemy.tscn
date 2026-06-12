@@ -21,7 +21,7 @@ metadata/_custom_type_script = "uid://dwk83a2nxfweb"
 
 [sub_resource type="Resource" id="Resource_wvmyn"]
 script = ExtResource("5_8nrpf")
-damage = 17
+damage = 15
 pattern = Array[Vector2i]([Vector2i(0, -1)])
 pre_attack_duration = 0.1
 ui_title = "Heavy Attack"
@@ -102,12 +102,13 @@ _data = {
 [node name="ForcedFailureGrunt" type="Node2D" unique_id=40744033 node_paths=PackedStringArray("character_visual_root", "health_bar")]
 script = ExtResource("1_k28d6")
 usable_actions = Array[ExtResource("2_jjh3e")]([ExtResource("3_8clo5"), SubResource("Resource_5brh6"), SubResource("Resource_wvmyn")])
+selection_behavior = 3
 character_visual_root = NodePath("Zombie")
 health_bar = NodePath("health")
 ui_name = "? ? ?"
 ui_subtitle = "Anomaly"
 ui_description = "Where did they come from?"
-max_health = 20
+max_health = 19
 metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 
 [node name="Zombie" type="Sprite2D" parent="." unique_id=1368758138]
