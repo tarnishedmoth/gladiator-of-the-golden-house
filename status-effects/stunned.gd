@@ -4,7 +4,16 @@ class_name StatusStunned extends Status
 ## For enemies, clears the action queue so they will not act this turn.
 ## For players, increases the energy cost 
 
-##Clears action queue of enemy to stun for 1 turn by default or x turns based on effect points  
+##Clears action queue of enemy to stun for 1 turn by default or x turns based on effect points
+
+const CLEAR_AI_QUEUE_IMMEDIATE: bool = true
+
+func on_status_applied(new_status: Status) -> void:
+	if CLEAR_AI_QUEUE_IMMEDIATE:
+		if Status.is_same_status(self, new_status):
+			if _actor is AIActor:
+				if debug: p("Stunned AIActor, clearing queue immediately.")
+				_actor.clear_action_queue()
 
 func on_turn_start() -> void:
 	if not _actor:
