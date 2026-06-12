@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("2_nipbm")
-damage = 12
+damage = 10
 can_damage_teammates = true
 pattern = Array[Vector2i]([Vector2i(0, -1)])
 aoe_pattern = Array[Vector2i]([Vector2i(0, 0)])
