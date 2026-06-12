@@ -85,7 +85,7 @@ func knockback(actor: Actor) -> void:
 	direction = Facing.get_direction_to_cell(_actor.tile_map, source_tile, actor.current_tile_coords)
 	
 	var _previous_tile: Vector2i = actor.current_tile_coords
-	var target_tile: Vector2i = source_tile + (Facing.DIRECTIONS[direction] * distance)
+	var target_tile: Vector2i = actor.current_tile_coords + (Facing.DIRECTIONS[direction] * distance)
 	
 	## Move the actor in that direction
 	actor.knockback_in_direction(direction, distance)
