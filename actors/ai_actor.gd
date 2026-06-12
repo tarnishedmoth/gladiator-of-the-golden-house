@@ -358,3 +358,21 @@ func preview_ai_attack()-> void:
 
 func select_facing_now() -> void:
 	set_facing(get_facing_direction_to_hostile_target())
+
+func knockback_in_direction(direction: Facing.Cardinal, distance: int) -> void:
+	var _starting_coord: Vector2i = current_tile_coords
+	super(direction, distance)
+	var _ending_coord: Vector2i = current_tile_coords
+	if _starting_coord != _ending_coord:
+		move_all_actions_by(_ending_coord - _starting_coord)
+		
+func move_all_actions_by(offset: Vector2i) -> void:
+	if action_queue.queue.is_empty():
+		return
+	if debug: p("Nudging all queued actions' targets by %s..." % offset)
+	for action in get_action_queue().queue:
+		if action._target != null:
+			action.set_target(action._target + offset)
+			if debug: p("Nudged %s." % action)
+		else:
+			if debug: p("%s has a null target, not nudging." % action)
