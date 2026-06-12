@@ -121,14 +121,21 @@ func choose_action(claimed_tiles: Array[Vector2i], _usable_actions: Array[Action
 	## per-action planning
 	plan_action_details(action, claimed_tiles)
 	return action
+	
+func get_facing_direction_to_hostile_target() -> Facing.Cardinal:
+	if not hostile_target:
+		return facing
+	else:
+		return Facing.get_direction_to_cell(tile_map, current_tile_coords, hostile_target.current_tile_coords)
 
 func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void:
 	if not hostile_target: choose_hostile_target()
 	if action is ActionMove:
 		if debug: p("Planning ActionMove.")
+		
 		var facing_direction: Facing.Cardinal
 		if hostile_target:
-			facing_direction = Facing.get_direction_to_cell(tile_map, current_tile_coords, hostile_target.current_tile_coords)
+			facing_direction = get_facing_direction_to_hostile_target()
 		else:
 			## Fallback but should never run in gameplay
 			facing_direction = Facing.Cardinal.values().pick_random()
@@ -180,6 +187,9 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 
 
 	elif action is ActionAttack:
+		if action.allow_facing_before:
+			set_facing(get_facing_direction_to_hostile_target())
+		
 		if not action.aoe_pattern:
 			## We can hit every tile
 			if debug: p("Skipping ActionAttack planning (Action does not use AoE).")
@@ -345,3 +355,6 @@ func preview_ai_attack()-> void:
 
 #func hide_preview_attack()-> void: ## DEPRECATED merged into [Actor]
 	#action_preview.hide_preview_action()
+
+func select_facing_now() -> void:
+	set_facing(get_facing_direction_to_hostile_target())
