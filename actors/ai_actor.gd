@@ -359,6 +359,8 @@ func preview_ai_attack()-> void:
 func select_facing_now() -> void:
 	set_facing(get_facing_direction_to_hostile_target())
 
+## This method is responsible for updating queued actions when we are moved by external forces.
+## TODO Consider moving this logic to a generic move method instead of specifically knockback
 func knockback_in_direction(direction: Facing.Cardinal, distance: int) -> void:
 	var _starting_coord: Vector2i = current_tile_coords
 	super(direction, distance)

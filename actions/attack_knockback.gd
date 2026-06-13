@@ -94,7 +94,7 @@ func knockback(actor: Actor) -> void:
 	if result != _previous_tile:
 		await actor.animation_finished
 	
-	if result != target_tile:
+	if result != target_tile and actor.can_knockback: ## HACK ? This code flow lets actors make popups when trying to knockback them if they can't.
 		## Hit an obstruction
 		on_hit_obstruction(actor)
 	return

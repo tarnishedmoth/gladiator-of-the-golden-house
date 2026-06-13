@@ -91,6 +91,8 @@ var health: int
 var energy: int
 @export var starting_energy: int
 
+@export var can_knockback: bool = true ## If true, this actor can be knocked back by actions. If false, this actor can not be moved by knockback.
+
 ## Directional multipliers for incoming damage
 @export_group("Directional Vulnerability", "dm_")
 @export var dm_dmg_f: float = 1.0 ## mult for the relative forward direction
@@ -104,6 +106,7 @@ var energy: int
 @export var status_effects: Array[Status] ## List of all [Status] on this actor. See [StatusManager] for more.
 func get_status_effects() -> Array[Status]:
 	return status_effects
+
 
 ## Variable data
 var has_died: bool = false ## If this is true, we're currently trying to exit the tree or otherwise cease.
@@ -819,7 +822,9 @@ func on_unhovered() -> void:
 #endregion
 
 func knockback_in_direction(direction: Facing.Cardinal, distance: int) -> void:
-	#if debug: p("Knocking back %s..." % actor)
+	if not can_knockback:
+		Level.get_hud().popup_status("Can't Knockback", self)
+		return
 	## Move the actor in that direction
 	Level.get_hud().popup_status("Knockback", self)
 	var target_tile: Vector2i = current_tile_coords + (Facing.DIRECTIONS[direction] * distance)
