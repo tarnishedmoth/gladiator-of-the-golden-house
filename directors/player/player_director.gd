@@ -1,6 +1,7 @@
 class_name Player extends Director
 
 const HOLD_TIME_TO_END_TURN_EARLY: float = 1.5
+const HOLD_TIME_TO_END_TURN_EARLY: float = 1.3
 const STICKY_TILE_SELECT: bool = false
 const DESELECT_ON_REPEAT: bool = true
 const SELECT_FACING_INDICATOR = preload("uid://dtgl2ndfa7uub")
