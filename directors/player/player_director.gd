@@ -1,7 +1,7 @@
 class_name Player extends Director
 
-const HOLD_TIME_TO_END_TURN_EARLY: float = 1.5
 const HOLD_TIME_TO_END_TURN_EARLY: float = 1.3
+const REPLACE_STANCE_CARDS_IN_HAND: bool = true
 const STICKY_TILE_SELECT: bool = false
 const DESELECT_ON_REPEAT: bool = true
 const SELECT_FACING_INDICATOR = preload("uid://dtgl2ndfa7uub")
@@ -68,8 +68,9 @@ func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 	clear_and_repopulate_actors_from_children()
 	for actor in actors:
 		actor.setup(self, tile_map)
-
+	
 	draw_deck = starting_actions_deck.duplicate()
+	
 	if not stances.is_empty():
 		change_stance(stances.front().pickme_action.stance_uid)
 	draw_deck.shuffle()
@@ -286,8 +287,6 @@ func draw_hand(draw_count: int = hand_size):
 	for card in draw_count:
 		_draw_next_card()
 	
-	## HACK to get addtl_energy_cost to work,
-	## typically actions would have no other need to know the actor until they're ready to fire...
 	for card in actions_in_hand:
 		card.set_actor(selected_actor)
 		
@@ -322,7 +321,6 @@ func _draw_next_card():
 
 	var drawn: Action = draw_deck.pop_front()
 	actions_in_hand.push_back(drawn)
-
 	if VERBOSE: p("Drew action: %s" % drawn.ui_title)
 
 ## Add this card to discard_deck and erase from actions_in_hand.
@@ -468,6 +466,8 @@ var last_stance_status_key
 func change_stance(new_stance_uid) -> void:
 	## Remove all cards from the old stance, add current stance cards.
 	## And also somehow don't mess up the card stack (shuffle).
+	var starting_cards_in_hand: int = actions_in_hand.size()
+	var _new_cards: Array[Action] ## To shuffle later
 	
 	var new_stance_path = ResourceUID.uid_to_path(new_stance_uid)
 	if new_stance_path:
@@ -484,8 +484,23 @@ func change_stance(new_stance_uid) -> void:
 			current_stance = new_stance
 			
 			for card in new_stance.actions:
+				_new_cards.append(card)
 				add_to_deck(card)
 				draw_deck.shuffle() ## NOTE we also are shuffling the deck when this is called.
+	
+	if REPLACE_STANCE_CARDS_IN_HAND:
+		if VERBOSE: p("Replacing held stance actions...")
+		_new_cards.shuffle()
+		
+		while actions_in_hand.size() < starting_cards_in_hand:
+			if _new_cards.is_empty():
+				if VERBOSE: p("Ran out of new stance actions to draw.")
+				break
+			
+			var drawn: Action = _new_cards.pop_back()
+			draw_deck.erase(drawn)
+			actions_in_hand.push_back(drawn)
+			if VERBOSE: p("Drew action: %s" % drawn.ui_title)
 
 ## Call to stun the player. Different behavior from [AIActor], where their action queue is cleared...
 ## Typically called at the start of your turn by the status effect Stunned.
