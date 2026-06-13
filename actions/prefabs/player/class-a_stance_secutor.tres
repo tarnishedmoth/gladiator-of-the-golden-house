@@ -7,9 +7,10 @@
 [ext_resource type="Resource" uid="uid://hhvduggpymbq" path="res://actions/prefabs/player/class-a_leap.tres" id="4_fc1gg"]
 [ext_resource type="Resource" uid="uid://bkqvnkxxyq60c" path="res://actions/prefabs/player/stance-change_secutor.tres" id="5_u21yl"]
 [ext_resource type="Resource" uid="uid://dtrqu858fqs63" path="res://actions/prefabs/player/forward-dash.tres" id="5_vwynk"]
+[ext_resource type="Resource" uid="uid://da5v5amrxjtbg" path="res://actions/prefabs/player/class-a_combo-swipe.tres" id="6_o17yg"]
 
 [resource]
 script = ExtResource("2_n8cti")
-actions = Array[ExtResource("1_f4fcf")]([ExtResource("2_u21yl"), ExtResource("3_d2n5e"), ExtResource("4_fc1gg"), ExtResource("5_vwynk")])
+actions = Array[ExtResource("1_f4fcf")]([ExtResource("2_u21yl"), ExtResource("3_d2n5e"), ExtResource("4_fc1gg"), ExtResource("5_vwynk"), ExtResource("6_o17yg")])
 pickme_action = ExtResource("5_u21yl")
 metadata/_custom_type_script = "uid://wxlj5akq7s0v"
