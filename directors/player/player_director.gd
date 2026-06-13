@@ -475,6 +475,7 @@ func change_stance(new_stance_uid) -> void:
 		if not new_stance == current_stance:
 			for actor in actors:
 				actor.erase_keyed_statuses(last_stance_status_key)
+			last_stance_status_key = new_stance_uid
 			
 			for card in get_all_cards():
 				if card in current_stance.actions:
