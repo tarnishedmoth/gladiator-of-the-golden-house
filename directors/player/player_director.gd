@@ -344,43 +344,51 @@ func get_facing(place_indicator_pos):
 
 var _currently_playing_action: bool = false
 func play_held_action_at(coords: Vector2i):
-	if current_held_action.can_player_enter(selected_actor):
-		_currently_playing_action = true
-		
-		hud.end_turn_button.hide()
-		hud.end_turn_button.disabled = true
-		hud.on_player_running_action(current_held_action) ## Action button list animations/dimming
-		
-		var position_for_facing
-		if current_held_action.allow_facing_before:
-			position_for_facing = selected_actor.global_position
-			await get_facing(position_for_facing)
-		
-		selected_actor.remove_energy(current_held_action.energy_cost)
-		current_held_action.set_target(coords)
-		
-		selected_actor.queue_action(current_held_action, true)
-		await selected_actor.queued_actions_finished
-		
-		var is_from_stash: bool = current_held_action in stash
-		if is_from_stash:
-			remove_from_stash(current_held_action)
+	if not current_held_action.can_player_enter(selected_actor):
+		return
+	
+	if current_held_action.is_obstructable:
+		## Check obstructions
+		if coords != selected_actor.find_last_unobstructed_tile(selected_actor.current_tile_coords, coords):
+			hud.popup_label("Obstructed!", selected_actor)
+			return
+	
+	_currently_playing_action = true
+	
+	hud.end_turn_button.hide()
+	hud.end_turn_button.disabled = true
+	hud.on_player_running_action(current_held_action) ## Action button list animations/dimming
+	
+	var position_for_facing
+	if current_held_action.allow_facing_before:
+		position_for_facing = selected_actor.global_position
+		await get_facing(position_for_facing)
+	
+	selected_actor.remove_energy(current_held_action.energy_cost)
+	current_held_action.set_target(coords)
+	
+	selected_actor.queue_action(current_held_action, true)
+	await selected_actor.queued_actions_finished
+	
+	var is_from_stash: bool = current_held_action in stash
+	if is_from_stash:
+		remove_from_stash(current_held_action)
+	else:
+		if current_held_action.action_category == Action.ActionCategory.CONSUMABLE:
+			remove_from_deck(current_held_action)
 		else:
-			if current_held_action.action_category == Action.ActionCategory.CONSUMABLE:
-				remove_from_deck(current_held_action)
-			else:
-				_discard(current_held_action)
-		
-		if current_held_action.allow_facing_after:
-			position_for_facing = selected_actor.global_position
-			await get_facing(position_for_facing)
-		
-		_currently_playing_action = false
-		unhold_action()
-		hud.populate_actions_list(actions_in_hand, selected_actor)
-		update_hud_actions_disabled_check()
-		hud.end_turn_button.disabled = false
-		hud.end_turn_button.show()
+			_discard(current_held_action)
+	
+	if current_held_action.allow_facing_after:
+		position_for_facing = selected_actor.global_position
+		await get_facing(position_for_facing)
+	
+	_currently_playing_action = false
+	unhold_action()
+	hud.populate_actions_list(actions_in_hand, selected_actor)
+	update_hud_actions_disabled_check()
+	hud.end_turn_button.disabled = false
+	hud.end_turn_button.show()
 
 func add_to_deck(card: Action) -> void:
 	if card == null:
