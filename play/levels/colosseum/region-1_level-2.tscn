@@ -17,6 +17,7 @@ script = ExtResource("8_pbty2")
 status = ExtResource("9_n0iwo")
 override_quantity = 5
 ui_title = "Heal 5"
+ui_description = "Heal 5 health."
 action_category = 3
 metadata/_custom_type_script = "uid://ic0qko6fd58l"
 
