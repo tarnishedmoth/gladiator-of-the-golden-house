@@ -209,6 +209,12 @@ func _on_go_to_dev_menu_button_pressed() -> void:
 	## HACK not really
 	play_music_menu_loop(false)
 	play_sherman(false)
+	
+	
+static func stop_music() -> void:
+	play_music_menu_loop(false)
+	play_sherman(false)
+	play_vaillancourt(false)
 
 static var music_fade: Tween
 ## True to play + fade in, false to fade out + stop

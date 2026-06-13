@@ -51,6 +51,8 @@ func _ready() -> void:
 	continue_button.disabled = SaveLoad.get_save_slots().is_empty()
 	quit_button.visible = not OS.has_feature("web")
 	
+	## Halt all other music
+	Main.stop_music()
 	var start_music = create_tween()
 	start_music.tween_interval(1.4) ## Wait a hot moment
 	start_music.tween_callback(Main.play_music_menu_loop.bind(true))
