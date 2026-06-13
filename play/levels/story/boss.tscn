@@ -69,6 +69,7 @@ max_health = 62
 dm_dmg_f = 3.0
 dm_dmg_rr = 1.0
 dm_dmg_rl = 1.0
+can_knockback = false
 
 [node name="Eyeguy" parent="TileMapLayers/Directors/AIDirector/Sauron" index="0" unique_id=552246709 instance=ExtResource("9_v1a3o")]
 scale = Vector2(2, 2)
