@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PickUpData" format=3 uid="uid://duiilfc0fut4a"]
+
+[ext_resource type="Resource" uid="uid://nkaun0fgvwiu" path="res://actions/prefabs/toss-bomb.tres" id="1_glrxf"]
+[ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="2_phhop"]
+[ext_resource type="Texture2D" uid="uid://drr6yyr6jq42y" path="res://pick-ups/created_pickups/pickup_data/sprite.png" id="3_gjkc6"]
+
+[resource]
+script = ExtResource("2_phhop")
+pick_up_action = ExtResource("1_glrxf")
+ui_name = "Throwable Bomb"
+texture = ExtResource("3_gjkc6")
+metadata/_custom_type_script = "uid://80k033ktqcl0"

@@ -8,6 +8,5 @@
 script = ExtResource("1_0fkos")
 pick_up_action = ExtResource("1_7l4m1")
 ui_name = "Gradual Healing Flask"
-ui_description = "Heals over time"
 texture = ExtResource("4_eu766")
 metadata/_custom_type_script = "uid://80k033ktqcl0"

@@ -4,7 +4,7 @@ const ONESHOT_SFX = preload("uid://b7fbgvg5xlb68")
 
 @export var pick_up_action: Action
 @export var ui_name: String
-@export var ui_description: String
+@export var ui_description: String ## DEPRECATED generating a description and utilizing the Action's description for UI.
 @export var sprite: Sprite2D
 
 @export var pick_up_data:PickUpData

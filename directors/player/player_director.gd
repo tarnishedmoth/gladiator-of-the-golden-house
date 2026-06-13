@@ -205,7 +205,7 @@ func _on_click_on_tile(tile_coords) -> void:
 					deselect_tile()
 					
 				else:
-					hud.populate_hover_panel(selected_tile, Level.get_actor_at(selected_tile))
+					hud.populate_hover_panel(selected_tile)
 					hud.show_hover_panel(true)
 					set_selected_tile_visual(true)
 

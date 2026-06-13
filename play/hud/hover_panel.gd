@@ -53,3 +53,19 @@ func populate_using_actor_data(actor: Actor) -> void:
 		status_effects_flow_container_items.append(new_status)
 		status_effects_flow_container.add_child(new_status)
 		
+func populate_using_pickup_data(pickup: PickUp) -> void:
+	clear_all()
+	
+	title.text = TextUtils.center(TextUtils.bold(pickup.ui_name))
+	#description.text = pickup.ui_description
+	#if not description.text.is_empty():
+		#description.text += "\n\n"
+	description.text = "[i]Move to this tile to pick up this action into your Stash.[/i]"
+	
+	if pickup.pick_up_action:
+		if pickup.pick_up_action.ui_title:
+			description.append_text("\nGrants one %s" % pickup.pick_up_action.ui_title)
+			if pickup.pick_up_action.ui_description:
+				description.append_text(": %s" % pickup.pick_up_action.ui_description)
+			else:
+				description.append_text(".")

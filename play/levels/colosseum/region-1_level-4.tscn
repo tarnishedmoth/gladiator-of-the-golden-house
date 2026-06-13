@@ -13,8 +13,7 @@
 [ext_resource type="Script" uid="uid://bab0cowpfbqgf" path="res://pick-ups/pickup_entry.gd" id="11_82maq"]
 [ext_resource type="Resource" uid="uid://4dlrnlkmxkuy" path="res://pick-ups/created_pickups/pickup_data/heal_gradual.tres" id="12_r0fbu"]
 [ext_resource type="Resource" uid="uid://bq8t0b6fk1e7n" path="res://pick-ups/created_pickups/pickup_data/heal_10.tres" id="13_f1w7c"]
-[ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="14_usec8"]
-[ext_resource type="Texture2D" uid="uid://drr6yyr6jq42y" path="res://pick-ups/created_pickups/pickup_data/sprite.png" id="15_4q88y"]
+[ext_resource type="Resource" uid="uid://duiilfc0fut4a" path="res://pick-ups/created_pickups/pickup_data/throwable-bomb.tres" id="14_dfu51"]
 
 [sub_resource type="Resource" id="Resource_3xddb"]
 script = ExtResource("11_82maq")
@@ -25,19 +24,18 @@ weight = 0.75
 script = ExtResource("11_82maq")
 data = ExtResource("13_f1w7c")
 
-[sub_resource type="Resource" id="Resource_w3u8u"]
-script = ExtResource("14_usec8")
-pick_up_action = ExtResource("6_0lbo5")
-ui_name = "Throwable Bomb"
-texture = ExtResource("15_4q88y")
-metadata/_custom_type_script = "uid://80k033ktqcl0"
-
 [sub_resource type="Resource" id="Resource_nbvby"]
 script = ExtResource("11_82maq")
-data = SubResource("Resource_w3u8u")
+data = ExtResource("14_dfu51")
 weight = 0.75
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_n35bw")]
+use_randomized_rotation_and_mirror = null
+use_scene_blocking_transition_on_exit = null
+fade_self_in = null
+play_music = null
+stop_music_on_exit_to_menu = null
+stop_music_on_exit_to_next_level = null
 
 [node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=887418229]
 script = ExtResource("3_r0fbu")

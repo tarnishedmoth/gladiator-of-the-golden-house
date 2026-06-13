@@ -127,6 +127,7 @@ static func get_pickup_manager() -> PickUpManager:
 static func get_all_pick_ups()-> Array[PickUp]:
 	return instance.pick_up_manager.pick_ups
 
+## Returns a PickUp if there is one at the given coordinates, otherwise returns Null.
 static func get_pick_up_at(coords: Vector2i) -> PickUp:
 	for pick_up in get_all_pick_ups():
 		if pick_up.current_tile_coords == coords:

@@ -65,19 +65,60 @@ func show_hover_panel(show_:bool = true) -> void:
 	else:
 		Juice.advanced_fade(hover_panel, Juice.SMOOTH, Color.WHITE)
 
-func populate_hover_panel(tile_coords: Vector2i, actor: Actor) -> void:
+
+enum _Panel {
+	ACTOR = 0,
+	PICKUP = 1,
+}
+var _last_shown: _Panel
+var _previous_tile_coords: Vector2i
+func populate_hover_panel(tile_coords: Vector2i) -> void:
 	## Replace tile_coords with TileData or whatever more complex object if we need to.
 	clear_all_selected_actor_action_panels()
-	if actor:
-		hover_panel.populate_using_actor_data(actor)
-		if actor.get_action_queue():
-			if not actor.get_action_queue().queue.is_empty():
-				## Show action details
-				for action in actor.get_action_queue().queue:
-					make_selected_actor_action_panel(actor, action)
+	
+	var actor: Actor = Level.get_actor_at(tile_coords)
+	var pickup: PickUp = Level.get_pick_up_at(tile_coords)
+	
+	
+	if tile_coords == _previous_tile_coords:
+		## Pagination for overlapping entities
+		if actor and pickup:
+			match _last_shown:
+				_Panel.PICKUP:
+					_populate_actor_hover_panel(actor)
+				_Panel.ACTOR:
+					_populate_pickup_hover_panel(pickup)
+		#else:
+			## Could show coordinates here but testing required
+			#hover_panel.title.append_text("[center]" + str(tile_coords))
+	
 	else:
-		hover_panel.clear_all()
-		hover_panel.title.text = "[center]" + str(tile_coords)
+		## Fresh coordinate
+		if actor:
+			_populate_actor_hover_panel(actor)
+		elif pickup:
+			_populate_pickup_hover_panel(pickup)
+		else:
+			hover_panel.clear_all()
+			hover_panel.title.text = "[center]" + str(tile_coords)
+	
+	_previous_tile_coords = tile_coords
+	
+func _populate_actor_hover_panel(actor: Actor) -> void:
+	_last_shown = _Panel.ACTOR ## Pagination for overlapping entities
+	
+	hover_panel.populate_using_actor_data(actor)
+	if actor.get_action_queue():
+		if not actor.get_action_queue().queue.is_empty():
+			## Show action details
+			for action in actor.get_action_queue().queue:
+				make_selected_actor_action_panel(actor, action)
+				
+func _populate_pickup_hover_panel(pickup: PickUp) -> void:
+	_last_shown = _Panel.PICKUP ## Pagination for overlapping entities
+	
+	hover_panel.populate_using_pickup_data(pickup)
+
 
 func make_selected_actor_action_panel(actor: Actor, action: Action) -> void:
 	var panel: HUDSelectedActorActionPanel = SELECTED_ACTOR_ACTION_PANEL.instantiate()

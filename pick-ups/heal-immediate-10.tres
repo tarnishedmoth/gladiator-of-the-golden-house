@@ -8,6 +8,7 @@
 script = ExtResource("2_sk636")
 status = ExtResource("3_3makl")
 ui_title = "Healing"
+ui_description = "One dose of immediate healing."
 action_category = 3
 energy_cost = 1
 metadata/_custom_type_script = "uid://ic0qko6fd58l"

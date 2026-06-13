@@ -48,7 +48,7 @@ size_flags_vertical = 10
 size_flags_stretch_ratio = 0.8
 theme_type_variation = &"PartTransparentPanelContainer"
 script = ExtResource("3_xk2m4")
-description = NodePath("VBoxContainer/Description")
+description = NodePath("VBoxContainer/ScrollContainer/Description")
 title = NodePath("VBoxContainer/Title")
 key_stats = NodePath("VBoxContainer/KeyStats")
 status_effects_flow_container = NodePath("VBoxContainer/PanelContainer/StatusEffectsFlowContainer")
@@ -72,9 +72,16 @@ reverse_fill = true
 layout_mode = 2
 script = ExtResource("5_ksooa")
 
-[node name="Description" type="RichTextLabel" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer" unique_id=1850208283]
+[node name="ScrollContainer" type="ScrollContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer" unique_id=1540584710]
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Description" type="RichTextLabel" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/ScrollContainer" unique_id=1850208283]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
@@ -114,7 +121,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 disabled = true
-text = "Actions"
+text = "Actions    (energy)"
 flat = true
 alignment = 2
 script = ExtResource("7_ksooa")
