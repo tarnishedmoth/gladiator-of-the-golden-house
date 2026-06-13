@@ -156,6 +156,8 @@ var _previous_hovered_actor: Actor ## For health
 func _on_interactor_tile_changed(new_coords: Vector2i) -> void:
 	_last_hovered_tile = new_coords
 	
+	hud.populate_hover_panel(new_coords)
+	
 	if _previous_hovered_actor:
 		_previous_hovered_actor.on_unhovered()
 	
@@ -206,10 +208,11 @@ func _on_click_on_tile(tile_coords) -> void:
 					p("Same tile selected as last click--Deselecting.")
 					deselect_tile()
 					
-				else:
-					hud.populate_hover_panel(selected_tile)
-					hud.show_hover_panel(true)
-					set_selected_tile_visual(true)
+				#else:
+					## We used to populate this panel by selection but this behavior has been altered to when hovering
+					#hud.populate_hover_panel(selected_tile)
+					#hud.show_hover_panel(true)
+					#set_selected_tile_visual(true)
 
 			
 			## --CHANGING SELECTED ACTOR

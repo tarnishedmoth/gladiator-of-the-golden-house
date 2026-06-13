@@ -79,6 +79,12 @@ func populate_hover_panel(tile_coords: Vector2i) -> void:
 	var actor: Actor = Level.get_actor_at(tile_coords)
 	var pickup: PickUp = Level.get_pick_up_at(tile_coords)
 	
+	if (not actor) and (not pickup):
+		show_hover_panel(false)
+		return
+	else:
+		show_hover_panel(true)
+	
 	
 	if tile_coords == _previous_tile_coords and actor and pickup:
 		## Pagination for overlapping entities
