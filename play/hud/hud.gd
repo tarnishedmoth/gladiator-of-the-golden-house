@@ -80,17 +80,13 @@ func populate_hover_panel(tile_coords: Vector2i) -> void:
 	var pickup: PickUp = Level.get_pick_up_at(tile_coords)
 	
 	
-	if tile_coords == _previous_tile_coords:
+	if tile_coords == _previous_tile_coords and actor and pickup:
 		## Pagination for overlapping entities
-		if actor and pickup:
-			match _last_shown:
-				_Panel.PICKUP:
-					_populate_actor_hover_panel(actor)
-				_Panel.ACTOR:
-					_populate_pickup_hover_panel(pickup)
-		#else:
-			## Could show coordinates here but testing required
-			#hover_panel.title.append_text("[center]" + str(tile_coords))
+		match _last_shown:
+			_Panel.PICKUP:
+				_populate_actor_hover_panel(actor)
+			_Panel.ACTOR:
+				_populate_pickup_hover_panel(pickup)
 	
 	else:
 		## Fresh coordinate
