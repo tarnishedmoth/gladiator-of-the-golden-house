@@ -22,6 +22,8 @@ var mirrored_aoe_pattern: Array[Vector2i] ## Cached.
 
 @export var split_choice: bool = false ## If true, allows for the pattern to *also* apply counter-clockwise. This is specifically for asymmetrical patterns.
 
+@export var apply_effect_to_allies: bool = true
+@export var apply_effect_to_enemies: bool = true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -57,3 +59,13 @@ func _get_affected_and_apply_status() -> void:
 	if affected == 0:
 		if debug: p("None affected.")
 		Level.get_hud().popup_label("Missed", _actor, LevelHUD.STYLE_NEGATED)
+
+
+## Returns true if actor doesn't meet the criteria for flags "apply effect to allies" and "apply effect to enemies".
+func _actor_is_affected(actor_to_receive_status: Actor) -> bool:
+	var is_allied: bool = actor_to_receive_status.director == _actor.director
+	if (not apply_effect_to_allies) and (is_allied):
+		return false
+	if (not apply_effect_to_enemies) and (not is_allied):
+		return false
+	return true
