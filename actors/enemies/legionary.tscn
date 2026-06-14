@@ -5,35 +5,30 @@
 [ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="3_8h8qb"]
 [ext_resource type="Resource" uid="uid://lbxk1wbouqvx" path="res://actions/prefabs/attack_slash-14.tres" id="4_ymfpf"]
 [ext_resource type="Resource" uid="uid://dndcidgrypfmp" path="res://actions/prefabs/attack_plunge-12.tres" id="5_6urur"]
-[ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="6_6urur"]
+[ext_resource type="Resource" uid="uid://b2s2d2mr4vds" path="res://actions/prefabs/basic_guard.tres" id="5_ymfpf"]
+[ext_resource type="Resource" uid="uid://b4iaypo6kvgaw" path="res://actions/prefabs/hire-grunt.tres" id="6_8h8qb"]
 [ext_resource type="PackedScene" uid="uid://bv6vlvdwy51ny" path="res://characters/colosseum-crowd/armored_yellow.tscn" id="6_gm0mo"]
 [ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="7_5q8mj"]
 [ext_resource type="Texture2D" uid="uid://0ay5egocoth3" path="res://characters/colosseum-crowd/blob-parts/helmet2.png" id="7_gm0mo"]
-[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="7_xv4om"]
-[ext_resource type="Script" uid="uid://buqomxkjocleh" path="res://actions/spawn-actor.gd" id="8_5q8mj"]
 [ext_resource type="Script" uid="uid://c23svqo1v3284" path="res://vfx/weapon-wobble.gd" id="8_s0wf2"]
 [ext_resource type="Resource" uid="uid://br4bum2xxwq41" path="res://actions/prefabs/boost-defense.tres" id="9_6urur"]
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="9_8d74r"]
 [ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="10_dq3dl"]
 [ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="12_7c5xg"]
 
-[sub_resource type="Resource" id="Resource_s0wf2"]
-script = ExtResource("8_5q8mj")
-actor_to_spawn = ExtResource("6_6urur")
-allow_facing_before = true
-ui_title = "Call Forth"
-ui_description = "Call forth a Hired Grunt."
-action_category = 4
-energy_cost = 3
-metadata/_custom_type_script = "uid://buqomxkjocleh"
-
-[node name="Legionary" type="Node2D" unique_id=1805248977]
+[node name="Legionary" type="Node2D" unique_id=1805248977 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
 script = ExtResource("1_ymfpf")
-conditionally_usable_actions = Array[ExtResource("2_fsf37")]([ExtResource("3_8h8qb"), ExtResource("4_ymfpf"), ExtResource("5_6urur"), SubResource("Resource_s0wf2")])
-drop_chance = 0.25
+conditionally_usable_actions = Array[ExtResource("2_fsf37")]([ExtResource("3_8h8qb"), ExtResource("4_ymfpf"), ExtResource("5_ymfpf"), ExtResource("5_6urur"), ExtResource("6_8h8qb"), ExtResource("6_8h8qb")])
+drop_chance = 0.6
 usable_actions = Array[ExtResource("2_fsf37")]([ExtResource("4_ymfpf"), ExtResource("3_8h8qb"), ExtResource("5_6urur"), ExtResource("3_8h8qb"), ExtResource("9_6urur"), ExtResource("3_8h8qb")])
 actions_to_queue_this_turn = 2
 selection_behavior = 5
+character_visual_root = NodePath("VisualRoot")
+health_bar = NodePath("health")
+speech_bubble = NodePath("SpeechBubble")
+ui_name = "Legionary"
+ui_description = "A standard citizen soldier, loyal to the Emperor."
+max_health = 24
 metadata/_custom_type_script = "uid://5d6qh71oemsi"
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=614636530]

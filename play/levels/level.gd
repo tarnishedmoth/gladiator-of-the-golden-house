@@ -174,7 +174,7 @@ func _ready() -> void:
 	p("Ready, setting up game...")
 	start_game.call_deferred()
 	if fade_self_in:
-		Juice.fade_in(self, Juice.FAST)
+		Juice.fade_in(self, 3.0)
 		
 	if play_music != PlayMusic.NONE:
 		match play_music:
