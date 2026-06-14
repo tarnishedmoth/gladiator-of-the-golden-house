@@ -52,6 +52,7 @@ func _get_affected_and_apply_status() -> void:
 	for coords in targets:
 		var found_actor: Actor = Level.get_actor_at(coords)
 		if found_actor:
+			if not _actor_is_affected(found_actor): continue
 			apply_status(found_actor)
 			affected += 1
 	

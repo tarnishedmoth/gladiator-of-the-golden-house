@@ -7,6 +7,9 @@ class_name ActionApplyStatus extends Action
 			return status.effect_points
 		else:
 			return override_quantity
+			
+@export var apply_effect_to_allies: bool = true
+@export var apply_effect_to_enemies: bool = true
 
 ## On transition to this state
 func enter(_from: ResourceState = null) -> void:
@@ -31,6 +34,7 @@ func _get_affected_and_apply_status() -> void:
 	for coords in targets:
 		var found_actor: Actor = Level.get_actor_at(coords)
 		if found_actor:
+			if not _actor_is_affected(found_actor): continue
 			apply_status(found_actor)
 			affected += 1
 	
@@ -48,3 +52,12 @@ func apply_status(actor: Actor) -> void:
 		StatusManager.apply_status_to_actor(status, actor, override_quantity)
 		
 		await actor.animation_finished
+
+## Returns true if actor doesn't meet the criteria for flags "apply effect to allies" and "apply effect to enemies".
+func _actor_is_affected(actor_to_receive_status: Actor) -> bool:
+	var is_allied: bool = actor_to_receive_status.director == _actor.director
+	if (not apply_effect_to_allies) and (is_allied):
+		return false
+	if (not apply_effect_to_enemies) and (not is_allied):
+		return false
+	return true
