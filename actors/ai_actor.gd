@@ -18,6 +18,7 @@ enum ActionSelection {
 	NO_REPEATS,
 	CQC, ## Uses Combat moves exclusively when adjacent to a hostile, and non-combat exclusively otherwise.
 	CQC_NO_REPEATS, ## Prevents repeats if there are usable alternatives in the action category.
+	POP_QUEUE_SEQUENTIAL, ## Similar to POP QUEUE but does not shuffle, looping all actions in order.
 }
 
 @export var usable_actions: Array[Action]
@@ -70,6 +71,11 @@ func choose_action(claimed_tiles: Array[Vector2i], _usable_actions: Array[Action
 			if _action_pop_queue.is_empty():
 				_action_pop_queue.append_array(usable_actions)
 				_action_pop_queue.shuffle()
+			action = _action_pop_queue.pop_front()
+			
+		ActionSelection.POP_QUEUE_SEQUENTIAL:
+			if _action_pop_queue.is_empty():
+				_action_pop_queue.append_array(usable_actions)
 			action = _action_pop_queue.pop_front()
 			
 		ActionSelection.NO_REPEATS:
