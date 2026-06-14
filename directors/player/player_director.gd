@@ -68,6 +68,7 @@ func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 	clear_and_repopulate_actors_from_children()
 	for actor in actors:
 		actor.setup(self, tile_map)
+		actor.is_active = true
 	
 	draw_deck = starting_actions_deck.duplicate()
 	
@@ -83,6 +84,7 @@ func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 			if VERBOSE: p("Loaded %d stashed cards." % stash.size())
 
 	if VERBOSE: p("Setup done.")
+
 
 func take_turn() -> void:
 	## the super() of this method calls the status effects which would modify this value so we must do this first.

@@ -42,7 +42,8 @@ func take_turn() -> void:
 		return
 	
 	for actor in actors:
-		actor.on_turn_start()
+		if actor.is_active:
+			actor.on_turn_start()
 	
 	_on_turn_started()
 	
@@ -50,7 +51,8 @@ func take_turn() -> void:
 ## Call this in your extending class to end the turn.
 func end_turn() -> void:
 	for actor in actors:
-		actor.on_turn_end()
+		if actor.is_active:
+			actor.on_turn_end()
 	
 	## Indicate we're done
 	is_active = false
@@ -77,14 +79,16 @@ func clear_and_repopulate_actors_from_children() -> void:
 
 func actors_have_remaining_energy() -> bool:
 	for actor in actors:
-		if actor.energy > 0:
-			return true
+		if actor.is_active:
+			if actor.energy > 0:
+				return true
 	return false
 	
 ## Given an array of [Action]s, finds if any can be used by any [Actor] in [member actors].
 func actors_have_usable_actions(actions: Array[Action]) -> bool:
 	for actor in actors:
-		for action in actions:
-			if action.can_player_enter(actor, true):
-				return true
+		if actor.is_active:
+			for action in actions:
+				if action.can_player_enter(actor, true):
+					return true
 	return false

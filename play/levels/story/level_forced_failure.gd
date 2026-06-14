@@ -98,6 +98,7 @@ func run_event() -> void:
 		
 		hidden_ai_director.add_child(actor)
 		actor.global_position = Actor.get_global_position_at(base_tile_map_layer, tile)
+		actor.is_active = true
 		
 		## set to face the player
 		actor.facing = Facing.get_direction_to_cell(

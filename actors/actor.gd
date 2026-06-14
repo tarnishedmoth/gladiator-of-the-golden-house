@@ -109,6 +109,7 @@ func get_status_effects() -> Array[Status]:
 
 
 ## Variable data
+var is_active: bool = false ## Used by [Director] to determine if this actor gets calls on for turn logic. See [method setup]
 var has_died: bool = false ## If this is true, we're currently trying to exit the tree or otherwise cease.
 var emit_actions_finished_signal: bool = false
 var current_tile_coords: Vector2i
@@ -154,11 +155,12 @@ static func get_global_position_at(map: TileMapLayer, coords: Vector2i) -> Vecto
 #endregion
 
 
-func setup(director_: Director, tilemap: TileMapLayer) -> void:
+func setup(director_: Director, tilemap: TileMapLayer, and_reorient: bool = true) -> void:
 	self.director = director_
 	self.tile_map = tilemap
-	#tree_exited.connect(self.director.actors.erase.bind(self)) ## moved to die() for more explicit control
-	_reorient_to_level_rotation() ## Also snaps
+	
+	if and_reorient:
+		_reorient_to_level_rotation() ## Also snaps
 
 	if action_queue:
 		action_queue.free()

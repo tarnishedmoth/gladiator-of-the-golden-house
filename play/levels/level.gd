@@ -92,6 +92,11 @@ static func get_current_director() -> Director:
 ## Returns all actors from the director whose turn it currently is.
 static func get_current_directors_actors() -> Array[Actor]:
 	return get_current_director().actors
+	
+static func get_player_main_character() -> Actor:
+	var i = get_instance()
+	var player_director: Player = i.directors[i.directors.find_custom(func(v): return v is Player)]
+	return player_director.actors.front() ## technically a HACK
 
 ## Returns all actors from all directors in the level.
 static func get_all_actors_in_play_order() -> Array[Actor]:

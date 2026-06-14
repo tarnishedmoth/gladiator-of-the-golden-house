@@ -133,6 +133,7 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 	if action is ActionMove:
 		if debug: p("Planning ActionMove.")
 		
+		## NOTE we aren't checking if the action --allows-- facing here... consider changing this
 		var facing_direction: Facing.Cardinal
 		if hostile_target:
 			facing_direction = get_facing_direction_to_hostile_target()
@@ -252,7 +253,29 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 			if debug: p("Verified target choice is valid.")
 
 		action.set_target(choice_target)
-
+	
+	elif action is ActionSpawn:
+		if action.allow_facing_before or action.allow_facing_after:
+			set_facing(get_facing_direction_to_hostile_target())
+		
+		## Pick a valid tile to spawn at
+		var choice_target: Vector2i
+		
+		if action.pattern.is_empty():
+			if debug: p("ActionSpawn has no pattern, skipping planning.")
+			return
+		
+		var potential_targets: Array[Vector2i] = _filter_move_candidates(get_action_target_cells(action), claimed_tiles, false)
+		if potential_targets.is_empty():
+			if debug: p("No valid potential targets, skipping planning.")
+			return
+		
+		potential_targets.sort_custom(sort_hostile_distance)
+		choice_target = potential_targets.front()
+		claimed_tiles.append(choice_target)
+		
+		action.set_target(choice_target)
+		
 	else:
 		push_warning("Unconfigured planning behavior for action %s subclass!" % action)
 
