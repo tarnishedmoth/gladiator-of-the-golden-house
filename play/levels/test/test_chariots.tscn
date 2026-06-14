@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="5_kyp5y"]
 [ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="6_uoh1t"]
 [ext_resource type="Resource" uid="uid://nkaun0fgvwiu" path="res://actions/prefabs/toss-bomb.tres" id="7_6mtcq"]
-[ext_resource type="Resource" uid="uid://dkvnt5ik187cv" path="res://actions/prefabs/panic.tres" id="8_l4nfv"]
+[ext_resource type="Resource" uid="uid://dw82haqxacv56" path="res://actions/prefabs/panic.tres" id="8_l4nfv"]
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="9_ykrie"]
 [ext_resource type="PackedScene" uid="uid://bgltwsebcssa7" path="res://actors/enemies/chariot/chariot_headless.tscn" id="10_o5dcy"]
 

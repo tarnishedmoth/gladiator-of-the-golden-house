@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Stance" format=3 uid="uid://dceftm4v15w0u"]
 
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="1_h8mx8"]
+[ext_resource type="Resource" uid="uid://dhvgu78g6tf7k" path="res://actions/prefabs/player/class-a_brace.tres" id="2_418im"]
 [ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://actions/stance/stance.gd" id="2_glgv5"]
-[ext_resource type="Resource" uid="uid://cf8qxjti6wfjq" path="res://actions/prefabs/player/class-a_brace.tres" id="2_ixepd"]
 [ext_resource type="Resource" uid="uid://cftsu4wjqcimm" path="res://actions/prefabs/player/class-a_shield-charge.tres" id="3_aemwi"]
 [ext_resource type="Resource" uid="uid://bwsfbaulrriww" path="res://actions/prefabs/player/class-greatsword/stance-change_shield-too.tres" id="3_ixepd"]
 [ext_resource type="Resource" uid="uid://7a2sfsgl5bku" path="res://actions/prefabs/boost-focus-self.tres" id="4_418im"]
@@ -10,6 +10,6 @@
 
 [resource]
 script = ExtResource("2_glgv5")
-actions = Array[ExtResource("1_h8mx8")]([ExtResource("2_ixepd"), ExtResource("3_aemwi"), ExtResource("4_418im"), ExtResource("5_418im")])
+actions = Array[ExtResource("1_h8mx8")]([ExtResource("2_418im"), ExtResource("3_aemwi"), ExtResource("4_418im"), ExtResource("5_418im")])
 pickme_action = ExtResource("3_ixepd")
 metadata/_custom_type_script = "uid://wxlj5akq7s0v"

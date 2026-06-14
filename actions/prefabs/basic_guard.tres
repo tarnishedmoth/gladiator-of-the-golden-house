@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ActionApplyStatusPattern" format=3 uid="uid://b2s2d2mr4vds"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_uec5n"]
+[ext_resource type="Resource" uid="uid://xiiykq6dw38n" path="res://status-effects/prefabs/defense.tres" id="2_uec5n"]
+[ext_resource type="Script" uid="uid://k4rqrulmvg3t" path="res://actions/apply_status_pattern.gd" id="2_xq1yg"]
+
+[resource]
+script = ExtResource("2_xq1yg")
+apply_effect_to_enemies = false
+status = ExtResource("2_uec5n")
+ui_title = "Guard"
+ui_description = "Block incoming damage."
+energy_cost = 1
+metadata/_custom_type_script = "uid://k4rqrulmvg3t"

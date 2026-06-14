@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bruvlpfjaf07n" path="res://actors/healthbarBG.png" id="12_cl62q"]
 [ext_resource type="Texture2D" uid="uid://bidhnpwsgp83c" path="res://actors/healthbar.png" id="13_epati"]
 [ext_resource type="Texture2D" uid="uid://baforln2mc5me" path="res://play/tile-atlases/test.png" id="14_lp1yg"]
-[ext_resource type="Resource" uid="uid://cy67g1itrecss" path="res://actions/prefabs/basic_guard_self.tres" id="14_vnyd5"]
+[ext_resource type="Resource" uid="uid://cy67g1itrecss" path="res://actions/prefabs/basic_guard_DEPRECATED.tres" id="14_vnyd5"]
 [ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="15_73ljr"]
 [ext_resource type="PackedScene" uid="uid://cw8ea0ekkqjyp" path="res://actors/player/main_character.tscn" id="15_vnyd5"]
 [ext_resource type="PackedScene" uid="uid://bs7yj78ykeu7o" path="res://play/hud/hud.tscn" id="16_2mu1n"]

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://l1r068mo4353" path="res://vfx/actor_vfx_handler.tscn" id="4_2ku68"]
 [ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="4_vctl3"]
 [ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="5_rewct"]
-[ext_resource type="Resource" uid="uid://dkvnt5ik187cv" path="res://actions/prefabs/panic.tres" id="6_5brh6"]
+[ext_resource type="Resource" uid="uid://dw82haqxacv56" path="res://actions/prefabs/panic.tres" id="7_othuv"]
 [ext_resource type="Texture2D" uid="uid://bnepfqy7b6vc0" path="res://characters/zombie/zombie_anim.png" id="7_wvmyn"]
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="8_dtxg8"]
 [ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="9_gxvl4"]
@@ -26,7 +26,6 @@ script = ExtResource("4_vctl3")
 damage = 10
 pattern = Array[Vector2i]([Vector2i(0, -1)])
 ui_title = "Heavy Attack"
-ui_description = "Attack one tile "
 energy_cost = 1
 metadata/_custom_type_script = "uid://dwk83a2nxfweb"
 
@@ -103,7 +102,7 @@ _data = {
 
 [node name="VoidGrunt" type="Node2D" unique_id=612736880 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
 script = ExtResource("1_5brh6")
-usable_actions = Array[ExtResource("2_wvmyn")]([ExtResource("5_rewct"), SubResource("Resource_5brh6"), SubResource("Resource_wvmyn"), ExtResource("6_5brh6")])
+usable_actions = Array[ExtResource("2_wvmyn")]([ExtResource("5_rewct"), SubResource("Resource_5brh6"), SubResource("Resource_wvmyn"), ExtResource("7_othuv")])
 character_visual_root = NodePath("Zombie")
 health_bar = NodePath("health")
 speech_bubble = NodePath("SpeechBubble")

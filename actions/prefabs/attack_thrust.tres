@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ActionAttack" format=3 uid="uid://3ojbcoyiy4xh"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_rh3u2"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="2_7w67d"]
+
+[resource]
+script = ExtResource("2_7w67d")
+damage = 8
+pattern = Array[Vector2i]([Vector2i(0, -1)])
+aoe_pattern = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1)])
+allow_facing_before = true
+ui_title = "Thrust"
+ui_description = "Do a thrusting attack."
+energy_cost = 1
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"

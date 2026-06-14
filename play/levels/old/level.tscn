@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://d3wjcqjs4jdor" path="res://directors/player/player_director.gd" id="12_grbol"]
 [ext_resource type="Resource" uid="uid://cja0r0w64c03i" path="res://actions/prefabs/basic_attack_one_tile_front.tres" id="13_jq1mg"]
 [ext_resource type="Resource" uid="uid://cwpbiwwcdfir1" path="res://actions/prefabs/move_expensive_test.tres" id="14_a12wn"]
-[ext_resource type="Resource" uid="uid://cy67g1itrecss" path="res://actions/prefabs/basic_guard_self.tres" id="15_koy2i"]
+[ext_resource type="Resource" uid="uid://cy67g1itrecss" path="res://actions/prefabs/basic_guard_DEPRECATED.tres" id="15_koy2i"]
 [ext_resource type="PackedScene" uid="uid://cw8ea0ekkqjyp" path="res://actors/player/main_character.tscn" id="16_nhijn"]
 [ext_resource type="Texture2D" uid="uid://chcat6kgh1tb3" path="res://play/tile-atlases/hexagon-grid-cool.png" id="17_bve3j"]
 [ext_resource type="PackedScene" uid="uid://dgn7uo77dus0i" path="res://utils/grid_tint.tscn" id="18_2p8bv"]

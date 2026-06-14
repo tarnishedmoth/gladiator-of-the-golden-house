@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="ActionApplyStatus" format=3 uid="uid://cf8qxjti6wfjq"]
+[gd_resource type="Resource" script_class="ActionApplyStatusPattern" format=3 uid="uid://dhvgu78g6tf7k"]
 
 [ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_6ip8s"]
-[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_0iwde"]
+[ext_resource type="Script" uid="uid://k4rqrulmvg3t" path="res://actions/apply_status_pattern.gd" id="2_6ip8s"]
 [ext_resource type="Resource" uid="uid://0d7neho624r5" path="res://status-effects/prefabs/defense_forward-5.tres" id="3_6ip8s"]
 
 [resource]
-script = ExtResource("2_0iwde")
+script = ExtResource("2_6ip8s")
+pattern = Array[Vector2i]([Vector2i(0, 0)])
+apply_effect_to_enemies = false
 status = ExtResource("3_6ip8s")
 override_quantity = 10
-allow_facing_before = true
 ui_title = "Brace"
 ui_description = "Only applies to 5 forward tiles."
 energy_cost = 2
-metadata/_custom_type_script = "uid://ic0qko6fd58l"
+metadata/_custom_type_script = "uid://k4rqrulmvg3t"
