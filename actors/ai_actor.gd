@@ -281,7 +281,20 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 		claimed_tiles.append(choice_target)
 		
 		action.set_target(choice_target)
-		
+	
+	elif action is ActionApplyStatusPattern:
+		if action.pattern != null:
+			if action.pattern.size() > 1:
+				## TODO not implemented
+				push_warning("Target selection for %s (ActionApplyStatusPattern) not implemented!" % action)
+				pass
+			
+			else:
+				if debug: p("%s does not require planning." % action)
+			
+	elif action is ActionApplyStatus:
+		if debug: p("%s does not require planning." % action)
+	
 	else:
 		push_warning("Unconfigured planning behavior for action %s subclass!" % action)
 
