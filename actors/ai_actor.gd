@@ -56,33 +56,33 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 
 	append_actions_to_queue(queue)
 
-func choose_action(claimed_tiles: Array[Vector2i], _usable_actions: Array[Action] = usable_actions) -> Action:
+func choose_action(claimed_tiles: Array[Vector2i], list_of_usable_actions: Array[Action] = usable_actions) -> Action:
 	## Selection
 	var action: Action
-	if _usable_actions.is_empty():
+	if list_of_usable_actions.is_empty():
 		push_error("No usable actions configured!")
 		return null
 	
 	match selection_behavior:
 		ActionSelection.RANDOM:
-			action = _usable_actions.pick_random()
+			action = list_of_usable_actions.pick_random()
 		
 		ActionSelection.POP_QUEUE:
 			if _action_pop_queue.is_empty():
-				_action_pop_queue.append_array(usable_actions)
+				_action_pop_queue.append_array(list_of_usable_actions)
 				_action_pop_queue.shuffle()
 			action = _action_pop_queue.pop_front()
 			
 		ActionSelection.POP_QUEUE_SEQUENTIAL:
 			if _action_pop_queue.is_empty():
-				_action_pop_queue.append_array(usable_actions)
+				_action_pop_queue.append_array(list_of_usable_actions)
 			action = _action_pop_queue.pop_front()
 			
 		ActionSelection.NO_REPEATS:
-			var _filtered: Array[Action] = _usable_actions.filter(func(v: Action): return not v == _last_action_picked)
+			var _filtered: Array[Action] = list_of_usable_actions.filter(func(v: Action): return not v == _last_action_picked)
 			if _filtered.is_empty():
 				push_warning("No usable actions after filtering! Fallback to random...")
-				action = _usable_actions.pick_random() ## fallback
+				action = list_of_usable_actions.pick_random() ## fallback
 			else:
 				action = _filtered.pick_random()
 		
@@ -101,15 +101,15 @@ func choose_action(claimed_tiles: Array[Vector2i], _usable_actions: Array[Action
 			if is_near:
 				## Hostile actor in surrounding tiles
 				if debug: p("(CQC) Found hostile actor in adjacent tile.")
-				_filtered = _usable_actions.filter(func(v: Action): return v.action_category == Action.ActionCategory.COMBAT)
+				_filtered = list_of_usable_actions.filter(func(v: Action): return v.action_category == Action.ActionCategory.COMBAT)
 			else:
 				## No hostile actor in surrounding tiles
 				if debug: p("(CQC) Did not find any hostile actors in adjacent tiles.")
-				_filtered = _usable_actions.filter(func(v: Action): return v.action_category != Action.ActionCategory.COMBAT)
+				_filtered = list_of_usable_actions.filter(func(v: Action): return v.action_category != Action.ActionCategory.COMBAT)
 			
 			if _filtered.is_empty():
 				if debug: p("No usable actions after filtering! Sampling from all actions...")
-				_filtered = _usable_actions.duplicate()
+				_filtered = list_of_usable_actions.duplicate()
 				
 			if selection_behavior == ActionSelection.CQC_NO_REPEATS:
 				var _no_repeats: Array[Action] = _filtered.filter(func(v: Action): return not v == _last_action_picked)
