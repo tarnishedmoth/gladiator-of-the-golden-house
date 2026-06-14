@@ -75,13 +75,13 @@ func run_event() -> void:
 	var edge_tiles: Array[Vector2i] = []
 	for tile in base_tile_map_layer.get_used_cells():
 		#p("Checking tile %s..." % tile)
+		if Level.get_actor_at(tile): continue
 		for cell in base_tile_map_layer.get_surrounding_cells(tile):
 			if base_tile_map_layer.get_cell_tile_data(cell):
 				continue
 			else:
 				## var tile is an edge coordinate
-				if not Level.get_actor_at(tile):
-					edge_tiles.append(tile)
+				edge_tiles.append(tile)
 				#p("Found edge tile %s" % tile)
 				break
 	#p(edge_tiles)
