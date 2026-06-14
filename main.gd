@@ -29,8 +29,17 @@ const LOG_PREFIX:String = "[color=white][b]MAIN[/b]:: "
 @export var load_to_developer_menu:bool = true
 @export var skip_splash:bool = false
 
-@export var show_debug_scene_label:bool = true
-@export var show_project_version_label:bool = true
+@export var show_debug_scene_label:bool = true:
+	set(v):
+		show_debug_scene_label = v
+		if debug_scene_label:
+			debug_scene_label.visible = v
+		
+@export var show_project_version_label:bool = true:
+	set(v):
+		show_project_version_label = v
+		if project_version_label:
+			project_version_label.visible = v
 
 #@export_group("Progression")
 @export_file var levels: Array[String] ## In order
