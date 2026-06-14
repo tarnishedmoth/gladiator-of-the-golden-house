@@ -3,7 +3,7 @@ class_name Player extends Director
 const HOLD_TIME_TO_END_TURN_EARLY: float = 1.3
 const REPLACE_STANCE_CARDS_IN_HAND: bool = true
 const STICKY_TILE_SELECT: bool = false
-const DESELECT_ON_REPEAT: bool = false
+const DESELECT_ON_REPEAT: bool = true
 const SELECT_FACING_INDICATOR = preload("uid://dtgl2ndfa7uub")
 var select_facing_is_visible: bool:
 	set(v):
