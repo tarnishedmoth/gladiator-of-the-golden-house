@@ -37,11 +37,16 @@ func setup(tilemap: TileMapLayer) -> void:
 			spawn_extra_pickups()
 
 func spawn_extra_pickups() -> void:
+	p("Spawning %d extra pickups to help player." % spawn_extra_starting_pickups_quantity)
 	var player_location = Level.get_player_main_character().current_tile_coords
 	if not player_location:
 		return
 
 	var potential_targets: Array[Vector2i] = Level.get_base_tile_map_layer().get_used_cells()
+	
+	for actor in Level.get_all_actors_in_play_order():
+		potential_targets.erase(actor.current_tile_coords)
+	
 	potential_targets.sort_custom(
 		func(a: Vector2i, b: Vector2i):
 			var a_distance_to_player = Cube.distance(Cube.from_axial(a), Cube.from_axial(player_location))
@@ -52,8 +57,7 @@ func spawn_extra_pickups() -> void:
 				return false
 			elif (a_distance_to_player - spawn_ideal_distance_from_player) < (b_distance_to_player - spawn_ideal_distance_from_player):
 				return true
-			else:
-				return false
+			return false
 	)
 
 	for i in spawn_extra_starting_pickups_quantity:
