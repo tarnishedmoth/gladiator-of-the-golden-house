@@ -32,7 +32,12 @@ func populate(actor: Actor, action:Action) -> void:
 		_description = _description + first_letter.to_lower() + action.ui_description.trim_prefix(first_letter)
 	else:
 		if action is ActionAttack:
-			_description = _description + "deal %d damage." % [action.damage]
+			_description = _description + "deal %d damage" % [action.damage]
+			if action.multiple_attacks:
+				_description += " %d times." % action.multiple_attacks
+			else:
+				_description += "."
+		
 		elif action is ActionMove:
 			_description = _description + "move."
 		elif action is ActionApplyStatus:

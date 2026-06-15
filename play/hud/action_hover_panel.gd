@@ -73,6 +73,8 @@ func populate_using_action_data(action:Action)->void:
 	if action is ActionAttack:
 		amount_text.text = "[center]"
 		amount_text.append_text("Damage: %d " % [action.damage])
+		if action.multiple_attacks:
+			amount_text.append_text("x%d" % action.multiple_attacks)
 	
 	if action is ActionApplyStatus:
 		if action.status:
