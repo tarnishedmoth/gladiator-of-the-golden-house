@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("2_xq1yg")
+pattern = Array[Vector2i]([Vector2i(0, 0)])
 apply_effect_to_enemies = false
 status = ExtResource("2_uec5n")
 ui_title = "Guard"
