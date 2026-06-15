@@ -18,7 +18,7 @@
 
 [node name="Legionary" type="Node2D" unique_id=1805248977 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
 script = ExtResource("1_ymfpf")
-conditionally_usable_actions = Array[ExtResource("2_fsf37")]([ExtResource("3_8h8qb"), ExtResource("4_ymfpf"), ExtResource("5_ymfpf"), ExtResource("5_6urur"), ExtResource("6_8h8qb"), ExtResource("6_8h8qb")])
+conditionally_usable_actions = Array[ExtResource("2_fsf37")]([ExtResource("4_ymfpf"), ExtResource("3_8h8qb"), ExtResource("6_8h8qb"), ExtResource("6_8h8qb"), ExtResource("5_ymfpf"), ExtResource("5_6urur")])
 drop_chance = 0.6
 usable_actions = Array[ExtResource("2_fsf37")]([ExtResource("4_ymfpf"), ExtResource("3_8h8qb"), ExtResource("5_6urur"), ExtResource("3_8h8qb"), ExtResource("9_6urur"), ExtResource("3_8h8qb")])
 actions_to_queue_this_turn = 2
