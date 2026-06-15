@@ -41,6 +41,8 @@ var combat_playtime: float ## See [Playtime] class for conversion
 var current_level: int = 0
 func get_current_level() -> int: return current_level
 
+var current_loss_streak: int = 0
+
 var persistent_actors: Dictionary[StringName, PersistentActorData]
 
 ## CRITICAL Bump SAVE_VERSION when any of these change incompatibly:
@@ -49,7 +51,7 @@ var persistent_actors: Dictionary[StringName, PersistentActorData]
 ## - Action.to_dict keys
 ## - Top-level keys in capture_save_data
 ## Bump NOT required for additive fields read via `d.get(key, default)`.
-const SAVE_VERSION: int = 2
+const SAVE_VERSION: int = 3
 
 static var this: PlayerData ## Static object
 
@@ -111,6 +113,7 @@ static func capture_save_data() -> Dictionary:
 		"choice_character_scene": this.choice_character_scene,
 		"combat_playtime": this.combat_playtime,
 		"current_level": this.current_level,
+		"current_loss_streak": this.current_loss_streak,
 		"persistent_actors": actors_dict,
 	}
 
@@ -131,7 +134,8 @@ static func apply_save_data(save: SaveLoad.LoadedSave) -> void:
 	this.choice_character_scene = data.get("choice_character_scene", CHARACTER_SCENES.values().front())
 	this.combat_playtime = data.get("combat_playtime", 0.0)
 	this.current_level = data.get("current_level", 0)
-
+	this.current_loss_streak = data.get("current_loss_streak", 0)
+	
 	this.persistent_actors = {}
 	var actors_dict: Dictionary = data.get("persistent_actors", {})
 	for actor_key in actors_dict.keys():

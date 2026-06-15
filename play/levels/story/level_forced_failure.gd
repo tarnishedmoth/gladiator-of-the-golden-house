@@ -37,6 +37,7 @@ func check_objectives() -> void:
 		if not level_can_complete:
 			## Failure, restart...
 			is_complete = true
+			PlayerData.this.current_loss_streak += 1
 			_record_playtime()
 			retry_menu.show()
 		

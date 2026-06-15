@@ -354,8 +354,8 @@ func check_objectives() -> void:
 	elif check_lose_condition() == true:
 		p("Player has lost.")
 		is_complete = true
+		PlayerData.this.current_loss_streak += 1
 		_record_playtime()
-		
 		retry_menu.show() #launch retry menu
 
 func check_win_condition() -> bool:
