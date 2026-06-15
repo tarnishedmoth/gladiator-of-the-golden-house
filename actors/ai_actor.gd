@@ -305,8 +305,8 @@ func die()->void:
 			var pick_up_manager: PickUpManager = Level.get_pickup_manager()
 			if pick_up_manager:
 				if randf() < drop_chance:
-					if pick_up_manager.get_weighted_random() != null:
-						var picked_item = pick_up_manager.get_weighted_random()
+					var picked_item = pick_up_manager.get_weighted_random()
+					if picked_item != null:
 						pick_up_manager.spawn_pick_up(picked_item,current_tile_coords)
 	super()
 
