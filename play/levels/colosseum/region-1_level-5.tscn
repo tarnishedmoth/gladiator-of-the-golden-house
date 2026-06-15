@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="2_d4lr2"]
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="3_1yj8x"]
 [ext_resource type="PackedScene" uid="uid://cwiyis2d60hie" path="res://actors/enemies/dagger_grunt.tscn" id="3_d4lr2"]
+[ext_resource type="PackedScene" uid="uid://dyuwwrkerfdcn" path="res://actors/enemies/legate/legate_pro.tscn" id="5_1yj8x"]
 [ext_resource type="PackedScene" uid="uid://riabfvwpcg63" path="res://actors/enemies/legionary.tscn" id="5_d4lr2"]
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_g2wih")]
@@ -13,18 +14,24 @@ script = ExtResource("3_1yj8x")
 metadata/_custom_type_script = "uid://dwys5mwbuw85s"
 
 [node name="DaggerGrunt" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=1637427686 instance=ExtResource("3_d4lr2")]
-position = Vector2(97, -119)
+position = Vector2(95, -38)
 
 [node name="DaggerGrunt2" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=2107496249 instance=ExtResource("3_d4lr2")]
-position = Vector2(-94, -115)
+position = Vector2(-95, -37)
 
 [node name="Legionary2" parent="TileMapLayers/Directors/AIDirector" index="2" unique_id=84579020 instance=ExtResource("5_d4lr2")]
-position = Vector2(-191, -148)
-facing = 1
+position = Vector2(-303, -46)
+cond_team_count = 1
+facing = 2
 
 [node name="Legionary" parent="TileMapLayers/Directors/AIDirector" index="3" unique_id=1600990448 instance=ExtResource("5_d4lr2")]
-position = Vector2(192, -138)
-facing = 4
+position = Vector2(99, -191)
+cond_team_count = 1
+facing = 3
+
+[node name="LegatePro" parent="TileMapLayers/Directors/AIDirector" index="4" unique_id=576080733 instance=ExtResource("5_1yj8x")]
+position = Vector2(-99, -118)
+facing = 2
 
 [node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("2_d4lr2")]
 position = Vector2(-3, 71)

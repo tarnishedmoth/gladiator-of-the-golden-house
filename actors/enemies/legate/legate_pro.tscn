@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dyuwwrkerfdcn"]
+
+[ext_resource type="PackedScene" uid="uid://cp7oafdqv5rpl" path="res://actors/enemies/legate/legate.tscn" id="1_x3y1k"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_iy4bv"]
+[ext_resource type="Resource" uid="uid://cior70oyylpmi" path="res://actions/prefabs/grunt_heavy_attack.tres" id="3_57hi2"]
+[ext_resource type="Resource" uid="uid://cg3t60xxcj3m6" path="res://actions/prefabs/move_two_tiles.tres" id="4_wxfle"]
+[ext_resource type="Resource" uid="uid://3ojbcoyiy4xh" path="res://actions/prefabs/attack_thrust.tres" id="5_e77ce"]
+[ext_resource type="Resource" uid="uid://br4bum2xxwq41" path="res://actions/prefabs/boost-defense.tres" id="6_gsi2m"]
+[ext_resource type="Resource" uid="uid://c5tfagd2yefvr" path="res://actions/prefabs/boost-focus.tres" id="7_yttmo"]
+[ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="8_ojns4"]
+[ext_resource type="Resource" uid="uid://b2s2d2mr4vds" path="res://actions/prefabs/guard-basic.tres" id="9_ir4sk"]
+
+[node name="LegatePro" unique_id=576080733 instance=ExtResource("1_x3y1k")]
+conditionally_usable_actions = Array[ExtResource("2_iy4bv")]([ExtResource("3_57hi2"), ExtResource("4_wxfle"), ExtResource("5_e77ce"), ExtResource("6_gsi2m"), ExtResource("7_yttmo")])
+cond_team_count = 2
+drop_chance = 0.5
+usable_actions = Array[ExtResource("2_iy4bv")]([ExtResource("8_ojns4"), ExtResource("6_gsi2m"), ExtResource("9_ir4sk"), ExtResource("7_yttmo")])
+move_behavior = 1
+move_towards_target = false
+ui_subtitle = "Distinguished"
+max_health = 36

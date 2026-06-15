@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="1_f4fcf"]
 [ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://actions/stance/stance.gd" id="2_n8cti"]
 [ext_resource type="Resource" uid="uid://brrcsv7gfpei4" path="res://actions/prefabs/player/class-a_reflexive-swipe.tres" id="2_u21yl"]
-[ext_resource type="Resource" uid="uid://b2s2d2mr4vds" path="res://actions/prefabs/basic_guard.tres" id="3_o17yg"]
+[ext_resource type="Resource" uid="uid://b2s2d2mr4vds" path="res://actions/prefabs/guard-basic.tres" id="3_o17yg"]
 [ext_resource type="Resource" uid="uid://hhvduggpymbq" path="res://actions/prefabs/player/class-a_leap.tres" id="4_fc1gg"]
 [ext_resource type="Resource" uid="uid://bkqvnkxxyq60c" path="res://actions/prefabs/player/stance-change_secutor.tres" id="5_u21yl"]
 [ext_resource type="Resource" uid="uid://dtrqu858fqs63" path="res://actions/prefabs/player/forward-dash.tres" id="5_vwynk"]

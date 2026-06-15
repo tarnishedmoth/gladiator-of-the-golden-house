@@ -10,10 +10,15 @@
 [ext_resource type="Resource" uid="uid://dw82haqxacv56" path="res://actions/prefabs/panic.tres" id="7_tx2wn"]
 [ext_resource type="PackedScene" uid="uid://cwiyis2d60hie" path="res://actors/enemies/dagger_grunt.tscn" id="8_jwfso"]
 [ext_resource type="PackedScene" uid="uid://riabfvwpcg63" path="res://actors/enemies/legionary.tscn" id="9_maw10"]
+[ext_resource type="Resource" uid="uid://lbxk1wbouqvx" path="res://actions/prefabs/attack_slash-14.tres" id="10_4q88y"]
+[ext_resource type="Resource" uid="uid://b2s2d2mr4vds" path="res://actions/prefabs/guard-basic.tres" id="11_3q8ns"]
 [ext_resource type="Script" uid="uid://bab0cowpfbqgf" path="res://pick-ups/pickup_entry.gd" id="11_82maq"]
 [ext_resource type="Resource" uid="uid://4dlrnlkmxkuy" path="res://pick-ups/created_pickups/pickup_data/heal_gradual.tres" id="12_r0fbu"]
+[ext_resource type="Resource" uid="uid://dndcidgrypfmp" path="res://actions/prefabs/attack_plunge-12.tres" id="12_v76d6"]
 [ext_resource type="Resource" uid="uid://bq8t0b6fk1e7n" path="res://pick-ups/created_pickups/pickup_data/heal_10.tres" id="13_f1w7c"]
+[ext_resource type="Resource" uid="uid://b4iaypo6kvgaw" path="res://actions/prefabs/hire-grunt.tres" id="13_mjsy7"]
 [ext_resource type="Resource" uid="uid://duiilfc0fut4a" path="res://pick-ups/created_pickups/pickup_data/throwable-bomb.tres" id="14_dfu51"]
+[ext_resource type="Resource" uid="uid://de26y2cxtolby" path="res://actions/prefabs/guard-strong.tres" id="14_thm4n"]
 
 [sub_resource type="Resource" id="Resource_3xddb"]
 script = ExtResource("11_82maq")
@@ -43,6 +48,7 @@ metadata/_custom_type_script = "uid://dwys5mwbuw85s"
 
 [node name="ShakyBombGrunt" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=1661159290 instance=ExtResource("4_irob3")]
 position = Vector2(289, -42)
+drop_chance = 0.5
 usable_actions = Array[ExtResource("4_jwfso")]([ExtResource("5_maw10"), ExtResource("6_0lbo5"), ExtResource("7_tx2wn")])
 ui_name = "Shaky Bomb Grunt"
 ui_description = "Hot potato! This one is shaky."
@@ -56,6 +62,8 @@ position = Vector2(97, 182)
 
 [node name="Legionary" parent="TileMapLayers/Directors/AIDirector" index="3" unique_id=84579020 instance=ExtResource("9_maw10")]
 position = Vector2(289, -116)
+conditionally_usable_actions = Array[ExtResource("4_jwfso")]([ExtResource("10_4q88y"), ExtResource("5_maw10"), ExtResource("11_3q8ns"), ExtResource("12_v76d6"), ExtResource("13_mjsy7"), ExtResource("13_mjsy7")])
+usable_actions = Array[ExtResource("4_jwfso")]([ExtResource("10_4q88y"), ExtResource("5_maw10"), ExtResource("12_v76d6"), ExtResource("5_maw10"), ExtResource("14_thm4n"), ExtResource("5_maw10")])
 facing = 4
 
 [node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("2_82maq")]

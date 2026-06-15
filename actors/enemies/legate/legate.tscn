@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="5_f66cw"]
 [ext_resource type="Resource" uid="uid://cg3t60xxcj3m6" path="res://actions/prefabs/move_two_tiles.tres" id="5_j1js3"]
 [ext_resource type="Resource" uid="uid://3ojbcoyiy4xh" path="res://actions/prefabs/attack_thrust.tres" id="6_6uwcy"]
-[ext_resource type="Resource" uid="uid://b2s2d2mr4vds" path="res://actions/prefabs/basic_guard.tres" id="6_28bj1"]
+[ext_resource type="Resource" uid="uid://b2s2d2mr4vds" path="res://actions/prefabs/guard-basic.tres" id="6_28bj1"]
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="6_imqgp"]
 [ext_resource type="Resource" uid="uid://br4bum2xxwq41" path="res://actions/prefabs/boost-defense.tres" id="6_svhos"]
 [ext_resource type="Resource" uid="uid://c5tfagd2yefvr" path="res://actions/prefabs/boost-focus.tres" id="7_28bj1"]
@@ -17,13 +17,14 @@
 [node name="Legate" type="Node2D" unique_id=576080733 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
 script = ExtResource("1_traui")
 conditionally_usable_actions = Array[ExtResource("2_ij7ux")]([ExtResource("3_28bj1"), ExtResource("5_j1js3"), ExtResource("6_6uwcy"), ExtResource("6_28bj1")])
+drop_chance = 0.6
 usable_actions = Array[ExtResource("2_ij7ux")]([ExtResource("5_f66cw"), ExtResource("6_28bj1"), ExtResource("6_svhos"), ExtResource("7_28bj1")])
 character_visual_root = NodePath("Generator")
 health_bar = NodePath("health")
 speech_bubble = NodePath("SpeechBubble")
 ui_name = "Legate"
 ui_description = "Often found among groups of grunts."
-max_health = 38
+max_health = 32
 metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 
 [node name="Generator" parent="." unique_id=2057479258 instance=ExtResource("10_28bj1")]
