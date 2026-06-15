@@ -36,6 +36,7 @@ TargetFinder="*uid://bdpt4cmj32tcc"
 window/size/viewport_width=960
 window/size/viewport_height=540
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="uid://d1jgkow5h80ft"
 
 [editor_plugins]
 
