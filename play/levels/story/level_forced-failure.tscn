@@ -83,6 +83,8 @@ position = Vector2(-183, -2)
 
 [node name="PickUpManager" parent="." index="1" unique_id=490287025]
 pickup_pool = Array[ExtResource("8_tx16w")]([SubResource("Resource_3xddb"), SubResource("Resource_7ht3u"), SubResource("Resource_nbvby")])
+spawn_extra_starting_pickups_after_loss_streak = 1
+spawn_extra_starting_pickups_quantity = 2
 
 [node name="emperor" parent="." index="6" unique_id=1077291446 instance=ExtResource("3_o08qo")]
 position = Vector2(620, -18)

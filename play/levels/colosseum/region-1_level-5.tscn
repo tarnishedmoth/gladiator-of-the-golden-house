@@ -41,3 +41,6 @@ script = null
 
 [node name="GridTint" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="3" unique_id=1487691829]
 visible = true
+
+[node name="PickUpManager" parent="." index="1" unique_id=490287025]
+spawn_extra_starting_pickups_after_loss_streak = 1
