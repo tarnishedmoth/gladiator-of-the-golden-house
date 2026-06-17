@@ -246,16 +246,14 @@ func _on_click_to_play_action(target_coords: Vector2i) -> void:
 	TargetFinder.highlight_target(target_coords, Action.get_action_color(current_held_action), selected_actor) ## Keep our selection highlighted
 	play_held_action_at(target_coords)
 
-var _self_action_preview_showing: bool = false
+
 func rerender_held_action_targets() -> void: ## Clear all highlighted tiles and re-render
-	if _self_action_preview_showing:
-		#TargetFinder.clear_target_highlights(selected_actor) ## HACK
-		selected_actor.hide_preview_for_actions()
+	if not selected_actor: return
+	selected_actor.hide_preview_for_actions()
 	
 	if current_held_action:
 		update_npc_action_preview() ## clears/resets any existing previews
 		selected_actor.render_preview_for_action(current_held_action, _last_hovered_tile)
-		_self_action_preview_showing = true
 
 #region Actions / Deck Logic
 ## Used to preview actions.
@@ -446,22 +444,19 @@ func update_hud_actions_disabled_check() -> void:
 	hud.stash_panel.check_actions_disabled(selected_actor)
 
 
-var _action_preview_showing: bool = false
 ## This method updates AIActor action previews.
 ## This method calls every [method AIActor.hide_preview_attack], then finds the
 ## actor on our mouse-hovered tile and calls [method AIActor.preview_ai_attack].
 func update_npc_action_preview() -> void:
-	if _action_preview_showing:
-		for actor in Level.get_all_actors_in_play_order():
-			if actor is AIActor:
-				actor.hide_preview_for_actions()
+	for actor in Level.get_all_actors_in_play_order():
+		if actor is AIActor:
+			actor.hide_preview_for_actions()
 
 	#check if there is an AI actor on selected tile needs their preview added
 	if is_active:
 		if(_last_hovered_tile != null and current_held_action == null): #prevents preview from being added when an action is being held
 			var actor = Level.get_actor_at(_last_hovered_tile) as AIActor
 			if actor != null:
-				_action_preview_showing = true
 				actor.preview_ai_attack()
 
 

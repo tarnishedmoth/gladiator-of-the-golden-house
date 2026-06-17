@@ -34,7 +34,7 @@ const DEFAULT_VFX_HANDLER = preload("uid://l1r068mo4353")
 @export var health_bar: Healthbar
 @export var speech_bubble: DialogueBubble
 
-@export var label_anchor: Vector2 = Vector2(0, -40)
+@export var label_anchor: Vector2 = Vector2(0, -36) ## This offset is used for popup labels. See [HUD] _actor_to_screen.
 
 @export_group("Sprite Anchors")
 @export var anchor_hand: Marker2D:
@@ -727,31 +727,36 @@ func render_preview_for_action(action: Action, target) -> void:
 			if RENDER_AI_PLAYABLE_TILES:
 				TargetFinder.highlight_targets(playable_tiles, Targeting.COLORS.GREY, self)
 	
+	var check_effect_on_tiles: Array[Vector2i]
 	## Render AoE pattern if applicable
 	if target != null:
-		var aoe_tiles = get_action_target_cells_at(target, action)
-		for coords in aoe_tiles:
-			var found_actor: Actor = Level.get_actor_at(coords)
-			
-			if found_actor != null:
-				if action is ActionAttack:
+		check_effect_on_tiles = get_action_target_cells_at(target, action)
+	else:
+		check_effect_on_tiles = playable_tiles
+	
+	for coords in check_effect_on_tiles:
+		var found_actor: Actor = Level.get_actor_at(coords)
+		
+		if found_actor != null:
+			if action is ActionAttack:
+				if action.applies_to_actor(found_actor):
 					_popup_labels.append(Level.get_hud().popup_label_persistent("Damage: %s" % action.damage, found_actor, LevelHUD.STYLE_DAMAGE))
 					TargetFinder.highlight_target(coords, Targeting.COLORS.RED, self)
-					
-				elif action is ActionApplyStatus:
-					if action.override_quantity != action.status.effect_points:
-						_popup_labels.append(Level.get_hud().popup_label_persistent("%s: %s" % [action.status.ui_name, action.override_quantity], found_actor, LevelHUD.STYLE_STATUS))
-					else:
-						_popup_labels.append(Level.get_hud().popup_label_persistent(action.status, found_actor, LevelHUD.STYLE_STATUS))
-					TargetFinder.highlight_target(coords, Targeting.COLORS.YELLOW, self)
-					
-				elif action is ActionMove:
-					TargetFinder.highlight_target(coords, Targeting.COLORS.PINK, self)
 				
+			elif action is ActionApplyStatus:
+				if action.override_quantity != action.status.effect_points:
+					_popup_labels.append(Level.get_hud().popup_label_persistent("%s: %s" % [action.status.ui_name, action.override_quantity], found_actor, LevelHUD.STYLE_STATUS))
 				else:
-					TargetFinder.highlight_target(coords, color, self)
+					_popup_labels.append(Level.get_hud().popup_label_persistent(action.status, found_actor, LevelHUD.STYLE_STATUS))
+				TargetFinder.highlight_target(coords, Targeting.COLORS.YELLOW, self)
+				
+			elif action is ActionMove:
+				TargetFinder.highlight_target(coords, Targeting.COLORS.PINK, self)
+			
 			else:
 				TargetFinder.highlight_target(coords, color, self)
+		else:
+			TargetFinder.highlight_target(coords, color, self)
 		
 		#if aoe_tiles != null:
 			#TargetFinder.highlight_aoe_spots(

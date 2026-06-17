@@ -127,12 +127,18 @@ func get_affected() -> Array[Actor]:
 	for coords in targets:
 		var found_actor: Actor = Level.get_actor_at(coords)
 		if found_actor != null:
-			if not can_damage_self && found_actor == _actor:
-				continue
-			if not can_damage_teammates && found_actor.director == _actor.director:
-				continue
-			affected_actors.append(found_actor)
+			if applies_to_actor(found_actor):
+				affected_actors.append(found_actor)
 	return affected_actors
+
+
+func applies_to_actor(actor: Actor) -> bool:
+	if not actor: return false
+	if not can_damage_self && actor == _actor:
+		return false
+	if not can_damage_teammates && actor.director == _actor.director:
+		return false
+	return true
 
 
 func get_damage() -> int:

@@ -135,6 +135,7 @@ func get_facing_direction_to_hostile_target() -> Facing.Cardinal:
 		return Facing.get_direction_to_cell(tile_map, current_tile_coords, hostile_target.current_tile_coords)
 
 func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void:
+	action.set_actor(self)
 	if not hostile_target: choose_hostile_target()
 	if action is ActionMove:
 		if debug: p("Planning ActionMove.")
