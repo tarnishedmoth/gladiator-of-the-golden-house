@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://de4lf8d5wdtd1"]
+
+[ext_resource type="Texture2D" uid="uid://d4awarssfv34k" path="res://vfx/slash-fx.png" id="1_33afp"]
+[ext_resource type="Script" uid="uid://cx1d7t4n16nee" path="res://vfx/fade_destroy.gd" id="2_2g5ny"]
+
+[node name="slash-fx" type="Sprite2D" unique_id=1165349548]
+texture = ExtResource("1_33afp")
+offset = Vector2(8, 0)
+script = ExtResource("2_2g5ny")

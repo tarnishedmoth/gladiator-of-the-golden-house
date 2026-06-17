@@ -427,9 +427,13 @@ func set_facing(cardinal_direction: Facing.Cardinal) -> void:
 		facing = cardinal_direction
 	
 	## flipping the character sprites -- thanks McFunkypants
-	if character_visual_root and facing_direction_affects_visual:
-		# flip if facing down or west (assume sprite faces right)
-		character_visual_root.scale.x = -1 if facing > Facing.Cardinal.SOUTHEAST else 1
+	if facing_direction_affects_visual:
+		if character_visual_root:
+			# flip if facing down or west (assume sprite faces right)
+			character_visual_root.scale.x = -1 if facing > Facing.Cardinal.SOUTHEAST else 1
+		if vfx:
+			vfx.actor_facing = facing
+		
 	
 	if SHOW_FACING_INDICATOR && self.is_inside_tree():
 		show_facing_indicator(true)

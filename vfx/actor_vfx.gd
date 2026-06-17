@@ -26,6 +26,8 @@ enum FX {
 @export var animation_transform: StringName
 @export var start_as_transformed: bool = false
 
+var actor_facing: Facing.Cardinal = Facing.Cardinal.NORTH
+
 func _ready() -> void:
 	var parent = get_parent()
 	if parent is Actor:
@@ -97,17 +99,12 @@ func on_move() -> void:
 		play_animation(animation_move)
 
 func on_attack() -> void:
-	#print("spawning ATTACK particles")
-	# TODO? spawn different particles at beginning and end of an attack
-	# (example use: swing "slash" vs hit "sparks" which comes later)
-	# if attack.finished.is_connected(attack_sound_finished.emit):
-	# 	attack.finished.disconnect(attack_sound_finished.emit)
-	# attack.finished.connect(attack_sound_finished.emit, ConnectFlags.CONNECT_ONE_SHOT)
 	if attack:
 		var spawnedFX = attack.instantiate()
 		spawnedFX.global_position = global_position
-		# TODO: rotate based on direction of tile we are attacking (not facing)
+		spawnedFX.scale.x = -1 if actor_facing > Facing.Cardinal.SOUTHEAST else 1
 		get_tree().current_scene.add_child(spawnedFX)
+	
 	if animation_attack:
 		play_animation(animation_attack)
 
