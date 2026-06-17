@@ -82,9 +82,15 @@ func enter(_from: ResourceState = null) -> void:
 			await _actor.create_tween().tween_interval(pre_attack_duration).finished
 			
 			var affected_tiles: Array[Vector2i] = get_affected_tiles()
-			pulse_affected_tiles(affected_tiles) ## VFX
-			
 			var affected_actors: Array[Actor] = get_affected_actors(affected_tiles)
+			
+			var tiles_with_actors: Array[Vector2i]
+			for actor in affected_actors:
+				tiles_with_actors.append(actor.current_tile_coords)
+			
+			## Pass in all valid tiles, and all tiles actually about to be affected
+			pulse_affected_tiles(affected_tiles, tiles_with_actors) ## VFX
+			
 			if not affected_actors.is_empty():
 				
 				if refundable_cost == RefundTypes.ON_HIT:

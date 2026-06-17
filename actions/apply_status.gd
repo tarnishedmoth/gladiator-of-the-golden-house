@@ -18,29 +18,36 @@ func enter(_from: ResourceState = null) -> void:
 	exit()
 	
 func _get_affected_and_apply_status() -> void:
-	var targets: Array[Vector2i]
+	var affected_tiles: Array[Vector2i]
 	
 	if _target != null:
 		## New behavior: only the _target tile
-		targets.append(_target)
+		affected_tiles.append(_target)
 	else:
 		## (Old behavior): Every coord relative to _actor
 		## Still utilized by AI Actors for some actions
-		targets = _actor.get_action_target_cells(self)
+		affected_tiles = _actor.get_action_target_cells(self)
 
-	if debug: p("Targeting %d tiles." % targets.size())
-	pulse_affected_tiles(targets)
-	
-	var affected: int = 0
-	for coords in targets:
+	if debug: p("Targeting %d tiles." % affected_tiles.size())
+	var affected_actors: Array[Actor]
+	for coords in affected_tiles:
 		var found_actor: Actor = Level.get_actor_at(coords)
 		if found_actor:
-			apply_status(found_actor)
-			affected += 1
+			affected_actors.append(found_actor)
+			
+	var tiles_with_actors: Array[Vector2i]
+	for actor in affected_actors:
+		tiles_with_actors.append(actor.current_tile_coords)
+	## Pass in all valid tiles, and all tiles actually about to be affected
+	pulse_affected_tiles(affected_tiles, tiles_with_actors) ## VFX
 	
-	if affected == 0:
+	if affected_actors.is_empty():
 		if debug: p("None affected.")
 		Level.get_hud().popup_label("Missed", _actor, LevelHUD.STYLE_NEGATED)
+	
+	else:
+		for actor in affected_actors:
+			apply_status(actor)
 
 
 ## Copies the status effect resource and applies it to the actor.

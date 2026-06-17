@@ -34,11 +34,11 @@ const ACTION_CATEGORY_ICONS: Dictionary[ActionCategory, Texture2D] = {
 
 static func get_action_color(action: Action) -> Color:
 	if action is ActionMove:
-		return Targeting.COLORS.BLUE
+		return Targeting.COLORS.YELLOW
 	elif action is ActionApplyStatus:
-		return Targeting.COLORS.YELLOW
+		return Targeting.COLORS.BLUE
 	elif action is ActionChangeStance:
-		return Targeting.COLORS.YELLOW
+		return Targeting.COLORS.WHITE
 	else:
 		return Targeting.COLORS.RED
 
@@ -161,9 +161,12 @@ func get_implicated_tiles(_at_coords: Vector2i) -> ImplicatedTiles:
 
 
 ## Show affected tiles when things happen
-func pulse_affected_tiles(tiles: Array[Vector2i]) -> void:
-	for tile in tiles:
-		TargetFinder.highlight_momentary(tiles, get_action_color(self))
+func pulse_affected_tiles(tiles: Array[Vector2i], fill_tiles: Array[Vector2i] = []) -> void:
+	if not tiles.is_empty():
+		var unfilled: Array[Vector2i] = tiles.filter(func(v): return not v in fill_tiles)
+		TargetFinder.highlight_momentary(unfilled, get_action_color(self))
+	if not fill_tiles.is_empty():
+		TargetFinder.highlight_momentary(fill_tiles, get_action_color(self), true)
 
 
 #region Save / Load

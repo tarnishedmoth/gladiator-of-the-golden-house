@@ -727,7 +727,7 @@ func render_preview_for_action(action: Action, target) -> void:
 		if target == null:
 			TargetFinder.highlight_targets(playable_tiles, color, self)
 		else:
-			TargetFinder.highlight_target(target, Targeting.COLORS.PINK, self)
+			TargetFinder.highlight_target(target, Targeting.COLORS.YELLOW, self)
 			if RENDER_AI_PLAYABLE_TILES:
 				TargetFinder.highlight_targets(playable_tiles, Targeting.COLORS.GREY, self)
 	

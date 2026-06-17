@@ -2,12 +2,18 @@ class_name TargetIndicatorVisual extends Node2D
 
 const ALPHA_VALUE = 114
 
+@export var fill: CanvasItem
+
 var animate_on_enter: bool = true
+var show_fill: bool = false
 
 var _despawning: bool = false
 @onready var _starting_scale: Vector2 = scale
 
 func _ready() -> void:
+	if fill:
+		fill.visible = show_fill
+	
 	if animate_on_enter:
 		var tween = create_tween()
 		tween.tween_property(self, ^"modulate", modulate, Juice.BLITZ).from(Color.TRANSPARENT)

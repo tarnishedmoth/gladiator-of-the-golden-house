@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://d01as0qnw5yn1"]
 
 [ext_resource type="Script" uid="uid://caia1h4uat870" path="res://actors/targeting/target_indicator.gd" id="1_ne7w0"]
-[ext_resource type="Texture2D" uid="uid://bgutn5arapg3r" path="res://play/tile-atlases/hexagon-antialiased.png" id="2_2cise"]
 [ext_resource type="Texture2D" uid="uid://chcat6kgh1tb3" path="res://play/tile-atlases/hexagon-grid-cool.png" id="2_ne7w0"]
+[ext_resource type="Texture2D" uid="uid://bt8m1ptb0w2jn" path="res://play/tile-atlases/hexagon_fill-diagonal.png" id="3_2cise"]
 
-[node name="TargetIndicator" type="Node2D" unique_id=175687462]
+[node name="TargetIndicator" type="Node2D" unique_id=175687462 node_paths=PackedStringArray("fill")]
 light_mask = 0
 script = ExtResource("1_ne7w0")
+fill = NodePath("TargetHighLight2")
 
 [node name="TargetHighLight" type="Sprite2D" parent="." unique_id=497166907]
 z_index = 10
@@ -14,9 +15,6 @@ z_as_relative = false
 texture = ExtResource("2_ne7w0")
 
 [node name="TargetHighLight2" type="Sprite2D" parent="." unique_id=1404874308]
-visible = false
-modulate = Color(1, 1, 1, 0.007843138)
 z_index = 1
 z_as_relative = false
-texture_filter = 2
-texture = ExtResource("2_2cise")
+texture = ExtResource("3_2cise")

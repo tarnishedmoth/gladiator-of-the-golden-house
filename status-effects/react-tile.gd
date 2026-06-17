@@ -42,7 +42,10 @@ func on_actor_moved(actor: Actor) -> bool:
 			return false
 			
 	var aoe := get_aoe()
+	TargetFinder.highlight_momentary(aoe.filter(func(v: Vector2i): return not v == actor.current_tile_coords), TargetFinder.COLORS.YELLOW)
+	
 	if actor.current_tile_coords in aoe:
+		TargetFinder.highlight_momentary([actor.current_tile_coords], TargetFinder.COLORS.YELLOW, true)
 		await hook(actor)
 		return true
 	return false

@@ -9,7 +9,8 @@ const COLORS = {
 	PINK = Color("cd367aff"),
 	WHITE = Color("ffffffff"),
 	BLUE = Color("4895ffff"),
-	YELLOW = Color("dec000ff"),
+	GREEN = Color(0.132, 0.823, 0.757, 1.0),
+	YELLOW = Color("ffc944ff"),
 	GREY = Color("555555ff")
 }
 
@@ -80,13 +81,14 @@ func clear_all_highlights():
 	highlights.clear()
 
 
-func highlight_momentary(targets: Array[Vector2i], color: Color, time: float = Juice.SMOOTH) -> void:
+func highlight_momentary(targets: Array[Vector2i], color: Color, show_fill: bool = false, time: float = Juice.SMOOTH) -> void:
 	for entry in targets:
 		if tilemap.get_cell_tile_data(entry): ## Valid tile
 			var target_highlight: TargetIndicatorVisual = targ_executing_scene.instantiate()
 			
 			target_highlight.animate_on_enter = false ## do our own animation here
-			target_highlight.modulate = Color(color, 0.75)
+			target_highlight.show_fill = show_fill
+			target_highlight.modulate = color #Color(color, 0.75)
 			target_highlight.scale *= 0.94
 			target_highlight.global_position = tilemap.to_global(tilemap.map_to_local(entry))
 			add_child(target_highlight)
