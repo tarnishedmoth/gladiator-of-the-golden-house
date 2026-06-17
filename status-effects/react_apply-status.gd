@@ -10,6 +10,7 @@ enum BasicTargets {
 @export var status_to_apply: Status
 @export var override_quantity_to_apply: int = 0 ## must be greater than zero to have an affect
 @export var get_quantity_from_damage_dealt: bool = false ## If true, will apply equal status points as damage dealt, according to [member trigger].
+@export var limit_quantity_to_effect_points: bool = true ## Only applies if get_quantity_from_damage_dealt is true.
 @export var trigger: Hook = Hook.ON_TAKE_DAMAGE
 @export var target_actor: BasicTargets
 
@@ -46,31 +47,31 @@ func on_turn_end() -> void:
 	
 func on_take_damage(damage:int) -> int:
 	if trigger == Hook.ON_TAKE_DAMAGE:
-		apply_status(override_quantity_to_apply if not get_quantity_from_damage_dealt else damage)
+		apply_status(get_quantity(damage))
 	return damage
 	
 func on_take_direct_damage(damage:int) -> int:
 	if trigger == Hook.ON_TAKE_DIRECT_DAMAGE:
-		apply_status(override_quantity_to_apply if not get_quantity_from_damage_dealt else damage)
+		apply_status(get_quantity(damage))
 	return damage
 	
 func on_deal_damage(damage:int) -> int:
 	if trigger == Hook.ON_DEAL_DAMAGE:
-		apply_status(override_quantity_to_apply if not get_quantity_from_damage_dealt else damage)
+		apply_status(get_quantity(damage))
 	return damage
 	
 func on_deal_direct_damage(damage:int) -> int:
 	if trigger == Hook.ON_DEAL_DIRECT_DAMAGE:
-		apply_status(override_quantity_to_apply if not get_quantity_from_damage_dealt else damage)
+		apply_status(get_quantity(damage))
 	return damage
 	
 func on_damage_dealt(damage:int) -> void:
 	if trigger == Hook.ON_DAMAGE_DEALT:
-		apply_status(override_quantity_to_apply if not get_quantity_from_damage_dealt else damage)
+		apply_status(get_quantity(damage))
 
 func on_direct_damage_dealt(damage:int) -> void:
 	if trigger == Hook.ON_DIRECT_DAMAGE_DEALT:
-		apply_status(override_quantity_to_apply if not get_quantity_from_damage_dealt else damage)
+		apply_status(get_quantity(damage))
 
 func apply_status(override_quantity: int = override_quantity_to_apply) -> void:
 	if not status_to_apply:
@@ -82,3 +83,14 @@ func apply_status(override_quantity: int = override_quantity_to_apply) -> void:
 			override_quantity
 			)
 	on_after_hook()
+
+func get_quantity(incoming_damage: int) -> int:
+		var amount: int
+		if get_quantity_from_damage_dealt:
+			if limit_quantity_to_effect_points:
+				amount = mini(incoming_damage, effect_points)
+			else:
+				amount = incoming_damage
+		else:
+			amount = override_quantity_to_apply
+		return amount
