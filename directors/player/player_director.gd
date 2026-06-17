@@ -4,6 +4,7 @@ const HOLD_TIME_TO_END_TURN_EARLY: float = 1.3
 const REPLACE_STANCE_CARDS_IN_HAND: bool = true
 const STICKY_TILE_SELECT: bool = false
 const DESELECT_ON_REPEAT: bool = true
+
 const SELECT_FACING_INDICATOR = preload("uid://dtgl2ndfa7uub")
 var select_facing_is_visible: bool:
 	set(v):
@@ -12,6 +13,7 @@ var select_facing_is_visible: bool:
 			## Hide the tile highlight when the widget is showing
 			tile_interactor.show_highlight = not select_facing_is_visible
 
+const VERBOSE_CARDS: bool = true
 
 var tile_map: TileMapLayer
 var tile_interactor: TileInteractor
@@ -33,7 +35,6 @@ var current_stance: Stance
 
 var draw_deck: Array[Action] ## The entirety of actions available to be drawn.
 var discard_deck: Array[Action] ## When [member draw_deck] runs empty, these are re-shuffled for play.
-var exhausted_deck: Array[Action] ## Are removed from play for the rest of this match.
 var actions_in_hand: Array[Action] ## Action cards that the player currently has on screen to choose from.
 var current_held_action: Action ## The action to be previewed or played.
 var stash: Array[Action] ## Persistent bonus cards, consumed on use.
@@ -71,10 +72,12 @@ func setup(tilemap: TileMapLayer, interactor: TileInteractor) -> void:
 		actor.is_active = true
 	
 	draw_deck = starting_actions_deck.duplicate()
+	if VERBOSE_CARDS: p("Copied starting actions to draw deck.")
 	
 	if not stances.is_empty():
 		change_stance(stances.front().pickme_action.stance_uid)
 	draw_deck.shuffle()
+	if VERBOSE_CARDS: p("Shuffled draw deck: %d cards." % draw_deck.size())
 
 	var main_actor: Actor = actors.front()
 	if main_actor and main_actor.persistent_data_key:
@@ -94,7 +97,7 @@ func take_turn() -> void:
 func _on_turn_started():
 	if VERBOSE: p("Player turn started.")
 	
-	select_actor(actors.front())
+	select_actor(actors.front()) ## HACK implement a way to select actors when there's a need for it
 	draw_hand()
 	#hold_action(actions_in_hand.front())
 
@@ -272,20 +275,29 @@ func hold_action(action: Action):
 func unhold_action(): hold_action(null)
 
 func draw_hand(draw_count: int = hand_size):
+	if VERBOSE_CARDS: p("Drawing hand...")
+	
+	## Add all cards in always available deck
 	for card in always_available_deck:
-		if card not in actions_in_hand:
+		if card in actions_in_hand:
+			if VERBOSE_CARDS: p("Card %s already in hand, skipping..." % card)
+		else:
 			if card is ActionChangeStance:
 				push_error("Stance change cards are added procedurally from the Stances property.")
+			
 			else:
 				actions_in_hand.push_front(card)
+				if VERBOSE_CARDS: p("Pushed always available %s to the front." % card)
 	
+	## Add the stance change action for each other stance.
 	for stance in stances:
 		if stance != current_stance:
 			assert(stance.pickme_action, "Stance needs a pickme action to be pickable.")
-			actions_in_hand.push_back(stance.pickme_action)
+			actions_in_hand.append(stance.pickme_action)
+			if VERBOSE_CARDS: p("Appended stance change %s to the back." % stance.pickme_action)
 
 	for card in draw_count:
-		_draw_next_card()
+		draw_next_card()
 	
 	for card in actions_in_hand:
 		card.set_actor(selected_actor)
@@ -298,49 +310,41 @@ func refresh_hud_actions_and_stash() -> void:
 	update_hud_actions_disabled_check()
 
 func discard_hand():
+	if VERBOSE_CARDS: p("Discarding hand...")
 	unhold_action()
 	
 	var to_erase: Array[Action] = actions_in_hand.duplicate()
 	for card in to_erase: ## because you can't iterate over an array and erase elements, we copy the array first...
-		_discard(card)
+		discard(card)
 
 	hud.populate_actions_list([], selected_actor) ## Update HUD
 	update_hud_actions_disabled_check()
 
 
-func _draw_next_card():
+func draw_next_card():
 	if draw_deck.is_empty():
 		if not discard_deck.is_empty():
 			discard_deck.shuffle()
 			draw_deck.append_array(discard_deck)
-			if VERBOSE: p("Reshuffled %d cards in discard deck into draw deck." % discard_deck.size())
+			if VERBOSE_CARDS: p("Reshuffled %d cards in discard deck into draw deck." % discard_deck.size())
 			discard_deck.clear()
 		else:
-			push_error("Out of cards!!")
+			if VERBOSE_CARDS: p("Out of cards!!"); push_error("Out of cards!!")
 			return
 
 	var drawn: Action = draw_deck.pop_front()
 	actions_in_hand.push_back(drawn)
-	if VERBOSE: p("Drew action: %s" % drawn.ui_title)
+	if VERBOSE_CARDS: p("Drew action: %s" % drawn)
 
 ## Add this card to discard_deck and erase from actions_in_hand.
-func _discard(card):
+## Will assert that the card is actually in your hand...
+func discard(card):
+	assert(card in actions_in_hand, "Trying to discard %s from a foreign source." % card)
 	if (not card in always_available_deck) && (not card is ActionChangeStance):
-		discard_deck.push_back(card) ## Brain says push_front, but arrays can only be appended so lets just know that this deck is "upside down"
+		discard_deck.append(card)
+		if VERBOSE_CARDS: p("Sent %s to discard deck." % card)
 	actions_in_hand.erase(card)
-
-func get_facing(place_indicator_pos):
-	select_facing_is_visible = true
-	
-	var facing_indicator = SELECT_FACING_INDICATOR.instantiate()
-	self.add_child(facing_indicator)
-	facing_indicator.global_position = place_indicator_pos
-	facing_indicator.show()
-	
-	var selected_facing_dir = await facing_indicator.facing_selected ## NOTICE AWAIT
-	selected_actor.set_facing(selected_facing_dir)
-	facing_indicator.queue_free()
-	select_facing_is_visible = false
+	if VERBOSE_CARDS: p("Cleared %s from hand." % card)
 
 var _currently_playing_action: bool = false
 func play_held_action_at(coords: Vector2i):
@@ -370,14 +374,15 @@ func play_held_action_at(coords: Vector2i):
 	selected_actor.queue_action(current_held_action, true)
 	await selected_actor.queued_actions_finished
 	
-	var is_from_stash: bool = current_held_action in stash
-	if is_from_stash:
+	if current_held_action in stash:
 		remove_from_stash(current_held_action)
+		## don't add to the Discard deck
+	
 	else:
 		if current_held_action.action_category == Action.ActionCategory.CONSUMABLE:
 			remove_from_deck(current_held_action)
 		else:
-			_discard(current_held_action)
+			discard(current_held_action)
 	
 	if current_held_action.allow_facing_after:
 		position_for_facing = selected_actor.global_position
@@ -390,40 +395,101 @@ func play_held_action_at(coords: Vector2i):
 	hud.end_turn_button.disabled = false
 	hud.end_turn_button.show()
 
+## Appends [param card] to the [member draw_deck].
 func add_to_deck(card: Action) -> void:
 	if card == null:
-		if VERBOSE: p("Card to add was null")
+		if VERBOSE_CARDS: p("Tried to add a null card to the draw deck.")
 		return
-	if VERBOSE: p("Adding card %s to deck." % card.ui_title)
+	if VERBOSE_CARDS: p("Appending %s to back of draw deck." % card)
 	draw_deck.push_back(card)
 
+## Finds and erases the first instance of [param card] in each array [member discard_deck], [member draw_deck], and [member actions_in_hand].
 func remove_from_deck(card: Action) -> void:
 	if card == null:
-		if VERBOSE: p("Card to remove was null")
+		if VERBOSE_CARDS: p("Card to remove was null")
 		return
 	if card in discard_deck:
-		if VERBOSE: p("Removed card %s from deck." % card.ui_title)
 		discard_deck.erase(card)
+		if VERBOSE_CARDS: p("Erased card %s from [b]discard[/b] deck." % card)
 	if card in draw_deck:
 		draw_deck.erase(card)
+		if VERBOSE_CARDS: p("Erased card %s from [b]draw[/b] deck." % card)
 	if card in actions_in_hand:
 		actions_in_hand.erase(card)
+		if VERBOSE_CARDS: p("Erased card %s from [b]hand[/b]." % card)
 
 func add_to_stash(card: Action) -> void:
 	if card == null:
-		if VERBOSE: p("Card to stash was null")
+		if VERBOSE or VERBOSE_CARDS: p("Card to stash was null")
 		return
 	card.action_category = Action.ActionCategory.CONSUMABLE
 	stash.append(card)
 	hud.populate_stash_list(stash, selected_actor)
 	update_hud_actions_disabled_check()
-	if VERBOSE: p("Stashed card: %s" % card.ui_title)
+	if VERBOSE or VERBOSE_CARDS: p("Stashed card: %s" % card)
 
 func remove_from_stash(card: Action) -> void:
 	stash.erase(card)
 	hud.populate_stash_list(stash, selected_actor)
 	update_hud_actions_disabled_check()
-	if VERBOSE: p("Removed stashed card: %s" % card.ui_title)
+	if VERBOSE or VERBOSE_CARDS: p("Erased %s from Stash." % card)
+	
+func get_all_cards(and_stash: bool = false) -> Array[Action]:
+	var all_together: Array[Action]
+	if and_stash:
+		all_together = actions_in_hand + draw_deck + discard_deck + stash
+	else:
+		all_together = actions_in_hand + draw_deck + discard_deck
+	if VERBOSE_CARDS: p("(%d cards this moment)" % all_together.size())
+	return all_together
+	
+var last_stance_status_key
+## Arg is a UID
+func change_stance(new_stance_uid) -> void:
+	## Remove all cards from the old stance, add current stance cards.
+	## And also somehow don't mess up the card stack (shuffle).
+	var starting_cards_in_hand: int = actions_in_hand.size()
+	var _new_cards: Array[Action] ## To shuffle later
+	
+	var new_stance_path = ResourceUID.uid_to_path(new_stance_uid)
+	assert(new_stance_path)
+	
+	var new_stance: Stance = ResourceLoader.load(new_stance_path)
+	assert(new_stance != current_stance, "Tried to change stance to same stance")
+	
+	for actor in actors:
+		actor.erase_keyed_statuses(last_stance_status_key)
+	last_stance_status_key = new_stance_uid
+	
+	if current_stance != null:
+		if VERBOSE_CARDS: p("Removing old stance cards...")
+		for card in get_all_cards():
+			if card in current_stance.actions:
+				remove_from_deck(card)
+	
+	current_stance = new_stance
+	
+	if VERBOSE_CARDS: p("Adding new stance cards to draw deck...")
+	for card in new_stance.actions:
+		_new_cards.append(card)
+		add_to_deck(card)
+	draw_deck.shuffle() ## NOTE we also are shuffling the deck when this is called.
+	if VERBOSE_CARDS: p("Shuffled draw deck: %d cards." % draw_deck.size())
+		
+	
+	if REPLACE_STANCE_CARDS_IN_HAND:
+		if VERBOSE or VERBOSE_CARDS: p("Replacing %d lost held old stance actions..." % (starting_cards_in_hand - actions_in_hand.size()))
+		_new_cards.shuffle()
+		
+		while actions_in_hand.size() < starting_cards_in_hand:
+			if _new_cards.is_empty():
+				if VERBOSE: p("Ran out of new stance actions to draw.")
+				break
+			
+			var drawn: Action = _new_cards.pop_back()
+			draw_deck.erase(drawn)
+			actions_in_hand.push_back(drawn)
+			if VERBOSE: p("Drew action: %s" % drawn.ui_title)
 #endregion
 
 func select_actor(actor: Actor) -> void:
@@ -438,6 +504,19 @@ func select_actor(actor: Actor) -> void:
 		if VERBOSE: p("Selected actor %s" % selected_actor)
 
 func deselect_actor() -> void: select_actor(null)
+
+func get_facing(place_indicator_pos):
+	select_facing_is_visible = true
+	
+	var facing_indicator = SELECT_FACING_INDICATOR.instantiate()
+	self.add_child(facing_indicator)
+	facing_indicator.global_position = place_indicator_pos
+	facing_indicator.show()
+	
+	var selected_facing_dir = await facing_indicator.facing_selected ## NOTICE AWAIT
+	selected_actor.set_facing(selected_facing_dir)
+	facing_indicator.queue_free()
+	select_facing_is_visible = false
 
 func update_hud_actions_disabled_check() -> void:
 	hud.actions_panel.check_actions_disabled(selected_actor)
@@ -458,54 +537,6 @@ func update_npc_action_preview() -> void:
 			var actor = Level.get_actor_at(_last_hovered_tile) as AIActor
 			if actor != null:
 				actor.preview_ai_attack()
-
-
-func get_all_cards(and_exhausted: bool = false) -> Array[Action]:
-	if and_exhausted:
-		return actions_in_hand + discard_deck + exhausted_deck
-	else:
-		return actions_in_hand + discard_deck
-
-var last_stance_status_key
-## Arg is a UID
-func change_stance(new_stance_uid) -> void:
-	## Remove all cards from the old stance, add current stance cards.
-	## And also somehow don't mess up the card stack (shuffle).
-	var starting_cards_in_hand: int = actions_in_hand.size()
-	var _new_cards: Array[Action] ## To shuffle later
-	
-	var new_stance_path = ResourceUID.uid_to_path(new_stance_uid)
-	if new_stance_path:
-		var new_stance: Stance = ResourceLoader.load(new_stance_path)
-		if not new_stance == current_stance:
-			for actor in actors:
-				actor.erase_keyed_statuses(last_stance_status_key)
-			last_stance_status_key = new_stance_uid
-			
-			for card in get_all_cards():
-				if card in current_stance.actions:
-					remove_from_deck(card)
-			
-			current_stance = new_stance
-			
-			for card in new_stance.actions:
-				_new_cards.append(card)
-				add_to_deck(card)
-				draw_deck.shuffle() ## NOTE we also are shuffling the deck when this is called.
-	
-	if REPLACE_STANCE_CARDS_IN_HAND:
-		if VERBOSE: p("Replacing held stance actions...")
-		_new_cards.shuffle()
-		
-		while actions_in_hand.size() < starting_cards_in_hand:
-			if _new_cards.is_empty():
-				if VERBOSE: p("Ran out of new stance actions to draw.")
-				break
-			
-			var drawn: Action = _new_cards.pop_back()
-			draw_deck.erase(drawn)
-			actions_in_hand.push_back(drawn)
-			if VERBOSE: p("Drew action: %s" % drawn.ui_title)
 
 ## Call to stun the player. Different behavior from [AIActor], where their action queue is cleared...
 ## Typically called at the start of your turn by the status effect Stunned.

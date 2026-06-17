@@ -8,10 +8,10 @@ class_name ActionChangeStance extends Action
 
 ## On transition to this state
 func enter(_from: ResourceState = null) -> void:
-	change_stance(_actor)
+	change_actor_stance(_actor)
 	exit()
 
-func change_stance(actor: Actor) -> void:
+func change_actor_stance(actor: Actor) -> void:
 	if not actor:
 		push_error("Actor is invalid")
 	elif not actor.director is Player:
