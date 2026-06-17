@@ -53,6 +53,7 @@ func on_finished() -> void:
 
 func skip() -> void:
 	if not time_left_to_skip > 0.0:
+		use_scene_blocking_transition_on_exit = true
 		Main.sfx_blip()
 		on_finished()
 
