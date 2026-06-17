@@ -46,13 +46,13 @@ enum Hook {
 	ON_APPLYING_STATUS,
 	ON_STATUS_APPLIED,
 }
+@export var effect_points: int
 
 @export var on_start_behavior: OnStart = OnStart.REMOVE_EFFECT ## Happens when a director's turn begins.
 @export var after_hook_behavior: OnStart = OnStart.NOTHING
 @export var on_end_behavior: OnStart = OnStart.NOTHING ## Happens when a director's turn ends.
 @export var only_react_to_actors_turn_notifs: bool = false ## Affects [member on_start_behavior] and [member on_end_behavior].
-
-@export var effect_points: int
+@export var persist_through_matches: bool = false
 
 @export var ui_name: String ## This name is also used as a [member unique_name], for combining statuses when applied.
 @export var ui_description: String 
