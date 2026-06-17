@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PickUpData" format=3 uid="uid://4dlrnlkmxkuy"]
 
 [ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="1_0fkos"]
-[ext_resource type="Resource" uid="uid://qdgds1txn3pe" path="res://pick-ups/heal-gradual-15.tres" id="1_7l4m1"]
+[ext_resource type="Resource" uid="uid://qdgds1txn3pe" path="res://actions/prefabs/heal-gradual-15.tres" id="1_7l4m1"]
 [ext_resource type="Texture2D" uid="uid://dm7i3qs1bsjlb" path="res://pick-ups/created_pickups/pickup_data/sprite2.png" id="4_eu766"]
 
 [resource]
