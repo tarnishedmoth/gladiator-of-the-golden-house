@@ -403,19 +403,19 @@ func select_facing_now() -> void:
 	set_facing(get_facing_direction_to_hostile_target())
 
 ## This method is responsible for updating queued actions when we are moved by external forces.
-## TODO Consider moving this logic to a generic move method instead of specifically knockback
-func knockback_in_direction(direction: Facing.Cardinal, distance: int) -> void:
+func move_to_tile(coords: Vector2i, duration_of_movement: float = 0.4) -> void:
 	var _starting_coord: Vector2i = current_tile_coords
-	super(direction, distance)
+	super(coords, duration_of_movement)
 	var _ending_coord: Vector2i = current_tile_coords
 	if _starting_coord != _ending_coord:
 		move_all_actions_by(_ending_coord - _starting_coord)
-		
+
 func move_all_actions_by(offset: Vector2i) -> void:
 	if action_queue.queue.is_empty():
 		return
 	if debug: p("Nudging all queued actions' targets by %s..." % offset)
 	for action in get_action_queue().queue:
+		if action == self: continue
 		if action._target != null:
 			action.set_target(action._target + offset)
 			if debug: p("Nudged %s." % action)
