@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://c1o651tikwnvi"]
+
+[ext_resource type="PackedScene" uid="uid://dn85j1jxgk42" path="res://play/levels/colosseum/inheritable-level_region-1.tscn" id="1_3xhx5"]
+[ext_resource type="PackedScene" uid="uid://c0cd2sq6is7ra" path="res://actors/emperor/emperor.tscn" id="2_cyjlg"]
+[ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="2_dcb33"]
+[ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="3_cyjlg"]
+[ext_resource type="PackedScene" uid="uid://bgltwsebcssa7" path="res://actors/enemies/chariot/chariot_headless.tscn" id="4_dr0l3"]
+[ext_resource type="Script" uid="uid://cu4ax3w3ygvfu" path="res://directors/player/player_insert_placeholder.gd" id="4_j83iv"]
+[ext_resource type="Script" uid="uid://5d6qh71oemsi" path="res://actors/ai_actor_conditional.gd" id="5_5udmy"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="6_2t0gx"]
+[ext_resource type="Resource" uid="uid://lbxk1wbouqvx" path="res://actions/prefabs/attack_slash-14.tres" id="7_dr8ra"]
+[ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="8_kl4dv"]
+[ext_resource type="Resource" uid="uid://b4iaypo6kvgaw" path="res://actions/prefabs/hire-grunt.tres" id="9_nf4qx"]
+[ext_resource type="Resource" uid="uid://b2s2d2mr4vds" path="res://actions/prefabs/guard-basic.tres" id="10_vfsg5"]
+[ext_resource type="Resource" uid="uid://dndcidgrypfmp" path="res://actions/prefabs/attack_plunge-12.tres" id="11_ohysf"]
+[ext_resource type="Resource" uid="uid://br4bum2xxwq41" path="res://actions/prefabs/boost-defense.tres" id="12_3iii5"]
+[ext_resource type="PackedScene" uid="uid://dlm1c1t55rkbw" path="res://characters/colosseum-crowd/armored_green.tscn" id="13_wsoss"]
+[ext_resource type="Texture2D" uid="uid://c745uif4rgmmi" path="res://actions/ui-icons/crossbow-16.png" id="14_l0lw1"]
+[ext_resource type="Script" uid="uid://c23svqo1v3284" path="res://vfx/weapon-wobble.gd" id="15_56uaj"]
+[ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="16_4lqv4"]
+[ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="17_70lop"]
+[ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="18_k6xy4"]
+
+[node name="Level" unique_id=13868467 instance=ExtResource("1_3xhx5")]
+
+[node name="BackgroundColosseum" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="0" unique_id=768298569]
+start_animation_on_ready = true
+
+[node name="emperor" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="1" unique_id=1077291446 instance=ExtResource("2_cyjlg")]
+visible = true
+position = Vector2(602, -17)
+
+[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=1185600136]
+script = ExtResource("2_dcb33")
+
+[node name="HeadlessChariot" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=84579020 instance=ExtResource("4_dr0l3")]
+position = Vector2(-188, -67)
+
+[node name="HeadlessChariot2" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=1760370988 instance=ExtResource("4_dr0l3")]
+position = Vector2(-187, 72)
+
+[node name="XbowLegionary" type="Node2D" parent="TileMapLayers/Directors/AIDirector" index="2" unique_id=1805248977 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
+position = Vector2(187, -4)
+script = ExtResource("5_5udmy")
+conditionally_usable_actions = Array[ExtResource("6_2t0gx")]([ExtResource("7_dr8ra"), ExtResource("8_kl4dv"), ExtResource("9_nf4qx"), ExtResource("9_nf4qx"), ExtResource("10_vfsg5"), ExtResource("11_ohysf")])
+drop_chance = 0.4
+usable_actions = Array[ExtResource("6_2t0gx")]([ExtResource("7_dr8ra"), ExtResource("8_kl4dv"), ExtResource("11_ohysf"), ExtResource("8_kl4dv"), ExtResource("12_3iii5"), ExtResource("8_kl4dv")])
+actions_to_queue_this_turn = 2
+selection_behavior = 5
+character_visual_root = NodePath("VisualRoot")
+health_bar = NodePath("health")
+speech_bubble = NodePath("SpeechBubble")
+ui_name = "Legionary"
+ui_description = "A standard citizen soldier, loyal to the Emperor."
+max_health = 24
+metadata/_custom_type_script = "uid://5d6qh71oemsi"
+
+[node name="VisualRoot" type="Node2D" parent="TileMapLayers/Directors/AIDirector/XbowLegionary" index="0" unique_id=614636530]
+
+[node name="Generator" parent="TileMapLayers/Directors/AIDirector/XbowLegionary/VisualRoot" index="0" unique_id=2057479258 instance=ExtResource("13_wsoss")]
+flip_clothes = true
+
+[node name="Crossbow" type="Sprite2D" parent="TileMapLayers/Directors/AIDirector/XbowLegionary/VisualRoot" index="1" unique_id=2126137423]
+z_index = 1
+position = Vector2(6, 6)
+texture = ExtResource("14_l0lw1")
+script = ExtResource("15_56uaj")
+speed = 1.5
+amplitude = 1.5
+
+[node name="ActorSfx" parent="TileMapLayers/Directors/AIDirector/XbowLegionary" index="1" unique_id=1664019728 instance=ExtResource("16_4lqv4")]
+
+[node name="health" parent="TileMapLayers/Directors/AIDirector/XbowLegionary" index="2" unique_id=43880176 instance=ExtResource("17_70lop")]
+position = Vector2(0, -30)
+
+[node name="SpeechBubble" parent="TileMapLayers/Directors/AIDirector/XbowLegionary" index="3" unique_id=757394792 instance=ExtResource("18_k6xy4")]
+position = Vector2(0, -38)
+
+[node name="PlayerPlaceholder" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("3_cyjlg")]
+editor_description = "Will replace itself on ready with a referenced scene via [PlayerData]."
+script = ExtResource("4_j83iv")
+
+[node name="MouseFollower" parent="." index="4" unique_id=687351869]
+metadata/_edit_lock_ = true
+
+[node name="TileMapInteractor" parent="MouseFollower" index="0" unique_id=1205975102]
+metadata/_edit_lock_ = true
+
+[node name="PointLight2D" parent="MouseFollower" index="1" unique_id=740285923]
+metadata/_edit_lock_ = true

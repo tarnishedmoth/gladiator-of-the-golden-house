@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://4lbmvohrambt"]
+
+[ext_resource type="Script" uid="uid://by4v57tusbcnq" path="res://play/cutscenes/cutscene.gd" id="1_hkfnx"]
+[ext_resource type="PackedScene" uid="uid://3wrjbpemvs03" path="res://play/levels/colosseum/colosseum-background.tscn" id="2_fai7j"]
+[ext_resource type="Script" uid="uid://djxoplepbsxn5" path="res://play/cutscenes/iterative_reveal.gd" id="4_h1yq6"]
+
+[sub_resource type="Gradient" id="Gradient_gktfq"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xwi8v"]
+gradient = SubResource("Gradient_gktfq")
+
+[node name="0NewGame" type="Node2D" unique_id=770697048]
+script = ExtResource("1_hkfnx")
+
+[node name="BackgroundColosseum" parent="." unique_id=651320207 instance=ExtResource("2_fai7j")]
+position = Vector2(482, 517)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1340486860]
+
+[node name="BG" type="TextureRect" parent="CanvasLayer" unique_id=1679383094]
+visible = false
+offset_left = -282.0
+offset_top = -240.0
+offset_right = 1308.0
+offset_bottom = 734.0
+texture = SubResource("GradientTexture2D_xwi8v")
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1655640334]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_h1yq6")
+iterative_duration = 28.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1549537349]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 27.0
+offset_top = -143.0
+offset_right = -20.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[b]A.D. 81[/b]  -  Imperial Rome
+
+[i]The spectacular Flavian Amphitheatre has been built by the command of the Emperor.  Now, a great festival is thrown to celebrate the empire's fearsome might,  to satiate the public's thirst for bloodsport,  and to gather the patricians of the region..."
+fit_content = true
+
+[node name="SkipButton" type="Button" parent="CanvasLayer" unique_id=1811026509]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[connection signal="finished" from="CanvasLayer/Control" to="." method="on_finished"]
+[connection signal="pressed" from="CanvasLayer/SkipButton" to="." method="skip"]

@@ -12,6 +12,7 @@ extends Node2D
 		update_nonemissive_modulate()
 		
 @export var start_red: bool = false
+@export var start_animation_on_ready: bool = false
 
 @export var transition_to_color: Color
 @export var transition_time: float = 6.0
@@ -31,6 +32,8 @@ func _ready() -> void:
 		backdrop_red.modulate = Color.WHITE
 	else:
 		backdrop_red.modulate = Color.TRANSPARENT
+		if start_animation_on_ready:
+			transition_to_red_and_start_particles()
 	
 	update_particles()
 	update_nonemissive_modulate()
