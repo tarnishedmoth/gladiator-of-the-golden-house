@@ -81,7 +81,10 @@ func enter(_from: ResourceState = null) -> void:
 			_actor.spawn_vfx(ActorVfxHandler.FX.ATTACK)
 			await _actor.create_tween().tween_interval(pre_attack_duration).finished
 			
-			var affected_actors: Array[Actor] = get_affected()
+			var affected_tiles: Array[Vector2i] = get_affected_tiles()
+			pulse_affected_tiles(affected_tiles) ## VFX
+			
+			var affected_actors: Array[Actor] = get_affected_actors(affected_tiles)
 			if not affected_actors.is_empty():
 				
 				if refundable_cost == RefundTypes.ON_HIT:
@@ -104,8 +107,11 @@ func enter(_from: ResourceState = null) -> void:
 		
 	exit()
 
+## old method for compatability with existing scripts
 func get_affected() -> Array[Actor]:
-	var affected_actors: Array[Actor]
+	return get_affected_actors(get_affected_tiles())
+	
+func get_affected_tiles() -> Array[Vector2i]:
 	var targets: Array[Vector2i]
 	var facing: Facing.Cardinal = _actor.get_facing() ## TODO maybe use Facing.get_direction_to_coordinate()
 	
@@ -123,6 +129,10 @@ func get_affected() -> Array[Actor]:
 			targets = _actor.get_action_target_cells(self)
 
 	if debug: p("Targeting %d tiles." % targets.size())
+	return targets
+
+func get_affected_actors(targets: Array[Vector2i]) -> Array[Actor]:
+	var affected_actors: Array[Actor]
 	
 	for coords in targets:
 		var found_actor: Actor = Level.get_actor_at(coords)

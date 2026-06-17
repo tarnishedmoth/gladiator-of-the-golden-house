@@ -160,6 +160,12 @@ func get_implicated_tiles(_at_coords: Vector2i) -> ImplicatedTiles:
 	return tiles
 
 
+## Show affected tiles when things happen
+func pulse_affected_tiles(tiles: Array[Vector2i]) -> void:
+	for tile in tiles:
+		TargetFinder.highlight_momentary(tiles, get_action_color(self))
+
+
 #region Save / Load
 
 ## Stash entries are template references with no per-card runtime state today.

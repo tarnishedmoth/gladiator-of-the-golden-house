@@ -38,7 +38,10 @@ func enter(_from: ResourceState = null) -> void:
 			_actor.spawn_vfx(ActorVfxHandler.FX.ATTACK)
 			await _actor.create_tween().tween_interval(pre_attack_duration).finished
 			
-			var affected_actors: Array[Actor] = get_affected()
+			var affected_tiles: Array[Vector2i] = get_affected_tiles()
+			pulse_affected_tiles(affected_tiles) ## VFX
+			
+			var affected_actors: Array[Actor] = get_affected_actors(affected_tiles)
 			
 			if affected_actors.is_empty():
 				if debug: p("None affected.")

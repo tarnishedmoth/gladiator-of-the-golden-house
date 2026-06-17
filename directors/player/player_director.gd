@@ -246,7 +246,7 @@ func deselect_tile() -> void:
 func _on_click_to_play_action(target_coords: Vector2i) -> void:
 	TargetFinder.clear_all_highlights()
 	deselect_tile()
-	TargetFinder.highlight_target(target_coords, Action.get_action_color(current_held_action), selected_actor) ## Keep our selection highlighted
+	#TargetFinder.highlight_target(target_coords, Action.get_action_color(current_held_action), selected_actor) ## Keep our selection highlighted
 	play_held_action_at(target_coords)
 
 

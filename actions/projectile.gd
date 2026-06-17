@@ -88,7 +88,10 @@ func _on_projectile_finito() -> void:
 	if hit_vfx_shown == VfxShown.ALWAYS:
 		_spawn_hit_vfxs()
 	
-	var affected_actors: Array[Actor] = get_affected()
+	var affected_tiles: Array[Vector2i] = get_affected_tiles()
+	pulse_affected_tiles(affected_tiles) ## VFX
+	
+	var affected_actors: Array[Actor] = get_affected_actors(affected_tiles)
 	if not affected_actors.is_empty():
 		## Hit an actor
 		

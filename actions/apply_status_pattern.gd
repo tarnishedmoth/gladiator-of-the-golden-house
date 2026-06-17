@@ -47,6 +47,7 @@ func _get_affected_and_apply_status() -> void:
 			targets = _actor.get_action_target_cells_at(_actor.current_tile_coords, self)
 
 	if debug: p("Targeting %d tiles." % targets.size())
+	pulse_affected_tiles(targets)
 	
 	var affected: int = 0
 	for coords in targets:

@@ -2,13 +2,16 @@ class_name TargetIndicatorVisual extends Node2D
 
 const ALPHA_VALUE = 114
 
+var animate_on_enter: bool = true
+
 var _despawning: bool = false
 @onready var _starting_scale: Vector2 = scale
 
 func _ready() -> void:
-	var tween = create_tween()
-	tween.tween_property(self, ^"modulate", modulate, Juice.BLITZ).from(Color.TRANSPARENT)
-	tween.tween_callback(pulse)
+	if animate_on_enter:
+		var tween = create_tween()
+		tween.tween_property(self, ^"modulate", modulate, Juice.BLITZ).from(Color.TRANSPARENT)
+		tween.tween_callback(pulse)
 
 func pulse() -> void:
 	var tween = create_tween().set_loops()
