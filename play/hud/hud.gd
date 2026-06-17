@@ -6,6 +6,7 @@ const POPUP_NUMBER_INDICATOR = preload("uid://rim8rln2dqsb")
 
 const STYLE_DAMAGE: PopupStyle = preload("uid://bqhq0381fj7a3")
 const STYLE_STATUS: PopupStyle = preload("uid://bqhq0381urka3")
+const STYLE_STATUS_DEBUFF: PopupStyle = preload("uid://m56nl7uvb2lv")
 const STYLE_NEGATED: PopupStyle = preload("uid://bqhq0381djca3")
 const STYLE_VULNERABILITY: PopupStyle = preload("uid://sjdlsxm6sqin")
 
@@ -235,8 +236,11 @@ func popup_healing(value: int, actor: Actor) -> Label:
 func popup_knockback(text: String, actor: Actor) -> Label:
 	return _popup_transient(text, actor, STYLE_STATUS)
 
-func popup_status(text: String, actor: Actor) -> Label:
-	return _popup_transient(text, actor, STYLE_STATUS)
+func popup_status(text: String, actor: Actor, is_debuff: bool = false) -> Label:
+	if is_debuff:
+		return _popup_transient(text, actor, STYLE_STATUS_DEBUFF)
+	else:
+		return _popup_transient(text, actor, STYLE_STATUS)
 
 func popup_negated(value: int, actor: Actor) -> Label:
 	return _popup_transient(value, actor, STYLE_NEGATED)

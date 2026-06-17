@@ -657,7 +657,13 @@ func erase_keyed_statuses(key) -> void:
 
 func add_status(status: Status, key = null) -> void:
 	var suffix := " %+d" % status.effect_points if status.effect_points != 0 else ""
-	Level.get_hud().popup_status(status.ui_name + suffix, self)
+	
+	match status.status_effect_category:
+		Status.StatusEffectCategory.DEBUFF:
+			Level.get_hud().popup_status(status.ui_name + suffix, self, true)
+		_:
+			Level.get_hud().popup_status(status.ui_name + suffix, self, false)
+	
 	status_manager.add_status(status, key)
 	
 func remove_status(status: Status) -> void:
