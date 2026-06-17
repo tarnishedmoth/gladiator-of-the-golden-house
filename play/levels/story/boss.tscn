@@ -66,10 +66,10 @@ ui_name = "? ? ?"
 ui_subtitle = "Cosmic Curiosity"
 ui_description = "Each time you try to get a closer look, it hurts."
 max_health = 62
+can_knockback = false
 dm_dmg_f = 3.0
 dm_dmg_rr = 1.0
 dm_dmg_rl = 1.0
-can_knockback = false
 
 [node name="Eyeguy" parent="TileMapLayers/Directors/AIDirector/Sauron" index="0" unique_id=552246709 instance=ExtResource("9_v1a3o")]
 scale = Vector2(2, 2)
@@ -83,4 +83,4 @@ position = Vector2(0, -30)
 position = Vector2(0, -38)
 
 [node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("13_21mj7")]
-position = Vector2(-189, 3)
+position = Vector2(99, 107)
