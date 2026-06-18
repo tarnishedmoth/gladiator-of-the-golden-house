@@ -81,7 +81,7 @@ script = ExtResource("2_b8xfr")
 metadata/_edit_lock_ = true
 
 [node name="BaseTileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]
-modulate = Color(0.73, 0.6789, 0.6424, 0.15686275)
+self_modulate = Color(0.73, 0.6789, 0.6424, 0.15686275)
 light_mask = 32768
 material = ExtResource("2_fpxwp")
 position = Vector2(-64, -36)
