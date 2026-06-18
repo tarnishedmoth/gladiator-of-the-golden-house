@@ -154,6 +154,14 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 
 		if not action.pattern.is_empty():
 			candidates = get_translated_pattern(action.pattern)
+			
+			if action is ActionMoveKnockback:
+				if hostile_target.current_tile_coords in candidates:
+					coords = hostile_target.current_tile_coords
+					claimed_tiles.append(coords)
+					action.set_target(coords)
+					return
+			
 			candidates = _filter_move_candidates(candidates, claimed_tiles, action.is_obstructable)
 
 			if not candidates.is_empty() && hostile_target:
