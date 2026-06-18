@@ -5,6 +5,8 @@ const MAGIC_OFFSET := Vector2(-128.0, -72.0) / 2.0 ## Used rather than Sprite2D'
 
 signal tile_changed(new_coords: Vector2i)
 
+var mouse_is_over_tile: bool
+
 var tilemap: TileMapLayer
 var current_coords: Vector2i ## Last polled coordinates. Updates every frame, before [signal tile_changed].
 var last_coords: Vector2i ## Previous frame's coordinates. Updates every frame, after [signal tile_changed].
@@ -54,10 +56,12 @@ func _process(_delta: float) -> void:
 	var coords = get_tile_coords_under_interactor()
 	if coords == null:
 		## No tile under cursor
+		mouse_is_over_tile = false
 		if tile_highlight_sprite:
 			tile_highlight_sprite.hide()
 		
 	else:
+		mouse_is_over_tile = true
 		if not last_coords == coords:
 			## New tile
 			current_coords = coords
