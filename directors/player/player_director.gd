@@ -107,6 +107,8 @@ func _end_turn() -> void:
 		discard_hand()
 		deselect_tile()
 		deselect_actor()
+		#TargetFinder.clear_all_highlights()
+		clear_all_npc_action_previews()
 		end_turn()
 
 var _end_turn_with_available_moves: Tween
@@ -158,20 +160,25 @@ func _unhandled_input(event: InputEvent) -> void:
 		pass
 
 var _previous_hovered_actor: Actor ## For health
+func unhover_previous_actor() -> void:
+	if _previous_hovered_actor:
+		_previous_hovered_actor.on_unhovered()
+
 func _on_interactor_tile_changed(new_coords: Vector2i) -> void:
 	_last_hovered_tile = new_coords
 	
-	if _previous_hovered_actor:
-		_previous_hovered_actor.on_unhovered()
+	unhover_previous_actor()
 	
 	var actor: Actor = Level.get_actor_at(new_coords)
 	if actor:
 		actor.on_hovered()
 		_previous_hovered_actor = actor
 	
+	if _currently_playing_action: ## Prevent highlights from appearing when selecting facing direction/animations playing
+		return
 	if not current_held_action:
 		update_npc_action_preview()
-	elif not _currently_playing_action: ## Prevent highlights from appearing when selecting facing direction/animations playing
+	else: 
 		if current_held_action.get(&"split_choice"):
 			## Check which side of the forward axis we're on, to decide to mirror
 			var relative_coord: Vector2i = Facing.unrotate_hex(selected_actor.facing, new_coords - selected_actor.current_tile_coords)
@@ -523,14 +530,16 @@ func update_hud_actions_disabled_check() -> void:
 	hud.actions_panel.check_actions_disabled(selected_actor)
 	hud.stash_panel.check_actions_disabled(selected_actor)
 
+func clear_all_npc_action_previews() -> void:
+	for actor in Level.get_all_actors_in_play_order():
+		if actor is AIActor:
+			actor.hide_preview_for_actions()
 
 ## This method updates AIActor action previews.
 ## This method calls every [method AIActor.hide_preview_attack], then finds the
 ## actor on our mouse-hovered tile and calls [method AIActor.preview_ai_attack].
 func update_npc_action_preview() -> void:
-	for actor in Level.get_all_actors_in_play_order():
-		if actor is AIActor:
-			actor.hide_preview_for_actions()
+	clear_all_npc_action_previews()
 
 	#check if there is an AI actor on selected tile needs their preview added
 	if is_active:

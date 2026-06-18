@@ -704,11 +704,11 @@ func render_preview_for_action(action: Action, target) -> void:
 	else:
 		playable_tiles = get_action_target_cells(action)
 	
+	var hovered_tile_is_valid: bool = false
 	if director is Player:
 		## Render playable tiles with finesse to show the player how they can interact
 		
 		## If a target tile is in the playable pattern, ...
-		var hovered_tile_is_valid: bool = false
 		if target != null:
 			hovered_tile_is_valid = target in playable_tiles
 			playable_tiles.erase(target) ## maybe don't need this ............... brb
@@ -731,6 +731,11 @@ func render_preview_for_action(action: Action, target) -> void:
 			if RENDER_AI_PLAYABLE_TILES:
 				TargetFinder.highlight_targets(playable_tiles, Targeting.COLORS.GREY, self)
 	
+	#if not hovered_tile_is_valid:
+		### Render dots on every potentially damageable tile
+		#for 
+		#return
+		
 	var check_effect_on_tiles: Array[Vector2i]
 	## Render AoE pattern if applicable
 	if target != null:
@@ -777,13 +782,13 @@ func get_action_target_cells_at(play_tile: Vector2i, action: Action) -> Array[Ve
 	if not "pattern" in action:
 		if current_tile_coords == play_tile:
 			aoe.append(current_tile_coords)
-		return aoe
+		return []
 	
 	var valid_cells := Facing.get_target_cells(current_tile_coords, facing, action.pattern)
 	if not play_tile in valid_cells:
 		## Invalid play tile
 		#if debug: p("get_action_target_cells_at: Invalid play tile %s in %s." % [play_tile, valid_cells]) ## print spam
-		return aoe
+		return []
 	
 	if not "aoe_pattern" in action:
 		aoe = Action.NO_PATTERN
