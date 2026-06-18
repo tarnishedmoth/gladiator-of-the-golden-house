@@ -47,6 +47,8 @@ metadata/_custom_type_script = "uid://bab0cowpfbqgf"
 
 [sub_resource type="Gradient" id="Gradient_3cqig"]
 interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.11334552, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fpxwp"]
@@ -79,7 +81,7 @@ script = ExtResource("2_b8xfr")
 metadata/_edit_lock_ = true
 
 [node name="BaseTileMapLayer" type="TileMapLayer" parent="TileMapLayers" unique_id=1254354450]
-modulate = Color(0.53571206, 0.29022622, 0.10399745, 1)
+modulate = Color(0.73, 0.6789, 0.6424, 0.15686275)
 light_mask = 32768
 material = ExtResource("2_fpxwp")
 position = Vector2(-64, -36)
