@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Stance" format=3 uid="uid://dpcvjykwh6o2t"]
+
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="1_2pi2s"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="2_ormur"]
+[ext_resource type="Resource" uid="uid://dhvgu78g6tf7k" path="res://actions/prefabs/player/class-a_brace.tres" id="2_wf1ri"]
+[ext_resource type="Script" uid="uid://dj1vqqabqwo2g" path="res://actions/action_change-stance.gd" id="3_as7tf"]
+[ext_resource type="Resource" uid="uid://d02ioirisgne3" path="res://actions/prefabs/player/backstep.tres" id="3_sua6v"]
+[ext_resource type="Resource" uid="uid://dtrqu858fqs63" path="res://actions/prefabs/player/forward-dash.tres" id="4_0iwdh"]
+[ext_resource type="Script" uid="uid://bhpfulxak0eng" path="res://status-effects/status.gd" id="4_68cnv"]
+[ext_resource type="Resource" uid="uid://caafwfi1i6487" path="res://status-effects/prefabs/stance_visual-reflex.tres" id="5_wf1ri"]
+[ext_resource type="Resource" uid="uid://qtrpikww7240" path="res://actions/prefabs/player/class-flail/class-flail_throw-fist.tres" id="5_y735n"]
+[ext_resource type="Resource" uid="uid://cy0v34w8bsigi" path="res://actions/prefabs/player/strafe.tres" id="6_0iwdh"]
+[ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://actions/stance/stance.gd" id="6_sua6v"]
+
+[sub_resource type="Resource" id="Resource_ag3ef"]
+script = ExtResource("3_as7tf")
+stance_uid = "uid://dpcvjykwh6o2t"
+status_effects = Array[ExtResource("4_68cnv")]([ExtResource("5_wf1ri")])
+allow_facing_before = true
+ui_title = "Flurrious Footwork"
+ui_description = "A more defensive stance for the flail user."
+action_category = 5
+energy_cost = 1
+metadata/_custom_type_script = "uid://dj1vqqabqwo2g"
+
+[resource]
+script = ExtResource("6_sua6v")
+actions = Array[ExtResource("1_2pi2s")]([ExtResource("2_wf1ri"), ExtResource("3_sua6v"), ExtResource("4_0iwdh"), ExtResource("5_y735n"), ExtResource("6_0iwdh")])
+pickme_action = SubResource("Resource_ag3ef")
+metadata/_custom_type_script = "uid://wxlj5akq7s0v"

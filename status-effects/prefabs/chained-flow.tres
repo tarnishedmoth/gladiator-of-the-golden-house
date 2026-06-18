@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="StatusAffectDamage" format=3 uid="uid://dqnit4sn03e0m"]
+
+[ext_resource type="Script" uid="uid://dvm0k3xhgixkl" path="res://status-effects/affect_damage_dealt.gd" id="1_yqa88"]
+[ext_resource type="PackedScene" uid="uid://b8g0o8rwa4uvg" path="res://vfx/status_fx-buff.tscn" id="2_4o4ns"]
+
+[resource]
+script = ExtResource("1_yqa88")
+factor = 3.0
+effect_points = 1
+on_start_behavior = 0
+on_end_behavior = 3
+ui_name = "Chained Flow"
+ui_description = "Increase damage by +3 per effect point, for the rest of your turn."
+status_effect_category = 1
+vfx_applied = ExtResource("2_4o4ns")
+metadata/_custom_type_script = "uid://dvm0k3xhgixkl"

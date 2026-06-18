@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="StatusAffectDamage" format=3 uid="uid://caafwfi1i6487"]
+
+[ext_resource type="Script" uid="uid://dvm0k3xhgixkl" path="res://status-effects/affect_damage_dealt.gd" id="1_dp3gn"]
+
+[resource]
+script = ExtResource("1_dp3gn")
+incoming_or_outgoing = 1
+direct_only = true
+factor = 1.0
+operation = 1
+per_point = false
+use_directional = true
+dir_f = 0.5
+dir_fr = 0.75
+dir_fl = 0.75
+on_start_behavior = 0
+ui_name = "Attentive Reflex"
+ui_description = "Negate incoming damage in front. Effect is strongest directly forward."
+status_effect_category = 1
+metadata/_custom_type_script = "uid://dvm0k3xhgixkl"

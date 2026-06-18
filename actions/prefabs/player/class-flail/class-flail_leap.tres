@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ActionMove" format=3 uid="uid://d2mxfha6gfnvy"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_y7kjb"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_r7oh2"]
+[ext_resource type="Resource" uid="uid://c4oe6v8tjo7dk" path="res://status-effects/prefabs/off-balance.tres" id="3_60bw2"]
+[ext_resource type="Script" uid="uid://btfwr4ctycjfk" path="res://actions/move.gd" id="4_01bpe"]
+
+[sub_resource type="Resource" id="Resource_fxixn"]
+script = ExtResource("2_r7oh2")
+status = ExtResource("3_60bw2")
+ui_title = "Off-balance"
+action_category = 4
+metadata/_custom_type_script = "uid://ic0qko6fd58l"
+
+[resource]
+script = ExtResource("4_01bpe")
+pattern = Array[Vector2i]([Vector2i(1, -2), Vector2i(2, -1), Vector2i(1, 1), Vector2i(-1, 2), Vector2i(-2, 1), Vector2i(-1, -1)])
+ui_title = "Leap"
+ui_description = "+Off-balance:
+  Reduce damage dealt by 40% rest of turn.
+  Does not stack."
+action_category = 1
+energy_cost = 2
+is_obstructable = true
+on_exit_chain_target_to_actor = true
+next_state = SubResource("Resource_fxixn")
+metadata/_custom_type_script = "uid://btfwr4ctycjfk"

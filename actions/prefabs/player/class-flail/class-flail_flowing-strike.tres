@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ActionAttack" format=3 uid="uid://bu7b0xasn4r40"]
+
+[ext_resource type="Resource" uid="uid://eftfb0rys20w" path="res://actions/prefabs/player/class-flail/class-flail_apply-flow.tres" id="1_47obv"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_fvtku"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="4_8k7yy"]
+
+[resource]
+script = ExtResource("4_8k7yy")
+damage = 2
+pattern = Array[Vector2i]([Vector2i(1, -2), Vector2i(2, -1), Vector2i(-2, 1), Vector2i(-1, -1)])
+aoe_pattern = Array[Vector2i]([Vector2i(0, 0)])
+ui_title = "Flowing Strike"
+ui_description = "Retained after use.
+
+Attack and gain +1 Chained Flow: [i]Damage +3 this turn. Stacks.[/i]"
+action_category = 4
+energy_cost = 1
+remove_from_hand_after_use = false
+on_exit_chain_target_to_actor = true
+next_state = ExtResource("1_47obv")
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"

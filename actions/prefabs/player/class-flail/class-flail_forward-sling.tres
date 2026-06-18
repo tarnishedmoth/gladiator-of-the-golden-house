@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ActionAttack" format=3 uid="uid://1exqg0fgkptd"]
+
+[ext_resource type="Resource" uid="uid://eftfb0rys20w" path="res://actions/prefabs/player/class-flail/class-flail_apply-flow.tres" id="1_apkw7"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="2_hhj30"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="3_i8br6"]
+
+[resource]
+script = ExtResource("3_i8br6")
+damage = 4
+pattern = Array[Vector2i]([Vector2i(1, -1)])
+aoe_pattern = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1)])
+split_choice = true
+ui_title = "Forward Sling"
+ui_description = "Swing forward to one side. Gain +1 Flow."
+energy_cost = 2
+on_exit_chain_target_to_actor = true
+next_state = ExtResource("1_apkw7")
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"

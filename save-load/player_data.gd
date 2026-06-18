@@ -13,6 +13,7 @@ static func p(args): ## Print method
 const STARTING_CLASSES: Dictionary[StringName, String] = {
 	SHORT_SWORD = "uid://bet8eq50pbkqf",
 	GREATSWORD = "uid://c5tt5o8dkeve3",
+	FLOWING_FLAIL = "uid://jo8005ytejoy",
 }
 
 ## These are scenes with the art assets specifically.

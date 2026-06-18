@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Stance" format=3 uid="uid://di3tdhtxyv28n"]
+
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="1_3v5s2"]
+[ext_resource type="Resource" uid="uid://s2jf0nt5nopx" path="res://actions/prefabs/player/class-flail/class-flail_flail-swing.tres" id="2_u5xff"]
+[ext_resource type="Resource" uid="uid://byi5884ctck1m" path="res://actions/prefabs/player/class-flail/class-flail_windmill.tres" id="3_oxnfw"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="4_lacos"]
+[ext_resource type="Resource" uid="uid://fpm7fqfo0w33" path="res://actions/prefabs/player/class-flail/class-flail_cross-swing.tres" id="4_xhtxg"]
+[ext_resource type="Resource" uid="uid://b3mmlaxeg6xfq" path="res://actions/prefabs/player/class-flail/class-flail_elbow-swing.tres" id="5_bbxe7"]
+[ext_resource type="Script" uid="uid://dj1vqqabqwo2g" path="res://actions/action_change-stance.gd" id="5_xhtxg"]
+[ext_resource type="Script" uid="uid://bhpfulxak0eng" path="res://status-effects/status.gd" id="6_bbxe7"]
+[ext_resource type="Resource" uid="uid://1exqg0fgkptd" path="res://actions/prefabs/player/class-flail/class-flail_forward-sling.tres" id="6_wtcc3"]
+[ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://actions/stance/stance.gd" id="7_wtcc3"]
+
+[sub_resource type="Resource" id="Resource_3npki"]
+script = ExtResource("5_xhtxg")
+stance_uid = "uid://di3tdhtxyv28n"
+allow_facing_before = true
+ui_title = "Flurrious Flail"
+ui_description = "A more offensive stance for the flail user."
+action_category = 5
+energy_cost = 1
+metadata/_custom_type_script = "uid://dj1vqqabqwo2g"
+
+[resource]
+script = ExtResource("7_wtcc3")
+actions = Array[ExtResource("1_3v5s2")]([ExtResource("2_u5xff"), ExtResource("3_oxnfw"), ExtResource("4_xhtxg"), ExtResource("5_bbxe7"), ExtResource("6_wtcc3")])
+pickme_action = SubResource("Resource_3npki")
+metadata/_custom_type_script = "uid://wxlj5akq7s0v"

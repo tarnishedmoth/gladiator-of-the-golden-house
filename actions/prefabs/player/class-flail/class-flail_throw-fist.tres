@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ActionAttack" format=3 uid="uid://qtrpikww7240"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_kr653"]
+[ext_resource type="Resource" uid="uid://deo7b33s5fte1" path="res://actions/requirements/requirement_opener.tres" id="2_l5403"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="3_j2yj5"]
+
+[resource]
+script = ExtResource("3_j2yj5")
+damage = 1
+pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(-1, 0)])
+ui_title = "Throw Fist"
+requirements = Array[ExtResource("1_kr653")]([ExtResource("2_l5403")])
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"
