@@ -33,8 +33,11 @@ const ACTION_CATEGORY_ICONS: Dictionary[ActionCategory, Texture2D] = {
 }
 
 static func get_action_color(action: Action) -> Color:
-	if action is ActionMove:
+	if action is ActionMoveKnockback:
+		return Targeting.COLORS.YELLOW.darkened(0.2)
+	elif action is ActionMove:
 		return Targeting.COLORS.YELLOW
+	
 	elif action is ActionApplyStatus:
 		return Targeting.COLORS.BLUE
 	elif action is ActionChangeStance:
