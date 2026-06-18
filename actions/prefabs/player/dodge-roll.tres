@@ -19,5 +19,6 @@ ui_title = "Dodge Roll"
 ui_description = "Move and gain Slight Invulnerability."
 action_category = 1
 energy_cost = 3
+is_obstructable = true
 next_state = SubResource("Resource_acx3g")
 metadata/_custom_type_script = "uid://btfwr4ctycjfk"
