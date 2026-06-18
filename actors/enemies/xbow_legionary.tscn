@@ -18,7 +18,7 @@
 [node name="XbowLegionary" type="Node2D" unique_id=1285026502 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
 script = ExtResource("1_3a2gl")
 conditionally_usable_actions = Array[ExtResource("2_6pg0j")]([ExtResource("3_g3oi4"), ExtResource("6_5k7t3"), ExtResource("3_g3oi4"), ExtResource("4_dygj5"), ExtResource("5_wl1uj"), ExtResource("6_5k7t3")])
-cond_team_count = 2
+cond_team_count = 1
 drop_chance = 0.3
 usable_actions = Array[ExtResource("2_6pg0j")]([ExtResource("7_5v7l0"), ExtResource("4_dygj5"), ExtResource("7_5v7l0"), ExtResource("4_dygj5"), ExtResource("11_e8mop"), ExtResource("4_dygj5")])
 actions_to_queue_this_turn = 2

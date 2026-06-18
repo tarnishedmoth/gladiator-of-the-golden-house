@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("3_t6eki")
 projectile_scene = ExtResource("1_xqk5u")
-speed = 340.0
+speed = 540.0
 arc = 36.0
 rotate_to_direction = true
 hit_vfx_shown = 1
