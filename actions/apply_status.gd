@@ -55,7 +55,7 @@ func apply_status(actor: Actor) -> void:
 	if not actor:
 		push_error("Actor is invalid")
 	else:
-		if debug: p("Applying status %s to %s" % [status.ui_name, _target])
+		if debug: p("Applying status %s to %s" % [status.ui_name, actor])
 		StatusManager.apply_status_to_actor(status, actor, override_quantity)
 		
 		await actor.animation_finished
