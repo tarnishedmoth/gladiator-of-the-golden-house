@@ -17,7 +17,7 @@ script = ExtResource("2_3juxq")
 pattern = Array[Vector2i]([Vector2i(1, -2), Vector2i(2, -1), Vector2i(1, 1), Vector2i(-1, 2), Vector2i(-2, 1), Vector2i(-1, -1)])
 ui_title = "Leap"
 ui_description = "+Off-balance:
-  Reduce damage dealt by 50% rest of turn.
+  Reduce damage dealt by 40% rest of turn.
   Does not stack."
 action_category = 1
 energy_cost = 1

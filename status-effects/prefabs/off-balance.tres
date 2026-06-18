@@ -5,13 +5,13 @@
 
 [resource]
 script = ExtResource("1_ngoiq")
-factor = 0.5
+factor = 0.6
 operation = 1
 per_point = false
 on_start_behavior = 0
 on_end_behavior = 3
 ui_name = "Off-balance"
-ui_description = "Reduce damage dealt by 50% rest of turn."
+ui_description = "Reduce damage dealt by 40% rest of turn."
 status_effect_category = 2
 vfx_applied = ExtResource("2_nrtv1")
 metadata/_custom_type_script = "uid://dvm0k3xhgixkl"
