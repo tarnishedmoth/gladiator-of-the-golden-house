@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://ejnph3bniuxd"]
+
+[ext_resource type="Script" uid="uid://5d6qh71oemsi" path="res://actors/ai_actor_conditional.gd" id="1_3a2gl"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_6pg0j"]
+[ext_resource type="Resource" uid="uid://bmrufdauue38e" path="res://actions/prefabs/bow_skill-shot.tres" id="3_g3oi4"]
+[ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="4_dygj5"]
+[ext_resource type="Resource" uid="uid://b4iaypo6kvgaw" path="res://actions/prefabs/hire-grunt.tres" id="5_wl1uj"]
+[ext_resource type="Resource" uid="uid://b2s2d2mr4vds" path="res://actions/prefabs/guard-basic.tres" id="6_5k7t3"]
+[ext_resource type="Resource" uid="uid://cb4y7qhj430yo" path="res://actions/prefabs/bow_straight-shot.tres" id="7_5v7l0"]
+[ext_resource type="Resource" uid="uid://br4bum2xxwq41" path="res://actions/prefabs/boost-defense.tres" id="11_e8mop"]
+[ext_resource type="PackedScene" uid="uid://dlm1c1t55rkbw" path="res://characters/colosseum-crowd/armored_green.tscn" id="12_hx40y"]
+[ext_resource type="Texture2D" uid="uid://c745uif4rgmmi" path="res://actions/ui-icons/crossbow-16.png" id="13_53oqy"]
+[ext_resource type="Script" uid="uid://c23svqo1v3284" path="res://vfx/weapon-wobble.gd" id="14_l2ij6"]
+[ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="15_qkgkp"]
+[ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="16_63e7e"]
+[ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="17_kqh35"]
+
+[node name="XbowLegionary" type="Node2D" unique_id=1285026502 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
+script = ExtResource("1_3a2gl")
+conditionally_usable_actions = Array[ExtResource("2_6pg0j")]([ExtResource("3_g3oi4"), ExtResource("6_5k7t3"), ExtResource("3_g3oi4"), ExtResource("4_dygj5"), ExtResource("5_wl1uj"), ExtResource("6_5k7t3")])
+cond_team_count = 2
+drop_chance = 0.3
+usable_actions = Array[ExtResource("2_6pg0j")]([ExtResource("7_5v7l0"), ExtResource("4_dygj5"), ExtResource("7_5v7l0"), ExtResource("4_dygj5"), ExtResource("11_e8mop"), ExtResource("4_dygj5")])
+actions_to_queue_this_turn = 2
+selection_behavior = 5
+character_visual_root = NodePath("VisualRoot")
+health_bar = NodePath("health")
+speech_bubble = NodePath("SpeechBubble")
+ui_name = "Legionary"
+ui_description = "A standard soldier with a crossbow."
+facing = 5
+max_health = 24
+metadata/_custom_type_script = "uid://5d6qh71oemsi"
+
+[node name="VisualRoot" type="Node2D" parent="." unique_id=1513663590]
+
+[node name="Generator" parent="VisualRoot" unique_id=2057479258 instance=ExtResource("12_hx40y")]
+flip_clothes = true
+
+[node name="Crossbow" type="Sprite2D" parent="VisualRoot" unique_id=1025898200]
+z_index = 1
+position = Vector2(6, 6)
+texture = ExtResource("13_53oqy")
+script = ExtResource("14_l2ij6")
+speed = 1.5
+amplitude = 1.5
+
+[node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("15_qkgkp")]
+
+[node name="health" parent="." unique_id=1326189825 instance=ExtResource("16_63e7e")]
+position = Vector2(0, -30)
+
+[node name="SpeechBubble" parent="." unique_id=757394792 instance=ExtResource("17_kqh35")]
+position = Vector2(0, -38)

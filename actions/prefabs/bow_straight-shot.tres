@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ActionProjectile" format=3 uid="uid://cb4y7qhj430yo"]
+
+[ext_resource type="PackedScene" uid="uid://cnjj4x8vv6fpo" path="res://vfx/projectile.tscn" id="1_kkslk"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="2_3xpy5"]
+[ext_resource type="Script" uid="uid://xj48jax5kk32" path="res://actions/projectile.gd" id="3_h6tt4"]
+
+[resource]
+script = ExtResource("3_h6tt4")
+projectile_scene = ExtResource("1_kkslk")
+speed = 720.0
+rotate_to_direction = true
+hit_vfx_shown = 1
+hit_vfx_behavior = 1
+damage = 11
+pattern = Array[Vector2i]([Vector2i(0, -3)])
+aoe_pattern = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2)])
+allow_facing_before = true
+ui_title = "Straight Shot"
+ui_description = "Take a straight show with the bow."
+energy_cost = 1
+metadata/_custom_type_script = "uid://xj48jax5kk32"

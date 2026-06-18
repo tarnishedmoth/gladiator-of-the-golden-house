@@ -48,7 +48,7 @@ func enter(_from: ResourceState = null) -> void:
 	await _actor.create_tween().tween_interval(pre_attack_duration).finished
 	
 	## projectile
-	var facing: Facing.Cardinal = _actor.get_facing() ## TODO FIXME use Facing.get_direction_to_coordinate()
+	var facing: Facing.Cardinal = _actor.get_facing()
 	
 	if projectile_scene:
 		if projectile_scene.can_instantiate():
@@ -77,7 +77,7 @@ func enter(_from: ResourceState = null) -> void:
 			x_move.tween_callback(_on_projectile_finito)
 			x_move.tween_callback(projectile.queue_free)
 			return
-	## Failsafe should never run
+	## Failsafe should only run if no projectile scene
 	_on_projectile_finito()
 
 
