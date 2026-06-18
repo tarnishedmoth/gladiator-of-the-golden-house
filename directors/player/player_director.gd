@@ -244,9 +244,6 @@ func deselect_tile() -> void:
 	hud.show_hover_panel(false)
 
 func _on_click_to_play_action(target_coords: Vector2i) -> void:
-	TargetFinder.clear_all_highlights()
-	deselect_tile()
-	#TargetFinder.highlight_target(target_coords, Action.get_action_color(current_held_action), selected_actor) ## Keep our selection highlighted
 	play_held_action_at(target_coords)
 
 
@@ -356,6 +353,9 @@ func play_held_action_at(coords: Vector2i):
 		if coords != selected_actor.find_last_unobstructed_tile(selected_actor.current_tile_coords, coords):
 			hud.popup_label("Obstructed!", selected_actor)
 			return
+			
+	TargetFinder.clear_all_highlights()
+	deselect_tile()
 	
 	_currently_playing_action = true
 	
@@ -374,15 +374,16 @@ func play_held_action_at(coords: Vector2i):
 	selected_actor.queue_action(current_held_action, true)
 	await selected_actor.queued_actions_finished
 	
-	if current_held_action in stash:
-		remove_from_stash(current_held_action)
-		## don't add to the Discard deck
-	
-	else:
-		if current_held_action.action_category == Action.ActionCategory.CONSUMABLE:
-			remove_from_deck(current_held_action)
+	if current_held_action.remove_from_hand_after_use:
+		if current_held_action in stash:
+			remove_from_stash(current_held_action)
+			## don't add to the Discard deck
+		
 		else:
-			discard(current_held_action)
+			if current_held_action.action_category == Action.ActionCategory.CONSUMABLE:
+				remove_from_deck(current_held_action)
+			else:
+				discard(current_held_action)
 	
 	if current_held_action.allow_facing_after:
 		position_for_facing = selected_actor.global_position

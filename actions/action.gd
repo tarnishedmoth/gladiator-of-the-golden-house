@@ -98,6 +98,13 @@ func cast_energy_cost_to_requirement() -> void:
 ## Consider populating the requirements array in _init, or _enter_tree.
 @export var requirements: Array[ActionRequirement]
 
+## If false, will not be discarded/removed from hand after use.
+@export var remove_from_hand_after_use: bool = true
+
+## By default, [member _target] is not passed between actions.
+## Forces the next action to target the original actor. e.g. Used to chain status effects after actions.
+@export var on_exit_chain_target_to_actor: bool = false
+
 var _actor: Actor ## The actor that will run this action. This is not any "target" such as for dealing damage.
 func set_actor(actor: Actor) -> void:
 	self._actor = actor
@@ -124,6 +131,11 @@ func can_player_enter(actor: Actor, quiet: bool = false) -> bool:
 ## Use to execute actions with an actor.
 ## It will set the target actor before running [method enter].
 func enter_with(actor: Actor, from: Action = null) -> void:
+	if from:
+		if from.on_exit_chain_target_to_actor:
+			_target = actor.current_tile_coords
+			if debug: p("Set _target to %s current tile coords (%s)." % [actor, _target])
+	
 	set_actor(actor)
 	enter(from)
 	
