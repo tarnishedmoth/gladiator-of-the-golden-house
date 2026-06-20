@@ -10,10 +10,10 @@
 [ext_resource type="AudioStream" uid="uid://b7vm1xwkwmbs1" path="res://music/Epic Battle Chiptune - Menu Loop.mp3" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://bfrkl4plv2ty7" path="res://menus/camera_mouse_movement_option_button.gd" id="8_efxa6"]
 [ext_resource type="Script" uid="uid://n3wocoqn040k" path="res://menus/confirm_page.gd" id="8_kek77"]
-[ext_resource type="AudioStream" uid="uid://cwvxgdkgn01ib" path="res://music/gladiator ambient 1 rev 2.ogg" id="10_4c57u"]
 [ext_resource type="Texture2D" uid="uid://dvuqbrge3doql" path="res://menus/gladiator-godot-icon.png" id="10_ycdy4"]
 [ext_resource type="AudioStream" uid="uid://dlqufn83ohdsg" path="res://sfx/MenuBlip.wav" id="12_dg77c"]
 [ext_resource type="AudioStream" uid="uid://bfpr0xrhih4p5" path="res://music/Epic Battle Chiptune.mp3" id="12_w48qg"]
+[ext_resource type="AudioStream" uid="uid://b3uprbaqinc6x" path="res://music/gladiator ambient (looping).ogg" id="13_w48qg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
 font_size = 8
@@ -456,8 +456,8 @@ bus = &"Music"
 parameters/looping = true
 
 [node name="Music_Sherman" type="AudioStreamPlayer" parent="." unique_id=54185619]
-stream = ExtResource("10_4c57u")
-volume_db = -4.0
+stream = ExtResource("13_w48qg")
+volume_db = -5.0
 bus = &"Music"
 parameters/looping = true
 
