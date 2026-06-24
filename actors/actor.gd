@@ -681,6 +681,8 @@ var _popup_labels: Array[Label]
 ## Clear highlights and popup labels
 func hide_preview_for_actions()->void:
 	TargetFinder.clear_target_highlights(self)
+	#for target: TargetIndicatorVisual in TargetFinder.get_target_highlights(self):
+		#target.despawn() ## if you want to do it manually...
 	for popup in _popup_labels:
 		if is_instance_valid(popup):
 			Level.get_hud().clear_popup_persistent_label(popup)
@@ -709,16 +711,23 @@ func render_preview_for_action(action: Action, target) -> void:
 	if director is Player:
 		## Render playable tiles with finesse to show the player how they can interact
 		
+		if not playable_tiles.any(func(v) -> bool: return tile_map.get_cell_tile_data(v) != null):
+			## All playable tiles must be outside the arena
+			_popup_labels.append(Level.get_hud().popup_label_persistent("Can't play %s here" % action.ui_title, self, LevelHUD.STYLE_STATUS_DEBUFF))
+			TargetFinder.highlight_targets(playable_tiles, color, self, false)
+			return
+		
 		## If a target tile is in the playable pattern, ...
 		if target != null:
 			hovered_tile_is_valid = target in playable_tiles
-			playable_tiles.erase(target) ## maybe don't need this ............... brb
+			playable_tiles.erase(target)
 		
 		## ... Highlight playable tiles as selectable or not currently selected
 		TargetFinder.highlight_targets(
 			playable_tiles,
 			Color.WHITE if not hovered_tile_is_valid else Targeting.COLORS.GREY,
-			self
+			self,
+			false if hovered_tile_is_valid else true ## Don't animate choices when we're hovering over a valid one.
 			)
 	else:
 		## AI action previews
@@ -807,6 +816,8 @@ func get_action_target_cells_at(play_tile: Vector2i, action: Action) -> Array[Ve
 	var _facing = get_facing()
 	return Facing.get_target_cells(play_tile, _facing, aoe)
 
+## Returns a list of valid cells--checks for obstructions if applicable, mirrors and translates.
+## Does not check if tile is valid in tilemap.
 func get_action_target_cells(action: Action, include_mirrored: bool = false) -> Array[Vector2i]:
 	if "pattern" in action:
 		var result: Array[Vector2i]

@@ -1,6 +1,8 @@
 class_name TargetIndicatorVisual extends Node2D
 
-const ALPHA_VALUE = 114
+const ALPHA_VALUE = 128
+const PULSE_SPEED = 60.0/90.0
+const NEW_PULSE: bool = false
 
 @export var fill: CanvasItem
 
@@ -21,8 +23,11 @@ func _ready() -> void:
 
 func pulse() -> void:
 	var tween = create_tween().set_loops()
-	tween.tween_property(self, "scale", Vector2(0.95,0.95) * _starting_scale, 1.0)
-	tween.tween_property(self, "scale", Vector2(1.1,1.1) * _starting_scale, 1.0)
+	if not NEW_PULSE:
+		tween.tween_property(self, "scale", Vector2(0.95,0.95) * _starting_scale, PULSE_SPEED)
+		tween.tween_property(self, "scale", Vector2(1.1,1.1) * _starting_scale, PULSE_SPEED)
+	else:
+		tween.tween_property(self, "scale", _starting_scale, PULSE_SPEED).from(_starting_scale * 1.33)
 
 func set_color(color: Color) -> void:
 	color.a = ALPHA_VALUE / 255.0

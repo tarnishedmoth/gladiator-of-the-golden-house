@@ -1,5 +1,11 @@
 class_name Targeting extends Node
 
+const FORCE_OOB_COLOR: bool = true
+const FORCE_OOB_NO_ANIMATION: bool = true
+const FORCE_OOB_REDUCED_SCALE: bool = true
+
+const RESCALE: float = 0.42
+
 static var VERBOSE: bool = false
 static func p(args) -> void:
 	if VERBOSE: print_rich("[color=white][bgcolor=grey]Targeting: ", args)
@@ -11,7 +17,8 @@ const COLORS = {
 	BLUE = Color("4895ffff"),
 	GREEN = Color(0.132, 0.823, 0.757, 1.0),
 	YELLOW = Color("ffc944ff"),
-	GREY = Color("555555ff")
+	GREY = Color("808080ff"),
+	OOB = Color("d49dcaff"),
 }
 
 const GROUP_NAME: StringName = &"target_highlights"
@@ -30,32 +37,59 @@ func setup(tilemap_ref: TileMapLayer):
 	tilemap = tilemap_ref
 
 ## Alpha value is overridden in the script [TargetIndicatorVisual] (target_indicator.gd)
-func highlight_target(coords: Vector2i, color: Color, source_owner: Actor) -> void:
-	if tilemap.get_cell_tile_data(coords): ## Valid tile
-		var target_highlight: TargetIndicatorVisual = targ_scene.instantiate()
-		
+func highlight_target(coords: Vector2i, color: Color, source_owner: Actor, animated: bool = true) -> void:
+	#if tilemap.get_cell_tile_data(coords): ## Valid tile
+	var target_highlight: TargetIndicatorVisual = targ_scene.instantiate()
+	var tile_is_valid_in_tilemap: bool = tilemap.get_cell_tile_data(coords) != null
+	
+	if FORCE_OOB_COLOR:
+		target_highlight.set_color(color if tile_is_valid_in_tilemap else COLORS.OOB)
+	else:
 		target_highlight.set_color(color)
-		target_highlight.scale *= 0.42
-		target_highlight.global_position = tilemap.to_global(tilemap.map_to_local(coords))
-		add_child(target_highlight)
-		
-		target_highlight.add_to_group(GROUP_NAME)
-		var uid: StringName = get_uid(source_owner)
-		p("Created targets for %s" % uid)
-		var list: Array = highlights.get_or_add(uid, [])
-		list.append(target_highlight)
+	
+	target_highlight.animate_on_enter = animated
+	if FORCE_OOB_NO_ANIMATION:
+		if not tile_is_valid_in_tilemap:
+			target_highlight.animate_on_enter = false
+	
+	if FORCE_OOB_REDUCED_SCALE:
+		target_highlight.scale *= RESCALE if tile_is_valid_in_tilemap else RESCALE * 0.8
+	else:
+		target_highlight.scale *= RESCALE
+	
+	target_highlight.global_position = tilemap.to_global(tilemap.map_to_local(coords))
+	add_child(target_highlight)
+	
+	target_highlight.add_to_group(GROUP_NAME)
+	var uid: StringName = get_uid(source_owner)
+	p("Created targets for %s" % uid)
+	var list: Array = highlights.get_or_add(uid, [])
+	list.append(target_highlight)
 
-func highlight_targets(targets: Array[Vector2i], color: Color, source_owner: Actor):
+func highlight_targets(targets: Array[Vector2i], color: Color, source_owner: Actor, animated: bool = true):
 	for entry in targets:
-		highlight_target(entry, color, source_owner)
+		highlight_target(entry, color, source_owner, animated)
 
 ## This method has turned into an alias for the regular [method highlight_target] method.
-func highlight_aoe(coords: Vector2i, color: Color, source_owner: Actor) -> void:
-	highlight_target(coords, color, source_owner)
+func highlight_aoe(coords: Vector2i, color: Color, source_owner: Actor, animated: bool = true) -> void:
+	highlight_target(coords, color, source_owner, animated)
 	
-func highlight_aoe_spots(targets: Array[Vector2i], color: Color, source_owner: Actor):
+func highlight_aoe_spots(targets: Array[Vector2i], color: Color, source_owner: Actor, animated: bool = true):
 	for entry in targets:
-		highlight_aoe(entry, color, source_owner)
+		highlight_aoe(entry, color, source_owner, animated)
+		
+## Get all [TargetIndicatorVisual] in the scene tree group [member GROUP_NAME] that belong to said [Actor].
+func get_target_highlights(source_owner: Actor) -> Array[TargetIndicatorVisual]:
+	if not source_owner:
+		push_error("Null actor provided. Ignoring call.")
+		return []
+	var uid: StringName = get_uid(source_owner)
+	var list = highlights.get(uid, null)
+	if list:
+		var typed: Array[TargetIndicatorVisual] = []
+		typed.assign(list)
+		return typed
+	return []
 
 ## Clear all [TargetIndicatorVisual] in the scene tree group [member GROUP_NAME].
 func clear_target_highlights(source_owner: Actor):
