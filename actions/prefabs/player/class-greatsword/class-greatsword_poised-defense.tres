@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_w8x8e")
 status = ExtResource("3_ptjs2")
-override_quantity = 10
+override_quantity = 8
 ui_title = "Poised Defense"
 ui_description = "Deflect blows using your sword."
 action_category = 4
