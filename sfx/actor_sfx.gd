@@ -15,6 +15,18 @@ enum Sounds {
 	STANCE_CHANGE,
 }
 
+## If any of these fields are assigned, it will be passed into the audio player on ready.
+@export_group("Overrides", "override_")
+@export var override_move: AudioStream
+@export var override_attack: AudioStream
+@export var override_block: AudioStream
+@export var override_block_broken: AudioStream
+@export var override_get_hit: AudioStream
+@export var override_get_hit_critical: AudioStream
+@export var override_buff: AudioStream
+@export var override_debuff: AudioStream
+@export var override_stance_change: AudioStream
+
 @onready var move: AudioStreamPlayer2D = $Move
 @onready var attack: AudioStreamPlayer2D = $Attack
 @onready var block: AudioStreamPlayer2D = $Block
@@ -26,17 +38,30 @@ enum Sounds {
 @onready var stance_change: AudioStreamPlayer2D = $StanceChange
 
 func _ready() -> void:
+	override_streams_in_players()
 	var parent = get_parent()
 	if parent is Actor:
 		parent.sfx = self
 	else:
 		push_error("ActorSfxHandler is not a child of an Actor.")
-		
+
 func _exit_tree() -> void:
 	var parent = get_parent()
 	if parent is Actor:
 		if parent.sfx == self:
 			parent.sfx = null
+
+
+func override_streams_in_players() -> void:
+	if override_move: move.stream = override_move
+	if override_attack: attack.stream = override_attack
+	if override_block: block.stream = override_block
+	if override_block_broken: block_broken.stream = override_block_broken
+	if override_get_hit: get_hit.stream = override_get_hit
+	if override_get_hit_critical: get_hit.stream = override_get_hit_critical
+	if override_buff: buff.stream = override_buff
+	if override_debuff: debuff.stream = override_debuff
+	if override_stance_change: stance_change.stream = override_stance_change
 
 func play(sound: Sounds) -> void:
 	match sound:
