@@ -5,6 +5,9 @@ signal action_button_pressed(action: Action)
 signal action_hover_started(action: Action)
 signal action_hover_ended()
 
+const MODULATE_BUTTONS: bool = true
+const COLOR_COLOR = Color(0.994, 0.886, 0.802, 1.0)
+
 var action_buttons: Dictionary[ButtonWithBlips, Action]
 var actions_container: VBoxContainer ## Set by subclass in _ready or @onready.
 
@@ -35,6 +38,11 @@ func populate_action_buttons(actions: Array[Action], selected_actor: Actor) -> v
 		new_button.set_blips(card.energy_cost)
 		new_button.text = card.ui_title
 		new_button.custom_minimum_size = Vector2(0.0, 26.0)
+		
+		if MODULATE_BUTTONS:
+			var player: Player = selected_actor.director as Player
+			if card in player.always_available_deck or card is ActionChangeStance:
+				new_button.self_modulate = COLOR_COLOR
 		
 		var icon = card.ui_icon
 		if icon is Texture2D:
