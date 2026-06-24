@@ -3,14 +3,15 @@
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="1_5xha5"]
 [ext_resource type="Resource" uid="uid://dm6chyx75dgx5" path="res://actions/prefabs/player/class-greatsword/class-greatsword_colossal-strike.tres" id="2_8bqpl"]
 [ext_resource type="Resource" uid="uid://dtonjn271oon7" path="res://actions/prefabs/player/class-greatsword/class-greatsword_hilt-punch.tres" id="3_tbur6"]
+[ext_resource type="Resource" uid="uid://q6p1jvo2kwoo" path="res://actions/prefabs/player/class-greatsword/class-greatsword_plunge.tres" id="4_013xt"]
 [ext_resource type="Resource" uid="uid://cl45udxa4lecd" path="res://actions/prefabs/player/class-greatsword/stance-change_two-handing.tres" id="5_8bqpl"]
 [ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://actions/stance/stance.gd" id="5_013xt"]
-[ext_resource type="Resource" uid="uid://d21lb2y7se50p" path="res://actions/prefabs/player/class-a_tight-guard.tres" id="5_tbur6"]
 [ext_resource type="Resource" uid="uid://cc5g5bc33m7ud" path="res://actions/prefabs/player/class-greatsword/class-greatsword_windup.tres" id="6_013xt"]
 [ext_resource type="Resource" uid="uid://em1qxmq5545" path="res://actions/prefabs/player/class-greatsword/class-greatsword_colossal-cleave.tres" id="6_brcrg"]
+[ext_resource type="Resource" uid="uid://b1a1pqnp0vchc" path="res://actions/prefabs/player/class-greatsword/class-greatsword_poised-defense.tres" id="7_sg835"]
 
 [resource]
 script = ExtResource("5_013xt")
-actions = Array[ExtResource("1_5xha5")]([ExtResource("6_brcrg"), ExtResource("2_8bqpl"), ExtResource("3_tbur6"), ExtResource("5_tbur6"), ExtResource("6_013xt")])
+actions = Array[ExtResource("1_5xha5")]([ExtResource("6_brcrg"), ExtResource("2_8bqpl"), ExtResource("4_013xt"), ExtResource("3_tbur6"), ExtResource("6_013xt"), ExtResource("7_sg835")])
 pickme_action = ExtResource("5_8bqpl")
 metadata/_custom_type_script = "uid://wxlj5akq7s0v"

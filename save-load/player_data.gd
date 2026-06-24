@@ -37,6 +37,16 @@ func get_character_scene() -> PackedScene:
 	var scene: PackedScene = ResourceLoader.load(choice_character_scene, "PackedScene", ResourceLoader.CACHE_MODE_REUSE)
 	return scene
 
+static func get_starting_class_description(starting_class_file_uid: String) -> String:
+	match starting_class_file_uid:
+		STARTING_CLASSES.SHORT_SWORD:
+			return "A balanced, enduring build. Close quarters combat is your specialty."
+		STARTING_CLASSES.GREATSWORD:
+			return "Not entirely bereft of defensive ability, this class affords greater reach, and knockback effects."
+		STARTING_CLASSES.FLOWING_FLAIL:
+			return ""
+	return ""
+
 var combat_playtime: float ## See [Playtime] class for conversion
 
 var current_level: int = 0

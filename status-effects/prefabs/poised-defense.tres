@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="StatusAffectDamagePoised" format=3 uid="uid://dx0g61s6uvu0l"]
+
+[ext_resource type="Script" uid="uid://bo2nudbcmpt13" path="res://status-effects/affect_damage_poised.gd" id="1_cjved"]
+[ext_resource type="Resource" uid="uid://b38qdbmcp8g2n" path="res://status-effects/prefabs/stunned.tres" id="2_fb16w"]
+[ext_resource type="PackedScene" uid="uid://b8g0o8rwa4uvg" path="res://vfx/status_fx-buff.tscn" id="3_ybeox"]
+
+[resource]
+script = ExtResource("1_cjved")
+status_to_apply = ExtResource("2_fb16w")
+incoming_or_outgoing = 1
+expend_points_against_damage = true
+use_directional = true
+dir_rr = 0.0
+dir_r = 0.0
+dir_rl = 0.0
+effect_points = 5
+only_react_to_actors_turn_notifs = true
+ui_name = "Poise Defense"
+ui_description = "Only applies in the forward three directions.This kind of defense takes effort: if your guard is broken, you will be Stunned."
+status_effect_category = 1
+sfx_success = 3
+sfx_failure = 4
+vfx_applied = ExtResource("3_ybeox")
+metadata/_custom_type_script = "uid://bo2nudbcmpt13"

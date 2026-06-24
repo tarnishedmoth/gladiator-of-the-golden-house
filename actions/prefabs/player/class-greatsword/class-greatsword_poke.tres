@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ActionAttack" format=3 uid="uid://dd4rx5i3ckc34"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_eq8ys"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="2_mfgus"]
+
+[resource]
+script = ExtResource("2_mfgus")
+damage = 2
+direct = true
+pattern = Array[Vector2i]([Vector2i(0, -2), Vector2i(1, -2), Vector2i(-1, -1), Vector2i(0, -1)])
+aoe_pattern = Array[Vector2i]([Vector2i(0, 0)])
+pre_attack_duration = 0.30000000000000004
+ui_title = "Poke"
+ui_description = "Thrust the tip of the sword forward, piercing any defense. Deals direct damage."
+energy_cost = 1
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"

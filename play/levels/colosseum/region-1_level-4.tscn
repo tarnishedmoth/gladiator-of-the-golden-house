@@ -68,3 +68,4 @@ visible = true
 
 [node name="PickUpManager" parent="." index="1" unique_id=490287025]
 pickup_pool = Array[ExtResource("11_82maq")]([SubResource("Resource_3xddb"), SubResource("Resource_7ht3u"), SubResource("Resource_nbvby")])
+spawn_extra_starting_pickups_after_loss_streak = 2

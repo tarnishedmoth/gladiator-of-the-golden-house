@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ActionApplyStatus" format=3 uid="uid://b1a1pqnp0vchc"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_1kg27"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_w8x8e"]
+[ext_resource type="Resource" uid="uid://dx0g61s6uvu0l" path="res://status-effects/prefabs/poised-defense.tres" id="3_ptjs2"]
+
+[resource]
+script = ExtResource("2_w8x8e")
+status = ExtResource("3_ptjs2")
+override_quantity = 10
+ui_title = "Poised Defense"
+ui_description = "Deflect blows using your sword."
+action_category = 4
+energy_cost = 1
+metadata/_custom_type_script = "uid://ic0qko6fd58l"
