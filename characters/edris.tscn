@@ -9,4 +9,5 @@ texture = ExtResource("1_vk8cl")
 [node name="WeaponAnchor" type="Marker2D" parent="." unique_id=1222454265]
 position = Vector2(9, 10)
 script = ExtResource("2_hjxgr")
+enabled = false
 metadata/_custom_type_script = "uid://bep72nafk08d5"

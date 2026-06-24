@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://cnk6cyi6oyhbp" path="res://play/hud/button_with_blips.gd" id="7_ksooa"]
 [ext_resource type="Script" uid="uid://bxiiyyo4td2qr" path="res://play/hud/actions.gd" id="8_n2sn3"]
 [ext_resource type="Script" uid="uid://c1xuhqtthu8qi" path="res://play/hud/action_hover_panel.gd" id="9_ksooa"]
-[ext_resource type="PackedScene" path="res://play/hud/stash_panel.tscn" id="10_stash"]
+[ext_resource type="PackedScene" uid="uid://dtu0u6kih2g6h" path="res://play/hud/stash_panel.tscn" id="10_stash"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqh65"]
 bg_color = Color(0.6901961, 0.67058825, 0.32941177, 1)

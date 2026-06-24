@@ -1,23 +1,22 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://dtu0u6kih2g6h"]
 
-[ext_resource type="Script" path="res://play/hud/stash_panel.gd" id="1_stash"]
+[ext_resource type="Script" uid="uid://otiyi8iymjfd" path="res://play/hud/stash_panel.gd" id="1_stash"]
 
-[node name="StashPanel" type="PanelContainer"]
+[node name="StashPanel" type="PanelContainer" unique_id=10972454]
 visible = false
 custom_minimum_size = Vector2(168, 0)
 script = ExtResource("1_stash")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1328594941]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="StashHeader" type="Button" parent="VBoxContainer"]
+[node name="StashHeader" type="Button" parent="VBoxContainer" unique_id=1605806610]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
 disabled = true
 text = "Stash"
 flat = true
 alignment = 2
 
-[node name="StashActions" type="VBoxContainer" parent="VBoxContainer"]
+[node name="StashActions" type="VBoxContainer" parent="VBoxContainer" unique_id=2081860014]
 layout_mode = 2

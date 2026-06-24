@@ -9,6 +9,7 @@ enum Type {
 	WEAPON = 1
 }
 
+@export var enabled: bool = true ## Set to false to retain this in the scene, but this node will not do its function.
 @export var which: Type
 
 var anchor: Node:
@@ -19,9 +20,13 @@ var anchor: Node:
 func set_anchor(node: Node) -> void: anchor = node
 
 func _ready() -> void:
+	if not enabled:
+		return
 	var actor: Actor
 	var node: Node = self
 	for i in 4:
+		if node == null:
+			break
 		node = node.get_parent()
 		if node != null:
 			if node is Actor:
