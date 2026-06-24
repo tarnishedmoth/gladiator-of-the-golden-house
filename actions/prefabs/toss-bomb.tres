@@ -8,10 +8,10 @@
 [resource]
 script = ExtResource("4_u0do3")
 projectile_scene = ExtResource("2_prmk7")
-speed = 160.0
-arc = 72.0
+speed = 260.0
+arc = 52.0
 hit_vfx_scene = ExtResource("1_ghi12")
-damage = 9
+damage = 11
 use_directional_vulnerability = 2
 can_damage_self = true
 can_damage_teammates = true

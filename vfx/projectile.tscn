@@ -3,5 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://cfb8iarvqstjc" path="res://utils/textures/circle_white_on_alpha.tres" id="1_um4xk"]
 
 [node name="Projectile" type="Sprite2D" unique_id=1656139331]
+self_modulate = Color(0.22716814, 0.17722443, 0.12175017, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_um4xk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1183122411]
+self_modulate = Color(0.4484887, 0.14098436, 0.09486648, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_um4xk")
