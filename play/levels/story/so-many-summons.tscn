@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c76k7roiy1umn"]
+
+[ext_resource type="PackedScene" uid="uid://dn85j1jxgk42" path="res://play/levels/colosseum/inheritable-level_region-1.tscn" id="1_6pbxi"]
+[ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="2_731yn"]
+[ext_resource type="PackedScene" uid="uid://2saekox86l21" path="res://actors/emperor/mini-tentacle_actor.tscn" id="3_ciiep"]
+[ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="4_k73xq"]
+
+[node name="Level" unique_id=13868467 instance=ExtResource("1_6pbxi")]
+
+[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=1249248347]
+script = ExtResource("2_731yn")
+
+[node name="Tentacle" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=1199505342 instance=ExtResource("3_ciiep")]
+
+[node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("4_k73xq")]
+position = Vector2(2, 74)

@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://2saekox86l21"]
+
+[ext_resource type="Script" uid="uid://5d6qh71oemsi" path="res://actors/ai_actor_conditional.gd" id="1_uvldb"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_fhie3"]
+[ext_resource type="Resource" uid="uid://chyn3vp8qw7ue" path="res://actions/prefabs/grunt_light_attack.tres" id="3_evq32"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="3_nbrcw"]
+[ext_resource type="Script" uid="uid://buqomxkjocleh" path="res://actions/spawn-actor.gd" id="4_fhie3"]
+[ext_resource type="Resource" uid="uid://cior70oyylpmi" path="res://actions/prefabs/grunt_heavy_attack.tres" id="4_fp2ni"]
+[ext_resource type="PackedScene" uid="uid://diwkqfyr57888" path="res://actors/emperor/giant-tentacle.tscn" id="6_d00f6"]
+[ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="7_8gkw1"]
+[ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="8_kbndf"]
+
+[sub_resource type="Resource" id="Resource_evq32"]
+script = ExtResource("4_fhie3")
+actor_to_spawn = "uid://2saekox86l21"
+pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
+ui_title = "Grow Tentacle"
+action_category = 4
+energy_cost = 1
+metadata/_custom_type_script = "uid://buqomxkjocleh"
+
+[node name="Tentacle" type="Node2D" unique_id=943822801 node_paths=PackedStringArray("character_visual_root", "health_bar")]
+script = ExtResource("1_uvldb")
+conditionally_usable_actions = Array[ExtResource("2_fhie3")]([SubResource("Resource_evq32")])
+cond_team_count = 1
+usable_actions = Array[ExtResource("2_fhie3")]([ExtResource("4_fp2ni"), ExtResource("3_evq32")])
+character_visual_root = NodePath("GiantTentacle")
+health_bar = NodePath("health")
+ui_name = "Modest Tentacle"
+max_health = 4
+can_knockback = false
+metadata/_custom_type_script = "uid://5d6qh71oemsi"
+
+[node name="GiantTentacle" parent="." unique_id=1916901696 instance=ExtResource("6_d00f6")]
+position = Vector2(25.999998, 15)
+scale = Vector2(0.5, 0.5)
+
+[node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("7_8gkw1")]
+
+[node name="health" parent="." unique_id=1326189825 instance=ExtResource("8_kbndf")]
+position = Vector2(0, -30)
