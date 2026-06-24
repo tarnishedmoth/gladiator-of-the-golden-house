@@ -181,12 +181,9 @@ func _ready() -> void:
 			PlayMusic.TRACK_SHERMAN:
 				if not Main.get_instance().music_sherman.playing:
 					Main.play_sherman(true)
-				else:
-					Main.play_sherman(true)
+			
 			PlayMusic.TRACK_VAILLANCOURT:
 				if not Main.get_instance().music_vaillancourt.playing:
-					Main.play_vaillancourt(true)
-				else:
 					Main.play_vaillancourt(true)
 
 func _exit_tree() -> void:
