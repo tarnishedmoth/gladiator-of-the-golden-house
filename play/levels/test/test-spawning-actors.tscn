@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="3_sdd3b"]
 [ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="4_yon22"]
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="5_86qy2"]
-[ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="5_s0hpl"]
 [ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="6_mcyl5"]
 [ext_resource type="Script" uid="uid://buqomxkjocleh" path="res://actions/spawn-actor.gd" id="6_mo83v"]
 [ext_resource type="Texture2D" uid="uid://bs8ywso6o5mlp" path="res://icon.svg" id="9_h002k"]
@@ -12,7 +11,7 @@
 
 [sub_resource type="Resource" id="Resource_s0hpl"]
 script = ExtResource("6_mo83v")
-actor_to_spawn = ExtResource("5_s0hpl")
+actor_to_spawn = "uid://b5pbcpcppy7c3"
 ui_title = "Spawn a Grunt."
 ui_description = "Gonna spawn a grunt real good."
 action_category = 4

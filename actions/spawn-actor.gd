@@ -1,12 +1,14 @@
 class_name ActionSpawn extends Action
 
-@export var actor_to_spawn: PackedScene ## Should be an [Actor] scene.
+@export_file("*.tscn") var actor_to_spawn ## Should be an [Actor] scene.
+
 @export var pattern: Array[Vector2i] = [Facing.DIRECTIONS[Facing.Cardinal.NORTH]]
 @export var face_to_player: bool = true
 @export var insert_at_front_of_play_sequence: bool = true
 
 func enter(_from: ResourceState = null) -> void:
-	spawn_actor(actor_to_spawn)
+	var _actor_scene: PackedScene = ResourceLoader.load(actor_to_spawn, "PackedScene", ResourceLoader.CACHE_MODE_REUSE)
+	spawn_actor(_actor_scene)
 	exit()
 
 func spawn_actor(scene: PackedScene) -> void:
@@ -22,10 +24,10 @@ func spawn_actor(scene: PackedScene) -> void:
 		push_error("ActionSpawn: Invalid or empty source actor.")
 		return
 	
-	if not actor_to_spawn:
+	if not scene:
 		push_error("ActionSpawn: Invalid or empty scene to spawn.")
 		return
-	if not actor_to_spawn.can_instantiate():
+	if not scene.can_instantiate():
 		push_error("ActionSpawn: Can't instantiate scene.")
 		return
 		

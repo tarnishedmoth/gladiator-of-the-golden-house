@@ -15,6 +15,7 @@ func clear_all() -> void:
 
 func populate(actor: Actor, action:Action) -> void:
 	clear_all()
+	if action == null: return
 	if action.ui_title:
 		title.text = "[center]"
 		title.append_text(TextUtils.bold(action.ui_title))
