@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var startRotation:float = 130.0
+@export var startRotation:float = -130.0
 @export var endRotation:float = 0.0
 @export var timespanIn:float = 0.5;
 @export var timespanOut:float = 2.0;

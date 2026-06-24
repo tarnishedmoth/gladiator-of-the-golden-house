@@ -23,21 +23,22 @@ colors = PackedColorArray(0.4691444, 0.33809522, 3.85046e-07, 1, 1, 1, 1, 1)
 [node name="GiantTentacle" type="Node2D" unique_id=1916901696]
 
 [node name="Blob Shadow" type="Sprite2D" parent="." unique_id=722335881]
-position = Vector2(-1.515, -8)
+position = Vector2(1.515, -8)
 texture = ExtResource("1_6oi75")
 
 [node name="Clip Mask" type="Sprite2D" parent="." unique_id=2081511991]
 clip_children = 1
-position = Vector2(-64, -50)
+position = Vector2(64, -50)
 texture = SubResource("PlaceholderTexture2D_0oeuv")
 
 [node name="Tentacle Pivot" type="Node2D" parent="Clip Mask" unique_id=962131293]
-position = Vector2(4, 50)
+position = Vector2(-4, 50)
 script = ExtResource("1_0oeuv")
 
 [node name="Tentacle Sprite" type="Sprite2D" parent="Clip Mask/Tentacle Pivot" unique_id=299484839]
 material = ExtResource("2_uw0mj")
-position = Vector2(-4, -40)
+position = Vector2(0, -40)
+scale = Vector2(-1, 1)
 texture = ExtResource("1_44mwf")
 
 [node name="Mud Particles" type="CPUParticles2D" parent="." unique_id=852424989]

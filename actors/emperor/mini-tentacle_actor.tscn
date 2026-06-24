@@ -66,7 +66,7 @@ can_knockback = false
 metadata/_custom_type_script = "uid://5d6qh71oemsi"
 
 [node name="GiantTentacle" parent="." unique_id=1916901696 instance=ExtResource("6_d00f6")]
-position = Vector2(25.999998, 15)
+position = Vector2(0, 15)
 scale = Vector2(0.5, 0.5)
 
 [node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("7_8gkw1")]
