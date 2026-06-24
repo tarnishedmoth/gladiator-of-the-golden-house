@@ -18,6 +18,7 @@ signal queued_actions_finished(actor: Actor)
 
 ## Type constants
 const RENDER_AI_PLAYABLE_TILES: bool = false ## Set to true to render grey tiles for unselected playable target tiles of ai action previews
+const RENDER_PREVIEW_DAMAGE_NUMBERS: bool = false ## True Show inaccurate damage numbers, or show "Hit"
 const SHOW_FACING_INDICATOR: bool = true
 
 ## Filesystem constants
@@ -749,7 +750,15 @@ func render_preview_for_action(action: Action, target) -> void:
 		if found_actor != null:
 			if action is ActionAttack:
 				if action.applies_to_actor(found_actor):
-					_popup_labels.append(Level.get_hud().popup_label_persistent("Damage: %s" % action.damage, found_actor, LevelHUD.STYLE_DAMAGE))
+					var popup_text: String
+					if RENDER_PREVIEW_DAMAGE_NUMBERS:
+						popup_text = "Damage: %s" % action.damage
+					else:
+						popup_text = "Hit"
+					_popup_labels.append(Level.get_hud().popup_label_persistent(popup_text, found_actor, LevelHUD.STYLE_DAMAGE))
+					
+					## TODO directional vulnerability etc
+					
 					TargetFinder.highlight_target(coords, Targeting.COLORS.RED, self)
 				
 			elif action is ActionApplyStatus:
