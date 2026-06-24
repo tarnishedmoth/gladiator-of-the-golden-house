@@ -431,7 +431,9 @@ func set_facing(cardinal_direction: Facing.Cardinal) -> void:
 	if facing_direction_affects_visual:
 		if character_visual_root:
 			# flip if facing down or west (assume sprite faces right)
-			character_visual_root.scale.x = -1 if facing > Facing.Cardinal.SOUTHEAST else 1
+			var rescale: float = -1 if facing > Facing.Cardinal.SOUTHEAST else 1
+			if signf(character_visual_root.scale.x) != signf(rescale):
+				character_visual_root.scale.x *= -1
 		if vfx:
 			vfx.actor_facing = facing
 		
