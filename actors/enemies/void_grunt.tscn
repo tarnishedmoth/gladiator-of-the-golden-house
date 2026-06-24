@@ -8,20 +8,12 @@
 [ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="5_rewct"]
 [ext_resource type="Resource" uid="uid://dw82haqxacv56" path="res://actions/prefabs/panic.tres" id="7_othuv"]
 [ext_resource type="Texture2D" uid="uid://bnepfqy7b6vc0" path="res://characters/zombie/zombie_anim.png" id="7_wvmyn"]
-[ext_resource type="Script" uid="uid://b8lempy0ri3x2" path="res://sfx/actor_sfx.gd" id="8_l0swk"]
+[ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="8_vctl3"]
 [ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="9_gxvl4"]
 [ext_resource type="AudioStream" uid="uid://bdgcc55bk3k1s" path="res://sfx/player-move.wav" id="9_h188c"]
 [ext_resource type="AudioStream" uid="uid://w28woonpa38s" path="res://sfx/monster_10.wav" id="9_qwqe4"]
 [ext_resource type="AudioStream" uid="uid://djexmcbsisdr" path="res://sfx/monster_8.wav" id="10_qwqe4"]
 [ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="11_l0swk"]
-[ext_resource type="AudioStream" uid="uid://7d08ngasojl3" path="res://sfx/hit_short.wav" id="11_xtwdl"]
-[ext_resource type="AudioStream" uid="uid://carpxxasddeyi" path="res://sfx/hemorrhage.wav" id="12_6nq4w"]
-[ext_resource type="AudioStream" uid="uid://c0o1iarnaf6l0" path="res://sfx/hit.wav" id="13_0hlb2"]
-[ext_resource type="AudioStream" uid="uid://dboj3iiv65h2" path="res://sfx/block.wav" id="14_ml4dn"]
-[ext_resource type="AudioStream" uid="uid://ddaxnxnpkbhrg" path="res://sfx/guard_broken.wav" id="15_3d86m"]
-[ext_resource type="AudioStream" uid="uid://cdt3rf168fp2" path="res://sfx/Buff.wav" id="16_7uisv"]
-[ext_resource type="AudioStream" uid="uid://c5xysqu5wdx76" path="res://sfx/Debuff.wav" id="17_1mtjh"]
-[ext_resource type="AudioStream" uid="uid://catt1tise3xbb" path="res://sfx/player-pickup-item.wav" id="18_3wm1u"]
 
 [sub_resource type="Resource" id="Resource_5brh6"]
 script = ExtResource("4_vctl3")
@@ -128,47 +120,6 @@ random_pitch = 1.0412621
 streams_count = 1
 stream_0/stream = ExtResource("10_qwqe4")
 
-[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_yfiy6"]
-stream_count = 2
-stream_0/stream = ExtResource("12_6nq4w")
-stream_0/volume = 0.0
-stream_1/stream = ExtResource("13_0hlb2")
-stream_1/volume = -3.0
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vensv"]
-random_pitch = 1.0905077
-random_volume_offset_db = 0.5
-streams_count = 1
-stream_0/stream = SubResource("AudioStreamSynchronized_yfiy6")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ysxt7"]
-random_pitch = 1.0842268
-streams_count = 1
-stream_0/stream = ExtResource("14_ml4dn")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yfiy6"]
-random_pitch = 1.0842268
-streams_count = 1
-stream_0/stream = ExtResource("15_3d86m")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_h0c5d"]
-random_pitch = 1.0412621
-random_volume_offset_db = 0.5
-streams_count = 1
-stream_0/stream = ExtResource("16_7uisv")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rwaig"]
-random_pitch = 1.0412621
-random_volume_offset_db = 0.5
-streams_count = 1
-stream_0/stream = ExtResource("17_1mtjh")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_b5oda"]
-random_pitch = 1.0412621
-random_volume_offset_db = 0.5
-streams_count = 1
-stream_0/stream = ExtResource("18_3wm1u")
-
 [node name="VoidGrunt" type="Node2D" unique_id=612736880 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
 script = ExtResource("1_5brh6")
 usable_actions = Array[ExtResource("2_wvmyn")]([ExtResource("5_rewct"), SubResource("Resource_5brh6"), SubResource("Resource_wvmyn"), ExtResource("7_othuv")])
@@ -187,56 +138,9 @@ hframes = 6
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Zombie" unique_id=448592839]
 libraries/ = SubResource("AnimationLibrary_h1mkt")
 
-[node name="ActorSfx" type="Node2D" parent="." unique_id=1664019728]
-script = ExtResource("8_l0swk")
-
-[node name="Move" type="AudioStreamPlayer2D" parent="ActorSfx" unique_id=903723637]
-stream = SubResource("AudioStreamRandomizer_6nq4w")
-max_polyphony = 2
-bus = &"Sfx"
-
-[node name="Attack" type="AudioStreamPlayer2D" parent="ActorSfx" unique_id=1189287551]
-stream = SubResource("AudioStreamRandomizer_5ghnr")
-max_polyphony = 2
-bus = &"Sfx"
-
-[node name="GetHit" type="AudioStreamPlayer2D" parent="ActorSfx" unique_id=304752993]
-stream = ExtResource("11_xtwdl")
-volume_db = -3.0
-max_polyphony = 3
-bus = &"Sfx"
-
-[node name="GetHitCritical" type="AudioStreamPlayer2D" parent="ActorSfx" unique_id=506114514]
-stream = SubResource("AudioStreamRandomizer_vensv")
-max_polyphony = 3
-bus = &"Sfx"
-
-[node name="Block" type="AudioStreamPlayer2D" parent="ActorSfx" unique_id=1082142148]
-stream = SubResource("AudioStreamRandomizer_ysxt7")
-volume_db = 5.0
-max_polyphony = 2
-bus = &"Sfx"
-
-[node name="BlockBroken" type="AudioStreamPlayer2D" parent="ActorSfx" unique_id=1457946487]
-stream = SubResource("AudioStreamRandomizer_yfiy6")
-volume_db = 5.0
-max_polyphony = 2
-bus = &"Sfx"
-
-[node name="Buff" type="AudioStreamPlayer2D" parent="ActorSfx" unique_id=650543655]
-stream = SubResource("AudioStreamRandomizer_h0c5d")
-max_polyphony = 4
-bus = &"Sfx"
-
-[node name="Debuff" type="AudioStreamPlayer2D" parent="ActorSfx" unique_id=1065229989]
-stream = SubResource("AudioStreamRandomizer_rwaig")
-max_polyphony = 2
-bus = &"Sfx"
-
-[node name="StanceChange" type="AudioStreamPlayer2D" parent="ActorSfx" unique_id=969544986]
-stream = SubResource("AudioStreamRandomizer_b5oda")
-max_polyphony = 2
-bus = &"Sfx"
+[node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("8_vctl3")]
+override_move = SubResource("AudioStreamRandomizer_6nq4w")
+override_attack = SubResource("AudioStreamRandomizer_5ghnr")
 
 [node name="ActorVfx" parent="." unique_id=374718462 node_paths=PackedStringArray("animation_player") instance=ExtResource("4_2ku68")]
 animation_player = NodePath("../Zombie/AnimationPlayer")
