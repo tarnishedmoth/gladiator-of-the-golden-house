@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="2_b68im"]
 [ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="3_oo65d"]
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="4_8ak6l"]
-[ext_resource type="Script" path="res://pick-ups/pickup_entry.gd" id="5_qh68v"]
+[ext_resource type="Script" uid="uid://bab0cowpfbqgf" path="res://pick-ups/pickup_entry.gd" id="5_qh68v"]
 [ext_resource type="PackedScene" uid="uid://c0cd2sq6is7ra" path="res://actors/emperor/emperor.tscn" id="6_2yhv6"]
 [ext_resource type="PackedScene" uid="uid://diwkqfyr57888" path="res://actors/emperor/giant-tentacle.tscn" id="7_obac4"]
 
@@ -48,6 +48,7 @@ position = Vector2(620, -18)
 
 [node name="[Temp Tentacle Demo]" type="Node2D" parent="." index="7" unique_id=1693592930]
 position = Vector2(370, 0)
+scale = Vector2(-1, 1)
 
 [node name="GiantTentacle" parent="[Temp Tentacle Demo]" index="0" unique_id=1916901696 instance=ExtResource("7_obac4")]
 
