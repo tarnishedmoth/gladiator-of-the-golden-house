@@ -185,17 +185,21 @@ fit_content = true
 scroll_active = false
 
 [node name="Category" type="RichTextLabel" parent="Root/HBoxContainer/RightOfLeftSide/ActionsHoverPanel/VBoxContainer" unique_id=1630766339]
+modulate = Color(0.6901961, 0.67058825, 0.32941177, 1)
+clip_contents = false
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Combat"
+text = "Change Stance"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Root/HBoxContainer/RightOfLeftSide/ActionsHoverPanel/VBoxContainer" unique_id=1319374009]
+modulate = Color(0.94097096, 0.5356947, 0.55864555, 1)
 layout_mode = 2
 alignment = 1
 
 [node name="Energy Stats" type="RichTextLabel" parent="Root/HBoxContainer/RightOfLeftSide/ActionsHoverPanel/VBoxContainer/HBoxContainer" unique_id=127022572]
+visible = false
 clip_contents = false
 custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
@@ -208,6 +212,7 @@ scroll_active = false
 clip_contents = false
 custom_minimum_size = Vector2(76, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 bbcode_enabled = true
 text = "[center]HP: 9 / 18"
 fit_content = true

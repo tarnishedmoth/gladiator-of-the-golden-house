@@ -43,19 +43,28 @@ func populate_using_action_data(action:Action)->void:
 	## Description
 	#description.text = "[center]"
 	var _description_text = ""
-	if action.allow_facing_before:
-		_description_text += "Change facing direction before.\n"
 	if action.ui_description:
-		_description_text += action.ui_description
+		_description_text += action.ui_description + "\n"
+	if action.allow_facing_before:
+		_description_text += "+Change facing direction before.\n"
 	if action.allow_facing_after:
-		_description_text += "\nChange facing direction after."
+		_description_text += "+Change facing direction after.\n"
 	
 	if action is ActionChangeStance:
-		if not _description_text.is_empty():
-			_description_text += "\n\n"
-		_description_text += "Actions:\n"
-		## Append the actions in this stance.
 		var stance: Stance = ResourceLoader.load(ResourceUID.uid_to_path(action.stance_uid))
+		
+		if not _description_text.is_empty():
+			_description_text += "\n"
+		
+		if not action.status_effects.is_empty():
+			_description_text += "+Status effects:[i]"
+			for status: Status in action.status_effects:
+				_description_text += "\n" + status.ui_name
+			_description_text += "[/i]\n\n"
+		
+		_description_text += "+Actions:\n"
+		## Append the actions in this stance.
+		
 		var i: int = 0
 		for _action in stance.actions:
 			_description_text += TextUtils.ital(("\n" if i > 0 else "") + _action.ui_title)
@@ -68,19 +77,19 @@ func populate_using_action_data(action:Action)->void:
 	
 	if action.energy_cost > 0:
 		energy_cost.text = "[center]"
-		energy_cost.append_text("EC: %d " % [action.energy_cost])
+		energy_cost.append_text("Cost: %d " % [action.energy_cost])
 
 	if action is ActionAttack:
 		amount_text.text = "[center]"
-		amount_text.append_text("Damage: %d " % [action.damage])
-		if action.multiple_attacks:
-			amount_text.append_text("x%d" % action.multiple_attacks)
+		amount_text.append_text("Base Dmg: %d " % [action.damage])
+		if action.multiple_attacks > 1:
+			amount_text.append_text("\nx %d times" % action.multiple_attacks)
 	
 	if action is ActionApplyStatus:
 		if action.status:
 			amount_text.text = "[center]"
 			if action.status.effect_points:
-				amount_text.append_text("Amount: %d" % [action.status.effect_points])
+				amount_text.append_text("Effect Points: %d" % [action.status.effect_points])
 			
 			description.append_text("\n" + \
 				action.status.ui_name + ":\n" + \

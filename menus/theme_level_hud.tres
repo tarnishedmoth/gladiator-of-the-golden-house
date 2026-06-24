@@ -94,7 +94,11 @@ border_color = Color(1, 1, 1, 1)
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mbm3e"]
-bg_color = Color(0, 0, 0, 0.5647059)
+content_margin_left = 2.0
+content_margin_top = 0.0
+content_margin_right = 2.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0.7058824)
 
 [sub_resource type="FontVariation" id="FontVariation_r7lr1"]
 base_font = ExtResource("1_dhdw3")
