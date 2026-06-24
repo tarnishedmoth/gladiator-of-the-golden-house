@@ -50,6 +50,8 @@ var waiting_to_finish: Array[Director] = [] ## A list of all directors who need 
 @onready var _level_start_mirror: bool = randf() > 0.5
 @warning_ignore_restore("unused_private_class_variable")
 
+@onready var sfx_cards: AudioStreamPlayer = %SfxCards
+
 #endregion
 #region Static Instances
 
@@ -411,6 +413,8 @@ func _record_playtime() -> void:
 
 #endregion
 #region Other Gameplay Functionality
+
+func play_cards_sfx() -> void: sfx_cards.play()
 
 ## Called by an Actor when it moves tiles. TODO Used for reactions...
 func on_actor_moved(actor: Actor) -> void:

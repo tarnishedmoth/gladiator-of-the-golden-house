@@ -280,6 +280,7 @@ func unhold_action(): hold_action(null)
 
 func draw_hand(draw_count: int = hand_size):
 	if VERBOSE_CARDS: p("Drawing hand...")
+	Level.get_instance().play_cards_sfx()
 	
 	## Add all cards in always available deck
 	for card in always_available_deck:
