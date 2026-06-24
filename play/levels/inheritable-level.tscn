@@ -106,7 +106,7 @@ top_level = true
 [node name="PickUpManager" type="Node2D" parent="." unique_id=490287025]
 unique_name_in_owner = true
 script = ExtResource("14_mvnmw")
-spawn_extra_starting_pickups_after_loss_streak = 2
+spawn_extra_starting_pickups_after_loss_streak = 1
 to_spawn = Array[ExtResource("8_xseso")]([SubResource("Resource_gapp4"), SubResource("Resource_bmyxl")])
 metadata/_custom_type_script = "uid://b8rocr8na0vw7"
 
