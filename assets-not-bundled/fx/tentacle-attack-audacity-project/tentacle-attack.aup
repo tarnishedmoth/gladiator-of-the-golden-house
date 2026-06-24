@@ -1,0 +1,88 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="tentacle-attack_data" version="1.3.0" audacityversion="2.3.0" sel0="0.0000000000" sel1="0.0000000000" vpos="0" h="0.0000000000" zoom="862.2577970664" rate="44100.0" snapto="off" selectionformat="hh:mm:ss + milliseconds" frequencyformat="Hz" bandwidthformat="octaves">
+	<tags>
+		<tag name="TITLE" value="Whipping"/>
+		<tag name="YEAR" value="2018-12-30T02:35:24+01:00"/>
+	</tags>
+	<wavetrack name="204358__soundsexciting__whipping" channel="0" linked="1" mute="0" solo="0" height="85" minimized="0" isSelected="1" rate="44100" gain="0.199526" pan="0.0" colorindex="0">
+		<waveclip offset="0.22369615" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="22751">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808d10.au" len="22751" min="-0.844879" max="0.701172" rms="0.086278"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="204358__soundsexciting__whipping" channel="1" linked="0" mute="0" solo="0" height="85" minimized="0" isSelected="1" rate="44100" gain="0.199526" pan="0.0" colorindex="0">
+		<waveclip offset="0.22369615" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="22751">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808205.au" len="22751" min="-0.997589" max="0.932465" rms="0.109659"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="496839__anderlk__earthquake" channel="0" linked="1" mute="0" solo="0" height="86" minimized="0" isSelected="0" rate="48000" gain="0.177828" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="71589">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808c26.au" len="71589" min="-0.466826" max="0.543056" rms="0.123134"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="496839__anderlk__earthquake" channel="1" linked="0" mute="0" solo="0" height="86" minimized="0" isSelected="0" rate="48000" gain="0.177828" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="71589">
+				<waveblock start="0">
+					<simpleblockfile filename="e08081a3.au" len="71589" min="-0.397132" max="0.459424" rms="0.117921"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="514381__zatar__earthquake3" channel="0" linked="1" mute="0" solo="0" height="81" minimized="0" isSelected="0" rate="44100" gain="0.223872" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="65772">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808468.au" len="65772" min="-0.811279" max="0.841217" rms="0.218139"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="514381__zatar__earthquake3" channel="1" linked="0" mute="0" solo="0" height="81" minimized="0" isSelected="0" rate="44100" gain="0.223872" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="65772">
+				<waveblock start="0">
+					<simpleblockfile filename="e08080c9.au" len="65772" min="-0.779846" max="0.864288" rms="0.214145"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="51817__kyles__thud-bassy-slam" channel="0" linked="1" mute="0" solo="0" height="95" minimized="0" isSelected="0" rate="48000" gain="1.995262" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="51938">
+				<waveblock start="0">
+					<simpleblockfile filename="e08087d6.au" len="51938" min="-0.999939" max="0.999969" rms="0.294646"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="51817__kyles__thud-bassy-slam" channel="1" linked="0" mute="0" solo="0" height="67" minimized="0" isSelected="0" rate="48000" gain="1.995262" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="51938">
+				<waveblock start="0">
+					<simpleblockfile filename="e080872b.au" len="51938" min="-0.999939" max="0.999969" rms="0.284028"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+</project>
