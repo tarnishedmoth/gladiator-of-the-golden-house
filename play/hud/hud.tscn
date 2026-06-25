@@ -240,5 +240,13 @@ layout_mode = 2
 theme_type_variation = &"BigButton"
 text = "End Turn"
 
+[node name="EndTurnProgressBar" type="ColorRect" parent="Root/HBoxContainer/RightOfLeftSide/EndTurnButton" unique_id=1234742908]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.5019608)
+clip_contents = true
+layout_mode = 1
+offset_bottom = 40.0
+mouse_filter = 2
+
 [connection signal="button_down" from="Root/HBoxContainer/RightOfLeftSide/EndTurnButton" to="." method="_on_end_turn_button_down"]
 [connection signal="button_up" from="Root/HBoxContainer/RightOfLeftSide/EndTurnButton" to="." method="_on_end_turn_button_up"]

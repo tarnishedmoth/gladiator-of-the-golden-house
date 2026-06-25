@@ -19,6 +19,7 @@ var selected_actor_action_panels: Array[HUDSelectedActorActionPanel]
 @onready var actions_hover_panel: HUDActionHoverPanel = %ActionsHoverPanel
 @onready var selected_actor_action_panels_v_box_container: VBoxContainer = %SelectedActorActionPanelsVBoxContainer
 @onready var end_turn_button: Button = %EndTurnButton
+@onready var end_turn_progress_bar: ColorRect = %EndTurnProgressBar
 
 func _ready() -> void:
 	## Initially hide the hud
@@ -183,6 +184,7 @@ func _on_current_director_changed(new_director: Director) -> void:
 	actions_panel.actions_header.set_blips(0)
 	var is_player: bool = new_director is Player
 	end_turn_button.disabled = not is_player
+	# end_turn_progress_bar.size.x = 0
 	show_hud(is_player)
 
 
@@ -203,6 +205,8 @@ func _on_end_turn_button_down() -> void:
 			var hold_duration_remaining = player.HOLD_TIME_TO_END_TURN_EARLY
 			end_turn_hold_tween = create_tween()
 			end_turn_hold_tween.tween_method(set_end_turn_text, hold_duration_remaining, 0, hold_duration_remaining)
+			end_turn_progress_bar.size.x = 0
+
 
 
 func _on_end_turn_button_up() -> void:
@@ -214,6 +218,7 @@ func _on_end_turn_button_up() -> void:
 func set_end_turn_text(to_append = null) -> void:
 	if not to_append:
 		end_turn_button.text = END_TURN_TEXT
+		end_turn_progress_bar.size.x = 0
 	else:
 		var _to_append
 		if to_append is float:
@@ -221,6 +226,13 @@ func set_end_turn_text(to_append = null) -> void:
 		else:
 			_to_append = to_append
 		end_turn_button.text = END_TURN_TEXT + " (" + (str(_to_append) if _to_append is not String else _to_append) + ")" ##lol
+		
+		# maybe this should be done in a second tween instead:
+		var player = Level.get_current_director()
+		if player is Player:
+			end_turn_progress_bar.size.x = end_turn_button.size.x * (end_turn_hold_tween.get_total_elapsed_time()/player.HOLD_TIME_TO_END_TURN_EARLY)
+			print("tween elapsed time: "+str(end_turn_hold_tween.get_total_elapsed_time()))
+			print("tween progress bar size: "+str(end_turn_progress_bar.size.x))
 
 var popups: Array[Label]
 
