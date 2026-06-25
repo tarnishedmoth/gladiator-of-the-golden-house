@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dlqufn83ohdsg" path="res://sfx/MenuBlip.wav" id="12_dg77c"]
 [ext_resource type="AudioStream" uid="uid://bfpr0xrhih4p5" path="res://music/Epic Battle Chiptune.mp3" id="12_w48qg"]
 [ext_resource type="AudioStream" uid="uid://b3uprbaqinc6x" path="res://music/gladiator ambient (looping).ogg" id="13_w48qg"]
+[ext_resource type="AudioStream" uid="uid://bs452trmypkg6" path="res://music/gladiator battle march (looped).ogg" id="15_vivmo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
 font_size = 8
@@ -463,6 +464,12 @@ parameters/looping = true
 stream = SubResource("AudioStreamRandomizer_ycdy4")
 volume_db = -3.0
 max_polyphony = 2
+
+[node name="Music_Sherman_March" type="AudioStreamPlayer" parent="." unique_id=1875127588]
+stream = ExtResource("15_vivmo")
+volume_db = -5.0
+bus = &"Music"
+parameters/looping = true
 
 [connection signal="pressed" from="CanvasLayer/Debug/HBoxContainer/ProjectVersionLabel/GoToDevMenuButton" to="." method="_on_go_to_dev_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Debug/HBoxContainer/DebugSceneLabel/ReturnToMenuButton" to="." method="_on_return_to_menu_button_pressed"]

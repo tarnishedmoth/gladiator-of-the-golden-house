@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bs452trmypkg6"
+path="res://.godot/imported/gladiator battle march (looped).ogg-d07c50c93e075bd6b3e799325c29ac7d.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/gladiator battle march (looped).ogg"
+dest_files=["res://.godot/imported/gladiator battle march (looped).ogg-d07c50c93e075bd6b3e799325c29ac7d.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=8.0
+bpm=120.0
+beat_count=0
+bar_beats=4
