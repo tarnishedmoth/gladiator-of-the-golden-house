@@ -60,7 +60,7 @@ static func rotate_hex_array(unit_facing: Cardinal, pattern: Array[Vector2i]) ->
 
 
 ## Use to convert absolute vectors into relative vectors to the facing direction.
-static func unrotate_hex(unit_facing: Cardinal, hex_coords: Vector2i):
+static func unrotate_hex(unit_facing: Cardinal, hex_coords: Vector2i) -> Vector2i:
 	var q = hex_coords.x
 	var r = hex_coords.y
 	

@@ -38,6 +38,7 @@ var hostile_target: Actor ## Used for planning
 
 var _action_pop_queue: Array[Action] = []
 var _last_action_picked: Action
+var _set_facing_direction_after_planning: Variant ## 
 
 func replace_usable_actions(new_usable_actions: Array[Action], change_queue_size: int = -1) -> void:
 	usable_actions.clear()
@@ -45,16 +46,24 @@ func replace_usable_actions(new_usable_actions: Array[Action], change_queue_size
 	if change_queue_size > -1:
 		actions_to_queue_this_turn = change_queue_size
 
+## This is the planning phase of turn taking, it is run by the director after actions are finished executing.
+## We pick actions and plan them one at a time until we have a list as long as [member actions_to_queue_this_turn]...
 func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> void:
 	var queue: Array[Action]
-
 	if actions_to_queue_this_turn == 0:
 		queue.append(DO_NOTHING_ACTION.duplicate())
-
 	for i in actions_to_queue_this_turn:
 		queue.append(choose_action(claimed_tiles))
-
 	append_actions_to_queue(queue)
+	check_queued_set_facing()
+
+## ...Once we push the update to the queue, we set our facing direction (which updates any targeting with the changes).
+## because, NOTE actions target property is in absolute coordinates.
+func check_queued_set_facing() -> void:
+	if _set_facing_direction_after_planning != null:
+		set_facing(_set_facing_direction_after_planning)
+		_set_facing_direction_after_planning = null
+
 
 func choose_action(claimed_tiles: Array[Vector2i], list_of_usable_actions: Array[Action] = usable_actions) -> Action:
 	## Selection
@@ -137,6 +146,7 @@ func get_facing_direction_to_hostile_target() -> Facing.Cardinal:
 func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void:
 	action.set_actor(self)
 	if not hostile_target: choose_hostile_target()
+	
 	if action is ActionMove:
 		if debug: p("Planning ActionMove.")
 		
@@ -147,7 +157,7 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 		else:
 			## Fallback but should never run in gameplay
 			facing_direction = Facing.Cardinal.values().pick_random()
-		set_facing(facing_direction)
+		set_facing_after_planning(facing_direction)
 
 		var coords: Vector2i
 		var candidates: Array[Vector2i] = []
@@ -204,7 +214,7 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 
 	elif action is ActionAttack:
 		if action.allow_facing_before:
-			set_facing(get_facing_direction_to_hostile_target())
+			set_facing_after_planning(get_facing_direction_to_hostile_target())
 		
 		if not action.aoe_pattern:
 			## We can hit every tile
@@ -271,7 +281,7 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 	
 	elif action is ActionSpawn:
 		if action.allow_facing_before or action.allow_facing_after:
-			set_facing(get_facing_direction_to_hostile_target())
+			set_facing_after_planning(get_facing_direction_to_hostile_target())
 		
 		## Pick a valid tile to spawn at
 		var choice_target: Vector2i
@@ -332,6 +342,8 @@ func sort_hostile_distance(a: Vector2i, b: Vector2i) -> bool:
 ## Assigns an Actor to [member hostile_target].
 ## If [member always_prioritize_nearest_hostile] it will be the nearest by tile coordinate.
 ## Otherwise, it will be random.
+## WARNING HACK FIXME THIS IS IMPLEMENTED INCORRECTLY
+## CANT USE HEX COORDS FOR COMMON SQUARE GRID DISTANCE CALCULATIONS
 func choose_hostile_target() -> void:
 	## Lets find an enemy actor to target
 	var available_targets: Array[Actor]
@@ -407,8 +419,18 @@ func preview_ai_attack()-> void:
 #func hide_preview_attack()-> void: ## DEPRECATED merged into [Actor]
 	#action_preview.hide_preview_action()
 
-func select_facing_now() -> void:
-	set_facing(get_facing_direction_to_hostile_target())
+## This is checked/enforced in [method queue_new_actions_for_next_turn].
+func set_facing_after_planning(cardinal_direction: Facing.Cardinal) -> void:
+	_set_facing_direction_after_planning = cardinal_direction
+
+## NOTICE It's very important that you set facing only *after* the queue has been populated.
+## If you set facing while populating the queue, targets can become corrupted.
+func set_facing(cardinal_direction: Facing.Cardinal) -> void:
+	var difference = Facing.get_relative_direction(facing, cardinal_direction)
+	if difference > 0:
+		if debug: p("Set facing: %s is incoming cardinal, %s existing, [b]difference is %s[/b]." % [cardinal_direction, facing, difference])
+		rotate_all_actions_by(difference)
+	super(cardinal_direction)
 
 ## This method is responsible for updating queued actions when we are moved by external forces.
 func move_to_tile(coords: Vector2i, duration_of_movement: float = 0.4) -> void:
@@ -419,7 +441,7 @@ func move_to_tile(coords: Vector2i, duration_of_movement: float = 0.4) -> void:
 		move_all_actions_by(_ending_coord - _starting_coord)
 
 func move_all_actions_by(offset: Vector2i) -> void:
-	if action_queue.queue.is_empty():
+	if get_action_queue().queue.is_empty():
 		return
 	if debug: p("Nudging all queued actions' targets by %s..." % offset)
 	for action in get_action_queue().queue:
@@ -429,3 +451,18 @@ func move_all_actions_by(offset: Vector2i) -> void:
 			if debug: p("Nudged %s." % action)
 		else:
 			if debug: p("%s has a null target, not nudging." % action)
+
+## Provide the result of Facing.get_relative_direction() as the param.
+func rotate_all_actions_by(difference: Facing.Relative) -> void:
+	if get_action_queue().queue.is_empty():
+		return
+	if debug: p("Rotating all queued actions' targets by %s..." % difference)
+	for action in get_action_queue().queue:
+		if action == self: continue
+		if action._target != null:
+			var old_target: Vector2i = action._target
+			var relative_offset: Vector2i = Facing.unrotate_hex(facing, old_target)
+			var new_facing: Facing.Cardinal = Facing.get_combined(facing, difference as Facing.Cardinal)
+			var new_target: Vector2i = Facing.rotate_hex(new_facing, relative_offset)
+			if debug: p("Rotated absolute target %s from %s to %s (relative coords were %s)." % [action, old_target, new_target, relative_offset])
+			action.set_target(new_target)

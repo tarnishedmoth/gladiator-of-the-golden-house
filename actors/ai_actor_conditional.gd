@@ -51,6 +51,7 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 		queue.append(_action)
 	
 	append_actions_to_queue(queue)
+	check_queued_set_facing()
 
 
 func _check_conditions() -> bool:
