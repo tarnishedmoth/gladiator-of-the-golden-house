@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("3_wfqr6")
 damage = 2
-multiple_attacks = 2
+multiple_attacks = 3
 pattern = Array[Vector2i]([Vector2i(0, -1)])
 aoe_pattern = Array[Vector2i]([Vector2i(0, 0), Vector2i(-1, 2), Vector2i(1, 1)])
 ui_title = "Windmill"

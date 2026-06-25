@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_7l7m2")
-pattern = Array[Vector2i]([Vector2i(-2, 0), Vector2i(0, -2), Vector2i(2, -2)])
+pattern = Array[Vector2i]([Vector2i(-2, 0), Vector2i(0, -2), Vector2i(2, -2), Vector2i(0, -3), Vector2i(3, -3), Vector2i(3, 0)])
 allow_facing_after = true
 ui_title = "Sprint & Turn"
 ui_description = "Sprint to the target and turn to face a chosen direction."
