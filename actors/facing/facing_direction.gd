@@ -77,6 +77,11 @@ static func unrotate_hex_array(unit_facing: Cardinal, pattern: Array[Vector2i]) 
 		targets.append(unrotate_hex(unit_facing, entry))
 	return targets
 
+## Provide absolute coords Pivot and Target, returns rotating the target around the pivot by rotation_steps
+static func rotate_absolute_coords_around_pivot(pivot: Vector2i, target: Vector2i, rotation_steps: Facing.Relative) -> Vector2i:
+	var relative_offset: Vector2i = target - pivot
+	return Facing.rotate_hex(rotation_steps as Facing.Cardinal, relative_offset) + pivot
+
 ## Translates and rotates the pattern to absolute coordinates.
 static func get_target_cells(pos: Vector2i, facing: Cardinal, pattern: Array[Vector2i]) -> Array[Vector2i]:
 	var targets: Array[Vector2i] = []

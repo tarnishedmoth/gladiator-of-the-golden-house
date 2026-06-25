@@ -451,8 +451,7 @@ func rotate_all_actions_by(difference: Facing.Relative) -> void:
 		if action == self: continue
 		if action._target != null:
 			var old_target: Vector2i = action._target
-			var relative_offset: Vector2i = Facing.unrotate_hex(facing, old_target)
-			var new_facing: Facing.Cardinal = Facing.get_combined(facing, difference as Facing.Cardinal)
-			var new_target: Vector2i = Facing.rotate_hex(new_facing, relative_offset)
-			if debug: p("Rotated absolute target %s from %s to %s (relative coords were %s)." % [action, old_target, new_target, relative_offset])
+			var new_facing: Facing.Relative = Facing.get_combined(facing, difference as Facing.Cardinal) as Facing.Relative
+			var new_target: Vector2i = Facing.rotate_absolute_coords_around_pivot(current_tile_coords, old_target, new_facing)
+			if debug: p("Rotated absolute target %s from %s to %s." % [action, old_target, new_target])
 			action.set_target(new_target)
