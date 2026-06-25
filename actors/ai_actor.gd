@@ -49,20 +49,10 @@ func replace_usable_actions(new_usable_actions: Array[Action], change_queue_size
 ## This is the planning phase of turn taking, it is run by the director after actions are finished executing.
 ## We pick actions and plan them one at a time until we have a list as long as [member actions_to_queue_this_turn]...
 func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> void:
-	var queue: Array[Action]
 	if actions_to_queue_this_turn == 0:
-		queue.append(DO_NOTHING_ACTION.duplicate())
+		append_action_to_queue(DO_NOTHING_ACTION.duplicate())
 	for i in actions_to_queue_this_turn:
-		queue.append(choose_action(claimed_tiles))
-	append_actions_to_queue(queue)
-	check_queued_set_facing()
-
-## ...Once we push the update to the queue, we set our facing direction (which updates any targeting with the changes).
-## because, NOTE actions target property is in absolute coordinates.
-func check_queued_set_facing() -> void:
-	if _set_facing_direction_after_planning != null:
-		set_facing(_set_facing_direction_after_planning)
-		_set_facing_direction_after_planning = null
+		append_action_to_queue(choose_action(claimed_tiles))
 
 
 func choose_action(claimed_tiles: Array[Vector2i], list_of_usable_actions: Array[Action] = usable_actions) -> Action:
@@ -150,14 +140,14 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 	if action is ActionMove:
 		if debug: p("Planning ActionMove.")
 		
-		## NOTE we aren't checking if the action --allows-- facing here... consider changing this
-		var facing_direction: Facing.Cardinal
-		if hostile_target:
-			facing_direction = get_facing_direction_to_hostile_target()
-		else:
-			## Fallback but should never run in gameplay
-			facing_direction = Facing.Cardinal.values().pick_random()
-		set_facing_after_planning(facing_direction)
+		if action.allow_facing_before:
+			var facing_direction: Facing.Cardinal
+			if hostile_target:
+				facing_direction = get_facing_direction_to_hostile_target()
+			else:
+				## Fallback but should never run in gameplay
+				facing_direction = Facing.Cardinal.values().pick_random()
+			set_facing(facing_direction)
 
 		var coords: Vector2i
 		var candidates: Array[Vector2i] = []
@@ -214,7 +204,7 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 
 	elif action is ActionAttack:
 		if action.allow_facing_before:
-			set_facing_after_planning(get_facing_direction_to_hostile_target())
+			set_facing(get_facing_direction_to_hostile_target())
 		
 		if not action.aoe_pattern:
 			## We can hit every tile
@@ -280,8 +270,8 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 		action.set_target(choice_target)
 	
 	elif action is ActionSpawn:
-		if action.allow_facing_before or action.allow_facing_after:
-			set_facing_after_planning(get_facing_direction_to_hostile_target())
+		if action.allow_facing_before:# or action.allow_facing_after:
+			set_facing(get_facing_direction_to_hostile_target())
 		
 		## Pick a valid tile to spawn at
 		var choice_target: Vector2i

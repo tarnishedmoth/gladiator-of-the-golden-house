@@ -113,6 +113,7 @@ func get_status_effects() -> Array[Status]:
 var is_active: bool = false ## Used by [Director] to determine if this actor gets calls on for turn logic. See [method setup]
 var has_died: bool = false ## If this is true, we're currently trying to exit the tree or otherwise cease.
 var emit_actions_finished_signal: bool = false
+
 var current_tile_coords: Vector2i
 var previous_tile_coords: Vector2i
 
@@ -261,10 +262,14 @@ func queue_action(action: Action, and_run_queue: bool = false) -> void:
 	action_count += 1
 	if and_run_queue:
 		run_queued_actions()
-		
+
 func append_actions_to_queue(array: Array[Action]) -> void:
-	action_count += array.size()
-	action_queue.queue.append_array(array)
+	for action in array:
+		append_action_to_queue(action)
+
+func append_action_to_queue(action: Action) -> void:
+	action_count += 1
+	action_queue.queue.append(action)
 
 func run_action(action: Action) -> void: ## Immediately runs one action (and any chained actions).
 	if action_queue.running_queue:

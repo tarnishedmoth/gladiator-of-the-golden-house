@@ -4,8 +4,6 @@ class_name Grunt extends AIActor
 ## Each turn, queues one movement category action, and one combat category action to play.
 
 func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> void:
-	var queue: Array[Action] = []
-
 	# Attack
 	var attacks := usable_actions.filter(
 		func(a): return a.action_category == Action.ActionCategory.COMBAT
@@ -13,7 +11,7 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 	if not attacks.is_empty():
 		var attack: Action = attacks.pick_random().duplicate()
 		plan_action_details(attack, claimed_tiles)
-		queue.append(attack)
+		append_action_to_queue(attack)
 
 	# Move
 	var moves := usable_actions.filter(
@@ -22,7 +20,4 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 	if not moves.is_empty():
 		var move: Action = moves.pick_random().duplicate()
 		plan_action_details(move, claimed_tiles)
-		queue.append(move)
-
-	append_actions_to_queue(queue)
-	check_queued_set_facing()
+		append_action_to_queue(move)

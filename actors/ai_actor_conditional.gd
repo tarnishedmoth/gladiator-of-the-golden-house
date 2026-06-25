@@ -29,12 +29,10 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 	var actions_to_use: Array[Action]
 	actions_to_use = conditionally_usable_actions if conditions_met else usable_actions
 	
-	var queue: Array[Action]
-	
 	if conditions_met and and_always_begin_with:
 		var _action: Action = and_always_begin_with.duplicate()
 		plan_action_details(_action, claimed_tiles)
-		queue.append(_action)
+		append_action_to_queue(_action)
 	
 	var _actions_to_queue: int
 	if conditions_met and alt_actions_to_queue_this_turn >= 0:
@@ -43,15 +41,12 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 		_actions_to_queue = actions_to_queue_this_turn
 	
 	for i in _actions_to_queue:
-		queue.append(choose_action(claimed_tiles, actions_to_use))
+		append_action_to_queue(choose_action(claimed_tiles, actions_to_use))
 	
 	if conditions_met and and_always_end_with:
 		var _action: Action = and_always_end_with.duplicate()
 		plan_action_details(_action, claimed_tiles)
-		queue.append(_action)
-	
-	append_actions_to_queue(queue)
-	check_queued_set_facing()
+		append_action_to_queue(_action)
 
 
 func _check_conditions() -> bool:
