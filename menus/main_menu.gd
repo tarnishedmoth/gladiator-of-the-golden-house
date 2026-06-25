@@ -34,6 +34,8 @@ var slot_screen_state: SlotScreenStates
 @onready var options_button: Button = %OptionsButton
 @onready var quit_button: Button = %QuitButton
 
+@onready var class_description_label: Label = %ClassDescriptionLabel
+@onready var _starting_class_description_label_text = class_description_label.text
 @onready var classes_grid_container: HFlowContainer = %ClassesGridContainer
 @onready var chosen_name_line_edit: LineEdit = %ChosenNameLineEdit
 @onready var confirm_class_button: Button = %ConfirmClassButton
@@ -70,6 +72,8 @@ func populate_starting_classes() -> void:
 		button.text = class_display_name
 		button.set_meta(META_STARTING_CLASS, PlayerData.STARTING_CLASSES.values()[iter])
 		
+		button.mouse_entered.connect(_on_class_select_button_hovered.bind(button))
+		button.mouse_exited.connect(_on_class_select_button_unhovered)
 		button.pressed.connect(_on_class_select_button_pressed.bind(button))
 		classes_grid_container.add_child(button)
 	
@@ -77,10 +81,6 @@ func populate_starting_classes() -> void:
 	for iter in PlayerData.CHARACTER_SCENES.size():
 		var button = Button.new()
 		button.toggle_mode = true
-		#button.text = PlayerData.CHARACTER_SCENES.keys()[iter].capitalize()
-		## Not showing text because you can't configure a button text's vertical position.
-		## There is a hacky workaround by providing a transparent texture to the icon property
-		## But frankly the names aren't important for this UI
 		
 		var art_uid: String = PlayerData.CHARACTER_SCENES.values()[iter]
 		button.set_meta(META_CHARACTER_ART, art_uid)
@@ -102,13 +102,21 @@ func populate_starting_classes() -> void:
 
 func _on_class_select_button_pressed(button: Button) -> void:
 	Main.sfx_blip() ## sfx
-	selected_starting_class = button.get_meta(
-		META_STARTING_CLASS,
-		PlayerData.STARTING_CLASSES.values().front()
-		)
+	selected_starting_class = _get_starting_class_from_button(button)
 	
 	for child: Button in classes_grid_container.get_children():
 		child.set_pressed_no_signal(child == button)
+
+func _on_class_select_button_hovered(button: Button) -> void:
+	var class_uid = _get_starting_class_from_button(button)
+	class_description_label.text = PlayerData.get_starting_class_description(class_uid)
+
+func _on_class_select_button_unhovered() -> void:
+	class_description_label.text = _starting_class_description_label_text
+
+func _get_starting_class_from_button(button: Button) -> String:
+	return button.get_meta(META_STARTING_CLASS, PlayerData.STARTING_CLASSES.values().front())
+
 
 func _on_art_select_button_pressed(button: Button) -> void:
 	Main.sfx_blip() ## sfx

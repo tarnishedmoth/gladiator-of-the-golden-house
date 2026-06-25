@@ -40,11 +40,20 @@ func get_character_scene() -> PackedScene:
 static func get_starting_class_description(starting_class_file_uid: String) -> String:
 	match starting_class_file_uid:
 		STARTING_CLASSES.SHORT_SWORD:
-			return "A balanced, enduring build. Close quarters combat is your specialty."
+			return \
+			"A balanced, enduring build.
+			Close quarters combat is your speciality, & persistence your ally."
+		
 		STARTING_CLASSES.GREATSWORD:
-			return "Not entirely bereft of defensive ability, this class affords greater reach, and knockback effects."
+			return \
+			"Not entirely bereft of defensive ability, your weapon affords greater reach, and the strength to knockback most foes.
+			Stance changes allow for switching between using both hands to properly wield the weapon, or equipping a meagre shield..."
+		
 		STARTING_CLASSES.FLOWING_FLAIL:
-			return ""
+			return \
+			"This weapon's momentum compounds with each chained attack, delivering devastating final blows.
+			Excels at mid-range encounters. The alternate stance affords more mobility."
+	
 	return ""
 
 var combat_playtime: float ## See [Playtime] class for conversion
