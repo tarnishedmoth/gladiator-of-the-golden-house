@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dduqbdc5ybu0g"
+path="res://.godot/imported/battle lose stinger.ogg-606fb0224fdb84e1beff71ec33ad9487.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/battle lose stinger.ogg"
+dest_files=["res://.godot/imported/battle lose stinger.ogg-606fb0224fdb84e1beff71ec33ad9487.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

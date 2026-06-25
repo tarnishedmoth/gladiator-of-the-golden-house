@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ck2r5vjs4hbxe"
+path="res://.godot/imported/battle win stinger.ogg-fa9398301aceb56eba52ba1218c7646c.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/battle win stinger.ogg"
+dest_files=["res://.godot/imported/battle win stinger.ogg-fa9398301aceb56eba52ba1218c7646c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

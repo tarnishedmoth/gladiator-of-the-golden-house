@@ -15,6 +15,8 @@
 [ext_resource type="AudioStream" uid="uid://bfpr0xrhih4p5" path="res://music/Epic Battle Chiptune.mp3" id="12_w48qg"]
 [ext_resource type="AudioStream" uid="uid://b3uprbaqinc6x" path="res://music/gladiator ambient (looping).ogg" id="13_w48qg"]
 [ext_resource type="AudioStream" uid="uid://bs452trmypkg6" path="res://music/gladiator battle march (looped).ogg" id="15_vivmo"]
+[ext_resource type="AudioStream" uid="uid://ck2r5vjs4hbxe" path="res://music/battle win stinger.ogg" id="16_yaehf"]
+[ext_resource type="AudioStream" uid="uid://dduqbdc5ybu0g" path="res://music/battle lose stinger.ogg" id="17_074og"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
 font_size = 8
@@ -470,6 +472,14 @@ stream = ExtResource("15_vivmo")
 volume_db = -5.0
 bus = &"Music"
 parameters/looping = true
+
+[node name="Music_Battle_Win" type="AudioStreamPlayer" parent="." unique_id=283553923]
+stream = ExtResource("16_yaehf")
+volume_db = -5.0
+
+[node name="Music_Battle_Lose" type="AudioStreamPlayer" parent="." unique_id=1073661778]
+stream = ExtResource("17_074og")
+volume_db = -5.0
 
 [connection signal="pressed" from="CanvasLayer/Debug/HBoxContainer/ProjectVersionLabel/GoToDevMenuButton" to="." method="_on_go_to_dev_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Debug/HBoxContainer/DebugSceneLabel/ReturnToMenuButton" to="." method="_on_return_to_menu_button_pressed"]
