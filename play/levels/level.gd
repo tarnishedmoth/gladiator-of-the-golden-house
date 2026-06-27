@@ -11,9 +11,10 @@ func p(args):
 const DEFERRED_TURN_CHANGE: bool = true
 
 enum PlayMusic {
-	NONE,
-	TRACK_SHERMAN,
-	TRACK_VAILLANCOURT
+	NONE = 0,
+	TRACK_SHERMAN = 1,
+	TRACK_VAILLANCOURT = 2,
+	TRACK_SHERMAN_MARCH = 3
 }
 
 #region Signals and Variables
@@ -23,9 +24,13 @@ signal current_director_changed(director: Director)
 @export var use_randomized_rotation_and_mirror: bool = true
 @export var use_scene_blocking_transition_on_exit: bool = true
 @export var fade_self_in: bool = false
+
 @export var play_music: PlayMusic = PlayMusic.NONE
-@export var stop_music_on_exit_to_menu: bool = false
+@export var stop_music_on_exit_to_menu: bool = true
 @export var stop_music_on_exit_to_next_level: bool = false ## TODO
+
+@export var play_win_sting: bool = true
+@export var play_loss_sting: bool = true
 
 @export var base_tile_map_layer: TileMapLayer
 @export var tile_interactor: TileInteractor ## Used for detecting mouse input.
@@ -179,14 +184,7 @@ func _ready() -> void:
 		Juice.fade_in(self, 3.0)
 		
 	if play_music != PlayMusic.NONE:
-		match play_music:
-			PlayMusic.TRACK_SHERMAN:
-				if not Main.get_instance().music_sherman.playing:
-					Main.play_sherman(true)
-			
-			PlayMusic.TRACK_VAILLANCOURT:
-				if not Main.get_instance().music_vaillancourt.playing:
-					Main.play_vaillancourt(true)
+		start_music()
 
 func _exit_tree() -> void:
 	TargetFinder.clear_all_highlights() ## Fixes bug with not despawning these if exiting from the pause menu
@@ -199,6 +197,20 @@ func _exit_tree() -> void:
 
 #endregion
 #region Startup & Turn Progression
+func start_music() -> void:
+	match play_music:
+		PlayMusic.TRACK_SHERMAN:
+			if not Main.get_instance().music_sherman.playing:
+				Main.play_sherman(true)
+		
+		PlayMusic.TRACK_VAILLANCOURT:
+			if not Main.get_instance().music_vaillancourt.playing:
+				Main.play_vaillancourt(true)
+		
+		PlayMusic.TRACK_SHERMAN_MARCH:
+			if not Main.get_instance().music_sherman_march.playing:
+				Main.play_sherman_march(true)
+
 
 func start_game() -> void:
 	assert(hud)
@@ -349,13 +361,20 @@ func check_objectives() -> void:
 		Main.register_level_progressed()
 
 		continue_menu.show()
+		
+		if play_win_sting:
+			Main.play_battle_win()
 
 	elif check_lose_condition() == true:
 		p("Player has lost.")
 		is_complete = true
 		PlayerData.this.current_loss_streak += 1
 		_record_playtime()
+		
 		retry_menu.show() #launch retry menu
+		
+		if play_loss_sting:
+			Main.play_battle_loss()
 
 func check_win_condition() -> bool:
 	var dirs: Array[Director] = get_directors()

@@ -15,7 +15,5 @@ func _on_options_button_pressed() -> void:
 func _on_main_menu_button_pressed() -> void:
 	Main.sfx_blip() ## sfx
 	if Level.get_instance().stop_music_on_exit_to_menu:
-		Main.play_music_menu_loop(false)
-		Main.play_sherman(false)
-		Main.play_vaillancourt(false)
+		Main.stop_music()
 	Main.go_to_main_menu()

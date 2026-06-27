@@ -5,7 +5,7 @@ class_name Main extends Node
 ## Load the splash,
 ## then load the main menu.
 
-@warning_ignore("unused_signal")
+@warning_ignore_start("unused_signal")
 signal game_settings_changed
 signal change_scene_transition_completed
 
@@ -54,6 +54,10 @@ var current_packed_scene: PackedScene ## Set each time [method change_scene] is 
 @onready var music_vaillancourt: AudioStreamPlayer = $Music_Vaillancourt
 @onready var music_menu_loop: AudioStreamPlayer = $Music_MenuLoop
 @onready var music_sherman: AudioStreamPlayer = $Music_Sherman
+@onready var music_sherman_march: AudioStreamPlayer = $Music_Sherman_March
+@onready var music_battle_win: AudioStreamPlayer = $Music_Battle_Win
+@onready var music_battle_loss: AudioStreamPlayer = $Music_Battle_Loss
+
 
 @onready var blip_neutral: AudioStreamPlayer = $Blip_Neutral
 
@@ -225,6 +229,7 @@ static func stop_music() -> void:
 	play_music_menu_loop(false)
 	play_sherman(false)
 	play_vaillancourt(false)
+	play_sherman_march(false)
 
 static var music_fade: Tween
 ## True to play + fade in, false to fade out + stop
@@ -286,6 +291,36 @@ static func play_vaillancourt(playing: bool) -> void: ## true to play, false to 
 		instance.music_vaillancourt.play()
 	else:
 		music_fade_3.tween_callback(instance.music_vaillancourt.stop)
+
+static var music_fade_4: Tween
+static func play_sherman_march(playing: bool) -> void: ## true to play, false to fade out + stop
+	if not instance:
+		return
+	if music_fade_4:
+		music_fade_4.kill()
+	
+	music_fade_4 = instance.create_tween()
+	music_fade_4.tween_property(
+		instance.music_sherman_march,
+		"volume_linear",
+		1.0 if playing else 0.0, # target value
+		1.0 if playing else 2.0, # duration
+		).from(0.0 if playing else 1.0) # start value
+	
+	if playing:
+		instance.music_sherman_march.play()
+	else:
+		music_fade_4.tween_callback(instance.music_sherman_march.stop)
+		
+
+static func play_battle_win() -> void:
+	if not instance: return
+	instance.music_battle_win.play()
+
+static func play_battle_loss() -> void:
+	if not instance: return
+	instance.music_battle_loss.play()
+
 
 ## Play a sfx blip.
 static func sfx_blip() -> void:
