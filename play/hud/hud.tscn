@@ -18,19 +18,28 @@ bg_color = Color(0.6901961, 0.67058825, 0.32941177, 1)
 [sub_resource type="Gradient" id="Gradient_mqh65"]
 interpolation_mode = 2
 interpolation_color_space = 2
-offsets = PackedFloat32Array(0, 0.4837476, 0.9713193, 1)
-colors = PackedColorArray(0.69, 0.2277, 0.28933993, 0, 0.69411767, 0.22745098, 0.28627452, 1, 0.6901961, 0.67058825, 0.32941177, 1, 0.95641524, 0.95281655, 0.8257406, 1)
+offsets = PackedFloat32Array(0, 0.2294455, 0.4416826, 0.5487572, 0.5869981)
+colors = PackedColorArray(0.69, 0.2277, 0.28933993, 0, 0.69411767, 0.22745098, 0.28627452, 1, 0.6901961, 0.67058825, 0.32941177, 1, 0.95641524, 0.95281655, 0.8257406, 1, 0.96, 0.95552, 0.82559997, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_n2sn3"]
 gradient = SubResource("Gradient_mqh65")
-width = 24
-height = 24
+width = 48
+height = 10
+
+[sub_resource type="Gradient" id="Gradient_n2sn3"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.69803923, 0.6509804, 0.5568628, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_16pfv"]
+gradient = SubResource("Gradient_n2sn3")
+width = 2
+height = 14
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mqh65"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_16pfv"]
 color = Color(0.38431373, 0.29411766, 0.23529412, 1)
-grow_begin = -4.0
+grow_begin = -24.0
 thickness = 4
 
 [node name="HUD" type="CanvasLayer" unique_id=414291549]
@@ -267,28 +276,36 @@ layout_mode = 1
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="GameProgressTimeline" type="PanelContainer" parent="Root" unique_id=230764798]
+[node name="GameProgressTimeline" type="Control" parent="Root" unique_id=409465022]
 self_modulate = Color(1, 1, 1, 0.039215688)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 8.0
+offset_left = -162.0
+offset_right = 162.0
+offset_bottom = 26.0
 grow_horizontal = 2
 theme_type_variation = &"PartTransparentPanelContainer"
 script = ExtResource("11_n2sn3")
 
 [node name="HSlider" type="HSlider" parent="Root/GameProgressTimeline" unique_id=1803069340]
 custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_right = 160.0
+offset_bottom = 16.0
+grow_horizontal = 2
 size_flags_vertical = 4
 theme_override_icons/grabber_disabled = SubResource("GradientTexture2D_n2sn3")
+theme_override_icons/tick = SubResource("GradientTexture2D_16pfv")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_mqh65")
 theme_override_styles/grabber_area = SubResource("StyleBoxLine_16pfv")
 max_value = 16.0
-value = 13.0
+value = 1.0
 editable = false
 scrollable = false
 tick_count = 17
@@ -296,7 +313,12 @@ ticks_on_borders = true
 ticks_position = 3
 
 [node name="Label" type="Label" parent="Root/GameProgressTimeline" unique_id=2020786924]
-layout_mode = 2
+self_modulate = Color(0.69803923, 0.6509804, 0.5568628, 1)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 18.0
+offset_right = 322.0
+offset_bottom = 44.000053
 text = "Game Progress"
 horizontal_alignment = 1
 

@@ -17,7 +17,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Control/RichTextLabel2/Sprite2D:position")
+tracks/0/path = NodePath("CanvasLayer/IterativeReveal/RichTextLabel2/Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -33,7 +33,7 @@ length = 12.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Control/RichTextLabel2/Sprite2D:position")
+tracks/0/path = NodePath("CanvasLayer/IterativeReveal/RichTextLabel2/Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -49,9 +49,18 @@ _data = {
 &"new_animation": SubResource("Animation_1tndk")
 }
 
+[sub_resource type="Gradient" id="Gradient_q4q5f"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q4q5f"]
+gradient = SubResource("Gradient_q4q5f")
+width = 1280
+height = 720
+
 [node name="ToLevel2" type="Node2D" unique_id=770697048]
 script = ExtResource("1_5jlpi")
-use_scene_blocking_transition_on_exit = false
+use_scene_blocker_style = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1340486860]
 
@@ -63,7 +72,7 @@ offset_right = 1308.0
 offset_bottom = 734.0
 texture = SubResource("GradientTexture2D_xwi8v")
 
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=1655640334]
+[node name="IterativeReveal" type="Control" parent="CanvasLayer" unique_id=1655640334]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,9 +80,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_q4q5f")
-iterative_duration = 11.0
+iterative_duration = 12.0
+fade_last_out = false
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1549537349]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/IterativeReveal" unique_id=1549537349]
 visible = false
 layout_mode = 1
 anchors_preset = 14
@@ -92,7 +102,7 @@ text = "[i]\" You are ...
                    of passing strength."
 fit_content = true
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1045754797]
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/IterativeReveal" unique_id=1045754797]
 visible = false
 clip_contents = false
 layout_mode = 1
@@ -110,20 +120,48 @@ bbcode_enabled = true
 text = "[i]Now we will test your determination .\""
 fit_content = true
 
-[node name="MusicTrigger" type="Node2D" parent="CanvasLayer/Control/RichTextLabel2" unique_id=473820111]
+[node name="MusicTrigger" type="Node2D" parent="CanvasLayer/IterativeReveal/RichTextLabel2" unique_id=473820111]
 script = ExtResource("3_5jlpi")
 track = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control/RichTextLabel2" unique_id=1856656395]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/IterativeReveal/RichTextLabel2" unique_id=1856656395]
 self_modulate = Color(1, 1, 1, 0.23529412)
 z_index = -1
 position = Vector2(926, 443)
 scale = Vector2(8, 8)
 texture = ExtResource("4_q4q5f")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/RichTextLabel2/Sprite2D" unique_id=2022948937]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/IterativeReveal/RichTextLabel2/Sprite2D" unique_id=2022948937]
 root_node = NodePath("../../../../..")
 libraries/ = SubResource("AnimationLibrary_eujq2")
 autoplay = &"new_animation"
 
-[connection signal="finished" from="CanvasLayer/Control" to="." method="on_finished"]
+[node name="White" type="Sprite2D" parent="CanvasLayer/IterativeReveal" unique_id=1348119746]
+z_index = 1
+position = Vector2(480, 270)
+texture = SubResource("GradientTexture2D_q4q5f")
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/IterativeReveal/White" unique_id=586624253]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(512, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -896.0
+offset_top = -378.0
+offset_right = -384.0
+offset_bottom = -342.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "Gladiator of the Golden House"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+
+[connection signal="finished" from="CanvasLayer/IterativeReveal" to="." method="on_finished"]

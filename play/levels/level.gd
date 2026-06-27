@@ -23,6 +23,7 @@ signal current_director_changed(director: Director)
 
 @export var use_randomized_rotation_and_mirror: bool = true
 @export var use_scene_blocking_transition_on_exit: bool = true
+@export var use_scene_blocker_style: Main.SceneBlockers = Main.SceneBlockers.DARK
 @export var fade_self_in: bool = false
 
 @export var play_music: PlayMusic = PlayMusic.NONE
@@ -32,18 +33,19 @@ signal current_director_changed(director: Director)
 @export var play_win_sting: bool = true
 @export var play_loss_sting: bool = true
 
-@export var play_crowd_intro_on_ready: bool = false
-
 @export var base_tile_map_layer: TileMapLayer
 @export var tile_interactor: TileInteractor ## Used for detecting mouse input.
 @export var hud: LevelHUD
 @export var camera: LevelCamera
 
-@export var crowd_sfx: CrowdSfx
-
 @export var retry_menu: Control
 @export var continue_menu: Control
 @export var pause_menu: Control
+
+@export_group("Crowd")
+@export var crowd_sfx: CrowdSfx
+@export var play_crowd_intro_on_ready: bool = false
+@export var play_crowd_idle: bool = true
 
 var is_complete: bool = false ## If true, the level has concluded. Used to prevent duplicate logic.
 var turn_count: int = 0 ## Incremented by one each time the current director changes.
@@ -194,7 +196,8 @@ func _ready() -> void:
 	if crowd_sfx:
 		if play_crowd_intro_on_ready:
 			crowd_sfx.play(CrowdSfx.Sounds.INTRO)
-		crowd_sfx.play(CrowdSfx.Sounds.IDLE)
+		if play_crowd_idle:
+			crowd_sfx.play(CrowdSfx.Sounds.IDLE)
 
 func _exit_tree() -> void:
 	TargetFinder.clear_all_highlights() ## Fixes bug with not despawning these if exiting from the pause menu

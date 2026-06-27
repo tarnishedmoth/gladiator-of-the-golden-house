@@ -9,6 +9,7 @@
 [node name="Level" unique_id=13868467 instance=ExtResource("1_ki2ix")]
 play_win_sting = false
 play_loss_sting = false
+play_crowd_idle = false
 
 [node name="BackgroundColosseum" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="0" unique_id=768298569]
 nonemissive_modulate = Color(0.62831575, 0.70530653, 0.79617363, 1)

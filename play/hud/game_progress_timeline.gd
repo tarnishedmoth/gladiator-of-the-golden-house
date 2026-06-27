@@ -1,4 +1,4 @@
-class_name GameProgressTimeline extends PanelContainer
+class_name GameProgressTimeline extends Control
 
 @onready var h_slider: HSlider = $HSlider
 @onready var label: Label = $Label
@@ -21,6 +21,9 @@ func set_value(current: int, max_v: int) -> void:
 	h_slider.tick_count = max_v + 1
 	h_slider.value = current
 	flash()
+	
+func set_label(text: String) -> void:
+	label.text = text
 
 func flash() -> void:
 	Juice.flash(self, Juice.PulsePresets.Three)

@@ -11,7 +11,7 @@ func _enter_tree() -> void:
 	hide()
 
 func _ready() -> void:
-	nodes.append_array(get_children())
+	nodes.assign(get_children())
 	for ci:CanvasItem in nodes:
 		ci.hide()
 		ci.modulate = Color.TRANSPARENT

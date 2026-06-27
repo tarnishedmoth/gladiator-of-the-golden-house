@@ -16,6 +16,11 @@ static var VERSION:String:
 		return VERSION
 const LOG_PREFIX:String = "[color=white][b]MAIN[/b]:: "
 
+enum SceneBlockers {
+	DARK = 0,
+	LIGHT = 1,
+}
+
 @export var splash_scene:PackedScene
 @export var main_menu_scene:PackedScene: ## We don't have a main menu yet
 	get:
@@ -62,6 +67,8 @@ var current_packed_scene: PackedScene ## Set each time [method change_scene] is 
 @onready var blip_neutral: AudioStreamPlayer = $Blip_Neutral
 
 @onready var fade: TextureRect = %FADE ## Overlays the entire screen for scene transitions
+@onready var alternate_white_blocker: Sprite2D = %AlternateWhiteBlocker
+
 
 ## Static instance, we should only have one Main in the scene tree at any time.
 static var instance: Main:
@@ -196,8 +203,14 @@ static func play_level(number: int) -> void:
 	
 	if instance.current_packed_scene.resource_path != instance.levels[number]:
 		## Not reloading a level
-		if instance.instanced_root is Cutscene or instance.instanced_root is Level:
-			if instance.instanced_root.use_scene_blocking_transition_on_exit:
+		var root = instance.instanced_root
+		if root is Cutscene or instance.instanced_root is Level:
+			if root.use_scene_blocking_transition_on_exit:
+				if root.use_scene_blocker_style == SceneBlockers.LIGHT:
+					instance.alternate_white_blocker.show()
+				else:
+					instance.alternate_white_blocker.hide()
+				
 				change_scene_to_file(instance.levels[number], true)
 				return
 			else:

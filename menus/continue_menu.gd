@@ -5,6 +5,7 @@ func _on_continue_pressed() -> void:
 		Main.play_music_menu_loop(false)
 		Main.play_sherman(false)
 		Main.play_vaillancourt(false)
+	Main.sfx_blip()
 	Main.load_latest_level()
 
 func _on_main_menu_pressed() -> void:
@@ -12,4 +13,5 @@ func _on_main_menu_pressed() -> void:
 		Main.play_music_menu_loop(false)
 		Main.play_sherman(false)
 		Main.play_vaillancourt(false)
+	Main.sfx_blip()
 	Main.go_to_main_menu()

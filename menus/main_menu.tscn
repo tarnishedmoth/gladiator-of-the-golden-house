@@ -49,12 +49,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rqbgu")
-current_tab = 1
+current_tab = 0
 tabs_visible = false
 
 [node name="MainMenuTab" type="VBoxContainer" parent="TabContainer" unique_id=719863624]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -86,6 +85,7 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 
 [node name="Label" type="Label" parent="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer" unique_id=1706438606]
+self_modulate = Color(1, 1, 1, 0.92156863)
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Gladiator of the Golden House"
@@ -123,6 +123,9 @@ text = "Quit to Desktop"
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer" unique_id=723410071]
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/MainMenuTab/PanelContainer/MarginContainer/VBoxContainer" unique_id=798575497]
 layout_mode = 2
 
@@ -138,6 +141,7 @@ text = "Credits"
 
 [node name="SelectClassTab" type="MarginContainer" parent="TabContainer" unique_id=1440261336]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 

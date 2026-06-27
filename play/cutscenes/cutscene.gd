@@ -13,6 +13,7 @@ enum PlayMusic {
 
 @export var kill_music_at_end: bool = false
 @export var use_scene_blocking_transition_on_exit: bool = true
+@export var use_scene_blocker_style: Main.SceneBlockers = Main.SceneBlockers.DARK
 
 var is_exiting: bool = false
 

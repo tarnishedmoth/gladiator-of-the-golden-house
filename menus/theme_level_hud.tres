@@ -2,6 +2,19 @@
 
 [ext_resource type="FontFile" uid="uid://cag3kgbgq06vp" path="res://fonts/PressStart2P-Regular.ttf" id="1_dhdw3"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhdw3"]
+bg_color = Color(0.89, 0.812125, 0.7031, 0.7176471)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 24
+border_color = Color(0.17, 0.15821333, 0.1258, 0)
+border_blend = true
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+shadow_color = Color(0.17, 0.15821333, 0.1258, 0.30588236)
+shadow_size = 16
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lm3a"]
 content_margin_left = 2.0
 content_margin_top = 1.0
@@ -131,6 +144,11 @@ vertical = true
 
 [resource]
 default_font_size = 14
+BGRichTextLabel/base_type = &"RichTextLabel"
+BGRichTextLabel/colors/default_color = Color(0.16078432, 0.15686275, 0.1254902, 1)
+BGRichTextLabel/font_sizes/normal_font_size = 14
+BGRichTextLabel/icons/horizontal_rule = null
+BGRichTextLabel/styles/normal = SubResource("StyleBoxFlat_dhdw3")
 BigButton/base_type = &"Button"
 BigButton/font_sizes/font_size = 16
 Button/colors/font_color = Color(0, 0, 0, 1)

@@ -33,7 +33,6 @@ script = ExtResource("6_7uvyf")
 data = SubResource("Resource_jgqa1")
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_vq6sr")]
-fade_self_in = true
 play_music = 3
 play_crowd_intro_on_ready = true
 

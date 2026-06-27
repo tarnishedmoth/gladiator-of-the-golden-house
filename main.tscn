@@ -41,6 +41,15 @@ height = 560
 fill = 1
 fill_from = Vector2(0.18803419, 1)
 
+[sub_resource type="Gradient" id="Gradient_yaehf"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yaehf"]
+gradient = SubResource("Gradient_yaehf")
+width = 1280
+height = 720
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ycdy4"]
 random_pitch = 1.0382591
 random_volume_offset_db = 0.7
@@ -53,6 +62,7 @@ splash_scene = ExtResource("2_h2yge")
 main_menu_scene = ExtResource("3_1bvp3")
 dev_main_menu_scene = ExtResource("2_0xm2m")
 load_to_developer_menu = false
+show_debug_scene_label = false
 levels = Array[String](["uid://b50441u03h6ll", "uid://d37cvlmrtp1ru", "uid://w7j7he7bswq8", "uid://q7ym5mealfro", "uid://blegsn4xctlno", "uid://dgrrb1b2ary3k", "uid://bur0bodw1ibgu", "uid://ca1u1weh7rbc6", "uid://bd1sit1vwgt6y", "uid://bj1n7ftclk3bp"])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=867431045]
@@ -391,7 +401,6 @@ text = "Confirm"
 
 [node name="FADE" type="TextureRect" parent="CanvasLayer" unique_id=1965465048]
 unique_name_in_owner = true
-visible = false
 light_mask = 0
 z_index = 99
 z_as_relative = false
@@ -414,6 +423,13 @@ texture = SubResource("GradientTexture2D_ycdy4")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
+
+[node name="AlternateWhiteBlocker" type="Sprite2D" parent="CanvasLayer/FADE" unique_id=760614820]
+unique_name_in_owner = true
+visible = false
+z_index = 2
+texture = SubResource("GradientTexture2D_yaehf")
+centered = false
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/FADE" unique_id=1915003621]
 modulate = Color(1, 1, 1, 0.06666667)
