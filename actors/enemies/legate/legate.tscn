@@ -23,7 +23,7 @@ character_visual_root = NodePath("Generator")
 health_bar = NodePath("health")
 speech_bubble = NodePath("SpeechBubble")
 ui_name = "Legate"
-ui_description = "Often found among groups of grunts."
+ui_description = "Often found assisting groups of grunts."
 max_health = 32
 metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 

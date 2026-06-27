@@ -32,10 +32,14 @@ signal current_director_changed(director: Director)
 @export var play_win_sting: bool = true
 @export var play_loss_sting: bool = true
 
+@export var play_crowd_intro_on_ready: bool = false
+
 @export var base_tile_map_layer: TileMapLayer
 @export var tile_interactor: TileInteractor ## Used for detecting mouse input.
 @export var hud: LevelHUD
 @export var camera: LevelCamera
+
+@export var crowd_sfx: CrowdSfx
 
 @export var retry_menu: Control
 @export var continue_menu: Control
@@ -185,6 +189,10 @@ func _ready() -> void:
 		
 	if play_music != PlayMusic.NONE:
 		start_music()
+		
+	if play_crowd_intro_on_ready:
+		if crowd_sfx:
+			crowd_sfx.play(CrowdSfx.Sounds.INTRO)
 
 func _exit_tree() -> void:
 	TargetFinder.clear_all_highlights() ## Fixes bug with not despawning these if exiting from the pause menu
@@ -359,7 +367,9 @@ func check_objectives() -> void:
 		## Save
 		save_persistent_actors_data()
 		Main.register_level_progressed()
-
+	
+		Juice.fade_in(continue_menu)
+		await get_tree().process_frame
 		continue_menu.show()
 		
 		if play_win_sting:
@@ -371,6 +381,8 @@ func check_objectives() -> void:
 		PlayerData.this.current_loss_streak += 1
 		_record_playtime()
 		
+		Juice.fade_in(retry_menu)
+		await get_tree().process_frame
 		retry_menu.show() #launch retry menu
 		
 		if play_loss_sting:

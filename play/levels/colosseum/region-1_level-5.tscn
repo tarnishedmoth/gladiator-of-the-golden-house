@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://riabfvwpcg63" path="res://actors/enemies/legionary.tscn" id="5_d4lr2"]
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_g2wih")]
+play_music = 3
 
 [node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=887418229]
 script = ExtResource("3_1yj8x")
@@ -41,6 +42,3 @@ script = null
 
 [node name="GridTint" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="3" unique_id=1487691829]
 visible = true
-
-[node name="PickUpManager" parent="." index="1" unique_id=490287025]
-spawn_extra_starting_pickups_after_loss_streak = 1

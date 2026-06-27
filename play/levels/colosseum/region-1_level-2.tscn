@@ -33,6 +33,9 @@ script = ExtResource("6_7uvyf")
 data = SubResource("Resource_jgqa1")
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_vq6sr")]
+fade_self_in = true
+play_music = 3
+play_crowd_intro_on_ready = true
 
 [node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=2023921727]
 script = ExtResource("2_3e2m6")

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="5_kq8d3"]
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_hhkjl")]
+play_music = 3
 
 [node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=887418229]
 script = ExtResource("2_idxuu")

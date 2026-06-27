@@ -35,6 +35,7 @@ data = ExtResource("14_dfu51")
 weight = 0.75
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_n35bw")]
+play_music = 3
 
 [node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=887418229]
 script = ExtResource("3_r0fbu")

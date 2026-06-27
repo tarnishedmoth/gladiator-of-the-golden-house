@@ -1,5 +1,17 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://b5w2ppkhuuc82"]
 
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
+resource_name = "HighPassFilter"
+cutoff_hz = 80.0
+resonance = 0.45
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
+resource_name = "Compressor"
+threshold = -16.0
+ratio = 3.0
+gain = 10.0
+release_ms = 280.0
+
 [resource]
 bus/1/name = &"SfxControlled"
 bus/1/solo = false
@@ -19,3 +31,13 @@ bus/3/mute = false
 bus/3/bypass_fx = false
 bus/3/volume_db = 0.0
 bus/3/send = &"Master"
+bus/4/name = &"Crowd"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 0.0
+bus/4/send = &"Sfx"
+bus/4/effect/0/effect = SubResource("AudioEffectHighPassFilter_j3pel")
+bus/4/effect/0/enabled = true
+bus/4/effect/1/effect = SubResource("AudioEffectCompressor_j3pel")
+bus/4/effect/1/enabled = true

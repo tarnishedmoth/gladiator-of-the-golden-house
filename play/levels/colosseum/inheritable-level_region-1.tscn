@@ -2,8 +2,37 @@
 
 [ext_resource type="PackedScene" uid="uid://dnwn75fwwq600" path="res://play/levels/inheritable-level.tscn" id="1_elgb1"]
 [ext_resource type="PackedScene" uid="uid://3wrjbpemvs03" path="res://play/levels/colosseum/colosseum-background.tscn" id="2_kgubw"]
+[ext_resource type="AudioStream" uid="uid://cstfmkcp41c5i" path="res://sfx/crowd-intro.ogg" id="3_0vdoq"]
+[ext_resource type="Script" uid="uid://6ubbevcqgvmb" path="res://play/levels/colosseum/crowd_sfx.gd" id="3_r2xcv"]
+[ext_resource type="AudioStream" uid="uid://dhby578o8rkw0" path="res://sfx/crowd-mad.ogg" id="5_ifkdc"]
+[ext_resource type="AudioStream" uid="uid://dr3f8a8r70ef1" path="res://sfx/crowd-shocked.ogg" id="6_qg04b"]
+[ext_resource type="AudioStream" uid="uid://vy67v53clggd" path="res://sfx/crowd-happy1.ogg" id="7_rss57"]
+[ext_resource type="AudioStream" uid="uid://dd3fkklccwum3" path="res://sfx/crowd-happy2.ogg" id="8_ik40x"]
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_elgb1")]
 
 [node name="BackgroundColosseum" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="0" unique_id=768298569 instance=ExtResource("2_kgubw")]
 position = Vector2(0, -66)
+
+[node name="CrowdSfx" type="Node2D" parent="." index="7" unique_id=1516685823]
+script = ExtResource("3_r2xcv")
+
+[node name="Intro" type="AudioStreamPlayer" parent="CrowdSfx" index="0" unique_id=560439088]
+stream = ExtResource("3_0vdoq")
+bus = &"Crowd"
+
+[node name="Mad" type="AudioStreamPlayer" parent="CrowdSfx" index="1" unique_id=780581487]
+stream = ExtResource("5_ifkdc")
+bus = &"Crowd"
+
+[node name="Shocked" type="AudioStreamPlayer" parent="CrowdSfx" index="2" unique_id=1746937067]
+stream = ExtResource("6_qg04b")
+bus = &"Crowd"
+
+[node name="Happy1" type="AudioStreamPlayer" parent="CrowdSfx" index="3" unique_id=1688104972]
+stream = ExtResource("7_rss57")
+bus = &"Crowd"
+
+[node name="Happy2" type="AudioStreamPlayer" parent="CrowdSfx" index="4" unique_id=1999795162]
+stream = ExtResource("8_ik40x")
+bus = &"Crowd"

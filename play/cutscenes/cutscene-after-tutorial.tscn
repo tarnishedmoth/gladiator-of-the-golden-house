@@ -51,6 +51,7 @@ _data = {
 
 [node name="ToLevel2" type="Node2D" unique_id=770697048]
 script = ExtResource("1_5jlpi")
+use_scene_blocking_transition_on_exit = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1340486860]
 
@@ -70,7 +71,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_q4q5f")
-iterative_duration = 12.0
+iterative_duration = 11.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1549537349]
 visible = false
@@ -79,10 +80,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 285.0
-offset_top = -62.0
-offset_right = -7.0
-offset_bottom = 169.0
+offset_left = 135.0
+offset_top = -64.0
+offset_right = -157.0
+offset_bottom = 167.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
@@ -92,22 +93,22 @@ text = "[i]\" You are ...
 fit_content = true
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1045754797]
+visible = false
 clip_contents = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 2.0
+offset_left = 64.0
 offset_top = -34.0
-offset_right = 1.0
+offset_right = 63.0
 offset_bottom = 174.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[i]Now we will test your determination .\""
 fit_content = true
-horizontal_alignment = 1
 
 [node name="MusicTrigger" type="Node2D" parent="CanvasLayer/Control/RichTextLabel2" unique_id=473820111]
 script = ExtResource("3_5jlpi")
@@ -123,5 +124,6 @@ texture = ExtResource("4_q4q5f")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/RichTextLabel2/Sprite2D" unique_id=2022948937]
 root_node = NodePath("../../../../..")
 libraries/ = SubResource("AnimationLibrary_eujq2")
+autoplay = &"new_animation"
 
 [connection signal="finished" from="CanvasLayer/Control" to="." method="on_finished"]
