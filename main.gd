@@ -66,9 +66,9 @@ var current_packed_scene: PackedScene ## Set each time [method change_scene] is 
 
 @onready var blip_neutral: AudioStreamPlayer = $Blip_Neutral
 
-@onready var fade: TextureRect = %FADE ## Overlays the entire screen for scene transitions
-@onready var alternate_white_blocker: Sprite2D = %AlternateWhiteBlocker
-
+@onready var fade: Control = %FADE ## Overlays the entire screen for scene transitions
+@onready var alternate_white_blocker: Sprite2D = %FADE.get_child(0)
+@onready var dark_blocker: TextureRect = %DarkBlocker
 
 ## Static instance, we should only have one Main in the scene tree at any time.
 static var instance: Main:
@@ -208,8 +208,10 @@ static func play_level(number: int) -> void:
 			if root.use_scene_blocking_transition_on_exit:
 				if root.use_scene_blocker_style == SceneBlockers.LIGHT:
 					instance.alternate_white_blocker.show()
+					instance.dark_blocker.hide()
 				else:
 					instance.alternate_white_blocker.hide()
+					instance.dark_blocker.show()
 				
 				change_scene_to_file(instance.levels[number], true)
 				return
@@ -369,6 +371,8 @@ func _setup_fade_overlay() -> void:
 	
 	fade.modulate = Color.TRANSPARENT
 	fade.hide()
+	alternate_white_blocker.hide()
+	dark_blocker.show()
 
 var _blocking: Tween
 ## Blocks the screen with an overlay.

@@ -29,6 +29,15 @@ colors = PackedColorArray(0.6901961, 0.6666667, 0.3254902, 1)
 gradient = SubResource("Gradient_5vw27")
 height = 4
 
+[sub_resource type="Gradient" id="Gradient_yaehf"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yaehf"]
+gradient = SubResource("Gradient_yaehf")
+width = 1280
+height = 720
+
 [sub_resource type="Gradient" id="Gradient_dg77c"]
 interpolation_color_space = 2
 offsets = PackedFloat32Array(0.07704918, 1)
@@ -40,15 +49,6 @@ width = 980
 height = 560
 fill = 1
 fill_from = Vector2(0.18803419, 1)
-
-[sub_resource type="Gradient" id="Gradient_yaehf"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_yaehf"]
-gradient = SubResource("Gradient_yaehf")
-width = 1280
-height = 720
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ycdy4"]
 random_pitch = 1.0382591
@@ -399,20 +399,60 @@ layout_mode = 2
 theme_type_variation = &"BigButton"
 text = "Confirm"
 
-[node name="FADE" type="TextureRect" parent="CanvasLayer" unique_id=1965465048]
+[node name="FADE" type="Control" parent="CanvasLayer" unique_id=79307513]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="AlternateWhiteBlocker" type="Sprite2D" parent="CanvasLayer/FADE" unique_id=760614820]
+unique_name_in_owner = true
+visible = false
+z_index = 2
+position = Vector2(-160, -90)
+texture = SubResource("GradientTexture2D_yaehf")
+centered = false
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/FADE/AlternateWhiteBlocker" unique_id=728526933]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(512, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -18.0
+offset_right = 256.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "Gladiator of the Golden House"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+
+[node name="DarkBlocker" type="TextureRect" parent="CanvasLayer/FADE" unique_id=1965465048]
 unique_name_in_owner = true
 light_mask = 0
 z_index = 99
 z_as_relative = false
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.47300002
 anchor_right = 0.5
 anchor_bottom = 0.47300002
-offset_left = -640.0
-offset_top = -345.42
-offset_right = 640.0
-offset_bottom = 374.58
+offset_left = -180.0
+offset_top = -108.92
+offset_right = 1100.0
+offset_bottom = 611.08
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -424,14 +464,7 @@ expand_mode = 1
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="AlternateWhiteBlocker" type="Sprite2D" parent="CanvasLayer/FADE" unique_id=760614820]
-unique_name_in_owner = true
-visible = false
-z_index = 2
-texture = SubResource("GradientTexture2D_yaehf")
-centered = false
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FADE" unique_id=1915003621]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FADE/DarkBlocker" unique_id=1915003621]
 modulate = Color(1, 1, 1, 0.06666667)
 light_mask = 0
 z_index = 100
@@ -452,7 +485,7 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("10_ycdy4")
 
-[node name="Loading" type="Label" parent="CanvasLayer/FADE" unique_id=1766955468]
+[node name="Loading" type="Label" parent="CanvasLayer/FADE/DarkBlocker" unique_id=1766955468]
 modulate = Color(0.15886417, 0.07324528, 0.053490505, 1)
 layout_mode = 0
 offset_left = 940.0
