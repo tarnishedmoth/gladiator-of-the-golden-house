@@ -369,6 +369,8 @@ func check_objectives() -> void:
 		## Save
 		save_persistent_actors_data()
 		Main.register_level_progressed()
+		
+		hud.game_progress_timeline.update_value_from_player_data()
 	
 		Juice.fade_in(continue_menu)
 		await get_tree().process_frame

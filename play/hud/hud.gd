@@ -21,6 +21,9 @@ var selected_actor_action_panels: Array[HUDSelectedActorActionPanel]
 @onready var end_turn_button: Button = %EndTurnButton
 @onready var end_turn_progress_bar: ColorRect = %EndTurnProgressBar
 
+@onready var game_progress_timeline: GameProgressTimeline = $Root/GameProgressTimeline
+
+
 func _ready() -> void:
 	## Initially hide the hud
 	root.hide()
@@ -41,6 +44,8 @@ func _ready() -> void:
 	stash_panel.action_hover_ended.connect(_on_action_hover_ended)
 
 	Level.get_instance().current_director_changed.connect(_on_current_director_changed)
+	
+	var _gptr = create_tween().tween_interval(3.0).finished.connect(game_progress_timeline.reveal)
 
 
 var visibility_tween: Tween
