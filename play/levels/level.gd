@@ -191,7 +191,6 @@ func _ready() -> void:
 		
 	if play_music != PlayMusic.NONE:
 		start_music()
-		
 	
 	if crowd_sfx:
 		if play_crowd_intro_on_ready:
@@ -221,8 +220,7 @@ func start_music() -> void:
 				Main.play_vaillancourt(true)
 		
 		PlayMusic.TRACK_SHERMAN_MARCH:
-			if not Main.get_instance().music_sherman_march.playing:
-				Main.play_sherman_march(true)
+			Main.play_sherman_march(true, -2.0)
 
 
 func start_game() -> void:

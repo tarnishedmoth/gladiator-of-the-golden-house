@@ -249,7 +249,7 @@ static func stop_music() -> void:
 
 static var music_fade: Tween
 ## True to play + fade in, false to fade out + stop
-static func play_music_menu_loop(playing: bool) -> void:
+static func play_music_menu_loop(playing: bool, volume_db: float = 0.0) -> void:
 	if not instance:
 		return
 	if music_fade:
@@ -261,17 +261,18 @@ static func play_music_menu_loop(playing: bool) -> void:
 	music_fade.tween_property(
 		instance.music_menu_loop,
 		"volume_linear",
-		1.0 if playing else 0.0,
+		db_to_linear(volume_db) if playing else 0.0,
 		12.0 if playing else 4.0,
 		).from(0.0 if playing else 1.0)
 	if playing:
-		music_fade.parallel()
-		music_fade.tween_callback(instance.music_menu_loop.play)
+		if not instance.music_menu_loop.playing:
+			music_fade.parallel()
+			music_fade.tween_callback(instance.music_menu_loop.play)
 	else:
 		music_fade.tween_callback(instance.music_menu_loop.stop)
 
 static var music_fade_2: Tween
-static func play_sherman(playing: bool) -> void: ## true to play, false to fade out + stop
+static func play_sherman(playing: bool, volume_db: float = 0.0) -> void: ## true to play, false to fade out + stop
 	if not instance:
 		return
 	if music_fade_2:
@@ -283,18 +284,19 @@ static func play_sherman(playing: bool) -> void: ## true to play, false to fade 
 	music_fade_2.tween_property(
 		instance.music_sherman,
 		"volume_linear",
-		1.0 if playing else 0.0,
+		db_to_linear(volume_db) if playing else 0.0,
 		12.0 if playing else 4.0,
 		).from(0.0 if playing else 1.0)
 	
 	if playing:
-		music_fade_2.parallel()
-		music_fade_2.tween_callback(instance.music_sherman.play)
+		if not instance.music_sherman.playing:
+			music_fade_2.parallel()
+			music_fade_2.tween_callback(instance.music_sherman.play)
 	else:
 		music_fade_2.tween_callback(instance.music_sherman.stop)
 		
 static var music_fade_3: Tween
-static func play_vaillancourt(playing: bool) -> void: ## true to play, false to fade out + stop
+static func play_vaillancourt(playing: bool, volume_db: float = 0.0) -> void: ## true to play, false to fade out + stop
 	if not instance:
 		return
 	if music_fade_3:
@@ -306,18 +308,19 @@ static func play_vaillancourt(playing: bool) -> void: ## true to play, false to 
 	music_fade_3.tween_property(
 		instance.music_vaillancourt,
 		"volume_linear",
-		1.0 if playing else 0.0,
+		db_to_linear(volume_db) if playing else 0.0,
 		12.0 if playing else 4.0,
 		).from(0.0 if playing else 1.0)
 	
 	if playing:
-		music_fade_3.parallel()
-		music_fade_3.tween_callback(instance.music_vaillancourt.play)
+		if not instance.music_vaillancourt.playing:
+			music_fade_3.parallel()
+			music_fade_3.tween_callback(instance.music_vaillancourt.play)
 	else:
 		music_fade_3.tween_callback(instance.music_vaillancourt.stop)
 
 static var music_fade_4: Tween
-static func play_sherman_march(playing: bool) -> void: ## true to play, false to fade out + stop
+static func play_sherman_march(playing: bool, volume_db: float = 0.0) -> void: ## true to play, false to fade out + stop
 	if not instance:
 		return
 	if music_fade_4:
@@ -326,19 +329,25 @@ static func play_sherman_march(playing: bool) -> void: ## true to play, false to
 		#return
 	
 	music_fade_4 = instance.create_tween()
+	var from_value: float
+	if instance.music_sherman_march.playing:
+		from_value = instance.music_sherman_march.volume_linear
+	elif playing:
+		from_value = 0.0
+	
 	music_fade_4.tween_property(
 		instance.music_sherman_march,
 		"volume_linear",
-		1.0 if playing else 0.0, # target value
+		db_to_linear(volume_db) if playing else 0.0, # target value
 		1.0 if playing else 2.0, # duration
-		).from(0.0 if playing else 1.0) # start value
+		).from(from_value) # start value
 	
 	if playing:
-		music_fade_4.parallel()
-		music_fade_4.tween_callback(instance.music_sherman_march.play)
+		if not instance.music_sherman_march.playing:
+			music_fade_4.parallel()
+			music_fade_4.tween_callback(instance.music_sherman_march.play)
 	else:
 		music_fade_4.tween_callback(instance.music_sherman_march.stop)
-		
 
 static func play_battle_win() -> void:
 	if not instance: return

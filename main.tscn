@@ -518,7 +518,7 @@ parameters/looping = true
 
 [node name="Music_Sherman_March" type="AudioStreamPlayer" parent="." unique_id=1875127588]
 stream = ExtResource("15_vivmo")
-volume_db = -5.0
+volume_db = -3.0
 bus = &"Music"
 parameters/looping = true
 

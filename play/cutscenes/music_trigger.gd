@@ -10,8 +10,8 @@ func _on_visibility_changed() -> void:
 	if is_visible_in_tree():
 		match track:
 			Level.PlayMusic.TRACK_SHERMAN:
-				Main.play_sherman(true)
+				Main.play_sherman(true, 0.0)
 			Level.PlayMusic.TRACK_VAILLANCOURT:
-				Main.play_vaillancourt(true)
+				Main.play_vaillancourt(true, 0.0)
 			Level.PlayMusic.TRACK_SHERMAN_MARCH:
-				Main.play_sherman_march(true)
+				Main.play_sherman_march(true, 0.0)

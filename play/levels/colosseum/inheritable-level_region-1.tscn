@@ -21,7 +21,7 @@ script = ExtResource("3_r2xcv")
 
 [node name="Intro" type="AudioStreamPlayer" parent="CrowdSfx" index="0" unique_id=560439088]
 stream = ExtResource("3_0vdoq")
-volume_db = -3.0
+volume_db = -4.2
 bus = &"Crowd"
 
 [node name="Mad" type="AudioStreamPlayer" parent="CrowdSfx" index="1" unique_id=780581487]
