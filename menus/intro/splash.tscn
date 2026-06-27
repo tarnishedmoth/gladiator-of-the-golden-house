@@ -7,13 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://tfxpngkkcce3" path="res://menus/intro/dev-pods-logo.webp" id="5_3i4dp"]
 [ext_resource type="Texture2D" uid="uid://cl88t6bb2efir" path="res://menus/intro/logo_small_monochrome_dark.svg" id="6_a6vw5"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_bl3qm"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_56kac"]
 font_size = 30
 shadow_size = 20
 shadow_color = Color(0, 0, 0, 0.03137255)
 shadow_offset = Vector2(1, 20)
-
-[sub_resource type="LabelSettings" id="LabelSettings_bl3qm"]
 
 [node name="Splash" type="Node" unique_id=1039972038]
 script = ExtResource("1_b04ml")
@@ -41,9 +41,27 @@ color = Color(0.83137256, 0.5019608, 0.3019608, 1)
 [node name="Studio" type="Sprite2D" parent="UI" unique_id=409209664]
 unique_name_in_owner = true
 texture_filter = 2
-position = Vector2(480, 200)
+position = Vector2(480, 246)
 scale = Vector2(2, 2)
 texture = ExtResource("3_56kac")
+
+[node name="Version" type="Label" parent="UI" unique_id=1822538717]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = 140.0
+offset_right = 448.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "vX.X.X"
+label_settings = SubResource("LabelSettings_bl3qm")
+horizontal_alignment = 1
 
 [node name="SideLogos" type="Control" parent="UI" unique_id=341658423]
 anchors_preset = 0
@@ -132,6 +150,7 @@ offset_right = 120.0
 offset_bottom = 80.0
 
 [node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=1576631532]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -152,14 +171,8 @@ size_flags_vertical = 3
 
 [node name="Title" type="Label" parent="UI/MarginContainer/VBoxContainer" unique_id=586133042]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Gladiator of the Golden House"
 label_settings = SubResource("LabelSettings_56kac")
 horizontal_alignment = 1
-
-[node name="Version" type="Label" parent="UI/MarginContainer/VBoxContainer" unique_id=1822538717]
-unique_name_in_owner = true
-layout_mode = 2
-text = "vX.X.X"
-label_settings = SubResource("LabelSettings_bl3qm")
-horizontal_alignment = 2
