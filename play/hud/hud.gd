@@ -231,8 +231,8 @@ func set_end_turn_text(to_append = null) -> void:
 		var player = Level.get_current_director()
 		if player is Player:
 			end_turn_progress_bar.size.x = end_turn_button.size.x * (end_turn_hold_tween.get_total_elapsed_time()/player.HOLD_TIME_TO_END_TURN_EARLY)
-			print("tween elapsed time: "+str(end_turn_hold_tween.get_total_elapsed_time()))
-			print("tween progress bar size: "+str(end_turn_progress_bar.size.x))
+			#print("tween elapsed time: "+str(end_turn_hold_tween.get_total_elapsed_time()))
+			#print("tween progress bar size: "+str(end_turn_progress_bar.size.x))
 
 var popups: Array[Label]
 
