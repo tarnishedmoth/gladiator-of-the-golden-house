@@ -8,8 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://dr3f8a8r70ef1" path="res://sfx/crowd-shocked.ogg" id="6_qg04b"]
 [ext_resource type="AudioStream" uid="uid://vy67v53clggd" path="res://sfx/crowd-happy1.ogg" id="7_rss57"]
 [ext_resource type="AudioStream" uid="uid://dd3fkklccwum3" path="res://sfx/crowd-happy2.ogg" id="8_ik40x"]
+[ext_resource type="AudioStream" uid="uid://b2fv1k3hx2jf5" path="res://sfx/crowd-idle-looped.ogg" id="9_qg04b"]
 
-[node name="Level" unique_id=13868467 instance=ExtResource("1_elgb1")]
+[node name="Level" unique_id=13868467 node_paths=PackedStringArray("crowd_sfx") instance=ExtResource("1_elgb1")]
+crowd_sfx = NodePath("CrowdSfx")
 
 [node name="BackgroundColosseum" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="0" unique_id=768298569 instance=ExtResource("2_kgubw")]
 position = Vector2(0, -66)
@@ -19,6 +21,7 @@ script = ExtResource("3_r2xcv")
 
 [node name="Intro" type="AudioStreamPlayer" parent="CrowdSfx" index="0" unique_id=560439088]
 stream = ExtResource("3_0vdoq")
+volume_db = -3.0
 bus = &"Crowd"
 
 [node name="Mad" type="AudioStreamPlayer" parent="CrowdSfx" index="1" unique_id=780581487]
@@ -36,3 +39,9 @@ bus = &"Crowd"
 [node name="Happy2" type="AudioStreamPlayer" parent="CrowdSfx" index="4" unique_id=1999795162]
 stream = ExtResource("8_ik40x")
 bus = &"Crowd"
+
+[node name="Idle" type="AudioStreamPlayer" parent="CrowdSfx" index="5" unique_id=1393623806]
+stream = ExtResource("9_qg04b")
+volume_db = -18.0
+bus = &"Crowd"
+parameters/looping = true

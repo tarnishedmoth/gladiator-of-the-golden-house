@@ -6,6 +6,7 @@ enum Sounds {
 	SHOCKED = 2,
 	HAPPY_1 = 3,
 	HAPPY_2 = 4,
+	IDLE = 5,
 }
 
 @onready var intro: AudioStreamPlayer = $Intro
@@ -13,6 +14,7 @@ enum Sounds {
 @onready var shocked: AudioStreamPlayer = $Shocked
 @onready var happy_1: AudioStreamPlayer = $Happy1
 @onready var happy_2: AudioStreamPlayer = $Happy2
+@onready var idle: AudioStreamPlayer = $Idle
 
 func play(which: Sounds) -> void:
 	match which:
@@ -26,3 +28,5 @@ func play(which: Sounds) -> void:
 			happy_1.play()
 		Sounds.HAPPY_2:
 			happy_2.play()
+		Sounds.IDLE:
+			idle.play()

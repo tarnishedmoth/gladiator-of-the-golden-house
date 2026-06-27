@@ -190,9 +190,11 @@ func _ready() -> void:
 	if play_music != PlayMusic.NONE:
 		start_music()
 		
-	if play_crowd_intro_on_ready:
-		if crowd_sfx:
+	
+	if crowd_sfx:
+		if play_crowd_intro_on_ready:
 			crowd_sfx.play(CrowdSfx.Sounds.INTRO)
+		crowd_sfx.play(CrowdSfx.Sounds.IDLE)
 
 func _exit_tree() -> void:
 	TargetFinder.clear_all_highlights() ## Fixes bug with not despawning these if exiting from the pause menu
