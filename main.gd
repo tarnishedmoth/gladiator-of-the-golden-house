@@ -244,6 +244,7 @@ static func stop_music() -> void:
 	play_vaillancourt(false)
 	play_sherman_march(false)
 
+
 static var music_fade: Tween
 ## True to play + fade in, false to fade out + stop
 static func play_music_menu_loop(playing: bool) -> void:
@@ -251,6 +252,8 @@ static func play_music_menu_loop(playing: bool) -> void:
 		return
 	if music_fade:
 		music_fade.kill()
+	#if (not instance.music_menu_loop.playing) and (not playing):
+		#return
 	
 	music_fade = instance.create_tween()
 	music_fade.tween_property(
@@ -259,9 +262,9 @@ static func play_music_menu_loop(playing: bool) -> void:
 		1.0 if playing else 0.0,
 		12.0 if playing else 4.0,
 		).from(0.0 if playing else 1.0)
-	
 	if playing:
-		instance.music_menu_loop.play()
+		music_fade.parallel()
+		music_fade.tween_callback(instance.music_menu_loop.play)
 	else:
 		music_fade.tween_callback(instance.music_menu_loop.stop)
 
@@ -271,6 +274,8 @@ static func play_sherman(playing: bool) -> void: ## true to play, false to fade 
 		return
 	if music_fade_2:
 		music_fade_2.kill()
+	#if (not instance.music_sherman.playing) and (not playing):
+		#return
 	
 	music_fade_2 = instance.create_tween()
 	music_fade_2.tween_property(
@@ -281,7 +286,8 @@ static func play_sherman(playing: bool) -> void: ## true to play, false to fade 
 		).from(0.0 if playing else 1.0)
 	
 	if playing:
-		instance.music_sherman.play()
+		music_fade_2.parallel()
+		music_fade_2.tween_callback(instance.music_sherman.play)
 	else:
 		music_fade_2.tween_callback(instance.music_sherman.stop)
 		
@@ -291,6 +297,8 @@ static func play_vaillancourt(playing: bool) -> void: ## true to play, false to 
 		return
 	if music_fade_3:
 		music_fade_3.kill()
+	#if (not instance.music_vaillancourt.playing) and (not playing):
+		#return
 	
 	music_fade_3 = instance.create_tween()
 	music_fade_3.tween_property(
@@ -301,7 +309,8 @@ static func play_vaillancourt(playing: bool) -> void: ## true to play, false to 
 		).from(0.0 if playing else 1.0)
 	
 	if playing:
-		instance.music_vaillancourt.play()
+		music_fade_3.parallel()
+		music_fade_3.tween_callback(instance.music_vaillancourt.play)
 	else:
 		music_fade_3.tween_callback(instance.music_vaillancourt.stop)
 
@@ -311,6 +320,8 @@ static func play_sherman_march(playing: bool) -> void: ## true to play, false to
 		return
 	if music_fade_4:
 		music_fade_4.kill()
+	#if (not instance.music_sherman_march.playing) and (not playing):
+		#return
 	
 	music_fade_4 = instance.create_tween()
 	music_fade_4.tween_property(
@@ -321,7 +332,8 @@ static func play_sherman_march(playing: bool) -> void: ## true to play, false to
 		).from(0.0 if playing else 1.0) # start value
 	
 	if playing:
-		instance.music_sherman_march.play()
+		music_fade_4.parallel()
+		music_fade_4.tween_callback(instance.music_sherman_march.play)
 	else:
 		music_fade_4.tween_callback(instance.music_sherman_march.stop)
 		
