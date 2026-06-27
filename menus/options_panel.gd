@@ -54,7 +54,10 @@ func _on_go_back_level_button_pressed() -> void:
 	await confirm_dialog.exited
 	if confirm_dialog.last_result:
 		PlayerData.this.current_level -= 1
+		
+		Main.stop_music()
 		Main.load_latest_level()
+		
 		close_options()
 		get_tree().paused = false
 	else:
@@ -72,7 +75,10 @@ func _on_skip_level_button_pressed() -> void:
 	await confirm_dialog.exited
 	if confirm_dialog.last_result:
 		Main.register_level_progressed()
+		
+		Main.stop_music()
 		Main.load_latest_level()
+		
 		close_options()
 		get_tree().paused = false
 	else:
@@ -90,6 +96,7 @@ func _on_restart_level_button_pressed() -> void:
 		
 	await confirm_dialog.exited
 	if confirm_dialog.last_result:
+		Main.stop_music()
 		Main.load_latest_level()
 		close_options()
 		get_tree().paused = false
