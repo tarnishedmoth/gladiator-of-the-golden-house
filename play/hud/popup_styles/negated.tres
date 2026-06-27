@@ -1,16 +1,12 @@
 [gd_resource type="Resource" script_class="PopupStyle" format=3 uid="uid://bqhq0381djca3"]
 
 [ext_resource type="Script" uid="uid://ltolqijg3afy" path="res://play/hud/popup_style.gd" id="1_style"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_block"]
-font_size = 8
-outline_size = 3
-outline_color = Color(0, 0, 0, 1)
+[ext_resource type="LabelSettings" uid="uid://cbr7sksh2skqe" path="res://play/hud/popup_styles/typical-label-settings.tres" id="1_yyyco"]
 
 [resource]
 script = ExtResource("1_style")
 color = Color(0.6, 0.6, 0.6, 1)
-label_settings = SubResource("LabelSettings_block")
+label_settings = ExtResource("1_yyyco")
 rise_distance = 10.0
 rise_duration = 0.4
 pop_scale = 1.05

@@ -9,6 +9,7 @@ const STYLE_STATUS: PopupStyle = preload("uid://bqhq0381urka3")
 const STYLE_STATUS_DEBUFF: PopupStyle = preload("uid://m56nl7uvb2lv")
 const STYLE_NEGATED: PopupStyle = preload("uid://bqhq0381djca3")
 const STYLE_VULNERABILITY: PopupStyle = preload("uid://sjdlsxm6sqin")
+const STYLE_PLAIN: PopupStyle = preload("uid://becjykibmxkv")
 
 var selected_actor_action_panels: Array[HUDSelectedActorActionPanel]
 
@@ -319,3 +320,22 @@ func _screen_pos_for(actor: Actor, jitter_x: float) -> Vector2:
 
 func _actor_to_screen(actor: Actor) -> Vector2:
 	return actor.get_canvas_transform() * actor.global_position
+
+
+func _on_show_order_hover_button_mouse_entered() -> void:
+	show_play_order(true)
+
+func _on_show_order_hover_button_mouse_exited() -> void:
+	show_play_order(false)
+
+var _play_order_nodes: Array[Label]
+func show_play_order(yes: bool) -> void:
+	if not yes:
+		for node in _play_order_nodes:
+			clear_popup_persistent_label(node)
+		_play_order_nodes.clear()
+	else:
+		var actors: Array[Actor] = Level.get_all_actors_in_play_order()
+		for index: int in actors.size():
+			var new_node = popup_label_persistent("   %d" % (index + 1), actors[index], STYLE_PLAIN) ## HACK centering...
+			_play_order_nodes.append(new_node)

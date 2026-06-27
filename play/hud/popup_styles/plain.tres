@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PopupStyle" format=3 uid="uid://becjykibmxkv"]
+
+[ext_resource type="Script" uid="uid://ltolqijg3afy" path="res://play/hud/popup_style.gd" id="1_bojuh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bojuh"]
+shadow_size = 4
+shadow_color = Color(0.69411767, 0.22745098, 0.28627452, 1)
+shadow_offset = Vector2(0, 1)
+
+[resource]
+script = ExtResource("1_bojuh")
+label_settings = SubResource("LabelSettings_bojuh")
+horizontal_jitter = 0.0
+metadata/_custom_type_script = "uid://ltolqijg3afy"
