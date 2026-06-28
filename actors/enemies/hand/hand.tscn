@@ -64,7 +64,7 @@ drop_chance = 0.3
 usable_actions = Array[ExtResource("2_6ihty")]([ExtResource("3_ukefo"), SubResource("Resource_tb2nf"), ExtResource("5_1sra7"), SubResource("Resource_5odna")])
 character_visual_root = NodePath("Hand")
 health_bar = NodePath("health")
-ui_name = "Max Hand"
+ui_name = "Thumbalina"
 max_health = 27
 metadata/_custom_type_script = "uid://5d6qh71oemsi"
 
