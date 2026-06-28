@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="6_7k8q6"]
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_vqf3r")]
+play_music = 2
 play_crowd_idle = false
 
 [node name="BackgroundColosseum" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="0" unique_id=768298569]
@@ -19,6 +20,7 @@ script = ExtResource("3_ir8aq")
 
 [node name="EmperorActor" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=1443156600 instance=ExtResource("3_1cuou")]
 z_index = 1
+cond_team_count = 2
 
 [node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("6_7k8q6")]
 position = Vector2(2, 215)
