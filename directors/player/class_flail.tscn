@@ -14,8 +14,8 @@
 [ext_resource type="Resource" uid="uid://di3tdhtxyv28n" path="res://actions/prefabs/player/class-flail/stance_flurrious-flail.tres" id="11_kaetv"]
 [ext_resource type="Resource" uid="uid://dpcvjykwh6o2t" path="res://actions/prefabs/player/class-flail/stance_flurrious-footwork.tres" id="12_6ltec"]
 [ext_resource type="Script" uid="uid://bep72nafk08d5" path="res://characters/weapon_anchor.gd" id="12_md7ei"]
-[ext_resource type="Texture2D" uid="uid://bevn7nwcab4e5" path="res://actions/ui-icons/weapon_sprite_greatsword.png" id="13_b4s7o"]
 [ext_resource type="Script" uid="uid://c23svqo1v3284" path="res://vfx/weapon-wobble.gd" id="14_qqedp"]
+[ext_resource type="Texture2D" uid="uid://8apa4u43w7vn" path="res://actions/ui-icons/weapon_sprite_flail.png" id="15_kaetv"]
 
 [node name="Player_ClassFlail" type="Node2D" unique_id=1133384730]
 script = ExtResource("1_m1xan")
@@ -37,7 +37,7 @@ metadata/_custom_type_script = "uid://bep72nafk08d5"
 [node name="Flail" type="Sprite2D" parent="MainCharacter/WeaponAnchorer" unique_id=1220959871]
 z_index = 1
 position = Vector2(12, -12)
-texture = ExtResource("13_b4s7o")
+texture = ExtResource("15_kaetv")
 script = ExtResource("14_qqedp")
 speed = 1.0
 amplitude = 1.0
