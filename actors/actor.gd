@@ -591,7 +591,7 @@ func take_direct_damage(damage: int, from: Actor = null) -> int:
 	if (health - damage_result > 0) && (health - damage_result < health/2.0):
 		## not gonna die but it's a heavy hit
 		if randf() > 0.6:
-			Level.get_instance().trigger_response_speech_bubbles(director is Player)
+			Level.get_instance().trigger_response_speech_bubbles(not director is Player)
 	
 	health -= damage_result
 	health = maxi(0, health)
