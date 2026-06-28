@@ -296,13 +296,14 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 	
 	elif action is ActionApplyStatusPattern:
 		if action.pattern != null:
-			if action.pattern.size() > 1:
+			var candidates: Array[Vector2i] = get_translated_pattern(action.pattern)
+			if candidates.size() > 1:
 				## TODO not implemented
 				push_warning("Target selection for %s (ActionApplyStatusPattern) not implemented!" % action)
-				pass
 			
 			else:
 				if debug: p("%s does not require planning." % action)
+			action.set_target(candidates.pick_random())
 			
 	elif action is ActionApplyStatus:
 		if debug: p("%s does not require planning." % action)
