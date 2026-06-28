@@ -24,6 +24,9 @@ class_name AIActorConditional extends AIActor
 
 
 func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> void:
+	if debug:
+		p("standing at %s, facing %s." % [current_tile_coords, facing])
+	
 	var conditions_met: bool = _check_conditions()
 	
 	var actions_to_use: Array[Action]

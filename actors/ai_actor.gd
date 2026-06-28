@@ -49,6 +49,9 @@ func replace_usable_actions(new_usable_actions: Array[Action], change_queue_size
 ## This is the planning phase of turn taking, it is run by the director after actions are finished executing.
 ## We pick actions and plan them one at a time until we have a list as long as [member actions_to_queue_this_turn]...
 func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> void:
+	if debug:
+		p("standing at %s, facing %s." % [current_tile_coords, facing])
+	
 	if actions_to_queue_this_turn == 0:
 		append_action_to_queue(DO_NOTHING_ACTION.duplicate())
 	for i in actions_to_queue_this_turn:
@@ -121,7 +124,7 @@ func choose_action(claimed_tiles: Array[Vector2i], list_of_usable_actions: Array
 	
 	_last_action_picked = action
 	action = action.duplicate()
-	if debug: p("Picked action %s." % action)
+	if debug: p("Picked action %s" % action)
 	
 	## per-action planning
 	plan_action_details(action, claimed_tiles)
@@ -451,7 +454,6 @@ func rotate_all_actions_by(difference: Facing.Relative) -> void:
 		if action == self: continue
 		if action._target != null:
 			var old_target: Vector2i = action._target
-			var new_facing: Facing.Relative = Facing.get_combined(facing, difference as Facing.Cardinal) as Facing.Relative
-			var new_target: Vector2i = Facing.rotate_absolute_coords_around_pivot(current_tile_coords, old_target, new_facing)
-			if debug: p("Rotated absolute target %s from %s to %s." % [action, old_target, new_target])
+			var new_target: Vector2i = Facing.rotate_absolute_coords_around_pivot(current_tile_coords, old_target, difference)
+			if debug: p("Rotated absolute target %s from %s to %s. New facing: " % [action, old_target, new_target])
 			action.set_target(new_target)
