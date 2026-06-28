@@ -2,6 +2,8 @@ class_name CrowdSfx extends Node2D
 
 var use_negative_reactions: bool = true
 
+@export var disabled: bool = false
+
 enum Sounds {
 	INTRO = 0,
 	MAD = 1,
@@ -19,6 +21,8 @@ enum Sounds {
 @onready var idle: AudioStreamPlayer = $Idle
 
 func play(which: Sounds) -> void:
+	if disabled:
+		return
 	match which:
 		Sounds.INTRO:
 			intro.play()

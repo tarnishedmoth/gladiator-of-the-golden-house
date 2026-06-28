@@ -54,4 +54,7 @@ position = Vector2(57, 55)
 visible = false
 position = Vector2(620, -18)
 
+[node name="CrowdSfx" parent="." index="8" unique_id=1516685823]
+disabled = true
+
 [editable path="TileMapLayers/BackgroundColosseum"]
