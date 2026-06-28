@@ -353,11 +353,13 @@ static func play_sherman_march(playing: bool, volume_db: float = 0.0) -> void: #
 
 static func play_battle_win() -> void:
 	if not instance: return
+	stop_music()
 	instance.music_sherman_march.stop()
 	instance.music_battle_win.play()
 
 static func play_battle_loss() -> void:
 	if not instance: return
+	stop_music()
 	instance.music_sherman_march.stop()
 	instance.music_battle_loss.play()
 
