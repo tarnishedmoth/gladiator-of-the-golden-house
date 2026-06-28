@@ -8,7 +8,7 @@
 script = ExtResource("2_y3fsh")
 status = ExtResource("3_sjbnl")
 ui_title = "Slow Heal"
-ui_description = "Gain one health per effect point at the start of each turn, and subtract one effect point."
+ui_description = "Gain one health per effect point at the start of each turn, and subtract one effect point. (15 total points)"
 action_category = 3
 energy_cost = 1
 metadata/_custom_type_script = "uid://ic0qko6fd58l"

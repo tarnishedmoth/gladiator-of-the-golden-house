@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="PickUpData" format=3 uid="uid://c5r60xy0gvkrt"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_0g3ya"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_gd278"]
+[ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="2_t5nup"]
+[ext_resource type="Texture2D" uid="uid://dm7i3qs1bsjlb" path="res://pick-ups/created_pickups/pickup_data/sprite2.png" id="3_0g3ya"]
+[ext_resource type="Resource" uid="uid://bl5qe1682gtnt" path="res://status-effects/prefabs/heal-gradual.tres" id="3_3m7h0"]
+
+[sub_resource type="Resource" id="Resource_8m3f7"]
+script = ExtResource("2_gd278")
+status = ExtResource("3_3m7h0")
+override_quantity = 7
+ui_title = "Slow Heal II"
+ui_description = "Gain one health per effect point at the start of each turn, and subtract one effect point. (28 total points)"
+action_category = 3
+energy_cost = 1
+metadata/_custom_type_script = "uid://ic0qko6fd58l"
+
+[resource]
+script = ExtResource("2_t5nup")
+pick_up_action = SubResource("Resource_8m3f7")
+ui_name = "Gradual Healing Flask"
+texture = ExtResource("3_0g3ya")
+metadata/_custom_type_script = "uid://80k033ktqcl0"
