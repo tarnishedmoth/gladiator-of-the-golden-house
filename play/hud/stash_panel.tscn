@@ -13,6 +13,7 @@ theme_override_constants/separation = 0
 
 [node name="StashHeader" type="Button" parent="VBoxContainer" unique_id=1605806610]
 layout_mode = 2
+tooltip_text = "Retained until used."
 disabled = true
 text = "Stash"
 flat = true
