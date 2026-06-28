@@ -2,59 +2,126 @@
 
 [ext_resource type="Script" uid="uid://by4v57tusbcnq" path="res://play/cutscenes/cutscene.gd" id="1_hkfnx"]
 [ext_resource type="PackedScene" uid="uid://3wrjbpemvs03" path="res://play/levels/colosseum/colosseum-background.tscn" id="2_fai7j"]
-[ext_resource type="Script" uid="uid://djxoplepbsxn5" path="res://play/cutscenes/iterative_reveal.gd" id="4_h1yq6"]
+[ext_resource type="PackedScene" uid="uid://btt45gb4p850m" path="res://play/camera/camera.tscn" id="2_hkfnx"]
+[ext_resource type="PackedScene" uid="uid://c0cd2sq6is7ra" path="res://actors/emperor/emperor.tscn" id="3_k0ajy"]
+[ext_resource type="Script" uid="uid://dkxh07rw1g7rr" path="res://dialogue/one_liners_strings.gd" id="5_k0ajy"]
 
-[sub_resource type="Gradient" id="Gradient_gktfq"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
+[sub_resource type="Animation" id="Animation_fai7j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackgroundColosseum/Nonemissive/Crowd:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackgroundColosseum/Nonemissive/Crowd:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_xwi8v"]
-gradient = SubResource("Gradient_gktfq")
+[sub_resource type="Animation" id="Animation_hkfnx"]
+resource_name = "crowd-run"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackgroundColosseum/Nonemissive/Crowd:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4.0333333, 8),
+"transitions": PackedFloat32Array(1, 1.5157168),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.15, 1.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackgroundColosseum/Nonemissive/Crowd:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4.0333333, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_finished"
+}]
+}
 
-[node name="0NewGame" type="Node2D" unique_id=770697048]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k0ajy"]
+_data = {
+&"RESET": SubResource("Animation_fai7j"),
+&"crowd-run": SubResource("Animation_hkfnx")
+}
+
+[sub_resource type="Resource" id="Resource_eb41a"]
+script = ExtResource("5_k0ajy")
+one_liners = Array[String](["One Emperor to rule the world!!! Try and stop me!"])
+metadata/_custom_type_script = "uid://dkxh07rw1g7rr"
+
+[node name="Cutscene" type="Node2D" unique_id=770697048]
 script = ExtResource("1_hkfnx")
 
+[node name="Camera" parent="." unique_id=280332911 instance=ExtResource("2_hkfnx")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1964893709]
+libraries/ = SubResource("AnimationLibrary_k0ajy")
+autoplay = &"crowd-run"
+
 [node name="BackgroundColosseum" parent="." unique_id=651320207 instance=ExtResource("2_fai7j")]
-position = Vector2(482, 517)
+position = Vector2(0, -90)
+particles_enabled = true
+start_animation_on_ready = true
+transition_to_color = Color(0.4351923, 0.43519226, 0.43519226, 1)
+transition_time = 9.0
+
+[node name="RuneParticles" parent="BackgroundColosseum" index="0" unique_id=936515396]
+emitting = true
+
+[node name="Oneliners" parent="BackgroundColosseum/Nonemissive/Crowd" parent_id_path=PackedInt32Array(651320207, 1063972528) index="6" unique_id=968635287]
+visible = false
+
+[node name="emperor" parent="BackgroundColosseum" unique_id=1077291446 instance=ExtResource("3_k0ajy")]
+position = Vector2(271, 74)
+scale = Vector2(1, 1)
+
+[node name="OneLiners" parent="BackgroundColosseum/emperor" index="2" unique_id=1096534424]
+seconds_before_starting = 0.1
+bubble_timespan_seconds = 5.0
+wait_seconds_min = 0.0
+wait_seconds_max = 1.0
+only_trigger_once = true
+one_liners = SubResource("Resource_eb41a")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1340486860]
-
-[node name="BG" type="TextureRect" parent="CanvasLayer" unique_id=1679383094]
-visible = false
-offset_left = -282.0
-offset_top = -240.0
-offset_right = 1308.0
-offset_bottom = 734.0
-texture = SubResource("GradientTexture2D_xwi8v")
-
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=1655640334]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("4_h1yq6")
-iterative_duration = 28.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1549537349]
-visible = false
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 27.0
-offset_top = -143.0
-offset_right = -20.0
-offset_bottom = 88.0
-grow_horizontal = 2
-grow_vertical = 2
-bbcode_enabled = true
-text = "[b]A.D. 81[/b]  -  Imperial Rome
-
-[i]The spectacular Flavian Amphitheatre has been built by the command of the Emperor.  Now, a great festival is thrown to celebrate the empire's fearsome might,  to satiate the public's thirst for bloodsport,  and to gather the patricians of the region..."
-fit_content = true
+follow_viewport_enabled = true
 
 [node name="SkipButton" type="Button" parent="CanvasLayer" unique_id=1811026509]
 anchors_preset = 15
@@ -64,5 +131,7 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[connection signal="finished" from="CanvasLayer/Control" to="." method="on_finished"]
 [connection signal="pressed" from="CanvasLayer/SkipButton" to="." method="skip"]
+
+[editable path="BackgroundColosseum"]
+[editable path="BackgroundColosseum/emperor"]

@@ -72,7 +72,8 @@ func _on_iterative_tick() -> void:
 	#ci.show.call_deferred()
 		
 	if iter_current + 1 >= nodes.size():
-		ticker.kill()
+		if ticker: ## rare edge case
+			ticker.kill()
 		await create_tween().tween_interval(tick_interval).finished
 		_on_ticker_finished()
 

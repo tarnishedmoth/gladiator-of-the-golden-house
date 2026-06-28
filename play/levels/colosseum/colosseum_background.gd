@@ -14,6 +14,8 @@ extends Node2D
 @export var start_red: bool = false
 @export var start_animation_on_ready: bool = false
 
+@export var no_crowd: bool = false
+
 @export var transition_to_color: Color
 @export var transition_time: float = 6.0
 @export_tool_button("Transition to Red") var transition = transition_to_red_and_start_particles
@@ -28,6 +30,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if no_crowd:
+		crowd.queue_free()
 	if start_red:
 		backdrop_red.modulate = Color.WHITE
 	else:

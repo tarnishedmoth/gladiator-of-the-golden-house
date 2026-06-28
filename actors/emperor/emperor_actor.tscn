@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cssp62duxk0eq"]
+
+[ext_resource type="Script" uid="uid://5d6qh71oemsi" path="res://actors/ai_actor_conditional.gd" id="1_d508f"]
+[ext_resource type="Texture2D" uid="uid://cvhkktn0chihu" path="res://vfx/blob-shadow-64px.png" id="2_r6wwg"]
+[ext_resource type="Material" uid="uid://cvtvuq50oy655" path="res://actors/emperor/emperor-tail-wobble-material.tres" id="3_luptb"]
+[ext_resource type="Texture2D" uid="uid://cbo53lrhuoop" path="res://actors/emperor/emperor-tail.png" id="4_exo16"]
+[ext_resource type="Texture2D" uid="uid://dv10lif6nt35c" path="res://actors/emperor/emperor_by_amada_stanley.png" id="5_riujt"]
+
+[node name="EmperorActor" type="Node2D" unique_id=1443156600 node_paths=PackedStringArray("character_visual_root")]
+script = ExtResource("1_d508f")
+character_visual_root = NodePath("VisualRoot")
+ui_name = "The Emperor"
+metadata/_custom_type_script = "uid://5d6qh71oemsi"
+
+[node name="VisualRoot" type="Node2D" parent="." unique_id=1687891292]
+
+[node name="Shadow" type="Sprite2D" parent="VisualRoot" unique_id=807868083]
+position = Vector2(-3, 9)
+scale = Vector2(3, 1)
+texture = ExtResource("2_r6wwg")
+
+[node name="emperor-tail-wobble" type="Sprite2D" parent="VisualRoot" unique_id=717060771]
+material = ExtResource("3_luptb")
+position = Vector2(-81, -3)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_exo16")
+flip_h = true
+region_rect = Rect2(32, 0, 32, 64)
+
+[node name="emperor-body" type="Sprite2D" parent="VisualRoot" unique_id=485523976]
+position = Vector2(10, -34)
+texture = ExtResource("5_riujt")
+flip_h = true

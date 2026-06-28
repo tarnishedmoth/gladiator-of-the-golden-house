@@ -40,6 +40,7 @@ usable_actions = Array[ExtResource("2_6ihty")]([ExtResource("3_ukefo"), ExtResou
 character_visual_root = NodePath("Hand")
 health_bar = NodePath("health")
 ui_name = "Thumbalina"
+ui_subtitle = "Anomaly"
 max_health = 27
 metadata/_custom_type_script = "uid://5d6qh71oemsi"
 
