@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="3_fnhuu"]
 [ext_resource type="Resource" uid="uid://c5c8spjp8qlp2" path="res://actions/prefabs/attack_flurry.tres" id="4_ycl7o"]
 [ext_resource type="PackedScene" uid="uid://0b8prxcp20px" path="res://characters/colosseum-crowd/generator.tscn" id="5_3tg7m"]
-[ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="6_3lraw"]
+[ext_resource type="Texture2D" uid="uid://pu3v44sgxauh" path="res://actions/ui-icons/weapon_sprite_dagger.png" id="6_lh8y4"]
 [ext_resource type="Script" uid="uid://c23svqo1v3284" path="res://vfx/weapon-wobble.gd" id="7_7qxt3"]
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="8_snx2m"]
 [ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="9_41chw"]
@@ -26,10 +26,10 @@ metadata/_custom_type_script = "uid://2lxtpvvfchas"
 
 [node name="Generator" parent="." unique_id=2057479258 instance=ExtResource("5_3tg7m")]
 
-[node name="Sword" type="Sprite2D" parent="Generator" unique_id=1232554934]
+[node name="Dagger" type="Sprite2D" parent="Generator" unique_id=1232554934]
 z_index = 1
-position = Vector2(2, 2)
-texture = ExtResource("6_3lraw")
+position = Vector2(8, 3)
+texture = ExtResource("6_lh8y4")
 script = ExtResource("7_7qxt3")
 speed = 1.5
 amplitude = 1.5
