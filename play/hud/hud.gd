@@ -303,7 +303,7 @@ func _spawn_popup(text: Variant, screen_pos: Vector2, style: PopupStyle, base_of
 	popups.append(popup)
 	## Center pivot so the pop_scale tween scales from the middle of the label.
 	popup.pivot_offset = popup.size / 2.0
-	popup.global_position = screen_pos - popup.size / 2.0 + base_offset + stack_offset
+	popup.global_position = screen_pos - (popup.size / 2.0) + base_offset + stack_offset
 	return popup
 
 ## Cumulative offset per overlap (not per cluster): N nearby popups stack N rows.
@@ -311,7 +311,7 @@ func _spawn_popup(text: Variant, screen_pos: Vector2, style: PopupStyle, base_of
 func _compute_stack_offset(screen_pos: Vector2, popup_size: Vector2) -> Vector2:
 	var stack_offset := Vector2.ZERO
 	for other in popups:
-		if other.global_position.distance_to(screen_pos) < popup_size.y * 2.2:
+		if other.global_position.distance_to(screen_pos) < popup_size.y * 3.2:
 			stack_offset.y += popup_size.y
 	return stack_offset
 
