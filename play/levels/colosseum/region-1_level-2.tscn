@@ -61,6 +61,3 @@ position = Vector2(3, 1)
 
 [node name="PickUpManager" parent="." index="1" unique_id=490287025]
 pickup_pool = Array[ExtResource("6_7uvyf")]([SubResource("Resource_ol4od"), SubResource("Resource_ol4od")])
-
-[node name="PointLight2D" parent="MouseFollower" parent_id_path=PackedInt32Array(687351869) index="1" unique_id=740285923]
-metadata/_edit_lock_ = true

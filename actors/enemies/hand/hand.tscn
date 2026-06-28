@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="3_2fxib"]
 [ext_resource type="Resource" uid="uid://bv0025i1ofl6g" path="res://actions/prefabs/move_max_distance_knockback.tres" id="3_5odna"]
 [ext_resource type="Resource" uid="uid://d33i0gb1fs1rh" path="res://actions/prefabs/move_two_tiles_plus-diagonals.tres" id="3_ukefo"]
-[ext_resource type="Resource" uid="uid://dobcpl84hdyfy" path="res://actions/prefabs/attack_flurry-3.tres" id="4_2fxib"]
 [ext_resource type="Resource" uid="uid://dhvgu78g6tf7k" path="res://actions/prefabs/player/class-a_brace.tres" id="5_1sra7"]
 [ext_resource type="Resource" uid="uid://dndcidgrypfmp" path="res://actions/prefabs/attack_plunge-12.tres" id="6_tb2nf"]
 [ext_resource type="Texture2D" uid="uid://cr821h66in5y" path="res://actors/enemies/hand/hand.png" id="6_vno0b"]
@@ -25,6 +24,17 @@ post_attack_duration = 0.2
 ui_title = "Big Squish"
 ui_description = "Downward, as if you were a bug, with great force."
 energy_cost = 3
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"
+
+[sub_resource type="Resource" id="Resource_tb2nf"]
+script = ExtResource("7_6pkt7")
+damage = 3
+multiple_attacks = 5
+pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
+allow_facing_before = true
+ui_title = "Lash Out"
+ui_description = "Rapidly attack with a flurry of five swipes."
+energy_cost = 1
 metadata/_custom_type_script = "uid://dwk83a2nxfweb"
 
 [sub_resource type="Resource" id="Resource_5odna"]
@@ -51,7 +61,7 @@ stream_0/stream = ExtResource("9_ao8i2")
 script = ExtResource("1_jau1j")
 conditionally_usable_actions = Array[ExtResource("2_6ihty")]([ExtResource("3_5odna"), SubResource("Resource_5na86"), SubResource("Resource_5na86"), ExtResource("6_tb2nf"), ExtResource("7_ud5b7")])
 drop_chance = 0.3
-usable_actions = Array[ExtResource("2_6ihty")]([ExtResource("3_ukefo"), ExtResource("4_2fxib"), ExtResource("5_1sra7"), SubResource("Resource_5odna")])
+usable_actions = Array[ExtResource("2_6ihty")]([ExtResource("3_ukefo"), SubResource("Resource_tb2nf"), ExtResource("5_1sra7"), SubResource("Resource_5odna")])
 character_visual_root = NodePath("Hand")
 health_bar = NodePath("health")
 ui_name = "Max Hand"

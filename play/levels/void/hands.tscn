@@ -40,6 +40,7 @@ script = ExtResource("2_wv5ht")
 
 [node name="Hand" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=84579020 instance=ExtResource("3_hd08a")]
 position = Vector2(193, -1)
+selection_behavior = 3
 
 [node name="Hand2" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=783649785 instance=ExtResource("3_hd08a")]
 position = Vector2(6, -149)
