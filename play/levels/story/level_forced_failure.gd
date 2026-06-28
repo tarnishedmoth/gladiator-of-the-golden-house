@@ -72,6 +72,9 @@ func _progress_to_next_level() -> void:
 func run_event() -> void:
 	event.emit()
 	
+	if crowd_sfx:
+		crowd_sfx.play(CrowdSfx.Sounds.SHOCKED)
+	
 	## - Spawn swarm of new enemies
 	var edge_tiles: Array[Vector2i] = []
 	for tile in base_tile_map_layer.get_used_cells():
