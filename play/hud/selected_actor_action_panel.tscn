@@ -32,6 +32,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Amount Stats" type="RichTextLabel" parent="VBoxContainer" unique_id=1696118642]
+modulate = Color(0.94097096, 0.5356947, 0.55864555, 1)
 clip_contents = false
 custom_minimum_size = Vector2(76, 0)
 layout_mode = 2
