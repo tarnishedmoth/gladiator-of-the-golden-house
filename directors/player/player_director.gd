@@ -304,9 +304,7 @@ func draw_hand(draw_count: int = hand_size):
 	for card in draw_count:
 		draw_next_card()
 	
-	for card in actions_in_hand:
-		card.set_actor(selected_actor)
-		
+	setup_cards()
 	refresh_hud_actions_and_stash()
 
 func refresh_hud_actions_and_stash() -> void:
@@ -499,6 +497,14 @@ func change_stance(new_stance_uid) -> void:
 			draw_deck.erase(drawn)
 			actions_in_hand.push_back(drawn)
 			if VERBOSE: p("Drew action: %s" % drawn.ui_title)
+		
+		setup_cards()
+		
+## Some functionality of previews etc relies on the action being able to reference the actor running it.
+## Even though we aren't running it right away, it's good to populate this info
+func setup_cards(cards: Array[Action] = actions_in_hand):
+	for card in actions_in_hand:
+		card.set_actor(selected_actor)
 #endregion
 
 func select_actor(actor: Actor) -> void:
