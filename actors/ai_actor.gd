@@ -455,5 +455,5 @@ func rotate_all_actions_by(difference: Facing.Relative) -> void:
 		if action._target != null:
 			var old_target: Vector2i = action._target
 			var new_target: Vector2i = Facing.rotate_absolute_coords_around_pivot(current_tile_coords, old_target, difference)
-			if debug: p("Rotated absolute target %s from %s to %s. New facing: " % [action, old_target, new_target])
+			if debug: p("Rotated absolute target %s from %s to %s." % [action, old_target, new_target])
 			action.set_target(new_target)

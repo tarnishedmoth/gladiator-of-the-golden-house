@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://c1xuhqtthu8qi" path="res://play/hud/action_hover_panel.gd" id="9_ksooa"]
 [ext_resource type="PackedScene" uid="uid://dtu0u6kih2g6h" path="res://play/hud/stash_panel.tscn" id="10_stash"]
 [ext_resource type="Script" uid="uid://b7h7jmhq7asbx" path="res://play/hud/game_progress_timeline.gd" id="11_n2sn3"]
-[ext_resource type="Texture2D" uid="uid://xaj5pe7dusuu" path="res://play/tile-atlases/play-order-icon.png" id="12_16pfv"]
+[ext_resource type="Texture2D" uid="uid://xaj5pe7dusuu" path="res://play/hud/play-order-icon.png" id="12_16pfv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqh65"]
 bg_color = Color(0.6901961, 0.67058825, 0.32941177, 1)
