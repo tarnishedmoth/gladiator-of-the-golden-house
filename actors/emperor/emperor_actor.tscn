@@ -1,16 +1,38 @@
 [gd_scene format=3 uid="uid://cssp62duxk0eq"]
 
 [ext_resource type="Script" uid="uid://5d6qh71oemsi" path="res://actors/ai_actor_conditional.gd" id="1_d508f"]
+[ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="2_exo16"]
 [ext_resource type="Texture2D" uid="uid://cvhkktn0chihu" path="res://vfx/blob-shadow-64px.png" id="2_r6wwg"]
 [ext_resource type="Material" uid="uid://cvtvuq50oy655" path="res://actors/emperor/emperor-tail-wobble-material.tres" id="3_luptb"]
+[ext_resource type="Texture2D" uid="uid://c1kfg6i5pwhv6" path="res://actors/big-healthbarBG.png" id="3_ouhsa"]
+[ext_resource type="Texture2D" uid="uid://bii6csdoc02tk" path="res://actors/big-healthbar.png" id="4_cnmra"]
 [ext_resource type="Texture2D" uid="uid://cbo53lrhuoop" path="res://actors/emperor/emperor-tail.png" id="4_exo16"]
 [ext_resource type="Texture2D" uid="uid://dv10lif6nt35c" path="res://actors/emperor/emperor_by_amada_stanley.png" id="5_riujt"]
+[ext_resource type="PackedScene" uid="uid://dwfr86j8i7cp4" path="res://dialogue/one_liners.tscn" id="7_riujt"]
+[ext_resource type="Resource" uid="uid://by8vmqwwbt0p6" path="res://dialogue/strings_emperor-normal.tres" id="8_ouhsa"]
 
-[node name="EmperorActor" type="Node2D" unique_id=1443156600 node_paths=PackedStringArray("character_visual_root")]
+[node name="EmperorActor" type="Node2D" unique_id=1443156600 node_paths=PackedStringArray("character_visual_root", "health_bar")]
 script = ExtResource("1_d508f")
 character_visual_root = NodePath("VisualRoot")
+health_bar = NodePath("health")
+label_anchor = Vector2(0, -64)
 ui_name = "The Emperor"
+max_health = 220
+can_knockback = false
 metadata/_custom_type_script = "uid://5d6qh71oemsi"
+
+[node name="health" parent="." unique_id=1326189825 instance=ExtResource("2_exo16")]
+position = Vector2(0, -122)
+texture = ExtResource("3_ouhsa")
+
+[node name="bar" parent="health" index="0" unique_id=1924444429]
+position = Vector2(0, 0)
+texture = ExtResource("4_cnmra")
+centered = true
+
+[node name="txt" parent="health" index="1" unique_id=1830493824]
+offset_left = 111.0
+offset_right = 138.0
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=1687891292]
 
@@ -31,3 +53,13 @@ region_rect = Rect2(32, 0, 32, 64)
 position = Vector2(10, -34)
 texture = ExtResource("5_riujt")
 flip_h = true
+
+[node name="OneLiners" parent="." unique_id=1096534424 instance=ExtResource("7_riujt")]
+position = Vector2(11, -125)
+seconds_before_starting = 15.0
+bubble_timespan_seconds = 3.5
+wait_seconds_min = 10.0
+wait_seconds_max = 90.0
+one_liners = ExtResource("8_ouhsa")
+
+[editable path="health"]
