@@ -360,6 +360,11 @@ func play_held_action_at(coords: Vector2i):
 		if coords != selected_actor.find_last_unobstructed_tile(selected_actor.current_tile_coords, coords):
 			hud.popup_label("Obstructed!", selected_actor)
 			return
+	
+	if current_held_action is ActionMove: ## HACK not sure why these tiles are available to be selected atm
+		if Level.get_actor_at(coords):
+			hud.popup_label("Obstructed!", selected_actor)
+			return
 			
 	TargetFinder.clear_all_highlights()
 	deselect_tile()
