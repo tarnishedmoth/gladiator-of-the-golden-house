@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StatusAffectDamagePoised" format=3 uid="uid://dx0g61s6uvu0l"]
 
-[ext_resource type="Script" uid="uid://bo2nudbcmpt13" path="res://status-effects/affect_damage_poised.gd" id="1_cjved"]
+[ext_resource type="Script" uid="uid://bo2nudbcmpt13" path="res://status-effects/affect-damage_poised.gd" id="1_cjved"]
 [ext_resource type="Resource" uid="uid://b38qdbmcp8g2n" path="res://status-effects/prefabs/stunned.tres" id="2_fb16w"]
 [ext_resource type="PackedScene" uid="uid://b8g0o8rwa4uvg" path="res://vfx/status_fx-buff.tscn" id="3_ybeox"]
 

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StatusAffectDamage" format=3 uid="uid://0d7neho624r5"]
 
-[ext_resource type="Script" uid="uid://dvm0k3xhgixkl" path="res://status-effects/affect_damage_dealt.gd" id="1_umyg2"]
+[ext_resource type="Script" uid="uid://dvm0k3xhgixkl" path="res://status-effects/affect-damage_dealt.gd" id="1_umyg2"]
 [ext_resource type="PackedScene" uid="uid://dpamc84gay4r0" path="res://vfx/status_fx-defense.tscn" id="2_yf86r"]
 
 [resource]

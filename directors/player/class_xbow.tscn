@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b5bmjk14ta80t"]
+
+[ext_resource type="Script" uid="uid://d3wjcqjs4jdor" path="res://directors/player/player_director.gd" id="1_jja5f"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_5v30u"]
+[ext_resource type="Resource" uid="uid://ckx8fgy1ktgy" path="res://actions/prefabs/player/dodge-roll.tres" id="3_smdds"]
+[ext_resource type="Resource" uid="uid://b2s2d2mr4vds" path="res://actions/prefabs/guard-basic.tres" id="7_b73y0"]
+[ext_resource type="Resource" uid="uid://df6g083a0hnt6" path="res://actions/prefabs/player/class-xbow/stance_dagger.tres" id="7_h77gy"]
+[ext_resource type="Resource" uid="uid://bejg4y5kke6cf" path="res://actions/prefabs/move_one_tile_opener.tres" id="9_1627j"]
+[ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://actions/stance/stance.gd" id="10_gxw0i"]
+[ext_resource type="PackedScene" uid="uid://cw8ea0ekkqjyp" path="res://actors/player/main_character.tscn" id="13_8uc03"]
+[ext_resource type="Script" uid="uid://bep72nafk08d5" path="res://characters/weapon_anchor.gd" id="14_057ee"]
+[ext_resource type="Texture2D" uid="uid://c745uif4rgmmi" path="res://actions/ui-icons/crossbow-16.png" id="15_jja5f"]
+[ext_resource type="Script" uid="uid://c23svqo1v3284" path="res://vfx/weapon-wobble.gd" id="16_tg861"]
+
+[node name="Player_ClassXbow" type="Node2D" unique_id=1133384730]
+script = ExtResource("1_jja5f")
+starting_actions_deck = Array[ExtResource("2_5v30u")]([ExtResource("3_smdds"), ExtResource("7_b73y0"), null])
+always_available_deck = Array[ExtResource("2_5v30u")]([ExtResource("9_1627j")])
+stances = Array[ExtResource("10_gxw0i")]([ExtResource("7_h77gy")])
+metadata/_custom_type_script = "uid://d3wjcqjs4jdor"
+
+[node name="MainCharacter" parent="." unique_id=360471847 instance=ExtResource("13_8uc03")]
+ui_subtitle = "Crossbow"
+ui_description = "Defeat all enemies to win."
+max_health = 68
+
+[node name="WeaponAnchorer" type="Marker2D" parent="MainCharacter" unique_id=818257545]
+script = ExtResource("14_057ee")
+which = 1
+metadata/_custom_type_script = "uid://bep72nafk08d5"
+
+[node name="Xbow" type="Sprite2D" parent="MainCharacter/WeaponAnchorer" unique_id=1220959871]
+z_index = 1
+position = Vector2(3, -1)
+texture = ExtResource("15_jja5f")
+script = ExtResource("16_tg861")
+speed = 1.0
+amplitude = 1.0
