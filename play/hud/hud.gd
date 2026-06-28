@@ -140,17 +140,45 @@ func on_player_running_action(action: Action) -> void:
 	actions_panel.on_player_running_action(action)
 
 ## Action Panel signals
+var _button_flash_tween: Tween
+var _button_flashing: ButtonWithBlips
 func _on_action_pressed(action: Action) -> void:
+	if _button_flashing:
+		if _button_flash_tween:
+			_button_flash_tween.kill()
+		_button_flashing.self_modulate = Color.WHITE
+		_button_flashing = null
+	
 	var player = Level.get_current_director()
 	assert(player is Player)
 	if player is Player:
-		player.hold_action(action)
+		var held: bool = player.hold_action(action)
+		if held:
+			_button_flashing = actions_panel.get_button_assigned_to(action)
+			_button_flash_tween = _button_flashing.create_tween().set_loops().set_trans(Tween.TRANS_SINE)
+			_button_flash_tween.tween_property(_button_flashing, ^"self_modulate", Color.WHITE.darkened(0.25), Juice.FAST)
+			_button_flash_tween.tween_property(_button_flashing, ^"self_modulate", Color.WHITE, Juice.FAST)
 
 func _on_stash_action_pressed(action: Action) -> void:
+	if _button_flashing:
+		if _button_flash_tween:
+			_button_flash_tween.kill()
+		_button_flashing.self_modulate = Color.WHITE
+		_button_flashing = null
+	
 	var player = Level.get_current_director()
 	assert(player is Player)
 	if player is Player:
-		player.hold_action(action)
+		var held: bool = player.hold_action(action)
+		if held:
+			_button_flashing = actions_panel.get_button_assigned_to(action)
+			_button_flash_tween = _button_flashing.create_tween().set_loops().set_trans(Tween.TRANS_SINE)
+			_button_flash_tween.tween_property(_button_flashing, ^"self_modulate", Color.WHITE.darkened(0.25), Juice.FAST)
+			_button_flash_tween.tween_property(_button_flashing, ^"self_modulate", Color.WHITE, Juice.FAST)
+		else:
+			if _button_flash_tween: _button_flash_tween.kill()
+			actions_panel.get_button_assigned_to(action).self_modulate = Color.WHITE
+
 
 func populate_actions_list(hand: Array[Action], selected_actor: Actor) -> void:
 	actions_panel.populate_action_buttons(hand, selected_actor)

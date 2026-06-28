@@ -264,16 +264,17 @@ func rerender_held_action_targets() -> void: ## Clear all highlighted tiles and 
 
 #region Actions / Deck Logic
 ## Used to preview actions.
-func hold_action(action: Action):
+func hold_action(action: Action) -> bool:
 	if (action != null) and (current_held_action == action):
 		unhold_action()
-		return
+		return false
 	else:
 		current_held_action = action
 	
 	rerender_held_action_targets()
 	if VERBOSE:
 		p("Current held action: %s" % (current_held_action.ui_title if current_held_action else "empty"))
+	return true
 
 ## Used to discard actions.
 func unhold_action(): hold_action(null)
