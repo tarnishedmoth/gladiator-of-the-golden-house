@@ -254,6 +254,8 @@ static func play_music_menu_loop(playing: bool, volume_db: float = 0.0) -> void:
 		return
 	if music_fade:
 		music_fade.kill()
+		
+	await instance.get_tree().process_frame
 	#if (not instance.music_menu_loop.playing) and (not playing):
 		#return
 	

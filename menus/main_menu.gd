@@ -46,6 +46,7 @@ var slot_screen_state: SlotScreenStates
 func _enter_tree() -> void:
 	modulate = Color.BLACK
 
+var start_music: Tween
 func _ready() -> void:
 	Juice.fade_in(self, Juice.SLOW)
 	
@@ -55,7 +56,7 @@ func _ready() -> void:
 	
 	## Halt all other music
 	Main.stop_music()
-	var start_music = create_tween()
+	start_music = create_tween()
 	start_music.tween_interval(1.4) ## Wait a hot moment
 	start_music.tween_callback(Main.play_music_menu_loop.bind(true))
 
@@ -181,6 +182,8 @@ func _on_confirm_button_pressed() -> void:
 func _on_save_slot_selected(slot: int) -> void:
 	Main.sfx_blip() ## sfx
 	SaveLoad.current_save_slot = slot
+	
+	if start_music: start_music.kill()
 	
 	match slot_screen_state:
 		SlotScreenStates.LOADING:
