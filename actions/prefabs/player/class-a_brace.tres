@@ -12,6 +12,6 @@ apply_effect_to_enemies = false
 status = ExtResource("3_6ip8s")
 override_quantity = 10
 ui_title = "Brace"
-ui_description = "Only applies to 5 forward tiles."
+ui_description = "Defend, only applies to 5 forward tiles."
 energy_cost = 2
 metadata/_custom_type_script = "uid://k4rqrulmvg3t"
