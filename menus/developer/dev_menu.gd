@@ -214,3 +214,8 @@ func _roundtrip_case_missing_uid() -> bool:
 	ok = _check("missing_uid.redump_status_count", redumped["status_effects"].size(), 1) and ok
 	ok = _check("missing_uid.redump_stash_count", redumped["stash"].size(), 1) and ok
 	return ok
+
+
+func _on_clear_config_button_pressed() -> void:
+	GameSettings.default_config()
+	GameSettings.save_config()

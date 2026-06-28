@@ -124,5 +124,14 @@ For faster startup, you can enable [b]skip_splash[/b] on the root node of [b]mai
 fit_content = true
 scroll_active = false
 
+[node name="ClearConfigButton" type="Button" parent="." unique_id=317667673]
+layout_mode = 0
+offset_left = 687.0
+offset_top = 344.0
+offset_right = 953.0
+offset_bottom = 390.0
+text = "Clear game config"
+
 [connection signal="pressed" from="VBoxContainer/Contents/LaunchButton" to="." method="_on_launch_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Contents/RoundTripAssertButton" to="." method="_on_roundtrip_button_pressed"]
+[connection signal="pressed" from="ClearConfigButton" to="." method="_on_clear_config_button_pressed"]

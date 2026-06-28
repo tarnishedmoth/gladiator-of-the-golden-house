@@ -71,7 +71,12 @@ static func default_config() -> void:
 
 static func save_config() -> void:
 	SaveLoad.check_and_create_directory(CONFIG_FILEPATH.get_base_dir())
-	instance.save(CONFIG_FILEPATH)
+	var result: Error = instance.save(CONFIG_FILEPATH)
+	assert(result == OK)
+	if result == OK:
+		p("config saved to %s." % CONFIG_FILEPATH)
+	else:
+		p("error with saving config at %s." % CONFIG_FILEPATH)
 
 static func load_config() -> void:
 	if not FileAccess.file_exists(CONFIG_FILEPATH):
