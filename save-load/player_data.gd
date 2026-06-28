@@ -166,3 +166,11 @@ static func apply_save_data(save: SaveLoad.LoadedSave) -> void:
 		## Coerce key to StringName so the typed Dictionary[StringName, ...] accepts it.
 		this.persistent_actors[StringName(actor_key)] = PersistentActorData.from_dict(raw)
 	p("Applied save data.")
+
+
+func on_game_completed() -> void:
+	GameSettings.set_value(GameSettings.SECTION.COMPLETIONS, "game_completed", true)
+	
+	var starting_class_name: String = String(STARTING_CLASSES.find_key(this.choice_starting_class)).capitalize()
+	var times_beaten: int = GameSettings.get_value(GameSettings.SECTION.COMPLETIONS, starting_class_name, 0) + 1
+	GameSettings.set_value(GameSettings.SECTION.COMPLETIONS, starting_class_name, times_beaten)

@@ -196,6 +196,11 @@ static func load_latest_level() -> void:
 static func register_level_progressed() -> void:
 	PlayerData.this.current_level += 1
 	PlayerData.this.current_loss_streak = 0
+	
+	if PlayerData.this.current_level >= instance.levels.size():
+		PlayerData.this.on_game_completed()
+		l("Game completed")
+	
 	SaveLoad.save_game()
 	
 static func play_level(number: int) -> void:

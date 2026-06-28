@@ -7,7 +7,7 @@ const CONFIG_FILEPATH: String = "user://game_config.ini"
 static var instance: ConfigFile:
 	get:
 		if not instance:
-			default_config()
+			load_config()
 		return instance
 
 static func p(args): print_rich("[color=green]GameSettings: ", args)
@@ -17,6 +17,7 @@ const SECTION = {
 	GRAPHICS = "graphics",
 	SAVES = "saves",
 	CAMERA = "camera",
+	COMPLETIONS = "completions"
 }
 
 static var default_graphics: Dictionary = {
@@ -56,6 +57,8 @@ enum Qualities3 {
 static func default_config() -> void:
 	p("defaulting config.")
 	instance = ConfigFile.new()
+	
+	instance.set_value(SECTION.COMPLETIONS, "game_completed", false)
 	
 	## Graphics
 	for key in default_graphics:
