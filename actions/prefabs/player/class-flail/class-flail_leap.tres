@@ -21,7 +21,6 @@ ui_description = "+Off-balance:
   Does not stack."
 action_category = 1
 energy_cost = 2
-is_obstructable = true
 on_exit_chain_target_to_actor = true
 next_state = SubResource("Resource_fxixn")
 metadata/_custom_type_script = "uid://btfwr4ctycjfk"
