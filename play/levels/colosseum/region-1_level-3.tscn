@@ -4,7 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="2_n1dqt"]
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="3_cssh2"]
 [ext_resource type="PackedScene" uid="uid://cp7oafdqv5rpl" path="res://actors/enemies/legate/legate.tscn" id="4_2j33d"]
+[ext_resource type="PackedScene" uid="uid://cwiyis2d60hie" path="res://actors/enemies/dagger_grunt.tscn" id="5_41275"]
 [ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="5_qxkrc"]
+[ext_resource type="PackedScene" uid="uid://ejnph3bniuxd" path="res://actors/enemies/xbow_legionary.tscn" id="5_unpqm"]
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_ee00a")]
 play_music = 3
@@ -24,20 +26,19 @@ cond_team_count = 1
 [node name="Grunt" parent="TileMapLayers/Directors/AIDirector" index="2" unique_id=84579020 instance=ExtResource("5_qxkrc")]
 position = Vector2(-84, -109)
 
-[node name="Grunt2" parent="TileMapLayers/Directors/AIDirector" index="3" unique_id=235445802 instance=ExtResource("5_qxkrc")]
-position = Vector2(92, -109)
+[node name="DaggerGrunt" parent="TileMapLayers/Directors/AIDirector" index="3" unique_id=1637427686 instance=ExtResource("5_41275")]
+position = Vector2(92, -108)
 
-[node name="Grunt3" parent="TileMapLayers/Directors/AIDirector" index="4" unique_id=1175815070 instance=ExtResource("5_qxkrc")]
-position = Vector2(-86, -171)
+[node name="XbowLegionary" parent="TileMapLayers/Directors/AIDirector" index="4" unique_id=1285026502 instance=ExtResource("5_unpqm")]
+position = Vector2(-184, -72)
+facing = 2
 
-[node name="Grunt4" parent="TileMapLayers/Directors/AIDirector" index="5" unique_id=919754956 instance=ExtResource("5_qxkrc")]
-position = Vector2(90, -171)
+[node name="XbowLegionary2" parent="TileMapLayers/Directors/AIDirector" index="5" unique_id=57413189 instance=ExtResource("5_unpqm")]
+position = Vector2(194, -73)
+facing = 4
 
 [node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("2_n1dqt")]
-position = Vector2(2, 156)
+position = Vector2(3, 73)
 
 [node name="MouseFollower" parent="." index="5" unique_id=687351869]
 position = Vector2(50, -4)
-
-[node name="PauseMenu" parent="CanvasLayer" parent_id_path=PackedInt32Array(1228620870) index="2" unique_id=339135320]
-visible = true
