@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c84lgpngtxewv"]
+
+[ext_resource type="PackedScene" uid="uid://dnwn75fwwq600" path="res://play/levels/inheritable-level.tscn" id="1_q6fwm"]
+[ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="2_wv5ht"]
+[ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="3_xb6v6"]
+[ext_resource type="Script" uid="uid://cu4ax3w3ygvfu" path="res://directors/player/player_insert_placeholder.gd" id="4_hd08a"]
+
+[node name="Level" unique_id=13868467 instance=ExtResource("1_q6fwm")]
+
+[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=722451059]
+script = ExtResource("2_wv5ht")
+
+[node name="PlayerPlaceholder" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("3_xb6v6")]
+editor_description = "Will replace itself on ready with a referenced scene via [PlayerData]."
+script = ExtResource("4_hd08a")

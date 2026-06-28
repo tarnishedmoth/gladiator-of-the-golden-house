@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c1o651tikwnvi" path="res://play/levels/colosseum/return-to-colosseum.tscn" id="2_7aop6"]
 [ext_resource type="PackedScene" uid="uid://d37cvlmrtp1ru" path="res://play/levels/colosseum/region-1_level-1.tscn" id="2_aqm70"]
 [ext_resource type="PackedScene" uid="uid://blegsn4xctlno" path="res://play/levels/colosseum/region-1_level-4.tscn" id="2_b3ud4"]
-[ext_resource type="PackedScene" uid="uid://ca1u1weh7rbc6" path="res://play/levels/story/level_void.tscn" id="2_eioy6"]
+[ext_resource type="PackedScene" uid="uid://ca1u1weh7rbc6" path="res://play/levels/void/level_void.tscn" id="2_eioy6"]
 [ext_resource type="PackedScene" uid="uid://dgrrb1b2ary3k" path="res://play/levels/story/level_forced-failure.tscn" id="2_lxetp"]
 [ext_resource type="PackedScene" uid="uid://emc3phj1f4ld" path="res://play/levels/story/level_allies.tscn" id="2_qqetk"]
 [ext_resource type="PackedScene" uid="uid://c76k7roiy1umn" path="res://play/levels/story/so-many-summons.tscn" id="2_qyx0y"]
