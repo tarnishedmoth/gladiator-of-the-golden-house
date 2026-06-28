@@ -33,6 +33,7 @@ data = ExtResource("9_evfg1")
 metadata/_custom_type_script = "uid://bab0cowpfbqgf"
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_q6fwm")]
+play_music = 1
 
 [node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=722451059]
 script = ExtResource("2_wv5ht")

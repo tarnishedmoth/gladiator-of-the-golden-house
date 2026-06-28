@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dgrrb1b2ary3k" path="res://play/levels/story/level_forced-failure.tscn" id="2_lxetp"]
 [ext_resource type="PackedScene" uid="uid://emc3phj1f4ld" path="res://play/levels/story/level_allies.tscn" id="2_qqetk"]
 [ext_resource type="PackedScene" uid="uid://c76k7roiy1umn" path="res://play/levels/story/so-many-summons.tscn" id="2_qyx0y"]
+[ext_resource type="PackedScene" uid="uid://c84lgpngtxewv" path="res://play/levels/void/hands.tscn" id="2_runyo"]
 [ext_resource type="PackedScene" uid="uid://6gbdlm7qrbdd" path="res://play/levels/colosseum/region-1_level-5.tscn" id="2_uiecw"]
 [ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://vfx/vignette.tscn" id="3_4m0ib"]
 [ext_resource type="PackedScene" uid="uid://c5fd41a5sbeer" path="res://play/levels/colosseum/region-1_level-3.tscn" id="4_uiecw"]
@@ -38,7 +39,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_12ima")
-selectable_levels = Array[PackedScene]([ExtResource("2_qyx0y"), ExtResource("2_7aop6"), ExtResource("2_lxetp"), ExtResource("2_qqetk"), ExtResource("2_eioy6"), ExtResource("2_3hfor"), ExtResource("2_uiecw"), ExtResource("2_b3ud4"), ExtResource("2_aqm70"), ExtResource("7_necnj"), ExtResource("4_uiecw"), ExtResource("5_ycxai"), ExtResource("8_x721y"), ExtResource("9_uc0qm"), ExtResource("10_savld"), ExtResource("15_lxetp"), ExtResource("16_aikqw"), ExtResource("17_sfasd"), ExtResource("18_832gb")])
+selectable_levels = Array[PackedScene]([ExtResource("2_runyo"), ExtResource("2_qyx0y"), ExtResource("2_7aop6"), ExtResource("2_lxetp"), ExtResource("2_qqetk"), ExtResource("2_eioy6"), ExtResource("2_3hfor"), ExtResource("2_uiecw"), ExtResource("2_b3ud4"), ExtResource("2_aqm70"), ExtResource("7_necnj"), ExtResource("4_uiecw"), ExtResource("5_ycxai"), ExtResource("8_x721y"), ExtResource("9_uc0qm"), ExtResource("10_savld"), ExtResource("15_lxetp"), ExtResource("16_aikqw"), ExtResource("17_sfasd"), ExtResource("18_832gb")])
 
 [node name="BG" type="ColorRect" parent="." unique_id=228810212]
 unique_name_in_owner = true

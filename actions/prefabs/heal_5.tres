@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ActionApplyStatus" format=3 uid="uid://dkhqh44mkoetk"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_xiwxj"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_sxprf"]
+[ext_resource type="Resource" uid="uid://16756wki23ty" path="res://status-effects/prefabs/heal-immediate.tres" id="3_w4m2r"]
+
+[resource]
+script = ExtResource("2_sxprf")
+status = ExtResource("3_w4m2r")
+override_quantity = 5
+ui_title = "Heal Self"
+ui_description = "Heal for 5 points."
+action_category = 2
+energy_cost = 1
+metadata/_custom_type_script = "uid://ic0qko6fd58l"
