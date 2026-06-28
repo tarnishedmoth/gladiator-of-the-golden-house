@@ -22,19 +22,18 @@ random_pitch = 1.0472941
 streams_count = 1
 stream_0/stream = ExtResource("9_ao8i2")
 
-[node name="Hand" type="Node2D" unique_id=84579020 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
+[node name="Hand" type="Node2D" unique_id=84579020 node_paths=PackedStringArray("character_visual_root", "health_bar")]
 script = ExtResource("1_wtfxb")
 drop_chance = 0.35
 usable_actions = Array[ExtResource("2_6ihty")]([ExtResource("3_pid7s"), ExtResource("4_6rq8c"), ExtResource("5_rcx4u")])
-character_visual_root = NodePath("")
+character_visual_root = NodePath("Hand")
+facing_direction_affects_visual = false
 health_bar = NodePath("health")
-speech_bubble = NodePath("")
-ui_name = "Grunt"
-ui_description = "A low-level combatant. Not dangerous alone, but threatening in numbers."
+ui_name = "Max Hand"
 max_health = 10
 
 [node name="Hand" type="Sprite2D" parent="." unique_id=2029542622]
-position = Vector2(-3, 0)
+position = Vector2(-3, -5)
 texture = ExtResource("6_vno0b")
 
 [node name="Shadow" type="Sprite2D" parent="Hand" unique_id=1021459015]
@@ -48,4 +47,4 @@ override_move = SubResource("AudioStreamRandomizer_midew")
 override_attack = SubResource("AudioStreamRandomizer_l4igd")
 
 [node name="health" parent="." unique_id=43880176 instance=ExtResource("10_snykl")]
-position = Vector2(0, 6)
+position = Vector2(0, 1)
