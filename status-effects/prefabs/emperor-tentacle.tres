@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatusPassAlongDamage" format=3 uid="uid://x4hssidv7td0"]
+
+[ext_resource type="Script" uid="uid://c8kwdvb5kd5om" path="res://status-effects/pass-along-damage.gd" id="1_7o16h"]
+
+[resource]
+script = ExtResource("1_7o16h")
+direct_only = true
+target_key = &"Emperor"
+on_start_behavior = 0
+ui_name = "Appendage"
+ui_description = "Any damage taken is also taken by the host body."
+use_actor_sfx = false
+trigger_sfx_per_effect_point = false
+metadata/_custom_type_script = "uid://c8kwdvb5kd5om"
