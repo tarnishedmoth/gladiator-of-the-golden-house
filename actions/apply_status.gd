@@ -90,3 +90,5 @@ func apply_status(actor: Actor) -> void:
 		StatusManager.apply_status_to_actor(status, actor, override_quantity)
 		
 		await actor.animation_finished
+
+func applies_to_actor(_actor_to_apply_status_to: Actor) -> bool: return true

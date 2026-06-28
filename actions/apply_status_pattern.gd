@@ -68,7 +68,7 @@ func _get_affected_and_apply_status() -> void:
 	for coords in affected_tiles:
 		var found_actor: Actor = Level.get_actor_at(coords)
 		if found_actor:
-			if not _actor_is_affected(found_actor): continue
+			if not applies_to_actor(found_actor): continue
 			affected_actors.append(found_actor)
 	
 	var tiles_with_actors: Array[Vector2i]
@@ -86,7 +86,7 @@ func _get_affected_and_apply_status() -> void:
 
 
 ## Returns true if actor doesn't meet the criteria for flags "apply effect to allies" and "apply effect to enemies".
-func _actor_is_affected(actor_to_receive_status: Actor) -> bool:
+func applies_to_actor(actor_to_receive_status: Actor) -> bool:
 	var is_allied: bool = actor_to_receive_status.director == _actor.director
 	if (not apply_effect_to_allies) and (is_allied):
 		return false
