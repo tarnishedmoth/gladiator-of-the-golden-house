@@ -6,10 +6,10 @@
 
 [resource]
 script = ExtResource("1_bngi6")
+effect_points = 1
 on_start_behavior = 0
 on_end_behavior = 1
 only_react_to_actors_turn_notifs = true
-effect_points = 1
 ui_name = "Stunned"
 ui_description = "Player: +1 energy cost of Actions for this turn.\\nNPC: Can't take any Actions this turn."
 status_effect_category = 2
