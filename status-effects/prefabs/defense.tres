@@ -7,11 +7,11 @@
 script = ExtResource("1_qktww")
 incoming_or_outgoing = 1
 expend_points_against_damage = true
-only_react_to_actors_turn_notifs = true
 effect_points = 5
+only_react_to_actors_turn_notifs = true
 ui_name = "Defense"
 ui_description = "Negates 1 damage for each point."
-status_effect_category = 1
+status_effect_category = 3
 sfx_success = 3
 sfx_failure = 4
 vfx_applied = ExtResource("2_qktww")

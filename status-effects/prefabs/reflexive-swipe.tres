@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("1_3o1kd")
-after_hook_behavior = 1
 effect_points = 1
+after_hook_behavior = 1
 ui_name = "Reflexive Swipe"
 ui_description = "Upon any damage taken (even if blocked by defense), immediately deal damage in return."
 status_effect_category = 1

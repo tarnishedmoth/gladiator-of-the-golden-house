@@ -7,12 +7,14 @@ enum StatusEffectCategory{
 	NONE,
 	BUFF,
 	DEBUFF,
+	DEFENCE,
 }
 
 const STATUS_CATEGORY_ICONS: Dictionary[StatusEffectCategory, Texture2D] = {
-	StatusEffectCategory.NONE: preload("uid://disinbamqthvh"),
-	StatusEffectCategory.BUFF: preload("uid://c7ers5ee7squq"),
-	StatusEffectCategory.DEBUFF: preload("uid://c7ers5ee7squq"),
+	StatusEffectCategory.NONE: preload("uid://djkuqh38qkm5l"),
+	StatusEffectCategory.BUFF: preload("uid://y7cl8xvqff14"),
+	StatusEffectCategory.DEBUFF: preload("uid://rgt67qcloo4u"),
+	StatusEffectCategory.DEFENCE: preload("uid://way0pow8nkvq"),
 }
 
 var _actor: Actor
