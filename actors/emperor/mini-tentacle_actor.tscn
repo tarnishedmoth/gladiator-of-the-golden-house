@@ -8,7 +8,9 @@
 [ext_resource type="Resource" uid="uid://cior70oyylpmi" path="res://actions/prefabs/grunt_heavy_attack.tres" id="4_fp2ni"]
 [ext_resource type="PackedScene" uid="uid://diwkqfyr57888" path="res://actors/emperor/giant-tentacle.tscn" id="6_d00f6"]
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="7_8gkw1"]
+[ext_resource type="Script" uid="uid://bhpfulxak0eng" path="res://status-effects/status.gd" id="7_kbndf"]
 [ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="8_kbndf"]
+[ext_resource type="Resource" uid="uid://x4hssidv7td0" path="res://status-effects/prefabs/emperor-tentacle.tres" id="8_nl0ad"]
 [ext_resource type="AudioStream" uid="uid://bqchdo0a7yi27" path="res://sfx/tentacle-attack.ogg" id="9_d00f6"]
 [ext_resource type="AudioStream" uid="uid://da4a12lo5xwe" path="res://sfx/tentacle-hit.ogg" id="10_8gkw1"]
 [ext_resource type="AudioStream" uid="uid://carpxxasddeyi" path="res://sfx/hemorrhage.wav" id="11_kbndf"]
@@ -32,6 +34,11 @@ random_pitch = 1.0412621
 streams_count = 1
 stream_0/stream = ExtResource("10_8gkw1")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_do06k"]
+random_pitch = 1.0412621
+streams_count = 1
+stream_0/stream = ExtResource("10_8gkw1")
+
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_yfiy6"]
 stream_count = 2
 stream_0/stream = ExtResource("11_kbndf")
@@ -39,7 +46,7 @@ stream_0/volume = 0.0
 stream_1/stream = ExtResource("10_8gkw1")
 stream_1/volume = 1.0
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s0bmr"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4rhjg"]
 random_pitch = 1.0905077
 random_volume_offset_db = 0.5
 streams_count = 1
@@ -47,9 +54,9 @@ stream_0/stream = SubResource("AudioStreamSynchronized_yfiy6")
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_jvjuy"]
 stream_count = 2
-stream_0/stream = SubResource("AudioStreamRandomizer_7mele")
+stream_0/stream = SubResource("AudioStreamRandomizer_do06k")
 stream_0/volume = 0.0
-stream_1/stream = SubResource("AudioStreamRandomizer_s0bmr")
+stream_1/stream = SubResource("AudioStreamRandomizer_4rhjg")
 stream_1/volume = 0.0
 
 [node name="Tentacle" type="Node2D" unique_id=943822801 node_paths=PackedStringArray("character_visual_root", "health_bar")]
@@ -62,6 +69,7 @@ health_bar = NodePath("health")
 ui_name = "Modest Tentacle"
 max_health = 4
 can_knockback = false
+status_effects = Array[ExtResource("7_kbndf")]([ExtResource("8_nl0ad")])
 metadata/_custom_type_script = "uid://5d6qh71oemsi"
 
 [node name="GiantTentacle" parent="." unique_id=1916901696 instance=ExtResource("6_d00f6")]

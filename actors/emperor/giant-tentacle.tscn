@@ -28,7 +28,8 @@ texture = ExtResource("1_6oi75")
 
 [node name="Clip Mask" type="Sprite2D" parent="." unique_id=2081511991]
 clip_children = 1
-position = Vector2(64, -50)
+position = Vector2(64, -46)
+rotation = 0.034906585
 texture = SubResource("PlaceholderTexture2D_0oeuv")
 
 [node name="Tentacle Pivot" type="Node2D" parent="Clip Mask" unique_id=962131293]
@@ -37,7 +38,8 @@ script = ExtResource("1_0oeuv")
 
 [node name="Tentacle Sprite" type="Sprite2D" parent="Clip Mask/Tentacle Pivot" unique_id=299484839]
 material = ExtResource("2_uw0mj")
-position = Vector2(0, -40)
+position = Vector2(0, -54)
+rotation = -0.034906585
 scale = Vector2(-1, 1)
 texture = ExtResource("1_44mwf")
 

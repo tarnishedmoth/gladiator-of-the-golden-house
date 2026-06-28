@@ -5,6 +5,20 @@
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="3_ir8aq"]
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="6_7k8q6"]
 
+[sub_resource type="Gradient" id="Gradient_3cqig"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.11334552, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fpxwp"]
+gradient = SubResource("Gradient_3cqig")
+width = 560
+height = 420
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [node name="Level" unique_id=13868467 instance=ExtResource("1_vqf3r")]
 play_music = 2
 play_crowd_idle = false
@@ -20,10 +34,16 @@ script = ExtResource("3_ir8aq")
 
 [node name="EmperorActor" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=1443156600 instance=ExtResource("3_1cuou")]
 z_index = 1
-cond_team_count = 2
 
 [node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("6_7k8q6")]
 position = Vector2(2, 215)
+
+[node name="PointLight2D2" type="PointLight2D" parent="MouseFollower" parent_id_path=PackedInt32Array(687351869) index="2" unique_id=1931896176]
+color = Color(0.48962224, 0.48962224, 0.48962218, 0)
+blend_mode = 2
+range_item_cull_mask = 65536
+texture = SubResource("GradientTexture2D_fpxwp")
+metadata/_edit_lock_ = true
 
 [node name="CrowdSfx" parent="." index="7" unique_id=1516685823]
 disabled = true

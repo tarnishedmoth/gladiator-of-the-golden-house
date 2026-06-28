@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="ActionApplyStatusPattern" format=3 uid="uid://c6aox1qg71hb1"]
+
+[ext_resource type="AudioStream" uid="uid://bmwnh71tyj8jj" path="res://sfx/eldritch_7.ogg" id="1_m0hrd"]
+[ext_resource type="AudioStream" uid="uid://carpxxasddeyi" path="res://sfx/hemorrhage.wav" id="2_mp2ti"]
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="3_aalfw"]
+[ext_resource type="Script" uid="uid://k4rqrulmvg3t" path="res://actions/apply_status_pattern.gd" id="4_5xyfi"]
+[ext_resource type="Resource" uid="uid://do1183bc5h0a4" path="res://status-effects/prefabs/weak.tres" id="5_mp2ti"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7tqel"]
+random_pitch = 1.0412621
+streams_count = 1
+stream_0/stream = ExtResource("1_m0hrd")
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_qhmak"]
+stream_count = 2
+stream_0/stream = SubResource("AudioStreamRandomizer_7tqel")
+stream_0/volume = 3.0
+stream_1/stream = ExtResource("2_mp2ti")
+stream_1/volume = 0.0
+
+[resource]
+script = ExtResource("4_5xyfi")
+pattern = Array[Vector2i]([Vector2i(0, 0)])
+aoe_pattern = Array[Vector2i]([Vector2i(1, -2), Vector2i(1, -3), Vector2i(2, -3), Vector2i(2, -1), Vector2i(3, -2), Vector2i(3, -1), Vector2i(1, 1), Vector2i(1, 2), Vector2i(2, 1), Vector2i(-1, 2), Vector2i(-1, 3), Vector2i(-2, 3), Vector2i(-2, 1), Vector2i(-3, 1), Vector2i(-3, 2), Vector2i(-1, -1), Vector2i(-2, -1), Vector2i(-1, -2)])
+status = ExtResource("5_mp2ti")
+pre_attack_duration = 1.0
+post_attack_duration = 3.0
+loose_sfx_stream = SubResource("AudioStreamSynchronized_qhmak")
+allow_facing_before = true
+ui_title = "Overwhelm Senses"
+ui_description = "Flood your nervous system with wretched stimulation."
+action_category = 4
+energy_cost = 1
+metadata/_custom_type_script = "uid://k4rqrulmvg3t"
