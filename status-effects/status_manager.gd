@@ -27,6 +27,14 @@ var targets: Array[Actor]
 
 func _init(host_actor: Actor) -> void:
 	self.actor = host_actor
+	
+	## Set up preset status effects
+	if not status_effects.is_empty():
+		var copy: Array[Status] = status_effects.duplicate()
+		if debug: p("Added %d preset status effects..." % copy.size())
+		status_effects.clear()
+		for s in copy:
+			add_status(s, &"preset")
 
 #region Reactive methods
 
