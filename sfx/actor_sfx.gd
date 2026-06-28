@@ -97,6 +97,7 @@ func play_oneshot(stream: AudioStream, global_pos: Vector2) -> void:
 	if not stream in oneshot_cache:
 		tp = AudioStreamPlayer2D.new()
 		tp.stream = stream
+		tp.bus = &"Sfx"
 		add_child(tp)
 		oneshot_cache[stream] = tp
 	else:
