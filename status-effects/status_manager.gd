@@ -91,10 +91,10 @@ func on_status_applied(new_status: Status) -> void:
 	if new_status.use_actor_sfx:
 		var sfx: ActorSfxHandler.Sounds
 		match new_status.status_effect_category:
-			Status.StatusEffectCategory.BUFF:
-				sfx = ActorSfxHandler.Sounds.BUFF
 			Status.StatusEffectCategory.DEBUFF:
 				sfx = ActorSfxHandler.Sounds.DEBUFF
+			Status.StatusEffectCategory.BUFF, Status.StatusEffectCategory.DEFENCE:
+				sfx = ActorSfxHandler.Sounds.BUFF
 		if (not new_status.trigger_sfx_per_effect_point) or new_status.effect_points == 0:
 			actor.play_sfx(sfx)
 		else:
