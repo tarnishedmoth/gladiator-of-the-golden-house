@@ -15,6 +15,6 @@ dir_fr = 0.75
 dir_fl = 0.75
 on_start_behavior = 0
 ui_name = "Attentive Reflex"
-ui_description = "Negate incoming damage in front. Effect is strongest directly forward."
+ui_description = "Negate up to 50% incoming damage. Effect is strongest directly forward."
 status_effect_category = 1
 metadata/_custom_type_script = "uid://dvm0k3xhgixkl"

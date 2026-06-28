@@ -145,6 +145,7 @@ func add_status(status: Status, key = "", do_duplicate: bool = true) -> void:
 	on_status_applied(status)
 	
 func remove_status(status: Status) -> void:
+	if debug: p("Removing status %s..." % status)
 	var _start: int = status_effects.size()
 	status_effects.erase(status)
 	if status_effects.size() < _start:
@@ -160,9 +161,8 @@ func remove_keyed_statuses(key) -> void:
 	if debug: p("Removing statuses keyed as '%s'." % key)
 	var to_remove: Array
 	for status in status_effects:
-		const NULLVAL = &"_null"
-		var meta_key = status.get_meta(&"key", NULLVAL)
-		if meta_key == NULLVAL:
+		var meta_key = status.get_meta(&"key", null)
+		if meta_key == null:
 			continue
 		if meta_key == key:
 			to_remove.append(status)
