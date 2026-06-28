@@ -93,7 +93,7 @@ script = ExtResource("3_xk2m4")
 description = NodePath("VBoxContainer/ScrollContainer/Description")
 title = NodePath("VBoxContainer/Title")
 key_stats = NodePath("VBoxContainer/KeyStats")
-status_effects_flow_container = NodePath("VBoxContainer/PanelContainer/VBoxContainer/StatusEffectsFlowContainer")
+status_effects_flow_container = NodePath("VBoxContainer/StatusPanelContainer/VBoxContainer/StatusEffectsFlowContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel" unique_id=1327088956]
 layout_mode = 2
@@ -133,26 +133,27 @@ text = "[center][b]Gritty the Philadelphian[/b]
 fit_content = true
 scroll_active = false
 
-[node name="PanelContainer" type="PanelContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer" unique_id=614446509]
+[node name="StatusPanelContainer" type="PanelContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer" unique_id=614446509]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Status effects will show up here. Hover over an icon to see details."
 theme_override_styles/panel = SubResource("StyleBoxTexture_hb1cg")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer" unique_id=1986264921]
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/StatusPanelContainer" unique_id=1986264921]
 layout_mode = 2
 theme_override_constants/separation = -6
 
-[node name="StatusEffectsFlowContainer" type="HFlowContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=713616998]
+[node name="StatusEffectsFlowContainer" type="HFlowContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/StatusPanelContainer/VBoxContainer" unique_id=713616998]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 reverse_fill = true
 
-[node name="TemplateStatusEffectButton" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer/VBoxContainer/StatusEffectsFlowContainer" unique_id=1917665449 instance=ExtResource("4_xk2m4")]
+[node name="TemplateStatusEffectButton" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/StatusPanelContainer/VBoxContainer/StatusEffectsFlowContainer" unique_id=1917665449 instance=ExtResource("4_xk2m4")]
 layout_mode = 2
 script = ExtResource("5_ksooa")
 
-[node name="Label" type="Label" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=2142572613]
+[node name="Label" type="Label" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/StatusPanelContainer/VBoxContainer" unique_id=2142572613]
 modulate = Color(0.91228896, 0.9122889, 0.91228884, 1)
 layout_mode = 2
 text = "Status Effects"
