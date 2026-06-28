@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ActionChangeStance" format=3 uid="uid://dxibqvqnbm8ei"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="2_oy3ic"]
+[ext_resource type="Script" uid="uid://dj1vqqabqwo2g" path="res://actions/action_change-stance.gd" id="3_iiwvh"]
+[ext_resource type="Script" uid="uid://bhpfulxak0eng" path="res://status-effects/status.gd" id="4_iga1n"]
+
+[resource]
+script = ExtResource("3_iiwvh")
+stance_uid = "uid://df6g083a0hnt6"
+ui_title = "Offhand Dagger"
+action_category = 5
+energy_cost = 1
+metadata/_custom_type_script = "uid://dj1vqqabqwo2g"

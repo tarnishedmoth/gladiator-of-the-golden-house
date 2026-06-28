@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Stance" format=3 uid="uid://df6g083a0hnt6"]
+
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="1_x3j7l"]
+[ext_resource type="Resource" uid="uid://pfjuabo162f5" path="res://actions/prefabs/player/class-xbow/class-xbow_parry.tres" id="2_fvtp8"]
+[ext_resource type="Resource" uid="uid://dxibqvqnbm8ei" path="res://actions/prefabs/player/class-xbow/change-stance_dagger.tres" id="2_te0dq"]
+[ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://actions/stance/stance.gd" id="3_fvtp8"]
+
+[resource]
+script = ExtResource("3_fvtp8")
+actions = Array[ExtResource("1_x3j7l")]([ExtResource("2_fvtp8")])
+pickme_action = ExtResource("2_te0dq")
+metadata/_custom_type_script = "uid://wxlj5akq7s0v"
