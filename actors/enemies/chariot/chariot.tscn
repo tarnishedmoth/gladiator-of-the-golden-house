@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://do8k4mne34fsw"]
 
-[ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="1_33blp"]
+[ext_resource type="Script" uid="uid://5d6qh71oemsi" path="res://actors/ai_actor_conditional.gd" id="1_hdxnw"]
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_o0dvo"]
 [ext_resource type="Resource" uid="uid://bv0025i1ofl6g" path="res://actions/prefabs/move_max_distance_knockback.tres" id="4_7jfi1"]
 [ext_resource type="Resource" uid="uid://cior70oyylpmi" path="res://actions/prefabs/grunt_heavy_attack.tres" id="4_lmgxc"]
 [ext_resource type="Resource" uid="uid://bxvvng0ducbc3" path="res://actions/prefabs/do-nothing.tres" id="5_33blp"]
-[ext_resource type="Resource" uid="uid://bsef8hoia6dkr" path="res://actions/prefabs/move_max_distance.tres" id="5_bfmgk"]
 [ext_resource type="Resource" uid="uid://2fcekc26yjbj" path="res://actions/prefabs/chariot_joust.tres" id="6_33blp"]
 [ext_resource type="Resource" uid="uid://cw0gv31gp47uu" path="res://actions/prefabs/chariot_ram.tres" id="7_7jfi1"]
+[ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="7_sups2"]
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="9_6545d"]
 [ext_resource type="Material" uid="uid://ba42heu1d306" path="res://characters/colosseum-crowd/blob-parts/shadow_canvas-item-material.tres" id="9_j8xi4"]
 [ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="10_fhmdo"]
@@ -25,18 +25,24 @@ height = 12
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Chariot" type="Node2D" unique_id=84579020 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
-script = ExtResource("1_33blp")
+[node name="Chariot" type="Node2D" unique_id=693290149 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
+script = ExtResource("1_hdxnw")
+conditionally_usable_actions = Array[ExtResource("2_o0dvo")]([ExtResource("4_lmgxc"), ExtResource("4_7jfi1"), ExtResource("6_33blp"), ExtResource("7_7jfi1"), null])
+and_always_end_with = ExtResource("7_sups2")
 drop_chance = 0.25
-usable_actions = Array[ExtResource("2_o0dvo")]([ExtResource("5_bfmgk"), ExtResource("4_7jfi1"), ExtResource("4_lmgxc"), ExtResource("5_33blp"), ExtResource("6_33blp"), ExtResource("7_7jfi1")])
+usable_actions = Array[ExtResource("2_o0dvo")]([ExtResource("5_33blp"), ExtResource("4_lmgxc"), ExtResource("4_7jfi1"), ExtResource("6_33blp"), ExtResource("7_7jfi1")])
 selection_behavior = 4
 character_visual_root = NodePath("Chariot")
 health_bar = NodePath("health")
 speech_bubble = NodePath("SpeechBubble")
 ui_name = "Chariot"
-ui_description = "A fast-moving, lightly armored foe."
-max_health = 30
+ui_description = "A fast-moving, lightly armored foe. Very vulnerable from the rear."
+max_health = 32
 can_knockback = false
+dm_dmg_rr = 1.75
+dm_dmg_r = 2.5
+dm_dmg_rl = 1.75
+metadata/_custom_type_script = "uid://5d6qh71oemsi"
 
 [node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("9_6545d")]
 
