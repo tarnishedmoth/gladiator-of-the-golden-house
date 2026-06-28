@@ -73,7 +73,7 @@ func _on_iterative_tick() -> void:
 		
 	if iter_current + 1 >= nodes.size():
 		ticker.kill()
-		await create_tween().tween_interval(tick_interval * 1.15).finished
+		await create_tween().tween_interval(tick_interval).finished
 		_on_ticker_finished()
 
 func _on_ticker_finished() -> void:

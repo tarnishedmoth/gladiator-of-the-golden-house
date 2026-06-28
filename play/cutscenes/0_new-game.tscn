@@ -53,7 +53,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_q3h48"]
 resource_name = "move"
-length = 26.0
+length = 32.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -61,7 +61,7 @@ tracks/0/path = NodePath("CanvasLayer/TextureRect:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(5.1, 25.9),
+"times": PackedFloat32Array(4.5333333, 31.966667),
 "transitions": PackedFloat32Array(2.3784142, 1),
 "update": 0,
 "values": [Vector2(-10, -40), Vector2(-420, -650)]
@@ -73,7 +73,7 @@ tracks/1/path = NodePath("CanvasLayer/TextureRect:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(5.1, 25.9),
+"times": PackedFloat32Array(4.5333333, 31.966667),
 "transitions": PackedFloat32Array(2.0000005, 1),
 "update": 0,
 "values": [Vector2(0.55, 0.55), Vector2(1, 1)]
@@ -85,7 +85,7 @@ tracks/2/path = NodePath("CanvasLayer/TextureRect:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 5.2, 11.333333, 20.1, 25.9),
+"times": PackedFloat32Array(0, 4.6, 10.033334, 23.066668, 31.766666),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -139,7 +139,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_xwi8v")
-iterative_duration = 28.0
+iterative_duration = 38.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1549537349]
 visible = false
@@ -148,35 +148,35 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 27.0
-offset_top = -143.0
-offset_right = -20.0
-offset_bottom = 88.0
+offset_left = 31.0
+offset_top = -142.0
+offset_right = -16.0
+offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "[b]A.D. 81[/b]  -  Imperial Rome
-
-[i]The spectacular Flavian Amphitheatre has been built by the command of the Emperor.  Now, a great festival is thrown to celebrate the empire's fearsome might,  to satiate the public's thirst for bloodsport,  and to gather the patricians of the region..."
+text = "[b]A.D. 81[/b]  -  Imperial Rome"
 fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1045754797]
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=958029112]
+visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 116.0
-offset_top = -149.0
-offset_right = -116.0
-offset_bottom = 103.0
+offset_left = 31.0
+offset_top = -142.0
+offset_right = -16.0
+offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "[i]... even here, deep in the imperial core, there are murmurings of unrest.
-
-   All eyes are on the Emperor as he claims there is nothing to fret.  How else could such prosperity be concentrated here? ..."
+text = "A great festival is planned to debut the Flavian Amphitheatre, to flaunt the wealth and power of the Emperor.  It will be attended by patricians from across the civilized world ..."
 fit_content = true
+vertical_alignment = 1
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1566063330]
 visible = false
@@ -185,15 +185,36 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 133.0
-offset_top = -144.0
-offset_right = -125.0
-offset_bottom = 87.0
+offset_left = 134.0
+offset_top = -131.0
+offset_right = -124.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "[i]... the Inaugural Games now summons the strongest warriors to compete,  to delight the audience,  to indulge the Emperor,  and to earn honor among your fellow warriors ..."
+text = "... the Inaugural Games now summons the strongest warriors to compete,  to delight the audience,  to indulge the Emperor,  and to earn honor among your fellow warriors ..."
 fit_content = true
+vertical_alignment = 1
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=394807182]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 31.0
+offset_top = -142.0
+offset_right = -16.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "This is your preliminary fight.
+
+You are not free to leave until festivities conclude ..."
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SkipButton" type="Button" parent="CanvasLayer" unique_id=1811026509]
 anchors_preset = 15
