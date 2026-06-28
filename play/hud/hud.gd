@@ -171,13 +171,13 @@ func _on_stash_action_pressed(action: Action) -> void:
 	if player is Player:
 		var held: bool = player.hold_action(action)
 		if held:
-			_button_flashing = actions_panel.get_button_assigned_to(action)
+			_button_flashing = stash_panel.get_button_assigned_to(action)
 			_button_flash_tween = _button_flashing.create_tween().set_loops().set_trans(Tween.TRANS_SINE)
 			_button_flash_tween.tween_property(_button_flashing, ^"self_modulate", Color.WHITE.darkened(0.25), Juice.FAST)
 			_button_flash_tween.tween_property(_button_flashing, ^"self_modulate", Color.WHITE, Juice.FAST)
 		else:
 			if _button_flash_tween: _button_flash_tween.kill()
-			actions_panel.get_button_assigned_to(action).self_modulate = Color.WHITE
+			stash_panel.get_button_assigned_to(action).self_modulate = Color.WHITE
 
 
 func populate_actions_list(hand: Array[Action], selected_actor: Actor) -> void:
