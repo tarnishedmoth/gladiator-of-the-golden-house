@@ -24,10 +24,14 @@ func populate(actor: Actor, action:Action) -> void:
 		action_image.texture = action.ui_icon
 		
 	if action is ActionAttack:
-		amount.show()
 		amount.append_text("Base Dmg: %d " % [action.damage])
 		if action.multiple_attacks > 1:
 			amount.append_text("\nx %d times" % action.multiple_attacks)
+		amount.show()
+		
+	if action is ActionAttackKnockback or action is ActionMoveKnockback:
+		amount.append_text(("\n" if amount.text.is_empty() else "") + "+Knockback")
+		amount.show()
 	
 	var _description: String = actor.ui_name + " plans to "
 	if action.ui_description:
