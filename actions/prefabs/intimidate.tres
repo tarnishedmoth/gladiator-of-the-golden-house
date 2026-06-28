@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ActionApplyStatusPattern" format=3 uid="uid://bw51y8q6rn4l2"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_pd0x7"]
+[ext_resource type="Script" uid="uid://k4rqrulmvg3t" path="res://actions/apply_status_pattern.gd" id="2_eohdh"]
+[ext_resource type="Resource" uid="uid://do1183bc5h0a4" path="res://status-effects/prefabs/weak.tres" id="3_5y5gu"]
+
+[resource]
+script = ExtResource("2_eohdh")
+pattern = Array[Vector2i]([Vector2i(0, 0)])
+aoe_pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0), Vector2i(1, -2), Vector2i(2, -1), Vector2i(1, 1), Vector2i(-1, 2), Vector2i(-2, 1), Vector2i(-1, -1)])
+status = ExtResource("3_5y5gu")
+override_quantity = 1
+ui_title = "Intimidate"
+ui_description = "Strike fear into the hearts of nearby foes, making them Weak."
+action_category = 2
+energy_cost = 1
+metadata/_custom_type_script = "uid://k4rqrulmvg3t"

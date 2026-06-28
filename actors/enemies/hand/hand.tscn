@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="7_nqsft"]
 [ext_resource type="Resource" uid="uid://dkhqh44mkoetk" path="res://actions/prefabs/heal_5.tres" id="7_ud5b7"]
 [ext_resource type="AudioStream" uid="uid://cb7ufumjx60hv" path="res://sfx/monster_1.wav" id="8_7te8y"]
+[ext_resource type="Resource" uid="uid://bw51y8q6rn4l2" path="res://actions/prefabs/intimidate.tres" id="8_ieqv0"]
 [ext_resource type="AudioStream" uid="uid://cdbw81dng4y53" path="res://sfx/monster_2.wav" id="9_ao8i2"]
 [ext_resource type="Resource" uid="uid://cgkuvmq07ft70" path="res://actions/prefabs/attack_lash-out.tres" id="9_rj2s6"]
 [ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="10_snykl"]
@@ -31,6 +32,8 @@ stream_0/stream = ExtResource("9_ao8i2")
 [node name="Hand" type="Node2D" unique_id=649134313 node_paths=PackedStringArray("character_visual_root", "health_bar")]
 script = ExtResource("1_jau1j")
 conditionally_usable_actions = Array[ExtResource("2_6ihty")]([ExtResource("3_5odna"), ExtResource("4_ud5b7"), ExtResource("4_ud5b7"), ExtResource("6_tb2nf"), ExtResource("7_ud5b7"), ExtResource("7_ieqv0")])
+cond_team_count = 1
+and_always_end_with = ExtResource("8_ieqv0")
 drop_chance = 0.3
 usable_actions = Array[ExtResource("2_6ihty")]([ExtResource("3_ukefo"), ExtResource("9_rj2s6"), ExtResource("5_1sra7"), ExtResource("11_gj2oi")])
 character_visual_root = NodePath("Hand")
