@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://ckx8fgy1ktgy" path="res://actions/prefabs/player/dodge-roll.tres" id="6_yqoyb"]
 [ext_resource type="Resource" uid="uid://bejg4y5kke6cf" path="res://actions/prefabs/move_one_tile_opener.tres" id="7_3npki"]
 [ext_resource type="Resource" uid="uid://bfvvplh50rtcw" path="res://actions/prefabs/player/class-flail/class-flail_sprint-and-turn.tres" id="8_h7dy2"]
+[ext_resource type="Resource" uid="uid://7a2sfsgl5bku" path="res://actions/prefabs/boost-focus-self.tres" id="9_6ltec"]
 [ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://actions/stance/stance.gd" id="10_6ltec"]
 [ext_resource type="PackedScene" uid="uid://cw8ea0ekkqjyp" path="res://actors/player/main_character.tscn" id="11_j2ytt"]
 [ext_resource type="Resource" uid="uid://di3tdhtxyv28n" path="res://actions/prefabs/player/class-flail/stance_flurrious-flail.tres" id="11_kaetv"]
@@ -19,7 +20,7 @@
 
 [node name="Player_ClassFlail" type="Node2D" unique_id=1133384730]
 script = ExtResource("1_m1xan")
-starting_actions_deck = Array[ExtResource("2_15m31")]([ExtResource("6_yqoyb"), ExtResource("4_6srfk"), ExtResource("4_pmip5"), ExtResource("5_npsyj"), ExtResource("6_c2e3d"), ExtResource("8_h7dy2")])
+starting_actions_deck = Array[ExtResource("2_15m31")]([ExtResource("6_yqoyb"), ExtResource("4_6srfk"), ExtResource("4_pmip5"), ExtResource("5_npsyj"), ExtResource("6_c2e3d"), ExtResource("8_h7dy2"), ExtResource("9_6ltec")])
 always_available_deck = Array[ExtResource("2_15m31")]([ExtResource("7_3npki")])
 stances = Array[ExtResource("10_6ltec")]([ExtResource("11_kaetv"), ExtResource("12_6ltec")])
 metadata/_custom_type_script = "uid://d3wjcqjs4jdor"

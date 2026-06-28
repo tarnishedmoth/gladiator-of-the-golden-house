@@ -7,8 +7,9 @@
 [resource]
 script = ExtResource("2_wpah8")
 pattern = Array[Vector2i]([Vector2i(0, 0)])
-status = ExtResource("3_b0no3")
+aoe_pattern = Array[Vector2i]([Vector2i(0, 0)])
 apply_effect_to_enemies = false
+status = ExtResource("3_b0no3")
 ui_title = "Boost Focus"
 ui_description = "Gain +3 Focus."
 action_category = 2
