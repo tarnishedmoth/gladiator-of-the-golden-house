@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Stance" format=3 uid="uid://di3tdhtxyv28n"]
 
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="1_3v5s2"]
-[ext_resource type="Resource" uid="uid://s2jf0nt5nopx" path="res://actions/prefabs/player/class-flail/class-flail_flail-swing.tres" id="2_u5xff"]
+[ext_resource type="Resource" uid="uid://s2jf0nt5nopx" path="res://actions/prefabs/player/class-flail/class-flail_arc-sweep.tres" id="2_u5xff"]
 [ext_resource type="Resource" uid="uid://byi5884ctck1m" path="res://actions/prefabs/player/class-flail/class-flail_windmill.tres" id="3_oxnfw"]
 [ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="4_lacos"]
 [ext_resource type="Resource" uid="uid://fpm7fqfo0w33" path="res://actions/prefabs/player/class-flail/class-flail_cross-swing.tres" id="4_xhtxg"]
