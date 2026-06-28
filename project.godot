@@ -37,6 +37,7 @@ window/size/viewport_width=960
 window/size/viewport_height=540
 window/stretch/mode="viewport"
 mouse_cursor/custom_image="uid://d1jgkow5h80ft"
+mouse_cursor/tooltip_position_offset=Vector2(16, 10)
 
 [editor_plugins]
 
@@ -48,6 +49,8 @@ directory_path="res://BOARD/savedata/"
 
 [gui]
 
+timers/tooltip_delay_sec=0.25
+timers/tooltip_delay_sec.editor_hint=0.25
 theme/default_font_antialiasing=0
 theme/default_font_hinting=2
 theme/default_font_subpixel_positioning=0
