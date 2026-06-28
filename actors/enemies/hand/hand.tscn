@@ -2,50 +2,21 @@
 
 [ext_resource type="Script" uid="uid://5d6qh71oemsi" path="res://actors/ai_actor_conditional.gd" id="1_jau1j"]
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_6ihty"]
-[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="3_2fxib"]
 [ext_resource type="Resource" uid="uid://bv0025i1ofl6g" path="res://actions/prefabs/move_max_distance_knockback.tres" id="3_5odna"]
 [ext_resource type="Resource" uid="uid://d33i0gb1fs1rh" path="res://actions/prefabs/move_two_tiles_plus-diagonals.tres" id="3_ukefo"]
+[ext_resource type="Resource" uid="uid://d3l2ala5l84w6" path="res://actions/prefabs/attack_big-squish.tres" id="4_ud5b7"]
 [ext_resource type="Resource" uid="uid://dhvgu78g6tf7k" path="res://actions/prefabs/player/class-a_brace.tres" id="5_1sra7"]
 [ext_resource type="Resource" uid="uid://dndcidgrypfmp" path="res://actions/prefabs/attack_plunge-12.tres" id="6_tb2nf"]
 [ext_resource type="Texture2D" uid="uid://cr821h66in5y" path="res://actors/enemies/hand/hand.png" id="6_vno0b"]
 [ext_resource type="Texture2D" uid="uid://cvhkktn0chihu" path="res://vfx/blob-shadow-64px.png" id="7_6ihty"]
-[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="7_6pkt7"]
+[ext_resource type="Resource" uid="uid://jo8nyxf20uwb" path="res://actions/prefabs/attack_max-slap.tres" id="7_ieqv0"]
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="7_nqsft"]
 [ext_resource type="Resource" uid="uid://dkhqh44mkoetk" path="res://actions/prefabs/heal_5.tres" id="7_ud5b7"]
 [ext_resource type="AudioStream" uid="uid://cb7ufumjx60hv" path="res://sfx/monster_1.wav" id="8_7te8y"]
 [ext_resource type="AudioStream" uid="uid://cdbw81dng4y53" path="res://sfx/monster_2.wav" id="9_ao8i2"]
+[ext_resource type="Resource" uid="uid://cgkuvmq07ft70" path="res://actions/prefabs/attack_lash-out.tres" id="9_rj2s6"]
 [ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="10_snykl"]
-
-[sub_resource type="Resource" id="Resource_5na86"]
-script = ExtResource("7_6pkt7")
-damage = 16
-pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0), Vector2i(1, -2), Vector2i(2, -1), Vector2i(1, 1), Vector2i(-1, 2), Vector2i(-2, 1), Vector2i(-1, -1)])
-post_attack_duration = 0.2
-ui_title = "Big Squish"
-ui_description = "Downward, as if you were a bug, with great force."
-energy_cost = 3
-metadata/_custom_type_script = "uid://dwk83a2nxfweb"
-
-[sub_resource type="Resource" id="Resource_tb2nf"]
-script = ExtResource("7_6pkt7")
-damage = 3
-multiple_attacks = 5
-pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
-allow_facing_before = true
-ui_title = "Lash Out"
-ui_description = "Rapidly attack with a flurry of five swipes."
-energy_cost = 1
-metadata/_custom_type_script = "uid://dwk83a2nxfweb"
-
-[sub_resource type="Resource" id="Resource_5odna"]
-script = ExtResource("7_6pkt7")
-damage = 11
-pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
-post_attack_duration = 0.2
-ui_title = "Squish"
-ui_description = "Downward, as if you were a bug."
-energy_cost = 2
-metadata/_custom_type_script = "uid://dwk83a2nxfweb"
+[ext_resource type="Resource" uid="uid://bm7hva5my18lr" path="res://actions/prefabs/attack_squish.tres" id="11_gj2oi"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_midew"]
 random_pitch = 1.0594631
@@ -59,9 +30,9 @@ stream_0/stream = ExtResource("9_ao8i2")
 
 [node name="Hand" type="Node2D" unique_id=649134313 node_paths=PackedStringArray("character_visual_root", "health_bar")]
 script = ExtResource("1_jau1j")
-conditionally_usable_actions = Array[ExtResource("2_6ihty")]([ExtResource("3_5odna"), SubResource("Resource_5na86"), SubResource("Resource_5na86"), ExtResource("6_tb2nf"), ExtResource("7_ud5b7")])
+conditionally_usable_actions = Array[ExtResource("2_6ihty")]([ExtResource("3_5odna"), ExtResource("4_ud5b7"), ExtResource("4_ud5b7"), ExtResource("6_tb2nf"), ExtResource("7_ud5b7"), ExtResource("7_ieqv0")])
 drop_chance = 0.3
-usable_actions = Array[ExtResource("2_6ihty")]([ExtResource("3_ukefo"), SubResource("Resource_tb2nf"), ExtResource("5_1sra7"), SubResource("Resource_5odna")])
+usable_actions = Array[ExtResource("2_6ihty")]([ExtResource("3_ukefo"), ExtResource("9_rj2s6"), ExtResource("5_1sra7"), ExtResource("11_gj2oi")])
 character_visual_root = NodePath("Hand")
 health_bar = NodePath("health")
 ui_name = "Thumbalina"

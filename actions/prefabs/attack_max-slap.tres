@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ActionAttackKnockback" format=3 uid="uid://jo8nyxf20uwb"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_84gjt"]
+[ext_resource type="Script" uid="uid://ic0qko6fd58l" path="res://actions/apply_status.gd" id="2_pfyg1"]
+[ext_resource type="Resource" uid="uid://b38qdbmcp8g2n" path="res://status-effects/prefabs/stunned.tres" id="3_24koq"]
+[ext_resource type="Script" uid="uid://chptaheu3xjjl" path="res://actions/attack_knockback.gd" id="4_fv4au"]
+
+[sub_resource type="Resource" id="Resource_bfc4o"]
+script = ExtResource("2_pfyg1")
+status = ExtResource("3_24koq")
+ui_title = "Stunned"
+action_category = 4
+metadata/_custom_type_script = "uid://ic0qko6fd58l"
+
+[resource]
+script = ExtResource("4_fv4au")
+distance = 2
+damage = 8
+pattern = Array[Vector2i]([Vector2i(0, 0)])
+aoe_pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(-1, 1), Vector2i(-1, 0), Vector2i(1, -2), Vector2i(2, -1), Vector2i(1, 1), Vector2i(-1, 2), Vector2i(-2, 1), Vector2i(-1, -1)])
+pre_attack_duration = 0.30000000000000004
+post_attack_duration = 0.3
+ui_title = "Max Slap"
+ui_description = "Swat you away, up to two tiles. Stings both parties."
+energy_cost = 2
+on_exit_chain_target_to_actor = true
+next_state = SubResource("Resource_bfc4o")
+metadata/_custom_type_script = "uid://chptaheu3xjjl"
