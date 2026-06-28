@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bnnqg2xtlxuwf" path="res://play/hud/hover_panel.gd" id="3_xk2m4"]
 [ext_resource type="PackedScene" uid="uid://g8ol80ukqqcc" path="res://play/hud/template_status_effect_button.tscn" id="4_xk2m4"]
 [ext_resource type="Script" uid="uid://gb7t3y8ncwep" path="res://utils/delete_on_enter.gd" id="5_ksooa"]
+[ext_resource type="LabelSettings" uid="uid://bevyqcdafathp" path="res://dialogue/one_liner_label_style.tres" id="6_anqqe"]
 [ext_resource type="Texture2D" uid="uid://c7ers5ee7squq" path="res://actions/ui-icons/weapon_sprite_sword.png" id="7_anqqe"]
 [ext_resource type="Script" uid="uid://cnk6cyi6oyhbp" path="res://play/hud/button_with_blips.gd" id="7_ksooa"]
 [ext_resource type="Script" uid="uid://bxiiyyo4td2qr" path="res://play/hud/actions.gd" id="8_n2sn3"]
@@ -13,8 +14,20 @@
 [ext_resource type="Script" uid="uid://b7h7jmhq7asbx" path="res://play/hud/game_progress_timeline.gd" id="11_n2sn3"]
 [ext_resource type="Texture2D" uid="uid://xaj5pe7dusuu" path="res://play/hud/play-order-icon.png" id="12_16pfv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqh65"]
-bg_color = Color(0.6901961, 0.67058825, 0.32941177, 1)
+[sub_resource type="Gradient" id="Gradient_anqqe"]
+colors = PackedColorArray(0.69803923, 0.6509804, 0.5568628, 1, 0.6901961, 0.67058825, 0.32941177, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c4dlk"]
+gradient = SubResource("Gradient_anqqe")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hb1cg"]
+texture = SubResource("GradientTexture2D_c4dlk")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="Gradient" id="Gradient_mqh65"]
 interpolation_mode = 2
@@ -80,26 +93,12 @@ script = ExtResource("3_xk2m4")
 description = NodePath("VBoxContainer/ScrollContainer/Description")
 title = NodePath("VBoxContainer/Title")
 key_stats = NodePath("VBoxContainer/KeyStats")
-status_effects_flow_container = NodePath("VBoxContainer/PanelContainer/StatusEffectsFlowContainer")
+status_effects_flow_container = NodePath("VBoxContainer/PanelContainer/VBoxContainer/StatusEffectsFlowContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel" unique_id=1327088956]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 6
 alignment = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer" unique_id=614446509]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mqh65")
-
-[node name="StatusEffectsFlowContainer" type="HFlowContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer" unique_id=713616998]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-reverse_fill = true
-
-[node name="TemplateStatusEffectButton" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer/StatusEffectsFlowContainer" unique_id=1917665449 instance=ExtResource("4_xk2m4")]
-layout_mode = 2
-script = ExtResource("5_ksooa")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer" unique_id=1540584710]
 custom_minimum_size = Vector2(0, 72)
@@ -133,6 +132,34 @@ text = "[center][b]Gritty the Philadelphian[/b]
 [i]Thrall of Chaos[/i]"
 fit_content = true
 scroll_active = false
+
+[node name="PanelContainer" type="PanelContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer" unique_id=614446509]
+layout_mode = 2
+tooltip_text = "Status effects will show up here. Hover over an icon to see details."
+theme_override_styles/panel = SubResource("StyleBoxTexture_hb1cg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer" unique_id=1986264921]
+layout_mode = 2
+theme_override_constants/separation = -6
+
+[node name="StatusEffectsFlowContainer" type="HFlowContainer" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=713616998]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+reverse_fill = true
+
+[node name="TemplateStatusEffectButton" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer/VBoxContainer/StatusEffectsFlowContainer" unique_id=1917665449 instance=ExtResource("4_xk2m4")]
+layout_mode = 2
+script = ExtResource("5_ksooa")
+
+[node name="Label" type="Label" parent="Root/HBoxContainer/LeftSide/HoverPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=2142572613]
+modulate = Color(0.91228896, 0.9122889, 0.91228884, 1)
+layout_mode = 2
+text = "Status Effects"
+label_settings = ExtResource("6_anqqe")
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
 
 [node name="ActionsPanel" type="PanelContainer" parent="Root/HBoxContainer/LeftSide" unique_id=1129910745 node_paths=PackedStringArray("actions")]
 unique_name_in_owner = true
