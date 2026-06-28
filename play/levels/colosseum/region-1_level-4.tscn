@@ -13,26 +13,34 @@
 [ext_resource type="Resource" uid="uid://lbxk1wbouqvx" path="res://actions/prefabs/attack_slash-14.tres" id="10_4q88y"]
 [ext_resource type="Resource" uid="uid://b2s2d2mr4vds" path="res://actions/prefabs/guard-basic.tres" id="11_3q8ns"]
 [ext_resource type="Script" uid="uid://bab0cowpfbqgf" path="res://pick-ups/pickup_entry.gd" id="11_82maq"]
-[ext_resource type="Resource" uid="uid://4dlrnlkmxkuy" path="res://pick-ups/created_pickups/pickup_data/heal_gradual.tres" id="12_r0fbu"]
 [ext_resource type="Resource" uid="uid://dndcidgrypfmp" path="res://actions/prefabs/attack_plunge-12.tres" id="12_v76d6"]
 [ext_resource type="Resource" uid="uid://bq8t0b6fk1e7n" path="res://pick-ups/created_pickups/pickup_data/heal_10.tres" id="13_f1w7c"]
 [ext_resource type="Resource" uid="uid://b4iaypo6kvgaw" path="res://actions/prefabs/hire-grunt.tres" id="13_mjsy7"]
 [ext_resource type="Resource" uid="uid://duiilfc0fut4a" path="res://pick-ups/created_pickups/pickup_data/throwable-bomb.tres" id="14_dfu51"]
 [ext_resource type="Resource" uid="uid://de26y2cxtolby" path="res://actions/prefabs/guard-strong.tres" id="14_thm4n"]
+[ext_resource type="Resource" uid="uid://tls00oibymur" path="res://pick-ups/created_pickups/pickup_data/heal_20.tres" id="17_3q8ns"]
+[ext_resource type="Resource" uid="uid://c5r60xy0gvkrt" path="res://pick-ups/created_pickups/pickup_data/heal_gradual_2.tres" id="20_v76d6"]
 
 [sub_resource type="Resource" id="Resource_3xddb"]
 script = ExtResource("11_82maq")
-data = ExtResource("12_r0fbu")
-weight = 0.75
+data = ExtResource("17_3q8ns")
+weight = 0.8
 
 [sub_resource type="Resource" id="Resource_7ht3u"]
 script = ExtResource("11_82maq")
 data = ExtResource("13_f1w7c")
+weight = 0.5
 
 [sub_resource type="Resource" id="Resource_nbvby"]
 script = ExtResource("11_82maq")
 data = ExtResource("14_dfu51")
 weight = 0.75
+
+[sub_resource type="Resource" id="Resource_mjsy7"]
+script = ExtResource("11_82maq")
+data = ExtResource("20_v76d6")
+weight = 0.8
+metadata/_custom_type_script = "uid://bab0cowpfbqgf"
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_n35bw")]
 play_music = 3
@@ -68,5 +76,5 @@ position = Vector2(-93, 104)
 visible = true
 
 [node name="PickUpManager" parent="." index="1" unique_id=490287025]
-pickup_pool = Array[ExtResource("11_82maq")]([SubResource("Resource_3xddb"), SubResource("Resource_7ht3u"), SubResource("Resource_nbvby")])
+pickup_pool = Array[ExtResource("11_82maq")]([SubResource("Resource_3xddb"), SubResource("Resource_7ht3u"), SubResource("Resource_nbvby"), SubResource("Resource_mjsy7")])
 spawn_extra_starting_pickups_after_loss_streak = 2
