@@ -1,8 +1,35 @@
 [gd_resource type="Resource" script_class="ActionApplyStatusPattern" format=3 uid="uid://bw51y8q6rn4l2"]
 
+[ext_resource type="AudioStream" uid="uid://cb7ufumjx60hv" path="res://sfx/monster_1.wav" id="1_5co8o"]
 [ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_pd0x7"]
 [ext_resource type="Script" uid="uid://k4rqrulmvg3t" path="res://actions/apply_status_pattern.gd" id="2_eohdh"]
+[ext_resource type="AudioStream" uid="uid://cdbw81dng4y53" path="res://sfx/monster_2.wav" id="2_kgq02"]
 [ext_resource type="Resource" uid="uid://do1183bc5h0a4" path="res://status-effects/prefabs/weak.tres" id="3_5y5gu"]
+[ext_resource type="AudioStream" uid="uid://dlphshv8a8qah" path="res://sfx/monster_6.wav" id="3_m6k4b"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_midew"]
+random_pitch = 1.0594631
+streams_count = 1
+stream_0/stream = ExtResource("1_5co8o")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l4igd"]
+random_pitch = 1.0472941
+streams_count = 1
+stream_0/stream = ExtResource("2_kgq02")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6jgh0"]
+random_pitch = 1.0594631
+streams_count = 1
+stream_0/stream = ExtResource("3_m6k4b")
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_02f06"]
+stream_count = 3
+stream_0/stream = SubResource("AudioStreamRandomizer_midew")
+stream_0/volume = 0.0
+stream_1/stream = SubResource("AudioStreamRandomizer_l4igd")
+stream_1/volume = 0.0
+stream_2/stream = SubResource("AudioStreamRandomizer_6jgh0")
+stream_2/volume = 0.0
 
 [resource]
 script = ExtResource("2_eohdh")
@@ -10,6 +37,9 @@ pattern = Array[Vector2i]([Vector2i(0, 0)])
 aoe_pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0), Vector2i(1, -2), Vector2i(2, -1), Vector2i(1, 1), Vector2i(-1, 2), Vector2i(-2, 1), Vector2i(-1, -1)])
 status = ExtResource("3_5y5gu")
 override_quantity = 1
+pre_attack_duration = 0.4
+post_attack_duration = 1.5
+loose_sfx_stream = SubResource("AudioStreamSynchronized_02f06")
 ui_title = "Intimidate"
 ui_description = "Strike fear into the hearts of nearby foes, making them Weak."
 action_category = 2

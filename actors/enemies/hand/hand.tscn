@@ -30,6 +30,7 @@ streams_count = 1
 stream_0/stream = ExtResource("9_ao8i2")
 
 [node name="Hand" type="Node2D" unique_id=649134313 node_paths=PackedStringArray("character_visual_root", "health_bar")]
+y_sort_enabled = true
 script = ExtResource("1_jau1j")
 conditionally_usable_actions = Array[ExtResource("2_6ihty")]([ExtResource("3_5odna"), ExtResource("4_ud5b7"), ExtResource("4_ud5b7"), ExtResource("6_tb2nf"), ExtResource("7_ud5b7"), ExtResource("7_ieqv0")])
 cond_team_count = 1
