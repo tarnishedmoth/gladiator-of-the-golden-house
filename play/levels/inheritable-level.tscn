@@ -76,6 +76,7 @@ camera = NodePath("Camera")
 retry_menu = NodePath("CanvasLayer/Retry Menu")
 continue_menu = NodePath("CanvasLayer/Continue Menu")
 pause_menu = NodePath("CanvasLayer/PauseMenu")
+metadata/_edit_lock_ = true
 
 [node name="TileMapLayers" type="Node2D" parent="." unique_id=994423606]
 position = Vector2(32, 0)
@@ -96,18 +97,22 @@ tile_set = SubResource("TileSet_fqe43")
 script = ExtResource("4_pt8uj")
 show_coordinates_in_editor = true
 tile_coords_debug_text_settings = SubResource("LabelSettings_pt8uj")
+metadata/_edit_lock_ = true
 
 [node name="GridTint" parent="TileMapLayers" unique_id=1487691829 instance=ExtResource("4_j2kal")]
 visible = false
+metadata/_edit_lock_ = true
 
 [node name="TileHighlight" type="Sprite2D" parent="TileMapLayers" unique_id=646544377]
 unique_name_in_owner = true
 light_mask = 0
 texture = ExtResource("3_fpxwp")
+metadata/_edit_lock_ = true
 
 [node name="ActionProjections" type="Node2D" parent="TileMapLayers" unique_id=1748832804]
 unique_name_in_owner = true
 top_level = true
+metadata/_edit_lock_ = true
 
 [node name="PickUpManager" type="Node2D" parent="." unique_id=490287025]
 unique_name_in_owner = true
@@ -115,8 +120,10 @@ script = ExtResource("14_mvnmw")
 spawn_extra_starting_pickups_after_loss_streak = 1
 to_spawn = Array[ExtResource("8_xseso")]([SubResource("Resource_gapp4"), SubResource("Resource_bmyxl")])
 metadata/_custom_type_script = "uid://b8rocr8na0vw7"
+metadata/_edit_lock_ = true
 
 [node name="Camera" parent="." unique_id=280332911 instance=ExtResource("6_5am2h")]
+metadata/_edit_lock_ = true
 
 [node name="HUD" parent="." unique_id=414291549 instance=ExtResource("7_wysrq")]
 
@@ -131,14 +138,17 @@ bus = &"Sfx"
 position = Vector2(167, 52)
 script = ExtResource("8_xvlf6")
 metadata/_custom_type_script = "uid://mm6inbfx8c45"
+metadata/_edit_lock_ = true
 
 [node name="TileMapInteractor" type="Node2D" parent="MouseFollower" unique_id=1205975102]
 texture_filter = 2
 script = ExtResource("9_vvs2t")
+metadata/_edit_lock_ = true
 
 [node name="PointLight2D" type="PointLight2D" parent="MouseFollower" unique_id=740285923]
 range_item_cull_mask = 32768
 texture = SubResource("GradientTexture2D_fpxwp")
+metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1228620870]
 
