@@ -495,6 +495,16 @@ func trigger_random_crowd_speech_bubbles(strings: OneLinersStrings = null) -> vo
 
 ## Same as above but it prepends a random phrase depending on the context [param positive].
 func trigger_response_speech_bubbles(positive: bool) -> void:
+	## crowd sfx:
+	if crowd_sfx and randf() > 0.6:
+		if positive:
+			if randf() > 0.5:
+				crowd_sfx.play(CrowdSfx.Sounds.HAPPY_2)
+			else:
+				crowd_sfx.play(CrowdSfx.Sounds.SHOCKED)
+		else:
+			crowd_sfx.play(CrowdSfx.Sounds.MAD)
+	
 	#if randf() > 0.5:
 	var oneliners = get_tree().get_nodes_in_group(OneLiners.GROUP_NAME)
 	if oneliners.is_empty():

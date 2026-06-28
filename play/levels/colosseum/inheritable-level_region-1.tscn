@@ -27,23 +27,27 @@ bus = &"Crowd"
 
 [node name="Mad" type="AudioStreamPlayer" parent="CrowdSfx" index="1" unique_id=780581487]
 stream = ExtResource("5_ifkdc")
+volume_db = -10.0
 bus = &"Crowd"
 
 [node name="Shocked" type="AudioStreamPlayer" parent="CrowdSfx" index="2" unique_id=1746937067]
 stream = ExtResource("6_qg04b")
+volume_db = -10.0
 bus = &"Crowd"
 
 [node name="Happy1" type="AudioStreamPlayer" parent="CrowdSfx" index="3" unique_id=1688104972]
 stream = ExtResource("7_rss57")
+volume_db = -12.0
 bus = &"Crowd"
 
 [node name="Happy2" type="AudioStreamPlayer" parent="CrowdSfx" index="4" unique_id=1999795162]
 stream = ExtResource("8_ik40x")
+volume_db = -12.0
 bus = &"Crowd"
 
 [node name="Idle" type="AudioStreamPlayer" parent="CrowdSfx" index="5" unique_id=1393623806]
 stream = ExtResource("9_qg04b")
-volume_db = -18.0
+volume_db = -19.0
 bus = &"Crowd"
 parameters/looping = true
 script = ExtResource("10_rss57")

@@ -1,5 +1,7 @@
 class_name CrowdSfx extends Node2D
 
+var use_negative_reactions: bool = true
+
 enum Sounds {
 	INTRO = 0,
 	MAD = 1,
@@ -21,7 +23,8 @@ func play(which: Sounds) -> void:
 		Sounds.INTRO:
 			intro.play()
 		Sounds.MAD:
-			mad.play()
+			if use_negative_reactions:
+				mad.play()
 		Sounds.SHOCKED:
 			shocked.play()
 		Sounds.HAPPY_1:

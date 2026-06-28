@@ -624,7 +624,7 @@ func die() -> void:
 	if debug:
 		p("Died!")
 		
-	Level.get_instance().trigger_response_speech_bubbles(director is Player)
+	Level.get_instance().trigger_response_speech_bubbles(not director is Player)
 	
 	director.actors.erase(self)
 	Juice.fade_out(self).tween_callback(queue_free)
