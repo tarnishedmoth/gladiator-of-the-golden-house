@@ -28,8 +28,24 @@ var mirrored_aoe_pattern: Array[Vector2i] ## Cached.
 
 # Called when the node enters the scene tree for the first time.
 func enter(_from: ResourceState = null) -> void:
+	if loose_sfx_stream and loose_sfx_timing == LooseSfxTiming.PRE:
+		_actor.play_sfx_loose(loose_sfx_stream)
+	
+	await _actor.create_tween().tween_interval(pre_attack_duration).finished
+	
+	if loose_sfx_stream and loose_sfx_timing == LooseSfxTiming.RUN:
+		_actor.play_sfx_loose(loose_sfx_stream)
+	
+	## Actually do the thing
 	if status:
 		_get_affected_and_apply_status()
+	
+	if post_attack_duration > 0.0:
+		await _actor.create_tween().tween_interval(post_attack_duration).finished
+	
+	if loose_sfx_stream and loose_sfx_timing == LooseSfxTiming.POST:
+		_actor.play_sfx_loose(loose_sfx_stream)
+	
 	exit()
 
 func _get_affected_and_apply_status() -> void:

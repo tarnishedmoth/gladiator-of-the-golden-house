@@ -292,6 +292,11 @@ func play_sfx(sound: ActorSfxHandler.Sounds) -> void:
 	if sfx:
 		sfx.play(sound)
 
+## Use to play a one-shot temporary audio clip. The [param stream] ill be cached for reuse.
+func play_sfx_loose(stream: AudioStream, global_pos: Vector2 = global_position) -> void:
+	if sfx:
+		sfx.play_oneshot(stream, global_pos)
+
 func spawn_vfx(effect: ActorVfxHandler.FX) -> void:
 	if vfx:
 		vfx.play(effect)

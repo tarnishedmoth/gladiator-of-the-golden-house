@@ -10,11 +10,39 @@ class_name ActionApplyStatus extends Action
 			return status.effect_points
 		else:
 			return override_quantity
+			
+@export_group("Timing")
+## How long to wait after playing FX, before dealing damage. Use for VFX/SFX timing.
+@export_range(0.1, 6.0, 0.1) var pre_attack_duration: float = 0.1
+## How long to wait after running action, before exiting the action and progressing gameplay. Use for VFX/SFX. This stacks with [member ActionQueue.POST_ACTION_AWAIT_TIME].
+@export_range(0.0, 6.0, 0.1) var post_attack_duration: float = 0.0
+
+@export_group("Oneshot Sfx", "loose_sfx_")
+@export var loose_sfx_stream: AudioStream ## Allows for adding a special sound effect (not typical)
+
+enum LooseSfxTiming {PRE = 0, RUN = 1, POST = 2}
+@export var loose_sfx_timing: LooseSfxTiming = LooseSfxTiming.RUN
 
 ## On transition to this state
 func enter(_from: ResourceState = null) -> void:
+	if loose_sfx_stream and loose_sfx_timing == LooseSfxTiming.PRE:
+		_actor.play_sfx_loose(loose_sfx_stream)
+	
+	await _actor.create_tween().tween_interval(pre_attack_duration).finished
+	
+	if loose_sfx_stream and loose_sfx_timing == LooseSfxTiming.RUN:
+		_actor.play_sfx_loose(loose_sfx_stream)
+	
+	## Actually do the thing
 	if status:
 		_get_affected_and_apply_status()
+	
+	if post_attack_duration > 0.0:
+		await _actor.create_tween().tween_interval(post_attack_duration).finished
+	
+	if loose_sfx_stream and loose_sfx_timing == LooseSfxTiming.POST:
+		_actor.play_sfx_loose(loose_sfx_stream)
+	
 	exit()
 	
 func _get_affected_and_apply_status() -> void:

@@ -85,11 +85,26 @@ func play(sound: Sounds) -> void:
 			on_stance_change()
 		_:
 			pass
-			
+
 ## For future use with different weapon/action sounds perhaps.
 func change_attack_sound(stream: AudioStream) -> void:
 	attack.stream = stream
 	
+var oneshot_cache: Dictionary[AudioStream, AudioStreamPlayer2D] = {}
+## instantiate a temporary 2D player and play the audio oneshot
+func play_oneshot(stream: AudioStream, global_pos: Vector2) -> void:
+	var tp: AudioStreamPlayer2D
+	if not stream in oneshot_cache:
+		tp = AudioStreamPlayer2D.new()
+		tp.stream = stream
+		add_child(tp)
+		oneshot_cache[stream] = tp
+	else:
+		tp = oneshot_cache[stream]
+	
+	tp.global_position = global_pos
+	tp.play()
+
 func on_move() -> void:
 	move.play()
 
