@@ -11,6 +11,9 @@ class_name AIActorConditional extends AIActor
 @export var cond_alive_atleast_x_turns: int = 0 ## After taking this many turns, true.
 
 @export_group("Extra Actions")
+@export var use_alt_behavior: bool = false
+@export var alt_behavior: AIActor.ActionSelection
+
 ## If set, and the conditions are passed, an additional action will be
 ## queued [i]before[/i] regularly queued actions ([member actions_to_queue_this_turn]).
 @export var and_always_begin_with: Action
@@ -45,7 +48,7 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 		_actions_to_queue = actions_to_queue_this_turn
 	
 	for i in _actions_to_queue:
-		append_action_to_queue(choose_action(claimed_tiles, actions_to_use))
+		append_action_to_queue(choose_action(claimed_tiles, actions_to_use, alt_behavior if use_alt_behavior else selection_behavior))
 	
 	if conditions_met and and_always_end_with:
 		var _action: Action = and_always_end_with.duplicate()

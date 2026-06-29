@@ -58,14 +58,14 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 		append_action_to_queue(choose_action(claimed_tiles))
 
 
-func choose_action(claimed_tiles: Array[Vector2i], list_of_usable_actions: Array[Action] = usable_actions) -> Action:
+func choose_action(claimed_tiles: Array[Vector2i], list_of_usable_actions: Array[Action] = usable_actions, select_behavior: ActionSelection = selection_behavior) -> Action:
 	## Selection
 	var action: Action
 	if list_of_usable_actions.is_empty():
 		push_error("No usable actions configured!")
 		return null
 	
-	match selection_behavior:
+	match select_behavior:
 		ActionSelection.RANDOM:
 			action = list_of_usable_actions.pick_random()
 		
@@ -113,7 +113,7 @@ func choose_action(claimed_tiles: Array[Vector2i], list_of_usable_actions: Array
 				if debug: p("No usable actions after filtering! Sampling from all actions...")
 				_filtered = list_of_usable_actions.duplicate()
 				
-			if selection_behavior == ActionSelection.CQC_NO_REPEATS:
+			if select_behavior == ActionSelection.CQC_NO_REPEATS:
 				var _no_repeats: Array[Action] = _filtered.filter(func(v: Action): return not v == _last_action_picked)
 				if not _no_repeats.is_empty():
 					_filtered = _no_repeats
