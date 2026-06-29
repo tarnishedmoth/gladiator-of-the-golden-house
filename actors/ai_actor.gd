@@ -395,7 +395,7 @@ func _filter_move_candidates(candidates: Array[Vector2i], claimed_tiles: Array[V
 	if debug: p("Valid move candidates: %s" % str(valid))
 	return valid
 
-func preview_ai_attack()-> void:
+func preview_ai_attack(index: int = 0)-> void:
 	#for each action in actions queue might need to duplcate so I dont use
 	#for action in action_queue.queue:
 		#action_preview.show_preview_action(action)
@@ -406,9 +406,9 @@ func preview_ai_attack()-> void:
 	## Let's settle for the first action and leave the other ones to the player's purview
 	if action_queue.queue.is_empty():
 		return
-	var first_action: Action = action_queue.queue.front()
-	if first_action:
-		render_preview_for_action(first_action, first_action._target)
+	var action: Action = action_queue.queue[wrapi(index, 0, action_queue.queue.size())]
+	if action:
+		render_preview_for_action(action, action._target)
 
 #func hide_preview_attack()-> void: ## DEPRECATED merged into [Actor]
 	#action_preview.hide_preview_action()

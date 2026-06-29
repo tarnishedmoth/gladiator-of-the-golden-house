@@ -155,14 +155,21 @@ func _unhandled_input(event: InputEvent) -> void:
 			user_pressed_end_turn_button()
 		elif event.is_action_released(&"end_turn"):
 			user_released_end_turn_button()
-
+		elif hovering_over_actor:
+			if event.is_action_pressed(&"scroll_up"):
+				_hover_preview_index -= 1
+				update_npc_action_preview()
+			elif event.is_action_pressed(&"scroll_down"):
+				_hover_preview_index += 1
+				update_npc_action_preview()
 	else:
 		pass
 
-var _previous_hovered_actor: Actor ## For health
+var hovering_over_actor: Actor ## For health
 func unhover_previous_actor() -> void:
-	if _previous_hovered_actor:
-		_previous_hovered_actor.on_unhovered()
+	_hover_preview_index = 0
+	if hovering_over_actor:
+		hovering_over_actor.on_unhovered()
 
 func _on_interactor_tile_changed(new_coords: Vector2i) -> void:
 	_last_hovered_tile = new_coords
@@ -172,7 +179,7 @@ func _on_interactor_tile_changed(new_coords: Vector2i) -> void:
 	var actor: Actor = Level.get_actor_at(new_coords)
 	if actor:
 		actor.on_hovered()
-		_previous_hovered_actor = actor
+		hovering_over_actor = actor
 	
 	if _currently_playing_action: ## Prevent highlights from appearing when selecting facing direction/animations playing
 		return
@@ -543,6 +550,8 @@ func update_hud_actions_disabled_check() -> void:
 	hud.actions_panel.check_actions_disabled(selected_actor)
 	hud.stash_panel.check_actions_disabled(selected_actor)
 
+
+var _hover_preview_index: int = 0
 func clear_all_npc_action_previews() -> void:
 	for actor in Level.get_all_actors_in_play_order():
 		if actor is AIActor:
@@ -559,7 +568,7 @@ func update_npc_action_preview() -> void:
 		if(_last_hovered_tile != null and current_held_action == null): #prevents preview from being added when an action is being held
 			var actor = Level.get_actor_at(_last_hovered_tile) as AIActor
 			if actor != null:
-				actor.preview_ai_attack()
+				actor.preview_ai_attack(_hover_preview_index)
 
 ## Call to stun the player. Different behavior from [AIActor], where their action queue is cleared...
 ## Typically called at the start of your turn by the status effect Stunned.
