@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ActionDie" format=3 uid="uid://dbjglot58dtvq"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_tcfmn"]
+[ext_resource type="Script" uid="uid://hx5nlrjfae53" path="res://actions/action_die.gd" id="2_mg4un"]
+
+[resource]
+script = ExtResource("2_mg4un")
+ui_title = "Settle"
+ui_description = "Return to the earth as dust (despawns)."
+action_category = 4
+metadata/_custom_type_script = "uid://hx5nlrjfae53"

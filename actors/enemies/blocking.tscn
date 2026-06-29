@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cq3qubrjhebic"]
+
+[ext_resource type="Script" uid="uid://5d6qh71oemsi" path="res://actors/ai_actor_conditional.gd" id="1_quu8j"]
+[ext_resource type="Texture2D" uid="uid://cvhkktn0chihu" path="res://vfx/blob-shadow-64px.png" id="2_b67lg"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_d7ne5"]
+[ext_resource type="Texture2D" uid="uid://okrp8w6x4b3y" path="res://actors/enemies/boulders.png" id="3_d7ne5"]
+[ext_resource type="Resource" uid="uid://dbjglot58dtvq" path="res://actions/prefabs/boulder-despawn.tres" id="3_pwdt3"]
+[ext_resource type="Script" uid="uid://bhpfulxak0eng" path="res://status-effects/status.gd" id="4_ej8ql"]
+[ext_resource type="Resource" uid="uid://cm5jjnibqv7jl" path="res://actions/prefabs/invulnerable.tres" id="5_ej8ql"]
+
+[node name="Rocks" type="Node2D" unique_id=1063021021]
+script = ExtResource("1_quu8j")
+conditionally_usable_actions = Array[ExtResource("2_d7ne5")]([ExtResource("3_pwdt3")])
+cond_team_count = -1
+cond_alive_atleast_x_turns = 1
+alt_actions_to_queue_this_turn = 1
+actions_to_queue_this_turn = 0
+selection_behavior = 5
+SHOW_FACING_INDICATOR = false
+facing_direction_affects_visual = false
+ui_name = "Pile of Earth"
+ui_subtitle = "Obstacle"
+ui_description = "Rocks, dirt, sand and dust."
+max_health = 1
+can_knockback = false
+status_effects = Array[ExtResource("4_ej8ql")]([ExtResource("5_ej8ql")])
+metadata/_custom_type_script = "uid://5d6qh71oemsi"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1273451166]
+texture = ExtResource("3_d7ne5")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D" unique_id=1461050981]
+show_behind_parent = true
+position = Vector2(0, 15)
+scale = Vector2(1.25, 0.75)
+texture = ExtResource("2_b67lg")
