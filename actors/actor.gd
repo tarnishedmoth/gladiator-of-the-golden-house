@@ -19,7 +19,7 @@ signal queued_actions_finished(actor: Actor)
 ## Type constants
 const RENDER_AI_PLAYABLE_TILES: bool = false ## Set to true to render grey tiles for unselected playable target tiles of ai action previews
 const RENDER_PREVIEW_DAMAGE_NUMBERS: bool = false ## True Show inaccurate damage numbers, or show "Hit"
-const SHOW_FACING_INDICATOR: bool = true
+#const SHOW_FACING_INDICATOR: bool = true
 
 ## Filesystem constants
 const ACTING_INDICATOR_SCENE = preload("uid://b8rcnm7yrsyhq")
@@ -29,6 +29,7 @@ const DEFAULT_VFX_HANDLER = preload("uid://l1r068mo4353")
 ## Enums
 
 ## Export properties
+@export var SHOW_FACING_INDICATOR: bool = true
 @export var character_visual_root: Node2D ## The sprite. Right-facing is the correct default direction.
 @export var facing_direction_affects_visual: bool = true ## If true, the [member character_visual_root] will be x-scale flipped for left facing.
 
@@ -875,12 +876,14 @@ func get_translated_pattern_without_obstructions(pattern: Array[Vector2i]) -> Ar
 	return valid
 	
 func on_hovered() -> void:
-	show_healthbar()	
-	facing_indicator.modulate.a = 1.0
+	show_healthbar()
+	if facing_indicator:
+		facing_indicator.modulate.a = 1.0
 	
 func on_unhovered() -> void:
 	hide_healthbar()
-	facing_indicator.modulate.a = 0.5
+	if facing_indicator:
+		facing_indicator.modulate.a = 0.5
 
 #endregion
 
