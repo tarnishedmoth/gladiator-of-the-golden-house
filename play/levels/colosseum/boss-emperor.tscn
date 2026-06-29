@@ -38,6 +38,9 @@ z_index = 1
 [node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("6_7k8q6")]
 position = Vector2(2, 215)
 
+[node name="BaseTileMapLayer" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="2" unique_id=1254354450]
+show_coordinates_in_editor = false
+
 [node name="PointLight2D2" type="PointLight2D" parent="MouseFollower" parent_id_path=PackedInt32Array(687351869) index="2" unique_id=1931896176]
 color = Color(0.48962224, 0.48962224, 0.48962218, 0)
 blend_mode = 2

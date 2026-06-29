@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ActionSpawn" format=3 uid="uid://k042sr1248ic"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_xyyn2"]
+[ext_resource type="Script" uid="uid://buqomxkjocleh" path="res://actions/spawn-actor.gd" id="2_8hihj"]
+
+[resource]
+script = ExtResource("2_8hihj")
+actor_to_spawn = "uid://cq3qubrjhebic"
+pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(0, -2), Vector2i(0, -3)])
+face_to_player = false
+ui_title = "Raise Earth"
+ui_description = "Burrow through the earth and displace it, creating debris."
+action_category = 4
+is_obstructable = true
+metadata/_custom_type_script = "uid://buqomxkjocleh"

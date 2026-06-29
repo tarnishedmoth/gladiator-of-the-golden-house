@@ -22,6 +22,7 @@
 [ext_resource type="Resource" uid="uid://cgkuvmq07ft70" path="res://actions/prefabs/attack_lash-out.tres" id="10_xrolv"]
 [ext_resource type="Resource" uid="uid://em1qxmq5545" path="res://actions/prefabs/player/class-greatsword/class-greatsword_colossal-cleave.tres" id="11_7r3cx"]
 [ext_resource type="Resource" uid="uid://bxvvng0ducbc3" path="res://actions/prefabs/do-nothing.tres" id="12_7tqel"]
+[ext_resource type="Resource" uid="uid://k042sr1248ic" path="res://actions/prefabs/emperor_raise-earth.tres" id="14_xh5ys"]
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="16_xy1ev"]
 [ext_resource type="AudioStream" uid="uid://bqchdo0a7yi27" path="res://sfx/tentacle-attack.ogg" id="17_u5h0j"]
 [ext_resource type="AudioStream" uid="uid://da4a12lo5xwe" path="res://sfx/tentacle-hit.ogg" id="18_ofs2a"]
@@ -66,9 +67,10 @@ stream_1/volume = 0.0
 script = ExtResource("1_d508f")
 conditionally_usable_actions = Array[ExtResource("2_bnpvc")]([ExtResource("3_snba2"), ExtResource("3_snba2"), ExtResource("3_snba2"), ExtResource("4_h1868"), ExtResource("5_k10fa"), ExtResource("6_yrp23")])
 cond_team_count = 2
+use_alt_behavior = true
+alt_behavior = 5
 alt_actions_to_queue_this_turn = 3
-usable_actions = Array[ExtResource("2_bnpvc")]([ExtResource("7_rr812"), ExtResource("7_tod4e"), ExtResource("8_rr812"), ExtResource("9_xh5ys"), ExtResource("10_xrolv"), ExtResource("11_7r3cx"), ExtResource("12_7tqel")])
-selection_behavior = 5
+usable_actions = Array[ExtResource("2_bnpvc")]([ExtResource("7_rr812"), ExtResource("7_tod4e"), ExtResource("8_rr812"), ExtResource("9_xh5ys"), ExtResource("10_xrolv"), ExtResource("11_7r3cx"), ExtResource("12_7tqel"), ExtResource("14_xh5ys")])
 move_towards_target = false
 character_visual_root = NodePath("VisualRoot")
 health_bar = NodePath("health")
