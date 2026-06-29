@@ -1,5 +1,7 @@
 extends Control
 
+@export var add_first_time_completion_text: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if not "text" in self:
@@ -12,3 +14,10 @@ func _ready() -> void:
 	if not self.text.is_empty():
 		self.text += "\n"
 	self.text += "Your playtime: " + string_time
+	
+	if add_first_time_completion_text:
+		check_add_first_time_completion_text()
+
+func check_add_first_time_completion_text() -> void:
+	if GameSettings.get_value(GameSettings.SECTION.COMPLETIONS, "game_completed", false) == true:
+		self.text += "\n\n[b]You have unlocked the remaining starting classes."

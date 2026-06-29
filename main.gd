@@ -31,6 +31,8 @@ enum SceneBlockers {
 			return main_menu_scene
 			
 @export var dev_main_menu_scene:PackedScene
+@export var credits_scene: PackedScene
+
 @export var load_to_developer_menu:bool = true
 @export var skip_splash:bool = false
 
@@ -204,7 +206,11 @@ static func register_level_progressed() -> void:
 	SaveLoad.save_game()
 	
 static func play_level(number: int) -> void:
-	assert(number < instance.levels.size(), "Out of bounds!")
+	assert(number < instance.levels.size() + 1, "Out of bounds!")
+	if number >= instance.levels.size():
+		if not instance.credits_scene: return
+		change_scene(instance.credits_scene, true)
+		return
 	
 	if instance.current_packed_scene.resource_path != instance.levels[number]:
 		## Not reloading a level
