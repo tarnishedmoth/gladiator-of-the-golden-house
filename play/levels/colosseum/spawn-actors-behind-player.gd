@@ -1,5 +1,7 @@
 extends AIDirector
 
+const copy_actions: bool = true
+
 @export var to_spawn: Array[PackedScene]
 
 @onready var enemies_to_spawn: int = to_spawn.size()
@@ -29,6 +31,8 @@ func spawn_one_at(coords: Vector2i) -> void:
 	## set up action
 	add_actor_for_next_turn(spawn)
 	spawn.relocate_root_to_coords(coords)
+	if copy_actions and spawn is AIActor:
+		spawn.replace_usable_actions(Level.get_player_main_character().get_usable_actions())
 
 func has_actors() -> bool: ## Level.gd check objective win condition
 	if _enemies_spawned < enemies_to_spawn:
