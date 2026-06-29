@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cqkf7y4cv7dfs" path="res://characters/Edris.png" id="1_vk8cl"]
 [ext_resource type="Script" uid="uid://bep72nafk08d5" path="res://characters/weapon_anchor.gd" id="2_hjxgr"]
+[ext_resource type="Texture2D" uid="uid://cvhkktn0chihu" path="res://vfx/blob-shadow-64px.png" id="3_o8quf"]
 
 [node name="Edris" type="Sprite2D" unique_id=2018640814]
 texture = ExtResource("1_vk8cl")
@@ -11,3 +12,10 @@ position = Vector2(9, 10)
 script = ExtResource("2_hjxgr")
 enabled = false
 metadata/_custom_type_script = "uid://bep72nafk08d5"
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1480492968]
+modulate = Color(1, 1, 1, 0.49803922)
+show_behind_parent = true
+position = Vector2(-4, 29.000002)
+scale = Vector2(0.5, 0.25)
+texture = ExtResource("3_o8quf")

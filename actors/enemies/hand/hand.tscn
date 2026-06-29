@@ -49,6 +49,7 @@ position = Vector2(-3, -5)
 texture = ExtResource("6_vno0b")
 
 [node name="Shadow" type="Sprite2D" parent="Hand" unique_id=1021459015]
+modulate = Color(1, 1, 1, 0.5882353)
 show_behind_parent = true
 position = Vector2(3, 38)
 scale = Vector2(1, 0.5)

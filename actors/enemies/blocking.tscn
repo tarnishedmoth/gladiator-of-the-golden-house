@@ -29,7 +29,8 @@ metadata/_custom_type_script = "uid://5d6qh71oemsi"
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1273451166]
 texture = ExtResource("3_d7ne5")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D" unique_id=1461050981]
+[node name="Shadow" type="Sprite2D" parent="Sprite2D" unique_id=1461050981]
+modulate = Color(1, 1, 1, 0.54901963)
 show_behind_parent = true
 position = Vector2(0, 15)
 scale = Vector2(1.25, 0.75)

@@ -23,7 +23,9 @@ colors = PackedColorArray(0.4691444, 0.33809522, 3.85046e-07, 1, 1, 1, 1, 1)
 [node name="GiantTentacle" type="Node2D" unique_id=1916901696]
 
 [node name="Blob Shadow" type="Sprite2D" parent="." unique_id=722335881]
-position = Vector2(1.515, -8)
+modulate = Color(1, 1, 1, 0.54901963)
+position = Vector2(5, -6.0000005)
+scale = Vector2(1.5, 0.75)
 texture = ExtResource("1_6oi75")
 
 [node name="Clip Mask" type="Sprite2D" parent="." unique_id=2081511991]

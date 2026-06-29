@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dfkghfhc78g2y" path="res://characters/Xodiac.png" id="1_lclnr"]
 [ext_resource type="Script" uid="uid://bep72nafk08d5" path="res://characters/weapon_anchor.gd" id="2_3ritu"]
+[ext_resource type="Texture2D" uid="uid://cvhkktn0chihu" path="res://vfx/blob-shadow-64px.png" id="3_upyxx"]
 
 [node name="Xodiac" type="Sprite2D" unique_id=1490299025]
 texture = ExtResource("1_lclnr")
@@ -11,3 +12,10 @@ position = Vector2(-11, 9)
 script = ExtResource("2_3ritu")
 enabled = false
 metadata/_custom_type_script = "uid://bep72nafk08d5"
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=81985141]
+modulate = Color(1, 1, 1, 0.49803922)
+show_behind_parent = true
+position = Vector2(0, 29)
+scale = Vector2(0.65, 0.325)
+texture = ExtResource("3_upyxx")
