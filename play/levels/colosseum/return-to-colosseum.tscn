@@ -7,6 +7,33 @@
 [ext_resource type="PackedScene" uid="uid://bgltwsebcssa7" path="res://actors/enemies/chariot/chariot_headless.tscn" id="4_dr0l3"]
 [ext_resource type="PackedScene" uid="uid://nc6507wbgdfk" path="res://actors/enemies/shadow-grunt.tscn" id="4_nmpr6"]
 [ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="5_nmpr6"]
+[ext_resource type="Script" uid="uid://bab0cowpfbqgf" path="res://pick-ups/pickup_entry.gd" id="8_2vpoq"]
+[ext_resource type="Resource" uid="uid://bq8t0b6fk1e7n" path="res://pick-ups/created_pickups/pickup_data/heal_10.tres" id="9_qstmu"]
+[ext_resource type="Resource" uid="uid://tls00oibymur" path="res://pick-ups/created_pickups/pickup_data/heal_20.tres" id="10_qddkm"]
+[ext_resource type="Resource" uid="uid://4dlrnlkmxkuy" path="res://pick-ups/created_pickups/pickup_data/heal_gradual.tres" id="11_bi25i"]
+[ext_resource type="Resource" uid="uid://c5r60xy0gvkrt" path="res://pick-ups/created_pickups/pickup_data/heal_gradual_2.tres" id="12_m3l4y"]
+
+[sub_resource type="Resource" id="Resource_yjem5"]
+script = ExtResource("8_2vpoq")
+data = ExtResource("9_qstmu")
+weight = 0.75
+metadata/_custom_type_script = "uid://bab0cowpfbqgf"
+
+[sub_resource type="Resource" id="Resource_o71or"]
+script = ExtResource("8_2vpoq")
+data = ExtResource("10_qddkm")
+metadata/_custom_type_script = "uid://bab0cowpfbqgf"
+
+[sub_resource type="Resource" id="Resource_41hmi"]
+script = ExtResource("8_2vpoq")
+data = ExtResource("11_bi25i")
+weight = 0.75
+metadata/_custom_type_script = "uid://bab0cowpfbqgf"
+
+[sub_resource type="Resource" id="Resource_rutk5"]
+script = ExtResource("8_2vpoq")
+data = ExtResource("12_m3l4y")
+metadata/_custom_type_script = "uid://bab0cowpfbqgf"
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_3xhx5")]
 play_music = 3
@@ -42,6 +69,11 @@ dm_dmg_r = 2.0
 dm_dmg_rl = 1.5
 
 [node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("3_cyjlg")]
+
+[node name="PickUpManager" parent="." index="1" unique_id=490287025]
+pickup_pool = Array[ExtResource("8_2vpoq")]([SubResource("Resource_yjem5"), SubResource("Resource_o71or"), SubResource("Resource_41hmi"), SubResource("Resource_rutk5")])
+spawn_extra_starting_pickups_quantity = 2
+to_spawn = Array[ExtResource("8_2vpoq")]([SubResource("Resource_yjem5"), SubResource("Resource_o71or"), SubResource("Resource_41hmi"), SubResource("Resource_rutk5")])
 
 [node name="CrowdSfx" parent="." index="7" unique_id=1516685823]
 disabled = true

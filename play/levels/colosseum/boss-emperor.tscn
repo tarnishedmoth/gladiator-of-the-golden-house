@@ -3,7 +3,36 @@
 [ext_resource type="PackedScene" uid="uid://dn85j1jxgk42" path="res://play/levels/colosseum/inheritable-level_region-1.tscn" id="1_vqf3r"]
 [ext_resource type="PackedScene" uid="uid://cssp62duxk0eq" path="res://actors/emperor/emperor_actor.tscn" id="3_1cuou"]
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="3_ir8aq"]
+[ext_resource type="Script" uid="uid://bab0cowpfbqgf" path="res://pick-ups/pickup_entry.gd" id="5_1a87v"]
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="6_7k8q6"]
+[ext_resource type="Resource" uid="uid://c5srl64r60fwn" path="res://actions/prefabs/demigod_slash.tres" id="6_idd5j"]
+[ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="7_7k8q6"]
+[ext_resource type="Texture2D" uid="uid://bevn7nwcab4e5" path="res://actions/ui-icons/weapon_sprite_greatsword.png" id="8_a7aun"]
+[ext_resource type="Resource" uid="uid://b34xqoxtpxt5w" path="res://actions/prefabs/demigod_roar.tres" id="9_v4l8b"]
+
+[sub_resource type="Resource" id="Resource_ubf63"]
+script = ExtResource("7_7k8q6")
+pick_up_action = ExtResource("6_idd5j")
+ui_name = "Demigod's Weapon"
+ui_description = "Gain a demigod's ability."
+texture = ExtResource("8_a7aun")
+metadata/_custom_type_script = "uid://80k033ktqcl0"
+
+[sub_resource type="Resource" id="Resource_xn458"]
+script = ExtResource("5_1a87v")
+data = SubResource("Resource_ubf63")
+
+[sub_resource type="Resource" id="Resource_e8qk0"]
+script = ExtResource("7_7k8q6")
+pick_up_action = ExtResource("9_v4l8b")
+ui_name = "Demigod's Weapon"
+ui_description = "Gain a demigod's ability."
+texture = ExtResource("8_a7aun")
+metadata/_custom_type_script = "uid://80k033ktqcl0"
+
+[sub_resource type="Resource" id="Resource_q07th"]
+script = ExtResource("5_1a87v")
+data = SubResource("Resource_e8qk0")
 
 [sub_resource type="Gradient" id="Gradient_3cqig"]
 interpolation_mode = 2
@@ -41,6 +70,9 @@ position = Vector2(-1, 215)
 
 [node name="BaseTileMapLayer" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="2" unique_id=1254354450]
 show_coordinates_in_editor = false
+
+[node name="PickUpManager" parent="." index="1" unique_id=490287025]
+pickup_pool = Array[ExtResource("5_1a87v")]([SubResource("Resource_xn458"), SubResource("Resource_q07th")])
 
 [node name="PointLight2D2" type="PointLight2D" parent="MouseFollower" parent_id_path=PackedInt32Array(687351869) index="2" unique_id=1931896176]
 color = Color(0.48962224, 0.48962224, 0.48962218, 0)
