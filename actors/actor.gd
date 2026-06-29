@@ -112,6 +112,7 @@ func get_status_effects() -> Array[Status]:
 ## Variable data
 var is_active: bool = false ## Used by [Director] to determine if this actor gets calls on for turn logic. See [method setup]
 var has_died: bool = false ## If this is true, we're currently trying to exit the tree or otherwise cease.
+var turns_taken: int = 0
 var emit_actions_finished_signal: bool = false
 
 var current_tile_coords: Vector2i
@@ -206,7 +207,7 @@ func on_turn_start() -> void: ## Called by Director
 	
 func on_turn_end() -> void: ## Called by Director
 	status_manager.on_turn_end()
-
+	turns_taken += 1
 
 var _acting_indicator: Node2D
 var _acting_tween: Tween

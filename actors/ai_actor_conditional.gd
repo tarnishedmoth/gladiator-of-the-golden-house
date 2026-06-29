@@ -8,6 +8,7 @@ class_name AIActorConditional extends AIActor
 ## Truthy if [member director]'s actor count (not including this actor) is equal to or less than this number.
 ## Set to -1 to disable this condition check.
 @export_range(-1, 9, 1.0, "or_greater", "suffix:actors") var cond_team_count: int = 0
+@export var cond_alive_atleast_x_turns: int = 0 ## After taking this many turns, true.
 
 @export_group("Extra Actions")
 ## If set, and the conditions are passed, an additional action will be
@@ -55,6 +56,10 @@ func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> voi
 func _check_conditions() -> bool:
 	if cond_team_count != -1:
 		if (director.actors.size() - 1) > cond_team_count:
+			return false
+	
+	if cond_alive_atleast_x_turns > 0:
+		if turns_taken < cond_alive_atleast_x_turns:
 			return false
 	
 	## add more fail checks here

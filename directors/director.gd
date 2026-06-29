@@ -11,6 +11,7 @@ class_name Director extends Node2D
 signal turn_taken(Director)
 
 const VERBOSE:bool = true
+const DIRECTOR_CHANGE_TIMEOUT: float = 0.4
 
 var actors: Array[Actor] ## Order of items in array is important.
 
@@ -30,7 +31,7 @@ func take_turn() -> void:
 	## Do turn stuff
 	is_active = true
 	if VERBOSE: p("It's my turn!..")
-	await get_tree().create_timer(0.35).timeout ## waiting
+	await get_tree().create_timer(DIRECTOR_CHANGE_TIMEOUT).timeout ## waiting
 	
 	## Check actors
 	if not actors.is_empty():
