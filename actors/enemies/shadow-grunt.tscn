@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://nc6507wbgdfk"]
+
+[ext_resource type="Script" uid="uid://2lxtpvvfchas" path="res://actors/enemies/grunt/grunt.gd" id="1_2x72r"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_c1r3x"]
+[ext_resource type="Resource" uid="uid://chyn3vp8qw7ue" path="res://actions/prefabs/grunt_light_attack.tres" id="3_k3lla"]
+[ext_resource type="Resource" uid="uid://cior70oyylpmi" path="res://actions/prefabs/grunt_heavy_attack.tres" id="4_5owvr"]
+[ext_resource type="Resource" uid="uid://jw3r4whhtbxs" path="res://actions/prefabs/move_one_tile.tres" id="5_knjbo"]
+[ext_resource type="Resource" uid="uid://7a2sfsgl5bku" path="res://actions/prefabs/boost-focus-self.tres" id="6_qpcwm"]
+[ext_resource type="Script" uid="uid://cmeyq4dmg5dka" path="res://actors/player/player_art.gd" id="7_rj8h8"]
+[ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="9_jopr1"]
+[ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="10_ipeas"]
+[ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="11_y73ni"]
+
+[node name="ShadowGrunt" type="Node2D" unique_id=84579020 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
+script = ExtResource("1_2x72r")
+drop_chance = 0.45
+usable_actions = Array[ExtResource("2_c1r3x")]([ExtResource("3_k3lla"), ExtResource("4_5owvr"), ExtResource("5_knjbo"), ExtResource("6_qpcwm")])
+character_visual_root = NodePath("PlayerArt")
+health_bar = NodePath("health")
+speech_bubble = NodePath("SpeechBubble")
+ui_name = "Shadow"
+ui_subtitle = "Anomaly"
+ui_description = "How long has he been behind you?"
+max_health = 16
+
+[node name="PlayerArt" type="Node2D" parent="." unique_id=1481137980]
+modulate = Color(0, 0, 0, 1)
+script = ExtResource("7_rj8h8")
+
+[node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("9_jopr1")]
+
+[node name="health" parent="." unique_id=43880176 instance=ExtResource("10_ipeas")]
+position = Vector2(0, -30)
+
+[node name="SpeechBubble" parent="." unique_id=757394792 instance=ExtResource("11_y73ni")]
+position = Vector2(0, -38)
