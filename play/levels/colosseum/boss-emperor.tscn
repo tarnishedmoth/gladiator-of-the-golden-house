@@ -34,9 +34,10 @@ script = ExtResource("3_ir8aq")
 
 [node name="EmperorActor" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=1443156600 instance=ExtResource("3_1cuou")]
 z_index = 1
+facing = 3
 
 [node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("6_7k8q6")]
-position = Vector2(2, 215)
+position = Vector2(-1, 215)
 
 [node name="BaseTileMapLayer" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="2" unique_id=1254354450]
 show_coordinates_in_editor = false

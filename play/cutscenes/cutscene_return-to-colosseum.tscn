@@ -98,22 +98,30 @@ autoplay = &"crowd-run"
 [node name="BackgroundColosseum" parent="." unique_id=651320207 instance=ExtResource("2_fai7j")]
 position = Vector2(0, -90)
 particles_enabled = true
+nonemissive_modulate = Color(0.4351923, 0.43519226, 0.43519226, 1)
 start_animation_on_ready = true
+no_crowd = false
 transition_to_color = Color(0.4351923, 0.43519226, 0.43519226, 1)
 transition_time = 9.0
 
 [node name="RuneParticles" parent="BackgroundColosseum" index="0" unique_id=936515396]
 emitting = true
 
+[node name="Nonemissive" parent="BackgroundColosseum" index="1" unique_id=765378401]
+modulate = Color(0.4351923, 0.43519226, 0.43519226, 1)
+
+[node name="BackdropRed" parent="BackgroundColosseum/Nonemissive" index="1" unique_id=1019663518]
+modulate = Color(1, 1, 1, 1)
+
 [node name="Oneliners" parent="BackgroundColosseum/Nonemissive/Crowd" parent_id_path=PackedInt32Array(651320207, 1063972528) index="6" unique_id=968635287]
 visible = false
 
 [node name="emperor" parent="BackgroundColosseum" unique_id=1077291446 instance=ExtResource("3_k0ajy")]
-position = Vector2(271, 74)
+position = Vector2(589, 61)
 scale = Vector2(1, 1)
 
 [node name="OneLiners" parent="BackgroundColosseum/emperor" index="2" unique_id=1096534424]
-seconds_before_starting = 0.1
+seconds_before_starting = 5.0
 bubble_timespan_seconds = 5.0
 wait_seconds_min = 0.0
 wait_seconds_max = 1.0
