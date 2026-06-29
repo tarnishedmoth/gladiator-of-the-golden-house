@@ -5,6 +5,13 @@ class_name HUDSelectedActorActionPanel extends PanelContainer
 @export var description: RichTextLabel
 @export var amount: RichTextLabel
 
+var highlight_rect: ColorRect
+
+func _init() -> void:
+	if not highlight_rect:
+		highlight_rect = ColorRect.new()
+		highlight_rect.self_modulate = Color("ffffff28")
+		add_child(highlight_rect)
 
 func clear_all() -> void:
 	title.text = ""
@@ -12,6 +19,7 @@ func clear_all() -> void:
 	action_image.texture = null
 	amount.text = "[center]"
 	amount.hide()
+	highlight_rect.hide()
 
 func populate(actor: Actor, action:Action) -> void:
 	clear_all()
@@ -53,3 +61,16 @@ func populate(actor: Actor, action:Action) -> void:
 			else:
 				_description = _description + " apply %s." % action.status
 	description.text = _description
+
+var _highlighting: Tween
+func highlight(yes: bool = true) -> void:
+	if _highlighting:
+		_highlighting.kill()
+	if yes:
+		highlight_rect.show()
+		_highlighting = highlight_rect.create_tween().set_loops()
+		_highlighting.tween_property(highlight_rect, ^"modulate", modulate.darkened(0.75), Juice.FAST)
+		_highlighting.tween_property(highlight_rect, ^"modulate", modulate, Juice.FAST)
+	else:
+		highlight_rect.modulate = Color.WHITE
+		highlight_rect.hide()

@@ -117,7 +117,15 @@ func _populate_actor_hover_panel(actor: Actor) -> void:
 			## Show action details
 			for action in actor.get_action_queue().queue:
 				make_selected_actor_action_panel(actor, action)
-				
+
+func highlight_actor_action_details(index: int) -> void:
+	if selected_actor_action_panels.is_empty(): return
+	for panel in selected_actor_action_panels:
+		if panel == selected_actor_action_panels[index]:
+			panel.highlight(true)
+		else:
+			panel.highlight(false)
+
 func _populate_pickup_hover_panel(pickup: PickUp) -> void:
 	_last_shown = _Panel.PICKUP ## Pagination for overlapping entities
 	

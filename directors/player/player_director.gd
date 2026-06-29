@@ -155,7 +155,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			user_pressed_end_turn_button()
 		elif event.is_action_released(&"end_turn"):
 			user_released_end_turn_button()
-		elif hovering_over_actor:
+		elif selected_tile != null and Level.get_actor_at(selected_tile):
 			if event.is_action_pressed(&"scroll_up"):
 				_hover_preview_index -= 1
 				update_npc_action_preview()
@@ -228,6 +228,9 @@ func _on_click_on_tile(tile_coords) -> void:
 				else:
 					hud.populate_hover_panel(selected_tile)
 					hud.show_hover_panel(true)
+					_hover_preview_index = 0
+					hud.highlight_actor_action_details(_hover_preview_index)
+					
 					set_selected_tile_visual(true)
 
 			
@@ -569,6 +572,7 @@ func update_npc_action_preview() -> void:
 			var actor = Level.get_actor_at(_last_hovered_tile) as AIActor
 			if actor != null:
 				actor.preview_ai_attack(_hover_preview_index)
+				hud.highlight_actor_action_details(wrapi(_hover_preview_index, 0, actor.get_action_queue().queue.size()))
 
 ## Call to stun the player. Different behavior from [AIActor], where their action queue is cleared...
 ## Typically called at the start of your turn by the status effect Stunned.
