@@ -467,6 +467,7 @@ func show_facing_indicator(show_: bool = true) -> void:
 		## Set rotation
 		var degrees: int = 60 * facing
 		facing_indicator.rotation_degrees = degrees
+		#can tweak sw,se,nw,ne offsets here possible
 		
 		#if debug: ## just spammy
 			#p("Facing %s and rotated to %d degrees." % [facing, degrees])
@@ -871,10 +872,12 @@ func get_translated_pattern_without_obstructions(pattern: Array[Vector2i]) -> Ar
 	return valid
 	
 func on_hovered() -> void:
-	show_healthbar()
+	show_healthbar()	
+	facing_indicator.modulate.a = 1.0
 	
 func on_unhovered() -> void:
 	hide_healthbar()
+	facing_indicator.modulate.a = 0.5
 
 #endregion
 
