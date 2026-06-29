@@ -11,6 +11,9 @@ func replace_art() -> void:
 	
 	if "modulate" in instance:
 		instance.modulate = modulate
+	if "self_modulate" in instance:
+		instance.self_modulate = self_modulate
+	
 	replace_by(instance)
 	
 	if actor_parent:
