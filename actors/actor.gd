@@ -8,7 +8,7 @@ class_name Actor extends Node2D
 ## We use a state machine called an [ActionQueue].
 ## Generally, actors don't do anything until a [Director] tells them that they can. See [method on_turn_start].
 ## Directors don't micro-manage Actors, though. See [AIActor] for more of that.
-@export var debug: bool = true
+@export var debug: bool = false
 func p(args):
 	print_rich("[bgcolor=grey][color=black]", "Actor %s : " % name, args)
 

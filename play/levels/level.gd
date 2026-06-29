@@ -3,7 +3,7 @@ class_name Level extends Node2D
 ## Handles basic setup, turn events, and exit of the play scene.
 
 ## Debug printing
-const VERBOSE: bool = true
+const VERBOSE: bool = false
 func p(args):
 	if VERBOSE: print_rich("[bgcolor=red][color=white]", "Level: ", args)
 

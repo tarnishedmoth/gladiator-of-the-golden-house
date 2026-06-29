@@ -10,7 +10,7 @@ class_name Director extends Node2D
 
 signal turn_taken(Director)
 
-const VERBOSE:bool = true
+const VERBOSE:bool = false
 const DIRECTOR_CHANGE_TIMEOUT: float = 0.4
 
 var actors: Array[Actor] ## Order of items in array is important.

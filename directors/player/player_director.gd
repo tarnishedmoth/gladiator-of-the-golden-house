@@ -13,7 +13,7 @@ var select_facing_is_visible: bool:
 			## Hide the tile highlight when the widget is showing
 			tile_interactor.show_highlight = not select_facing_is_visible
 
-const VERBOSE_CARDS: bool = true
+const VERBOSE_CARDS: bool = false
 
 var tile_map: TileMapLayer
 var tile_interactor: TileInteractor
