@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ActionSpawn" format=3 uid="uid://c6us0r6w23u4r"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_kp4o7"]
+[ext_resource type="Script" uid="uid://buqomxkjocleh" path="res://actions/spawn-actor.gd" id="2_50gl8"]
+
+[resource]
+script = ExtResource("2_50gl8")
+actor_to_spawn = "uid://2saekox86l21"
+pattern = Array[Vector2i]([Vector2i(1, -2), Vector2i(2, -1), Vector2i(1, 1), Vector2i(-1, 2), Vector2i(-2, 1), Vector2i(-1, -1)])
+allow_facing_before = true
+ui_title = "Sprout Tentacles"
+ui_description = "Push its tentacles underground to emerge through the earth."
+action_category = 4
+energy_cost = 1
+metadata/_custom_type_script = "uid://buqomxkjocleh"

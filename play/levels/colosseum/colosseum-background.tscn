@@ -19,6 +19,8 @@ no_crowd = null
 transition_to_color = Color(0.23031491, 0.23031494, 0.23031494, 1)
 
 [node name="RuneParticles" parent="." unique_id=936515396 instance=ExtResource("2_5foc1")]
+modulate = Color(1, 1, 1, 0.61960787)
+light_mask = 65537
 position = Vector2(0, 68)
 
 [node name="Nonemissive" type="Node2D" parent="." unique_id=765378401]

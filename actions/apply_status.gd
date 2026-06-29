@@ -7,7 +7,10 @@ class_name ActionApplyStatus extends Action
 @export_range(0, 99, 1, "or_greater") var override_quantity: int:
 	get:
 		if not override_quantity:
-			return status.effect_points
+			if status != null: ## null check
+				return status.effect_points
+			else:
+				return 0 ## should never happen
 		else:
 			return override_quantity
 			
@@ -87,3 +90,5 @@ func apply_status(actor: Actor) -> void:
 		StatusManager.apply_status_to_actor(status, actor, override_quantity)
 		
 		await actor.animation_finished
+
+func applies_to_actor(_actor_to_apply_status_to: Actor) -> bool: return true

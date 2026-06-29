@@ -1,28 +1,91 @@
 [gd_scene format=3 uid="uid://cssp62duxk0eq"]
 
 [ext_resource type="Script" uid="uid://5d6qh71oemsi" path="res://actors/ai_actor_conditional.gd" id="1_d508f"]
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_bnpvc"]
 [ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="2_exo16"]
 [ext_resource type="Texture2D" uid="uid://cvhkktn0chihu" path="res://vfx/blob-shadow-64px.png" id="2_r6wwg"]
 [ext_resource type="Material" uid="uid://cvtvuq50oy655" path="res://actors/emperor/emperor-tail-wobble-material.tres" id="3_luptb"]
 [ext_resource type="Texture2D" uid="uid://c1kfg6i5pwhv6" path="res://actors/big-healthbarBG.png" id="3_ouhsa"]
+[ext_resource type="Resource" uid="uid://c6us0r6w23u4r" path="res://actions/prefabs/emperor_sprout-tentacles.tres" id="3_snba2"]
 [ext_resource type="Texture2D" uid="uid://bii6csdoc02tk" path="res://actors/big-healthbar.png" id="4_cnmra"]
 [ext_resource type="Texture2D" uid="uid://cbo53lrhuoop" path="res://actors/emperor/emperor-tail.png" id="4_exo16"]
+[ext_resource type="Resource" uid="uid://bw51y8q6rn4l2" path="res://actions/prefabs/intimidate.tres" id="4_h1868"]
+[ext_resource type="Resource" uid="uid://d3l2ala5l84w6" path="res://actions/prefabs/attack_big-squish.tres" id="5_k10fa"]
 [ext_resource type="Texture2D" uid="uid://dv10lif6nt35c" path="res://actors/emperor/emperor_by_amada_stanley.png" id="5_riujt"]
+[ext_resource type="Resource" uid="uid://jo8nyxf20uwb" path="res://actions/prefabs/attack_max-slap.tres" id="6_yrp23"]
 [ext_resource type="PackedScene" uid="uid://dwfr86j8i7cp4" path="res://dialogue/one_liners.tscn" id="7_riujt"]
+[ext_resource type="Resource" uid="uid://c6aox1qg71hb1" path="res://actions/prefabs/emperor_overwhelm-senses.tres" id="7_rr812"]
+[ext_resource type="Resource" uid="uid://dhvgu78g6tf7k" path="res://actions/prefabs/player/class-a_brace.tres" id="7_tod4e"]
 [ext_resource type="Resource" uid="uid://by8vmqwwbt0p6" path="res://dialogue/strings_emperor-normal.tres" id="8_ouhsa"]
+[ext_resource type="Resource" uid="uid://b34xqoxtpxt5w" path="res://actions/prefabs/demigod_roar.tres" id="8_rr812"]
+[ext_resource type="Resource" uid="uid://lbxk1wbouqvx" path="res://actions/prefabs/attack_slash-14.tres" id="9_xh5ys"]
+[ext_resource type="Resource" uid="uid://cgkuvmq07ft70" path="res://actions/prefabs/attack_lash-out.tres" id="10_xrolv"]
+[ext_resource type="Resource" uid="uid://em1qxmq5545" path="res://actions/prefabs/player/class-greatsword/class-greatsword_colossal-cleave.tres" id="11_7r3cx"]
+[ext_resource type="Resource" uid="uid://bxvvng0ducbc3" path="res://actions/prefabs/do-nothing.tres" id="12_7tqel"]
+[ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="16_xy1ev"]
+[ext_resource type="AudioStream" uid="uid://bqchdo0a7yi27" path="res://sfx/tentacle-attack.ogg" id="17_u5h0j"]
+[ext_resource type="AudioStream" uid="uid://da4a12lo5xwe" path="res://sfx/tentacle-hit.ogg" id="18_ofs2a"]
+[ext_resource type="AudioStream" uid="uid://carpxxasddeyi" path="res://sfx/hemorrhage.wav" id="19_a7yyu"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mnhjp"]
+random_pitch = 1.0472941
+streams_count = 1
+stream_0/stream = ExtResource("17_u5h0j")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_do06k"]
+random_pitch = 1.0412621
+streams_count = 1
+stream_0/stream = ExtResource("18_ofs2a")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7mele"]
+random_pitch = 1.0412621
+streams_count = 1
+stream_0/stream = ExtResource("18_ofs2a")
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_tod4e"]
+stream_count = 2
+stream_0/stream = ExtResource("19_a7yyu")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("18_ofs2a")
+stream_1/volume = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s0bmr"]
+random_pitch = 1.0905077
+random_volume_offset_db = 0.5
+streams_count = 1
+stream_0/stream = SubResource("AudioStreamSynchronized_tod4e")
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_rr812"]
+stream_count = 2
+stream_0/stream = SubResource("AudioStreamRandomizer_7mele")
+stream_0/volume = 0.0
+stream_1/stream = SubResource("AudioStreamRandomizer_s0bmr")
+stream_1/volume = 0.0
 
 [node name="EmperorActor" type="Node2D" unique_id=1443156600 node_paths=PackedStringArray("character_visual_root", "health_bar")]
 script = ExtResource("1_d508f")
+conditionally_usable_actions = Array[ExtResource("2_bnpvc")]([ExtResource("3_snba2"), ExtResource("3_snba2"), ExtResource("3_snba2"), ExtResource("4_h1868"), ExtResource("5_k10fa"), ExtResource("6_yrp23")])
+cond_team_count = 2
+alt_actions_to_queue_this_turn = 3
+usable_actions = Array[ExtResource("2_bnpvc")]([ExtResource("7_rr812"), ExtResource("7_tod4e"), ExtResource("8_rr812"), ExtResource("9_xh5ys"), ExtResource("10_xrolv"), ExtResource("11_7r3cx"), ExtResource("12_7tqel")])
+selection_behavior = 5
+move_towards_target = false
 character_visual_root = NodePath("VisualRoot")
 health_bar = NodePath("health")
 label_anchor = Vector2(0, -64)
+persistent_data_key = &"Emperor"
 ui_name = "The Emperor"
+ui_subtitle = "Demigod"
+ui_description = "He who wants to rule the world."
 max_health = 220
 can_knockback = false
+dm_dmg_rr = 3.0
+dm_dmg_r = 4.0
+dm_dmg_rl = 3.0
 metadata/_custom_type_script = "uid://5d6qh71oemsi"
 
 [node name="health" parent="." unique_id=1326189825 instance=ExtResource("2_exo16")]
-position = Vector2(0, -122)
+position = Vector2(0, -100)
 texture = ExtResource("3_ouhsa")
 
 [node name="bar" parent="health" index="0" unique_id=1924444429]
@@ -37,29 +100,34 @@ offset_right = 138.0
 [node name="VisualRoot" type="Node2D" parent="." unique_id=1687891292]
 
 [node name="Shadow" type="Sprite2D" parent="VisualRoot" unique_id=807868083]
-position = Vector2(-3, 9)
+position = Vector2(-2, 31)
 scale = Vector2(3, 1)
 texture = ExtResource("2_r6wwg")
 
 [node name="emperor-tail-wobble" type="Sprite2D" parent="VisualRoot" unique_id=717060771]
 material = ExtResource("3_luptb")
-position = Vector2(-81, -3)
+position = Vector2(-80, 19)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_exo16")
 flip_h = true
 region_rect = Rect2(32, 0, 32, 64)
 
 [node name="emperor-body" type="Sprite2D" parent="VisualRoot" unique_id=485523976]
-position = Vector2(10, -34)
+position = Vector2(11, -12)
 texture = ExtResource("5_riujt")
 flip_h = true
 
 [node name="OneLiners" parent="." unique_id=1096534424 instance=ExtResource("7_riujt")]
-position = Vector2(11, -125)
+position = Vector2(9, -103)
 seconds_before_starting = 15.0
 bubble_timespan_seconds = 3.5
 wait_seconds_min = 10.0
 wait_seconds_max = 90.0
 one_liners = ExtResource("8_ouhsa")
+
+[node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("16_xy1ev")]
+override_attack = SubResource("AudioStreamRandomizer_mnhjp")
+override_get_hit = SubResource("AudioStreamRandomizer_do06k")
+override_get_hit_critical = SubResource("AudioStreamSynchronized_rr812")
 
 [editable path="health"]

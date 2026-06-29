@@ -27,6 +27,14 @@ var targets: Array[Actor]
 
 func _init(host_actor: Actor) -> void:
 	self.actor = host_actor
+	
+	## Set up preset status effects
+	if not status_effects.is_empty():
+		var copy: Array[Status] = status_effects.duplicate()
+		if debug: p("Added %d preset status effects..." % copy.size())
+		status_effects.clear()
+		for s in copy:
+			add_status(s, &"preset")
 
 #region Reactive methods
 
@@ -116,13 +124,9 @@ func add_status(status: Status, key = "", do_duplicate: bool = true) -> void:
 	var matching
 	for _status in status_effects:
 		if Status.is_same_status(status, _status):
-			if not key:
-				matching = _status
-				break
-			elif _status.get_meta(&"key") == key:
-				matching = _status
-				break
-			
+			matching = _status
+			break
+	
 	if matching:
 		matching.add_points(status.effect_points)
 		if debug:
