@@ -325,13 +325,14 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 120
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 120
 theme_override_constants/margin_bottom = 20
 metadata/_tab_index = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/CreditsTab" unique_id=1949721270]
 layout_mode = 2
+theme_override_constants/separation = 20
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/CreditsTab/VBoxContainer" unique_id=1920899822]
 layout_mode = 2
@@ -341,8 +342,27 @@ horizontal_scroll_mode = 0
 [node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/CreditsTab/VBoxContainer/ScrollContainer" unique_id=1619900416]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Credits"
+focus_mode = 2
+theme_override_constants/line_separation = -4
+theme_override_constants/paragraph_separation = 10
+text = "Michael Avrie: project lead, initial game prototype & schedule, core gameplay, core systems (levels, directors, actors, actions, status effects), turn logic, action previews, level & combat design, UI/UX design, player classes, writing (action/status titles & descriptions, cutscenes), actor actions system & related UI, cutscenes, user options & save/load, action cost functionality, enemy behavior systems, unique level logic, sprites (roman army armor accessories, enemy designs & implementation (except Chariots), hex grid tile vfx, jar item, icons, shield, weapons, earth pile boulders), sounds (incl. pickup, swooshes, hit, block, guard broken, hemorrhage, grunts, monsters, eldritch, buffs, menu sounds) and integration, projectiles, status & explosion vfx & sfx, difficulty balancing, boss health bar, reactive crowd speech/sfx triggers, camera movement, character shadows, clouds, player avatar selection, randomized crowd art optimization, font selection, polish & bug fixes
+Dalton Charleston: Energy system, action types for both enemies and players, status effect support (incl. defense, stun), speech bubbles, openers, health and damage feature, consumable pickups, action card hover tool tip details, enemy action preview, win/loss detection and retry or continue menu, assorted bug fixes
+Philippe Vaillancourt: Music (main menu and boss fight), peristent card stash system, Grunt enemy behavior, enemy collision avoidance, animated text HUD popups, actor at coordinate lookup, save/load persistence serialization and round-trip test, snap to hex, damage system improvements, code repository EOL configuration
+Christer \"McFunkypants\" Kaitila: colosseum & sky scene art (incl. horror variation), animated banners & flags, gauntlet cursor, health bars, crowd sounds, polish effects (attack slash vfx, weapon sprite bobbing), one liner writing, avatar sprite facing flip, hex grid styling, tile hover highlight designs
+Amanda Stanley: Roman combatant art, crowd art including outfit randomization feature, primary color palette, Squid Emperor art, blue tentacle art
+Jalent (Jason W): Core hex-grid maths & targeting system including facing / range, area of effect, pickups, enemy drops, tile highlight, facing selector sprite & animation
+TheDemonMaster: 3 player avatars (shirtless with beard, blue hair, green tunic with bow)
+Noah Wizard: Early level initial designs, facing graphic, hex grid guide, early lore writing, project icon, additional level design and mechanics concepts
+Mark Guinn: Healing pickups and status effects
+Aaron Sherman: Battle music, battle music win/loss stings, creepy ambient music
+Chris Anderson: Chariot (art and code)
+Marshy: Move behavior setting for enemies (target/random with distance sorting)
+Dan Dela Rosa: Compiler error fix
+Dávid Tóth: Additional gameplay design
+Jakob Harris: Skeleton character drafts, initial color palette suggestions"
 fit_content = true
+scroll_active = false
+selection_enabled = true
 
 [node name="ReturnToMainMenuButton" type="Button" parent="TabContainer/CreditsTab/VBoxContainer" unique_id=1382405069]
 layout_mode = 2
