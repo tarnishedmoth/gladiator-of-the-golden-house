@@ -242,14 +242,12 @@ static func go_to_main_menu() -> void:
 	change_scene(instance.main_menu_scene)
 
 func _on_return_to_menu_button_pressed() -> void:
+	stop_music()
 	change_scene(main_menu_scene)
 
 func _on_go_to_dev_menu_button_pressed() -> void:
+	stop_music()
 	change_scene(dev_main_menu_scene)
-	
-	## HACK not really
-	play_music_menu_loop(false)
-	play_sherman(false)
 	
 	
 static func stop_music() -> void:
