@@ -3,7 +3,8 @@ class_name Cutscene extends Node2D
 enum PlayMusic {
 	NONE,
 	TRACK_SHERMAN,
-	TRACK_VAILLANCOURT
+	TRACK_VAILLANCOURT,
+	TRACK_SHERMAN_MARCH
 }
 
 @export var time_left_to_skip: float = 3.0
@@ -35,6 +36,12 @@ func _ready() -> void:
 					Main.play_vaillancourt(true)
 			else:
 				Main.play_vaillancourt(true)
+		PlayMusic.TRACK_SHERMAN_MARCH:
+			if only_play_track_if_not_playing:
+				if not Main.get_instance().music_sherman_march.playing:
+					Main.play_sherman_march(true)
+			else:
+				Main.play_sherman_march(true)
 
 func on_finished() -> void:
 	if is_exiting:
@@ -47,6 +54,8 @@ func on_finished() -> void:
 				Main.play_sherman(false)
 			PlayMusic.TRACK_VAILLANCOURT:
 				Main.play_vaillancourt(false)
+			PlayMusic.TRACK_SHERMAN_MARCH:
+				Main.play_sherman_march(false)
 		
 	await Juice.fade_out(self, Juice.SMOOTH, Color.BLACK).finished
 	Main.register_level_progressed()

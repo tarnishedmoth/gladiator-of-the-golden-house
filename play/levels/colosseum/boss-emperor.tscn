@@ -49,6 +49,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_vqf3r")]
+use_randomized_rotation_and_mirror = false
 play_music = 2
 play_crowd_idle = false
 
