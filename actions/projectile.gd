@@ -21,6 +21,7 @@ enum VfxShown {
 
 @export var rotate_to_direction: bool = false ## If true, uses the scene's X+ (RIGHT) direction for forward.
 
+@export var attack_sfx: AudioStream
 @export var hit_vfx_scene: PackedScene ## Spawned when the projectile hits an actor. Must manage its own freedom (queue_free lol).
 @export var hit_vfx_shown: VfxShown
 @export var hit_vfx_behavior: VfxBehavior = VfxBehavior.CENTER
@@ -43,7 +44,10 @@ func enter(_from: ResourceState = null) -> void:
 	p("Projectiling!")
 	
 	## run animations etc here
-	_actor.play_sfx(ActorSfxHandler.Sounds.ATTACK)
+	if attack_sfx:
+		_actor.play_sfx_loose(attack_sfx, _actor.global_position)
+	else:
+		_actor.play_sfx(ActorSfxHandler.Sounds.ATTACK)
 	_actor.spawn_vfx(ActorVfxHandler.FX.ATTACK)
 	await _actor.create_tween().tween_interval(pre_attack_duration).finished
 	
@@ -61,7 +65,7 @@ func enter(_from: ResourceState = null) -> void:
 			var duration: float = distance / speed
 			
 			if rotate_to_direction:
-				projectile.rotate(Facing.get_rad_rotation(facing))
+				projectile.rotate(Facing.get_rad_rotation(facing) - deg_to_rad(90.0))
 			
 			var x_move: Tween = projectile.create_tween()
 			var y_move: Tween = projectile.create_tween()
