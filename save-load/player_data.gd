@@ -16,6 +16,10 @@ const STARTING_CLASSES: Dictionary[StringName, String] = {
 	FLOWING_FLAIL = "uid://jo8005ytejoy",
 }
 
+const UNLOCKABLE_CLASSES: Dictionary[StringName, String] = {
+
+}
+
 ## These are scenes with the art assets specifically.
 const CHARACTER_SCENES: Dictionary[StringName, String] = {
 	NOBODY = "uid://dkxist2lihrf0",
