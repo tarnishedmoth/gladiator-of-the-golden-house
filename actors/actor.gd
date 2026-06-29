@@ -15,6 +15,7 @@ func p(args):
 ## Signals
 signal animation_finished
 signal queued_actions_finished(actor: Actor)
+signal moved(old_location: Vector2i, new_location: Vector2i)
 
 ## Type constants
 const RENDER_AI_PLAYABLE_TILES: bool = false ## Set to true to render grey tiles for unselected playable target tiles of ai action previews
@@ -320,6 +321,10 @@ func _reorient_to_level_rotation() -> void:
 	global_position = get_global_position_at(tile_map, actual)
 	current_tile_coords = actual
 
+## Hard reset, no animation no reorientation no facing
+func relocate_root_to_coords(coords: Vector2i) -> void:
+	global_position = get_global_position_at(tile_map, coords)
+
 func snap_to_nearest_tile() -> void:
 	var tile_coords: Vector2i = tile_map.local_to_map(tile_map.to_local(global_position))
 	assert(TileInteractor.cell_exists(tile_coords, tile_map))
@@ -357,6 +362,8 @@ func move_to_tile(coords: Vector2i, duration_of_movement: float = 0.4) -> void:
 		var pickup: PickUp = Level.get_pick_up_at(coords)
 		if pickup:
 			pickup.on_pick_up(self)
+	
+	moved.emit(previous_tile_coords, current_tile_coords)
 
 ## Marches along a path in a straight line to the target tile, checking each inline tile for obstructions ([Actor]).
 ## Returns actual coordinate when complete (so you can calculate if an obstruction was hit).

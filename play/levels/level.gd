@@ -398,7 +398,7 @@ func check_win_condition() -> bool:
 	for dir in dirs:
 		if dir is AIDirector:
 			if not dir.allied_with_player:
-				if not dir.actors.is_empty():
+				if dir.has_actors():
 					# Enemies remain, game continues
 					return false
 	# No enemies found, game win
@@ -409,7 +409,7 @@ func check_lose_condition() -> bool:
 	var dirs: Array[Director] = get_directors()
 	for dir in dirs:
 		if dir is Player:
-			if not dir.actors.is_empty(): #if there is a player the game continues
+			if dir.has_actors(): #if there is a player the game continues
 				return false
 	return true # no player actors found game lost
 

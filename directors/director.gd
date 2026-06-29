@@ -93,3 +93,6 @@ func actors_have_usable_actions(actions: Array[Action]) -> bool:
 				if action.can_player_enter(actor, true):
 					return true
 	return false
+
+func has_actors() -> bool:
+	return false if actors.is_empty() else true
