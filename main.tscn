@@ -69,7 +69,9 @@ splash_scene = ExtResource("2_h2yge")
 main_menu_scene = ExtResource("3_1bvp3")
 dev_main_menu_scene = ExtResource("2_0xm2m")
 credits_scene = ExtResource("5_074og")
-skip_splash = true
+load_to_developer_menu = false
+show_debug_scene_label = false
+show_project_version_label = false
 levels = Array[String](["uid://b50441u03h6ll", "uid://d37cvlmrtp1ru", "uid://w7j7he7bswq8", "uid://q7ym5mealfro", "uid://blegsn4xctlno", "uid://dgrrb1b2ary3k", "uid://bur0bodw1ibgu", "uid://ca1u1weh7rbc6", "uid://c84lgpngtxewv", "uid://bd1sit1vwgt6y", "uid://4lbmvohrambt", "uid://c1o651tikwnvi", "uid://cf0goe43g18ts"])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=867431045]
