@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://b3kl75n4nwdge"]
 
-[ext_resource type="Texture2D" uid="uid://kx72cx15wv0" path="res://actors/facing/arrow head.png" id="1_fg3qc"]
+[ext_resource type="Texture2D" uid="uid://b4uoncedyjmv" path="res://actors/facing/arrow head3.png" id="1_fg3qc"]
+[ext_resource type="Script" uid="uid://ciqy1m521yxbn" path="res://actors/facing/tween_scale_arrow.gd" id="1_pbe7c"]
 
 [node name="DebugFacingIndicator" type="Node2D" unique_id=1440282865]
+script = ExtResource("1_pbe7c")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=518545386]
+modulate = Color(1, 1, 1, 0.56078434)
 texture = ExtResource("1_fg3qc")
 offset = Vector2(0, -36)
