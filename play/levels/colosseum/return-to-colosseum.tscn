@@ -13,7 +13,7 @@ play_crowd_idle = false
 [node name="BackgroundColosseum" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="0" unique_id=768298569]
 particles_enabled = true
 nonemissive_modulate = Color(0.23031491, 0.23031494, 0.23031494, 1)
-start_animation_on_ready = true
+start_red = true
 no_crowd = true
 
 [node name="emperor" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="1" unique_id=1077291446 instance=ExtResource("2_cyjlg")]
