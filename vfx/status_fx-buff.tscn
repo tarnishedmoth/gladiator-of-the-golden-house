@@ -22,6 +22,8 @@ gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture1D_ryljd")
 
 [node name="StatusEffectParticles" type="GPUParticles2D" unique_id=679055257]
+z_index = 20
+z_as_relative = false
 emitting = false
 amount = 12
 texture = ExtResource("1_hd4rv")

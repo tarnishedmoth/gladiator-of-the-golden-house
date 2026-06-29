@@ -62,6 +62,8 @@ emission_curve = SubResource("CurveTexture_otjre")
 
 [node name="ParticlesExplosion" type="GPUParticles2D" unique_id=923820036]
 light_mask = 0
+z_index = 20
+z_as_relative = false
 emitting = false
 amount = 24
 lifetime = 1.5
