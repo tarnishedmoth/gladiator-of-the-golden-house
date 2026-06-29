@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dvuqbrge3doql" path="res://menus/gladiator-godot-icon.png" id="10_ycdy4"]
 [ext_resource type="AudioStream" uid="uid://dlqufn83ohdsg" path="res://sfx/MenuBlip.wav" id="12_dg77c"]
 [ext_resource type="AudioStream" uid="uid://bfpr0xrhih4p5" path="res://music/Epic Battle Chiptune.mp3" id="12_w48qg"]
+[ext_resource type="AudioStream" uid="uid://cmweujk1gmr7e" path="res://sfx/blip3.wav" id="13_cegan"]
 [ext_resource type="AudioStream" uid="uid://b3uprbaqinc6x" path="res://music/gladiator ambient (looping).ogg" id="13_w48qg"]
 [ext_resource type="AudioStream" uid="uid://bs452trmypkg6" path="res://music/gladiator battle march (looped).ogg" id="15_vivmo"]
 [ext_resource type="AudioStream" uid="uid://ck2r5vjs4hbxe" path="res://music/battle win stinger.ogg" id="16_yaehf"]
@@ -53,9 +54,14 @@ fill_from = Vector2(0.18803419, 1)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ycdy4"]
 random_pitch = 1.0382591
-random_volume_offset_db = 0.7
+random_volume_offset_db = 0.3
 streams_count = 1
 stream_0/stream = ExtResource("12_dg77c")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_82xsv"]
+random_pitch = 1.0293022
+streams_count = 1
+stream_0/stream = ExtResource("13_cegan")
 
 [node name="Main" type="Node" unique_id=665979855]
 script = ExtResource("1_ig7tw")
@@ -507,6 +513,12 @@ horizontal_alignment = 1
 stream = SubResource("AudioStreamRandomizer_ycdy4")
 volume_db = -3.0
 max_polyphony = 2
+
+[node name="Blip_Neutral2" type="AudioStreamPlayer" parent="." unique_id=1272980795]
+stream = SubResource("AudioStreamRandomizer_82xsv")
+volume_db = -3.0
+max_polyphony = 2
+bus = &"Sfx"
 
 [node name="Music_MenuLoop" type="AudioStreamPlayer" parent="." unique_id=843985129]
 stream = ExtResource("5_lquwl")

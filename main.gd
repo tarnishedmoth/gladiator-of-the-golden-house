@@ -67,6 +67,7 @@ var current_packed_scene: PackedScene ## Set each time [method change_scene] is 
 
 
 @onready var blip_neutral: AudioStreamPlayer = $Blip_Neutral
+@onready var blip_neutral_2: AudioStreamPlayer = $Blip_Neutral2
 
 @onready var fade: Control = %FADE ## Overlays the entire screen for scene transitions
 @onready var alternate_white_blocker: Sprite2D = %FADE.get_child(0)
@@ -378,6 +379,9 @@ static func play_battle_loss() -> void:
 ## Play a sfx blip.
 static func sfx_blip() -> void:
 	instance.blip_neutral.play()
+	
+static func sfx_blip_2() -> void:
+	instance.blip_neutral_2.play()
 
 
 ## Fade overlay
