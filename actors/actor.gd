@@ -156,6 +156,8 @@ static func get_global_position_at(map: TileMapLayer, coords: Vector2i) -> Vecto
 	
 #endregion
 
+func _enter_tree() -> void:
+	z_index = 11; y_sort_enabled = true
 
 func setup(director_: Director, tilemap: TileMapLayer, and_reorient: bool = true) -> void:
 	self.director = director_
