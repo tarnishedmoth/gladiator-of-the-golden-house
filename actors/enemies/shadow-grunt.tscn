@@ -24,7 +24,7 @@ ui_description = "How long has he been behind you?"
 max_health = 16
 
 [node name="PlayerArt" type="Node2D" parent="." unique_id=1481137980]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(0.04755766, 0.047557645, 0.047557645, 1)
 script = ExtResource("7_rj8h8")
 
 [node name="ActorSfx" parent="." unique_id=1664019728 instance=ExtResource("9_jopr1")]
