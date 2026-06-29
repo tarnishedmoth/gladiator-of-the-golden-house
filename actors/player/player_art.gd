@@ -9,6 +9,8 @@ func replace_art() -> void:
 	var instance = scene.instantiate()
 	var actor_parent := get_parent() as Actor
 	
+	if "modulate" in instance:
+		instance.modulate = modulate
 	replace_by(instance)
 	
 	if actor_parent:
