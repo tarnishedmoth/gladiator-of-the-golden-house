@@ -61,23 +61,31 @@ func _ready() -> void:
 	start_music.tween_callback(Main.play_music_menu_loop.bind(true))
 
 func populate_starting_classes() -> void:
+	## Starting classes
 	for child in classes_grid_container.get_children(): child.queue_free()
-	for iter in PlayerData.STARTING_CLASSES.size():
+	var playable_classes: Dictionary[StringName, String] = PlayerData.STARTING_CLASSES.duplicate()
+	
+	if GameSettings.get_value(GameSettings.SECTION.COMPLETIONS, "game_completed", false):
+		print("Showing unlockable starting classes.")
+		playable_classes.merge(PlayerData.UNLOCKABLE_CLASSES)
+	
+	for iter in playable_classes.size():
 		var button = Button.new()
 		button.toggle_mode = true
 		button.theme_type_variation = &"BigButton"
 		
-		var class_display_name: String = PlayerData.STARTING_CLASSES.keys()[iter]
+		var class_display_name: String = playable_classes.keys()[iter]
 		class_display_name = class_display_name.capitalize() ## dang this method is cool
 		
 		button.text = class_display_name
-		button.set_meta(META_STARTING_CLASS, PlayerData.STARTING_CLASSES.values()[iter])
+		button.set_meta(META_STARTING_CLASS, playable_classes.values()[iter])
 		
 		button.mouse_entered.connect(_on_class_select_button_hovered.bind(button))
 		button.mouse_exited.connect(_on_class_select_button_unhovered)
 		button.pressed.connect(_on_class_select_button_pressed.bind(button))
 		classes_grid_container.add_child(button)
 	
+	## Character art
 	for child in art_grid_container.get_children(): child.queue_free()
 	for iter in PlayerData.CHARACTER_SCENES.size():
 		var button = Button.new()

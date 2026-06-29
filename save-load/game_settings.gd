@@ -7,7 +7,7 @@ const CONFIG_FILEPATH: String = "user://game_config.ini"
 static var instance: ConfigFile:
 	get:
 		if not instance:
-			default_config()
+			load_config()
 		return instance
 
 static func p(args): print_rich("[color=green]GameSettings: ", args)
@@ -17,6 +17,7 @@ const SECTION = {
 	GRAPHICS = "graphics",
 	SAVES = "saves",
 	CAMERA = "camera",
+	COMPLETIONS = "completions"
 }
 
 static var default_graphics: Dictionary = {
@@ -57,6 +58,8 @@ static func default_config() -> void:
 	p("defaulting config.")
 	instance = ConfigFile.new()
 	
+	instance.set_value(SECTION.COMPLETIONS, "game_completed", false)
+	
 	## Graphics
 	for key in default_graphics:
 		instance.set_value(SECTION.GRAPHICS, key, default_graphics[key])
@@ -68,7 +71,12 @@ static func default_config() -> void:
 
 static func save_config() -> void:
 	SaveLoad.check_and_create_directory(CONFIG_FILEPATH.get_base_dir())
-	instance.save(CONFIG_FILEPATH)
+	var result: Error = instance.save(CONFIG_FILEPATH)
+	assert(result == OK)
+	if result == OK:
+		p("config saved to %s." % CONFIG_FILEPATH)
+	else:
+		p("error with saving config at %s." % CONFIG_FILEPATH)
 
 static func load_config() -> void:
 	if not FileAccess.file_exists(CONFIG_FILEPATH):

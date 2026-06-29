@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://cx1d7t4n16nee" path="res://vfx/fade_destroy.gd" id="2_2g5ny"]
 
 [node name="slash-fx" type="Sprite2D" unique_id=1165349548]
+z_index = 20
+z_as_relative = false
 texture = ExtResource("1_33afp")
 offset = Vector2(8, 0)
 script = ExtResource("2_2g5ny")

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://v7bxmuh8pp83"]
 
 [ext_resource type="Script" uid="uid://dk272f7wxt55i" path="res://vfx/status_effect_particles.gd" id="1_6yiqx"]
+[ext_resource type="AudioStream" uid="uid://dmjx737r4g638" path="res://sfx/sfx_shot_b_7.wav" id="2_otjre"]
 
 [sub_resource type="Curve" id="Curve_6yiqx"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.74650353, 0.19898993), 0.0, 0.0, 0, 0]
@@ -60,8 +61,15 @@ color_ramp = SubResource("GradientTexture1D_6yiqx")
 alpha_curve = SubResource("CurveTexture_otjre")
 emission_curve = SubResource("CurveTexture_otjre")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q8jem"]
+random_pitch = 1.0594631
+streams_count = 1
+stream_0/stream = ExtResource("2_otjre")
+
 [node name="ParticlesExplosion" type="GPUParticles2D" unique_id=923820036]
 light_mask = 0
+z_index = 20
+z_as_relative = false
 emitting = false
 amount = 24
 lifetime = 1.5
@@ -72,3 +80,10 @@ fixed_fps = 16
 process_material = SubResource("ParticleProcessMaterial_hawta")
 script = ExtResource("1_6yiqx")
 use_effect_points_as_quantity = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=855331281]
+stream = SubResource("AudioStreamRandomizer_q8jem")
+volume_db = 11.0
+autoplay = true
+max_distance = 3000.0
+bus = &"Sfx"
