@@ -26,12 +26,18 @@ class_name AIActorConditional extends AIActor
 ## Set to -1 to disable.
 @export_range(-1, 9, 1.0, "or_greater", "suffix:actions") var alt_actions_to_queue_this_turn: int = -1
 
+var _last_condition: bool = false:
+	set(v):
+		if v != _last_condition:
+			_action_pop_queue.clear()
+		v = _last_condition
 
 func queue_new_actions_for_next_turn(claimed_tiles: Array[Vector2i] = []) -> void:
 	if debug:
 		p("standing at %s, facing %s." % [current_tile_coords, facing])
 	
 	var conditions_met: bool = _check_conditions()
+	_last_condition = conditions_met
 	
 	var actions_to_use: Array[Action]
 	actions_to_use = conditionally_usable_actions if conditions_met else usable_actions
