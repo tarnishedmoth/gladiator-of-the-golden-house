@@ -18,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://nkaun0fgvwiu" path="res://actions/prefabs/toss-bomb.tres" id="11_a44cs"]
 [ext_resource type="Resource" uid="uid://bxvvng0ducbc3" path="res://actions/prefabs/do-nothing.tres" id="11_vr3yy"]
 [ext_resource type="Script" uid="uid://80k033ktqcl0" path="res://pick-ups/pick_up_data.gd" id="12_3xddb"]
+[ext_resource type="PackedScene" uid="uid://ejnph3bniuxd" path="res://actors/enemies/xbow_legionary.tscn" id="12_pddup"]
 [ext_resource type="Texture2D" uid="uid://drr6yyr6jq42y" path="res://pick-ups/created_pickups/pickup_data/sprite.png" id="13_3xddb"]
 
 [sub_resource type="Resource" id="Resource_3xddb"]
@@ -61,30 +62,34 @@ metadata/_custom_type_script = "uid://dwys5mwbuw85s"
 script = ExtResource("3_erxfw")
 metadata/_custom_type_script = "uid://dwys5mwbuw85s"
 
-[node name="Legate" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=576080733 instance=ExtResource("4_ubmqr")]
-position = Vector2(190, -4)
+[node name="DaggerGrunt" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=1637427686 instance=ExtResource("5_ue4m8")]
+position = Vector2(5, 217)
+drop_chance = 0.15
+facing = 0
+
+[node name="Chariot" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=84579020 instance=ExtResource("5_ubmqr")]
+position = Vector2(204, -142)
+drop_chance = 0.75
+usable_actions = Array[ExtResource("6_pddup")]([ExtResource("7_g3odh"), ExtResource("8_16kq8"), ExtResource("9_fihtr"), ExtResource("10_t8oev"), ExtResource("11_vr3yy")])
+facing = 4
+
+[node name="XbowLegionary" parent="TileMapLayers/Directors/AIDirector" index="2" unique_id=1285026502 instance=ExtResource("12_pddup")]
+position = Vector2(8, -219)
+facing = 3
+
+[node name="XbowLegionary2" parent="TileMapLayers/Directors/AIDirector" index="3" unique_id=237537813 instance=ExtResource("12_pddup")]
+position = Vector2(-90, -39)
+facing = 3
+
+[node name="Legate" parent="TileMapLayers/Directors/AIDirector" index="4" unique_id=576080733 instance=ExtResource("4_ubmqr")]
+position = Vector2(92, -37)
 cond_team_count = 1
 alt_actions_to_queue_this_turn = 2
 drop_chance = 0.3
 facing = 4
 
-[node name="Chariot" parent="TileMapLayers/Directors/AIDirector" index="1" unique_id=84579020 instance=ExtResource("5_ubmqr")]
-position = Vector2(185, -69)
-drop_chance = 0.75
-usable_actions = Array[ExtResource("6_pddup")]([ExtResource("7_g3odh"), ExtResource("8_16kq8"), ExtResource("9_fihtr"), ExtResource("10_t8oev"), ExtResource("11_vr3yy")])
-facing = 4
-
-[node name="DaggerGrunt" parent="TileMapLayers/Directors/AIDirector" index="2" unique_id=1637427686 instance=ExtResource("5_ue4m8")]
-position = Vector2(5, 217)
-drop_chance = 0.15
-facing = 0
-
-[node name="DaggerGrunt2" parent="TileMapLayers/Directors/AIDirector" index="3" unique_id=261022929 instance=ExtResource("5_ue4m8")]
-position = Vector2(4, -223)
-drop_chance = 0.15
-
 [node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="2" unique_id=2010280176 instance=ExtResource("7_tx16w")]
-position = Vector2(-183, -2)
+position = Vector2(5, 73)
 
 [node name="PickUpManager" parent="." index="1" unique_id=490287025]
 pickup_pool = Array[ExtResource("8_tx16w")]([SubResource("Resource_3xddb"), SubResource("Resource_7ht3u"), SubResource("Resource_nbvby")])
