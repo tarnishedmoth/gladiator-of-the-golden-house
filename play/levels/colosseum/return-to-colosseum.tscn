@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="5_nmpr6"]
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_3xhx5")]
+play_music = 3
 play_crowd_idle = false
 
 [node name="BackgroundColosseum" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="0" unique_id=768298569]
