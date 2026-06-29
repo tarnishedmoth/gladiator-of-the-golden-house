@@ -604,9 +604,11 @@ func take_direct_damage(damage: int, from: Actor = null) -> int:
 	if damage_result > 0:
 		play_sfx(ActorSfxHandler.Sounds.GET_HIT)
 		Level.get_hud().popup_damage(damage_result, self)
-		
+	
+	var _played_crit: bool = false ## sfx
 	if (health - damage_result > 0) && (health - damage_result < health/2.0):
 		## not gonna die but it's a heavy hit
+		play_sfx(ActorSfxHandler.Sounds.GET_HIT_CRITICAL); _played_crit = true
 		if randf() > 0.6:
 			Level.get_instance().trigger_response_speech_bubbles(not director is Player)
 	
@@ -615,6 +617,8 @@ func take_direct_damage(damage: int, from: Actor = null) -> int:
 	update_healthbar()
 	
 	if health <= 0:
+		if not _played_crit:
+			play_sfx(ActorSfxHandler.Sounds.GET_HIT_CRITICAL)
 		die()
 		
 	return damage_result
