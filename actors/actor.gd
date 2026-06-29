@@ -324,6 +324,7 @@ func _reorient_to_level_rotation() -> void:
 ## Hard reset, no animation no reorientation no facing
 func relocate_root_to_coords(coords: Vector2i) -> void:
 	global_position = get_global_position_at(tile_map, coords)
+	current_tile_coords = coords
 
 func snap_to_nearest_tile() -> void:
 	var tile_coords: Vector2i = tile_map.local_to_map(tile_map.to_local(global_position))
