@@ -75,3 +75,6 @@ func _check_conditions() -> bool:
 	if debug:
 		p("Conditions met for alternate behavior.")
 	return true
+
+func get_usable_actions() -> Array[Action]:
+	return conditionally_usable_actions if _check_conditions() else usable_actions

@@ -935,3 +935,9 @@ func animate_hit_obstruction(direction_of_travel: Facing.Cardinal) -> void:
 		p("direction of travel %s, radians %s, target position %s." % [direction_of_travel, angle, pos])
 		anim.tween_property(vr, "position", vr.position + pos, 0.12)
 		anim.tween_property(vr, "position", starting_pos, 0.12).set_ease(Tween.EASE_OUT)
+ 
+func get_usable_actions() -> Array[Action]:
+	if director is Player:
+		return director.get_all_cards()
+	else:
+		return []

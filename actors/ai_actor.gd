@@ -40,6 +40,9 @@ var _action_pop_queue: Array[Action] = []
 var _last_action_picked: Action
 var _set_facing_direction_after_planning: Variant ## 
 
+func get_usable_actions() -> Array[Action]:
+	return usable_actions
+
 func replace_usable_actions(new_usable_actions: Array[Action], change_queue_size: int = -1) -> void:
 	usable_actions.clear()
 	usable_actions.append_array(new_usable_actions)
