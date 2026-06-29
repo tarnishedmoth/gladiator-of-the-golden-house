@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Stance" format=3 uid="uid://ddb4pwcn5wrft"]
+
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="1_003t6"]
+[ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://actions/stance/stance.gd" id="2_x1yoo"]
+[ext_resource type="Resource" uid="uid://b34xqoxtpxt5w" path="res://actions/prefabs/demigod_roar.tres" id="3_p5fv2"]
+[ext_resource type="Resource" uid="uid://k042sr1248ic" path="res://actions/prefabs/emperor_raise-earth.tres" id="4_5lnna"]
+[ext_resource type="Resource" uid="uid://d3l2ala5l84w6" path="res://actions/prefabs/attack_big-squish.tres" id="5_fskck"]
+[ext_resource type="Resource" uid="uid://c6aox1qg71hb1" path="res://actions/prefabs/emperor_overwhelm-senses.tres" id="5_wocye"]
+[ext_resource type="Resource" uid="uid://d2ps06cckqmj5" path="res://actions/prefabs/player/stance-change_emperor-1.tres" id="6_f45r8"]
+
+[resource]
+script = ExtResource("2_x1yoo")
+actions = Array[ExtResource("1_003t6")]([ExtResource("3_p5fv2"), ExtResource("4_5lnna"), ExtResource("5_wocye"), ExtResource("5_fskck")])
+pickme_action = ExtResource("6_f45r8")
+metadata/_custom_type_script = "uid://wxlj5akq7s0v"

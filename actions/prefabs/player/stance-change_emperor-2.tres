@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ActionChangeStance" format=3 uid="uid://cs3jqol8akfb2"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_sjy5k"]
+[ext_resource type="Script" uid="uid://dj1vqqabqwo2g" path="res://actions/action_change-stance.gd" id="2_8c5v0"]
+[ext_resource type="Script" uid="uid://bhpfulxak0eng" path="res://status-effects/status.gd" id="3_6jmhp"]
+
+[resource]
+script = ExtResource("2_8c5v0")
+stance_uid = "uid://dhaw0h2ur4434"
+ui_title = "Physical Might"
+ui_description = "Abilities of the corporeal form."
+action_category = 5
+energy_cost = 1
+metadata/_custom_type_script = "uid://dj1vqqabqwo2g"

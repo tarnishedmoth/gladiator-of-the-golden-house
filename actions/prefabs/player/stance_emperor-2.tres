@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Stance" format=3 uid="uid://dhaw0h2ur4434"]
+
+[ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="1_gkicw"]
+[ext_resource type="Resource" uid="uid://cgkuvmq07ft70" path="res://actions/prefabs/attack_lash-out.tres" id="2_5lux0"]
+[ext_resource type="Resource" uid="uid://d33i0gb1fs1rh" path="res://actions/prefabs/move_two_tiles_plus-diagonals.tres" id="2_h6u13"]
+[ext_resource type="Script" uid="uid://wxlj5akq7s0v" path="res://actions/stance/stance.gd" id="2_wrdxt"]
+[ext_resource type="Resource" uid="uid://lbxk1wbouqvx" path="res://actions/prefabs/attack_slash-14.tres" id="3_h6u13"]
+[ext_resource type="Resource" uid="uid://em1qxmq5545" path="res://actions/prefabs/player/class-greatsword/class-greatsword_colossal-cleave.tres" id="4_n56b1"]
+[ext_resource type="Resource" uid="uid://jo8nyxf20uwb" path="res://actions/prefabs/attack_max-slap.tres" id="6_qswro"]
+[ext_resource type="Resource" uid="uid://da5v5amrxjtbg" path="res://actions/prefabs/player/class-a_combo-swipe.tres" id="7_sc71r"]
+[ext_resource type="Resource" uid="uid://cs3jqol8akfb2" path="res://actions/prefabs/player/stance-change_emperor-2.tres" id="8_lrohd"]
+
+[resource]
+script = ExtResource("2_wrdxt")
+actions = Array[ExtResource("1_gkicw")]([ExtResource("2_h6u13"), ExtResource("2_5lux0"), ExtResource("3_h6u13"), ExtResource("4_n56b1"), ExtResource("6_qswro"), ExtResource("7_sc71r")])
+pickme_action = ExtResource("8_lrohd")
+metadata/_custom_type_script = "uid://wxlj5akq7s0v"

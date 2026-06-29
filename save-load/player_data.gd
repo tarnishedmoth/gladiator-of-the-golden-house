@@ -17,8 +17,15 @@ const STARTING_CLASSES: Dictionary[StringName, String] = {
 }
 
 const UNLOCKABLE_CLASSES: Dictionary[StringName, String] = {
-
+	EMPEROR = "uid://nebmp5g6ayqe",
 }
+
+## Alias [method Dictionary.find_key]
+static func find_key(v) -> String:
+	var a = PlayerData.STARTING_CLASSES.find_key(v)
+	if not a:
+		a = PlayerData.UNLOCKABLE_CLASSES.find_key(v)
+	return a
 
 ## These are scenes with the art assets specifically.
 const CHARACTER_SCENES: Dictionary[StringName, String] = {
@@ -57,6 +64,12 @@ static func get_starting_class_description(starting_class_file_uid: String) -> S
 			return \
 			"This weapon's momentum compounds with each chained attack, delivering devastating final blows.
 			Excels at mid-range encounters. The alternate stance affords more mobility."
+		
+		UNLOCKABLE_CLASSES.EMPEROR:
+			return \
+			"The demigod Emperor of Imperial Rome.
+			Rumor has it he was defeated in battle...
+			However, witnesses allege that the warrior was crazed, and absorbed into his tentacled form."
 	
 	return ""
 
@@ -86,7 +99,7 @@ static var this: PlayerData ## Static object
 static func new_playthrough(chosen_name: String, chosen_starting_class: String, chosen_character_scene: String) -> void:
 	if this:
 		p("Overwriting data!")
-	p("%s starting a new playthrough as %s." % [chosen_name, STARTING_CLASSES.find_key(chosen_starting_class)])
+	p("%s starting a new playthrough as %s." % [chosen_name, find_key(chosen_starting_class)])
 	
 	this = PlayerData.new()
 	this.choice_name = chosen_name
@@ -175,6 +188,6 @@ static func apply_save_data(save: SaveLoad.LoadedSave) -> void:
 func on_game_completed() -> void:
 	GameSettings.set_value(GameSettings.SECTION.COMPLETIONS, "game_completed", true)
 	
-	var starting_class_name: String = String(STARTING_CLASSES.find_key(this.choice_starting_class)).capitalize()
+	var starting_class_name: String = String(find_key(this.choice_starting_class)).capitalize()
 	var times_beaten: int = GameSettings.get_value(GameSettings.SECTION.COMPLETIONS, starting_class_name, 0) + 1
 	GameSettings.set_value(GameSettings.SECTION.COMPLETIONS, starting_class_name, times_beaten)

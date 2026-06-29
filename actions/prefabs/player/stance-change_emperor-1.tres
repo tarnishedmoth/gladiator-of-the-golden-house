@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ActionChangeStance" format=3 uid="uid://d2ps06cckqmj5"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_cf8cl"]
+[ext_resource type="Script" uid="uid://dj1vqqabqwo2g" path="res://actions/action_change-stance.gd" id="2_ivs7r"]
+[ext_resource type="Script" uid="uid://bhpfulxak0eng" path="res://status-effects/status.gd" id="3_akytp"]
+
+[resource]
+script = ExtResource("2_ivs7r")
+stance_uid = "uid://ddb4pwcn5wrft"
+ui_title = "Wrathful Terror"
+ui_description = "Unnatural abilities of the demigod Emperor."
+action_category = 5
+energy_cost = 1
+metadata/_custom_type_script = "uid://dj1vqqabqwo2g"

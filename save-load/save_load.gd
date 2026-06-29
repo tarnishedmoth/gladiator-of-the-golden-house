@@ -57,7 +57,7 @@ static func _capture_metadata() -> Metadata:
 	var tool = Playtime.new()
 	tool.set_seconds(PlayerData.this.combat_playtime)
 	var string_time: String = tool.get_string_time()
-	var class_display_name: String = PlayerData.STARTING_CLASSES.find_key(PlayerData.this.choice_starting_class)
+	var class_display_name: String = PlayerData.find_key(PlayerData.this.choice_starting_class)
 	class_display_name = class_display_name.capitalize() ## dang this method is cool
 	
 	meta.display_summary = "%s (%s) - %s: %3d" % \
