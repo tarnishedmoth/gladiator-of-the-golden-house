@@ -749,7 +749,7 @@ func render_preview_for_action(action: Action, target) -> void:
 		## If a target tile is in the playable pattern, ...
 		if target != null:
 			hovered_tile_is_valid = target in playable_tiles
-			playable_tiles.erase(target)
+			#playable_tiles.erase(target)
 		
 		## ... Highlight playable tiles as selectable or not currently selected
 		TargetFinder.highlight_targets(
