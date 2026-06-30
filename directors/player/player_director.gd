@@ -519,7 +519,7 @@ func change_stance(new_stance_uid) -> void:
 ## Some functionality of previews etc relies on the action being able to reference the actor running it.
 ## Even though we aren't running it right away, it's good to populate this info
 func setup_cards(cards: Array[Action] = actions_in_hand):
-	for card in actions_in_hand:
+	for card in cards:
 		card.set_actor(selected_actor)
 #endregion
 
