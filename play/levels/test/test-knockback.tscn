@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dlwxsrj8xpoa1"]
 
 [ext_resource type="PackedScene" uid="uid://dnwn75fwwq600" path="res://play/levels/inheritable-level.tscn" id="1_v4mfe"]
-[ext_resource type="Script" uid="uid://cckqjjqv74g4g" path="res://utils/tool-button_level-template.gd" id="2_6bl2i"]
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="3_7q8ni"]
 [ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="4_1af1m"]
 [ext_resource type="PackedScene" uid="uid://c5wwjkucrew5h" path="res://directors/player/player_insert_placeholder.tscn" id="4_3ufk3"]
@@ -14,6 +13,7 @@
 [sub_resource type="Resource" id="Resource_x6pir"]
 script = ExtResource("7_3ujy0")
 distance = 7
+status_to_apply_if_knocked_into_obstacle = ExtResource("8_3ujy0")
 damage = 1
 pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(1, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(-1, 0)])
 ui_title = "Big Freaking Swipe"
@@ -22,10 +22,7 @@ metadata/_custom_type_script = "uid://chptaheu3xjjl"
 
 [node name="Level" unique_id=13868467 instance=ExtResource("1_v4mfe")]
 
-[node name="Directors" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="0" unique_id=440455703]
-script = ExtResource("2_6bl2i")
-
-[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" index="0" unique_id=1927500158]
+[node name="AIDirector" type="Node2D" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="0" unique_id=1927500158]
 script = ExtResource("3_7q8ni")
 
 [node name="AIActor" type="Node2D" parent="TileMapLayers/Directors/AIDirector" index="0" unique_id=771564754]
@@ -39,7 +36,7 @@ texture = ExtResource("7_42ui8")
 region_enabled = true
 region_rect = Rect2(64, 64, 64, 64)
 
-[node name="PlayerPlaceholder" parent="TileMapLayers/Directors" index="1" unique_id=2010280176 instance=ExtResource("4_3ufk3")]
+[node name="PlayerPlaceholder" parent="TileMapLayers/Directors" parent_id_path=PackedInt32Array(440455703) index="1" unique_id=2010280176 instance=ExtResource("4_3ufk3")]
 position = Vector2(-1, 71)
 
 [node name="BaseTileMapLayer" parent="TileMapLayers" parent_id_path=PackedInt32Array(994423606) index="1" unique_id=1254354450]

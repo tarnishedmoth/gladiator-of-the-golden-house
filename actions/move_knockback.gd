@@ -3,8 +3,6 @@ class_name ActionMoveKnockback extends ActionMove
 ## Attempt to move onto a tile, displacing anything there already in the direction of travel.
 ## If the tile can not be cleared, no movement occurs.
 
-const STUN_STATUS: StatusStunned = preload("uid://b38qdbmcp8g2n") ## For both Player and AI
-
 enum RefundTypes {
 	NONE = 0, ## No refunds
 	HIT_ACTOR = 1, ## Tried to move and hit an actor
@@ -13,7 +11,7 @@ enum RefundTypes {
 }
 
 ## i.e. Stunned for being knocked into a wall
-@export var status_to_apply_if_knocked_into_obstacle: Status = STUN_STATUS
+@export var status_to_apply_if_knocked_into_obstacle: Status
 
 @export_group("Refundable Energy Cost")
 @export var refundable_cost: RefundTypes = RefundTypes.NONE

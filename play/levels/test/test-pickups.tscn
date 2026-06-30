@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dwys5mwbuw85s" path="res://directors/ai/ai_director.gd" id="3_53hgo"]
 [ext_resource type="PackedScene" uid="uid://bmv1qvv614ri1" path="res://actors/enemies/grunt/grunt.tscn" id="4_wrk0k"]
 [ext_resource type="Script" uid="uid://bab0cowpfbqgf" path="res://pick-ups/pickup_entry.gd" id="5_33yqa"]
-[ext_resource type="Resource" uid="uid://bmmuti6p6qsb6" path="res://pick-ups/created_pickups/pickup_data/heal_gradual.tres" id="6_4iuqu"]
+[ext_resource type="Resource" uid="uid://4dlrnlkmxkuy" path="res://pick-ups/created_pickups/pickup_data/heal_gradual.tres" id="6_4iuqu"]
 [ext_resource type="Resource" uid="uid://bq8t0b6fk1e7n" path="res://pick-ups/created_pickups/pickup_data/heal_10.tres" id="7_kb2dr"]
 
 [sub_resource type="Resource" id="Resource_vfp4r"]

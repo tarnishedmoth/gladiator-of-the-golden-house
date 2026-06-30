@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("2_snnqi")
 distance = 3
+status_to_apply_if_knocked_into_obstacle = ExtResource("3_yley4")
 damage = 17
 can_damage_teammates = true
 pattern = Array[Vector2i]([Vector2i(0, -1)])

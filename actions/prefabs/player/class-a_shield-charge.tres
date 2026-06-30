@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("2_uuefg")
+status_to_apply_if_knocked_into_obstacle = ExtResource("3_oksvp")
 refundable_cost = 1
 refundable_quantity = 1
 pattern = Array[Vector2i]([Vector2i(0, -1)])

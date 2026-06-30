@@ -2,8 +2,6 @@ class_name ActionAttackKnockback extends ActionAttack
 
 ## Now with knockback!!!
 
-var STUN_STATUS: Resource = preload("uid://b38qdbmcp8g2n") as StatusStunned ## For both Player and AI
-
 ## Distance to move the actor in the direction vector.
 ## What we do is calculate the angle and round it to one of the flat directions,
 ## i.e. knockback will never move an actor to an off-axis coordinate.
@@ -16,7 +14,7 @@ var STUN_STATUS: Resource = preload("uid://b38qdbmcp8g2n") as StatusStunned ## F
 #@export var only_if_direct_damage_dealt: bool = false ## TODO
 
 ## i.e. Stunned for being knocked into a wall
-@export var status_to_apply_if_knocked_into_obstacle: Status = STUN_STATUS
+@export var status_to_apply_if_knocked_into_obstacle: Status
 
 ## Simplify things for now too much work
 #enum DamageRequired {
