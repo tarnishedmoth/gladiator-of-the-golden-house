@@ -1,6 +1,6 @@
 class_name TargetIndicatorVisual extends Node2D
 
-const ALPHA_VALUE = 128
+const ALPHA_VALUE = 90
 const PULSE_SPEED = 60.0/90.0
 const NEW_PULSE: bool = false
 

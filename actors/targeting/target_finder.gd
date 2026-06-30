@@ -4,7 +4,7 @@ const FORCE_OOB_COLOR: bool = true
 const FORCE_OOB_NO_ANIMATION: bool = true
 const FORCE_OOB_REDUCED_SCALE: bool = true
 
-const RESCALE: float = 0.42
+const RESCALE: float = 0.8
 
 static var VERBOSE: bool = false
 static func p(args) -> void:
