@@ -18,6 +18,7 @@ func on_player_moved(old_location: Vector2i, new_location: Vector2i) -> void:
 		spawn_one_at(old_location)
 
 func spawn_one_at(coords: Vector2i) -> void:
+	_enemies_spawned += 1
 	if not to_spawn: return
 	if to_spawn.is_empty(): return
 	if Level.get_actor_at(coords): return
