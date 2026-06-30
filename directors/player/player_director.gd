@@ -371,7 +371,7 @@ func play_held_action_at(coords: Vector2i):
 			hud.popup_label("Obstructed!", selected_actor)
 			return
 	
-	if current_held_action is ActionMove: ## HACK not sure why these tiles are available to be selected atm
+	if current_held_action is ActionMove and not current_held_action is ActionMoveKnockback: ## HACK not sure why these tiles are available to be selected atm
 		if Level.get_actor_at(coords):
 			hud.popup_label("Obstructed!", selected_actor)
 			return
