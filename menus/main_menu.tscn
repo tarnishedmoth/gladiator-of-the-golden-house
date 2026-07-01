@@ -359,7 +359,9 @@ Chris Anderson: Chariot (art and code)
 Marshy: Move behavior setting for enemies (target/random with distance sorting)
 Dan Dela Rosa: Compiler error fix
 Dávid Tóth: Additional gameplay design
-Jakob Harris: Skeleton character drafts, initial color palette suggestions"
+Jakob Harris: Skeleton character drafts, initial color palette suggestions
+
+Playtesting: Chris Anderson, Connor Fitzpatrick, TopHatCroat, Jalent (Jason W), Mark Guinn, Tim Ruswick"
 fit_content = true
 scroll_active = false
 selection_enabled = true
