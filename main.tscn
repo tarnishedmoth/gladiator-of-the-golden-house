@@ -542,6 +542,7 @@ parameters/looping = true
 stream = ExtResource("15_vivmo")
 volume_db = -3.0
 bus = &"Music"
+playback_type = 1
 parameters/looping = true
 
 [node name="Music_Battle_Win" type="AudioStreamPlayer" parent="." unique_id=283553923]
