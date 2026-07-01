@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/gladiator battle march (looped).ogg-d07c50c93
 
 [params]
 
-loop=true
+loop=false
 loop_offset=8.0
 bpm=0.0
 beat_count=0

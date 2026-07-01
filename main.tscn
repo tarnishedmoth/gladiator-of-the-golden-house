@@ -542,8 +542,6 @@ parameters/looping = true
 stream = ExtResource("15_vivmo")
 volume_db = -3.0
 bus = &"Music"
-playback_type = 1
-parameters/looping = true
 
 [node name="Music_Battle_Win" type="AudioStreamPlayer" parent="." unique_id=283553923]
 stream = ExtResource("16_yaehf")
@@ -572,3 +570,4 @@ bus = &"Music"
 [connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/StuckGameOptions/BackToOptions" to="CanvasLayer/OptionsPanel" method="_on_back_to_options_pressed"]
 [connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/ConfirmPage/HBoxContainer/CancelButton" to="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/ConfirmPage" method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/ConfirmPage/HBoxContainer/ConfirmButton" to="CanvasLayer/OptionsPanel/MarginContainer/TabContainer/ConfirmPage" method="_on_confirm_button_pressed"]
+[connection signal="finished" from="Music_Sherman_March" to="." method="_on_music_sherman_march_finished"]

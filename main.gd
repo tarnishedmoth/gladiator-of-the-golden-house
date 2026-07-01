@@ -340,6 +340,8 @@ static func play_sherman_march(playing: bool, volume_db: float = 0.0) -> void: #
 	#if (not instance.music_sherman_march.playing) and (not playing):
 		#return
 	
+	instance._march_playing = playing
+	
 	music_fade_4 = instance.create_tween()
 	var from_value: float
 	if instance.music_sherman_march.playing:
@@ -428,3 +430,8 @@ func unblock() -> Tween:
 	_blocking.tween_callback(fade.hide)
 	_blocking.tween_interval(1.0/30.0)
 	return _blocking
+
+var _march_playing: bool = false
+func _on_music_sherman_march_finished() -> void:
+	if _march_playing:
+		music_sherman_march.play(8.0)
