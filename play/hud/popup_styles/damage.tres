@@ -12,4 +12,7 @@ shadow_offset = Vector2(0, 1)
 script = ExtResource("1_style")
 color = Color(1, 0, 0, 1)
 label_settings = SubResource("LabelSettings_18cgp")
+rise_duration = 1.2
+fade_duration = 0.5
+pop_duration = 0.16
 metadata/_custom_type_script = "uid://ltolqijg3afy"
