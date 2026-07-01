@@ -31,6 +31,7 @@ func check_objectives() -> void:
 			## They somehow survived ???
 			## This shouldn't be possible
 			push_error("Unintended level outcome. Progressing")
+			Main.play_sherman_march(false)
 			_progress_to_next_level()
 		
 	elif check_lose_condition() == true:
@@ -40,9 +41,11 @@ func check_objectives() -> void:
 			PlayerData.this.current_loss_streak += 1
 			_record_playtime()
 			retry_menu.show()
-		
+			Main.play_sherman_march(false)
+			Main.play_battle_loss()
 		else:
 			## Actual level completion, progress...
+			Main.play_sherman_march(false)
 			_progress_to_next_level()
 
 func _progress_to_next_level() -> void:
