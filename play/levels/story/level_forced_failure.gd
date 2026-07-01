@@ -28,10 +28,9 @@ func check_objectives() -> void:
 			p("Running special event...")
 			run_event()
 		else:
-			## They somehow survived ???
-			## This shouldn't be possible
+			## They actually survived
 			push_error("Unintended level outcome. Progressing")
-			Main.play_sherman_march(false)
+			GameSettings.set_value(GameSettings.SECTION.COMPLETIONS, "won_forced_failure_event", true)
 			_progress_to_next_level()
 		
 	elif check_lose_condition() == true:
@@ -45,13 +44,13 @@ func check_objectives() -> void:
 			Main.play_battle_loss()
 		else:
 			## Actual level completion, progress...
-			Main.play_sherman_march(false)
 			_progress_to_next_level()
 
 func _progress_to_next_level() -> void:
 	p("Level complete.")
 	is_complete = true
 	_record_playtime()
+	Main.play_sherman_march(false)
 	
 	## Save
 	#save_persistent_actors_data() ## We have to do something different because of the forced failure. Should reset the health to full
