@@ -15,7 +15,6 @@
 
 [node name="BackgroundColosseum" type="Node2D" unique_id=651320207]
 script = ExtResource("1_5foc1")
-no_crowd = null
 transition_to_color = Color(0.23031491, 0.23031494, 0.23031494, 1)
 
 [node name="RuneParticles" parent="." unique_id=936515396 instance=ExtResource("2_5foc1")]
@@ -80,216 +79,216 @@ polygon = PackedVector2Array(0, -222, 18, -222, 36, -221, 56, -219, 75, -218, 10
 position = Vector2(-129, -236)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners2" parent="Nonemissive/Crowd/Oneliners" unique_id=697076527 instance=ExtResource("7_pgk8x")]
 position = Vector2(-76, -267)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners3" parent="Nonemissive/Crowd/Oneliners" unique_id=1244181010 instance=ExtResource("7_pgk8x")]
 position = Vector2(-336, -144)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners4" parent="Nonemissive/Crowd/Oneliners" unique_id=807264015 instance=ExtResource("7_pgk8x")]
 position = Vector2(36, -257)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners5" parent="Nonemissive/Crowd/Oneliners" unique_id=1471986112 instance=ExtResource("7_pgk8x")]
 position = Vector2(77, -210)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners6" parent="Nonemissive/Crowd/Oneliners" unique_id=1055663613 instance=ExtResource("7_pgk8x")]
 position = Vector2(-181, -209)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners7" parent="Nonemissive/Crowd/Oneliners" unique_id=891865484 instance=ExtResource("7_pgk8x")]
 position = Vector2(-246, -186)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners8" parent="Nonemissive/Crowd/Oneliners" unique_id=64439752 instance=ExtResource("7_pgk8x")]
 position = Vector2(122, -234)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners9" parent="Nonemissive/Crowd/Oneliners" unique_id=147900779 instance=ExtResource("7_pgk8x")]
 position = Vector2(150, -269)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners10" parent="Nonemissive/Crowd/Oneliners" unique_id=227899099 instance=ExtResource("7_pgk8x")]
 position = Vector2(274, -157)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners11" parent="Nonemissive/Crowd/Oneliners" unique_id=1206667213 instance=ExtResource("7_pgk8x")]
 position = Vector2(174, -187)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners12" parent="Nonemissive/Crowd/Oneliners" unique_id=1704450308 instance=ExtResource("7_pgk8x")]
 position = Vector2(340, -81)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners13" parent="Nonemissive/Crowd/Oneliners" unique_id=1758296927 instance=ExtResource("7_pgk8x")]
 position = Vector2(347, -28)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners14" parent="Nonemissive/Crowd/Oneliners" unique_id=2112877782 instance=ExtResource("7_pgk8x")]
 position = Vector2(-411, -66)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners15" parent="Nonemissive/Crowd/Oneliners" unique_id=251164180 instance=ExtResource("7_pgk8x")]
 position = Vector2(-351, 253)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners16" parent="Nonemissive/Crowd/Oneliners" unique_id=556156063 instance=ExtResource("7_pgk8x")]
 position = Vector2(-346, 283)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners17" parent="Nonemissive/Crowd/Oneliners" unique_id=730540127 instance=ExtResource("7_pgk8x")]
 position = Vector2(-236, 312)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners21" parent="Nonemissive/Crowd/Oneliners" unique_id=2038905291 instance=ExtResource("7_pgk8x")]
 position = Vector2(29, 331)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners22" parent="Nonemissive/Crowd/Oneliners" unique_id=846103427 instance=ExtResource("7_pgk8x")]
 position = Vector2(-65, 356)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners23" parent="Nonemissive/Crowd/Oneliners" unique_id=587137432 instance=ExtResource("7_pgk8x")]
 position = Vector2(183, 308)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners24" parent="Nonemissive/Crowd/Oneliners" unique_id=924717983 instance=ExtResource("7_pgk8x")]
 position = Vector2(188, 338)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners25" parent="Nonemissive/Crowd/Oneliners" unique_id=845102016 instance=ExtResource("7_pgk8x")]
 position = Vector2(316, 201)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners26" parent="Nonemissive/Crowd/Oneliners" unique_id=571126787 instance=ExtResource("7_pgk8x")]
 position = Vector2(272, 248)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners27" parent="Nonemissive/Crowd/Oneliners" unique_id=1589244597 instance=ExtResource("7_pgk8x")]
 position = Vector2(408, 170)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners28" parent="Nonemissive/Crowd/Oneliners" unique_id=183138411 instance=ExtResource("7_pgk8x")]
 position = Vector2(405, 124)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners29" parent="Nonemissive/Crowd/Oneliners" unique_id=671332143 instance=ExtResource("7_pgk8x")]
 position = Vector2(438, -58)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="OneLiners30" parent="Nonemissive/Crowd/Oneliners" unique_id=1325044868 instance=ExtResource("7_pgk8x")]
 position = Vector2(364, -124)
 is_crowd = true
 seconds_before_starting = 0.5
-bubble_timespan_seconds = 2.5
-wait_seconds_max = 240.0
+bubble_timespan_seconds = 4.5
+wait_seconds_max = 200.0
 one_liners = ExtResource("8_jsn88")
 
 [node name="BannersAndFlags" type="Node2D" parent="Nonemissive" unique_id=360925736]
