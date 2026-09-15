@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="8_kbndf"]
 [ext_resource type="Resource" uid="uid://x4hssidv7td0" path="res://status-effects/prefabs/emperor-tentacle.tres" id="8_nl0ad"]
 [ext_resource type="AudioStream" uid="uid://bqchdo0a7yi27" path="res://sfx/tentacle-attack.ogg" id="9_d00f6"]
+[ext_resource type="Resource" uid="uid://dchr0hpck5x88" path="res://status-effects/prefabs/tentacles_dry-out.tres" id="9_kbndf"]
 [ext_resource type="AudioStream" uid="uid://da4a12lo5xwe" path="res://sfx/tentacle-hit.ogg" id="10_8gkw1"]
 [ext_resource type="AudioStream" uid="uid://carpxxasddeyi" path="res://sfx/hemorrhage.wav" id="11_kbndf"]
 
@@ -69,7 +70,7 @@ health_bar = NodePath("health")
 ui_name = "Modest Tentacle"
 max_health = 4
 can_knockback = false
-status_effects = Array[ExtResource("7_kbndf")]([ExtResource("8_nl0ad")])
+status_effects = Array[ExtResource("7_kbndf")]([ExtResource("8_nl0ad"), ExtResource("9_kbndf")])
 metadata/_custom_type_script = "uid://5d6qh71oemsi"
 
 [node name="GiantTentacle" parent="." unique_id=1916901696 instance=ExtResource("6_d00f6")]
