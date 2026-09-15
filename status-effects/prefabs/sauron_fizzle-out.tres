@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="StatusTakeDamage" format=3 uid="uid://crmboda8fmndy"]
+
+[ext_resource type="Script" uid="uid://cskvkuha0bi21" path="res://status-effects/take-damage.gd" id="1_678rn"]
+[ext_resource type="PackedScene" uid="uid://b11vclccqbpug" path="res://vfx/status_fx-debuff.tscn" id="2_vjrnl"]
+
+[resource]
+script = ExtResource("1_678rn")
+hook = 1
+is_direct = true
+amount = 2
+wait_turns_to_start = 1
+effect_points = 1
+on_start_behavior = 0
+only_react_to_actors_turn_notifs = true
+ui_name = "Fizzle Out"
+ui_description = "The energy seems to be slowly dissipating."
+status_effect_category = 2
+use_actor_sfx = false
+trigger_sfx_per_effect_point = false
+vfx_hook_triggered = ExtResource("2_vjrnl")
+metadata/_custom_type_script = "uid://cskvkuha0bi21"

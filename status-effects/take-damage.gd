@@ -10,7 +10,22 @@ class_name StatusTakeDamage extends Status
 @export var amount: int = 1
 @export var use_points_as_amount: bool = false
 
+@export var wait_turns_to_start: int = 0
+
+var _waiting_to_start: int = -1
+
+func waiting_to_start() -> bool:
+	if wait_turns_to_start > 0:
+		if _waiting_to_start == -1:
+			_waiting_to_start = wait_turns_to_start
+		return true
+	return false
+
 func do_thing() -> void:
+	if waiting_to_start():
+		if _waiting_to_start > 0:
+			return
+	
 	assert(_actor, "_actor is invalid or null (StatusTakeDamage.do_thing)")
 	if not _actor:
 		return
@@ -21,6 +36,10 @@ func do_thing() -> void:
 		_actor.take_damage(amount if not use_points_as_amount else effect_points, _actor)
 
 func on_turn_start() -> void: ## Call super() if you override
+	if waiting_to_start():
+		if _waiting_to_start > 0:
+			_waiting_to_start -= 1
+	
 	if hook != Hook.ON_TURN_START:
 		return
 	

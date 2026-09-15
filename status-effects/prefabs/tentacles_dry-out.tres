@@ -7,6 +7,7 @@
 script = ExtResource("1_qq1bh")
 hook = 1
 is_direct = true
+wait_turns_to_start = 1
 effect_points = 1
 on_start_behavior = 0
 only_react_to_actors_turn_notifs = true
