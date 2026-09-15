@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://dsrf3qitbai07"]
 
-[ext_resource type="Script" uid="uid://2lxtpvvfchas" path="res://actors/enemies/grunt/grunt.gd" id="1_x8llf"]
+[ext_resource type="Script" uid="uid://pgyek4ai3kpq" path="res://actors/ai_actor.gd" id="1_kdlkd"]
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_kps1g"]
-[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="3_kdlkd"]
-[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="4_0tr0o"]
+[ext_resource type="Resource" uid="uid://4heblitlggsx" path="res://actions/prefabs/sauron_astral-columns.tres" id="3_0tr0o"]
+[ext_resource type="Resource" uid="uid://dey75dvv546a0" path="res://actions/prefabs/demigod_roar_small.tres" id="4_x2bws"]
+[ext_resource type="Resource" uid="uid://cevqb3vnrbdul" path="res://actions/prefabs/sauron_cosmic-touch.tres" id="5_3b347"]
 [ext_resource type="Script" uid="uid://bhpfulxak0eng" path="res://status-effects/status.gd" id="5_kps1g"]
 [ext_resource type="Script" uid="uid://cskvkuha0bi21" path="res://status-effects/take-damage.gd" id="6_kdlkd"]
 [ext_resource type="PackedScene" uid="uid://b11vclccqbpug" path="res://vfx/status_fx-debuff.tscn" id="7_0tr0o"]
@@ -11,39 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="8_4pscj"]
 [ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="9_2p5br"]
 [ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="10_4f8yg"]
-
-[sub_resource type="Resource" id="Resource_71lb7"]
-script = ExtResource("4_0tr0o")
-damage = 12
-can_damage_teammates = true
-pattern = Array[Vector2i]([Vector2i(0, -1), Vector2i(0, -2), Vector2i(0, -3), Vector2i(1, -1), Vector2i(2, -2), Vector2i(3, -3), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3), Vector2i(-1, 1), Vector2i(-2, 2), Vector2i(-3, 3), Vector2i(-1, 0), Vector2i(-2, 0), Vector2i(-3, 0)])
-allow_facing_before = true
-ui_title = "Astral Rows"
-energy_cost = 2
-metadata/_custom_type_script = "uid://dwk83a2nxfweb"
-
-[sub_resource type="Resource" id="Resource_nlcid"]
-script = ExtResource("4_0tr0o")
-damage = 15
-can_damage_teammates = true
-pattern = Array[Vector2i]([Vector2i(1, -2), Vector2i(2, -1), Vector2i(1, 1), Vector2i(-1, 2), Vector2i(-2, 1), Vector2i(-1, -1)])
-allow_facing_before = true
-ui_title = "Astral Columns"
-energy_cost = 2
-metadata/_custom_type_script = "uid://dwk83a2nxfweb"
-
-[sub_resource type="Resource" id="Resource_8hsrv"]
-script = ExtResource("4_0tr0o")
-damage = 1
-multiple_attacks = 4
-pattern = Array[Vector2i]([Vector2i(0, 0)])
-aoe_pattern = Array[Vector2i]([Vector2i(1, -1), Vector2i(1, 0), Vector2i(-1, 1), Vector2i(-1, 0), Vector2i(0, -2), Vector2i(1, -2), Vector2i(2, -2), Vector2i(2, -1), Vector2i(2, 0), Vector2i(1, 1), Vector2i(0, 2), Vector2i(-1, 2), Vector2i(-2, 2), Vector2i(-2, 1), Vector2i(-2, 0), Vector2i(-1, -1)])
-allow_facing_before = true
-allow_facing_after = true
-ui_title = "Cosmic Clear"
-ui_description = "Attack a wide area, albeit with low damage."
-energy_cost = 2
-metadata/_custom_type_script = "uid://dwk83a2nxfweb"
 
 [sub_resource type="Resource" id="Resource_x2bws"]
 script = ExtResource("6_kdlkd")
@@ -61,10 +29,10 @@ trigger_sfx_per_effect_point = false
 vfx_hook_triggered = ExtResource("7_0tr0o")
 metadata/_custom_type_script = "uid://cskvkuha0bi21"
 
-[node name="MiniSauron" type="Node2D" unique_id=1793188489 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
-script = ExtResource("1_x8llf")
+[node name="MiniSauron" type="Node2D" unique_id=1667341235 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
+script = ExtResource("1_kdlkd")
 drop_chance = 0.1
-usable_actions = Array[ExtResource("2_kps1g")]([SubResource("Resource_71lb7"), SubResource("Resource_nlcid"), SubResource("Resource_8hsrv")])
+usable_actions = Array[ExtResource("2_kps1g")]([ExtResource("3_0tr0o"), ExtResource("4_x2bws"), ExtResource("5_3b347")])
 selection_behavior = 1
 SHOW_FACING_INDICATOR = false
 character_visual_root = NodePath("Eyeguy")
@@ -80,6 +48,7 @@ dm_dmg_rr = 1.0
 dm_dmg_r = 1.0
 dm_dmg_rl = 1.0
 status_effects = Array[ExtResource("5_kps1g")]([SubResource("Resource_x2bws")])
+metadata/_custom_type_script = "uid://pgyek4ai3kpq"
 
 [node name="Eyeguy" parent="." unique_id=552246709 instance=ExtResource("7_bfx76")]
 

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ActionAttack" format=3 uid="uid://4heblitlggsx"]
+
+[ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="1_en15w"]
+[ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="2_nydqj"]
+
+[resource]
+script = ExtResource("2_nydqj")
+damage = 15
+pattern = Array[Vector2i]([Vector2i(1, -2), Vector2i(2, -1), Vector2i(1, 1), Vector2i(-1, 2), Vector2i(-2, 1), Vector2i(-1, -1)])
+allow_facing_before = true
+ui_title = "Astral Columns"
+energy_cost = 2
+metadata/_custom_type_script = "uid://dwk83a2nxfweb"

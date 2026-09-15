@@ -1,7 +1,8 @@
 @abstract class_name Status extends Resource
 
 func p(args):
-	print_rich("[bgcolor=blue][color=white]Status %s : " % self, args)
+	if debug:
+		print_rich("[bgcolor=blue][color=white]Status %s : " % self, args)
 
 enum StatusEffectCategory{
 	NONE,

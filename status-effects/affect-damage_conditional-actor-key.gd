@@ -2,6 +2,7 @@ class_name StatusAffectDamageConditional extends Status
 
 ## Check for actors, either using a target key or simply counting the team members.
 ## If threshold reached, applies the effect (multiplying incoming damage by [member factor]).
+## Damage is floored (<1 damage becomes 0.)
 
 enum Modes {
 	TEAM_COUNT = 0, ## Count the actors sharing the same director as this actor (not including).
@@ -76,8 +77,8 @@ func get_damage(damage: int) -> int:
 		for x in found if per_actor_found else 1:
 			damage_to_take *= factor
 		
-		p("Incoming damage affected by %d found actors (%d orig, %f new)" % [damage, damage_to_take])
-		return ceili(damage_to_take)
+		p("Incoming damage affected by %d found actors (%d orig, %f new)" % [found, damage, damage_to_take])
+		return floori(damage_to_take)
 
 
 func on_take_damage(damage: int) -> int: ## Override me
