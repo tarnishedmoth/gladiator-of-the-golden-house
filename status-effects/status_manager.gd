@@ -159,14 +159,16 @@ func remove_status(status: Status) -> void:
 	
 	
 func remove_keyed_statuses(key) -> void:
+	const EMPTY_VALUE: StringName = &"EmptyEmptyEmpty"
+	
 	if key == null:
 		if debug: p("Removing keyed statuses: key is [b]null[/b] (skipping).")
 		return
 	if debug: p("Removing statuses keyed as '%s'." % key)
 	var to_remove: Array
 	for status in status_effects:
-		var meta_key = status.get_meta(&"key", null)
-		if meta_key == null:
+		var meta_key = status.get_meta(&"key", EMPTY_VALUE)
+		if meta_key == EMPTY_VALUE:
 			continue
 		if meta_key == key:
 			to_remove.append(status)
