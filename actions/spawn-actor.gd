@@ -6,13 +6,26 @@ class_name ActionSpawn extends Action
 @export var face_to_player: bool = true
 @export var insert_at_front_of_play_sequence: bool = true
 
+@export var spawn_at_all_tiles: bool = false ## If true, spawns one actor on every tile in the [member pattern].
+
 func enter(_from: ResourceState = null) -> void:
 	var _actor_scene: PackedScene = ResourceLoader.load(actor_to_spawn, "PackedScene", ResourceLoader.CACHE_MODE_REUSE)
-	spawn_actor(_actor_scene)
+	
+	if spawn_at_all_tiles:
+		spawn_actors_at_all_tiles(_actor_scene)
+	else:
+		spawn_actor(_actor_scene, _target)
 	exit()
+	
+func spawn_actors_at_all_tiles(scene: PackedScene) -> void:
+	var tiles: Array[Vector2i] = _actor.get_translated_pattern_without_obstructions(pattern)
+	p("Spawning actors at %d tiles..." % tiles.size())
+	
+	for tile: Vector2i in tiles:
+		spawn_actor(scene, tile)
 
-func spawn_actor(scene: PackedScene) -> void:
-	if _target == null:
+func spawn_actor(scene: PackedScene, at: Vector2i) -> void:
+	if at == null:
 		p("Null target, exiting...\n(this could be due to AI skipping planning because of some preventing factor)")
 		return
 	
@@ -31,8 +44,8 @@ func spawn_actor(scene: PackedScene) -> void:
 		push_error("ActionSpawn: Can't instantiate scene.")
 		return
 		
-	if not can_spawn_actor_at(_target):
-		if debug: p("Can't spawn actor at coordinate %s. Exiting." % _target)
+	if not can_spawn_actor_at(at):
+		if debug: p("Can't spawn actor at coordinate %s. Exiting." % at)
 		return
 	
 	var actor: Actor = scene.instantiate()
@@ -41,7 +54,7 @@ func spawn_actor(scene: PackedScene) -> void:
 		actor.free()
 		return
 	
-	if debug: p("Spawning %s at %s..." % [actor, _target])
+	if debug: p("Spawning %s at %s..." % [actor, at])
 	
 	## VFX
 	actor.modulate = Color.TRANSPARENT
@@ -57,12 +70,12 @@ func spawn_actor(scene: PackedScene) -> void:
 	
 	## Set the actors position to tile coordinate
 	var tile_map: TileMapLayer = Level.get_base_tile_map_layer()
-	actor.global_position = Actor.get_global_position_at(tile_map, _target)
+	actor.global_position = Actor.get_global_position_at(tile_map, at)
 	
 	if face_to_player:
 		var player: Actor = Level.get_all_actors_in_play_order().filter(func(v: Actor): return v.director is Player).front()
 		if player:
-			actor.facing = Facing.get_direction_to_cell(tile_map, _target, player.current_tile_coords)
+			actor.facing = Facing.get_direction_to_cell(tile_map, at, player.current_tile_coords)
 	
 	## Inject into a director
 	director.add_actor_for_next_turn(actor, insert_at_front_of_play_sequence)
