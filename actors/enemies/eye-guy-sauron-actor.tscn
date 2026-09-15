@@ -1,15 +1,30 @@
 [gd_scene format=3 uid="uid://c6hnktclcvqf3"]
 
-[ext_resource type="Script" uid="uid://2lxtpvvfchas" path="res://actors/enemies/grunt/grunt.gd" id="1_uhhsc"]
 [ext_resource type="Script" uid="uid://dowjchc6vbelx" path="res://actions/action.gd" id="2_ljita"]
 [ext_resource type="Script" uid="uid://c1pxd5u1bvu2i" path="res://actions/requirements/requirement.gd" id="3_ynjd5"]
 [ext_resource type="Script" uid="uid://dwk83a2nxfweb" path="res://actions/attack.gd" id="4_vfbqe"]
 [ext_resource type="Resource" uid="uid://b34xqoxtpxt5w" path="res://actions/prefabs/demigod_roar.tres" id="5_d21h2"]
 [ext_resource type="Resource" uid="uid://bxvvng0ducbc3" path="res://actions/prefabs/do-nothing.tres" id="6_u4bj3"]
+[ext_resource type="Script" uid="uid://buqomxkjocleh" path="res://actions/spawn-actor.gd" id="7_ljita"]
 [ext_resource type="PackedScene" uid="uid://bxtwk62yntlh7" path="res://characters/sauron/eyeguy.tscn" id="7_q4xdl"]
+[ext_resource type="Script" uid="uid://5d6qh71oemsi" path="res://actors/ai_actor_conditional.gd" id="7_ynjd5"]
 [ext_resource type="PackedScene" uid="uid://bg6bvpn5h72gn" path="res://sfx/actor_sfx.tscn" id="8_lvx35"]
+[ext_resource type="Script" uid="uid://bhpfulxak0eng" path="res://status-effects/status.gd" id="9_d21h2"]
 [ext_resource type="PackedScene" uid="uid://d31twvpo524b7" path="res://actors/healthbar.tscn" id="9_howhe"]
+[ext_resource type="Resource" uid="uid://dqxhnvc7ub8c" path="res://status-effects/prefabs/reduce-damage-with-teammates-present.tres" id="10_d21h2"]
 [ext_resource type="PackedScene" uid="uid://dralgiv8ope8f" path="res://dialogue/SpeechBubble.tscn" id="10_m4ojx"]
+
+[sub_resource type="Resource" id="Resource_i8ndi"]
+script = ExtResource("7_ljita")
+actor_to_spawn = "uid://dsrf3qitbai07"
+pattern = Array[Vector2i]([Vector2i(0, -3), Vector2i(3, -3), Vector2i(3, 0), Vector2i(0, 3), Vector2i(-3, 3), Vector2i(-3, 0)])
+insert_at_front_of_play_sequence = false
+spawn_at_all_tiles = true
+ui_title = "Cast Copies"
+ui_description = "Cast multiple copies of itself across the arena."
+action_category = 4
+energy_cost = 1
+metadata/_custom_type_script = "uid://buqomxkjocleh"
 
 [sub_resource type="Resource" id="Resource_71lb7"]
 script = ExtResource("4_vfbqe")
@@ -44,8 +59,11 @@ ui_description = "Attack a wide area, albeit with low damage."
 energy_cost = 2
 metadata/_custom_type_script = "uid://dwk83a2nxfweb"
 
-[node name="Sauron" type="Node2D" unique_id=1793188489 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
-script = ExtResource("1_uhhsc")
+[node name="Sauron" type="Node2D" unique_id=568187588 node_paths=PackedStringArray("character_visual_root", "health_bar", "speech_bubble")]
+script = ExtResource("7_ynjd5")
+conditionally_usable_actions = Array[ExtResource("2_ljita")]([SubResource("Resource_i8ndi"), ExtResource("6_u4bj3"), ExtResource("5_d21h2")])
+cond_alive_atleast_x_turns = 3
+alt_actions_to_queue_this_turn = 1
 usable_actions = Array[ExtResource("2_ljita")]([SubResource("Resource_71lb7"), SubResource("Resource_nlcid"), ExtResource("5_d21h2"), SubResource("Resource_8hsrv"), ExtResource("6_u4bj3")])
 selection_behavior = 1
 character_visual_root = NodePath("Eyeguy")
@@ -54,11 +72,13 @@ speech_bubble = NodePath("SpeechBubble")
 ui_name = "? ? ?"
 ui_subtitle = "Cosmic Curiosity"
 ui_description = "Each time you try to get a closer look, it hurts."
-max_health = 62
+max_health = 70
 can_knockback = false
 dm_dmg_f = 3.0
 dm_dmg_rr = 1.0
 dm_dmg_rl = 1.0
+status_effects = Array[ExtResource("9_d21h2")]([ExtResource("10_d21h2")])
+metadata/_custom_type_script = "uid://5d6qh71oemsi"
 
 [node name="Eyeguy" parent="." unique_id=552246709 instance=ExtResource("7_q4xdl")]
 scale = Vector2(2, 2)
