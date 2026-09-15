@@ -279,23 +279,24 @@ func plan_action_details(action: Action, claimed_tiles: Array[Vector2i]) -> void
 		if action.allow_facing_before:# or action.allow_facing_after:
 			set_facing(get_facing_direction_to_hostile_target())
 		
-		## Pick a valid tile to spawn at
-		var choice_target: Vector2i
-		
-		if action.pattern.is_empty():
-			if debug: p("ActionSpawn has no pattern, skipping planning.")
-			return
-		
-		var potential_targets: Array[Vector2i] = _filter_move_candidates(get_action_target_cells(action), claimed_tiles, false)
-		if potential_targets.is_empty():
-			if debug: p("No valid potential targets, skipping planning.")
-			return
-		
-		potential_targets.sort_custom(sort_hostile_distance)
-		choice_target = potential_targets.front()
-		claimed_tiles.append(choice_target)
-		
-		action.set_target(choice_target)
+		if not action.spawn_at_all_tiles:
+			## Pick a valid tile to spawn at
+			var choice_target: Vector2i
+			
+			if action.pattern.is_empty():
+				if debug: p("ActionSpawn has no pattern, skipping planning.")
+				return
+			
+			var potential_targets: Array[Vector2i] = _filter_move_candidates(get_action_target_cells(action), claimed_tiles, false)
+			if potential_targets.is_empty():
+				if debug: p("No valid potential targets, skipping planning.")
+				return
+			
+			potential_targets.sort_custom(sort_hostile_distance)
+			choice_target = potential_targets.front()
+			claimed_tiles.append(choice_target)
+			
+			action.set_target(choice_target)
 	
 	elif action is ActionApplyStatusPattern:
 		if action.pattern != null:
