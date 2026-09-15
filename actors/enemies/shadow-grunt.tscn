@@ -20,8 +20,8 @@ health_bar = NodePath("health")
 speech_bubble = NodePath("SpeechBubble")
 ui_name = "Shadow"
 ui_subtitle = "Anomaly"
-ui_description = "How long has he been behind you?"
-max_health = 16
+ui_description = "How long have they been behind you..?"
+max_health = 24
 
 [node name="PlayerArt" type="Node2D" parent="." unique_id=1481137980]
 modulate = Color(0.04755766, 0.047557645, 0.047557645, 1)
