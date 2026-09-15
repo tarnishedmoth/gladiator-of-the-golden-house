@@ -20,4 +20,4 @@ func _ready() -> void:
 
 func check_add_first_time_completion_text() -> void:
 	if GameSettings.get_value(GameSettings.SECTION.COMPLETIONS, "game_completed", false) == true:
-		self.text += "\n\n[b]You have unlocked the remaining starting classes.[/b]"
+		self.text += "\n\n[b]You have unlocked bonus starting classes.[/b]"
