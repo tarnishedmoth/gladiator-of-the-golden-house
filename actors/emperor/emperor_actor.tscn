@@ -91,9 +91,8 @@ position = Vector2(0, -100)
 texture = ExtResource("3_ouhsa")
 
 [node name="bar" parent="health" index="0" unique_id=1924444429]
-position = Vector2(0, 0)
+position = Vector2(-108, -3)
 texture = ExtResource("4_cnmra")
-centered = true
 
 [node name="txt" parent="health" index="1" unique_id=1830493824]
 offset_left = 111.0
