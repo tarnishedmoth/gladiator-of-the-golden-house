@@ -16,9 +16,9 @@ func do_thing() -> void:
 		return
 	
 	if is_direct:
-		_actor.take_direct_damage(amount if not use_points_as_amount else effect_points)
+		_actor.take_direct_damage(amount if not use_points_as_amount else effect_points, _actor)
 	else:
-		_actor.take_damage(amount if not use_points_as_amount else effect_points)
+		_actor.take_damage(amount if not use_points_as_amount else effect_points, _actor)
 
 func on_turn_start() -> void: ## Call super() if you override
 	if hook != Hook.ON_TURN_START:

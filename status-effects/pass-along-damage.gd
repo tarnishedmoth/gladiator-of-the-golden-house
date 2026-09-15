@@ -5,7 +5,9 @@ class_name StatusPassAlongDamage extends Status
 
 @export var factor: float = 1.0 ## Multiplier to damage to forward.
 @export var per_point: bool = false ## Multiplies
+
 @export var direct_only: bool = false
+@export var trigger_from_own_damage: bool = false
 
 @export var target_key: StringName ## If set, looks for an [Actor] with a matching [member Actor.persistent_data_key].
 
@@ -37,15 +39,17 @@ func do_thing(damage: int) -> void:
 func on_take_damage(damage: int) -> int: ## Override me
 	if direct_only:
 		return damage
-	
-	do_thing(damage)
-	on_after_hook()
+		
+	if trigger_from_own_damage or _actor.get_incoming_damage_by() != _actor:
+		do_thing(damage)
+		on_after_hook()
 	return damage
 
 func on_take_direct_damage(damage: int) -> int: ## Override me
 	if not direct_only:
 		return damage
 	
-	do_thing(damage)
-	on_after_hook()
+	if trigger_from_own_damage or _actor.get_incoming_damage_by() != _actor:
+		do_thing(damage)
+		on_after_hook()
 	return damage
