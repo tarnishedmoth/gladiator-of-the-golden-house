@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_mfgus")
-damage = 2
+damage = 3
 direct = true
 pattern = Array[Vector2i]([Vector2i(0, -2), Vector2i(1, -2), Vector2i(-1, -1), Vector2i(0, -1)])
 aoe_pattern = Array[Vector2i]([Vector2i(0, 0)])
