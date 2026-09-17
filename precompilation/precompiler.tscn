@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://67rnrw712gbo"]
+
+[ext_resource type="Script" uid="uid://cfvwo1dm3m1wo" path="res://precompilation/precompiler.gd" id="1_ebjwa"]
+[ext_resource type="PackedScene" uid="uid://3gbltwsnvvfb" path="res://vfx/vignette.tscn" id="2_mfqo4"]
+
+[sub_resource type="Animation" id="Animation_k5niy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Precompiling shaders ..."]
+}
+
+[sub_resource type="Animation" id="Animation_ube27"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["", ".", "..", "..."]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tlcfp"]
+_data = {
+&"RESET": SubResource("Animation_k5niy"),
+&"new_animation": SubResource("Animation_ube27")
+}
+
+[node name="Precompiler" type="Control" unique_id=596796926]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ebjwa")
+scene_list = PackedStringArray("uid://btc7017djqs4e", "uid://v7bxmuh8pp83", "uid://cnjj4x8vv6fpo", "uid://b0hnkme2hu37c", "uid://b8g0o8rwa4uvg", "uid://b11vclccqbpug", "uid://dpamc84gay4r0", "uid://dn6c0djtf3s2p", "uid://ua1ksh0d8wqk")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1127562814]
+modulate = Color(1, 1, 1, 0.003921569)
+z_index = -4096
+z_as_relative = false
+layout_mode = 0
+offset_left = 449.0
+offset_top = 365.0
+offset_right = 513.0
+offset_bottom = 429.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=406892567]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(64, 64)
+render_target_update_mode = 4
+
+[node name="Spawner" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=479307790]
+unique_name_in_owner = true
+
+[node name="UI" type="Control" parent="." unique_id=1264066858]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="UI" unique_id=1331597149]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.016692974, 0.04604309, 0.080262266, 1)
+
+[node name="Vignette" parent="UI" unique_id=1697100378 instance=ExtResource("2_mfqo4")]
+layout_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="UI" unique_id=711486770]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/CenterContainer" unique_id=8494777]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="UI/CenterContainer/HBoxContainer" unique_id=560584675]
+layout_mode = 2
+text = "Precompiling shaders "
+
+[node name="Label" type="Label" parent="UI/CenterContainer/HBoxContainer" unique_id=354411718]
+layout_mode = 2
+text = "Precompiling shaders ..."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/CenterContainer/HBoxContainer/Label" unique_id=1276215958]
+libraries/ = SubResource("AnimationLibrary_tlcfp")
+autoplay = &"new_animation"

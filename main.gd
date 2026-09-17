@@ -9,6 +9,8 @@ class_name Main extends Node
 signal game_settings_changed
 signal change_scene_transition_completed
 
+const RUN_PRECOMPILER: bool = true
+
 static var VERSION:String:
 	get:
 		if not VERSION:
@@ -21,6 +23,7 @@ enum SceneBlockers {
 	LIGHT = 1,
 }
 
+@export var precompiler_scene:PackedScene
 @export var splash_scene:PackedScene
 @export var main_menu_scene:PackedScene: ## We don't have a main menu yet
 	get:
@@ -73,6 +76,9 @@ var current_packed_scene: PackedScene ## Set each time [method change_scene] is 
 @onready var alternate_white_blocker: Sprite2D = %FADE.get_child(0)
 @onready var dark_blocker: TextureRect = %DarkBlocker
 
+static var is_precompiler_running: bool = false
+static var precompiler_cache: Array
+
 ## Static instance, we should only have one Main in the scene tree at any time.
 static var instance: Main:
 	set(value):
@@ -114,7 +120,14 @@ func _ready() -> void:
 	l("GLADIATOR OF THE GOLDEN HOUSE %s" % [VERSION])
 	if not skip_splash:
 		change_scene(splash_scene, false)
+		await get_tree().process_frame
 		assert(instanced_root is SplashMenu)
+		await instanced_root.finished
+		
+	if RUN_PRECOMPILER:
+		change_scene(precompiler_scene, false)
+		await get_tree().process_frame
+		assert(instanced_root is Precompiler)
 		await instanced_root.finished
 	
 	if load_to_developer_menu:
@@ -144,9 +157,15 @@ static func change_scene_to_file(filepath: String, use_transition_overlay: bool 
 
 ## Prints the orphaned nodes to the console, if there are any.
 func _check_print_orphans(msg: String) -> void:
-	if not get_orphan_node_ids().is_empty():
+	var orphans = get_orphan_node_ids()
+	
+	if Main.precompiler_cache.size() > 0:
+		l("Some of the following orphans are cached by the precompiler.")
+	
+	if not orphans.is_empty():
 		l(msg)
 		print_orphan_nodes()
+
 
 ## If there is an active scene, unloads it, then instantiates [param packed_scene] and adds it as a child.
 func _change_scene(packed_scene: PackedScene) -> void:
